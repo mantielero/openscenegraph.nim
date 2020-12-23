@@ -1,0 +1,76 @@
+import CopyOp # Provides CopyOp
+import Object # Provides Object
+import gl # Provides GLint
+import StateAttribute # Provides StateAttribute, Type
+import Vec4 # Provides Vec4
+import State # Provides State
+
+
+type
+  # Enums
+  Mode* {.size:sizeof(cuint),header: "Fog", importcpp: "osg::Fog::Mode".} = enum
+    LINEAR = 9729,
+    EXP = 2048,
+    EXP2 = 2049
+
+  FogCoordinateSource* {.size:sizeof(cuint),header: "Fog", importcpp: "osg::Fog::FogCoordinateSource".} = enum
+    FOG_COORDINATE = 33873,
+    FRAGMENT_DEPTH = 33874
+
+{.push header: "Fog".}
+
+
+# Constructors and methods
+proc constructFog*(): Fog {.constructor,importcpp: "Fog".}
+
+proc constructFog*(fog: Fog, copyop: Copyop = SHALLOW_COPY): Fog {.constructor,importcpp: "Fog(@)".}
+    ## Copy constructor using CopyOp to manage deep vs shallow copy.
+
+proc cloneType*(this: Fog): ptr Object   {.importcpp: "cloneType".}
+
+proc clone*(this: Fog, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+
+proc isSameKindAs*(this: Fog, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
+
+proc libraryName*(this: Fog): cstring  {.importcpp: "libraryName".}
+
+proc className*(this: Fog): cstring  {.importcpp: "className".}
+
+proc getType*(this: Fog): Type  {.importcpp: "getType".}
+
+proc compare*(this: Fog, sa: Stateattribute): cint  {.importcpp: "compare".}
+    ## return -1 if *this < *rhs, 0 if *this==*rhs, 1 if *this>*rhs.
+
+proc getModeUsage*(this: Fog, usage: Modeusage): bool  {.importcpp: "getModeUsage".}
+
+proc setMode*(this: var Fog, mode: Mode)  {.importcpp: "setMode".}
+
+proc getMode*(this: Fog): Mode  {.importcpp: "getMode".}
+
+proc setDensity*(this: var Fog, density: cfloat)  {.importcpp: "setDensity".}
+
+proc getDensity*(this: Fog): cfloat  {.importcpp: "getDensity".}
+
+proc setStart*(this: var Fog, start: cfloat)  {.importcpp: "setStart".}
+
+proc getStart*(this: Fog): cfloat  {.importcpp: "getStart".}
+
+proc setEnd*(this: var Fog, `end`: cfloat)  {.importcpp: "setEnd".}
+
+proc getEnd*(this: Fog): cfloat  {.importcpp: "getEnd".}
+
+proc setColor*(this: var Fog, color: Vec4)  {.importcpp: "setColor".}
+
+proc getColor*(this: Fog): Vec4  {.importcpp: "getColor".}
+
+proc setUseRadialFog*(this: var Fog, useRadialFog: bool)  {.importcpp: "setUseRadialFog".}
+
+proc getUseRadialFog*(this: Fog): bool  {.importcpp: "getUseRadialFog".}
+
+proc setFogCoordinateSource*(this: var Fog, source: GLint)  {.importcpp: "setFogCoordinateSource".}
+
+proc getFogCoordinateSource*(this: Fog): GLint  {.importcpp: "getFogCoordinateSource".}
+
+proc apply*(this: Fog, state: State)  {.importcpp: "apply".}
+
+{.pop.} # header: "Fog

@@ -1,0 +1,45 @@
+import CopyOp # Provides CopyOp
+import Object # Provides Object
+import StateAttribute # Provides StateAttribute, Type
+import State # Provides State
+
+
+type
+  Mode* {.size:sizeof(cuint),header: "CullFace", importcpp: "osg::CullFace::Mode".} = enum
+    FRONT = 1028,
+    BACK = 1029,
+    FRONT_AND_BACK = 1032
+
+{.push header: "CullFace".}
+
+
+# Constructors and methods
+proc constructCullFace*(mode: Mode): CullFace {.constructor,importcpp: "CullFace(@)".}
+
+proc constructCullFace*(cf: Cullface, copyop: Copyop = SHALLOW_COPY): CullFace {.constructor,importcpp: "CullFace(@)".}
+    ## Copy constructor using CopyOp to manage deep vs shallow copy.
+
+proc cloneType*(this: CullFace): ptr Object   {.importcpp: "cloneType".}
+
+proc clone*(this: CullFace, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+
+proc isSameKindAs*(this: CullFace, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
+
+proc libraryName*(this: CullFace): cstring  {.importcpp: "libraryName".}
+
+proc className*(this: CullFace): cstring  {.importcpp: "className".}
+
+proc getType*(this: CullFace): Type  {.importcpp: "getType".}
+
+proc compare*(this: CullFace, sa: Stateattribute): cint  {.importcpp: "compare".}
+    ## return -1 if *this < *rhs, 0 if *this==*rhs, 1 if *this>*rhs.
+
+proc getModeUsage*(this: CullFace, usage: Modeusage): bool  {.importcpp: "getModeUsage".}
+
+proc setMode*(this: var CullFace, mode: Mode)  {.importcpp: "setMode".}
+
+proc getMode*(this: CullFace): Mode  {.importcpp: "getMode".}
+
+proc apply*(this: CullFace, state: State)  {.importcpp: "apply".}
+
+{.pop.} # header: "CullFace

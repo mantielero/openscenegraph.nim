@@ -1,0 +1,47 @@
+import CopyOp # Provides CopyOp
+import Object # Provides Object
+import StateAttribute # Provides StateAttribute, Type
+import BlendEquation # Provides Equation
+import State # Provides State
+
+
+{.push header: "BlendEquationi".}
+
+
+# Constructors and methods
+proc constructBlendEquationi*(): BlendEquationi {.constructor,importcpp: "BlendEquationi".}
+
+proc constructBlendEquationi*(buf: cuint, equation: Equation): BlendEquationi {.constructor,importcpp: "BlendEquationi(@)".}
+
+proc constructBlendEquationi*(buf: cuint, equationRGB: Equation, equationAlpha: Equation): BlendEquationi {.constructor,importcpp: "BlendEquationi(@)".}
+
+proc constructBlendEquationi*(cm: Blendequationi, copyop: Copyop = SHALLOW_COPY): BlendEquationi {.constructor,importcpp: "BlendEquationi(@)".}
+    ## Copy constructor using CopyOp to manage deep vs shallow copy.
+
+proc cloneType*(this: BlendEquationi): ptr Object   {.importcpp: "cloneType".}
+
+proc clone*(this: BlendEquationi, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+
+proc isSameKindAs*(this: BlendEquationi, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
+
+proc libraryName*(this: BlendEquationi): cstring  {.importcpp: "libraryName".}
+
+proc className*(this: BlendEquationi): cstring  {.importcpp: "className".}
+
+proc getType*(this: BlendEquationi): Type  {.importcpp: "getType".}
+
+proc compare*(this: BlendEquationi, sa: Stateattribute): cint  {.importcpp: "compare".}
+    ## Return -1 if *this < *rhs, 0 if *this==*rhs, 1 if *this>*rhs.
+
+proc getMember*(this: BlendEquationi): cuint  {.importcpp: "getMember".}
+    ## Return the buffer index as the member identifier.
+
+proc setIndex*(this: var BlendEquationi, buf: cuint)  {.importcpp: "setIndex".}
+    ## Set the renderbuffer index of the BlendEquationi.
+
+proc getIndex*(this: BlendEquationi): cuint  {.importcpp: "getIndex".}
+    ## Get the renderbuffer index of the BlendEquationi.
+
+proc apply*(this: BlendEquationi, state: State)  {.importcpp: "apply".}
+
+{.pop.} # header: "BlendEquationi

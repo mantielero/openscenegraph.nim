@@ -1,0 +1,145 @@
+import CopyOp # Provides CopyOp
+import Object # Provides Object
+import gl # Provides GLenum, GLuint
+import glext # Provides GLsizeiptr, GLintptr
+import BufferObject # Provides BufferData
+import Array # Provides UIntArray
+import StateAttribute # Provides StateAttribute, Type
+import State # Provides State
+
+
+{.push header: "BufferIndexBinding".}
+
+
+# Constructors and methods
+proc constructBufferIndexBinding*(target: GLenum, index: GLuint): BufferIndexBinding {.constructor,importcpp: "BufferIndexBinding(@)".}
+
+proc constructBufferIndexBinding*(target: GLenum, index: GLuint, bd: ptr Bufferdata , offset: GLintptr = 0, size: GLsizeiptr = 0): BufferIndexBinding {.constructor,importcpp: "BufferIndexBinding(@)".}
+
+proc constructBufferIndexBinding*(rhs: Bufferindexbinding, copyop: Copyop = SHALLOW_COPY): BufferIndexBinding {.constructor,importcpp: "BufferIndexBinding(@)".}
+
+proc constructUniformBufferBinding*(): UniformBufferBinding {.constructor,importcpp: "UniformBufferBinding".}
+
+proc constructUniformBufferBinding*(index: GLuint): UniformBufferBinding {.constructor,importcpp: "UniformBufferBinding(@)".}
+
+proc constructUniformBufferBinding*(index: GLuint, bd: ptr Bufferdata , offset: GLintptr = 0, size: GLsizeiptr = 0): UniformBufferBinding {.constructor,importcpp: "UniformBufferBinding(@)".}
+    ## Create a binding for a uniform buffer index target.
+
+proc constructUniformBufferBinding*(rhs: Uniformbufferbinding, copyop: Copyop = SHALLOW_COPY): UniformBufferBinding {.constructor,importcpp: "UniformBufferBinding(@)".}
+
+proc constructTransformFeedbackBufferBinding*(index: GLuint = 0): TransformFeedbackBufferBinding {.constructor,importcpp: "TransformFeedbackBufferBinding(@)".}
+
+proc constructTransformFeedbackBufferBinding*(index: GLuint, bd: ptr Bufferdata , offset: GLintptr = 0, size: GLsizeiptr = 0): TransformFeedbackBufferBinding {.constructor,importcpp: "TransformFeedbackBufferBinding(@)".}
+
+proc constructTransformFeedbackBufferBinding*(rhs: Transformfeedbackbufferbinding, copyop: Copyop = SHALLOW_COPY): TransformFeedbackBufferBinding {.constructor,importcpp: "TransformFeedbackBufferBinding(@)".}
+
+proc constructAtomicCounterBufferBinding*(index: GLuint = 0): AtomicCounterBufferBinding {.constructor,importcpp: "AtomicCounterBufferBinding(@)".}
+
+proc constructAtomicCounterBufferBinding*(index: GLuint, bd: ptr Bufferdata , offset: GLintptr = 0, size: GLsizeiptr = 0): AtomicCounterBufferBinding {.constructor,importcpp: "AtomicCounterBufferBinding(@)".}
+    ## Create a binding for a atomic counter buffer index target.
+
+proc constructAtomicCounterBufferBinding*(rhs: Atomiccounterbufferbinding, copyop: Copyop = SHALLOW_COPY): AtomicCounterBufferBinding {.constructor,importcpp: "AtomicCounterBufferBinding(@)".}
+
+proc constructShaderStorageBufferBinding*(index: GLuint = 0): ShaderStorageBufferBinding {.constructor,importcpp: "ShaderStorageBufferBinding(@)".}
+
+proc constructShaderStorageBufferBinding*(index: GLuint, bd: ptr Bufferdata , offset: GLintptr = 0, size: GLsizeiptr = 0): ShaderStorageBufferBinding {.constructor,importcpp: "ShaderStorageBufferBinding(@)".}
+    ## Create a binding for a shader storage buffer index target.
+
+proc constructShaderStorageBufferBinding*(rhs: Shaderstoragebufferbinding, copyop: Copyop = SHALLOW_COPY): ShaderStorageBufferBinding {.constructor,importcpp: "ShaderStorageBufferBinding(@)".}
+
+proc getMember*(this: BufferIndexBinding): cuint  {.importcpp: "getMember".}
+
+proc getTarget*(this: BufferIndexBinding): GLenum  {.importcpp: "getTarget".}
+
+proc setTarget*(this: var BufferIndexBinding, t: GLenum)  {.importcpp: "setTarget".}
+    ## enable arbitrary BufferBinding (user is responsible for _target
+    ## mismatch with bufferdata what can be done is setting wrong _target and
+    ## use the one of bd if not subclassed
+
+proc setBufferData*(this: var BufferIndexBinding, bufferdata: ptr Bufferdata )  {.importcpp: "setBufferData".}
+
+proc getBufferData*(this: BufferIndexBinding): ptr Bufferdata   {.importcpp: "getBufferData".}
+    ## Get the buffer data to be bound.
+
+proc getBufferData*(this: var BufferIndexBinding): ptr Bufferdata   {.importcpp: "getBufferData".}
+
+proc getIndex*(this: BufferIndexBinding): GLuint  {.importcpp: "getIndex".}
+    ## Get the index target.
+
+proc setIndex*(this: var BufferIndexBinding, index: GLuint)  {.importcpp: "setIndex".}
+    ## Set the index target. (and update parents StateSets)
+
+proc setOffset*(this: var BufferIndexBinding, offset: GLintptr)  {.importcpp: "setOffset".}
+    ## Set the starting offset into the buffer data for the indexed target.
+    ## Note: the required alignment on the offset may be quite large (e.g.,
+    ## 256 bytes on NVidia 8600M). This should be checked with
+    ## glGetIntegerv(GL_UNIFORM_BUFFER_OFFSET_ALIGNMENT...).
+
+proc getOffset*(this: BufferIndexBinding): GLintptr  {.importcpp: "getOffset".}
+
+proc setSize*(this: var BufferIndexBinding, size: GLsizeiptr)  {.importcpp: "setSize".}
+    ## Set the size override of bufferdata binded for the indexed target.
+
+proc getSize*(this: BufferIndexBinding): GLsizeiptr  {.importcpp: "getSize".}
+
+proc apply*(this: BufferIndexBinding, state: State)  {.importcpp: "apply".}
+
+proc cloneType*(this: UniformBufferBinding): ptr Object   {.importcpp: "cloneType".}
+
+proc clone*(this: UniformBufferBinding, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+
+proc isSameKindAs*(this: UniformBufferBinding, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
+
+proc libraryName*(this: UniformBufferBinding): cstring  {.importcpp: "libraryName".}
+
+proc className*(this: UniformBufferBinding): cstring  {.importcpp: "className".}
+
+proc getType*(this: UniformBufferBinding): Type  {.importcpp: "getType".}
+
+proc compare*(this: UniformBufferBinding, bb: Stateattribute): cint  {.importcpp: "compare".}
+
+proc cloneType*(this: TransformFeedbackBufferBinding): ptr Object   {.importcpp: "cloneType".}
+
+proc clone*(this: TransformFeedbackBufferBinding, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+
+proc isSameKindAs*(this: TransformFeedbackBufferBinding, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
+
+proc libraryName*(this: TransformFeedbackBufferBinding): cstring  {.importcpp: "libraryName".}
+
+proc className*(this: TransformFeedbackBufferBinding): cstring  {.importcpp: "className".}
+
+proc getType*(this: TransformFeedbackBufferBinding): Type  {.importcpp: "getType".}
+
+proc compare*(this: TransformFeedbackBufferBinding, bb: Stateattribute): cint  {.importcpp: "compare".}
+
+proc cloneType*(this: AtomicCounterBufferBinding): ptr Object   {.importcpp: "cloneType".}
+
+proc clone*(this: AtomicCounterBufferBinding, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+
+proc isSameKindAs*(this: AtomicCounterBufferBinding, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
+
+proc libraryName*(this: AtomicCounterBufferBinding): cstring  {.importcpp: "libraryName".}
+
+proc className*(this: AtomicCounterBufferBinding): cstring  {.importcpp: "className".}
+
+proc getType*(this: AtomicCounterBufferBinding): Type  {.importcpp: "getType".}
+
+proc readData*(this: AtomicCounterBufferBinding, state: State, uintArray: Uintarray)  {.importcpp: "readData".}
+
+proc compare*(this: AtomicCounterBufferBinding, bb: Stateattribute): cint  {.importcpp: "compare".}
+
+proc cloneType*(this: ShaderStorageBufferBinding): ptr Object   {.importcpp: "cloneType".}
+
+proc clone*(this: ShaderStorageBufferBinding, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+
+proc isSameKindAs*(this: ShaderStorageBufferBinding, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
+
+proc libraryName*(this: ShaderStorageBufferBinding): cstring  {.importcpp: "libraryName".}
+
+proc className*(this: ShaderStorageBufferBinding): cstring  {.importcpp: "className".}
+
+proc getType*(this: ShaderStorageBufferBinding): Type  {.importcpp: "getType".}
+
+proc compare*(this: ShaderStorageBufferBinding, bb: Stateattribute): cint  {.importcpp: "compare".}
+
+{.pop.} # header: "BufferIndexBinding
