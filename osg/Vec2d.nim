@@ -1,18 +1,19 @@
-import Vec2f # Provides Vec2f
+const
+  num_components* = 2
 
 
 type
   Value_type* {.header: "Vec2d", importcpp: "osg::Vec2d::value_type".} = cdouble
+
+
 {.push header: "Vec2d".}
 
-
-# Constructors and methods
-proc constructVec2d*(): Vec2d {.constructor,importcpp: "Vec2d".}
+proc constructVec2d*(): Vec2d {.constructor,importcpp: "osg::Vec2d::Vec2d".}
     ## Constructor that sets all components of the vector to zero
 
-proc constructVec2d*(x: Value_type, y: Value_type): Vec2d {.constructor,importcpp: "Vec2d(@)".}
+proc constructVec2d*(x: Value_type, y: Value_type): Vec2d {.constructor,importcpp: "osg::Vec2d::Vec2d(@)".}
 
-proc constructVec2d*(vec: Vec2f): Vec2d {.constructor,importcpp: "Vec2d(@)".}
+proc constructVec2d*(vec: Vec2f): Vec2d {.constructor,importcpp: "osg::Vec2d::Vec2d(@)".}
 
 proc `==`*(this: Vec2d, v: Vec2d): bool  {.importcpp: "# == #".}
 
@@ -85,4 +86,4 @@ proc normalize*(this: var Vec2d): Value_type  {.importcpp: "normalize".}
     ## Normalize the vector so that it has length unity. Returns the previous
     ## length of the vector.
 
-{.pop.} # header: "Vec2d
+{.pop.}  # header: "Vec2d"

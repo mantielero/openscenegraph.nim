@@ -1,13 +1,10 @@
-import iosfwd # Provides ostream
-import Matrixd # Provides Matrixd
-import Matrixf # Provides Matrixf
-import Node # Provides NodeMask
-import ArgumentParser # Provides ArgumentParser
-
-
+import /usr/include/osg/ArgumentParser  # provides: osg::ArgumentParser
+import /usr/include/osg/Matrixf  # provides: osg::Matrixf
+import /usr/include/osg/Node  # provides: osg::Node::NodeMask
+import /usr/include/osg/Matrixd  # provides: osg::Matrixd
 type
-  # Enums
   VariablesMask* {.size:sizeof(cuint),header: "CullSettings", importcpp: "osg::CullSettings::VariablesMask".} = enum
+    NO_VARIABLES = 0,
     COMPUTE_NEAR_FAR_MODE = 1,
     CULLING_MODE = 2,
     LOD_SCALE = 4,
@@ -27,7 +24,6 @@ type
     LIGHT = 65536,
     DRAW_BUFFER = 131072,
     READ_BUFFER = 262144,
-    NO_VARIABLES = 0,
     ALL_VARIABLES = 2147483647
 
   InheritanceMaskActionOnAttributeSetting* {.size:sizeof(cuint),header: "CullSettings", importcpp: "osg::CullSettings::InheritanceMaskActionOnAttributeSetting".} = enum
@@ -52,18 +48,17 @@ type
     DEFAULT_CULLING = 57,
     ENABLE_ALL_CULLING = 63
 
-  # Typedefs
   InheritanceMask* {.header: "CullSettings", importcpp: "osg::CullSettings::InheritanceMask".} = cint
   CullingMode* {.header: "CullSettings", importcpp: "osg::CullSettings::CullingMode".} = cint
+
+
 {.push header: "CullSettings".}
 
+proc constructCullSettings*(): CullSettings {.constructor,importcpp: "osg::CullSettings::CullSettings".}
 
-# Constructors and methods
-proc constructCullSettings*(): CullSettings {.constructor,importcpp: "CullSettings".}
+proc constructCullSettings*(arguments: Argumentparser): CullSettings {.constructor,importcpp: "osg::CullSettings::CullSettings(@)".}
 
-proc constructCullSettings*(arguments: Argumentparser): CullSettings {.constructor,importcpp: "CullSettings(@)".}
-
-proc constructCullSettings*(cs: Cullsettings): CullSettings {.constructor,importcpp: "CullSettings(@)".}
+proc constructCullSettings*(cs: Cullsettings): CullSettings {.constructor,importcpp: "osg::CullSettings::CullSettings(@)".}
 
 proc `=`*(this: var CullSettings, settings: Cullsettings): Cullsettings  {.importcpp: "# = #".}
 
@@ -191,6 +186,4 @@ proc getClampProjectionMatrixCallback*(this: CullSettings): ptr Clampprojectionm
 proc write*(this: var CullSettings, `out`: Ostream)  {.importcpp: "write".}
     ## Write out internal settings of CullSettings.
 
-proc clampProjectionMatrix*[matrix_type;value_type](this: var osg, projection: var matrix_type, znear: cdouble, zfar: cdouble, nearFarRatio: value_type): bool  {.importcpp: "clampProjectionMatrix".}
-
-{.pop.} # header: "CullSettings
+{.pop.}  # header: "CullSettings"

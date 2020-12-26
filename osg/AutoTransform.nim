@@ -1,15 +1,12 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import Vec3d # Provides Vec3d
-import Quat # Provides Quat
-import Matrixd # Provides Matrixd
-import Vec3 # Provides Vec3
-import Matrix # Provides Matrix
-import NodeVisitor # Provides NodeVisitor
-
-
+import /usr/include/osg/Vec3  # provides: osg::Vec3
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/Matrix  # provides: osg::Matrix
+import /usr/include/osg/Matrixd  # provides: osg::Matrixd
+import /usr/include/osg/Vec3d  # provides: osg::Vec3d
+import /usr/include/osg/Quat  # provides: osg::Quat
+import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
 type
-  # Enums
   AutoRotateMode* {.size:sizeof(cuint),header: "AutoTransform", importcpp: "osg::AutoTransform::AutoRotateMode".} = enum
     NO_ROTATION = 0,
     ROTATE_TO_SCREEN = 1,
@@ -22,13 +19,13 @@ type
     AXIAL_ROT_Z_AXIS = 6,
     CACHE_DIRTY = 7
 
+
+
 {.push header: "AutoTransform".}
 
+proc constructAutoTransform*(): AutoTransform {.constructor,importcpp: "osg::AutoTransform::AutoTransform".}
 
-# Constructors and methods
-proc constructAutoTransform*(): AutoTransform {.constructor,importcpp: "AutoTransform".}
-
-proc constructAutoTransform*(pat: Autotransform, copyop: Copyop = SHALLOW_COPY): AutoTransform {.constructor,importcpp: "AutoTransform(@)".}
+proc constructAutoTransform*(pat: Autotransform, copyop: Copyop = SHALLOW_COPY): AutoTransform {.constructor,importcpp: "osg::AutoTransform::AutoTransform(@)".}
 
 proc cloneType*(this: AutoTransform): ptr Object   {.importcpp: "cloneType".}
 
@@ -107,4 +104,4 @@ proc computeMatrix*(this: AutoTransform, nv: ptr Nodevisitor ): Matrixd  {.impor
 
 proc updateCache*(this: var AutoTransform)  {.importcpp: "updateCache".}
 
-{.pop.} # header: "AutoTransform
+{.pop.}  # header: "AutoTransform"

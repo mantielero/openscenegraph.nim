@@ -1,18 +1,21 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import StateAttribute # Provides StateAttribute, Type
-import State # Provides State
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+type
+  VertexAttribDivisor* {.header: "VertexAttribDivisor", importcpp: "osg::VertexAttribDivisor", byref.} = object #of class osg::StateAttribute
+    ## VertexAttribDivisor state class which encapsulates OpenGL
+    ## glVertexAttribDivisor() functionality.
+
 
 
 {.push header: "VertexAttribDivisor".}
 
+proc constructVertexAttribDivisor*(): VertexAttribDivisor {.constructor,importcpp: "osg::VertexAttribDivisor::VertexAttribDivisor".}
 
-# Constructors and methods
-proc constructVertexAttribDivisor*(): VertexAttribDivisor {.constructor,importcpp: "VertexAttribDivisor".}
+proc constructVertexAttribDivisor*(index: cuint, divisor: cuint): VertexAttribDivisor {.constructor,importcpp: "osg::VertexAttribDivisor::VertexAttribDivisor(@)".}
 
-proc constructVertexAttribDivisor*(index: cuint, divisor: cuint): VertexAttribDivisor {.constructor,importcpp: "VertexAttribDivisor(@)".}
-
-proc constructVertexAttribDivisor*(vad: Vertexattribdivisor, copyop: Copyop = SHALLOW_COPY): VertexAttribDivisor {.constructor,importcpp: "VertexAttribDivisor(@)".}
+proc constructVertexAttribDivisor*(vad: Vertexattribdivisor, copyop: Copyop = SHALLOW_COPY): VertexAttribDivisor {.constructor,importcpp: "osg::VertexAttribDivisor::VertexAttribDivisor(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: VertexAttribDivisor): ptr Object   {.importcpp: "cloneType".}
@@ -48,4 +51,4 @@ proc getDivisor*(this: VertexAttribDivisor): cuint  {.importcpp: "getDivisor".}
 proc apply*(this: VertexAttribDivisor, state: State)  {.importcpp: "apply".}
     ## Apply to the OpenGL state machine.
 
-{.pop.} # header: "VertexAttribDivisor
+{.pop.}  # header: "VertexAttribDivisor"

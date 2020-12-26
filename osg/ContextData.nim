@@ -1,17 +1,15 @@
-import iosfwd # Provides ostream
-import FrameStamp # Provides FrameStamp
-import GraphicsContext # Provides GraphicsContext
-
-
+import /usr/include/osg/GraphicsContext  # provides: osg::GraphicsContext
+import /usr/include/osg/FrameStamp  # provides: osg::FrameStamp
 type
-  # Typedefs
   GraphicsContexts* {.header: "ContextData", importcpp: "osg::ContextData::GraphicsContexts".} = Graphicscontexts
   ManagerMap* {.header: "ContextData", importcpp: "osg::ContextData::ManagerMap".} = cint
+  ContextData* {.header: "ContextData", importcpp: "osg::ContextData", byref.} = object #of class osg::GraphicsObjectManager
+
+
+
 {.push header: "ContextData".}
 
-
-# Constructors and methods
-proc constructContextData*(contextID: cuint): ContextData {.constructor,importcpp: "ContextData(@)".}
+proc constructContextData*(contextID: cuint): ContextData {.constructor,importcpp: "osg::ContextData::ContextData(@)".}
 
 proc incrementUsageCount*(this: var ContextData)  {.importcpp: "incrementUsageCount".}
 
@@ -24,20 +22,6 @@ proc getNumContexts*(this: ContextData): cuint  {.importcpp: "getNumContexts".}
 proc setCompileContext*(this: var ContextData, gc: ptr Graphicscontext )  {.importcpp: "setCompileContext".}
 
 proc getCompileContext*(this: var ContextData): ptr Graphicscontext   {.importcpp: "getCompileContext".}
-
-proc get*[T](this: var ContextData): ptr T  {.importcpp: "get".}
-    ## Get a specific GL extensions object or GraphicsObjectManager,
-    ## initialize if not already present. Note, must only be called from a
-    ## the graphics context thread associated with this osg::State.
-
-proc get*[T](this: ContextData): ptr T  {.importcpp: "get".}
-    ## Get a specific GL extensions object or GraphicsObjectManager if it
-    ## already exists in the extension map. Note, safe to call outwith a the
-    ## graphics context thread associated with this osg::State. Returns NULL
-    ## if the desired extension object has not been created yet.
-
-proc set*[T](this: var ContextData, `ptr`: ptr T)  {.importcpp: "set".}
-    ## Set a specific GL extensions object pr GraphicsObjectManager.
 
 proc newFrame*(this: var ContextData, ptr Framestamp )  {.importcpp: "newFrame".}
     ## Signal that a new frame has started.
@@ -110,6 +94,4 @@ proc registerGraphicsContext*(this: var ContextData, gc: ptr Graphicscontext )  
 proc unregisterGraphicsContext*(this: var ContextData, gc: ptr Graphicscontext )  {.importcpp: "unregisterGraphicsContext".}
     ## Unregister a GraphicsContext.
 
-proc get*[T](this: var osg, contextID: cuint): ptr T  {.importcpp: "get".}
-
-{.pop.} # header: "ContextData
+{.pop.}  # header: "ContextData"

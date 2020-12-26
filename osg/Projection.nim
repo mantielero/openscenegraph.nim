@@ -1,19 +1,15 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import Matrix # Provides Matrix
-import NodeVisitor # Provides NodeVisitor
-
-
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/Matrix  # provides: osg::Matrix
+import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
 {.push header: "Projection".}
 
+proc constructProjection*(): Projection {.constructor,importcpp: "osg::Projection::Projection".}
 
-# Constructors and methods
-proc constructProjection*(): Projection {.constructor,importcpp: "Projection".}
-
-proc constructProjection*(Projection, copyop: Copyop = SHALLOW_COPY): Projection {.constructor,importcpp: "Projection(@)".}
+proc constructProjection*(Projection, copyop: Copyop = SHALLOW_COPY): Projection {.constructor,importcpp: "osg::Projection::Projection(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
-proc constructProjection*(matix: Matrix): Projection {.constructor,importcpp: "Projection(@)".}
+proc constructProjection*(matix: Matrix): Projection {.constructor,importcpp: "osg::Projection::Projection(@)".}
 
 proc cloneType*(this: Projection): ptr Object   {.importcpp: "cloneType".}
 
@@ -39,4 +35,4 @@ proc preMult*(this: var Projection, mat: Matrix)  {.importcpp: "preMult".}
 proc postMult*(this: var Projection, mat: Matrix)  {.importcpp: "postMult".}
     ## postMult transform.
 
-{.pop.} # header: "Projection
+{.pop.}  # header: "Projection"

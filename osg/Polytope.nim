@@ -1,26 +1,23 @@
-import Vec3f # Provides Vec3f
-import Vec3 # Provides Vec3
-import Matrix # Provides Matrix
-import BoundingSphere # Provides BoundingSphere
-import BoundingBox # Provides BoundingBox
-import Plane # Provides Plane
-
-
+import /usr/include/osg/Vec3  # provides: osg::Vec3
+import /usr/include/osg/BoundingSphere  # provides: osg::BoundingSphere
+import /usr/include/osg/Plane  # provides: osg::Plane
+import /usr/include/osg/Vec3f  # provides: osg::Vec3f
+import /usr/include/osg/BoundingBox  # provides: osg::BoundingBox
+import /usr/include/osg/Matrix  # provides: osg::Matrix
 type
-  # Typedefs
   ClippingMask* {.header: "Polytope", importcpp: "osg::Polytope::ClippingMask".} = cuint
   PlaneList* {.header: "Polytope", importcpp: "osg::Polytope::PlaneList".} = cint
   VertexList* {.header: "Polytope", importcpp: "osg::Polytope::VertexList".} = cint
   MaskStack* {.header: "Polytope", importcpp: "osg::Polytope::MaskStack".} = Fast_back_stack[Clippingmask]
+
+
 {.push header: "Polytope".}
 
+proc constructPolytope*(): Polytope {.constructor,importcpp: "osg::Polytope::Polytope".}
 
-# Constructors and methods
-proc constructPolytope*(): Polytope {.constructor,importcpp: "Polytope".}
+proc constructPolytope*(cv: Polytope): Polytope {.constructor,importcpp: "osg::Polytope::Polytope(@)".}
 
-proc constructPolytope*(cv: Polytope): Polytope {.constructor,importcpp: "Polytope(@)".}
-
-proc constructPolytope*(pl: Planelist): Polytope {.constructor,importcpp: "Polytope(@)".}
+proc constructPolytope*(pl: Planelist): Polytope {.constructor,importcpp: "osg::Polytope::Polytope(@)".}
 
 proc clear*(this: var Polytope)  {.importcpp: "clear".}
 
@@ -119,4 +116,4 @@ proc transformProvidingInverse*(this: var Polytope, matrix: Matrix)  {.importcpp
     ## Transform the clipping set by provide a pre inverted matrix. see
     ## transform for details.
 
-{.pop.} # header: "Polytope
+{.pop.}  # header: "Polytope"

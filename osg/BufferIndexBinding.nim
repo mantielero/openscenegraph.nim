@@ -1,51 +1,63 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import gl # Provides GLenum, GLuint
-import glext # Provides GLsizeiptr, GLintptr
-import BufferObject # Provides BufferData
-import Array # Provides UIntArray
-import StateAttribute # Provides StateAttribute, Type
-import State # Provides State
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/BufferObject  # provides: osg::BufferData
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/Array  # provides: osg::UIntArray
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+type
+  BufferIndexBinding* {.header: "BufferIndexBinding", importcpp: "osg::BufferIndexBinding", byref.} = object #of class osg::StateAttribute
+    ## Encapsulate binding buffer objects to index targets. This specifically
+    ## supports the uniform buffer and transform feedback targets.
+
+  UniformBufferBinding* {.header: "BufferIndexBinding", importcpp: "osg::UniformBufferBinding", byref.} = object #of class osg::BufferIndexBinding
+    ## StateAttribute for binding a uniform buffer index target.
+
+  TransformFeedbackBufferBinding* {.header: "BufferIndexBinding", importcpp: "osg::TransformFeedbackBufferBinding", byref.} = object #of class osg::BufferIndexBinding
+    ## StateAttribute for binding a transform feedback index target.
+
+  AtomicCounterBufferBinding* {.header: "BufferIndexBinding", importcpp: "osg::AtomicCounterBufferBinding", byref.} = object #of class osg::BufferIndexBinding
+    ## StateAttribute for binding a atomic counter buffer index target.
+
+  ShaderStorageBufferBinding* {.header: "BufferIndexBinding", importcpp: "osg::ShaderStorageBufferBinding", byref.} = object #of class osg::BufferIndexBinding
+
 
 
 {.push header: "BufferIndexBinding".}
 
+proc constructBufferIndexBinding*(target: GLenum, index: GLuint): BufferIndexBinding {.constructor,importcpp: "osg::BufferIndexBinding::BufferIndexBinding(@)".}
 
-# Constructors and methods
-proc constructBufferIndexBinding*(target: GLenum, index: GLuint): BufferIndexBinding {.constructor,importcpp: "BufferIndexBinding(@)".}
+proc constructBufferIndexBinding*(target: GLenum, index: GLuint, bd: ptr Bufferdata , offset: GLintptr = 0, size: GLsizeiptr = 0): BufferIndexBinding {.constructor,importcpp: "osg::BufferIndexBinding::BufferIndexBinding(@)".}
 
-proc constructBufferIndexBinding*(target: GLenum, index: GLuint, bd: ptr Bufferdata , offset: GLintptr = 0, size: GLsizeiptr = 0): BufferIndexBinding {.constructor,importcpp: "BufferIndexBinding(@)".}
+proc constructBufferIndexBinding*(rhs: Bufferindexbinding, copyop: Copyop = SHALLOW_COPY): BufferIndexBinding {.constructor,importcpp: "osg::BufferIndexBinding::BufferIndexBinding(@)".}
 
-proc constructBufferIndexBinding*(rhs: Bufferindexbinding, copyop: Copyop = SHALLOW_COPY): BufferIndexBinding {.constructor,importcpp: "BufferIndexBinding(@)".}
+proc constructUniformBufferBinding*(): UniformBufferBinding {.constructor,importcpp: "osg::UniformBufferBinding::UniformBufferBinding".}
 
-proc constructUniformBufferBinding*(): UniformBufferBinding {.constructor,importcpp: "UniformBufferBinding".}
+proc constructUniformBufferBinding*(index: GLuint): UniformBufferBinding {.constructor,importcpp: "osg::UniformBufferBinding::UniformBufferBinding(@)".}
 
-proc constructUniformBufferBinding*(index: GLuint): UniformBufferBinding {.constructor,importcpp: "UniformBufferBinding(@)".}
-
-proc constructUniformBufferBinding*(index: GLuint, bd: ptr Bufferdata , offset: GLintptr = 0, size: GLsizeiptr = 0): UniformBufferBinding {.constructor,importcpp: "UniformBufferBinding(@)".}
+proc constructUniformBufferBinding*(index: GLuint, bd: ptr Bufferdata , offset: GLintptr = 0, size: GLsizeiptr = 0): UniformBufferBinding {.constructor,importcpp: "osg::UniformBufferBinding::UniformBufferBinding(@)".}
     ## Create a binding for a uniform buffer index target.
 
-proc constructUniformBufferBinding*(rhs: Uniformbufferbinding, copyop: Copyop = SHALLOW_COPY): UniformBufferBinding {.constructor,importcpp: "UniformBufferBinding(@)".}
+proc constructUniformBufferBinding*(rhs: Uniformbufferbinding, copyop: Copyop = SHALLOW_COPY): UniformBufferBinding {.constructor,importcpp: "osg::UniformBufferBinding::UniformBufferBinding(@)".}
 
-proc constructTransformFeedbackBufferBinding*(index: GLuint = 0): TransformFeedbackBufferBinding {.constructor,importcpp: "TransformFeedbackBufferBinding(@)".}
+proc constructTransformFeedbackBufferBinding*(index: GLuint = 0): TransformFeedbackBufferBinding {.constructor,importcpp: "osg::TransformFeedbackBufferBinding::TransformFeedbackBufferBinding(@)".}
 
-proc constructTransformFeedbackBufferBinding*(index: GLuint, bd: ptr Bufferdata , offset: GLintptr = 0, size: GLsizeiptr = 0): TransformFeedbackBufferBinding {.constructor,importcpp: "TransformFeedbackBufferBinding(@)".}
+proc constructTransformFeedbackBufferBinding*(index: GLuint, bd: ptr Bufferdata , offset: GLintptr = 0, size: GLsizeiptr = 0): TransformFeedbackBufferBinding {.constructor,importcpp: "osg::TransformFeedbackBufferBinding::TransformFeedbackBufferBinding(@)".}
 
-proc constructTransformFeedbackBufferBinding*(rhs: Transformfeedbackbufferbinding, copyop: Copyop = SHALLOW_COPY): TransformFeedbackBufferBinding {.constructor,importcpp: "TransformFeedbackBufferBinding(@)".}
+proc constructTransformFeedbackBufferBinding*(rhs: Transformfeedbackbufferbinding, copyop: Copyop = SHALLOW_COPY): TransformFeedbackBufferBinding {.constructor,importcpp: "osg::TransformFeedbackBufferBinding::TransformFeedbackBufferBinding(@)".}
 
-proc constructAtomicCounterBufferBinding*(index: GLuint = 0): AtomicCounterBufferBinding {.constructor,importcpp: "AtomicCounterBufferBinding(@)".}
+proc constructAtomicCounterBufferBinding*(index: GLuint = 0): AtomicCounterBufferBinding {.constructor,importcpp: "osg::AtomicCounterBufferBinding::AtomicCounterBufferBinding(@)".}
 
-proc constructAtomicCounterBufferBinding*(index: GLuint, bd: ptr Bufferdata , offset: GLintptr = 0, size: GLsizeiptr = 0): AtomicCounterBufferBinding {.constructor,importcpp: "AtomicCounterBufferBinding(@)".}
+proc constructAtomicCounterBufferBinding*(index: GLuint, bd: ptr Bufferdata , offset: GLintptr = 0, size: GLsizeiptr = 0): AtomicCounterBufferBinding {.constructor,importcpp: "osg::AtomicCounterBufferBinding::AtomicCounterBufferBinding(@)".}
     ## Create a binding for a atomic counter buffer index target.
 
-proc constructAtomicCounterBufferBinding*(rhs: Atomiccounterbufferbinding, copyop: Copyop = SHALLOW_COPY): AtomicCounterBufferBinding {.constructor,importcpp: "AtomicCounterBufferBinding(@)".}
+proc constructAtomicCounterBufferBinding*(rhs: Atomiccounterbufferbinding, copyop: Copyop = SHALLOW_COPY): AtomicCounterBufferBinding {.constructor,importcpp: "osg::AtomicCounterBufferBinding::AtomicCounterBufferBinding(@)".}
 
-proc constructShaderStorageBufferBinding*(index: GLuint = 0): ShaderStorageBufferBinding {.constructor,importcpp: "ShaderStorageBufferBinding(@)".}
+proc constructShaderStorageBufferBinding*(index: GLuint = 0): ShaderStorageBufferBinding {.constructor,importcpp: "osg::ShaderStorageBufferBinding::ShaderStorageBufferBinding(@)".}
 
-proc constructShaderStorageBufferBinding*(index: GLuint, bd: ptr Bufferdata , offset: GLintptr = 0, size: GLsizeiptr = 0): ShaderStorageBufferBinding {.constructor,importcpp: "ShaderStorageBufferBinding(@)".}
+proc constructShaderStorageBufferBinding*(index: GLuint, bd: ptr Bufferdata , offset: GLintptr = 0, size: GLsizeiptr = 0): ShaderStorageBufferBinding {.constructor,importcpp: "osg::ShaderStorageBufferBinding::ShaderStorageBufferBinding(@)".}
     ## Create a binding for a shader storage buffer index target.
 
-proc constructShaderStorageBufferBinding*(rhs: Shaderstoragebufferbinding, copyop: Copyop = SHALLOW_COPY): ShaderStorageBufferBinding {.constructor,importcpp: "ShaderStorageBufferBinding(@)".}
+proc constructShaderStorageBufferBinding*(rhs: Shaderstoragebufferbinding, copyop: Copyop = SHALLOW_COPY): ShaderStorageBufferBinding {.constructor,importcpp: "osg::ShaderStorageBufferBinding::ShaderStorageBufferBinding(@)".}
 
 proc getMember*(this: BufferIndexBinding): cuint  {.importcpp: "getMember".}
 
@@ -142,4 +154,4 @@ proc getType*(this: ShaderStorageBufferBinding): Type  {.importcpp: "getType".}
 
 proc compare*(this: ShaderStorageBufferBinding, bb: Stateattribute): cint  {.importcpp: "compare".}
 
-{.pop.} # header: "BufferIndexBinding
+{.pop.}  # header: "BufferIndexBinding"

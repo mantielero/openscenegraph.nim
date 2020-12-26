@@ -1,18 +1,15 @@
-import Mutex # Provides Mutex
-import Referenced # Provides Referenced
-
-
+import /usr/include/osg/Referenced  # provides: osg::Referenced
 type
   Observers* {.header: "Observer", importcpp: "osg::ObserverSet::Observers".} = cint
+
+
 {.push header: "Observer".}
 
+proc constructObserver*(): Observer {.constructor,importcpp: "osg::Observer::Observer".}
 
-# Constructors and methods
-proc constructObserver*(): Observer {.constructor,importcpp: "Observer".}
+proc constructObserverSet*(observedObject: ptr Referenced ): ObserverSet {.constructor,importcpp: "osg::ObserverSet::ObserverSet(@)".}
 
-proc constructObserverSet*(observedObject: ptr Referenced ): ObserverSet {.constructor,importcpp: "ObserverSet(@)".}
-
-proc constructObserverSet*(rhs: Observerset): ObserverSet {.constructor,importcpp: "ObserverSet(@)".}
+proc constructObserverSet*(rhs: Observerset): ObserverSet {.constructor,importcpp: "osg::ObserverSet::ObserverSet(@)".}
 
 proc objectDeleted*(this: var Observer, pointer)  {.importcpp: "objectDeleted".}
     ## objectDeleted is called when the observed object is about to be
@@ -42,4 +39,4 @@ proc getObservers*(this: ObserverSet): Observers  {.importcpp: "getObservers".}
 
 proc `=`*(this: var ObserverSet, Observerset): Observerset  {.importcpp: "# = #".}
 
-{.pop.} # header: "Observer
+{.pop.}  # header: "Observer"

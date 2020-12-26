@@ -1,18 +1,19 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import gl # Provides GLint
-import VertexArrayState # Provides VertexArrayState
-import NodeVisitor # Provides NodeVisitor
-import RenderInfo # Provides RenderInfo
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/VertexArrayState  # provides: osg::VertexArrayState
+import /usr/include/osg/RenderInfo  # provides: osg::RenderInfo
+import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
+type
+  DispatchCompute* {.header: "DispatchCompute", importcpp: "osg::DispatchCompute", byref.} = object #of osg::Drawable
+    ## Wrapper around glDispatchCompute.
+
 
 
 {.push header: "DispatchCompute".}
 
+proc constructDispatchCompute*(numGroupsX: GLint, numGroupsY: GLint, numGroupsZ: GLint): DispatchCompute {.constructor,importcpp: "osg::DispatchCompute::DispatchCompute(@)".}
 
-# Constructors and methods
-proc constructDispatchCompute*(numGroupsX: GLint, numGroupsY: GLint, numGroupsZ: GLint): DispatchCompute {.constructor,importcpp: "DispatchCompute(@)".}
-
-proc constructDispatchCompute*(Dispatchcompute, copyop: Copyop = SHALLOW_COPY): DispatchCompute {.constructor,importcpp: "DispatchCompute(@)".}
+proc constructDispatchCompute*(Dispatchcompute, copyop: Copyop = SHALLOW_COPY): DispatchCompute {.constructor,importcpp: "osg::DispatchCompute::DispatchCompute(@)".}
 
 proc cloneType*(this: DispatchCompute): ptr Object   {.importcpp: "cloneType".}
 
@@ -38,4 +39,4 @@ proc setComputeGroups*(this: var DispatchCompute, numGroupsX: GLint, numGroupsY:
 proc getComputeGroups*(this: DispatchCompute, numGroupsX: var GLint, numGroupsY: var GLint, numGroupsZ: var GLint)  {.importcpp: "getComputeGroups".}
     ## Get compute shader work groups
 
-{.pop.} # header: "DispatchCompute
+{.pop.}  # header: "DispatchCompute"

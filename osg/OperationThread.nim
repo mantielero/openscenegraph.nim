@@ -1,27 +1,27 @@
-import stringfwd # Provides string
-import Object # Provides Object
-
-
+import /usr/include/osg/Object  # provides: osg::Object
 type
-  # Typedefs
   OperationThreads* {.header: "OperationThread", importcpp: "osg::OperationQueue::OperationThreads".} = cint
   Operations* {.header: "OperationThread", importcpp: "osg::OperationQueue::Operations".} = cint
   OperationsThread* {.header: "OperationThread", importcpp: "osg::OperationsThread".} = Operationthread
+  RefBlockCount* {.header: "OperationThread", importcpp: "osg::RefBlockCount", byref.} = object #of osg::Referenced
+
+  OperationQueue* {.header: "OperationThread", importcpp: "osg::OperationQueue", byref.} = object #of class osg::Referenced
+
+
+
 {.push header: "OperationThread".}
 
+proc constructRefBlock*(): RefBlock {.constructor,importcpp: "osg::RefBlock::RefBlock".}
 
-# Constructors and methods
-proc constructRefBlock*(): RefBlock {.constructor,importcpp: "RefBlock".}
+proc constructRefBlockCount*(blockCount: cuint): RefBlockCount {.constructor,importcpp: "osg::RefBlockCount::RefBlockCount(@)".}
 
-proc constructRefBlockCount*(blockCount: cuint): RefBlockCount {.constructor,importcpp: "RefBlockCount(@)".}
+proc constructOperation*(name: String, keep: bool): Operation {.constructor,importcpp: "osg::Operation::Operation(@)".}
 
-proc constructOperation*(name: String, keep: bool): Operation {.constructor,importcpp: "Operation(@)".}
+proc constructOperation*(): Operation {.constructor,importcpp: "osg::Operation::Operation".}
 
-proc constructOperation*(): Operation {.constructor,importcpp: "Operation".}
+proc constructOperationQueue*(): OperationQueue {.constructor,importcpp: "osg::OperationQueue::OperationQueue".}
 
-proc constructOperationQueue*(): OperationQueue {.constructor,importcpp: "OperationQueue".}
-
-proc constructOperationThread*(): OperationThread {.constructor,importcpp: "OperationThread".}
+proc constructOperationThread*(): OperationThread {.constructor,importcpp: "osg::OperationThread::OperationThread".}
 
 proc setName*(this: var Operation, name: String)  {.importcpp: "setName".}
     ## Set the human readable name of the operation.
@@ -123,4 +123,4 @@ proc getDone*(this: OperationThread): bool  {.importcpp: "getDone".}
 proc cancel*(this: var OperationThread): cint  {.importcpp: "cancel".}
     ## Cancel this graphics thread.
 
-{.pop.} # header: "OperationThread
+{.pop.}  # header: "OperationThread"

@@ -1,18 +1,13 @@
-import gl # Provides GLenum, GLint, GLuint, GLsizei
-import iosfwd # Provides ostream
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import Vec4d # Provides Vec4d
-import FrameStamp # Provides FrameStamp
-import StateAttribute # Provides Type
-import Image # Provides Image
-import Vec4i # Provides Vec4i
-import State # Provides State
-import GraphicsContext # Provides GraphicsContext
-
-
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute::Type
+import /usr/include/osg/Image  # provides: osg::Image
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/GraphicsContext  # provides: osg::GraphicsContext
+import /usr/include/osg/Vec4d  # provides: osg::Vec4d
+import /usr/include/osg/FrameStamp  # provides: osg::FrameStamp
+import /usr/include/osg/Vec4i  # provides: osg::Vec4i
 type
-  # Enums
   WrapParameter* {.size:sizeof(cuint),header: "Texture", importcpp: "osg::Texture::WrapParameter".} = enum
     WRAP_S = 0,
     WRAP_T = 1,
@@ -20,9 +15,9 @@ type
 
   WrapMode* {.size:sizeof(cuint),header: "Texture", importcpp: "osg::Texture::WrapMode".} = enum
     CLAMP = 10496,
-    CLAMP_TO_EDGE = 33071,
-    CLAMP_TO_BORDER = 33069,
     REPEAT = 10497,
+    CLAMP_TO_BORDER = 33069,
+    CLAMP_TO_EDGE = 33071,
     MIRROR = 33648
 
   FilterParameter* {.size:sizeof(cuint),header: "Texture", importcpp: "osg::Texture::FilterParameter".} = enum
@@ -30,12 +25,12 @@ type
     MAG_FILTER = 1
 
   FilterMode* {.size:sizeof(cuint),header: "Texture", importcpp: "osg::Texture::FilterMode".} = enum
-    LINEAR = 9729,
-    LINEAR_MIPMAP_LINEAR = 9987,
-    LINEAR_MIPMAP_NEAREST = 9985,
     NEAREST = 9728,
+    LINEAR = 9729,
+    NEAREST_MIPMAP_NEAREST = 9984,
+    LINEAR_MIPMAP_NEAREST = 9985,
     NEAREST_MIPMAP_LINEAR = 9986,
-    NEAREST_MIPMAP_NEAREST = 9984
+    LINEAR_MIPMAP_LINEAR = 9987
 
   InternalFormatMode* {.size:sizeof(cuint),header: "Texture", importcpp: "osg::Texture::InternalFormatMode".} = enum
     USE_IMAGE_DATA_FORMAT = 0,
@@ -76,10 +71,10 @@ type
     ALWAYS = 519
 
   ShadowTextureMode* {.size:sizeof(cuint),header: "Texture", importcpp: "osg::Texture::ShadowTextureMode".} = enum
-    LUMINANCE = 6409,
-    INTENSITY = 32841,
+    NONE = 0,
     ALPHA = 6406,
-    NONE = 0
+    LUMINANCE = 6409,
+    INTENSITY = 32841
 
   GenerateMipmapMode* {.size:sizeof(cuint),header: "Texture", importcpp: "osg::Texture::GenerateMipmapMode".} = enum
     ## Returned by mipmapBeforeTexImage() to indicate what
@@ -89,33 +84,38 @@ type
     GENERATE_MIPMAP = 1,
     GENERATE_MIPMAP_TEX_PARAMETER = 2
 
-  # Typedefs
   TexParameterDirtyList* {.header: "Texture", importcpp: "osg::Texture::TexParameterDirtyList".} = buffered_value[unsigned int]
   TextureObjectList* {.header: "Texture", importcpp: "osg::Texture::TextureObjectList".} = cint
   TextureObjectBuffer* {.header: "Texture", importcpp: "osg::Texture::TextureObjectBuffer".} = Buffered_object[Ref_ptr[Textureobject]]
   TextureSetMap* {.header: "Texture", importcpp: "osg::TextureObjectManager::TextureSetMap".} = cint
+  TextureObject* {.header: "Texture", importcpp: "osg::Texture::TextureObject", byref.} = object #of class osg::GraphicsObject
+
+  TextureObjectSet* {.header: "Texture", importcpp: "osg::TextureObjectSet", byref.} = object #of class osg::Referenced
+
+  TextureObjectManager* {.header: "Texture", importcpp: "osg::TextureObjectManager", byref.} = object #of class osg::GraphicsObjectManager
+
+
+
 {.push header: "Texture".}
 
+proc constructTexture*(): Texture {.constructor,importcpp: "osg::Texture::Texture".}
 
-# Constructors and methods
-proc constructTexture*(): Texture {.constructor,importcpp: "Texture".}
-
-proc constructTexture*(text: Texture, copyop: Copyop = SHALLOW_COPY): Texture {.constructor,importcpp: "Texture(@)".}
+proc constructTexture*(text: Texture, copyop: Copyop = SHALLOW_COPY): Texture {.constructor,importcpp: "osg::Texture::Texture(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
-proc constructTextureProfile*(target: GLenum): TextureProfile {.constructor,importcpp: "TextureProfile(@)".}
+proc constructTextureProfile*(target: GLenum): TextureProfile {.constructor,importcpp: "osg::Texture::TextureProfile::TextureProfile(@)".}
 
-proc constructTextureProfile*(target: GLenum, numMipmapLevels: GLint, internalFormat: GLenum, width: GLsizei, height: GLsizei, depth: GLsizei, border: GLint): TextureProfile {.constructor,importcpp: "TextureProfile(@)".}
+proc constructTextureProfile*(target: GLenum, numMipmapLevels: GLint, internalFormat: GLenum, width: GLsizei, height: GLsizei, depth: GLsizei, border: GLint): TextureProfile {.constructor,importcpp: "osg::Texture::TextureProfile::TextureProfile(@)".}
 
-proc constructTextureObject*(texture: ptr Texture , id: GLuint, target: GLenum): TextureObject {.constructor,importcpp: "TextureObject(@)".}
+proc constructTextureObject*(texture: ptr Texture , id: GLuint, target: GLenum): TextureObject {.constructor,importcpp: "osg::Texture::TextureObject::TextureObject(@)".}
 
-proc constructTextureObject*(texture: ptr Texture , id: GLuint, profile: Textureprofile): TextureObject {.constructor,importcpp: "TextureObject(@)".}
+proc constructTextureObject*(texture: ptr Texture , id: GLuint, profile: Textureprofile): TextureObject {.constructor,importcpp: "osg::Texture::TextureObject::TextureObject(@)".}
 
-proc constructTextureObject*(texture: ptr Texture , id: GLuint, target: GLenum, numMipmapLevels: GLint, internalFormat: GLenum, width: GLsizei, height: GLsizei, depth: GLsizei, border: GLint): TextureObject {.constructor,importcpp: "TextureObject(@)".}
+proc constructTextureObject*(texture: ptr Texture , id: GLuint, target: GLenum, numMipmapLevels: GLint, internalFormat: GLenum, width: GLsizei, height: GLsizei, depth: GLsizei, border: GLint): TextureObject {.constructor,importcpp: "osg::Texture::TextureObject::TextureObject(@)".}
 
-proc constructTextureObjectSet*(parent: ptr Textureobjectmanager , profile: Textureprofile): TextureObjectSet {.constructor,importcpp: "TextureObjectSet(@)".}
+proc constructTextureObjectSet*(parent: ptr Textureobjectmanager , profile: Textureprofile): TextureObjectSet {.constructor,importcpp: "osg::TextureObjectSet::TextureObjectSet(@)".}
 
-proc constructTextureObjectManager*(contextID: cuint): TextureObjectManager {.constructor,importcpp: "TextureObjectManager(@)".}
+proc constructTextureObjectManager*(contextID: cuint): TextureObjectManager {.constructor,importcpp: "osg::TextureObjectManager::TextureObjectManager(@)".}
 
 proc cloneType*(this: Texture): ptr Object   {.importcpp: "cloneType".}
 
@@ -339,8 +339,6 @@ proc getShadowAmbient*(this: Texture): cfloat  {.importcpp: "getShadowAmbient".}
 proc setImage*(this: var Texture, face: cuint, image: ptr Image )  {.importcpp: "setImage".}
     ## Sets the texture image for the specified face.
 
-proc setImage*[T](this: var Texture, face: cuint, image: ref_ptr[T])  {.importcpp: "setImage".}
-
 proc getImage*(this: var Texture, face: cuint): ptr Image   {.importcpp: "getImage".}
     ## Gets the texture image for the specified face.
 
@@ -353,8 +351,6 @@ proc getNumImages*(this: Texture): cuint  {.importcpp: "getNumImages".}
 proc setReadPBuffer*(this: var Texture, context: ptr Graphicscontext )  {.importcpp: "setReadPBuffer".}
     ## Set the PBuffer graphics context to read from when using PBuffers for
     ## RenderToTexture.
-
-proc setReadPBuffer*[T](this: var Texture, context: ref_ptr[T])  {.importcpp: "setReadPBuffer".}
 
 proc getReadPBuffer*(this: var Texture): ptr Graphicscontext   {.importcpp: "getReadPBuffer".}
     ## Get the PBuffer graphics context to read from when using PBuffers for
@@ -597,4 +593,4 @@ proc getNumberGenerated*(this: var TextureObjectManager): cuint  {.importcpp: "g
 
 proc getGenerateTime*(this: var TextureObjectManager): cdouble  {.importcpp: "getGenerateTime".}
 
-{.pop.} # header: "Texture
+{.pop.}  # header: "Texture"

@@ -1,37 +1,38 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import StateAttribute # Provides StateAttribute, Type
-import State # Provides State
-
-
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
 type
   Opcode* {.size:sizeof(cuint),header: "LogicOp", importcpp: "osg::LogicOp::Opcode".} = enum
     CLEAR = 5376,
-    SET = 5391,
-    COPY = 5379,
-    COPY_INVERTED = 5388,
-    NOOP = 5381,
-    INVERT = 5386,
     AND = 5377,
-    NAND = 5390,
+    AND_REVERSE = 5378,
+    COPY = 5379,
+    AND_INVERTED = 5380,
+    NOOP = 5381,
+    XOR = 5382,
     OR = 5383,
     NOR = 5384,
-    XOR = 5382,
     EQUIV = 5385,
-    AND_REVERSE = 5378,
-    AND_INVERTED = 5380,
+    INVERT = 5386,
     OR_REVERSE = 5387,
-    OR_INVERTED = 5389
+    COPY_INVERTED = 5388,
+    OR_INVERTED = 5389,
+    NAND = 5390,
+    SET = 5391
+
+  LogicOp* {.header: "LogicOp", importcpp: "osg::LogicOp", byref.} = object #of class osg::StateAttribute
+    ## Encapsulates OpenGL LogicOp state.
+
+
 
 {.push header: "LogicOp".}
 
+proc constructLogicOp*(): LogicOp {.constructor,importcpp: "osg::LogicOp::LogicOp".}
 
-# Constructors and methods
-proc constructLogicOp*(): LogicOp {.constructor,importcpp: "LogicOp".}
+proc constructLogicOp*(opcode: Opcode): LogicOp {.constructor,importcpp: "osg::LogicOp::LogicOp(@)".}
 
-proc constructLogicOp*(opcode: Opcode): LogicOp {.constructor,importcpp: "LogicOp(@)".}
-
-proc constructLogicOp*(trans: Logicop, copyop: Copyop = SHALLOW_COPY): LogicOp {.constructor,importcpp: "LogicOp(@)".}
+proc constructLogicOp*(trans: Logicop, copyop: Copyop = SHALLOW_COPY): LogicOp {.constructor,importcpp: "osg::LogicOp::LogicOp(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: LogicOp): ptr Object   {.importcpp: "cloneType".}
@@ -57,4 +58,4 @@ proc getOpcode*(this: LogicOp): Opcode  {.importcpp: "getOpcode".}
 
 proc apply*(this: LogicOp, state: State)  {.importcpp: "apply".}
 
-{.pop.} # header: "LogicOp
+{.pop.}  # header: "LogicOp"

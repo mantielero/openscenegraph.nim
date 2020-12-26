@@ -1,25 +1,26 @@
-import gl # Provides GLenum
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import StateAttribute # Provides StateAttribute, Type
-import Image # Provides Image
-import State # Provides State
-
-
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/Image  # provides: osg::Image
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
 type
   ImageModifiedCount* {.header: "Texture2D", importcpp: "osg::Texture2D::ImageModifiedCount".} = buffered_value[unsigned int]
+  Texture2D* {.header: "Texture2D", importcpp: "osg::Texture2D", byref.} = object #of class osg::Texture
+    ## Encapsulates OpenGL 2D texture functionality. Doesn't support cube
+    ## maps, so ignore face parameters.
+
+  SubloadCallback* {.header: "Texture2D", importcpp: "osg::Texture2D::SubloadCallback", byref.} = object #of class osg::Referenced
+
+
+
 {.push header: "Texture2D".}
 
+proc constructTexture2D*(): Texture2D {.constructor,importcpp: "osg::Texture2D::Texture2D".}
 
-# Constructors and methods
-proc constructTexture2D*(): Texture2D {.constructor,importcpp: "Texture2D".}
+proc constructTexture2D*(image: ptr Image ): Texture2D {.constructor,importcpp: "osg::Texture2D::Texture2D(@)".}
 
-proc constructTexture2D*(image: ptr Image ): Texture2D {.constructor,importcpp: "Texture2D(@)".}
-
-proc constructTexture2D*(text: Texture2d, copyop: Copyop = SHALLOW_COPY): Texture2D {.constructor,importcpp: "Texture2D(@)".}
+proc constructTexture2D*(text: Texture2d, copyop: Copyop = SHALLOW_COPY): Texture2D {.constructor,importcpp: "osg::Texture2D::Texture2D(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
-
-proc texture2D*[T](this: var Texture2D, image: Ref_ptr[T])  {.importcpp: "Texture2D".}
 
 proc cloneType*(this: Texture2D): ptr Object   {.importcpp: "cloneType".}
 
@@ -41,8 +42,6 @@ proc getTextureTarget*(this: Texture2D): GLenum  {.importcpp: "getTextureTarget"
 proc setImage*(this: var Texture2D, image: ptr Image )  {.importcpp: "setImage".}
     ## Sets the texture image.
 
-proc setImage*[T](this: var Texture2D, image: ref_ptr[T])  {.importcpp: "setImage".}
-
 proc getImage*(this: var Texture2D): ptr Image   {.importcpp: "getImage".}
     ## Gets the texture image.
 
@@ -57,8 +56,6 @@ proc getModifiedCount*(this: Texture2D, contextID: cuint): cuint  {.importcpp: "
 
 proc setImage*(this: var Texture2D, cuint, image: ptr Image )  {.importcpp: "setImage".}
     ## Sets the texture image, ignoring face.
-
-proc setImage*[T](this: var Texture2D, cuint, image: ref_ptr[T])  {.importcpp: "setImage".}
 
 proc getImage*(this: var Texture2D, cuint): ptr Image   {.importcpp: "getImage".}
     ## Gets the texture image, ignoring face.
@@ -131,4 +128,4 @@ proc textureObjectValid*(this: Texture2D, state: State): bool  {.importcpp: "tex
     ## Return true of the TextureObject assigned to the context associate
     ## with osg::State object is valid.
 
-{.pop.} # header: "Texture2D
+{.pop.}  # header: "Texture2D"

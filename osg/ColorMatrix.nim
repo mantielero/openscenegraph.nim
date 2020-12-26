@@ -1,17 +1,19 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import Matrix # Provides Matrix
-import StateAttribute # Provides StateAttribute, Type
-import State # Provides State
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/Matrix  # provides: osg::Matrix
+type
+  ColorMatrix* {.header: "ColorMatrix", importcpp: "osg::ColorMatrix", byref.} = object #of class osg::StateAttribute
+    ## Encapsulates OpenGL color matrix functionality.
+
 
 
 {.push header: "ColorMatrix".}
 
+proc constructColorMatrix*(): ColorMatrix {.constructor,importcpp: "osg::ColorMatrix::ColorMatrix".}
 
-# Constructors and methods
-proc constructColorMatrix*(): ColorMatrix {.constructor,importcpp: "ColorMatrix".}
-
-proc constructColorMatrix*(cm: Colormatrix, copyop: Copyop = SHALLOW_COPY): ColorMatrix {.constructor,importcpp: "ColorMatrix(@)".}
+proc constructColorMatrix*(cm: Colormatrix, copyop: Copyop = SHALLOW_COPY): ColorMatrix {.constructor,importcpp: "osg::ColorMatrix::ColorMatrix(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: ColorMatrix): ptr Object   {.importcpp: "cloneType".}
@@ -41,4 +43,4 @@ proc getMatrix*(this: ColorMatrix): Matrix  {.importcpp: "getMatrix".}
 proc apply*(this: ColorMatrix, state: State)  {.importcpp: "apply".}
     ## Applies as OpenGL texture matrix.
 
-{.pop.} # header: "ColorMatrix
+{.pop.}  # header: "ColorMatrix"

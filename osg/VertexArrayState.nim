@@ -1,21 +1,19 @@
-import gl # Provides GLuint
-import BufferObject # Provides GLBufferObject
-
-
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/BufferObject  # provides: osg::GLBufferObject
+import /usr/include/osg/Array  # provides: osg::Array
 type
-  # Typedefs
   ArrayDispatchList* {.header: "VertexArrayState", importcpp: "osg::VertexArrayState::ArrayDispatchList".} = cint
   ActiveDispatchers* {.header: "VertexArrayState", importcpp: "osg::VertexArrayState::ActiveDispatchers".} = cint
   Array* {.header: "VertexArrayState", importcpp: "osg::VertexArrayStateList::Array".} = cint
+
+
 {.push header: "VertexArrayState".}
 
+proc constructVertexArrayState*(state: ptr State ): VertexArrayState {.constructor,importcpp: "osg::VertexArrayState::VertexArrayState(@)".}
 
-# Constructors and methods
-proc constructVertexArrayState*(state: ptr State ): VertexArrayState {.constructor,importcpp: "VertexArrayState(@)".}
+proc constructArrayDispatch*(): ArrayDispatch {.constructor,importcpp: "osg::VertexArrayState::ArrayDispatch::ArrayDispatch".}
 
-proc constructArrayDispatch*(): ArrayDispatch {.constructor,importcpp: "ArrayDispatch".}
-
-proc constructVertexArrayStateList*(): VertexArrayStateList {.constructor,importcpp: "VertexArrayStateList".}
+proc constructVertexArrayStateList*(): VertexArrayStateList {.constructor,importcpp: "osg::VertexArrayStateList::VertexArrayStateList".}
 
 proc isVertexAttribDispatch*(this: ArrayDispatch): bool  {.importcpp: "isVertexAttribDispatch".}
 
@@ -187,4 +185,4 @@ proc disableTexCoordArrayAboveAndIncluding*(this: var VertexArrayState, state: S
 
 proc disableVertexAttribArrayAboveAndIncluding*(this: var VertexArrayState, state: State, index: cuint)  {.importcpp: "disableVertexAttribArrayAboveAndIncluding".}
 
-{.pop.} # header: "VertexArrayState
+{.pop.}  # header: "VertexArrayState"

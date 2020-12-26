@@ -1,17 +1,14 @@
-import Referenced # Provides Referenced
-
-
+import /usr/include/osg/Referenced  # provides: osg::Referenced
 type
-  # Typedefs
   FrameNumberObjectPair* {.header: "DeleteHandler", importcpp: "osg::DeleteHandler::FrameNumberObjectPair".} = Pair[cuint,ptr Referenced ]
   ObjectsToDeleteList* {.header: "DeleteHandler", importcpp: "osg::DeleteHandler::ObjectsToDeleteList".} = cint
+
+
 {.push header: "DeleteHandler".}
 
+proc constructDeleteHandler*(numberOfFramesToRetainObjects: cint): DeleteHandler {.constructor,importcpp: "osg::DeleteHandler::DeleteHandler(@)".}
 
-# Constructors and methods
-proc constructDeleteHandler*(numberOfFramesToRetainObjects: cint): DeleteHandler {.constructor,importcpp: "DeleteHandler(@)".}
-
-proc constructDeleteHandler*(Deletehandler): DeleteHandler {.constructor,importcpp: "DeleteHandler(@)".}
+proc constructDeleteHandler*(Deletehandler): DeleteHandler {.constructor,importcpp: "osg::DeleteHandler::DeleteHandler(@)".}
 
 proc setNumFramesToRetainObjects*(this: var DeleteHandler, numberOfFramesToRetainObjects: cuint)  {.importcpp: "setNumFramesToRetainObjects".}
     ## Set the number of frames to retain objects that have been requested
@@ -49,4 +46,4 @@ proc requestDelete*(this: var DeleteHandler, `object`: ptr Referenced )  {.impor
 
 proc `=`*(this: var DeleteHandler, Deletehandler): Deletehandler  {.importcpp: "# = #".}
 
-{.pop.} # header: "DeleteHandler
+{.pop.}  # header: "DeleteHandler"

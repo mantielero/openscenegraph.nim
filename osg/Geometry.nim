@@ -1,11 +1,12 @@
-import Object # Provides Object
-import gl # Provides GLboolean
-import BufferObject # Provides VertexBufferObject, ElementBufferObject
-import Array # Provides Array
-import PrimitiveSet # Provides PrimitiveSet
-import VertexArrayState # Provides VertexArrayState
-
-
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/BufferObject  # provides: osg::VertexBufferObject, osg::ElementBufferObject
+import /usr/include/osg/Array  # provides: osg::Array, osg::Array::Binding
+import /usr/include/osg/PrimitiveSet  # provides: osg::PrimitiveIndexFunctor, osg::PrimitiveFunctor, osg::PrimitiveSet
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/VertexArrayState  # provides: osg::VertexArrayState
+import /usr/include/osg/RenderInfo  # provides: osg::RenderInfo
+import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
 type
   AttributeBinding* {.size:sizeof(cuint),header: "Geometry", importcpp: "osg::Geometry::AttributeBinding".} = enum
     ## deprecated, Same values as Array::Binding.
@@ -15,20 +16,23 @@ type
     BIND_PER_PRIMITIVE_SET = 2,
     BIND_PER_VERTEX = 4
 
-  # Typedefs
   ArrayList* {.header: "Geometry", importcpp: "osg::Geometry::ArrayList".} = cint
   PrimitiveSetList* {.header: "Geometry", importcpp: "osg::Geometry::PrimitiveSetList".} = cint
   DrawElementsList* {.header: "Geometry", importcpp: "osg::Geometry::DrawElementsList".} = cint
+  ConfigureBufferObjectsVisitor* {.header: "Geometry", importcpp: "osg::ConfigureBufferObjectsVisitor", byref.} = object #of osg::NodeVisitor
+    ## Convenience visitor for making sure that any BufferObjects that might
+    ## be required are set up in the scene graph.
+
+
+
 {.push header: "Geometry".}
 
+proc constructGeometry*(): Geometry {.constructor,importcpp: "osg::Geometry::Geometry".}
 
-# Constructors and methods
-proc constructGeometry*(): Geometry {.constructor,importcpp: "Geometry".}
-
-proc constructGeometry*(geometry: Geometry, copyop: Copyop = SHALLOW_COPY): Geometry {.constructor,importcpp: "Geometry(@)".}
+proc constructGeometry*(geometry: Geometry, copyop: Copyop = SHALLOW_COPY): Geometry {.constructor,importcpp: "osg::Geometry::Geometry(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
-proc constructConfigureBufferObjectsVisitor*(): ConfigureBufferObjectsVisitor {.constructor,importcpp: "ConfigureBufferObjectsVisitor".}
+proc constructConfigureBufferObjectsVisitor*(): ConfigureBufferObjectsVisitor {.constructor,importcpp: "osg::ConfigureBufferObjectsVisitor::ConfigureBufferObjectsVisitor".}
 
 proc cloneType*(this: Geometry): ptr Object   {.importcpp: "cloneType".}
 
@@ -291,4 +295,4 @@ proc getVertexAttribNormalize*(this: Geometry, index: cuint): GLboolean  {.impor
 
 proc apply*(this: var ConfigureBufferObjectsVisitor, geometry: Geometry)  {.importcpp: "apply".}
 
-{.pop.} # header: "Geometry
+{.pop.}  # header: "Geometry"

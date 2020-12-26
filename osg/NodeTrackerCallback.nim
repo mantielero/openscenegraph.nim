@@ -1,12 +1,13 @@
-import Node # Provides NodePath, Node
-import ObserverNodePath # Provides ObserverNodePath
-import NodeVisitor # Provides NodeVisitor
+import /usr/include/osg/ObserverNodePath  # provides: osg::ObserverNodePath
+import /usr/include/osg/Node  # provides: osg::NodePath, osg::Node
+import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
+type
+  NodeTrackerCallback* {.header: "NodeTrackerCallback", importcpp: "osg::NodeTrackerCallback", byref.} = object #of class osg::NodeCallback
+
 
 
 {.push header: "NodeTrackerCallback".}
 
-
-# Constructors and methods
 proc setTrackNodePath*(this: var NodeTrackerCallback, nodePath: Nodepath)  {.importcpp: "setTrackNodePath".}
 
 proc setTrackNodePath*(this: var NodeTrackerCallback, nodePath: Observernodepath)  {.importcpp: "setTrackNodePath".}
@@ -25,4 +26,4 @@ proc `()`*(this: var NodeTrackerCallback, node: ptr Node , nv: ptr Nodevisitor )
 proc update*(this: var NodeTrackerCallback, node: Node)  {.importcpp: "update".}
     ## Update the node to track the nodepath.
 
-{.pop.} # header: "NodeTrackerCallback
+{.pop.}  # header: "NodeTrackerCallback"

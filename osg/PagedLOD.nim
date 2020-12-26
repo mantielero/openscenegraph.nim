@@ -1,28 +1,25 @@
-import Referenced # Provides Referenced
-import CopyOp # Provides CopyOp
-import stringfwd # Provides string
-import Object # Provides Object
-import Node # Provides Node
-import NodeVisitor # Provides NodeVisitor
-import Group # Provides NodeList
-
-
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/Referenced  # provides: osg::Referenced
+import /usr/include/osg/Node  # provides: osg::Node
+import /usr/include/osg/Group  # provides: osg::NodeList
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
 type
   PerRangeDataList* {.header: "PagedLOD", importcpp: "osg::PagedLOD::PerRangeDataList".} = cint
+
+
 {.push header: "PagedLOD".}
 
-
-# Constructors and methods
-proc constructPagedLOD*(): PagedLOD {.constructor,importcpp: "PagedLOD".}
+proc constructPagedLOD*(): PagedLOD {.constructor,importcpp: "osg::PagedLOD::PagedLOD".}
     ## Default constructor The default constructor sets - the center mode to
     ## USER_DEFINED_CENTER and - enables the paging of external children.
 
-proc constructPagedLOD*(Pagedlod, copyop: Copyop = SHALLOW_COPY): PagedLOD {.constructor,importcpp: "PagedLOD(@)".}
+proc constructPagedLOD*(Pagedlod, copyop: Copyop = SHALLOW_COPY): PagedLOD {.constructor,importcpp: "osg::PagedLOD::PagedLOD(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
-proc constructPerRangeData*(): PerRangeData {.constructor,importcpp: "PerRangeData".}
+proc constructPerRangeData*(): PerRangeData {.constructor,importcpp: "osg::PagedLOD::PerRangeData::PerRangeData".}
 
-proc constructPerRangeData*(prd: Perrangedata): PerRangeData {.constructor,importcpp: "PerRangeData(@)".}
+proc constructPerRangeData*(prd: Perrangedata): PerRangeData {.constructor,importcpp: "osg::PagedLOD::PerRangeData::PerRangeData(@)".}
 
 proc cloneType*(this: PagedLOD): ptr Object   {.importcpp: "cloneType".}
 
@@ -42,11 +39,7 @@ proc addChild*(this: var PagedLOD, child: ptr Node ): bool  {.importcpp: "addChi
 
 proc addChild*(this: var PagedLOD, child: ptr Node , rmin: cfloat, rmax: cfloat): bool  {.importcpp: "addChild".}
 
-proc addChild*[T](this: var PagedLOD, child: ref_ptr[T], rmin: cfloat, rmax: cfloat): bool  {.importcpp: "addChild".}
-
 proc addChild*(this: var PagedLOD, child: ptr Node , rmin: cfloat, rmax: cfloat, filename: String, priorityOffset: cfloat, priorityScale: cfloat): bool  {.importcpp: "addChild".}
-
-proc addChild*[T](this: var PagedLOD, child: ref_ptr[T], rmin: cfloat, rmax: cfloat, filename: String, priorityOffset: cfloat, priorityScale: cfloat): bool  {.importcpp: "addChild".}
 
 proc removeChildren*(this: var PagedLOD, pos: cuint, numChildrenToRemove: cuint = 1): bool  {.importcpp: "removeChildren".}
 
@@ -156,4 +149,4 @@ proc removeExpiredChildren*(this: var PagedLOD, expiryTime: cdouble, expiryFrame
 
 proc expandPerRangeDataTo*(this: var PagedLOD, pos: cuint)  {.importcpp: "expandPerRangeDataTo".}
 
-{.pop.} # header: "PagedLOD
+{.pop.}  # header: "PagedLOD"

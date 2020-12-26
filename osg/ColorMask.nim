@@ -1,18 +1,14 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import StateAttribute # Provides StateAttribute, Type
-import State # Provides State
-
-
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
 {.push header: "ColorMask".}
 
+proc constructColorMask*(): ColorMask {.constructor,importcpp: "osg::ColorMask::ColorMask".}
 
-# Constructors and methods
-proc constructColorMask*(): ColorMask {.constructor,importcpp: "ColorMask".}
+proc constructColorMask*(red: bool, green: bool, blue: bool, alpha: bool): ColorMask {.constructor,importcpp: "osg::ColorMask::ColorMask(@)".}
 
-proc constructColorMask*(red: bool, green: bool, blue: bool, alpha: bool): ColorMask {.constructor,importcpp: "ColorMask(@)".}
-
-proc constructColorMask*(cm: Colormask, copyop: Copyop = SHALLOW_COPY): ColorMask {.constructor,importcpp: "ColorMask(@)".}
+proc constructColorMask*(cm: Colormask, copyop: Copyop = SHALLOW_COPY): ColorMask {.constructor,importcpp: "osg::ColorMask::ColorMask(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: ColorMask): ptr Object   {.importcpp: "cloneType".}
@@ -50,4 +46,4 @@ proc getAlphaMask*(this: ColorMask): bool  {.importcpp: "getAlphaMask".}
 
 proc apply*(this: ColorMask, state: State)  {.importcpp: "apply".}
 
-{.pop.} # header: "ColorMask
+{.pop.}  # header: "ColorMask"

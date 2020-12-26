@@ -1,24 +1,23 @@
-import Referenced # Provides Referenced
-import CopyOp # Provides CopyOp
-import stringfwd # Provides string
-import Object # Provides Object
-
-
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/Referenced  # provides: osg::Referenced
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
 type
-  # Typedefs
   DescriptionList* {.header: "UserDataContainer", importcpp: "osg::UserDataContainer::DescriptionList".} = cint
   ObjectList* {.header: "UserDataContainer", importcpp: "osg::DefaultUserDataContainer::ObjectList".} = cint
+  DefaultUserDataContainer* {.header: "UserDataContainer", importcpp: "osg::DefaultUserDataContainer", byref.} = object #of osg::UserDataContainer
+    ## Internal structure for storing all user data.
+
+
+
 {.push header: "UserDataContainer".}
 
+proc constructUserDataContainer*(): UserDataContainer {.constructor,importcpp: "osg::UserDataContainer::UserDataContainer".}
 
-# Constructors and methods
-proc constructUserDataContainer*(): UserDataContainer {.constructor,importcpp: "UserDataContainer".}
+proc constructUserDataContainer*(udc: Userdatacontainer, copyop: Copyop = SHALLOW_COPY): UserDataContainer {.constructor,importcpp: "osg::UserDataContainer::UserDataContainer(@)".}
 
-proc constructUserDataContainer*(udc: Userdatacontainer, copyop: Copyop = SHALLOW_COPY): UserDataContainer {.constructor,importcpp: "UserDataContainer(@)".}
+proc constructDefaultUserDataContainer*(): DefaultUserDataContainer {.constructor,importcpp: "osg::DefaultUserDataContainer::DefaultUserDataContainer".}
 
-proc constructDefaultUserDataContainer*(): DefaultUserDataContainer {.constructor,importcpp: "DefaultUserDataContainer".}
-
-proc constructDefaultUserDataContainer*(udc: Defaultuserdatacontainer, copyop: Copyop = SHALLOW_COPY): DefaultUserDataContainer {.constructor,importcpp: "DefaultUserDataContainer(@)".}
+proc constructDefaultUserDataContainer*(udc: Defaultuserdatacontainer, copyop: Copyop = SHALLOW_COPY): DefaultUserDataContainer {.constructor,importcpp: "osg::DefaultUserDataContainer::DefaultUserDataContainer(@)".}
 
 proc isSameKindAs*(this: UserDataContainer, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -55,8 +54,6 @@ proc getUserData*(this: UserDataContainer): ptr Referenced   {.importcpp: "getUs
 
 proc addUserObject*(this: var UserDataContainer, obj: ptr Object ): cuint  {.importcpp: "addUserObject".}
     ## Add user data object. Returns the index position of object added.
-
-proc addUserObject*[T](this: var UserDataContainer, obj: Ref_ptr[T]): cuint  {.importcpp: "addUserObject".}
 
 proc setUserObject*(this: var UserDataContainer, i: cuint, obj: ptr Object )  {.importcpp: "setUserObject".}
     ## Add element to list of user data objects.
@@ -165,4 +162,4 @@ proc getNumDescriptions*(this: DefaultUserDataContainer): cuint  {.importcpp: "g
 proc addDescription*(this: var DefaultUserDataContainer, desc: String)  {.importcpp: "addDescription".}
     ## Add a description string.
 
-{.pop.} # header: "UserDataContainer
+{.pop.}  # header: "UserDataContainer"

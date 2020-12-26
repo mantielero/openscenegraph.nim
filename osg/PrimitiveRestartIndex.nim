@@ -1,18 +1,21 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import StateAttribute # Provides StateAttribute, Type
-import State # Provides State
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+type
+  PrimitiveRestartIndex* {.header: "PrimitiveRestartIndex", importcpp: "osg::PrimitiveRestartIndex", byref.} = object #of class osg::StateAttribute
+    ## osg::PrimitiveRestartIndex does nothing if OpenGL 3.1 is not
+    ## available.
+
 
 
 {.push header: "PrimitiveRestartIndex".}
 
+proc constructPrimitiveRestartIndex*(): PrimitiveRestartIndex {.constructor,importcpp: "osg::PrimitiveRestartIndex::PrimitiveRestartIndex".}
 
-# Constructors and methods
-proc constructPrimitiveRestartIndex*(): PrimitiveRestartIndex {.constructor,importcpp: "PrimitiveRestartIndex".}
+proc constructPrimitiveRestartIndex*(restartIndex: cuint): PrimitiveRestartIndex {.constructor,importcpp: "osg::PrimitiveRestartIndex::PrimitiveRestartIndex(@)".}
 
-proc constructPrimitiveRestartIndex*(restartIndex: cuint): PrimitiveRestartIndex {.constructor,importcpp: "PrimitiveRestartIndex(@)".}
-
-proc constructPrimitiveRestartIndex*(primitiveRestartIndex: Primitiverestartindex, copyop: Copyop = SHALLOW_COPY): PrimitiveRestartIndex {.constructor,importcpp: "PrimitiveRestartIndex(@)".}
+proc constructPrimitiveRestartIndex*(primitiveRestartIndex: Primitiverestartindex, copyop: Copyop = SHALLOW_COPY): PrimitiveRestartIndex {.constructor,importcpp: "osg::PrimitiveRestartIndex::PrimitiveRestartIndex(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: PrimitiveRestartIndex): ptr Object   {.importcpp: "cloneType".}
@@ -36,4 +39,4 @@ proc getRestartIndex*(this: PrimitiveRestartIndex): cuint  {.importcpp: "getRest
 
 proc apply*(this: PrimitiveRestartIndex, state: State)  {.importcpp: "apply".}
 
-{.pop.} # header: "PrimitiveRestartIndex
+{.pop.}  # header: "PrimitiveRestartIndex"

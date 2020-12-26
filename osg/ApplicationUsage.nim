@@ -1,7 +1,3 @@
-import stringfwd # Provides string
-import iosfwd # Provides ostream
-
-
 type
   Type* {.size:sizeof(cuint),header: "ApplicationUsage", importcpp: "osg::ApplicationUsage::Type".} = enum
     NO_HELP = 0,
@@ -11,15 +7,17 @@ type
     HELP_ALL = 7
 
   UsageMap* {.header: "ApplicationUsage", importcpp: "osg::ApplicationUsage::UsageMap".} = cint
+  ApplicationUsageProxy* {.header: "ApplicationUsage", importcpp: "osg::ApplicationUsageProxy", byref.} = object
+
+
+
 {.push header: "ApplicationUsage".}
 
+proc constructApplicationUsage*(): ApplicationUsage {.constructor,importcpp: "osg::ApplicationUsage::ApplicationUsage".}
 
-# Constructors and methods
-proc constructApplicationUsage*(): ApplicationUsage {.constructor,importcpp: "ApplicationUsage".}
+proc constructApplicationUsage*(commandLineUsage: String): ApplicationUsage {.constructor,importcpp: "osg::ApplicationUsage::ApplicationUsage(@)".}
 
-proc constructApplicationUsage*(commandLineUsage: String): ApplicationUsage {.constructor,importcpp: "ApplicationUsage(@)".}
-
-proc constructApplicationUsageProxy*(`type`: Type, option: String, explanation: String): ApplicationUsageProxy {.constructor,importcpp: "ApplicationUsageProxy(@)".}
+proc constructApplicationUsageProxy*(`type`: Type, option: String, explanation: String): ApplicationUsageProxy {.constructor,importcpp: "osg::ApplicationUsageProxy::ApplicationUsageProxy(@)".}
     ## register an explanation of commandline/environmentvariable/keyboard
     ## mouse usage.
 
@@ -81,4 +79,4 @@ proc write*(this: var ApplicationUsage, output: Ostream, `type`: cuint, widthOfO
 
 proc writeEnvironmentSettings*(this: var ApplicationUsage, output: Ostream)  {.importcpp: "writeEnvironmentSettings".}
 
-{.pop.} # header: "ApplicationUsage
+{.pop.}  # header: "ApplicationUsage"

@@ -1,20 +1,29 @@
-
-
+import /usr/include/osg/Node  # provides: osg::Node
+import /usr/include/osg/Geometry  # provides: osg::Geometry
+import /usr/include/osg/RenderInfo  # provides: osg::RenderInfo
+import /usr/include/osg/Program  # provides: osg::Program
+import /usr/include/osg/Texture  # provides: osg::Texture
 type
   CostPair* {.header: "GraphicsCostEstimator", importcpp: "osg::CostPair".} = Pair[cdouble,cdouble]
+  GeometryCostEstimator* {.header: "GraphicsCostEstimator", importcpp: "osg::GeometryCostEstimator", byref.} = object #of osg::Referenced
+
+  TextureCostEstimator* {.header: "GraphicsCostEstimator", importcpp: "osg::TextureCostEstimator", byref.} = object #of osg::Referenced
+
+  ProgramCostEstimator* {.header: "GraphicsCostEstimator", importcpp: "osg::ProgramCostEstimator", byref.} = object #of osg::Referenced
+
+
+
 {.push header: "GraphicsCostEstimator".}
 
+proc constructClampedLinearCostFunction1D*(cost0: cdouble, dcost_di: cdouble, min_input: cuint = 0): ClampedLinearCostFunction1D {.constructor,importcpp: "osg::ClampedLinearCostFunction1D::ClampedLinearCostFunction1D(@)".}
 
-# Constructors and methods
-proc constructClampedLinearCostFunction1D*(cost0: cdouble, dcost_di: cdouble, min_input: cuint = 0): ClampedLinearCostFunction1D {.constructor,importcpp: "ClampedLinearCostFunction1D(@)".}
+proc constructGeometryCostEstimator*(): GeometryCostEstimator {.constructor,importcpp: "osg::GeometryCostEstimator::GeometryCostEstimator".}
 
-proc constructGeometryCostEstimator*(): GeometryCostEstimator {.constructor,importcpp: "GeometryCostEstimator".}
+proc constructTextureCostEstimator*(): TextureCostEstimator {.constructor,importcpp: "osg::TextureCostEstimator::TextureCostEstimator".}
 
-proc constructTextureCostEstimator*(): TextureCostEstimator {.constructor,importcpp: "TextureCostEstimator".}
+proc constructProgramCostEstimator*(): ProgramCostEstimator {.constructor,importcpp: "osg::ProgramCostEstimator::ProgramCostEstimator".}
 
-proc constructProgramCostEstimator*(): ProgramCostEstimator {.constructor,importcpp: "ProgramCostEstimator".}
-
-proc constructGraphicsCostEstimator*(): GraphicsCostEstimator {.constructor,importcpp: "GraphicsCostEstimator".}
+proc constructGraphicsCostEstimator*(): GraphicsCostEstimator {.constructor,importcpp: "osg::GraphicsCostEstimator::GraphicsCostEstimator".}
 
 proc set*(this: var ClampedLinearCostFunction1D, cost0: cdouble, dcost_di: cdouble, min_input: cuint)  {.importcpp: "set".}
 
@@ -66,4 +75,4 @@ proc estimateCompileCost*(this: GraphicsCostEstimator, node: ptr Node ): Costpai
 
 proc estimateDrawCost*(this: GraphicsCostEstimator, node: ptr Node ): Costpair  {.importcpp: "estimateDrawCost".}
 
-{.pop.} # header: "GraphicsCostEstimator
+{.pop.}  # header: "GraphicsCostEstimator"

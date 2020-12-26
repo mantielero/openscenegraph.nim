@@ -1,28 +1,21 @@
-import gl # Provides GLint
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import StateAttribute # Provides StateAttribute, Type
-import Vec4 # Provides Vec4
-import Vec3 # Provides Vec3
-import State # Provides State
-
-
+import /usr/include/osg/Vec3  # provides: osg::Vec3
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Vec4  # provides: osg::Vec4
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
 type
-  # Enums
   CombineParam* {.size:sizeof(cuint),header: "TexEnvCombine", importcpp: "osg::TexEnvCombine::CombineParam".} = enum
+    ADD = 260,
     REPLACE = 7681,
     MODULATE = 8448,
-    ADD = 260,
+    SUBTRACT = 34023,
     ADD_SIGNED = 34164,
     INTERPOLATE = 34165,
-    SUBTRACT = 34023,
     DOT3_RGB = 34478,
     DOT3_RGBA = 34479
 
   SourceParam* {.size:sizeof(cuint),header: "TexEnvCombine", importcpp: "osg::TexEnvCombine::SourceParam".} = enum
-    CONSTANT = 34166,
-    PRIMARY_COLOR = 34167,
-    PREVIOUS = 34168,
     TEXTURE = 5890,
     TEXTURE0 = 33984,
     TEXTURE1 = 33985,
@@ -31,7 +24,10 @@ type
     TEXTURE4 = 33988,
     TEXTURE5 = 33989,
     TEXTURE6 = 33990,
-    TEXTURE7 = 33991
+    TEXTURE7 = 33991,
+    CONSTANT = 34166,
+    PRIMARY_COLOR = 34167,
+    PREVIOUS = 34168
 
   OperandParam* {.size:sizeof(cuint),header: "TexEnvCombine", importcpp: "osg::TexEnvCombine::OperandParam".} = enum
     SRC_COLOR = 768,
@@ -39,13 +35,17 @@ type
     SRC_ALPHA = 770,
     ONE_MINUS_SRC_ALPHA = 771
 
+  TexEnvCombine* {.header: "TexEnvCombine", importcpp: "osg::TexEnvCombine", byref.} = object #of class osg::StateAttribute
+    ## TexEnvCombine encapsulates the OpenGL glTexEnvCombine (texture
+    ## environment) state.
+
+
+
 {.push header: "TexEnvCombine".}
 
+proc constructTexEnvCombine*(): TexEnvCombine {.constructor,importcpp: "osg::TexEnvCombine::TexEnvCombine".}
 
-# Constructors and methods
-proc constructTexEnvCombine*(): TexEnvCombine {.constructor,importcpp: "TexEnvCombine".}
-
-proc constructTexEnvCombine*(texenv: Texenvcombine, copyop: Copyop = SHALLOW_COPY): TexEnvCombine {.constructor,importcpp: "TexEnvCombine(@)".}
+proc constructTexEnvCombine*(texenv: Texenvcombine, copyop: Copyop = SHALLOW_COPY): TexEnvCombine {.constructor,importcpp: "osg::TexEnvCombine::TexEnvCombine(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: TexEnvCombine): ptr Object   {.importcpp: "cloneType".}
@@ -145,4 +145,4 @@ proc needsTexEnvCombiner*(this: TexEnvCombine, value: GLint): bool  {.importcpp:
 
 proc computeNeedForTexEnvCombiners*(this: var TexEnvCombine)  {.importcpp: "computeNeedForTexEnvCombiners".}
 
-{.pop.} # header: "TexEnvCombine
+{.pop.}  # header: "TexEnvCombine"

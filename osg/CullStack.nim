@@ -1,28 +1,25 @@
-import Vec3 # Provides Vec3
-import Matrix # Provides Matrix, RefMatrix
-import BoundingSphere # Provides BoundingSphere
-import BoundingBox # Provides BoundingBox
-import Node # Provides NodePath, Node
-import ShadowVolumeOccluder # Provides ShadowVolumeOccluderList
-import Viewport # Provides Viewport
-import CullingSet # Provides CullingSet
-
-
+import /usr/include/osg/Vec3  # provides: osg::Vec3
+import /usr/include/osg/BoundingSphere  # provides: osg::BoundingSphere
+import /usr/include/osg/ShadowVolumeOccluder  # provides: osg::ShadowVolumeOccluderList
+import /usr/include/osg/Node  # provides: osg::NodePath, osg::Node
+import /usr/include/osg/Viewport  # provides: osg::Viewport
+import /usr/include/osg/BoundingBox  # provides: osg::BoundingBox
+import /usr/include/osg/Matrix  # provides: osg::RefMatrix, osg::Matrix
+import /usr/include/osg/CullingSet  # provides: osg::CullingSet
 type
-  # Typedefs
   OccluderList* {.header: "CullStack", importcpp: "osg::CullStack::OccluderList".} = cint
   CullingStack* {.header: "CullStack", importcpp: "osg::CullStack::CullingStack".} = cint
   MatrixStack* {.header: "CullStack", importcpp: "osg::CullStack::MatrixStack".} = Fast_back_stack[Ref_ptr[Refmatrix]]
   ViewportStack* {.header: "CullStack", importcpp: "osg::CullStack::ViewportStack".} = Fast_back_stack[Ref_ptr[Viewport]]
   EyePointStack* {.header: "CullStack", importcpp: "osg::CullStack::EyePointStack".} = Fast_back_stack[Vec3]
   MatrixList* {.header: "CullStack", importcpp: "osg::CullStack::MatrixList".} = cint
+
+
 {.push header: "CullStack".}
 
+proc constructCullStack*(): CullStack {.constructor,importcpp: "osg::CullStack::CullStack".}
 
-# Constructors and methods
-proc constructCullStack*(): CullStack {.constructor,importcpp: "CullStack".}
-
-proc constructCullStack*(cs: Cullstack): CullStack {.constructor,importcpp: "CullStack(@)".}
+proc constructCullStack*(cs: Cullstack): CullStack {.constructor,importcpp: "osg::CullStack::CullStack(@)".}
 
 proc reset*(this: var CullStack)  {.importcpp: "reset".}
 
@@ -155,4 +152,4 @@ proc getMVPW*(this: var CullStack): ptr Refmatrix   {.importcpp: "getMVPW".}
 
 proc createOrReuseMatrix*(this: var CullStack, value: Matrix): ptr Refmatrix   {.importcpp: "createOrReuseMatrix".}
 
-{.pop.} # header: "CullStack
+{.pop.}  # header: "CullStack"

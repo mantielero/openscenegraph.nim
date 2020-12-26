@@ -1,12 +1,9 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import BoundingSphere # Provides BoundingSphere
-import Node # Provides Node
-import NodeVisitor # Provides NodeVisitor
-
-
+import /usr/include/osg/BoundingSphere  # provides: osg::BoundingSphere
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/Node  # provides: osg::Node
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
 type
-  # Enums
   CenterMode* {.size:sizeof(cuint),header: "LOD", importcpp: "osg::LOD::CenterMode".} = enum
     ## Modes which control how the center of object should be determined when
     ## computing which child is active. Furthermore it determines how the
@@ -31,21 +28,20 @@ type
     DISTANCE_FROM_EYE_POINT = 0,
     PIXEL_SIZE_ON_SCREEN = 1
 
-  # Typedefs
   Vec_type* {.header: "LOD", importcpp: "osg::LOD::vec_type".} = cint
   Value_type* {.header: "LOD", importcpp: "osg::LOD::value_type".} = cint
   MinMaxPair* {.header: "LOD", importcpp: "osg::LOD::MinMaxPair".} = Pair[cfloat,cfloat]
   RangeList* {.header: "LOD", importcpp: "osg::LOD::RangeList".} = cint
+
+
 {.push header: "LOD".}
 
-
-# Constructors and methods
-proc constructLOD*(): LOD {.constructor,importcpp: "LOD".}
+proc constructLOD*(): LOD {.constructor,importcpp: "osg::LOD::LOD".}
     ## Default constructor The default constructor sets - the center mode to
     ## USE_BOUNDING_SPHERE, - the radius to a value smaller than zero and -
     ## the range mode to DISTANCE_FROM_EYE_POINT.
 
-proc constructLOD*(Lod, copyop: Copyop = SHALLOW_COPY): LOD {.constructor,importcpp: "LOD(@)".}
+proc constructLOD*(Lod, copyop: Copyop = SHALLOW_COPY): LOD {.constructor,importcpp: "osg::LOD::LOD(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: LOD): ptr Object   {.importcpp: "cloneType".}
@@ -65,8 +61,6 @@ proc traverse*(this: var LOD, nv: Nodevisitor)  {.importcpp: "traverse".}
 proc addChild*(this: var LOD, child: ptr Node ): bool  {.importcpp: "addChild".}
 
 proc addChild*(this: var LOD, child: ptr Node , rmin: cfloat, rmax: cfloat): bool  {.importcpp: "addChild".}
-
-proc addChild*[T](this: var LOD, child: ref_ptr[T], rmin: cfloat, rmax: cfloat): bool  {.importcpp: "addChild".}
 
 proc removeChildren*(this: var LOD, pos: cuint, numChildrenToRemove: cuint = 1): bool  {.importcpp: "removeChildren".}
 
@@ -123,4 +117,4 @@ proc getRangeList*(this: LOD): Rangelist  {.importcpp: "getRangeList".}
 
 proc computeBound*(this: LOD): Boundingsphere  {.importcpp: "computeBound".}
 
-{.pop.} # header: "LOD
+{.pop.}  # header: "LOD"

@@ -1,11 +1,8 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import StateAttribute # Provides StateAttribute, Type
-import State # Provides State
-
-
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
 type
-  # Enums
   Face* {.size:sizeof(cuint),header: "StencilTwoSided", importcpp: "osg::StencilTwoSided::Face".} = enum
     FRONT = 0,
     BACK = 1
@@ -21,22 +18,29 @@ type
     ALWAYS = 519
 
   Operation* {.size:sizeof(cuint),header: "StencilTwoSided", importcpp: "osg::StencilTwoSided::Operation".} = enum
-    KEEP = 7680,
     ZERO = 0,
+    INVERT = 5386,
+    KEEP = 7680,
     REPLACE = 7681,
     INCR = 7682,
     DECR = 7683,
-    INVERT = 5386,
     INCR_WRAP = 34055,
     DECR_WRAP = 34056
 
+  StencilTwoSided* {.header: "StencilTwoSided", importcpp: "osg::StencilTwoSided", byref.} = object #of class osg::StateAttribute
+    ## Provides OpenGL two sided stencil functionality, also known as
+    ## separate stencil. It enables to specify different stencil function for
+    ## front and back facing polygons. Two sided stenciling is used usually
+    ## to eliminate the need of two rendering passes when using standard
+    ## stenciling functions. See also
+
+
+
 {.push header: "StencilTwoSided".}
 
+proc constructStencilTwoSided*(): StencilTwoSided {.constructor,importcpp: "osg::StencilTwoSided::StencilTwoSided".}
 
-# Constructors and methods
-proc constructStencilTwoSided*(): StencilTwoSided {.constructor,importcpp: "StencilTwoSided".}
-
-proc constructStencilTwoSided*(stencil: Stenciltwosided, copyop: Copyop = SHALLOW_COPY): StencilTwoSided {.constructor,importcpp: "StencilTwoSided(@)".}
+proc constructStencilTwoSided*(stencil: Stenciltwosided, copyop: Copyop = SHALLOW_COPY): StencilTwoSided {.constructor,importcpp: "osg::StencilTwoSided::StencilTwoSided(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: StencilTwoSided): ptr Object   {.importcpp: "cloneType".}
@@ -104,4 +108,4 @@ proc getWriteMask*(this: StencilTwoSided, face: Face): cuint  {.importcpp: "getW
 
 proc apply*(this: StencilTwoSided, state: State)  {.importcpp: "apply".}
 
-{.pop.} # header: "StencilTwoSided
+{.pop.}  # header: "StencilTwoSided"

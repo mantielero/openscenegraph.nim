@@ -1,20 +1,25 @@
-import gl # Provides GLenum, GLboolean, GLsizei
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import StateAttribute # Provides StateAttribute, Type
-import Image # Provides Image
-import State # Provides State
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/Image  # provides: osg::Image
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+type
+  Texture2DMultisample* {.header: "Texture2DMultisample", importcpp: "osg::Texture2DMultisample", byref.} = object #of class osg::Texture
+    ## Texture2DMultisample state class which encapsulates OpenGL 2D
+    ## multisampled texture functionality. Multisampled texture were
+    ## introduced with OpenGL 3.1 and extension GL_ARB_texture_multisample.
+    ## See http://www.opengl.org/registry/specs/ARB/texture_multisample.txt
+    ## for more info.
+
 
 
 {.push header: "Texture2DMultisample".}
 
+proc constructTexture2DMultisample*(): Texture2DMultisample {.constructor,importcpp: "osg::Texture2DMultisample::Texture2DMultisample".}
 
-# Constructors and methods
-proc constructTexture2DMultisample*(): Texture2DMultisample {.constructor,importcpp: "Texture2DMultisample".}
+proc constructTexture2DMultisample*(numSamples: GLsizei, fixedsamplelocations: GLboolean): Texture2DMultisample {.constructor,importcpp: "osg::Texture2DMultisample::Texture2DMultisample(@)".}
 
-proc constructTexture2DMultisample*(numSamples: GLsizei, fixedsamplelocations: GLboolean): Texture2DMultisample {.constructor,importcpp: "Texture2DMultisample(@)".}
-
-proc constructTexture2DMultisample*(text: Texture2dmultisample, copyop: Copyop = SHALLOW_COPY): Texture2DMultisample {.constructor,importcpp: "Texture2DMultisample(@)".}
+proc constructTexture2DMultisample*(text: Texture2dmultisample, copyop: Copyop = SHALLOW_COPY): Texture2DMultisample {.constructor,importcpp: "osg::Texture2DMultisample::Texture2DMultisample(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: Texture2DMultisample): ptr Object   {.importcpp: "cloneType".}
@@ -76,4 +81,4 @@ proc apply*(this: Texture2DMultisample, state: State)  {.importcpp: "apply".}
 
 proc computeInternalFormat*(this: Texture2DMultisample)  {.importcpp: "computeInternalFormat".}
 
-{.pop.} # header: "Texture2DMultisample
+{.pop.}  # header: "Texture2DMultisample"

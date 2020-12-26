@@ -1,7 +1,4 @@
-
-
 type
-  # Typedefs
   Vector_type* {.header: "MixinVector", importcpp: "osg::MixinVector::vector_type".} = cint
   Allocator_type* {.header: "MixinVector", importcpp: "osg::MixinVector::allocator_type".} = cint
   Value_type* {.header: "MixinVector", importcpp: "osg::MixinVector::value_type".} = cint
@@ -15,19 +12,22 @@ type
   Reverse_iterator* {.header: "MixinVector", importcpp: "osg::MixinVector::reverse_iterator".} = cint
   Size_type* {.header: "MixinVector", importcpp: "osg::MixinVector::size_type".} = cint
   Difference_type* {.header: "MixinVector", importcpp: "osg::MixinVector::difference_type".} = cint
+  MixinVector* {.header: "MixinVector", importcpp: "osg::MixinVector", byref.} [ValueT] = object
+    ## MixinVector is a base class that allows inheritance to be used to
+    ## easily emulate derivation from std::vector but without introducing
+    ## undefined behaviour through violation of virtual destructor rules.
+
+
+
 {.push header: "MixinVector".}
 
+proc constructMixinVector*[ValueT](): MixinVector {.constructor,importcpp: "osg::MixinVector::MixinVector<ValueT>".}
 
-# Constructors and methods
-proc constructMixinVector*[ValueT](): MixinVector {.constructor,importcpp: "MixinVector<ValueT>".}
+proc constructMixinVector*[ValueT](initial_size: Size_type, fill_value: Value_type = )): MixinVector {.constructor,importcpp: "osg::MixinVector::MixinVector<ValueT>(@)".}
 
-proc constructMixinVector*[ValueT](initial_size: Size_type, fill_value: Value_type = )): MixinVector {.constructor,importcpp: "MixinVector<ValueT>(@)".}
+proc constructMixinVector*[ValueT](other: Vector_type): MixinVector {.constructor,importcpp: "osg::MixinVector::MixinVector<ValueT>(@)".}
 
-proc constructMixinVector*[ValueT](other: Vector_type): MixinVector {.constructor,importcpp: "MixinVector<ValueT>(@)".}
-
-proc constructMixinVector*[ValueT](other: MixinVector[ValueT]): MixinVector {.constructor,importcpp: "MixinVector<ValueT>(@)".}
-
-proc mixinVector<ValueT>*[InputIterator](this: var MixinVector, first: InputIterator, last: InputIterator)  {.importcpp: "MixinVector<ValueT>".}
+proc constructMixinVector*[ValueT](other: MixinVector[ValueT]): MixinVector {.constructor,importcpp: "osg::MixinVector::MixinVector<ValueT>(@)".}
 
 proc `=`*(this: var MixinVector, other: Vector_type): MixinVector[ValueT]  {.importcpp: "# = #".}
 
@@ -79,8 +79,6 @@ proc at*(this: var MixinVector, index: Size_type): Reference  {.importcpp: "at".
 
 proc assign*(this: var MixinVector, count: Size_type, value: Value_type)  {.importcpp: "assign".}
 
-proc assign*[Iter](this: var MixinVector, first: Iter, last: Iter)  {.importcpp: "assign".}
-
 proc push_back*(this: var MixinVector, value: Value_type)  {.importcpp: "push_back".}
 
 proc pop_back*(this: var MixinVector)  {.importcpp: "pop_back".}
@@ -90,8 +88,6 @@ proc erase*(this: var MixinVector, where: Iterator): Iterator  {.importcpp: "era
 proc erase*(this: var MixinVector, first: Iterator, last: Iterator): Iterator  {.importcpp: "erase".}
 
 proc insert*(this: var MixinVector, where: Iterator, value: Value_type): Iterator  {.importcpp: "insert".}
-
-proc insert*[InputIterator](this: var MixinVector, where: Iterator, first: InputIterator, last: InputIterator)  {.importcpp: "insert".}
 
 proc insert*(this: var MixinVector, where: Iterator, count: Size_type, value: Value_type)  {.importcpp: "insert".}
 
@@ -107,10 +103,4 @@ proc asVector*(this: var MixinVector): Vector_type  {.importcpp: "asVector".}
 
 proc asVector*(this: MixinVector): Vector_type  {.importcpp: "asVector".}
 
-proc swap*[ValueT](this: var osg, left: var MixinVector[ValueT], right: var MixinVector[ValueT])  {.importcpp: "swap".}
-
-proc swap*[ValueT](this: var osg, left: var MixinVector[ValueT], right: cint)  {.importcpp: "swap".}
-
-proc swap*[ValueT](this: var osg, left: cint, right: var MixinVector[ValueT])  {.importcpp: "swap".}
-
-{.pop.} # header: "MixinVector
+{.pop.}  # header: "MixinVector"

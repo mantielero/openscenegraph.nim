@@ -1,41 +1,34 @@
-import CopyOp # Provides CopyOp
-import stringfwd # Provides string
-import Object # Provides Object
-import Callback # Provides Callback
-import StateSet # Provides StateSet
-import BoundingSphere # Provides BoundingSphere
-import Geode # Provides Geode
-import Drawable # Provides Drawable
-import State # Provides State
-import NodeVisitor # Provides NodeVisitor
-import Transform # Provides Transform
-import Switch # Provides Switch
-import Geometry # Provides Geometry
-import Group # Provides Group
-
-
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/BoundingSphere  # provides: osg::BoundingSphere
+import /usr/include/osg/Switch  # provides: osg::Switch
+import /usr/include/osg/Geode  # provides: osg::Geode
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/Transform  # provides: osg::Transform
+import /usr/include/osg/Geometry  # provides: osg::Geometry
+import /usr/include/osg/Drawable  # provides: osg::Drawable
+import /usr/include/osg/Callback  # provides: osg::Callback
+import /usr/include/osg/Group  # provides: osg::Group
+import /usr/include/osg/StateSet  # provides: osg::StateSet
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
 type
-  # Typedefs
-  NodePath* {.header: "Node", importcpp: "osg::NodePath".} = cint
   NodePathList* {.header: "Node", importcpp: "osg::NodePathList".} = cint
-  MatrixList* {.header: "Node", importcpp: "osg::MatrixList".} = cint
   ParentList* {.header: "Node", importcpp: "osg::Node::ParentList".} = cint
-  NodeMask* {.header: "Node", importcpp: "osg::Node::NodeMask".} = cuint
   DescriptionList* {.header: "Node", importcpp: "osg::Node::DescriptionList".} = cint
+
+
 {.push header: "Node".}
 
-
-# Constructors and methods
-proc constructNode*(): Node {.constructor,importcpp: "Node".}
+proc constructNode*(): Node {.constructor,importcpp: "osg::Node::Node".}
     ## Construct a node. Initialize the parent list to empty, node name to ""
     ## and bounding sphere dirty flag to true.
 
-proc constructNode*(Node, copyop: Copyop = SHALLOW_COPY): Node {.constructor,importcpp: "Node(@)".}
+proc constructNode*(Node, copyop: Copyop = SHALLOW_COPY): Node {.constructor,importcpp: "osg::Node::Node(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
-proc constructComputeBoundingSphereCallback*(): ComputeBoundingSphereCallback {.constructor,importcpp: "ComputeBoundingSphereCallback".}
+proc constructComputeBoundingSphereCallback*(): ComputeBoundingSphereCallback {.constructor,importcpp: "osg::Node::ComputeBoundingSphereCallback::ComputeBoundingSphereCallback".}
 
-proc constructComputeBoundingSphereCallback*(org: Computeboundingspherecallback, copyop: Copyop): ComputeBoundingSphereCallback {.constructor,importcpp: "ComputeBoundingSphereCallback(@)".}
+proc constructComputeBoundingSphereCallback*(org: Computeboundingspherecallback, copyop: Copyop): ComputeBoundingSphereCallback {.constructor,importcpp: "osg::Node::ComputeBoundingSphereCallback::ComputeBoundingSphereCallback(@)".}
 
 proc cloneType*(this: Node): ptr Object   {.importcpp: "cloneType".}
     ## clone an object of the same type as the node.
@@ -159,8 +152,6 @@ proc getWorldMatrices*(this: Node, haltTraversalAtNode: ptr Node  = 0): Matrixli
 proc setUpdateCallback*(this: var Node, nc: ptr Callback )  {.importcpp: "setUpdateCallback".}
     ## Set update node callback, called during update traversal.
 
-proc setUpdateCallback*[T](this: var Node, nc: ref_ptr[T])  {.importcpp: "setUpdateCallback".}
-
 proc getUpdateCallback*(this: var Node): ptr Callback   {.importcpp: "getUpdateCallback".}
     ## Get update node callback, called during update traversal.
 
@@ -171,14 +162,10 @@ proc addUpdateCallback*(this: var Node, nc: ptr Callback )  {.importcpp: "addUpd
     ## Convenience method that sets the update callback of the node if it
     ## doesn't exist, or nest it into the existing one.
 
-proc addUpdateCallback*[T](this: var Node, nc: ref_ptr[T])  {.importcpp: "addUpdateCallback".}
-
 proc removeUpdateCallback*(this: var Node, nc: ptr Callback )  {.importcpp: "removeUpdateCallback".}
     ## Convenience method that removes a given callback from a node, even if
     ## that callback is nested. There is no error return in case the given
     ## callback is not found.
-
-proc removeUpdateCallback*[T](this: var Node, nc: ref_ptr[T])  {.importcpp: "removeUpdateCallback".}
 
 proc getNumChildrenRequiringUpdateTraversal*(this: Node): cuint  {.importcpp: "getNumChildrenRequiringUpdateTraversal".}
     ## Get the number of Children of this node which require Update
@@ -187,8 +174,6 @@ proc getNumChildrenRequiringUpdateTraversal*(this: Node): cuint  {.importcpp: "g
 
 proc setEventCallback*(this: var Node, nc: ptr Callback )  {.importcpp: "setEventCallback".}
     ## Set event node callback, called during event traversal.
-
-proc setEventCallback*[T](this: var Node, nc: ref_ptr[T])  {.importcpp: "setEventCallback".}
 
 proc getEventCallback*(this: var Node): ptr Callback   {.importcpp: "getEventCallback".}
     ## Get event node callback, called during event traversal.
@@ -200,14 +185,10 @@ proc addEventCallback*(this: var Node, nc: ptr Callback )  {.importcpp: "addEven
     ## Convenience method that sets the event callback of the node if it
     ## doesn't exist, or nest it into the existing one.
 
-proc addEventCallback*[T](this: var Node, nc: ref_ptr[T])  {.importcpp: "addEventCallback".}
-
 proc removeEventCallback*(this: var Node, nc: ptr Callback )  {.importcpp: "removeEventCallback".}
     ## Convenience method that removes a given callback from a node, even if
     ## that callback is nested. There is no error return in case the given
     ## callback is not found.
-
-proc removeEventCallback*[T](this: var Node, nc: ref_ptr[T])  {.importcpp: "removeEventCallback".}
 
 proc getNumChildrenRequiringEventTraversal*(this: Node): cuint  {.importcpp: "getNumChildrenRequiringEventTraversal".}
     ## Get the number of Children of this node which require Event traversal,
@@ -215,8 +196,6 @@ proc getNumChildrenRequiringEventTraversal*(this: Node): cuint  {.importcpp: "ge
 
 proc setCullCallback*(this: var Node, nc: ptr Callback )  {.importcpp: "setCullCallback".}
     ## Set cull node callback, called during cull traversal.
-
-proc setCullCallback*[T](this: var Node, nc: ref_ptr[T])  {.importcpp: "setCullCallback".}
 
 proc getCullCallback*(this: var Node): ptr Callback   {.importcpp: "getCullCallback".}
     ## Get cull node callback, called during cull traversal.
@@ -228,14 +207,10 @@ proc addCullCallback*(this: var Node, nc: ptr Callback )  {.importcpp: "addCullC
     ## Convenience method that sets the cull callback of the node if it
     ## doesn't exist, or nest it into the existing one.
 
-proc addCullCallback*[T](this: var Node, nc: ref_ptr[T])  {.importcpp: "addCullCallback".}
-
 proc removeCullCallback*(this: var Node, nc: ptr Callback )  {.importcpp: "removeCullCallback".}
     ## Convenience method that removes a given callback from a node, even if
     ## that callback is nested. There is no error return in case the given
     ## callback is not found.
-
-proc removeCullCallback*[T](this: var Node, nc: ref_ptr[T])  {.importcpp: "removeCullCallback".}
 
 proc setCullingActive*(this: var Node, active: bool)  {.importcpp: "setCullingActive".}
     ## Set the view frustum/small feature culling of this node to be active
@@ -271,8 +246,6 @@ proc getNodeMask*(this: Node): Nodemask  {.importcpp: "getNodeMask".}
 
 proc setStateSet*(this: var Node, stateset: ptr Stateset )  {.importcpp: "setStateSet".}
     ## Set the node's StateSet.
-
-proc setStateSet*[T](this: var Node, stateset: Ref_ptr[T])  {.importcpp: "setStateSet".}
 
 proc getOrCreateStateSet*(this: var Node): ptr Stateset   {.importcpp: "getOrCreateStateSet".}
     ## return the node's StateSet, if one does not already exist create it
@@ -342,8 +315,6 @@ proc computeBound*(this: ComputeBoundingSphereCallback, Node): Boundingsphere  {
 proc setComputeBoundingSphereCallback*(this: var Node, callback: ptr Computeboundingspherecallback )  {.importcpp: "setComputeBoundingSphereCallback".}
     ## Set the compute bound callback to override the default computeBound.
 
-proc setComputeBoundingSphereCallback*[T](this: var Node, callback: ref_ptr[T])  {.importcpp: "setComputeBoundingSphereCallback".}
-
 proc getComputeBoundingSphereCallback*(this: var Node): ptr Computeboundingspherecallback   {.importcpp: "getComputeBoundingSphereCallback".}
     ## Get the compute bound callback.
 
@@ -374,4 +345,4 @@ proc setNumChildrenWithCullingDisabled*(this: var Node, num: cuint)  {.importcpp
 
 proc setNumChildrenWithOccluderNodes*(this: var Node, num: cuint)  {.importcpp: "setNumChildrenWithOccluderNodes".}
 
-{.pop.} # header: "Node
+{.pop.}  # header: "Node"

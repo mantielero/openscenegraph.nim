@@ -1,22 +1,22 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import StateAttribute # Provides StateAttribute, Type
-import Vec4 # Provides Vec4
-import State # Provides State
-
-
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Vec4  # provides: osg::Vec4
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
 type
   ColorControl* {.size:sizeof(cuint),header: "LightModel", importcpp: "osg::LightModel::ColorControl".} = enum
     SEPARATE_SPECULAR_COLOR = 0,
     SINGLE_COLOR = 1
 
+  LightModel* {.header: "LightModel", importcpp: "osg::LightModel", byref.} = object #of class osg::StateAttribute
+
+
+
 {.push header: "LightModel".}
 
+proc constructLightModel*(): LightModel {.constructor,importcpp: "osg::LightModel::LightModel".}
 
-# Constructors and methods
-proc constructLightModel*(): LightModel {.constructor,importcpp: "LightModel".}
-
-proc constructLightModel*(lw: Lightmodel, copyop: Copyop = SHALLOW_COPY): LightModel {.constructor,importcpp: "LightModel(@)".}
+proc constructLightModel*(lw: Lightmodel, copyop: Copyop = SHALLOW_COPY): LightModel {.constructor,importcpp: "osg::LightModel::LightModel(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: LightModel): ptr Object   {.importcpp: "cloneType".}
@@ -52,4 +52,4 @@ proc getTwoSided*(this: LightModel): bool  {.importcpp: "getTwoSided".}
 
 proc apply*(this: LightModel, state: State)  {.importcpp: "apply".}
 
-{.pop.} # header: "LightModel
+{.pop.}  # header: "LightModel"

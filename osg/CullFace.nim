@@ -1,22 +1,23 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import StateAttribute # Provides StateAttribute, Type
-import State # Provides State
-
-
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
 type
   Mode* {.size:sizeof(cuint),header: "CullFace", importcpp: "osg::CullFace::Mode".} = enum
     FRONT = 1028,
     BACK = 1029,
     FRONT_AND_BACK = 1032
 
+  CullFace* {.header: "CullFace", importcpp: "osg::CullFace", byref.} = object #of class osg::StateAttribute
+    ## Class to globally enable/disable OpenGL's polygon culling mode.
+
+
+
 {.push header: "CullFace".}
 
+proc constructCullFace*(mode: Mode): CullFace {.constructor,importcpp: "osg::CullFace::CullFace(@)".}
 
-# Constructors and methods
-proc constructCullFace*(mode: Mode): CullFace {.constructor,importcpp: "CullFace(@)".}
-
-proc constructCullFace*(cf: Cullface, copyop: Copyop = SHALLOW_COPY): CullFace {.constructor,importcpp: "CullFace(@)".}
+proc constructCullFace*(cf: Cullface, copyop: Copyop = SHALLOW_COPY): CullFace {.constructor,importcpp: "osg::CullFace::CullFace(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: CullFace): ptr Object   {.importcpp: "cloneType".}
@@ -42,4 +43,4 @@ proc getMode*(this: CullFace): Mode  {.importcpp: "getMode".}
 
 proc apply*(this: CullFace, state: State)  {.importcpp: "apply".}
 
-{.pop.} # header: "CullFace
+{.pop.}  # header: "CullFace"

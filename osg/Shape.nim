@@ -1,19 +1,14 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import Vec2f # Provides Vec2f
-import Vec3f # Provides Vec3f
-import Vec3 # Provides Vec3
-import Quat # Provides Quat
-import Matrixd # Provides Matrixd
-import Matrix # Provides Matrix
-import Vec2 # Provides Vec2
-import gl # Provides GLenum
-import Array # Provides IndexArray, FloatArray, Vec3Array
-import Geometry # Provides Geometry
-
-
+import /usr/include/osg/Vec3  # provides: osg::Vec3
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/Array  # provides: osg::FloatArray, osg::IndexArray, osg::Vec3Array
+import /usr/include/osg/Vec3f  # provides: osg::Vec3f
+import /usr/include/osg/Vec2  # provides: osg::Vec2
+import /usr/include/osg/Vec2f  # provides: osg::Vec2f
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/Matrix  # provides: osg::Matrix
+import /usr/include/osg/Matrixd  # provides: osg::Matrixd
+import /usr/include/osg/Quat  # provides: osg::Quat
 type
-  # Enums
   TessellationMode* {.size:sizeof(cuint),header: "Shape", importcpp: "osg::TessellationHints::TessellationMode".} = enum
     USE_SHAPE_DEFAULTS = 0,
     USE_TARGET_NUM_FACES = 1
@@ -22,79 +17,106 @@ type
     SphereTopHalf = 0,
     SphereBottomHalf = 1
 
-  # Typedefs
   HeightList* {.header: "Shape", importcpp: "osg::HeightField::HeightList".} = cint
   Grid* {.header: "Shape", importcpp: "osg::Grid".} = Heightfield
   ChildList* {.header: "Shape", importcpp: "osg::CompositeShape::ChildList".} = cint
+  Sphere* {.header: "Shape", importcpp: "osg::Sphere", byref.} = object #of class osg::Shape
+
+  Box* {.header: "Shape", importcpp: "osg::Box", byref.} = object #of class osg::Shape
+
+  Cone* {.header: "Shape", importcpp: "osg::Cone", byref.} = object #of class osg::Shape
+
+  Cylinder* {.header: "Shape", importcpp: "osg::Cylinder", byref.} = object #of class osg::Shape
+
+  Capsule* {.header: "Shape", importcpp: "osg::Capsule", byref.} = object #of class osg::Shape
+
+  InfinitePlane* {.header: "Shape", importcpp: "osg::InfinitePlane", byref.} = object #of class osg::Shape
+    ## Deprecated.
+
+  TriangleMesh* {.header: "Shape", importcpp: "osg::TriangleMesh", byref.} = object #of class osg::Shape
+    ## Deprecated.
+
+  ConvexHull* {.header: "Shape", importcpp: "osg::ConvexHull", byref.} = object #of class osg::TriangleMesh
+    ## Deprecated.
+
+  HeightField* {.header: "Shape", importcpp: "osg::HeightField", byref.} = object #of class osg::Shape
+
+  CompositeShape* {.header: "Shape", importcpp: "osg::CompositeShape", byref.} = object #of class osg::Shape
+    ## Deprecated.
+
+  BuildShapeGeometryVisitor* {.header: "Shape", importcpp: "osg::BuildShapeGeometryVisitor", byref.} = object #of class osg::ConstShapeVisitor
+    ## Convenience class for populating an Geometry with vertex, normals,
+    ## texture coords and primitives that can render a Shape.
+
+
+
 {.push header: "Shape".}
 
+proc constructShape*(): Shape {.constructor,importcpp: "osg::Shape::Shape".}
 
-# Constructors and methods
-proc constructShape*(): Shape {.constructor,importcpp: "Shape".}
+proc constructShape*(sa: Shape, copyop: Copyop = SHALLOW_COPY): Shape {.constructor,importcpp: "osg::Shape::Shape(@)".}
 
-proc constructShape*(sa: Shape, copyop: Copyop = SHALLOW_COPY): Shape {.constructor,importcpp: "Shape(@)".}
+proc constructShapeVisitor*(): ShapeVisitor {.constructor,importcpp: "osg::ShapeVisitor::ShapeVisitor".}
 
-proc constructShapeVisitor*(): ShapeVisitor {.constructor,importcpp: "ShapeVisitor".}
+proc constructConstShapeVisitor*(): ConstShapeVisitor {.constructor,importcpp: "osg::ConstShapeVisitor::ConstShapeVisitor".}
 
-proc constructConstShapeVisitor*(): ConstShapeVisitor {.constructor,importcpp: "ConstShapeVisitor".}
+proc constructSphere*(): Sphere {.constructor,importcpp: "osg::Sphere::Sphere".}
 
-proc constructSphere*(): Sphere {.constructor,importcpp: "Sphere".}
+proc constructSphere*(center: Vec3, radius: cfloat): Sphere {.constructor,importcpp: "osg::Sphere::Sphere(@)".}
 
-proc constructSphere*(center: Vec3, radius: cfloat): Sphere {.constructor,importcpp: "Sphere(@)".}
+proc constructSphere*(sphere: Sphere, copyop: Copyop = SHALLOW_COPY): Sphere {.constructor,importcpp: "osg::Sphere::Sphere(@)".}
 
-proc constructSphere*(sphere: Sphere, copyop: Copyop = SHALLOW_COPY): Sphere {.constructor,importcpp: "Sphere(@)".}
+proc constructBox*(): Box {.constructor,importcpp: "osg::Box::Box".}
 
-proc constructBox*(): Box {.constructor,importcpp: "Box".}
+proc constructBox*(center: Vec3, width: cfloat): Box {.constructor,importcpp: "osg::Box::Box(@)".}
 
-proc constructBox*(center: Vec3, width: cfloat): Box {.constructor,importcpp: "Box(@)".}
+proc constructBox*(center: Vec3, lengthX: cfloat, lengthY: cfloat, lengthZ: cfloat): Box {.constructor,importcpp: "osg::Box::Box(@)".}
 
-proc constructBox*(center: Vec3, lengthX: cfloat, lengthY: cfloat, lengthZ: cfloat): Box {.constructor,importcpp: "Box(@)".}
+proc constructBox*(box: Box, copyop: Copyop = SHALLOW_COPY): Box {.constructor,importcpp: "osg::Box::Box(@)".}
 
-proc constructBox*(box: Box, copyop: Copyop = SHALLOW_COPY): Box {.constructor,importcpp: "Box(@)".}
+proc constructCone*(): Cone {.constructor,importcpp: "osg::Cone::Cone".}
 
-proc constructCone*(): Cone {.constructor,importcpp: "Cone".}
+proc constructCone*(center: Vec3, radius: cfloat, height: cfloat): Cone {.constructor,importcpp: "osg::Cone::Cone(@)".}
 
-proc constructCone*(center: Vec3, radius: cfloat, height: cfloat): Cone {.constructor,importcpp: "Cone(@)".}
+proc constructCone*(cone: Cone, copyop: Copyop = SHALLOW_COPY): Cone {.constructor,importcpp: "osg::Cone::Cone(@)".}
 
-proc constructCone*(cone: Cone, copyop: Copyop = SHALLOW_COPY): Cone {.constructor,importcpp: "Cone(@)".}
+proc constructCylinder*(): Cylinder {.constructor,importcpp: "osg::Cylinder::Cylinder".}
 
-proc constructCylinder*(): Cylinder {.constructor,importcpp: "Cylinder".}
+proc constructCylinder*(center: Vec3, radius: cfloat, height: cfloat): Cylinder {.constructor,importcpp: "osg::Cylinder::Cylinder(@)".}
 
-proc constructCylinder*(center: Vec3, radius: cfloat, height: cfloat): Cylinder {.constructor,importcpp: "Cylinder(@)".}
+proc constructCylinder*(cylinder: Cylinder, copyop: Copyop = SHALLOW_COPY): Cylinder {.constructor,importcpp: "osg::Cylinder::Cylinder(@)".}
 
-proc constructCylinder*(cylinder: Cylinder, copyop: Copyop = SHALLOW_COPY): Cylinder {.constructor,importcpp: "Cylinder(@)".}
+proc constructCapsule*(): Capsule {.constructor,importcpp: "osg::Capsule::Capsule".}
 
-proc constructCapsule*(): Capsule {.constructor,importcpp: "Capsule".}
+proc constructCapsule*(center: Vec3, radius: cfloat, height: cfloat): Capsule {.constructor,importcpp: "osg::Capsule::Capsule(@)".}
 
-proc constructCapsule*(center: Vec3, radius: cfloat, height: cfloat): Capsule {.constructor,importcpp: "Capsule(@)".}
+proc constructCapsule*(capsule: Capsule, copyop: Copyop = SHALLOW_COPY): Capsule {.constructor,importcpp: "osg::Capsule::Capsule(@)".}
 
-proc constructCapsule*(capsule: Capsule, copyop: Copyop = SHALLOW_COPY): Capsule {.constructor,importcpp: "Capsule(@)".}
+proc constructInfinitePlane*(): InfinitePlane {.constructor,importcpp: "osg::InfinitePlane::InfinitePlane".}
 
-proc constructInfinitePlane*(): InfinitePlane {.constructor,importcpp: "InfinitePlane".}
+proc constructInfinitePlane*(plane: Infiniteplane, copyop: Copyop = SHALLOW_COPY): InfinitePlane {.constructor,importcpp: "osg::InfinitePlane::InfinitePlane(@)".}
 
-proc constructInfinitePlane*(plane: Infiniteplane, copyop: Copyop = SHALLOW_COPY): InfinitePlane {.constructor,importcpp: "InfinitePlane(@)".}
+proc constructTriangleMesh*(): TriangleMesh {.constructor,importcpp: "osg::TriangleMesh::TriangleMesh".}
 
-proc constructTriangleMesh*(): TriangleMesh {.constructor,importcpp: "TriangleMesh".}
+proc constructTriangleMesh*(mesh: Trianglemesh, copyop: Copyop = SHALLOW_COPY): TriangleMesh {.constructor,importcpp: "osg::TriangleMesh::TriangleMesh(@)".}
 
-proc constructTriangleMesh*(mesh: Trianglemesh, copyop: Copyop = SHALLOW_COPY): TriangleMesh {.constructor,importcpp: "TriangleMesh(@)".}
+proc constructConvexHull*(): ConvexHull {.constructor,importcpp: "osg::ConvexHull::ConvexHull".}
 
-proc constructConvexHull*(): ConvexHull {.constructor,importcpp: "ConvexHull".}
+proc constructConvexHull*(hull: Convexhull, copyop: Copyop = SHALLOW_COPY): ConvexHull {.constructor,importcpp: "osg::ConvexHull::ConvexHull(@)".}
 
-proc constructConvexHull*(hull: Convexhull, copyop: Copyop = SHALLOW_COPY): ConvexHull {.constructor,importcpp: "ConvexHull(@)".}
+proc constructHeightField*(): HeightField {.constructor,importcpp: "osg::HeightField::HeightField".}
 
-proc constructHeightField*(): HeightField {.constructor,importcpp: "HeightField".}
+proc constructHeightField*(mesh: Heightfield, copyop: Copyop = SHALLOW_COPY): HeightField {.constructor,importcpp: "osg::HeightField::HeightField(@)".}
 
-proc constructHeightField*(mesh: Heightfield, copyop: Copyop = SHALLOW_COPY): HeightField {.constructor,importcpp: "HeightField(@)".}
+proc constructCompositeShape*(): CompositeShape {.constructor,importcpp: "osg::CompositeShape::CompositeShape".}
 
-proc constructCompositeShape*(): CompositeShape {.constructor,importcpp: "CompositeShape".}
+proc constructCompositeShape*(cs: Compositeshape, copyop: Copyop = SHALLOW_COPY): CompositeShape {.constructor,importcpp: "osg::CompositeShape::CompositeShape(@)".}
 
-proc constructCompositeShape*(cs: Compositeshape, copyop: Copyop = SHALLOW_COPY): CompositeShape {.constructor,importcpp: "CompositeShape(@)".}
+proc constructTessellationHints*(): TessellationHints {.constructor,importcpp: "osg::TessellationHints::TessellationHints".}
 
-proc constructTessellationHints*(): TessellationHints {.constructor,importcpp: "TessellationHints".}
+proc constructTessellationHints*(tess: Tessellationhints, copyop: Copyop = SHALLOW_COPY): TessellationHints {.constructor,importcpp: "osg::TessellationHints::TessellationHints(@)".}
 
-proc constructTessellationHints*(tess: Tessellationhints, copyop: Copyop = SHALLOW_COPY): TessellationHints {.constructor,importcpp: "TessellationHints(@)".}
-
-proc constructBuildShapeGeometryVisitor*(geometry: ptr Geometry , hints: ptr Tessellationhints ): BuildShapeGeometryVisitor {.constructor,importcpp: "BuildShapeGeometryVisitor(@)".}
+proc constructBuildShapeGeometryVisitor*(geometry: ptr Geometry , hints: ptr Tessellationhints ): BuildShapeGeometryVisitor {.constructor,importcpp: "osg::BuildShapeGeometryVisitor::BuildShapeGeometryVisitor(@)".}
 
 proc cloneType*(this: Shape): ptr Object   {.importcpp: "cloneType".}
     ## Clone the type of an attribute, with Object* return type. Must be
@@ -512,8 +534,6 @@ proc getChild*(this: CompositeShape, i: cuint): ptr Shape   {.importcpp: "getChi
 proc addChild*(this: var CompositeShape, shape: ptr Shape )  {.importcpp: "addChild".}
     ## Add a child to the list.
 
-proc addChild*[T](this: var CompositeShape, child: ref_ptr[T])  {.importcpp: "addChild".}
-
 proc removeChild*(this: var CompositeShape, i: cuint)  {.importcpp: "removeChild".}
     ## remove a child from the list.
 
@@ -616,4 +636,4 @@ proc drawCylinderBody*(this: var BuildShapeGeometryVisitor, numSegments: cuint, 
 
 proc drawHalfSphere*(this: var BuildShapeGeometryVisitor, numSegments: cuint, numRows: cuint, radius: cfloat, which: Spherehalf, zOffset: cfloat)  {.importcpp: "drawHalfSphere".}
 
-{.pop.} # header: "Shape
+{.pop.}  # header: "Shape"

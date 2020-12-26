@@ -1,16 +1,19 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import StateAttribute # Provides StateAttribute, Type
-import State # Provides State
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+type
+  TexEnvFilter* {.header: "TexEnvFilter", importcpp: "osg::TexEnvFilter", byref.} = object #of class osg::StateAttribute
+    ## TexEnvFilter - encapsulates the OpenGL glTexEnv
+    ## (GL_TEXTURE_FILTER_CONTROL) state.
+
 
 
 {.push header: "TexEnvFilter".}
 
+proc constructTexEnvFilter*(lodBias: cfloat): TexEnvFilter {.constructor,importcpp: "osg::TexEnvFilter::TexEnvFilter(@)".}
 
-# Constructors and methods
-proc constructTexEnvFilter*(lodBias: cfloat): TexEnvFilter {.constructor,importcpp: "TexEnvFilter(@)".}
-
-proc constructTexEnvFilter*(texenv: Texenvfilter, copyop: Copyop = SHALLOW_COPY): TexEnvFilter {.constructor,importcpp: "TexEnvFilter(@)".}
+proc constructTexEnvFilter*(texenv: Texenvfilter, copyop: Copyop = SHALLOW_COPY): TexEnvFilter {.constructor,importcpp: "osg::TexEnvFilter::TexEnvFilter(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: TexEnvFilter): ptr Object   {.importcpp: "cloneType".}
@@ -36,4 +39,4 @@ proc getLodBias*(this: TexEnvFilter): cfloat  {.importcpp: "getLodBias".}
 
 proc apply*(this: TexEnvFilter, state: State)  {.importcpp: "apply".}
 
-{.pop.} # header: "TexEnvFilter
+{.pop.}  # header: "TexEnvFilter"

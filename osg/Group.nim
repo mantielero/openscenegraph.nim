@@ -1,20 +1,14 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import BoundingSphere # Provides BoundingSphere
-import Node # Provides Node
-import NodeVisitor # Provides NodeVisitor
-import State # Provides State
-
-
-type
-  NodeList* {.header: "Group", importcpp: "osg::NodeList".} = cint
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/BoundingSphere  # provides: osg::BoundingSphere
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/Node  # provides: osg::Node
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
 {.push header: "Group".}
 
+proc constructGroup*(): Group {.constructor,importcpp: "osg::Group::Group".}
 
-# Constructors and methods
-proc constructGroup*(): Group {.constructor,importcpp: "Group".}
-
-proc constructGroup*(Group, copyop: Copyop = SHALLOW_COPY): Group {.constructor,importcpp: "Group(@)".}
+proc constructGroup*(Group, copyop: Copyop = SHALLOW_COPY): Group {.constructor,importcpp: "osg::Group::Group(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: Group): ptr Object   {.importcpp: "cloneType".}
@@ -41,14 +35,10 @@ proc addChild*(this: var Group, child: ptr Node ): bool  {.importcpp: "addChild"
     ## it to recompute on next getBound() and return true for success.
     ## Otherwise return false. Scene nodes can't be added as child nodes.
 
-proc addChild*[T](this: var Group, child: ref_ptr[T]): bool  {.importcpp: "addChild".}
-
 proc insertChild*(this: var Group, index: cuint, child: ptr Node ): bool  {.importcpp: "insertChild".}
     ## Insert Node to Group at specific location. The new child node is
     ## inserted into the child list before the node at the specified index.
     ## No nodes are removed from the group with this operation.
-
-proc insertChild*[T](this: var Group, index: cuint, child: ref_ptr[T]): bool  {.importcpp: "insertChild".}
 
 proc removeChild*(this: var Group, child: ptr Node ): bool  {.importcpp: "removeChild".}
     ## Remove Node from Group. If Node is contained in Group then remove it
@@ -57,8 +47,6 @@ proc removeChild*(this: var Group, child: ptr Node ): bool  {.importcpp: "remove
     ## true for success. If Node is not found then return false and do not
     ## change the reference count of the Node. Note, do not override, only
     ## override removeChildren(,) is required.
-
-proc removeChild*[T](this: var Group, child: ref_ptr[T]): bool  {.importcpp: "removeChild".}
 
 proc removeChild*(this: var Group, pos: cuint, numChildrenToRemove: cuint = 1): bool  {.importcpp: "removeChild".}
     ## Remove Node from Group. If Node is contained in Group then remove it
@@ -76,8 +64,6 @@ proc replaceChild*(this: var Group, origChild: ptr Node , newChild: ptr Node ): 
     ## Replace specified child Node with another Node. Equivalent to
     ## setChild(getChildIndex(orignChild),node) See docs for setChild for
     ## further details on implementation.
-
-proc replaceChild*[T;R](this: var Group, origChild: ref_ptr[T], newChild: ref_ptr[R]): bool  {.importcpp: "replaceChild".}
 
 proc getNumChildren*(this: Group): cuint  {.importcpp: "getNumChildren".}
     ## Return the number of children nodes.
@@ -100,8 +86,6 @@ proc getChild*(this: Group, i: cuint): ptr Node   {.importcpp: "getChild".}
 
 proc containsNode*(this: Group, node: ptr Node ): bool  {.importcpp: "containsNode".}
     ## Return true if node is contained within Group.
-
-proc containsNode*[T](this: Group, node: ref_ptr[T]): bool  {.importcpp: "containsNode".}
 
 proc getChildIndex*(this: Group, node: ptr Node ): cuint  {.importcpp: "getChildIndex".}
     ## Get the index number of child, return a value between 0 and
@@ -126,4 +110,4 @@ proc childRemoved*(this: var Group, cuint, cuint)  {.importcpp: "childRemoved".}
 
 proc childInserted*(this: var Group, cuint)  {.importcpp: "childInserted".}
 
-{.pop.} # header: "Group
+{.pop.}  # header: "Group"

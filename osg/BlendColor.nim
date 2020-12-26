@@ -1,19 +1,21 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import StateAttribute # Provides StateAttribute, Type
-import Vec4 # Provides Vec4
-import State # Provides State
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Vec4  # provides: osg::Vec4
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+type
+  BlendColor* {.header: "BlendColor", importcpp: "osg::BlendColor", byref.} = object #of class osg::StateAttribute
+    ## Encapsulates OpenGL blend/transparency state.
+
 
 
 {.push header: "BlendColor".}
 
+proc constructBlendColor*(): BlendColor {.constructor,importcpp: "osg::BlendColor::BlendColor".}
 
-# Constructors and methods
-proc constructBlendColor*(): BlendColor {.constructor,importcpp: "BlendColor".}
+proc constructBlendColor*(antColor: Vec4): BlendColor {.constructor,importcpp: "osg::BlendColor::BlendColor(@)".}
 
-proc constructBlendColor*(antColor: Vec4): BlendColor {.constructor,importcpp: "BlendColor(@)".}
-
-proc constructBlendColor*(trans: Blendcolor, copyop: Copyop = SHALLOW_COPY): BlendColor {.constructor,importcpp: "BlendColor(@)".}
+proc constructBlendColor*(trans: Blendcolor, copyop: Copyop = SHALLOW_COPY): BlendColor {.constructor,importcpp: "osg::BlendColor::BlendColor(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: BlendColor): ptr Object   {.importcpp: "cloneType".}
@@ -41,4 +43,4 @@ proc getConstantColor*(this: BlendColor): Vec4  {.importcpp: "getConstantColor".
 
 proc apply*(this: BlendColor, state: State)  {.importcpp: "apply".}
 
-{.pop.} # header: "BlendColor
+{.pop.}  # header: "BlendColor"

@@ -1,18 +1,23 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import Vec4d # Provides Vec4d
-import StateAttribute # Provides StateAttribute, Type
-import StateSet # Provides StateSet
-import State # Provides State
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/StateSet  # provides: osg::StateSet
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/Vec4d  # provides: osg::Vec4d
+type
+  Sampler* {.header: "Sampler", importcpp: "osg::Sampler", byref.} = object #of osg::StateAttribute
+    ## OpenGL Sampler OpenGL 3.3 required https://www.khronos.org/registry/Op
+    ## enGL/extensions/ARB/ARB_sampler_objects.txt State Attribute controllig
+    ## sampling instead of Texture Sampler is prioritary over Texture sample
+    ## parameter (don't play with both)
+
 
 
 {.push header: "Sampler".}
 
+proc constructSampler*(): Sampler {.constructor,importcpp: "osg::Sampler::Sampler".}
 
-# Constructors and methods
-proc constructSampler*(): Sampler {.constructor,importcpp: "Sampler".}
-
-proc constructSampler*(text: Sampler, copyop: Copyop = SHALLOW_COPY): Sampler {.constructor,importcpp: "Sampler(@)".}
+proc constructSampler*(text: Sampler, copyop: Copyop = SHALLOW_COPY): Sampler {.constructor,importcpp: "osg::Sampler::Sampler(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: Sampler): ptr Object   {.importcpp: "cloneType".}
@@ -97,4 +102,4 @@ proc releaseGLObjects*(this: Sampler, state: ptr State  = 0)  {.importcpp: "rele
 
 proc compare*(this: Sampler, sa: Stateattribute): cint  {.importcpp: "compare".}
 
-{.pop.} # header: "Sampler
+{.pop.}  # header: "Sampler"

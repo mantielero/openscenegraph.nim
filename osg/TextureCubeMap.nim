@@ -1,11 +1,8 @@
-import gl # Provides GLenum
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import StateAttribute # Provides StateAttribute, Type
-import Image # Provides Image
-import State # Provides State
-
-
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/Image  # provides: osg::Image
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
 type
   Face* {.size:sizeof(cuint),header: "TextureCubeMap", importcpp: "osg::TextureCubeMap::Face".} = enum
     POSITIVE_X = 0,
@@ -16,13 +13,19 @@ type
     NEGATIVE_Z = 5
 
   ImageModifiedCount* {.header: "TextureCubeMap", importcpp: "osg::TextureCubeMap::ImageModifiedCount".} = buffered_value[unsigned int]
+  TextureCubeMap* {.header: "TextureCubeMap", importcpp: "osg::TextureCubeMap", byref.} = object #of class osg::Texture
+    ## TextureCubeMap state class which encapsulates OpenGL texture cubemap
+    ## functionality.
+
+  SubloadCallback* {.header: "TextureCubeMap", importcpp: "osg::TextureCubeMap::SubloadCallback", byref.} = object #of class osg::Referenced
+
+
+
 {.push header: "TextureCubeMap".}
 
+proc constructTextureCubeMap*(): TextureCubeMap {.constructor,importcpp: "osg::TextureCubeMap::TextureCubeMap".}
 
-# Constructors and methods
-proc constructTextureCubeMap*(): TextureCubeMap {.constructor,importcpp: "TextureCubeMap".}
-
-proc constructTextureCubeMap*(cm: Texturecubemap, copyop: Copyop = SHALLOW_COPY): TextureCubeMap {.constructor,importcpp: "TextureCubeMap(@)".}
+proc constructTextureCubeMap*(cm: Texturecubemap, copyop: Copyop = SHALLOW_COPY): TextureCubeMap {.constructor,importcpp: "osg::TextureCubeMap::TextureCubeMap(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: TextureCubeMap): ptr Object   {.importcpp: "cloneType".}
@@ -44,8 +47,6 @@ proc getTextureTarget*(this: TextureCubeMap): GLenum  {.importcpp: "getTextureTa
 
 proc setImage*(this: var TextureCubeMap, face: cuint, image: ptr Image )  {.importcpp: "setImage".}
     ## Set the texture image for specified face.
-
-proc setImage*[T](this: var TextureCubeMap, face: cuint, image: ref_ptr[T])  {.importcpp: "setImage".}
 
 proc getImage*(this: var TextureCubeMap, face: cuint): ptr Image   {.importcpp: "getImage".}
     ## Get the texture image for specified face.
@@ -112,4 +113,4 @@ proc computeInternalFormat*(this: TextureCubeMap)  {.importcpp: "computeInternal
 
 proc allocateMipmap*(this: TextureCubeMap, state: State)  {.importcpp: "allocateMipmap".}
 
-{.pop.} # header: "TextureCubeMap
+{.pop.}  # header: "TextureCubeMap"

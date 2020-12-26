@@ -1,19 +1,15 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import BoundingSphere # Provides BoundingSphere
-import BoundingBox # Provides BoundingBox
-import NodeVisitor # Provides NodeVisitor
-import RenderInfo # Provides RenderInfo
-import Drawable # Provides Drawable
-
-
+import /usr/include/osg/BoundingSphere  # provides: osg::BoundingSphere
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/Drawable  # provides: osg::Drawable
+import /usr/include/osg/BoundingBox  # provides: osg::BoundingBox
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/RenderInfo  # provides: osg::RenderInfo
+import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
 {.push header: "Geode".}
 
+proc constructGeode*(): Geode {.constructor,importcpp: "osg::Geode::Geode".}
 
-# Constructors and methods
-proc constructGeode*(): Geode {.constructor,importcpp: "Geode".}
-
-proc constructGeode*(Geode, copyop: Copyop = SHALLOW_COPY): Geode {.constructor,importcpp: "Geode(@)".}
+proc constructGeode*(Geode, copyop: Copyop = SHALLOW_COPY): Geode {.constructor,importcpp: "osg::Geode::Geode(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: Geode): ptr Object   {.importcpp: "cloneType".}
@@ -38,13 +34,9 @@ proc addDrawable*(this: var Geode, drawable: ptr Drawable ): bool  {.importcpp: 
     ## the drawables list and dirty the bounding sphere to force it to be
     ## recomputed on the next call to getBound().
 
-proc addDrawable*[T](this: var Geode, drawable: ref_ptr[T]): bool  {.importcpp: "addDrawable".}
-
 proc removeDrawable*(this: var Geode, drawable: ptr Drawable ): bool  {.importcpp: "removeDrawable".}
     ## Remove a Drawable from the Geode. Equivalent to
     ## removeDrawable(getDrawableIndex(drawable).
-
-proc removeDrawable*[T](this: var Geode, drawable: ref_ptr[T]): bool  {.importcpp: "removeDrawable".}
 
 proc removeDrawables*(this: var Geode, i: cuint, numDrawablesToRemove: cuint = 1): bool  {.importcpp: "removeDrawables".}
     ## Remove Drawable(s) from the specified position in Geode's drawable
@@ -55,16 +47,12 @@ proc replaceDrawable*(this: var Geode, origDraw: ptr Drawable , newDraw: ptr Dra
     ## setDrawable(getDrawableIndex(origDraw),newDraw), see docs for
     ## setDrawable() for further details on implementation.
 
-proc replaceDrawable*[T;R](this: var Geode, origDraw: ref_ptr[T], newDraw: ref_ptr[R]): bool  {.importcpp: "replaceDrawable".}
-
 proc setDrawable*(this: var Geode, i: cuint, drawable: ptr Drawable ): bool  {.importcpp: "setDrawable".}
     ## Set Drawable at position i. Decrement the reference count origGSet and
     ## increments the reference count of newGset, and dirty the bounding
     ## sphere to force it to recompute on next getBound() and returns true.
     ## If origDrawable is not found then return false and do not add newGset.
     ## If newGset is NULL then return false and do not remove origGset.
-
-proc setDrawable*[T](this: var Geode, i: cuint, drawable: ref_ptr[T]): bool  {.importcpp: "setDrawable".}
 
 proc getNumDrawables*(this: Geode): cuint  {.importcpp: "getNumDrawables".}
     ## Return the number of Drawables currently attached to the Geode.
@@ -78,12 +66,8 @@ proc getDrawable*(this: Geode, i: cuint): ptr Drawable   {.importcpp: "getDrawab
 proc containsDrawable*(this: Geode, drawable: ptr Drawable ): bool  {.importcpp: "containsDrawable".}
     ## Return true if a given Drawable is contained within Geode.
 
-proc containsDrawable*[T](this: Geode, drawable: ref_ptr[T]): bool  {.importcpp: "containsDrawable".}
-
 proc getDrawableIndex*(this: Geode, drawable: ptr Drawable ): cuint  {.importcpp: "getDrawableIndex".}
     ## Get the index number of drawable.
-
-proc getDrawableIndex*[T](this: Geode, drawable: ref_ptr[T]): cuint  {.importcpp: "getDrawableIndex".}
 
 proc compileDrawables*(this: var Geode, renderInfo: Renderinfo)  {.importcpp: "compileDrawables".}
     ## Compile OpenGL Display List for each drawable.
@@ -94,4 +78,4 @@ proc getBoundingBox*(this: Geode): Boundingbox  {.importcpp: "getBoundingBox".}
 
 proc computeBound*(this: Geode): Boundingsphere  {.importcpp: "computeBound".}
 
-{.pop.} # header: "Geode
+{.pop.}  # header: "Geode"

@@ -1,50 +1,50 @@
-import Mutex # Provides Mutex
-import gl # Provides GLenum, GLbitfield, GLuint
-import stringfwd # Provides string
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import DisplaySettings # Provides DisplaySettings
-import Vec4 # Provides Vec4
-import State # Provides State
-import OperationThread # Provides RefBlock, Operation
-import GraphicsThread # Provides GraphicsThread
-import Camera # Provides Camera
-
-
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Vec4  # provides: osg::Vec4
+import /usr/include/osg/Camera  # provides: osg::Camera
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/OperationThread  # provides: osg::RefBlock, osg::Operation
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/GraphicsThread  # provides: osg::GraphicsThread
+import /usr/include/osg/DisplaySettings  # provides: osg::DisplaySettings
 type
-  # Typedefs
   ScreenSettingsList* {.header: "GraphicsContext", importcpp: "osg::GraphicsContext::ScreenSettingsList".} = cint
   Interfaces* {.header: "GraphicsContext", importcpp: "osg::GraphicsContext::WindowingSystemInterfaces::Interfaces".} = cint
   GraphicsContexts* {.header: "GraphicsContext", importcpp: "osg::GraphicsContext::GraphicsContexts".} = cint
   GraphicsOperationQueue* {.header: "GraphicsContext", importcpp: "osg::GraphicsContext::GraphicsOperationQueue".} = cint
   Cameras* {.header: "GraphicsContext", importcpp: "osg::GraphicsContext::Cameras".} = cint
+  WindowingSystemInterfaces* {.header: "GraphicsContext", importcpp: "osg::GraphicsContext::WindowingSystemInterfaces", byref.} = object #of osg::Referenced
+
+  SyncSwapBuffersCallback* {.header: "GraphicsContext", importcpp: "osg::SyncSwapBuffersCallback", byref.} = object #of class GraphicsContext::SwapCallback
+
+  WindowingSystemInterfaceProxy* {.header: "GraphicsContext", importcpp: "osg::WindowingSystemInterfaceProxy", byref.} [T] = object
+
+
+
 {.push header: "GraphicsContext".}
 
+proc constructScreenIdentifier*(): ScreenIdentifier {.constructor,importcpp: "osg::GraphicsContext::ScreenIdentifier::ScreenIdentifier".}
 
-# Constructors and methods
-proc constructScreenIdentifier*(): ScreenIdentifier {.constructor,importcpp: "ScreenIdentifier".}
+proc constructScreenIdentifier*(in_screenNum: cint): ScreenIdentifier {.constructor,importcpp: "osg::GraphicsContext::ScreenIdentifier::ScreenIdentifier(@)".}
 
-proc constructScreenIdentifier*(in_screenNum: cint): ScreenIdentifier {.constructor,importcpp: "ScreenIdentifier(@)".}
+proc constructScreenIdentifier*(in_hostName: String, in_displayNum: cint, in_screenNum: cint): ScreenIdentifier {.constructor,importcpp: "osg::GraphicsContext::ScreenIdentifier::ScreenIdentifier(@)".}
 
-proc constructScreenIdentifier*(in_hostName: String, in_displayNum: cint, in_screenNum: cint): ScreenIdentifier {.constructor,importcpp: "ScreenIdentifier(@)".}
+proc constructTraits*(ds: ptr Displaysettings  = 0): Traits {.constructor,importcpp: "osg::GraphicsContext::Traits::Traits(@)".}
 
-proc constructTraits*(ds: ptr Displaysettings  = 0): Traits {.constructor,importcpp: "Traits(@)".}
+proc constructScreenSettings*(): ScreenSettings {.constructor,importcpp: "osg::GraphicsContext::ScreenSettings::ScreenSettings".}
 
-proc constructScreenSettings*(): ScreenSettings {.constructor,importcpp: "ScreenSettings".}
+proc constructScreenSettings*(in_width: cint, in_height: cint, in_refreshRate: cdouble = 0, in_colorDepth: cuint = 0): ScreenSettings {.constructor,importcpp: "osg::GraphicsContext::ScreenSettings::ScreenSettings(@)".}
 
-proc constructScreenSettings*(in_width: cint, in_height: cint, in_refreshRate: cdouble = 0, in_colorDepth: cuint = 0): ScreenSettings {.constructor,importcpp: "ScreenSettings(@)".}
+proc constructWindowingSystemInterface*(): WindowingSystemInterface {.constructor,importcpp: "osg::GraphicsContext::WindowingSystemInterface::WindowingSystemInterface".}
 
-proc constructWindowingSystemInterface*(): WindowingSystemInterface {.constructor,importcpp: "WindowingSystemInterface".}
+proc constructWindowingSystemInterfaces*(): WindowingSystemInterfaces {.constructor,importcpp: "osg::GraphicsContext::WindowingSystemInterfaces::WindowingSystemInterfaces".}
 
-proc constructWindowingSystemInterfaces*(): WindowingSystemInterfaces {.constructor,importcpp: "WindowingSystemInterfaces".}
+proc constructGraphicsContext*(): GraphicsContext {.constructor,importcpp: "osg::GraphicsContext::GraphicsContext".}
 
-proc constructGraphicsContext*(): GraphicsContext {.constructor,importcpp: "GraphicsContext".}
+proc constructGraphicsContext*(Graphicscontext, Copyop): GraphicsContext {.constructor,importcpp: "osg::GraphicsContext::GraphicsContext(@)".}
 
-proc constructGraphicsContext*(Graphicscontext, Copyop): GraphicsContext {.constructor,importcpp: "GraphicsContext(@)".}
+proc constructSyncSwapBuffersCallback*(): SyncSwapBuffersCallback {.constructor,importcpp: "osg::SyncSwapBuffersCallback::SyncSwapBuffersCallback".}
 
-proc constructSyncSwapBuffersCallback*(): SyncSwapBuffersCallback {.constructor,importcpp: "SyncSwapBuffersCallback".}
-
-proc constructWindowingSystemInterfaceProxy*[T](name: String): WindowingSystemInterfaceProxy {.constructor,importcpp: "WindowingSystemInterfaceProxy<T>(@)".}
+proc constructWindowingSystemInterfaceProxy*[T](name: String): WindowingSystemInterfaceProxy {.constructor,importcpp: "osg::WindowingSystemInterfaceProxy::WindowingSystemInterfaceProxy<T>(@)".}
 
 proc displayName*(this: ScreenIdentifier): String  {.importcpp: "displayName".}
     ## Return the display name in the form hostName::displayNum:screenNum.
@@ -389,4 +389,4 @@ proc removeCamera*(this: var GraphicsContext, camera: ptr Camera )  {.importcpp:
 
 proc swapBuffersImplementation*(this: var SyncSwapBuffersCallback, gc: ptr Graphicscontext )  {.importcpp: "swapBuffersImplementation".}
 
-{.pop.} # header: "GraphicsContext
+{.pop.}  # header: "GraphicsContext"

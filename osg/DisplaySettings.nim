@@ -1,10 +1,6 @@
-import stringfwd # Provides string
-import Matrixd # Provides Matrixd
-import ArgumentParser # Provides ArgumentParser
-
-
+import /usr/include/osg/ArgumentParser  # provides: osg::ArgumentParser
+import /usr/include/osg/Matrixd  # provides: osg::Matrixd
 type
-  # Enums
   DisplayType* {.size:sizeof(cuint),header: "DisplaySettings", importcpp: "osg::DisplaySettings::DisplayType".} = enum
     MONITOR = 0,
     POWERWALL = 1,
@@ -63,20 +59,19 @@ type
     MENUBAR_FORCE_HIDE = 1,
     MENUBAR_FORCE_SHOW = 2
 
-  # Typedefs
   ImplicitBufferAttachmentMask* {.header: "DisplaySettings", importcpp: "osg::DisplaySettings::ImplicitBufferAttachmentMask".} = cint
   FileNames* {.header: "DisplaySettings", importcpp: "osg::DisplaySettings::FileNames".} = cint
   Objects* {.header: "DisplaySettings", importcpp: "osg::DisplaySettings::Objects".} = cint
   ValueMap* {.header: "DisplaySettings", importcpp: "osg::DisplaySettings::ValueMap".} = cint
+
+
 {.push header: "DisplaySettings".}
 
+proc constructDisplaySettings*(): DisplaySettings {.constructor,importcpp: "osg::DisplaySettings::DisplaySettings".}
 
-# Constructors and methods
-proc constructDisplaySettings*(): DisplaySettings {.constructor,importcpp: "DisplaySettings".}
+proc constructDisplaySettings*(arguments: Argumentparser): DisplaySettings {.constructor,importcpp: "osg::DisplaySettings::DisplaySettings(@)".}
 
-proc constructDisplaySettings*(arguments: Argumentparser): DisplaySettings {.constructor,importcpp: "DisplaySettings(@)".}
-
-proc constructDisplaySettings*(vs: Displaysettings): DisplaySettings {.constructor,importcpp: "DisplaySettings(@)".}
+proc constructDisplaySettings*(vs: Displaysettings): DisplaySettings {.constructor,importcpp: "osg::DisplaySettings::DisplaySettings(@)".}
 
 proc instance*(this: var DisplaySettings): Ref_ptr[Displaysettings]  {.importcpp: "instance".}
     ## Maintain a DisplaySettings singleton for objects to query at runtime.
@@ -340,4 +335,4 @@ proc setValue*(this: var DisplaySettings, name: String, value: String)  {.import
 
 proc getValue*(this: DisplaySettings, name: String, value: String, use_getenv_fallback: bool): bool  {.importcpp: "getValue".}
 
-{.pop.} # header: "DisplaySettings
+{.pop.}  # header: "DisplaySettings"

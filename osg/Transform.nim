@@ -1,26 +1,24 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import Matrix # Provides Matrix
-import BoundingSphere # Provides BoundingSphere
-import NodeVisitor # Provides NodeVisitor
-import MatrixTransform # Provides MatrixTransform
-import AutoTransform # Provides AutoTransform
-import PositionAttitudeTransform # Provides PositionAttitudeTransform
-
-
+import /usr/include/osg/BoundingSphere  # provides: osg::BoundingSphere
+import /usr/include/osg/AutoTransform  # provides: osg::AutoTransform
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/PositionAttitudeTransform  # provides: osg::PositionAttitudeTransform
+import /usr/include/osg/MatrixTransform  # provides: osg::MatrixTransform
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/Matrix  # provides: osg::Matrix
+import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
 type
   ReferenceFrame* {.size:sizeof(cuint),header: "Transform", importcpp: "osg::Transform::ReferenceFrame".} = enum
     RELATIVE_RF = 0,
     ABSOLUTE_RF = 1,
     ABSOLUTE_RF_INHERIT_VIEWPOINT = 2
 
+
+
 {.push header: "Transform".}
 
+proc constructTransform*(): Transform {.constructor,importcpp: "osg::Transform::Transform".}
 
-# Constructors and methods
-proc constructTransform*(): Transform {.constructor,importcpp: "Transform".}
-
-proc constructTransform*(Transform, copyop: Copyop = SHALLOW_COPY): Transform {.constructor,importcpp: "Transform(@)".}
+proc constructTransform*(Transform, copyop: Copyop = SHALLOW_COPY): Transform {.constructor,importcpp: "osg::Transform::Transform(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: Transform): ptr Object   {.importcpp: "cloneType".}
@@ -80,4 +78,4 @@ proc computeBound*(this: Transform): Boundingsphere  {.importcpp: "computeBound"
     ## subclasses from osg::Transform since this computeBound() uses the
     ## underlying matrix (calling computeMatrix if required).
 
-{.pop.} # header: "Transform
+{.pop.}  # header: "Transform"

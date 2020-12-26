@@ -1,19 +1,20 @@
-import Vec2 # Provides Vec2
-import Vec4 # Provides Vec4
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import gl # Provides GLint
-import StateAttribute # Provides StateAttribute, Type
-import State # Provides State
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Vec4  # provides: osg::Vec4
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/Vec2  # provides: osg::Vec2
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+type
+  PatchParameter* {.header: "PatchParameter", importcpp: "osg::PatchParameter", byref.} = object #of class osg::StateAttribute
+    ## Class which encapsulates glPatchParameter(..).
+
 
 
 {.push header: "PatchParameter".}
 
+proc constructPatchParameter*(vertices: GLint): PatchParameter {.constructor,importcpp: "osg::PatchParameter::PatchParameter(@)".}
 
-# Constructors and methods
-proc constructPatchParameter*(vertices: GLint): PatchParameter {.constructor,importcpp: "PatchParameter(@)".}
-
-proc constructPatchParameter*(rhs: Patchparameter, copyop: Copyop = SHALLOW_COPY): PatchParameter {.constructor,importcpp: "PatchParameter(@)".}
+proc constructPatchParameter*(rhs: Patchparameter, copyop: Copyop = SHALLOW_COPY): PatchParameter {.constructor,importcpp: "osg::PatchParameter::PatchParameter(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: PatchParameter): ptr Object   {.importcpp: "cloneType".}
@@ -51,4 +52,4 @@ proc getPatchDefaultOuterLevel*(this: PatchParameter): Vec4  {.importcpp: "getPa
 
 proc apply*(this: PatchParameter, state: State)  {.importcpp: "apply".}
 
-{.pop.} # header: "PatchParameter
+{.pop.}  # header: "PatchParameter"

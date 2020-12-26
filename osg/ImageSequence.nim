@@ -1,12 +1,8 @@
-import gl # Provides GLenum, GLint
-import Referenced # Provides Referenced
-import stringfwd # Provides string
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import Image # Provides Image, AllocationMode
-import NodeVisitor # Provides NodeVisitor
-
-
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/Referenced  # provides: osg::Referenced
+import /usr/include/osg/Image  # provides: osg::Image::AllocationMode, osg::Image
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
 type
   Mode* {.size:sizeof(cuint),header: "ImageSequence", importcpp: "osg::ImageSequence::Mode".} = enum
     PRE_LOAD_ALL_IMAGES = 0,
@@ -16,18 +12,21 @@ type
     LOAD_AND_DISCARD_IN_UPDATE_TRAVERSAL = 4
 
   ImageDataList* {.header: "ImageSequence", importcpp: "osg::ImageSequence::ImageDataList".} = cint
+  ImageSequence* {.header: "ImageSequence", importcpp: "osg::ImageSequence", byref.} = object #of class osg::ImageStream
+    ## Image Buffer class.
+
+
+
 {.push header: "ImageSequence".}
 
+proc constructImageSequence*(): ImageSequence {.constructor,importcpp: "osg::ImageSequence::ImageSequence".}
 
-# Constructors and methods
-proc constructImageSequence*(): ImageSequence {.constructor,importcpp: "ImageSequence".}
-
-proc constructImageSequence*(ImageSequence: Imagesequence, copyop: Copyop = SHALLOW_COPY): ImageSequence {.constructor,importcpp: "ImageSequence(@)".}
+proc constructImageSequence*(ImageSequence: Imagesequence, copyop: Copyop = SHALLOW_COPY): ImageSequence {.constructor,importcpp: "osg::ImageSequence::ImageSequence(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
-proc constructImageData*(): ImageData {.constructor,importcpp: "ImageData".}
+proc constructImageData*(): ImageData {.constructor,importcpp: "osg::ImageSequence::ImageData::ImageData".}
 
-proc constructImageData*(id: Imagedata): ImageData {.constructor,importcpp: "ImageData(@)".}
+proc constructImageData*(id: Imagedata): ImageData {.constructor,importcpp: "osg::ImageSequence::ImageData::ImageData(@)".}
 
 proc cloneType*(this: ImageSequence): ptr Object   {.importcpp: "cloneType".}
 
@@ -76,13 +75,9 @@ proc getImageFile*(this: ImageSequence, pos: cuint): String  {.importcpp: "getIm
 
 proc addImage*(this: var ImageSequence, image: ptr Image )  {.importcpp: "addImage".}
 
-proc addImage*[T](this: var ImageSequence, image: Ref_ptr[T])  {.importcpp: "addImage".}
-
 proc setImage*(this: var ImageSequence, s: cint, t: cint, r: cint, internalTextureformat: GLint, pixelFormat: GLenum, `type`: GLenum, data: ptr unsigned char, mode: Allocationmode, packing: cint)  {.importcpp: "setImage".}
 
 proc setImage*(this: var ImageSequence, pos: cuint, image: ptr Image )  {.importcpp: "setImage".}
-
-proc setImage*[T](this: var ImageSequence, pos: cuint, image: Ref_ptr[T])  {.importcpp: "setImage".}
 
 proc getImage*(this: var ImageSequence, pos: cuint): ptr Image   {.importcpp: "getImage".}
 
@@ -121,4 +116,4 @@ proc imageIndex*(this: var ImageSequence, time: cdouble): cint  {.importcpp: "im
 
 proc prefixsetImage*(this: var ImageSequence, pos: cuint, image: ptr Image )  {.importcpp: "_setImage".}
 
-{.pop.} # header: "ImageSequence
+{.pop.}  # header: "ImageSequence"

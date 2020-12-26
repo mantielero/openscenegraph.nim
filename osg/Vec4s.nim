@@ -1,15 +1,17 @@
+const
+  num_components* = 4
 
 
 type
   Value_type* {.header: "Vec4s", importcpp: "osg::Vec4s::value_type".} = cshort
+
+
 {.push header: "Vec4s".}
 
-
-# Constructors and methods
-proc constructVec4s*(): Vec4s {.constructor,importcpp: "Vec4s".}
+proc constructVec4s*(): Vec4s {.constructor,importcpp: "osg::Vec4s::Vec4s".}
     ## Constructor that sets all components of the vector to zero
 
-proc constructVec4s*(x: Value_type, y: Value_type, z: Value_type, w: Value_type): Vec4s {.constructor,importcpp: "Vec4s(@)".}
+proc constructVec4s*(x: Value_type, y: Value_type, z: Value_type, w: Value_type): Vec4s {.constructor,importcpp: "osg::Vec4s::Vec4s(@)".}
 
 proc `==`*(this: Vec4s, v: Vec4s): bool  {.importcpp: "# == #".}
 
@@ -90,4 +92,4 @@ proc `-=`*(this: var Vec4s, rhs: Vec4s): Vec4s  {.importcpp: "# -= #".}
 proc `-`*(this: Vec4s): Vec4s  {.importcpp: "# - #".}
     ## Negation operator. Returns the negative of the Vec4s.
 
-{.pop.} # header: "Vec4s
+{.pop.}  # header: "Vec4s"

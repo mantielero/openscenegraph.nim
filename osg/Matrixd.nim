@@ -1,46 +1,43 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import Vec3f # Provides Vec3f
-import Vec3d # Provides Vec3d
-import Vec4f # Provides Vec4f
-import Vec4d # Provides Vec4d
-import Quat # Provides Quat
-import Matrixf # Provides Matrixf
-
-
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/Matrixf  # provides: osg::Matrixf
+import /usr/include/osg/Vec3f  # provides: osg::Vec3f
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/Vec4d  # provides: osg::Vec4d
+import /usr/include/osg/Vec3d  # provides: osg::Vec3d
+import /usr/include/osg/Quat  # provides: osg::Quat
+import /usr/include/osg/Vec4f  # provides: osg::Vec4f
 type
-  # Typedefs
   Value_type* {.header: "Matrixd", importcpp: "osg::Matrixd::value_type".} = cdouble
   Other_value_type* {.header: "Matrixd", importcpp: "osg::Matrixd::other_value_type".} = cfloat
+
+
 {.push header: "Matrixd".}
 
+proc constructMatrixd*(): Matrixd {.constructor,importcpp: "osg::Matrixd::Matrixd".}
 
-# Constructors and methods
-proc constructMatrixd*(): Matrixd {.constructor,importcpp: "Matrixd".}
+proc constructMatrixd*(mat: Matrixd): Matrixd {.constructor,importcpp: "osg::Matrixd::Matrixd(@)".}
 
-proc constructMatrixd*(mat: Matrixd): Matrixd {.constructor,importcpp: "Matrixd(@)".}
+proc constructMatrixd*(mat: Matrixf): Matrixd {.constructor,importcpp: "osg::Matrixd::Matrixd(@)".}
 
-proc constructMatrixd*(mat: Matrixf): Matrixd {.constructor,importcpp: "Matrixd(@)".}
+proc constructMatrixd*(`ptr`: float *const): Matrixd {.constructor,importcpp: "osg::Matrixd::Matrixd(@)".}
 
-proc constructMatrixd*(`ptr`: float *const): Matrixd {.constructor,importcpp: "Matrixd(@)".}
+proc constructMatrixd*(`ptr`: double *const): Matrixd {.constructor,importcpp: "osg::Matrixd::Matrixd(@)".}
 
-proc constructMatrixd*(`ptr`: double *const): Matrixd {.constructor,importcpp: "Matrixd(@)".}
+proc constructMatrixd*(quat: Quat): Matrixd {.constructor,importcpp: "osg::Matrixd::Matrixd(@)".}
 
-proc constructMatrixd*(quat: Quat): Matrixd {.constructor,importcpp: "Matrixd(@)".}
+proc constructMatrixd*(a00: Value_type, a01: Value_type, a02: Value_type, a03: Value_type, a10: Value_type, a11: Value_type, a12: Value_type, a13: Value_type, a20: Value_type, a21: Value_type, a22: Value_type, a23: Value_type, a30: Value_type, a31: Value_type, a32: Value_type, a33: Value_type): Matrixd {.constructor,importcpp: "osg::Matrixd::Matrixd(@)".}
 
-proc constructMatrixd*(a00: Value_type, a01: Value_type, a02: Value_type, a03: Value_type, a10: Value_type, a11: Value_type, a12: Value_type, a13: Value_type, a20: Value_type, a21: Value_type, a22: Value_type, a23: Value_type, a30: Value_type, a31: Value_type, a32: Value_type, a33: Value_type): Matrixd {.constructor,importcpp: "Matrixd(@)".}
+proc constructRefMatrixd*(): RefMatrixd {.constructor,importcpp: "osg::RefMatrixd::RefMatrixd".}
 
-proc constructRefMatrixd*(): RefMatrixd {.constructor,importcpp: "RefMatrixd".}
+proc constructRefMatrixd*(other: Matrixd): RefMatrixd {.constructor,importcpp: "osg::RefMatrixd::RefMatrixd(@)".}
 
-proc constructRefMatrixd*(other: Matrixd): RefMatrixd {.constructor,importcpp: "RefMatrixd(@)".}
+proc constructRefMatrixd*(other: Matrixf): RefMatrixd {.constructor,importcpp: "osg::RefMatrixd::RefMatrixd(@)".}
 
-proc constructRefMatrixd*(other: Matrixf): RefMatrixd {.constructor,importcpp: "RefMatrixd(@)".}
+proc constructRefMatrixd*(other: Refmatrixd): RefMatrixd {.constructor,importcpp: "osg::RefMatrixd::RefMatrixd(@)".}
 
-proc constructRefMatrixd*(other: Refmatrixd): RefMatrixd {.constructor,importcpp: "RefMatrixd(@)".}
+proc constructRefMatrixd*(def: Value_type *const): RefMatrixd {.constructor,importcpp: "osg::RefMatrixd::RefMatrixd(@)".}
 
-proc constructRefMatrixd*(def: Value_type *const): RefMatrixd {.constructor,importcpp: "RefMatrixd(@)".}
-
-proc constructRefMatrixd*(a00: Value_type, a01: Value_type, a02: Value_type, a03: Value_type, a10: Value_type, a11: Value_type, a12: Value_type, a13: Value_type, a20: Value_type, a21: Value_type, a22: Value_type, a23: Value_type, a30: Value_type, a31: Value_type, a32: Value_type, a33: Value_type): RefMatrixd {.constructor,importcpp: "RefMatrixd(@)".}
+proc constructRefMatrixd*(a00: Value_type, a01: Value_type, a02: Value_type, a03: Value_type, a10: Value_type, a11: Value_type, a12: Value_type, a13: Value_type, a20: Value_type, a21: Value_type, a22: Value_type, a23: Value_type, a30: Value_type, a31: Value_type, a32: Value_type, a33: Value_type): RefMatrixd {.constructor,importcpp: "osg::RefMatrixd::RefMatrixd(@)".}
 
 proc compare*(this: Matrixd, m: Matrixd): cint  {.importcpp: "compare".}
 
@@ -465,4 +462,4 @@ proc `*`*(this: Matrixd, v: Vec4f): Vec4f  {.importcpp: "# * #".}
 
 proc `*`*(this: Matrixd, v: Vec4d): Vec4d  {.importcpp: "# * #".}
 
-{.pop.} # header: "Matrixd
+{.pop.}  # header: "Matrixd"

@@ -1,39 +1,39 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import gl # Provides GLenum
-import StateAttribute # Provides StateAttribute, Type
-import State # Provides State
-
-
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
 type
   BlendFuncMode* {.size:sizeof(cuint),header: "BlendFunc", importcpp: "osg::BlendFunc::BlendFuncMode".} = enum
-    DST_ALPHA = 772,
-    DST_COLOR = 774,
+    ZERO = 0,
     ONE = 1,
-    ONE_MINUS_DST_ALPHA = 773,
-    ONE_MINUS_DST_COLOR = 775,
-    ONE_MINUS_SRC_ALPHA = 771,
+    SRC_COLOR = 768,
     ONE_MINUS_SRC_COLOR = 769,
     SRC_ALPHA = 770,
+    ONE_MINUS_SRC_ALPHA = 771,
+    DST_ALPHA = 772,
+    ONE_MINUS_DST_ALPHA = 773,
+    DST_COLOR = 774,
+    ONE_MINUS_DST_COLOR = 775,
     SRC_ALPHA_SATURATE = 776,
-    SRC_COLOR = 768,
     CONSTANT_COLOR = 32769,
     ONE_MINUS_CONSTANT_COLOR = 32770,
     CONSTANT_ALPHA = 32771,
-    ONE_MINUS_CONSTANT_ALPHA = 32772,
-    ZERO = 0
+    ONE_MINUS_CONSTANT_ALPHA = 32772
+
+  BlendFunc* {.header: "BlendFunc", importcpp: "osg::BlendFunc", byref.} = object #of class osg::StateAttribute
+    ## Encapsulates OpenGL blend/transparency state.
+
+
 
 {.push header: "BlendFunc".}
 
+proc constructBlendFunc*(): BlendFunc {.constructor,importcpp: "osg::BlendFunc::BlendFunc".}
 
-# Constructors and methods
-proc constructBlendFunc*(): BlendFunc {.constructor,importcpp: "BlendFunc".}
+proc constructBlendFunc*(source: GLenum, destination: GLenum): BlendFunc {.constructor,importcpp: "osg::BlendFunc::BlendFunc(@)".}
 
-proc constructBlendFunc*(source: GLenum, destination: GLenum): BlendFunc {.constructor,importcpp: "BlendFunc(@)".}
+proc constructBlendFunc*(source: GLenum, destination: GLenum, source_alpha: GLenum, destination_alpha: GLenum): BlendFunc {.constructor,importcpp: "osg::BlendFunc::BlendFunc(@)".}
 
-proc constructBlendFunc*(source: GLenum, destination: GLenum, source_alpha: GLenum, destination_alpha: GLenum): BlendFunc {.constructor,importcpp: "BlendFunc(@)".}
-
-proc constructBlendFunc*(trans: Blendfunc, copyop: Copyop = SHALLOW_COPY): BlendFunc {.constructor,importcpp: "BlendFunc(@)".}
+proc constructBlendFunc*(trans: Blendfunc, copyop: Copyop = SHALLOW_COPY): BlendFunc {.constructor,importcpp: "osg::BlendFunc::BlendFunc(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: BlendFunc): ptr Object   {.importcpp: "cloneType".}
@@ -83,4 +83,4 @@ proc getDestinationAlpha*(this: BlendFunc): GLenum  {.importcpp: "getDestination
 
 proc apply*(this: BlendFunc, state: State)  {.importcpp: "apply".}
 
-{.pop.} # header: "BlendFunc
+{.pop.}  # header: "BlendFunc"

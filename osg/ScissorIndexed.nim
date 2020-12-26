@@ -1,18 +1,20 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import StateAttribute # Provides StateAttribute, Type
-import State # Provides State
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+type
+  ScissorIndexed* {.header: "ScissorIndexed", importcpp: "osg::ScissorIndexed", byref.} = object #of osg::StateAttribute
+    ## Encapsulates glScissorIndexed function : the index version of glDepth
+
 
 
 {.push header: "ScissorIndexed".}
 
+proc constructScissorIndexed*(): ScissorIndexed {.constructor,importcpp: "osg::ScissorIndexed::ScissorIndexed".}
 
-# Constructors and methods
-proc constructScissorIndexed*(): ScissorIndexed {.constructor,importcpp: "ScissorIndexed".}
+proc constructScissorIndexed*(index: cuint, x: cfloat, y: cfloat, width: cfloat, height: cfloat): ScissorIndexed {.constructor,importcpp: "osg::ScissorIndexed::ScissorIndexed(@)".}
 
-proc constructScissorIndexed*(index: cuint, x: cfloat, y: cfloat, width: cfloat, height: cfloat): ScissorIndexed {.constructor,importcpp: "ScissorIndexed(@)".}
-
-proc constructScissorIndexed*(dp: Scissorindexed, copyop: Copyop = SHALLOW_COPY): ScissorIndexed {.constructor,importcpp: "ScissorIndexed(@)".}
+proc constructScissorIndexed*(dp: Scissorindexed, copyop: Copyop = SHALLOW_COPY): ScissorIndexed {.constructor,importcpp: "osg::ScissorIndexed::ScissorIndexed(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: ScissorIndexed): ptr Object   {.importcpp: "cloneType".}
@@ -57,4 +59,4 @@ proc getHeight*(this: ScissorIndexed): cfloat  {.importcpp: "getHeight".}
 
 proc apply*(this: ScissorIndexed, state: State)  {.importcpp: "apply".}
 
-{.pop.} # header: "ScissorIndexed
+{.pop.}  # header: "ScissorIndexed"

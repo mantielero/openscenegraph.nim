@@ -1,11 +1,8 @@
-import gl # Provides GLenum, GLboolean, GLint, GLuint
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import StateAttribute # Provides StateAttribute, Type
-import State # Provides State
-import Texture # Provides Texture
-
-
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/Texture  # provides: osg::Texture
 type
   Access* {.size:sizeof(cuint),header: "BindImageTexture", importcpp: "osg::BindImageTexture::Access".} = enum
     ## Type of access that will be performed on the texture image.
@@ -15,13 +12,22 @@ type
     WRITE_ONLY = 35001,
     READ_WRITE = 35002
 
+  BindImageTexture* {.header: "BindImageTexture", importcpp: "osg::BindImageTexture", byref.} = object #of osg::StateAttribute
+    ## Bind texture to an image unit (available only if GL version is 4.2 or
+    ## greater) The format parameter for the image unit need not exactly
+    ## match the texture internal format, but if it is set to 0, the texture
+    ## internal format will be used. See
+    ## http://www.opengl.org/registry/specs/ARB/shader_image_load_store.txt
+    ## void bindToImageUnit(unsigned int unit, GLenum access, GLenum
+    ## format=0, int level=0, bool layered=false, int layer=0);
+
+
+
 {.push header: "BindImageTexture".}
 
+proc constructBindImageTexture*(imageunit: GLuint = 0, target: ptr Texture  = 0, access: Access, format: GLenum, level: cint, layered: bool, layer: cint): BindImageTexture {.constructor,importcpp: "osg::BindImageTexture::BindImageTexture(@)".}
 
-# Constructors and methods
-proc constructBindImageTexture*(imageunit: GLuint = 0, target: ptr Texture  = 0, access: Access, format: GLenum, level: cint, layered: bool, layer: cint): BindImageTexture {.constructor,importcpp: "BindImageTexture(@)".}
-
-proc constructBindImageTexture*(o: Bindimagetexture, op: Copyop = SHALLOW_COPY): BindImageTexture {.constructor,importcpp: "BindImageTexture(@)".}
+proc constructBindImageTexture*(o: Bindimagetexture, op: Copyop = SHALLOW_COPY): BindImageTexture {.constructor,importcpp: "osg::BindImageTexture::BindImageTexture(@)".}
 
 proc cloneType*(this: BindImageTexture): ptr Object   {.importcpp: "cloneType".}
 
@@ -71,4 +77,4 @@ proc compare*(this: BindImageTexture, sa: Stateattribute): cint  {.importcpp: "c
 
 proc getMember*(this: BindImageTexture): cuint  {.importcpp: "getMember".}
 
-{.pop.} # header: "BindImageTexture
+{.pop.}  # header: "BindImageTexture"

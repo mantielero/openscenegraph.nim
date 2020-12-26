@@ -1,19 +1,19 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import gl # Provides GLint, GLushort
-import StateAttribute # Provides StateAttribute, Type
-import State # Provides State
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+type
+  LineStipple* {.header: "LineStipple", importcpp: "osg::LineStipple", byref.} = object #of class osg::StateAttribute
+
 
 
 {.push header: "LineStipple".}
 
+proc constructLineStipple*(): LineStipple {.constructor,importcpp: "osg::LineStipple::LineStipple".}
 
-# Constructors and methods
-proc constructLineStipple*(): LineStipple {.constructor,importcpp: "LineStipple".}
+proc constructLineStipple*(factor: GLint, pattern: GLushort): LineStipple {.constructor,importcpp: "osg::LineStipple::LineStipple(@)".}
 
-proc constructLineStipple*(factor: GLint, pattern: GLushort): LineStipple {.constructor,importcpp: "LineStipple(@)".}
-
-proc constructLineStipple*(lw: Linestipple, copyop: Copyop = SHALLOW_COPY): LineStipple {.constructor,importcpp: "LineStipple(@)".}
+proc constructLineStipple*(lw: Linestipple, copyop: Copyop = SHALLOW_COPY): LineStipple {.constructor,importcpp: "osg::LineStipple::LineStipple(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: LineStipple): ptr Object   {.importcpp: "cloneType".}
@@ -43,4 +43,4 @@ proc getPattern*(this: LineStipple): GLushort  {.importcpp: "getPattern".}
 
 proc apply*(this: LineStipple, state: State)  {.importcpp: "apply".}
 
-{.pop.} # header: "LineStipple
+{.pop.}  # header: "LineStipple"

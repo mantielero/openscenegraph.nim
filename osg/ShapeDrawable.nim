@@ -1,21 +1,26 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import Vec4 # Provides Vec4
-import Shape # Provides Shape, TessellationHints
+import /usr/include/osg/Vec4  # provides: osg::Vec4
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/Shape  # provides: osg::Shape, osg::TessellationHints
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+type
+  ShapeDrawable* {.header: "ShapeDrawable", importcpp: "osg::ShapeDrawable", byref.} = object #of osg::Geometry
+    ## Allow the use of Shapes as Drawables, so that they can be rendered
+    ## with reduced effort. The implementation of ShapeDrawable is not geared
+    ## to efficiency; it's better to think of it as a convenience to render
+    ## Shapes easily (perhaps for test or debugging purposes) than as the
+    ## right way to render basic shapes in some efficiency-critical section
+    ## of code.
+
 
 
 {.push header: "ShapeDrawable".}
 
+proc constructShapeDrawable*(): ShapeDrawable {.constructor,importcpp: "osg::ShapeDrawable::ShapeDrawable".}
 
-# Constructors and methods
-proc constructShapeDrawable*(): ShapeDrawable {.constructor,importcpp: "ShapeDrawable".}
+proc constructShapeDrawable*(shape: ptr Shape , hints: ptr Tessellationhints  = 0): ShapeDrawable {.constructor,importcpp: "osg::ShapeDrawable::ShapeDrawable(@)".}
 
-proc constructShapeDrawable*(shape: ptr Shape , hints: ptr Tessellationhints  = 0): ShapeDrawable {.constructor,importcpp: "ShapeDrawable(@)".}
-
-proc constructShapeDrawable*(pg: Shapedrawable, copyop: Copyop = SHALLOW_COPY): ShapeDrawable {.constructor,importcpp: "ShapeDrawable(@)".}
+proc constructShapeDrawable*(pg: Shapedrawable, copyop: Copyop = SHALLOW_COPY): ShapeDrawable {.constructor,importcpp: "osg::ShapeDrawable::ShapeDrawable(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
-
-proc shapeDrawable*[T](this: var ShapeDrawable, shape: ref_ptr[T], hints: ptr Tessellationhints )  {.importcpp: "ShapeDrawable".}
 
 proc cloneType*(this: ShapeDrawable): ptr Object   {.importcpp: "cloneType".}
 
@@ -46,4 +51,4 @@ proc build*(this: var ShapeDrawable)  {.importcpp: "build".}
 
 proc `=`*(this: var ShapeDrawable, Shapedrawable): Shapedrawable  {.importcpp: "# = #".}
 
-{.pop.} # header: "ShapeDrawable
+{.pop.}  # header: "ShapeDrawable"

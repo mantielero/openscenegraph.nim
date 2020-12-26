@@ -1,11 +1,8 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import StateAttribute # Provides StateAttribute, Type
-import State # Provides State
-
-
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
 type
-  # Enums
   Origin* {.size:sizeof(cuint),header: "ClipControl", importcpp: "osg::ClipControl::Origin".} = enum
     LOWER_LEFT = 36001,
     UPPER_LEFT = 36002
@@ -14,13 +11,16 @@ type
     NEGATIVE_ONE_TO_ONE = 37726,
     ZERO_TO_ONE = 37727
 
+  ClipControl* {.header: "ClipControl", importcpp: "osg::ClipControl", byref.} = object #of class osg::StateAttribute
+    ## Encapsulate OpenGL glClipControl functions.
+
+
+
 {.push header: "ClipControl".}
 
+proc constructClipControl*(origin: Origin, depthMode: Depthmode): ClipControl {.constructor,importcpp: "osg::ClipControl::ClipControl(@)".}
 
-# Constructors and methods
-proc constructClipControl*(origin: Origin, depthMode: Depthmode): ClipControl {.constructor,importcpp: "ClipControl(@)".}
-
-proc constructClipControl*(clipControl: Clipcontrol, copyop: Copyop = SHALLOW_COPY): ClipControl {.constructor,importcpp: "ClipControl(@)".}
+proc constructClipControl*(clipControl: Clipcontrol, copyop: Copyop = SHALLOW_COPY): ClipControl {.constructor,importcpp: "osg::ClipControl::ClipControl(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: ClipControl): ptr Object   {.importcpp: "cloneType".}
@@ -48,4 +48,4 @@ proc getDepthMode*(this: ClipControl): Depthmode  {.importcpp: "getDepthMode".}
 
 proc apply*(this: ClipControl, state: State)  {.importcpp: "apply".}
 
-{.pop.} # header: "ClipControl
+{.pop.}  # header: "ClipControl"

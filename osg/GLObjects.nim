@@ -1,20 +1,21 @@
-import gl # Provides GLuint
-import stringfwd # Provides string
-import iosfwd # Provides ostream
-import FrameStamp # Provides FrameStamp
-
-
+import /usr/include/osg/FrameStamp  # provides: osg::FrameStamp
 type
   GLObjectHandleList* {.header: "GLObjects", importcpp: "osg::GLObjectManager::GLObjectHandleList".} = cint
+  GraphicsObject* {.header: "GLObjects", importcpp: "osg::GraphicsObject", byref.} = object #of osg::Referenced
+
+  GraphicsObjectManager* {.header: "GLObjects", importcpp: "osg::GraphicsObjectManager", byref.} = object #of osg::Referenced
+
+  GLObjectManager* {.header: "GLObjects", importcpp: "osg::GLObjectManager", byref.} = object #of class osg::GraphicsObjectManager
+
+
+
 {.push header: "GLObjects".}
 
+proc constructGraphicsObject*(): GraphicsObject {.constructor,importcpp: "osg::GraphicsObject::GraphicsObject".}
 
-# Constructors and methods
-proc constructGraphicsObject*(): GraphicsObject {.constructor,importcpp: "GraphicsObject".}
+proc constructGraphicsObjectManager*(name: String, contextID: cuint): GraphicsObjectManager {.constructor,importcpp: "osg::GraphicsObjectManager::GraphicsObjectManager(@)".}
 
-proc constructGraphicsObjectManager*(name: String, contextID: cuint): GraphicsObjectManager {.constructor,importcpp: "GraphicsObjectManager(@)".}
-
-proc constructGLObjectManager*(name: String, contextID: cuint): GLObjectManager {.constructor,importcpp: "GLObjectManager(@)".}
+proc constructGLObjectManager*(name: String, contextID: cuint): GLObjectManager {.constructor,importcpp: "osg::GLObjectManager::GLObjectManager(@)".}
 
 proc getContextID*(this: GraphicsObjectManager): cuint  {.importcpp: "getContextID".}
 
@@ -66,4 +67,4 @@ proc deleteGLObject*(this: var GLObjectManager, globj: GLuint)  {.importcpp: "de
     ## implementation of the actual deletion of an GL object - subclasses
     ## from GLObjectManager must implement the appropriate GL calls.
 
-{.pop.} # header: "GLObjects
+{.pop.}  # header: "GLObjects"

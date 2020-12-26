@@ -1,15 +1,13 @@
-import Vec3 # Provides Vec3
-import Vec4 # Provides Vec4
-import Matrix # Provides Matrix
-import BoundingSphere # Provides BoundingSphere
-import BoundingBox # Provides BoundingBox
-import Polytope # Provides Polytope
-import StateSet # Provides StateSet
-import Node # Provides NodePath
-import ShadowVolumeOccluder # Provides ShadowVolumeOccluder
-import Viewport # Provides Viewport
-
-
+import /usr/include/osg/Vec3  # provides: osg::Vec3
+import /usr/include/osg/BoundingSphere  # provides: osg::BoundingSphere
+import /usr/include/osg/Vec4  # provides: osg::Vec4
+import /usr/include/osg/ShadowVolumeOccluder  # provides: osg::ShadowVolumeOccluder
+import /usr/include/osg/Polytope  # provides: osg::Polytope
+import /usr/include/osg/Node  # provides: osg::NodePath
+import /usr/include/osg/Viewport  # provides: osg::Viewport
+import /usr/include/osg/BoundingBox  # provides: osg::BoundingBox
+import /usr/include/osg/StateSet  # provides: osg::StateSet
+import /usr/include/osg/Matrix  # provides: osg::Matrix
 type
   MaskValues* {.size:sizeof(cuint),header: "CullingSet", importcpp: "osg::CullingSet::MaskValues".} = enum
     NO_CULLING = 0,
@@ -22,20 +20,19 @@ type
     DEFAULT_CULLING = 25,
     ENABLE_ALL_CULLING = 31
 
-  # Typedefs
   StateFrustumPair* {.header: "CullingSet", importcpp: "osg::CullingSet::StateFrustumPair".} = Pair[Ref_ptr[Stateset]]
   StateFrustumList* {.header: "CullingSet", importcpp: "osg::CullingSet::StateFrustumList".} = cint
   OccluderList* {.header: "CullingSet", importcpp: "osg::CullingSet::OccluderList".} = cint
   Mask* {.header: "CullingSet", importcpp: "osg::CullingSet::Mask".} = cint
+
+
 {.push header: "CullingSet".}
 
+proc constructCullingSet*(): CullingSet {.constructor,importcpp: "osg::CullingSet::CullingSet".}
 
-# Constructors and methods
-proc constructCullingSet*(): CullingSet {.constructor,importcpp: "CullingSet".}
+proc constructCullingSet*(cs: Cullingset): CullingSet {.constructor,importcpp: "osg::CullingSet::CullingSet(@)".}
 
-proc constructCullingSet*(cs: Cullingset): CullingSet {.constructor,importcpp: "CullingSet(@)".}
-
-proc constructCullingSet*(cs: Cullingset, matrix: Matrix, pixelSizeVector: Vec4): CullingSet {.constructor,importcpp: "CullingSet(@)".}
+proc constructCullingSet*(cs: Cullingset, matrix: Matrix, pixelSizeVector: Vec4): CullingSet {.constructor,importcpp: "osg::CullingSet::CullingSet(@)".}
 
 proc `=`*(this: var CullingSet, cs: Cullingset): Cullingset  {.importcpp: "# = #".}
 
@@ -106,4 +103,4 @@ proc popOccludersCurrentMask*(this: var CullingSet, nodePath: Nodepath)  {.impor
 
 proc computePixelSizeVector*(this: var CullingSet, W: Viewport, P: Matrix, M: Matrix): Vec4  {.importcpp: "computePixelSizeVector".}
 
-{.pop.} # header: "CullingSet
+{.pop.}  # header: "CullingSet"

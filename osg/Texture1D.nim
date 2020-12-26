@@ -1,25 +1,26 @@
-import gl # Provides GLenum, GLsizei
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import StateAttribute # Provides StateAttribute, Type
-import Image # Provides Image
-import State # Provides State
-
-
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/Image  # provides: osg::Image
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
 type
   ImageModifiedCount* {.header: "Texture1D", importcpp: "osg::Texture1D::ImageModifiedCount".} = buffered_value[unsigned int]
+  Texture1D* {.header: "Texture1D", importcpp: "osg::Texture1D", byref.} = object #of class osg::Texture
+    ## Encapsulates OpenGL 1D texture functionality. Doesn't support cube
+    ## maps, so ignore face parameters.
+
+  SubloadCallback* {.header: "Texture1D", importcpp: "osg::Texture1D::SubloadCallback", byref.} = object #of class osg::Referenced
+
+
+
 {.push header: "Texture1D".}
 
+proc constructTexture1D*(): Texture1D {.constructor,importcpp: "osg::Texture1D::Texture1D".}
 
-# Constructors and methods
-proc constructTexture1D*(): Texture1D {.constructor,importcpp: "Texture1D".}
+proc constructTexture1D*(image: ptr Image ): Texture1D {.constructor,importcpp: "osg::Texture1D::Texture1D(@)".}
 
-proc constructTexture1D*(image: ptr Image ): Texture1D {.constructor,importcpp: "Texture1D(@)".}
-
-proc constructTexture1D*(text: Texture1d, copyop: Copyop = SHALLOW_COPY): Texture1D {.constructor,importcpp: "Texture1D(@)".}
+proc constructTexture1D*(text: Texture1d, copyop: Copyop = SHALLOW_COPY): Texture1D {.constructor,importcpp: "osg::Texture1D::Texture1D(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
-
-proc texture1D*[T](this: var Texture1D, image: Ref_ptr[T])  {.importcpp: "Texture1D".}
 
 proc cloneType*(this: Texture1D): ptr Object   {.importcpp: "cloneType".}
 
@@ -40,8 +41,6 @@ proc getTextureTarget*(this: Texture1D): GLenum  {.importcpp: "getTextureTarget"
 
 proc setImage*(this: var Texture1D, image: ptr Image )  {.importcpp: "setImage".}
     ## Sets the texture image.
-
-proc setImage*[T](this: var Texture1D, image: ref_ptr[T])  {.importcpp: "setImage".}
 
 proc getImage*(this: var Texture1D): ptr Image   {.importcpp: "getImage".}
     ## Gets the texture image.
@@ -120,4 +119,4 @@ proc applyTexImage1D*(this: Texture1D, target: GLenum, image: ptr Image , state:
     ## Helper method. Create the texture without setting or using a texture
     ## binding.
 
-{.pop.} # header: "Texture1D
+{.pop.}  # header: "Texture1D"

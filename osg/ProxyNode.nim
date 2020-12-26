@@ -1,14 +1,10 @@
-import Referenced # Provides Referenced
-import CopyOp # Provides CopyOp
-import stringfwd # Provides string
-import Object # Provides Object
-import BoundingSphere # Provides BoundingSphere
-import Node # Provides Node
-import NodeVisitor # Provides NodeVisitor
-
-
+import /usr/include/osg/BoundingSphere  # provides: osg::BoundingSphere
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/Referenced  # provides: osg::Referenced
+import /usr/include/osg/Node  # provides: osg::Node
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
 type
-  # Enums
   CenterMode* {.size:sizeof(cuint),header: "ProxyNode", importcpp: "osg::ProxyNode::CenterMode".} = enum
     ## Modes which control how the center of object should be determined when
     ## computing which child is active.
@@ -24,18 +20,17 @@ type
     DEFER_LOADING_TO_DATABASE_PAGER = 1,
     NO_AUTOMATIC_LOADING = 2
 
-  # Typedefs
   Vec_type* {.header: "ProxyNode", importcpp: "osg::ProxyNode::vec_type".} = cint
   Value_type* {.header: "ProxyNode", importcpp: "osg::ProxyNode::value_type".} = cint
   FileNameDatabaseRequestPair* {.header: "ProxyNode", importcpp: "osg::ProxyNode::FileNameDatabaseRequestPair".} = Pair[String,Ref_ptr[Referenced]]
   FileNameDatabaseRequestList* {.header: "ProxyNode", importcpp: "osg::ProxyNode::FileNameDatabaseRequestList".} = cint
+
+
 {.push header: "ProxyNode".}
 
+proc constructProxyNode*(): ProxyNode {.constructor,importcpp: "osg::ProxyNode::ProxyNode".}
 
-# Constructors and methods
-proc constructProxyNode*(): ProxyNode {.constructor,importcpp: "ProxyNode".}
-
-proc constructProxyNode*(Proxynode, copyop: Copyop = SHALLOW_COPY): ProxyNode {.constructor,importcpp: "ProxyNode(@)".}
+proc constructProxyNode*(Proxynode, copyop: Copyop = SHALLOW_COPY): ProxyNode {.constructor,importcpp: "osg::ProxyNode::ProxyNode(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: ProxyNode): ptr Object   {.importcpp: "cloneType".}
@@ -55,8 +50,6 @@ proc traverse*(this: var ProxyNode, nv: Nodevisitor)  {.importcpp: "traverse".}
 proc addChild*(this: var ProxyNode, child: ptr Node ): bool  {.importcpp: "addChild".}
 
 proc addChild*(this: var ProxyNode, child: ptr Node , filename: String): bool  {.importcpp: "addChild".}
-
-proc addChild*[T](this: var ProxyNode, child: ref_ptr[T], filename: String): bool  {.importcpp: "addChild".}
 
 proc removeChildren*(this: var ProxyNode, pos: cuint, numChildrenToRemove: cuint): bool  {.importcpp: "removeChildren".}
 
@@ -127,4 +120,4 @@ proc computeBound*(this: ProxyNode): Boundingsphere  {.importcpp: "computeBound"
 
 proc expandFileNameListTo*(this: var ProxyNode, pos: cuint)  {.importcpp: "expandFileNameListTo".}
 
-{.pop.} # header: "ProxyNode
+{.pop.}  # header: "ProxyNode"

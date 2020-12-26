@@ -1,23 +1,23 @@
-import Vec3f # Provides Vec3f
-import Vec3d # Provides Vec3d
-import Matrix # Provides Matrix
-import BoundingBox # Provides BoundingBox
-import BoundingSphere # Provides BoundingSphere
-
-
+import /usr/include/osg/BoundingSphere  # provides: osg::BoundingSphere
+import /usr/include/osg/Vec3f  # provides: osg::Vec3f
+import /usr/include/osg/BoundingBox  # provides: osg::BoundingBox
+import /usr/include/osg/Matrix  # provides: osg::Matrix
+import /usr/include/osg/Vec3d  # provides: osg::Vec3d
 type
-  # Typedefs
   Vec_type* {.header: "LineSegment", importcpp: "osg::LineSegment::vec_type".} = Vec3d
   Value_type* {.header: "LineSegment", importcpp: "osg::LineSegment::value_type".} = Value_type
+  LineSegment* {.header: "LineSegment", importcpp: "osg::LineSegment", byref.} = object #of class osg::Referenced
+    ## LineSegment class for representing a line segment.
+
+
+
 {.push header: "LineSegment".}
 
+proc constructLineSegment*(): LineSegment {.constructor,importcpp: "osg::LineSegment::LineSegment".}
 
-# Constructors and methods
-proc constructLineSegment*(): LineSegment {.constructor,importcpp: "LineSegment".}
+proc constructLineSegment*(seg: Linesegment): LineSegment {.constructor,importcpp: "osg::LineSegment::LineSegment(@)".}
 
-proc constructLineSegment*(seg: Linesegment): LineSegment {.constructor,importcpp: "LineSegment(@)".}
-
-proc constructLineSegment*(s: Vec_type, e: Vec_type): LineSegment {.constructor,importcpp: "LineSegment(@)".}
+proc constructLineSegment*(s: Vec_type, e: Vec_type): LineSegment {.constructor,importcpp: "osg::LineSegment::LineSegment(@)".}
 
 proc `=`*(this: var LineSegment, seg: Linesegment): Linesegment  {.importcpp: "# = #".}
 
@@ -77,4 +77,4 @@ proc mult*(this: var LineSegment, m: Matrix, seg: Linesegment)  {.importcpp: "mu
 
 proc intersectAndClip*(this: var LineSegment, s: Vec_type, e: Vec_type, bb: Boundingbox): bool  {.importcpp: "intersectAndClip".}
 
-{.pop.} # header: "LineSegment
+{.pop.}  # header: "LineSegment"

@@ -1,18 +1,19 @@
-import Vec3f # Provides Vec3f
+const
+  num_components* = 4
 
 
 type
   Value_type* {.header: "Vec4f", importcpp: "osg::Vec4f::value_type".} = cfloat
+
+
 {.push header: "Vec4f".}
 
-
-# Constructors and methods
-proc constructVec4f*(): Vec4f {.constructor,importcpp: "Vec4f".}
+proc constructVec4f*(): Vec4f {.constructor,importcpp: "osg::Vec4f::Vec4f".}
     ## Constructor that sets all components of the vector to zero
 
-proc constructVec4f*(x: Value_type, y: Value_type, z: Value_type, w: Value_type): Vec4f {.constructor,importcpp: "Vec4f(@)".}
+proc constructVec4f*(x: Value_type, y: Value_type, z: Value_type, w: Value_type): Vec4f {.constructor,importcpp: "osg::Vec4f::Vec4f(@)".}
 
-proc constructVec4f*(v3: Vec3f, w: Value_type): Vec4f {.constructor,importcpp: "Vec4f(@)".}
+proc constructVec4f*(v3: Vec3f, w: Value_type): Vec4f {.constructor,importcpp: "osg::Vec4f::Vec4f(@)".}
 
 proc `==`*(this: Vec4f, v: Vec4f): bool  {.importcpp: "# == #".}
 
@@ -113,4 +114,4 @@ proc normalize*(this: var Vec4f): Value_type  {.importcpp: "normalize".}
     ## Normalize the vector so that it has length unity. Returns the previous
     ## length of the vector.
 
-{.pop.} # header: "Vec4f
+{.pop.}  # header: "Vec4f"

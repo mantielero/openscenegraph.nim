@@ -1,54 +1,84 @@
-import Vec2 # Provides Vec2
-import Vec3 # Provides Vec3
-import Vec4 # Provides Vec4
-import Vec2d # Provides Vec2d
-import Vec3d # Provides Vec3d
-import Vec4d # Provides Vec4d
-import CopyOp # Provides CopyOp
-import stringfwd # Provides string
-import Object # Provides Object
-import Matrixd # Provides Matrixd
-import Matrixf # Provides Matrixf
-import gl # Provides GLenum, GLint
-import GLExtensions # Provides GLExtensions
-import Array # Provides IntArray, UIntArray, FloatArray, DoubleArray, UInt64Array, Int64Array
-import Callback # Provides UniformCallback
-import StateSet # Provides StateSet
+import /usr/include/osg/Vec3  # provides: osg::Vec3
+import /usr/include/osg/GLExtensions  # provides: osg::GLExtensions
+import /usr/include/osg/Vec4  # provides: osg::Vec4
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/Matrixf  # provides: osg::Matrixf
+import /usr/include/osg/Array  # provides: osg::Int64Array, osg::IntArray, osg::FloatArray, osg::DoubleArray, osg::UInt64Array, osg::UIntArray
+import /usr/include/osg/Callback  # provides: osg::UniformCallback
+import /usr/include/osg/Vec2  # provides: osg::Vec2
+import /usr/include/osg/StateSet  # provides: osg::StateSet
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/Matrixd  # provides: osg::Matrixd
+import /usr/include/osg/Vec4d  # provides: osg::Vec4d
+import /usr/include/osg/Vec3d  # provides: osg::Vec3d
+import /usr/include/osg/Vec2d  # provides: osg::Vec2d
+const
+  col_count* = 0
+  row_count* = 0
+  value_count* = 0
 
 
 type
   Type* {.size:sizeof(cuint),header: "Uniform", importcpp: "osg::Uniform::Type".} = enum
+    UNDEFINED = 0,
+    INT = 5124,
+    UNSIGNED_INT = 5125,
     FLOAT = 5126,
+    DOUBLE = 5130,
+    INT64 = 5134,
+    UNSIGNED_INT64 = 5135,
     FLOAT_VEC2 = 35664,
     FLOAT_VEC3 = 35665,
     FLOAT_VEC4 = 35666,
-    DOUBLE = 5130,
-    DOUBLE_VEC2 = 36860,
-    DOUBLE_VEC3 = 36861,
-    DOUBLE_VEC4 = 36862,
-    INT = 5124,
     INT_VEC2 = 35667,
     INT_VEC3 = 35668,
     INT_VEC4 = 35669,
-    UNSIGNED_INT = 5125,
-    UNSIGNED_INT_VEC2 = 36294,
-    UNSIGNED_INT_VEC3 = 36295,
-    UNSIGNED_INT_VEC4 = 36296,
     BOOL = 35670,
     BOOL_VEC2 = 35671,
     BOOL_VEC3 = 35672,
     BOOL_VEC4 = 35673,
-    INT64 = 5134,
-    UNSIGNED_INT64 = 5135,
     FLOAT_MAT2 = 35674,
     FLOAT_MAT3 = 35675,
     FLOAT_MAT4 = 35676,
+    SAMPLER_1D = 35677,
+    SAMPLER_2D = 35678,
+    SAMPLER_3D = 35679,
+    SAMPLER_CUBE = 35680,
+    SAMPLER_1D_SHADOW = 35681,
+    SAMPLER_2D_SHADOW = 35682,
+    SAMPLER_2D_RECT = 35683,
+    SAMPLER_2D_RECT_SHADOW = 35684,
     FLOAT_MAT2x3 = 35685,
     FLOAT_MAT2x4 = 35686,
     FLOAT_MAT3x2 = 35687,
     FLOAT_MAT3x4 = 35688,
     FLOAT_MAT4x2 = 35689,
     FLOAT_MAT4x3 = 35690,
+    SAMPLER_1D_ARRAY = 36288,
+    SAMPLER_2D_ARRAY = 36289,
+    SAMPLER_BUFFER = 36290,
+    SAMPLER_1D_ARRAY_SHADOW = 36291,
+    SAMPLER_2D_ARRAY_SHADOW = 36292,
+    SAMPLER_CUBE_SHADOW = 36293,
+    UNSIGNED_INT_VEC2 = 36294,
+    UNSIGNED_INT_VEC3 = 36295,
+    UNSIGNED_INT_VEC4 = 36296,
+    INT_SAMPLER_1D = 36297,
+    INT_SAMPLER_2D = 36298,
+    INT_SAMPLER_3D = 36299,
+    INT_SAMPLER_CUBE = 36300,
+    INT_SAMPLER_2D_RECT = 36301,
+    INT_SAMPLER_1D_ARRAY = 36302,
+    INT_SAMPLER_2D_ARRAY = 36303,
+    INT_SAMPLER_BUFFER = 36304,
+    UNSIGNED_INT_SAMPLER_1D = 36305,
+    UNSIGNED_INT_SAMPLER_2D = 36306,
+    UNSIGNED_INT_SAMPLER_3D = 36307,
+    UNSIGNED_INT_SAMPLER_CUBE = 36308,
+    UNSIGNED_INT_SAMPLER_2D_RECT = 36309,
+    UNSIGNED_INT_SAMPLER_1D_ARRAY = 36310,
+    UNSIGNED_INT_SAMPLER_2D_ARRAY = 36311,
+    UNSIGNED_INT_SAMPLER_BUFFER = 36312,
     DOUBLE_MAT2 = 36678,
     DOUBLE_MAT3 = 36679,
     DOUBLE_MAT4 = 36680,
@@ -58,46 +88,13 @@ type
     DOUBLE_MAT3x4 = 36684,
     DOUBLE_MAT4x2 = 36685,
     DOUBLE_MAT4x3 = 36686,
-    SAMPLER_1D = 35677,
-    SAMPLER_2D = 35678,
-    SAMPLER_3D = 35679,
-    SAMPLER_CUBE = 35680,
-    SAMPLER_1D_SHADOW = 35681,
-    SAMPLER_2D_SHADOW = 35682,
-    SAMPLER_1D_ARRAY = 36288,
-    SAMPLER_2D_ARRAY = 36289,
+    DOUBLE_VEC2 = 36860,
+    DOUBLE_VEC3 = 36861,
+    DOUBLE_VEC4 = 36862,
     SAMPLER_CUBE_MAP_ARRAY = 36876,
-    SAMPLER_1D_ARRAY_SHADOW = 36291,
-    SAMPLER_2D_ARRAY_SHADOW = 36292,
-    SAMPLER_2D_MULTISAMPLE = 37128,
-    SAMPLER_2D_MULTISAMPLE_ARRAY = 37131,
-    SAMPLER_CUBE_SHADOW = 36293,
     SAMPLER_CUBE_MAP_ARRAY_SHADOW = 36877,
-    SAMPLER_BUFFER = 36290,
-    SAMPLER_2D_RECT = 35683,
-    SAMPLER_2D_RECT_SHADOW = 35684,
-    INT_SAMPLER_1D = 36297,
-    INT_SAMPLER_2D = 36298,
-    INT_SAMPLER_3D = 36299,
-    INT_SAMPLER_CUBE = 36300,
-    INT_SAMPLER_1D_ARRAY = 36302,
-    INT_SAMPLER_2D_ARRAY = 36303,
     INT_SAMPLER_CUBE_MAP_ARRAY = 36878,
-    INT_SAMPLER_2D_MULTISAMPLE = 37129,
-    INT_SAMPLER_2D_MULTISAMPLE_ARRAY = 37132,
-    INT_SAMPLER_BUFFER = 36304,
-    INT_SAMPLER_2D_RECT = 36301,
-    UNSIGNED_INT_SAMPLER_1D = 36305,
-    UNSIGNED_INT_SAMPLER_2D = 36306,
-    UNSIGNED_INT_SAMPLER_3D = 36307,
-    UNSIGNED_INT_SAMPLER_CUBE = 36308,
-    UNSIGNED_INT_SAMPLER_1D_ARRAY = 36310,
-    UNSIGNED_INT_SAMPLER_2D_ARRAY = 36311,
     UNSIGNED_INT_SAMPLER_CUBE_MAP_ARRAY = 36879,
-    UNSIGNED_INT_SAMPLER_2D_MULTISAMPLE = 37130,
-    UNSIGNED_INT_SAMPLER_2D_MULTISAMPLE_ARRAY = 37133,
-    UNSIGNED_INT_SAMPLER_BUFFER = 36312,
-    UNSIGNED_INT_SAMPLER_2D_RECT = 36309,
     IMAGE_1D = 36940,
     IMAGE_2D = 36941,
     IMAGE_3D = 36942,
@@ -131,26 +128,15 @@ type
     UNSIGNED_INT_IMAGE_CUBE_MAP_ARRAY = 36970,
     UNSIGNED_INT_IMAGE_2D_MULTISAMPLE = 36971,
     UNSIGNED_INT_IMAGE_2D_MULTISAMPLE_ARRAY = 36972,
-    UNDEFINED = 0
+    SAMPLER_2D_MULTISAMPLE = 37128,
+    INT_SAMPLER_2D_MULTISAMPLE = 37129,
+    UNSIGNED_INT_SAMPLER_2D_MULTISAMPLE = 37130,
+    SAMPLER_2D_MULTISAMPLE_ARRAY = 37131,
+    INT_SAMPLER_2D_MULTISAMPLE_ARRAY = 37132,
+    UNSIGNED_INT_SAMPLER_2D_MULTISAMPLE_ARRAY = 37133
 
-  # Typedefs
-  Value_type* {.header: "Uniform", importcpp: "osg::MatrixTemplate::value_type".} = T
-  Base_class* {.header: "Uniform", importcpp: "osg::Matrix2Template::base_class".} = MatrixTemplate[T, 2, 2]
-  Value_type* {.header: "Uniform", importcpp: "osg::Matrix2Template::value_type".} = Value_type
-  Base_class* {.header: "Uniform", importcpp: "osg::Matrix2x3Template::base_class".} = MatrixTemplate[T, 2, 3]
-  Value_type* {.header: "Uniform", importcpp: "osg::Matrix2x3Template::value_type".} = Value_type
-  Base_class* {.header: "Uniform", importcpp: "osg::Matrix2x4Template::base_class".} = MatrixTemplate[T, 2, 4]
-  Value_type* {.header: "Uniform", importcpp: "osg::Matrix2x4Template::value_type".} = Value_type
-  Base_class* {.header: "Uniform", importcpp: "osg::Matrix3x2Template::base_class".} = MatrixTemplate[T, 3, 2]
-  Value_type* {.header: "Uniform", importcpp: "osg::Matrix3x2Template::value_type".} = Value_type
-  Base_class* {.header: "Uniform", importcpp: "osg::Matrix3Template::base_class".} = MatrixTemplate[T, 3, 3]
-  Value_type* {.header: "Uniform", importcpp: "osg::Matrix3Template::value_type".} = Value_type
-  Base_class* {.header: "Uniform", importcpp: "osg::Matrix3x4Template::base_class".} = MatrixTemplate[T, 3, 4]
-  Value_type* {.header: "Uniform", importcpp: "osg::Matrix3x4Template::value_type".} = Value_type
-  Base_class* {.header: "Uniform", importcpp: "osg::Matrix4x2Template::base_class".} = MatrixTemplate[T, 4, 2]
-  Value_type* {.header: "Uniform", importcpp: "osg::Matrix4x2Template::value_type".} = Value_type
-  Base_class* {.header: "Uniform", importcpp: "osg::Matrix4x3Template::base_class".} = MatrixTemplate[T, 4, 3]
   Value_type* {.header: "Uniform", importcpp: "osg::Matrix4x3Template::value_type".} = Value_type
+  Base_class* {.header: "Uniform", importcpp: "osg::Matrix4x3Template::base_class".} = MatrixTemplate[T, 4, 3]
   Matrix2* {.header: "Uniform", importcpp: "osg::Matrix2".} = Matrix2Template[float]
   Matrix2x3* {.header: "Uniform", importcpp: "osg::Matrix2x3".} = Matrix2x3Template[float]
   Matrix2x4* {.header: "Uniform", importcpp: "osg::Matrix2x4".} = Matrix2x4Template[float]
@@ -169,147 +155,165 @@ type
   Matrix4x3d* {.header: "Uniform", importcpp: "osg::Matrix4x3d".} = Matrix4x3Template[double]
   ParentList* {.header: "Uniform", importcpp: "osg::Uniform::ParentList".} = cint
   Callback* {.header: "Uniform", importcpp: "osg::Uniform::Callback".} = Uniformcallback
+  MatrixTemplate* {.header: "Uniform", importcpp: "osg::MatrixTemplate", byref.} [T] = object
+
+  Matrix2Template* {.header: "Uniform", importcpp: "osg::Matrix2Template", byref.} [T] = object #of MatrixTemplate<T, 2, 2>
+
+  Matrix2x3Template* {.header: "Uniform", importcpp: "osg::Matrix2x3Template", byref.} [T] = object #of MatrixTemplate<T, 2, 3>
+
+  Matrix2x4Template* {.header: "Uniform", importcpp: "osg::Matrix2x4Template", byref.} [T] = object #of MatrixTemplate<T, 2, 4>
+
+  Matrix3x2Template* {.header: "Uniform", importcpp: "osg::Matrix3x2Template", byref.} [T] = object #of MatrixTemplate<T, 3, 2>
+
+  Matrix3Template* {.header: "Uniform", importcpp: "osg::Matrix3Template", byref.} [T] = object #of MatrixTemplate<T, 3, 3>
+
+  Matrix3x4Template* {.header: "Uniform", importcpp: "osg::Matrix3x4Template", byref.} [T] = object #of MatrixTemplate<T, 3, 4>
+
+  Matrix4x2Template* {.header: "Uniform", importcpp: "osg::Matrix4x2Template", byref.} [T] = object #of MatrixTemplate<T, 4, 2>
+
+  Matrix4x3Template* {.header: "Uniform", importcpp: "osg::Matrix4x3Template", byref.} [T] = object #of MatrixTemplate<T, 4, 3>
+
+
+
 {.push header: "Uniform".}
 
+proc constructMatrixTemplate*[T, RowN, ColN](): MatrixTemplate {.constructor,importcpp: "osg::MatrixTemplate::MatrixTemplate<T, RowN, ColN>".}
 
-# Constructors and methods
-proc constructMatrixTemplate*[T, RowN, ColN](): MatrixTemplate {.constructor,importcpp: "MatrixTemplate<T, RowN, ColN>".}
+proc constructMatrix2Template*[T](): Matrix2Template {.constructor,importcpp: "osg::Matrix2Template::Matrix2Template<T>".}
 
-proc constructMatrix2Template*[T](): Matrix2Template {.constructor,importcpp: "Matrix2Template<T>".}
+proc constructMatrix2Template*[T](mat: Matrix2Template[T]): Matrix2Template {.constructor,importcpp: "osg::Matrix2Template::Matrix2Template<T>(@)".}
 
-proc constructMatrix2Template*[T](mat: Matrix2Template[T]): Matrix2Template {.constructor,importcpp: "Matrix2Template<T>(@)".}
+proc constructMatrix2Template*[T](a00: Value_type, a01: Value_type, a10: Value_type, a11: Value_type): Matrix2Template {.constructor,importcpp: "osg::Matrix2Template::Matrix2Template<T>(@)".}
 
-proc constructMatrix2Template*[T](a00: Value_type, a01: Value_type, a10: Value_type, a11: Value_type): Matrix2Template {.constructor,importcpp: "Matrix2Template<T>(@)".}
+proc constructMatrix2x3Template*[T](): Matrix2x3Template {.constructor,importcpp: "osg::Matrix2x3Template::Matrix2x3Template<T>".}
 
-proc constructMatrix2x3Template*[T](): Matrix2x3Template {.constructor,importcpp: "Matrix2x3Template<T>".}
+proc constructMatrix2x3Template*[T](mat: Matrix2x3Template[T]): Matrix2x3Template {.constructor,importcpp: "osg::Matrix2x3Template::Matrix2x3Template<T>(@)".}
 
-proc constructMatrix2x3Template*[T](mat: Matrix2x3Template[T]): Matrix2x3Template {.constructor,importcpp: "Matrix2x3Template<T>(@)".}
+proc constructMatrix2x3Template*[T](a00: Value_type, a01: Value_type, a02: Value_type, a10: Value_type, a11: Value_type, a12: Value_type): Matrix2x3Template {.constructor,importcpp: "osg::Matrix2x3Template::Matrix2x3Template<T>(@)".}
 
-proc constructMatrix2x3Template*[T](a00: Value_type, a01: Value_type, a02: Value_type, a10: Value_type, a11: Value_type, a12: Value_type): Matrix2x3Template {.constructor,importcpp: "Matrix2x3Template<T>(@)".}
+proc constructMatrix2x4Template*[T](): Matrix2x4Template {.constructor,importcpp: "osg::Matrix2x4Template::Matrix2x4Template<T>".}
 
-proc constructMatrix2x4Template*[T](): Matrix2x4Template {.constructor,importcpp: "Matrix2x4Template<T>".}
+proc constructMatrix2x4Template*[T](mat: Matrix2x4Template[T]): Matrix2x4Template {.constructor,importcpp: "osg::Matrix2x4Template::Matrix2x4Template<T>(@)".}
 
-proc constructMatrix2x4Template*[T](mat: Matrix2x4Template[T]): Matrix2x4Template {.constructor,importcpp: "Matrix2x4Template<T>(@)".}
+proc constructMatrix2x4Template*[T](a00: Value_type, a01: Value_type, a02: Value_type, a03: Value_type, a10: Value_type, a11: Value_type, a12: Value_type, a13: Value_type): Matrix2x4Template {.constructor,importcpp: "osg::Matrix2x4Template::Matrix2x4Template<T>(@)".}
 
-proc constructMatrix2x4Template*[T](a00: Value_type, a01: Value_type, a02: Value_type, a03: Value_type, a10: Value_type, a11: Value_type, a12: Value_type, a13: Value_type): Matrix2x4Template {.constructor,importcpp: "Matrix2x4Template<T>(@)".}
+proc constructMatrix3x2Template*[T](): Matrix3x2Template {.constructor,importcpp: "osg::Matrix3x2Template::Matrix3x2Template<T>".}
 
-proc constructMatrix3x2Template*[T](): Matrix3x2Template {.constructor,importcpp: "Matrix3x2Template<T>".}
+proc constructMatrix3x2Template*[T](mat: Matrix3x2Template[T]): Matrix3x2Template {.constructor,importcpp: "osg::Matrix3x2Template::Matrix3x2Template<T>(@)".}
 
-proc constructMatrix3x2Template*[T](mat: Matrix3x2Template[T]): Matrix3x2Template {.constructor,importcpp: "Matrix3x2Template<T>(@)".}
+proc constructMatrix3x2Template*[T](a00: Value_type, a01: Value_type, a10: Value_type, a11: Value_type, a20: Value_type, a21: Value_type): Matrix3x2Template {.constructor,importcpp: "osg::Matrix3x2Template::Matrix3x2Template<T>(@)".}
 
-proc constructMatrix3x2Template*[T](a00: Value_type, a01: Value_type, a10: Value_type, a11: Value_type, a20: Value_type, a21: Value_type): Matrix3x2Template {.constructor,importcpp: "Matrix3x2Template<T>(@)".}
+proc constructMatrix3Template*[T](): Matrix3Template {.constructor,importcpp: "osg::Matrix3Template::Matrix3Template<T>".}
 
-proc constructMatrix3Template*[T](): Matrix3Template {.constructor,importcpp: "Matrix3Template<T>".}
+proc constructMatrix3Template*[T](mat: Matrix3Template[T]): Matrix3Template {.constructor,importcpp: "osg::Matrix3Template::Matrix3Template<T>(@)".}
 
-proc constructMatrix3Template*[T](mat: Matrix3Template[T]): Matrix3Template {.constructor,importcpp: "Matrix3Template<T>(@)".}
+proc constructMatrix3Template*[T](a00: Value_type, a01: Value_type, a02: Value_type, a10: Value_type, a11: Value_type, a12: Value_type, a20: Value_type, a21: Value_type, a22: Value_type): Matrix3Template {.constructor,importcpp: "osg::Matrix3Template::Matrix3Template<T>(@)".}
 
-proc constructMatrix3Template*[T](a00: Value_type, a01: Value_type, a02: Value_type, a10: Value_type, a11: Value_type, a12: Value_type, a20: Value_type, a21: Value_type, a22: Value_type): Matrix3Template {.constructor,importcpp: "Matrix3Template<T>(@)".}
+proc constructMatrix3x4Template*[T](): Matrix3x4Template {.constructor,importcpp: "osg::Matrix3x4Template::Matrix3x4Template<T>".}
 
-proc constructMatrix3x4Template*[T](): Matrix3x4Template {.constructor,importcpp: "Matrix3x4Template<T>".}
+proc constructMatrix3x4Template*[T](mat: Matrix3x4Template[T]): Matrix3x4Template {.constructor,importcpp: "osg::Matrix3x4Template::Matrix3x4Template<T>(@)".}
 
-proc constructMatrix3x4Template*[T](mat: Matrix3x4Template[T]): Matrix3x4Template {.constructor,importcpp: "Matrix3x4Template<T>(@)".}
+proc constructMatrix3x4Template*[T](a00: Value_type, a01: Value_type, a02: Value_type, a03: Value_type, a10: Value_type, a11: Value_type, a12: Value_type, a13: Value_type, a20: Value_type, a21: Value_type, a22: Value_type, a23: Value_type): Matrix3x4Template {.constructor,importcpp: "osg::Matrix3x4Template::Matrix3x4Template<T>(@)".}
 
-proc constructMatrix3x4Template*[T](a00: Value_type, a01: Value_type, a02: Value_type, a03: Value_type, a10: Value_type, a11: Value_type, a12: Value_type, a13: Value_type, a20: Value_type, a21: Value_type, a22: Value_type, a23: Value_type): Matrix3x4Template {.constructor,importcpp: "Matrix3x4Template<T>(@)".}
+proc constructMatrix4x2Template*[T](): Matrix4x2Template {.constructor,importcpp: "osg::Matrix4x2Template::Matrix4x2Template<T>".}
 
-proc constructMatrix4x2Template*[T](): Matrix4x2Template {.constructor,importcpp: "Matrix4x2Template<T>".}
+proc constructMatrix4x2Template*[T](mat: Matrix4x2Template[T]): Matrix4x2Template {.constructor,importcpp: "osg::Matrix4x2Template::Matrix4x2Template<T>(@)".}
 
-proc constructMatrix4x2Template*[T](mat: Matrix4x2Template[T]): Matrix4x2Template {.constructor,importcpp: "Matrix4x2Template<T>(@)".}
+proc constructMatrix4x2Template*[T](a00: Value_type, a01: Value_type, a10: Value_type, a11: Value_type, a20: Value_type, a21: Value_type, a30: Value_type, a31: Value_type): Matrix4x2Template {.constructor,importcpp: "osg::Matrix4x2Template::Matrix4x2Template<T>(@)".}
 
-proc constructMatrix4x2Template*[T](a00: Value_type, a01: Value_type, a10: Value_type, a11: Value_type, a20: Value_type, a21: Value_type, a30: Value_type, a31: Value_type): Matrix4x2Template {.constructor,importcpp: "Matrix4x2Template<T>(@)".}
+proc constructMatrix4x3Template*[T](): Matrix4x3Template {.constructor,importcpp: "osg::Matrix4x3Template::Matrix4x3Template<T>".}
 
-proc constructMatrix4x3Template*[T](): Matrix4x3Template {.constructor,importcpp: "Matrix4x3Template<T>".}
+proc constructMatrix4x3Template*[T](mat: Matrix4x3Template[T]): Matrix4x3Template {.constructor,importcpp: "osg::Matrix4x3Template::Matrix4x3Template<T>(@)".}
 
-proc constructMatrix4x3Template*[T](mat: Matrix4x3Template[T]): Matrix4x3Template {.constructor,importcpp: "Matrix4x3Template<T>(@)".}
+proc constructMatrix4x3Template*[T](a00: Value_type, a01: Value_type, a02: Value_type, a10: Value_type, a11: Value_type, a12: Value_type, a20: Value_type, a21: Value_type, a22: Value_type, a30: Value_type, a31: Value_type, a32: Value_type): Matrix4x3Template {.constructor,importcpp: "osg::Matrix4x3Template::Matrix4x3Template<T>(@)".}
 
-proc constructMatrix4x3Template*[T](a00: Value_type, a01: Value_type, a02: Value_type, a10: Value_type, a11: Value_type, a12: Value_type, a20: Value_type, a21: Value_type, a22: Value_type, a30: Value_type, a31: Value_type, a32: Value_type): Matrix4x3Template {.constructor,importcpp: "Matrix4x3Template<T>(@)".}
+proc constructUniform*(): Uniform {.constructor,importcpp: "osg::Uniform::Uniform".}
 
-proc constructUniform*(): Uniform {.constructor,importcpp: "Uniform".}
+proc constructUniform*(`type`: Type, name: String, numElements: cint): Uniform {.constructor,importcpp: "osg::Uniform::Uniform(@)".}
 
-proc constructUniform*(`type`: Type, name: String, numElements: cint): Uniform {.constructor,importcpp: "Uniform(@)".}
-
-proc constructUniform*(rhs: Uniform, copyop: Copyop = SHALLOW_COPY): Uniform {.constructor,importcpp: "Uniform(@)".}
+proc constructUniform*(rhs: Uniform, copyop: Copyop = SHALLOW_COPY): Uniform {.constructor,importcpp: "osg::Uniform::Uniform(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
-proc constructUniform*(name: cstring, f: cfloat): Uniform {.constructor,importcpp: "Uniform(@)".}
+proc constructUniform*(name: cstring, f: cfloat): Uniform {.constructor,importcpp: "osg::Uniform::Uniform(@)".}
     ## convenient scalar (non-array) constructors w/ assignment
 
-proc constructUniform*(name: cstring, d: cdouble): Uniform {.constructor,importcpp: "Uniform(@)".}
+proc constructUniform*(name: cstring, d: cdouble): Uniform {.constructor,importcpp: "osg::Uniform::Uniform(@)".}
 
-proc constructUniform*(name: cstring, i: cint): Uniform {.constructor,importcpp: "Uniform(@)".}
+proc constructUniform*(name: cstring, i: cint): Uniform {.constructor,importcpp: "osg::Uniform::Uniform(@)".}
 
-proc constructUniform*(name: cstring, ui: cuint): Uniform {.constructor,importcpp: "Uniform(@)".}
+proc constructUniform*(name: cstring, ui: cuint): Uniform {.constructor,importcpp: "osg::Uniform::Uniform(@)".}
 
-proc constructUniform*(name: cstring, b: bool): Uniform {.constructor,importcpp: "Uniform(@)".}
+proc constructUniform*(name: cstring, b: bool): Uniform {.constructor,importcpp: "osg::Uniform::Uniform(@)".}
 
-proc constructUniform*(name: cstring, ull: culonglong): Uniform {.constructor,importcpp: "Uniform(@)".}
+proc constructUniform*(name: cstring, ull: culonglong): Uniform {.constructor,importcpp: "osg::Uniform::Uniform(@)".}
 
-proc constructUniform*(name: cstring, ll: clonglong): Uniform {.constructor,importcpp: "Uniform(@)".}
+proc constructUniform*(name: cstring, ll: clonglong): Uniform {.constructor,importcpp: "osg::Uniform::Uniform(@)".}
 
-proc constructUniform*(name: cstring, v2: Vec2): Uniform {.constructor,importcpp: "Uniform(@)".}
+proc constructUniform*(name: cstring, v2: Vec2): Uniform {.constructor,importcpp: "osg::Uniform::Uniform(@)".}
 
-proc constructUniform*(name: cstring, v3: Vec3): Uniform {.constructor,importcpp: "Uniform(@)".}
+proc constructUniform*(name: cstring, v3: Vec3): Uniform {.constructor,importcpp: "osg::Uniform::Uniform(@)".}
 
-proc constructUniform*(name: cstring, v4: Vec4): Uniform {.constructor,importcpp: "Uniform(@)".}
+proc constructUniform*(name: cstring, v4: Vec4): Uniform {.constructor,importcpp: "osg::Uniform::Uniform(@)".}
 
-proc constructUniform*(name: cstring, v2: Vec2d): Uniform {.constructor,importcpp: "Uniform(@)".}
+proc constructUniform*(name: cstring, v2: Vec2d): Uniform {.constructor,importcpp: "osg::Uniform::Uniform(@)".}
 
-proc constructUniform*(name: cstring, v3: Vec3d): Uniform {.constructor,importcpp: "Uniform(@)".}
+proc constructUniform*(name: cstring, v3: Vec3d): Uniform {.constructor,importcpp: "osg::Uniform::Uniform(@)".}
 
-proc constructUniform*(name: cstring, v4: Vec4d): Uniform {.constructor,importcpp: "Uniform(@)".}
+proc constructUniform*(name: cstring, v4: Vec4d): Uniform {.constructor,importcpp: "osg::Uniform::Uniform(@)".}
 
-proc constructUniform*(name: cstring, m2: Matrix2): Uniform {.constructor,importcpp: "Uniform(@)".}
+proc constructUniform*(name: cstring, m2: Matrix2): Uniform {.constructor,importcpp: "osg::Uniform::Uniform(@)".}
 
-proc constructUniform*(name: cstring, m3: Matrix3): Uniform {.constructor,importcpp: "Uniform(@)".}
+proc constructUniform*(name: cstring, m3: Matrix3): Uniform {.constructor,importcpp: "osg::Uniform::Uniform(@)".}
 
-proc constructUniform*(name: cstring, m4: Matrixf): Uniform {.constructor,importcpp: "Uniform(@)".}
+proc constructUniform*(name: cstring, m4: Matrixf): Uniform {.constructor,importcpp: "osg::Uniform::Uniform(@)".}
 
-proc constructUniform*(name: cstring, m2x3: Matrix2x3): Uniform {.constructor,importcpp: "Uniform(@)".}
+proc constructUniform*(name: cstring, m2x3: Matrix2x3): Uniform {.constructor,importcpp: "osg::Uniform::Uniform(@)".}
 
-proc constructUniform*(name: cstring, m2x4: Matrix2x4): Uniform {.constructor,importcpp: "Uniform(@)".}
+proc constructUniform*(name: cstring, m2x4: Matrix2x4): Uniform {.constructor,importcpp: "osg::Uniform::Uniform(@)".}
 
-proc constructUniform*(name: cstring, m3x2: Matrix3x2): Uniform {.constructor,importcpp: "Uniform(@)".}
+proc constructUniform*(name: cstring, m3x2: Matrix3x2): Uniform {.constructor,importcpp: "osg::Uniform::Uniform(@)".}
 
-proc constructUniform*(name: cstring, m3x4: Matrix3x4): Uniform {.constructor,importcpp: "Uniform(@)".}
+proc constructUniform*(name: cstring, m3x4: Matrix3x4): Uniform {.constructor,importcpp: "osg::Uniform::Uniform(@)".}
 
-proc constructUniform*(name: cstring, m4x2: Matrix4x2): Uniform {.constructor,importcpp: "Uniform(@)".}
+proc constructUniform*(name: cstring, m4x2: Matrix4x2): Uniform {.constructor,importcpp: "osg::Uniform::Uniform(@)".}
 
-proc constructUniform*(name: cstring, m4x3: Matrix4x3): Uniform {.constructor,importcpp: "Uniform(@)".}
+proc constructUniform*(name: cstring, m4x3: Matrix4x3): Uniform {.constructor,importcpp: "osg::Uniform::Uniform(@)".}
 
-proc constructUniform*(name: cstring, m2: Matrix2d): Uniform {.constructor,importcpp: "Uniform(@)".}
+proc constructUniform*(name: cstring, m2: Matrix2d): Uniform {.constructor,importcpp: "osg::Uniform::Uniform(@)".}
 
-proc constructUniform*(name: cstring, m3: Matrix3d): Uniform {.constructor,importcpp: "Uniform(@)".}
+proc constructUniform*(name: cstring, m3: Matrix3d): Uniform {.constructor,importcpp: "osg::Uniform::Uniform(@)".}
 
-proc constructUniform*(name: cstring, m4: Matrixd): Uniform {.constructor,importcpp: "Uniform(@)".}
+proc constructUniform*(name: cstring, m4: Matrixd): Uniform {.constructor,importcpp: "osg::Uniform::Uniform(@)".}
 
-proc constructUniform*(name: cstring, m2x3: Matrix2x3d): Uniform {.constructor,importcpp: "Uniform(@)".}
+proc constructUniform*(name: cstring, m2x3: Matrix2x3d): Uniform {.constructor,importcpp: "osg::Uniform::Uniform(@)".}
 
-proc constructUniform*(name: cstring, m2x4: Matrix2x4d): Uniform {.constructor,importcpp: "Uniform(@)".}
+proc constructUniform*(name: cstring, m2x4: Matrix2x4d): Uniform {.constructor,importcpp: "osg::Uniform::Uniform(@)".}
 
-proc constructUniform*(name: cstring, m3x2: Matrix3x2d): Uniform {.constructor,importcpp: "Uniform(@)".}
+proc constructUniform*(name: cstring, m3x2: Matrix3x2d): Uniform {.constructor,importcpp: "osg::Uniform::Uniform(@)".}
 
-proc constructUniform*(name: cstring, m3x4: Matrix3x4d): Uniform {.constructor,importcpp: "Uniform(@)".}
+proc constructUniform*(name: cstring, m3x4: Matrix3x4d): Uniform {.constructor,importcpp: "osg::Uniform::Uniform(@)".}
 
-proc constructUniform*(name: cstring, m4x2: Matrix4x2d): Uniform {.constructor,importcpp: "Uniform(@)".}
+proc constructUniform*(name: cstring, m4x2: Matrix4x2d): Uniform {.constructor,importcpp: "osg::Uniform::Uniform(@)".}
 
-proc constructUniform*(name: cstring, m4x3: Matrix4x3d): Uniform {.constructor,importcpp: "Uniform(@)".}
+proc constructUniform*(name: cstring, m4x3: Matrix4x3d): Uniform {.constructor,importcpp: "osg::Uniform::Uniform(@)".}
 
-proc constructUniform*(name: cstring, i0: cint, i1: cint): Uniform {.constructor,importcpp: "Uniform(@)".}
+proc constructUniform*(name: cstring, i0: cint, i1: cint): Uniform {.constructor,importcpp: "osg::Uniform::Uniform(@)".}
 
-proc constructUniform*(name: cstring, i0: cint, i1: cint, i2: cint): Uniform {.constructor,importcpp: "Uniform(@)".}
+proc constructUniform*(name: cstring, i0: cint, i1: cint, i2: cint): Uniform {.constructor,importcpp: "osg::Uniform::Uniform(@)".}
 
-proc constructUniform*(name: cstring, i0: cint, i1: cint, i2: cint, i3: cint): Uniform {.constructor,importcpp: "Uniform(@)".}
+proc constructUniform*(name: cstring, i0: cint, i1: cint, i2: cint, i3: cint): Uniform {.constructor,importcpp: "osg::Uniform::Uniform(@)".}
 
-proc constructUniform*(name: cstring, ui0: cuint, ui1: cuint): Uniform {.constructor,importcpp: "Uniform(@)".}
+proc constructUniform*(name: cstring, ui0: cuint, ui1: cuint): Uniform {.constructor,importcpp: "osg::Uniform::Uniform(@)".}
 
-proc constructUniform*(name: cstring, ui0: cuint, ui1: cuint, ui2: cuint): Uniform {.constructor,importcpp: "Uniform(@)".}
+proc constructUniform*(name: cstring, ui0: cuint, ui1: cuint, ui2: cuint): Uniform {.constructor,importcpp: "osg::Uniform::Uniform(@)".}
 
-proc constructUniform*(name: cstring, ui0: cuint, ui1: cuint, ui2: cuint, ui3: cuint): Uniform {.constructor,importcpp: "Uniform(@)".}
+proc constructUniform*(name: cstring, ui0: cuint, ui1: cuint, ui2: cuint, ui3: cuint): Uniform {.constructor,importcpp: "osg::Uniform::Uniform(@)".}
 
-proc constructUniform*(name: cstring, b0: bool, b1: bool): Uniform {.constructor,importcpp: "Uniform(@)".}
+proc constructUniform*(name: cstring, b0: bool, b1: bool): Uniform {.constructor,importcpp: "osg::Uniform::Uniform(@)".}
 
-proc constructUniform*(name: cstring, b0: bool, b1: bool, b2: bool): Uniform {.constructor,importcpp: "Uniform(@)".}
+proc constructUniform*(name: cstring, b0: bool, b1: bool, b2: bool): Uniform {.constructor,importcpp: "osg::Uniform::Uniform(@)".}
 
-proc constructUniform*(name: cstring, b0: bool, b1: bool, b2: bool, b3: bool): Uniform {.constructor,importcpp: "Uniform(@)".}
+proc constructUniform*(name: cstring, b0: bool, b1: bool, b2: bool, b3: bool): Uniform {.constructor,importcpp: "osg::Uniform::Uniform(@)".}
 
 proc `()`*(this: var MatrixTemplate, row: cint, col: cint): Value_type  {.importcpp: "# () #".}
 
@@ -851,4 +855,4 @@ proc addParent*(this: var Uniform, `object`: ptr Stateset )  {.importcpp: "addPa
 
 proc removeParent*(this: var Uniform, `object`: ptr Stateset )  {.importcpp: "removeParent".}
 
-{.pop.} # header: "Uniform
+{.pop.}  # header: "Uniform"

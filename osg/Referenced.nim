@@ -1,21 +1,22 @@
-import Mutex # Provides Mutex
-import Observer # Provides ObserverSet, Observer
-import DeleteHandler # Provides DeleteHandler
+import /usr/include/osg/DeleteHandler  # provides: osg::DeleteHandler
+import /usr/include/osg/Observer  # provides: osg::Observer, osg::ObserverSet
+type
+  depends_on* {.header: "Referenced", importcpp: "osg::depends_on", byref.} [T] = object
+    ## template class to help enforce static initialization order.
+
 
 
 {.push header: "Referenced".}
 
+proc constructdepends_on*[T, M](): depends_on {.constructor,importcpp: "osg::depends_on::depends_on<T, M>".}
 
-# Constructors and methods
-proc constructdepends_on*[T, M](): depends_on {.constructor,importcpp: "depends_on<T, M>".}
+proc constructReferenced*(): Referenced {.constructor,importcpp: "osg::Referenced::Referenced".}
 
-proc constructReferenced*(): Referenced {.constructor,importcpp: "Referenced".}
-
-proc constructReferenced*(threadSafeRefUnref: bool): Referenced {.constructor,importcpp: "Referenced(@)".}
+proc constructReferenced*(threadSafeRefUnref: bool): Referenced {.constructor,importcpp: "osg::Referenced::Referenced(@)".}
     ## Deprecated, Referenced is now always uses thread safe ref/unref, use
     ## default Referenced() constructor instead
 
-proc constructReferenced*(Referenced): Referenced {.constructor,importcpp: "Referenced(@)".}
+proc constructReferenced*(Referenced): Referenced {.constructor,importcpp: "osg::Referenced::Referenced(@)".}
 
 proc `=`*(this: var Referenced, Referenced): Referenced  {.importcpp: "# = #".}
 
@@ -87,4 +88,4 @@ proc unref*(this: Referenced): cint  {.importcpp: "unref".}
     ## to zero, it is assumed that this object is no longer referenced and is
     ## automatically deleted.
 
-{.pop.} # header: "Referenced
+{.pop.}  # header: "Referenced"

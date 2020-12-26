@@ -1,18 +1,21 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import StateAttribute # Provides StateAttribute, Type
-import State # Provides State
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+type
+  DepthRangeIndexed* {.header: "DepthRangeIndexed", importcpp: "osg::DepthRangeIndexed", byref.} = object #of osg::StateAttribute
+    ## Encapsulates glDepthRangeIndexed function : the index version of
+    ## glDepth
+
 
 
 {.push header: "DepthRangeIndexed".}
 
+proc constructDepthRangeIndexed*(): DepthRangeIndexed {.constructor,importcpp: "osg::DepthRangeIndexed::DepthRangeIndexed".}
 
-# Constructors and methods
-proc constructDepthRangeIndexed*(): DepthRangeIndexed {.constructor,importcpp: "DepthRangeIndexed".}
+proc constructDepthRangeIndexed*(index: cuint, zNear: cdouble, zFar: cdouble): DepthRangeIndexed {.constructor,importcpp: "osg::DepthRangeIndexed::DepthRangeIndexed(@)".}
 
-proc constructDepthRangeIndexed*(index: cuint, zNear: cdouble, zFar: cdouble): DepthRangeIndexed {.constructor,importcpp: "DepthRangeIndexed(@)".}
-
-proc constructDepthRangeIndexed*(dp: Depthrangeindexed, copyop: Copyop = SHALLOW_COPY): DepthRangeIndexed {.constructor,importcpp: "DepthRangeIndexed(@)".}
+proc constructDepthRangeIndexed*(dp: Depthrangeindexed, copyop: Copyop = SHALLOW_COPY): DepthRangeIndexed {.constructor,importcpp: "osg::DepthRangeIndexed::DepthRangeIndexed(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: DepthRangeIndexed): ptr Object   {.importcpp: "cloneType".}
@@ -49,4 +52,4 @@ proc getZFar*(this: DepthRangeIndexed): cdouble  {.importcpp: "getZFar".}
 
 proc apply*(this: DepthRangeIndexed, state: State)  {.importcpp: "apply".}
 
-{.pop.} # header: "DepthRangeIndexed
+{.pop.}  # header: "DepthRangeIndexed"

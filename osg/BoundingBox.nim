@@ -1,26 +1,23 @@
-
-
 type
-  # Typedefs
   Vec_type* {.header: "BoundingBox", importcpp: "osg::BoundingBoxImpl::vec_type".} = VT
   Value_type* {.header: "BoundingBox", importcpp: "osg::BoundingBoxImpl::value_type".} = Value_type
-  BoundingBoxf* {.header: "BoundingBox", importcpp: "osg::BoundingBoxf".} = Boundingboximpl[Vec3f]
-  BoundingBoxd* {.header: "BoundingBox", importcpp: "osg::BoundingBoxd".} = Boundingboximpl[Vec3d]
-  BoundingBox* {.header: "BoundingBox", importcpp: "osg::BoundingBox".} = Boundingboxf
+  BoundingBoxImpl* {.header: "BoundingBox", importcpp: "osg::BoundingBoxImpl", byref.} [VT] = object
+    ## General purpose axis-aligned bounding box class for enclosing
+    ## objects/vertices. Bounds leaf objects in a scene such as osg::Drawable
+    ## objects. Used for frustum culling etc.
+
+
+
 {.push header: "BoundingBox".}
 
-
-# Constructors and methods
-proc constructBoundingBoxImpl*[VT](): BoundingBoxImpl {.constructor,importcpp: "BoundingBoxImpl<VT>".}
+proc constructBoundingBoxImpl*[VT](): BoundingBoxImpl {.constructor,importcpp: "osg::BoundingBoxImpl::BoundingBoxImpl<VT>".}
     ## Creates an uninitialized bounding box.
 
-proc constructBoundingBoxImpl*[VT](xmin: Value_type, ymin: Value_type, zmin: Value_type, xmax: Value_type, ymax: Value_type, zmax: Value_type): BoundingBoxImpl {.constructor,importcpp: "BoundingBoxImpl<VT>(@)".}
+proc constructBoundingBoxImpl*[VT](xmin: Value_type, ymin: Value_type, zmin: Value_type, xmax: Value_type, ymax: Value_type, zmax: Value_type): BoundingBoxImpl {.constructor,importcpp: "osg::BoundingBoxImpl::BoundingBoxImpl<VT>(@)".}
     ## Creates a bounding box initialized to the given extents.
 
-proc constructBoundingBoxImpl*[VT](min: Vec_type, max: Vec_type): BoundingBoxImpl {.constructor,importcpp: "BoundingBoxImpl<VT>(@)".}
+proc constructBoundingBoxImpl*[VT](min: Vec_type, max: Vec_type): BoundingBoxImpl {.constructor,importcpp: "osg::BoundingBoxImpl::BoundingBoxImpl<VT>(@)".}
     ## Creates a bounding box initialized to the given extents.
-
-proc boundingBoxImpl<VT>*[BT](this: var BoundingBoxImpl, bb: BoundingBoxImpl[BT])  {.importcpp: "BoundingBoxImpl<VT>".}
 
 proc init*(this: var BoundingBoxImpl)  {.importcpp: "init".}
     ## Clear the bounding box. Erases existing minimum and maximum extents.
@@ -90,10 +87,6 @@ proc expandBy*(this: var BoundingBoxImpl, bb: BoundingBoxImpl[VT])  {.importcpp:
     ## Expands this bounding box to include the given bounding box. If this
     ## box is uninitialized, set it equal to bb.
 
-proc expandBy*[BST](this: var BoundingBoxImpl, sh: BoundingSphereImpl[BST])  {.importcpp: "expandBy".}
-    ## Expands this bounding box to include the given sphere. If this box is
-    ## uninitialized, set it to include sh.
-
 proc intersect*(this: BoundingBoxImpl, bb: BoundingBoxImpl[VT]): BoundingBoxImpl[VT]  {.importcpp: "intersect".}
     ## Returns the intersection of this bounding box and the specified
     ## bounding box.
@@ -109,4 +102,4 @@ proc contains*(this: BoundingBoxImpl, v: Vec_type, epsilon: Value_type): bool  {
     ## Returns true if this bounding box contains the specified coordinate
     ## allowing for specific epsilon.
 
-{.pop.} # header: "BoundingBox
+{.pop.}  # header: "BoundingBox"

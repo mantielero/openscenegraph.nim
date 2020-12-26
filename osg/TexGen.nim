@@ -1,16 +1,13 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import Matrixd # Provides Matrixd
-import Plane # Provides Plane
-import StateAttribute # Provides StateAttribute, Type
-import State # Provides State
-
-
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/Plane  # provides: osg::Plane
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/Matrixd  # provides: osg::Matrixd
 type
-  # Enums
   Mode* {.size:sizeof(cuint),header: "TexGen", importcpp: "osg::TexGen::Mode".} = enum
-    OBJECT_LINEAR = 9217,
     EYE_LINEAR = 9216,
+    OBJECT_LINEAR = 9217,
     SPHERE_MAP = 9218,
     NORMAL_MAP = 34065,
     REFLECTION_MAP = 34066
@@ -21,13 +18,13 @@ type
     R = 2,
     Q = 3
 
+
+
 {.push header: "TexGen".}
 
+proc constructTexGen*(): TexGen {.constructor,importcpp: "osg::TexGen::TexGen".}
 
-# Constructors and methods
-proc constructTexGen*(): TexGen {.constructor,importcpp: "TexGen".}
-
-proc constructTexGen*(texgen: Texgen, copyop: Copyop = SHALLOW_COPY): TexGen {.constructor,importcpp: "TexGen(@)".}
+proc constructTexGen*(texgen: Texgen, copyop: Copyop = SHALLOW_COPY): TexGen {.constructor,importcpp: "osg::TexGen::TexGen(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: TexGen): ptr Object   {.importcpp: "cloneType".}
@@ -65,4 +62,4 @@ proc setPlanesFromMatrix*(this: var TexGen, matrix: Matrixd)  {.importcpp: "setP
     ## Set the tex gen planes from specified matrix. Typical usage would be
     ## to pass in a projection matrix to set up projective texturing.
 
-{.pop.} # header: "TexGen
+{.pop.}  # header: "TexGen"

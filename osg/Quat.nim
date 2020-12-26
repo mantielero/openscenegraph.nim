@@ -1,32 +1,34 @@
-import Vec3f # Provides Vec3f
-import Vec4f # Provides Vec4f
-import Vec3d # Provides Vec3d
-import Vec4d # Provides Vec4d
-import Matrixd # Provides Matrixd
-import Matrixf # Provides Matrixf
+import /usr/include/osg/Matrixf  # provides: osg::Matrixf
+import /usr/include/osg/Vec3f  # provides: osg::Vec3f
+import /usr/include/osg/Matrixd  # provides: osg::Matrixd
+import /usr/include/osg/Vec4d  # provides: osg::Vec4d
+import /usr/include/osg/Vec3d  # provides: osg::Vec3d
+import /usr/include/osg/Vec4f  # provides: osg::Vec4f
+const
+  num_components* = 4
 
 
 type
   Value_type* {.header: "Quat", importcpp: "osg::Quat::value_type".} = cdouble
+
+
 {.push header: "Quat".}
 
+proc constructQuat*(): Quat {.constructor,importcpp: "osg::Quat::Quat".}
 
-# Constructors and methods
-proc constructQuat*(): Quat {.constructor,importcpp: "Quat".}
+proc constructQuat*(x: Value_type, y: Value_type, z: Value_type, w: Value_type): Quat {.constructor,importcpp: "osg::Quat::Quat(@)".}
 
-proc constructQuat*(x: Value_type, y: Value_type, z: Value_type, w: Value_type): Quat {.constructor,importcpp: "Quat(@)".}
+proc constructQuat*(v: Vec4f): Quat {.constructor,importcpp: "osg::Quat::Quat(@)".}
 
-proc constructQuat*(v: Vec4f): Quat {.constructor,importcpp: "Quat(@)".}
+proc constructQuat*(v: Vec4d): Quat {.constructor,importcpp: "osg::Quat::Quat(@)".}
 
-proc constructQuat*(v: Vec4d): Quat {.constructor,importcpp: "Quat(@)".}
+proc constructQuat*(angle: Value_type, axis: Vec3f): Quat {.constructor,importcpp: "osg::Quat::Quat(@)".}
 
-proc constructQuat*(angle: Value_type, axis: Vec3f): Quat {.constructor,importcpp: "Quat(@)".}
+proc constructQuat*(angle: Value_type, axis: Vec3d): Quat {.constructor,importcpp: "osg::Quat::Quat(@)".}
 
-proc constructQuat*(angle: Value_type, axis: Vec3d): Quat {.constructor,importcpp: "Quat(@)".}
+proc constructQuat*(angle1: Value_type, axis1: Vec3f, angle2: Value_type, axis2: Vec3f, angle3: Value_type, axis3: Vec3f): Quat {.constructor,importcpp: "osg::Quat::Quat(@)".}
 
-proc constructQuat*(angle1: Value_type, axis1: Vec3f, angle2: Value_type, axis2: Vec3f, angle3: Value_type, axis3: Vec3f): Quat {.constructor,importcpp: "Quat(@)".}
-
-proc constructQuat*(angle1: Value_type, axis1: Vec3d, angle2: Value_type, axis2: Vec3d, angle3: Value_type, axis3: Vec3d): Quat {.constructor,importcpp: "Quat(@)".}
+proc constructQuat*(angle1: Value_type, axis1: Vec3d, angle2: Value_type, axis2: Vec3d, angle3: Value_type, axis3: Vec3d): Quat {.constructor,importcpp: "osg::Quat::Quat(@)".}
 
 proc `=`*(this: var Quat, v: Quat): Quat  {.importcpp: "# = #".}
 
@@ -173,4 +175,4 @@ proc `*`*(this: Quat, v: Vec3f): Vec3f  {.importcpp: "# * #".}
 proc `*`*(this: Quat, v: Vec3d): Vec3d  {.importcpp: "# * #".}
     ## Rotate a vector by this quaternion.
 
-{.pop.} # header: "Quat
+{.pop.}  # header: "Quat"

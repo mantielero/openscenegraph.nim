@@ -1,22 +1,19 @@
-import Referenced # Provides Referenced
-import State # Provides State
-import Camera # Provides Camera
-import View # Provides View
-
-
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Camera  # provides: osg::Camera
+import /usr/include/osg/Referenced  # provides: osg::Referenced
+import /usr/include/osg/View  # provides: osg::View
 type
-  # Typedefs
   CameraStack* {.header: "RenderInfo", importcpp: "osg::RenderInfo::CameraStack".} = cint
   RenderBinStack* {.header: "RenderInfo", importcpp: "osg::RenderInfo::RenderBinStack".} = cint
+
+
 {.push header: "RenderInfo".}
 
+proc constructRenderInfo*(): RenderInfo {.constructor,importcpp: "osg::RenderInfo::RenderInfo".}
 
-# Constructors and methods
-proc constructRenderInfo*(): RenderInfo {.constructor,importcpp: "RenderInfo".}
+proc constructRenderInfo*(rhs: Renderinfo): RenderInfo {.constructor,importcpp: "osg::RenderInfo::RenderInfo(@)".}
 
-proc constructRenderInfo*(rhs: Renderinfo): RenderInfo {.constructor,importcpp: "RenderInfo(@)".}
-
-proc constructRenderInfo*(state: ptr State , view: ptr View ): RenderInfo {.constructor,importcpp: "RenderInfo(@)".}
+proc constructRenderInfo*(state: ptr State , view: ptr View ): RenderInfo {.constructor,importcpp: "osg::RenderInfo::RenderInfo(@)".}
 
 proc `=`*(this: var RenderInfo, rhs: Renderinfo): Renderinfo  {.importcpp: "# = #".}
 
@@ -54,4 +51,4 @@ proc getUserData*(this: var RenderInfo): ptr Referenced   {.importcpp: "getUserD
 
 proc getUserData*(this: RenderInfo): ptr Referenced   {.importcpp: "getUserData".}
 
-{.pop.} # header: "RenderInfo
+{.pop.}  # header: "RenderInfo"

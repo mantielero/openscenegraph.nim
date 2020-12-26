@@ -1,12 +1,8 @@
-
-
 {.push header: "FrameStamp".}
 
+proc constructFrameStamp*(): FrameStamp {.constructor,importcpp: "osg::FrameStamp::FrameStamp".}
 
-# Constructors and methods
-proc constructFrameStamp*(): FrameStamp {.constructor,importcpp: "FrameStamp".}
-
-proc constructFrameStamp*(fs: Framestamp): FrameStamp {.constructor,importcpp: "FrameStamp(@)".}
+proc constructFrameStamp*(fs: Framestamp): FrameStamp {.constructor,importcpp: "osg::FrameStamp::FrameStamp(@)".}
 
 proc `=`*(this: var FrameStamp, fs: Framestamp): Framestamp  {.importcpp: "# = #".}
 
@@ -26,4 +22,4 @@ proc setCalendarTime*(this: var FrameStamp, calendarTime: tm)  {.importcpp: "set
 
 proc getCalendarTime*(this: FrameStamp, calendarTime: var tm)  {.importcpp: "getCalendarTime".}
 
-{.pop.} # header: "FrameStamp
+{.pop.}  # header: "FrameStamp"

@@ -1,23 +1,30 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import Vec4 # Provides Vec4
-import Image # Provides Image
-
-
+import /usr/include/osg/Vec4  # provides: osg::Vec4
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/Image  # provides: osg::Image
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
 type
   ColorMap* {.header: "TransferFunction", importcpp: "osg::TransferFunction1D::ColorMap".} = cint
+  TransferFunction* {.header: "TransferFunction", importcpp: "osg::TransferFunction", byref.} = object #of osg::Object
+    ## TransferFunction is a class that provide a 1D,2D or 3D colour look up
+    ## table that can be used on the GPU as a 1D, 2D or 3D texture. Typically
+    ## uses include mapping heights to colours when contouring terrain, or
+    ## mapping intensities to colours when volume rendering.
+
+  TransferFunction1D* {.header: "TransferFunction", importcpp: "osg::TransferFunction1D", byref.} = object #of osg::TransferFunction
+    ## 1D variant of TransferFunction.
+
+
+
 {.push header: "TransferFunction".}
 
+proc constructTransferFunction*(): TransferFunction {.constructor,importcpp: "osg::TransferFunction::TransferFunction".}
 
-# Constructors and methods
-proc constructTransferFunction*(): TransferFunction {.constructor,importcpp: "TransferFunction".}
-
-proc constructTransferFunction*(tf: Transferfunction, copyop: Copyop = SHALLOW_COPY): TransferFunction {.constructor,importcpp: "TransferFunction(@)".}
+proc constructTransferFunction*(tf: Transferfunction, copyop: Copyop = SHALLOW_COPY): TransferFunction {.constructor,importcpp: "osg::TransferFunction::TransferFunction(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
-proc constructTransferFunction1D*(): TransferFunction1D {.constructor,importcpp: "TransferFunction1D".}
+proc constructTransferFunction1D*(): TransferFunction1D {.constructor,importcpp: "osg::TransferFunction1D::TransferFunction1D".}
 
-proc constructTransferFunction1D*(tf: Transferfunction1d, copyop: Copyop = SHALLOW_COPY): TransferFunction1D {.constructor,importcpp: "TransferFunction1D(@)".}
+proc constructTransferFunction1D*(tf: Transferfunction1d, copyop: Copyop = SHALLOW_COPY): TransferFunction1D {.constructor,importcpp: "osg::TransferFunction1D::TransferFunction1D(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: TransferFunction): ptr Object   {.importcpp: "cloneType".}
@@ -104,4 +111,4 @@ proc updateImage*(this: var TransferFunction1D)  {.importcpp: "updateImage".}
 
 proc assignToImage*(this: var TransferFunction1D, lower_v: cfloat, lower_c: Vec4, upper_v: cfloat, upper_c: Vec4)  {.importcpp: "assignToImage".}
 
-{.pop.} # header: "TransferFunction
+{.pop.}  # header: "TransferFunction"

@@ -1,9 +1,7 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import StateAttribute # Provides StateAttribute, Type
-import State # Provides State
-
-
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
 type
   Function* {.size:sizeof(cuint),header: "Depth", importcpp: "osg::Depth::Function".} = enum
     NEVER = 512,
@@ -15,13 +13,16 @@ type
     GEQUAL = 518,
     ALWAYS = 519
 
+  Depth* {.header: "Depth", importcpp: "osg::Depth", byref.} = object #of class osg::StateAttribute
+    ## Encapsulate OpenGL glDepthFunc/Mask/Range functions.
+
+
+
 {.push header: "Depth".}
 
+proc constructDepth*(`func`: Function, zNear: cdouble, zFar: cdouble, writeMask: bool): Depth {.constructor,importcpp: "osg::Depth::Depth(@)".}
 
-# Constructors and methods
-proc constructDepth*(`func`: Function, zNear: cdouble, zFar: cdouble, writeMask: bool): Depth {.constructor,importcpp: "Depth(@)".}
-
-proc constructDepth*(dp: Depth, copyop: Copyop = SHALLOW_COPY): Depth {.constructor,importcpp: "Depth(@)".}
+proc constructDepth*(dp: Depth, copyop: Copyop = SHALLOW_COPY): Depth {.constructor,importcpp: "osg::Depth::Depth(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: Depth): ptr Object   {.importcpp: "cloneType".}
@@ -61,4 +62,4 @@ proc getWriteMask*(this: Depth): bool  {.importcpp: "getWriteMask".}
 
 proc apply*(this: Depth, state: State)  {.importcpp: "apply".}
 
-{.pop.} # header: "Depth
+{.pop.}  # header: "Depth"

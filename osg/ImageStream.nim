@@ -1,11 +1,8 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import Image # Provides Image
-import Texture # Provides Texture
-
-
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/Image  # provides: osg::Image
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/Texture  # provides: osg::Texture
 type
-  # Enums
   StreamStatus* {.size:sizeof(cuint),header: "ImageStream", importcpp: "osg::ImageStream::StreamStatus".} = enum
     INVALID = 0,
     PLAYING = 1,
@@ -17,13 +14,16 @@ type
     LOOPING = 1
 
   AudioStreams* {.header: "ImageStream", importcpp: "osg::ImageStream::AudioStreams".} = cint
+  ImageStream* {.header: "ImageStream", importcpp: "osg::ImageStream", byref.} = object #of class osg::Image
+    ## Image Stream class.
+
+
+
 {.push header: "ImageStream".}
 
+proc constructImageStream*(): ImageStream {.constructor,importcpp: "osg::ImageStream::ImageStream".}
 
-# Constructors and methods
-proc constructImageStream*(): ImageStream {.constructor,importcpp: "ImageStream".}
-
-proc constructImageStream*(image: Imagestream, copyop: Copyop = SHALLOW_COPY): ImageStream {.constructor,importcpp: "ImageStream(@)".}
+proc constructImageStream*(image: Imagestream, copyop: Copyop = SHALLOW_COPY): ImageStream {.constructor,importcpp: "osg::ImageStream::ImageStream(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: ImageStream): ptr Object   {.importcpp: "cloneType".}
@@ -93,4 +93,4 @@ proc createSuitableTexture*(this: var ImageStream): ptr Texture   {.importcpp: "
 
 proc applyLoopingMode*(this: var ImageStream)  {.importcpp: "applyLoopingMode".}
 
-{.pop.} # header: "ImageStream
+{.pop.}  # header: "ImageStream"

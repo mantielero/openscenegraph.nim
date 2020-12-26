@@ -1,23 +1,20 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import Shader # Provides Shader
-import Program # Provides Program
-import State # Provides State
-
-
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/Shader  # provides: osg::Shader
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/Program  # provides: osg::Program
 type
-  # Typedefs
   ShaderComponents* {.header: "ShaderComposer", importcpp: "osg::ShaderComponents".} = cint
   Shaders* {.header: "ShaderComposer", importcpp: "osg::ShaderComposer::Shaders".} = cint
   ProgramMap* {.header: "ShaderComposer", importcpp: "osg::ShaderComposer::ProgramMap".} = cint
   ShaderMainMap* {.header: "ShaderComposer", importcpp: "osg::ShaderComposer::ShaderMainMap".} = cint
+
+
 {.push header: "ShaderComposer".}
 
+proc constructShaderComposer*(): ShaderComposer {.constructor,importcpp: "osg::ShaderComposer::ShaderComposer".}
 
-# Constructors and methods
-proc constructShaderComposer*(): ShaderComposer {.constructor,importcpp: "ShaderComposer".}
-
-proc constructShaderComposer*(sa: Shadercomposer, copyop: Copyop = SHALLOW_COPY): ShaderComposer {.constructor,importcpp: "ShaderComposer(@)".}
+proc constructShaderComposer*(sa: Shadercomposer, copyop: Copyop = SHALLOW_COPY): ShaderComposer {.constructor,importcpp: "osg::ShaderComposer::ShaderComposer(@)".}
 
 proc cloneType*(this: ShaderComposer): ptr Object   {.importcpp: "cloneType".}
 
@@ -37,4 +34,4 @@ proc addShaderToProgram*(this: var ShaderComposer, program: ptr Program , shader
 
 proc releaseGLObjects*(this: ShaderComposer, state: ptr State )  {.importcpp: "releaseGLObjects".}
 
-{.pop.} # header: "ShaderComposer
+{.pop.}  # header: "ShaderComposer"

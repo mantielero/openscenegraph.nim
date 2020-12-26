@@ -1,21 +1,21 @@
-import Vec3d # Provides Vec3d
-import Vec4f # Provides Vec4f
+const
+  num_components* = 4
 
 
 type
   Value_type* {.header: "Vec4d", importcpp: "osg::Vec4d::value_type".} = cdouble
+
+
 {.push header: "Vec4d".}
 
-
-# Constructors and methods
-proc constructVec4d*(): Vec4d {.constructor,importcpp: "Vec4d".}
+proc constructVec4d*(): Vec4d {.constructor,importcpp: "osg::Vec4d::Vec4d".}
     ## Constructor that sets all components of the vector to zero
 
-proc constructVec4d*(x: Value_type, y: Value_type, z: Value_type, w: Value_type): Vec4d {.constructor,importcpp: "Vec4d(@)".}
+proc constructVec4d*(x: Value_type, y: Value_type, z: Value_type, w: Value_type): Vec4d {.constructor,importcpp: "osg::Vec4d::Vec4d(@)".}
 
-proc constructVec4d*(v3: Vec3d, w: Value_type): Vec4d {.constructor,importcpp: "Vec4d(@)".}
+proc constructVec4d*(v3: Vec3d, w: Value_type): Vec4d {.constructor,importcpp: "osg::Vec4d::Vec4d(@)".}
 
-proc constructVec4d*(vec: Vec4f): Vec4d {.constructor,importcpp: "Vec4d(@)".}
+proc constructVec4d*(vec: Vec4f): Vec4d {.constructor,importcpp: "osg::Vec4d::Vec4d(@)".}
 
 proc `==`*(this: Vec4d, v: Vec4d): bool  {.importcpp: "# == #".}
 
@@ -116,4 +116,4 @@ proc normalize*(this: var Vec4d): Value_type  {.importcpp: "normalize".}
     ## Normalize the vector so that it has length unity. Returns the previous
     ## length of the vector.
 
-{.pop.} # header: "Vec4d
+{.pop.}  # header: "Vec4d"

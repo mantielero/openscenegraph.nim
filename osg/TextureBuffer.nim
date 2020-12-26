@@ -1,23 +1,24 @@
-import gl # Provides GLenum
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import BufferObject # Provides BufferData
-import StateAttribute # Provides StateAttribute, Type
-import Image # Provides Image
-import State # Provides State
-
-
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/BufferObject  # provides: osg::BufferData
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/Image  # provides: osg::Image
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
 type
   BufferDataModifiedCount* {.header: "TextureBuffer", importcpp: "osg::TextureBuffer::BufferDataModifiedCount".} = buffered_value[unsigned int]
+  TextureBuffer* {.header: "TextureBuffer", importcpp: "osg::TextureBuffer", byref.} = object #of class osg::Texture
+    ## Encapsulates OpenGL texture buffer functionality in a Texture
+    ## delegating its content to attached BufferObject
+
+
+
 {.push header: "TextureBuffer".}
 
+proc constructTextureBuffer*(): TextureBuffer {.constructor,importcpp: "osg::TextureBuffer::TextureBuffer".}
 
-# Constructors and methods
-proc constructTextureBuffer*(): TextureBuffer {.constructor,importcpp: "TextureBuffer".}
+proc constructTextureBuffer*(image: ptr Bufferdata ): TextureBuffer {.constructor,importcpp: "osg::TextureBuffer::TextureBuffer(@)".}
 
-proc constructTextureBuffer*(image: ptr Bufferdata ): TextureBuffer {.constructor,importcpp: "TextureBuffer(@)".}
-
-proc constructTextureBuffer*(text: Texturebuffer, copyop: Copyop = SHALLOW_COPY): TextureBuffer {.constructor,importcpp: "TextureBuffer(@)".}
+proc constructTextureBuffer*(text: Texturebuffer, copyop: Copyop = SHALLOW_COPY): TextureBuffer {.constructor,importcpp: "osg::TextureBuffer::TextureBuffer(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: TextureBuffer): ptr Object   {.importcpp: "cloneType".}
@@ -88,4 +89,4 @@ proc getBufferData*(this: TextureBuffer): ptr Bufferdata   {.importcpp: "getBuff
 
 proc computeInternalFormat*(this: TextureBuffer)  {.importcpp: "computeInternalFormat".}
 
-{.pop.} # header: "TextureBuffer
+{.pop.}  # header: "TextureBuffer"

@@ -1,62 +1,64 @@
-import gl # Provides GLuint
-import stringfwd # Provides string
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import Program # Provides Program
-import State # Provides State
-
-
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/Program  # provides: osg::Program
 type
-  # Enums
   Type* {.size:sizeof(cint),header: "Shader", importcpp: "osg::Shader::Type".} = enum
-    VERTEX = 35633,
-    TESSCONTROL = 36488,
-    TESSEVALUATION = 36487,
-    GEOMETRY = 36313,
+    UNDEFINED = -1,
     FRAGMENT = 35632,
-    COMPUTE = 37305,
-    UNDEFINED = -1
+    VERTEX = 35633,
+    GEOMETRY = 36313,
+    TESSEVALUATION = 36487,
+    TESSCONTROL = 36488,
+    COMPUTE = 37305
 
   ShaderDefinesMode* {.size:sizeof(cuint),header: "Shader", importcpp: "osg::Shader::ShaderDefinesMode".} = enum
     USE_SHADER_PRAGMA = 0,
     USE_MANUAL_SETTINGS = 1
 
-  # Typedefs
-  ShaderDefines* {.header: "Shader", importcpp: "osg::ShaderDefines".} = cint
   Data* {.header: "Shader", importcpp: "osg::ShaderBinary::Data".} = cint
   CodeInjectionMap* {.header: "Shader", importcpp: "osg::Shader::CodeInjectionMap".} = cint
   PerContextShaders* {.header: "Shader", importcpp: "osg::Shader::ShaderObjects::PerContextShaders".} = cint
   ProgramSet* {.header: "Shader", importcpp: "osg::Shader::ProgramSet".} = cint
   Shaders* {.header: "Shader", importcpp: "osg::ShaderComponent::Shaders".} = cint
+  ShaderBinary* {.header: "Shader", importcpp: "osg::ShaderBinary", byref.} = object #of osg::Object
+    ## Simple class for wrapping up the data used in OpenGL ES 2's
+    ## glShaderBinary calls. ShaderBinary is set up with the binary data then
+    ## assigned to one or more osg::Shader.
+
+  PerContextShader* {.header: "Shader", importcpp: "osg::Shader::PerContextShader", byref.} = object #of osg::Referenced
+    ## PerContextShader (PCS) is an OSG-internal encapsulation of glShader
+    ## per-GL context.
+
+
+
 {.push header: "Shader".}
 
+proc constructShaderBinary*(): ShaderBinary {.constructor,importcpp: "osg::ShaderBinary::ShaderBinary".}
 
-# Constructors and methods
-proc constructShaderBinary*(): ShaderBinary {.constructor,importcpp: "ShaderBinary".}
-
-proc constructShaderBinary*(rhs: Shaderbinary, copyop: Copyop = SHALLOW_COPY): ShaderBinary {.constructor,importcpp: "ShaderBinary(@)".}
+proc constructShaderBinary*(rhs: Shaderbinary, copyop: Copyop = SHALLOW_COPY): ShaderBinary {.constructor,importcpp: "osg::ShaderBinary::ShaderBinary(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
-proc constructShader*(`type`: Type): Shader {.constructor,importcpp: "Shader(@)".}
+proc constructShader*(`type`: Type): Shader {.constructor,importcpp: "osg::Shader::Shader(@)".}
 
-proc constructShader*(`type`: Type, source: String): Shader {.constructor,importcpp: "Shader(@)".}
+proc constructShader*(`type`: Type, source: String): Shader {.constructor,importcpp: "osg::Shader::Shader(@)".}
 
-proc constructShader*(`type`: Type, shaderBinary: ptr Shaderbinary ): Shader {.constructor,importcpp: "Shader(@)".}
+proc constructShader*(`type`: Type, shaderBinary: ptr Shaderbinary ): Shader {.constructor,importcpp: "osg::Shader::Shader(@)".}
 
-proc constructShader*(rhs: Shader, copyop: Copyop = SHALLOW_COPY): Shader {.constructor,importcpp: "Shader(@)".}
+proc constructShader*(rhs: Shader, copyop: Copyop = SHALLOW_COPY): Shader {.constructor,importcpp: "osg::Shader::Shader(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
-proc constructPerContextShader*(shader: ptr Shader , contextID: cuint): PerContextShader {.constructor,importcpp: "PerContextShader(@)".}
+proc constructPerContextShader*(shader: ptr Shader , contextID: cuint): PerContextShader {.constructor,importcpp: "osg::Shader::PerContextShader::PerContextShader(@)".}
 
-proc constructPerContextShader*(): PerContextShader {.constructor,importcpp: "PerContextShader".}
+proc constructPerContextShader*(): PerContextShader {.constructor,importcpp: "osg::Shader::PerContextShader::PerContextShader".}
 
-proc constructPerContextShader*(Percontextshader): PerContextShader {.constructor,importcpp: "PerContextShader(@)".}
+proc constructPerContextShader*(Percontextshader): PerContextShader {.constructor,importcpp: "osg::Shader::PerContextShader::PerContextShader(@)".}
 
-proc constructShaderObjects*(shader: ptr Shader , contextID: cuint): ShaderObjects {.constructor,importcpp: "ShaderObjects(@)".}
+proc constructShaderObjects*(shader: ptr Shader , contextID: cuint): ShaderObjects {.constructor,importcpp: "osg::Shader::ShaderObjects::ShaderObjects(@)".}
 
-proc constructShaderComponent*(): ShaderComponent {.constructor,importcpp: "ShaderComponent".}
+proc constructShaderComponent*(): ShaderComponent {.constructor,importcpp: "osg::ShaderComponent::ShaderComponent".}
 
-proc constructShaderComponent*(sc: Shadercomponent, copyop: Copyop = SHALLOW_COPY): ShaderComponent {.constructor,importcpp: "ShaderComponent(@)".}
+proc constructShaderComponent*(sc: Shadercomponent, copyop: Copyop = SHALLOW_COPY): ShaderComponent {.constructor,importcpp: "osg::ShaderComponent::ShaderComponent(@)".}
 
 proc cloneType*(this: ShaderBinary): ptr Object   {.importcpp: "cloneType".}
 
@@ -252,4 +254,4 @@ proc resizeGLObjectBuffers*(this: var ShaderComponent, maxSize: cuint)  {.import
 
 proc releaseGLObjects*(this: ShaderComponent, state: ptr State  = 0)  {.importcpp: "releaseGLObjects".}
 
-{.pop.} # header: "Shader
+{.pop.}  # header: "Shader"

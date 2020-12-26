@@ -1,23 +1,18 @@
-import Referenced # Provides Referenced
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import ValueMap # Provides ValueMap
-
-
+import /usr/include/osg/ValueMap  # provides: osg::ValueMap
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/Referenced  # provides: osg::Referenced
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
 type
-  # Typedefs
   Values* {.header: "ValueStack", importcpp: "osg::ValueStack::Values".} = cint
   ValueStackMap* {.header: "ValueStack", importcpp: "osg::ValueStack::ValueStackMap".} = cint
-  UserValueObject* {.header: "ValueStack", importcpp: "osg::ValueStack::push::UserValueObject".} = TemplateValueObject[T]
   UserValueObject* {.header: "ValueStack", importcpp: "osg::ValueStack::getValue::UserValueObject".} = TemplateValueObject[T]
-  UserValueObject* {.header: "ValueStack", importcpp: "osg::ValueStack::getValue::UserValueObject".} = TemplateValueObject[T]
+
+
 {.push header: "ValueStack".}
 
+proc constructValueStack*(): ValueStack {.constructor,importcpp: "osg::ValueStack::ValueStack".}
 
-# Constructors and methods
-proc constructValueStack*(): ValueStack {.constructor,importcpp: "ValueStack".}
-
-proc constructValueStack*(ps: Valuestack, copyop: Copyop = SHALLOW_COPY): ValueStack {.constructor,importcpp: "ValueStack(@)".}
+proc constructValueStack*(ps: Valuestack, copyop: Copyop = SHALLOW_COPY): ValueStack {.constructor,importcpp: "osg::ValueStack::ValueStack(@)".}
 
 proc cloneType*(this: ValueStack): ptr Object   {.importcpp: "cloneType".}
 
@@ -37,8 +32,6 @@ proc getValueStackMap*(this: ValueStack): Valuestackmap  {.importcpp: "getValueS
 
 proc push*(this: var ValueStack, key: ptr Referenced , value: ptr Object )  {.importcpp: "push".}
 
-proc push*[T](this: var ValueStack, key: ptr Referenced , value: T)  {.importcpp: "push".}
-
 proc pop*(this: var ValueStack, key: ptr Referenced )  {.importcpp: "pop".}
 
 proc push*(this: var ValueStack, valueMap: ptr Valuemap )  {.importcpp: "push".}
@@ -49,12 +42,4 @@ proc getValue*(this: var ValueStack, key: ptr Referenced ): ptr Object   {.impor
 
 proc getValue*(this: ValueStack, key: ptr Referenced ): ptr Object   {.importcpp: "getValue".}
 
-proc getValueOfType*[T](this: var ValueStack, key: ptr Referenced ): ptr T  {.importcpp: "getValueOfType".}
-
-proc getValueOfType*[T](this: ValueStack, key: ptr Referenced ): ptr T  {.importcpp: "getValueOfType".}
-
-proc getValue*[T](this: var ValueStack, key: ptr Referenced , value: var T): bool  {.importcpp: "getValue".}
-
-proc getValue*[T](this: ValueStack, key: ptr Referenced , value: var T): bool  {.importcpp: "getValue".}
-
-{.pop.} # header: "ValueStack
+{.pop.}  # header: "ValueStack"

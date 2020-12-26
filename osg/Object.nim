@@ -1,45 +1,46 @@
-import Referenced # Provides Referenced
-import CopyOp # Provides CopyOp
-import stringfwd # Provides string
-import Camera # Provides Camera
-import StateSet # Provides StateSet
-import Callback # Provides CallbackObject, Callback
-import Drawable # Provides Drawable
-import Image # Provides Image
-import State # Provides State
-import Uniform # Provides Uniform
-import NodeVisitor # Provides NodeVisitor
-import UserDataContainer # Provides UserDataContainer
-import StateAttribute # Provides StateAttribute
-import ValueObject # Provides ValueObject
-import Node # Provides Node
-
-
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Camera  # provides: osg::Camera
+import /usr/include/osg/Referenced  # provides: osg::Referenced
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute
+import /usr/include/osg/ValueObject  # provides: osg::ValueObject
+import /usr/include/osg/Node  # provides: osg::Node
+import /usr/include/osg/Image  # provides: osg::Image
+import /usr/include/osg/Drawable  # provides: osg::Drawable
+import /usr/include/osg/Callback  # provides: osg::CallbackObject, osg::Callback
+import /usr/include/osg/StateSet  # provides: osg::StateSet
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/UserDataContainer  # provides: osg::UserDataContainer
+import /usr/include/osg/Uniform  # provides: osg::Uniform
+import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
 type
   DataVariance* {.size:sizeof(cuint),header: "Object", importcpp: "osg::Object::DataVariance".} = enum
     DYNAMIC = 0,
     STATIC = 1,
     UNSPECIFIED = 2
 
+  DummyObject* {.header: "Object", importcpp: "osg::DummyObject", byref.} = object #of osg::Object
+    ## DummyObject that can be used as placeholder but otherwise has no other
+    ## functionality.
+
+
+
 {.push header: "Object".}
 
-
-# Constructors and methods
-proc constructObject*(): Object {.constructor,importcpp: "Object".}
+proc constructObject*(): Object {.constructor,importcpp: "osg::Object::Object".}
     ## Construct an object. Note Object is a pure virtual base class and
     ## therefore cannot be constructed on its own, only derived classes which
     ## override the clone and className methods are concrete classes and can
     ## be constructed.
 
-proc constructObject*(threadSafeRefUnref: bool): Object {.constructor,importcpp: "Object(@)".}
+proc constructObject*(threadSafeRefUnref: bool): Object {.constructor,importcpp: "osg::Object::Object(@)".}
 
-proc constructObject*(Object, copyop: Copyop = SHALLOW_COPY): Object {.constructor,importcpp: "Object(@)".}
+proc constructObject*(Object, copyop: Copyop = SHALLOW_COPY): Object {.constructor,importcpp: "osg::Object::Object(@)".}
     ## Copy constructor, optional CopyOp object can be used to control
     ## shallow vs deep copying of dynamic data.
 
-proc constructDummyObject*(): DummyObject {.constructor,importcpp: "DummyObject".}
+proc constructDummyObject*(): DummyObject {.constructor,importcpp: "osg::DummyObject::DummyObject".}
 
-proc constructDummyObject*(org: Dummyobject, copyop: Copyop): DummyObject {.constructor,importcpp: "DummyObject(@)".}
+proc constructDummyObject*(org: Dummyobject, copyop: Copyop): DummyObject {.constructor,importcpp: "osg::DummyObject::DummyObject(@)".}
 
 proc cloneType*(this: Object): ptr Object   {.importcpp: "cloneType".}
     ## Clone the type of an object, with Object* return type. Must be defined
@@ -201,8 +202,6 @@ proc computeDataVariance*(this: var Object)  {.importcpp: "computeDataVariance".
 proc setUserDataContainer*(this: var Object, udc: ptr Userdatacontainer )  {.importcpp: "setUserDataContainer".}
     ## set the UserDataContainer object.
 
-proc setUserDataContainer*[T](this: var Object, udc: ref_ptr[T])  {.importcpp: "setUserDataContainer".}
-
 proc getUserDataContainer*(this: var Object): ptr Userdatacontainer   {.importcpp: "getUserDataContainer".}
     ## get the UserDataContainer attached to this object.
 
@@ -220,23 +219,11 @@ proc setUserData*(this: var Object, obj: ptr Referenced )  {.importcpp: "setUser
     ## from Referenced then create an adapter object which points to your own
     ## object and handles the memory addressing.
 
-proc setUserData*[T](this: var Object, ud: ref_ptr[T])  {.importcpp: "setUserData".}
-
 proc getUserData*(this: var Object): ptr Referenced   {.importcpp: "getUserData".}
     ## Get user data.
 
 proc getUserData*(this: Object): ptr Referenced   {.importcpp: "getUserData".}
     ## Get const user data.
-
-proc getUserValue*[T](this: Object, name: String, value: var T): bool  {.importcpp: "getUserValue".}
-    ## Convenience method that casts the named UserObject to
-    ## osg::TemplateValueObject<T> and gets the value. To use this template
-    ## method you need to include the osg/ValueObject header.
-
-proc setUserValue*[T](this: var Object, name: String, value: T)  {.importcpp: "setUserValue".}
-    ## Convenience method that creates the osg::TemplateValueObject<T> to
-    ## store the specified value and adds it as a named UserObject. To use
-    ## this template method you need to include the osg/ValueObject header.
 
 proc resizeGLObjectBuffers*(this: var Object, cuint)  {.importcpp: "resizeGLObjectBuffers".}
     ## Resize any per context GLObject buffers to specified size.
@@ -249,12 +236,6 @@ proc releaseGLObjects*(this: Object, ptr State  = 0)  {.importcpp: "releaseGLObj
 proc `=`*(this: var Object, Object): Object  {.importcpp: "# = #".}
     ## disallow any copy operator.
 
-proc clone*[T](this: var osg, t: ptr T, copyop: Copyop): ptr T  {.importcpp: "clone".}
-
-proc clone*[T](this: var osg, t: ptr T, name: String, copyop: Copyop): ptr T  {.importcpp: "clone".}
-
-proc cloneType*[T](this: var osg, t: ptr T): ptr T  {.importcpp: "cloneType".}
-
 proc cloneType*(this: DummyObject): ptr Object   {.importcpp: "cloneType".}
 
 proc clone*(this: DummyObject, copyop: Copyop): ptr Object   {.importcpp: "clone".}
@@ -265,8 +246,4 @@ proc libraryName*(this: DummyObject): cstring  {.importcpp: "libraryName".}
 
 proc className*(this: DummyObject): cstring  {.importcpp: "className".}
 
-proc resizeGLObjectBuffers*[T](this: var osg, `object`: Ref_ptr[T], maxSize: cuint)  {.importcpp: "resizeGLObjectBuffers".}
-
-proc releaseGLObjects*[T](this: var osg, `object`: Ref_ptr[T], state: ptr State )  {.importcpp: "releaseGLObjects".}
-
-{.pop.} # header: "Object
+{.pop.}  # header: "Object"

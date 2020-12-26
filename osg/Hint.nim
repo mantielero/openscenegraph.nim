@@ -1,19 +1,19 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import gl # Provides GLenum
-import StateAttribute # Provides StateAttribute, Type
-import State # Provides State
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+type
+  Hint* {.header: "Hint", importcpp: "osg::Hint", byref.} = object #of class osg::StateAttribute
+
 
 
 {.push header: "Hint".}
 
+proc constructHint*(): Hint {.constructor,importcpp: "osg::Hint::Hint".}
 
-# Constructors and methods
-proc constructHint*(): Hint {.constructor,importcpp: "Hint".}
+proc constructHint*(target: GLenum, mode: GLenum): Hint {.constructor,importcpp: "osg::Hint::Hint(@)".}
 
-proc constructHint*(target: GLenum, mode: GLenum): Hint {.constructor,importcpp: "Hint(@)".}
-
-proc constructHint*(hint: Hint, copyop: Copyop = SHALLOW_COPY): Hint {.constructor,importcpp: "Hint(@)".}
+proc constructHint*(hint: Hint, copyop: Copyop = SHALLOW_COPY): Hint {.constructor,importcpp: "osg::Hint::Hint(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: Hint): ptr Object   {.importcpp: "cloneType".}
@@ -44,4 +44,4 @@ proc getMode*(this: Hint): GLenum  {.importcpp: "getMode".}
 
 proc apply*(this: Hint, state: State)  {.importcpp: "apply".}
 
-{.pop.} # header: "Hint
+{.pop.}  # header: "Hint"

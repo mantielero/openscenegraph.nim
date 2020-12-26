@@ -1,23 +1,21 @@
-import gl # Provides GLenum, GLint, GLuint
-import glext # Provides GLuint64
-import stringfwd # Provides string
-import GLExtensions # Provides VertexAttribAlias, GLExtensions
-import DisplaySettings # Provides DisplaySettings
-import StateAttribute # Provides StateAttribute
-import Matrix # Provides Matrix
-import FrameStamp # Provides FrameStamp
-import BufferObject # Provides GLBufferObject
-import Uniform # Provides Uniform
-import Timer # Provides Timer_t
-import AttributeDispatchers # Provides AttributeDispatchers
-import VertexArrayState # Provides VertexArrayState
-import ShaderComposer # Provides ShaderComposer
-import Polytope # Provides Polytope
-import Viewport # Provides Viewport
-import GraphicsCostEstimator # Provides GraphicsCostEstimator
-import GraphicsContext # Provides GraphicsContext
-
-
+import /usr/include/osg/AttributeDispatchers  # provides: osg::AttributeDispatchers
+import /usr/include/osg/GLExtensions  # provides: osg::GLExtensions, osg::VertexAttribAlias
+import /usr/include/osg/ShaderComposer  # provides: osg::ShaderComposer
+import /usr/include/osg/BufferObject  # provides: osg::GLBufferObject
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute
+import /usr/include/osg/Array  # provides: osg::Array
+import /usr/include/osg/Polytope  # provides: osg::Polytope
+import /usr/include/osg/Shader  # provides: osg::ShaderDefines
+import /usr/include/osg/Viewport  # provides: osg::Viewport
+import /usr/include/osg/Timer  # provides: osg::Timer_t
+import /usr/include/osg/StateSet  # provides: osg::StateSet
+import /usr/include/osg/Matrix  # provides: osg::RefMatrix, osg::Matrix
+import /usr/include/osg/GraphicsCostEstimator  # provides: osg::GraphicsCostEstimator
+import /usr/include/osg/VertexArrayState  # provides: osg::VertexArrayState
+import /usr/include/osg/GraphicsContext  # provides: osg::GraphicsContext
+import /usr/include/osg/Uniform  # provides: osg::Uniform
+import /usr/include/osg/FrameStamp  # provides: osg::FrameStamp
+import /usr/include/osg/DisplaySettings  # provides: osg::DisplaySettings
 type
   CheckForGLErrors* {.size:sizeof(cuint),header: "State", importcpp: "osg::State::CheckForGLErrors".} = enum
     NEVER_CHECK_GL_ERRORS = 0,
@@ -34,7 +32,6 @@ type
       ## every attribute is applied, allow errors to be directly associated
       ## with particular operations which makes debugging much easier.
 
-  # Typedefs
   ExtensionMap* {.header: "State", importcpp: "osg::State::ExtensionMap".} = cint
   StateSetStack* {.header: "State", importcpp: "osg::State::StateSetStack".} = cint
   VertexAttribAliasList* {.header: "State", importcpp: "osg::State::VertexAttribAliasList".} = cint
@@ -53,41 +50,41 @@ type
   TextureAttributeMapList* {.header: "State", importcpp: "osg::State::TextureAttributeMapList".} = cint
   UniformMap* {.header: "State", importcpp: "osg::State::UniformMap".} = cint
   MatrixStack* {.header: "State", importcpp: "osg::State::MatrixStack".} = cint
-  ActiveTextureProc* {.header: "State", importcpp: "osg::State::ActiveTextureProc".} = proc (texture: GLenum)
-  FogCoordPointerProc* {.header: "State", importcpp: "osg::State::FogCoordPointerProc".} = proc (`type`: GLenum, stride: GLsizei, pointer: ptr GLvoid)
-  SecondaryColorPointerProc* {.header: "State", importcpp: "osg::State::SecondaryColorPointerProc".} = proc (size: GLint, `type`: GLenum, stride: GLsizei, pointer: ptr GLvoid)
-  MultiTexCoord4fProc* {.header: "State", importcpp: "osg::State::MultiTexCoord4fProc".} = proc (target: GLenum, x: GLfloat, y: GLfloat, z: GLfloat, w: GLfloat)
-  VertexAttrib4fProc* {.header: "State", importcpp: "osg::State::VertexAttrib4fProc".} = proc (index: GLuint, x: GLfloat, y: GLfloat, z: GLfloat, w: GLfloat)
-  VertexAttrib4fvProc* {.header: "State", importcpp: "osg::State::VertexAttrib4fvProc".} = proc (index: GLuint, v: ptr GLfloat)
-  VertexAttribPointerProc* {.header: "State", importcpp: "osg::State::VertexAttribPointerProc".} = proc (cuint, GLint, GLenum, normalized: GLboolean, stride: GLsizei, pointer: ptr GLvoid)
-  VertexAttribIPointerProc* {.header: "State", importcpp: "osg::State::VertexAttribIPointerProc".} = proc (cuint, GLint, GLenum, stride: GLsizei, pointer: ptr GLvoid)
-  VertexAttribLPointerProc* {.header: "State", importcpp: "osg::State::VertexAttribLPointerProc".} = proc (cuint, GLint, GLenum, stride: GLsizei, pointer: ptr GLvoid)
-  EnableVertexAttribProc* {.header: "State", importcpp: "osg::State::EnableVertexAttribProc".} = proc (cuint)
-  DisableVertexAttribProc* {.header: "State", importcpp: "osg::State::DisableVertexAttribProc".} = proc (cuint)
-  BindBufferProc* {.header: "State", importcpp: "osg::State::BindBufferProc".} = proc (target: GLenum, buffer: GLuint)
-  DrawArraysInstancedProc* {.header: "State", importcpp: "osg::State::DrawArraysInstancedProc".} = proc (mode: GLenum, first: GLint, count: GLsizei, primcount: GLsizei)
-  DrawElementsInstancedProc* {.header: "State", importcpp: "osg::State::DrawElementsInstancedProc".} = proc (mode: GLenum, count: GLsizei, `type`: GLenum, indices: ptr GLvoid, primcount: GLsizei)
+  ActiveTextureProc* {.header: "State", importcpp: "osg::State::ActiveTextureProc".} = void (*)(GLenum)
+  FogCoordPointerProc* {.header: "State", importcpp: "osg::State::FogCoordPointerProc".} = void (*)(GLenum, GLsizei, const GLvoid *)
+  SecondaryColorPointerProc* {.header: "State", importcpp: "osg::State::SecondaryColorPointerProc".} = void (*)(GLint, GLenum, GLsizei, const GLvoid *)
+  MultiTexCoord4fProc* {.header: "State", importcpp: "osg::State::MultiTexCoord4fProc".} = void (*)(GLenum, GLfloat, GLfloat, GLfloat, GLfloat)
+  VertexAttrib4fProc* {.header: "State", importcpp: "osg::State::VertexAttrib4fProc".} = void (*)(GLuint, GLfloat, GLfloat, GLfloat, GLfloat)
+  VertexAttrib4fvProc* {.header: "State", importcpp: "osg::State::VertexAttrib4fvProc".} = void (*)(GLuint, const GLfloat *)
+  VertexAttribPointerProc* {.header: "State", importcpp: "osg::State::VertexAttribPointerProc".} = void (*)(unsigned int, GLint, GLenum, GLboolean, GLsizei, const GLvoid *)
+  VertexAttribIPointerProc* {.header: "State", importcpp: "osg::State::VertexAttribIPointerProc".} = void (*)(unsigned int, GLint, GLenum, GLsizei, const GLvoid *)
+  VertexAttribLPointerProc* {.header: "State", importcpp: "osg::State::VertexAttribLPointerProc".} = void (*)(unsigned int, GLint, GLenum, GLsizei, const GLvoid *)
+  EnableVertexAttribProc* {.header: "State", importcpp: "osg::State::EnableVertexAttribProc".} = void (*)(unsigned int)
+  DisableVertexAttribProc* {.header: "State", importcpp: "osg::State::DisableVertexAttribProc".} = void (*)(unsigned int)
+  BindBufferProc* {.header: "State", importcpp: "osg::State::BindBufferProc".} = void (*)(GLenum, GLuint)
+  DrawArraysInstancedProc* {.header: "State", importcpp: "osg::State::DrawArraysInstancedProc".} = void (*)(GLenum, GLint, GLsizei, GLsizei)
+  DrawElementsInstancedProc* {.header: "State", importcpp: "osg::State::DrawElementsInstancedProc".} = void (*)(GLenum, GLsizei, GLenum, const GLvoid *, GLsizei)
+
+
 {.push header: "State".}
 
+proc constructState*(): State {.constructor,importcpp: "osg::State::State".}
 
-# Constructors and methods
-proc constructState*(): State {.constructor,importcpp: "State".}
+proc constructApplyModeProxy*(state: State, mode: GLenum, value: bool): ApplyModeProxy {.constructor,importcpp: "osg::State::ApplyModeProxy::ApplyModeProxy(@)".}
 
-proc constructApplyModeProxy*(state: State, mode: GLenum, value: bool): ApplyModeProxy {.constructor,importcpp: "ApplyModeProxy(@)".}
+proc constructApplyTextureModeProxy*(state: State, unit: cuint, mode: GLenum, value: bool): ApplyTextureModeProxy {.constructor,importcpp: "osg::State::ApplyTextureModeProxy::ApplyTextureModeProxy(@)".}
 
-proc constructApplyTextureModeProxy*(state: State, unit: cuint, mode: GLenum, value: bool): ApplyTextureModeProxy {.constructor,importcpp: "ApplyTextureModeProxy(@)".}
+proc constructSetCurrentVertexArrayStateProxy*(state: State, vas: ptr Vertexarraystate ): SetCurrentVertexArrayStateProxy {.constructor,importcpp: "osg::State::SetCurrentVertexArrayStateProxy::SetCurrentVertexArrayStateProxy(@)".}
 
-proc constructSetCurrentVertexArrayStateProxy*(state: State, vas: ptr Vertexarraystate ): SetCurrentVertexArrayStateProxy {.constructor,importcpp: "SetCurrentVertexArrayStateProxy(@)".}
+proc constructModeStack*(): ModeStack {.constructor,importcpp: "osg::State::ModeStack::ModeStack".}
 
-proc constructModeStack*(): ModeStack {.constructor,importcpp: "ModeStack".}
+proc constructAttributeStack*(): AttributeStack {.constructor,importcpp: "osg::State::AttributeStack::AttributeStack".}
 
-proc constructAttributeStack*(): AttributeStack {.constructor,importcpp: "AttributeStack".}
+proc constructUniformStack*(): UniformStack {.constructor,importcpp: "osg::State::UniformStack::UniformStack".}
 
-proc constructUniformStack*(): UniformStack {.constructor,importcpp: "UniformStack".}
+proc constructDefineStack*(): DefineStack {.constructor,importcpp: "osg::State::DefineStack::DefineStack".}
 
-proc constructDefineStack*(): DefineStack {.constructor,importcpp: "DefineStack".}
-
-proc constructDefineMap*(): DefineMap {.constructor,importcpp: "DefineMap".}
+proc constructDefineMap*(): DefineMap {.constructor,importcpp: "osg::State::DefineMap::DefineMap".}
 
 proc setGraphicsContext*(this: var State, context: ptr Graphicscontext )  {.importcpp: "setGraphicsContext".}
     ## Set the graphics context associated with that owns this State object.
@@ -109,20 +106,6 @@ proc setContextID*(this: var State, contextID: cuint)  {.importcpp: "setContextI
 
 proc getContextID*(this: State): cuint  {.importcpp: "getContextID".}
     ## Get the current OpenGL context unique ID.
-
-proc get*[T](this: var State): ptr T  {.importcpp: "get".}
-    ## Get a specific GL extensions object or GraphicsObjectManager,
-    ## initialize if not already present. Note, must only be called from a
-    ## the graphics context thread associated with this osg::State.
-
-proc get*[T](this: State): ptr T  {.importcpp: "get".}
-    ## Get a specific GL extensions object or GraphicsObjectManager if it
-    ## already exists in the extension map. Note, safe to call outwith a the
-    ## graphics context thread associated with this osg::State. Returns NULL
-    ## if the desired extension object has not been created yet.
-
-proc set*[T](this: var State, `ptr`: ptr T)  {.importcpp: "set".}
-    ## Set a specific GL extensions object pr GraphicsObjectManager.
 
 proc setShaderCompositionEnabled*(this: var State, flag: bool)  {.importcpp: "setShaderCompositionEnabled".}
 
@@ -863,4 +846,4 @@ proc get*(this: State): ptr Glextensions   {.importcpp: "get".}
 
 proc set*(this: var State, `ptr`: ptr Glextensions )  {.importcpp: "set".}
 
-{.pop.} # header: "State
+{.pop.}  # header: "State"

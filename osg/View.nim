@@ -1,14 +1,11 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import Matrixd # Provides Matrixd
-import Matrix # Provides Matrix
-import FrameStamp # Provides FrameStamp
-import State # Provides State
-import Stats # Provides Stats
-import Camera # Provides Camera
-import Light # Provides Light
-
-
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Camera  # provides: osg::Camera
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/Stats  # provides: osg::Stats
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/Matrix  # provides: osg::Matrix
+import /usr/include/osg/Light  # provides: osg::Light
+import /usr/include/osg/FrameStamp  # provides: osg::FrameStamp
 type
   LightingMode* {.size:sizeof(cuint),header: "View", importcpp: "osg::View::LightingMode".} = enum
     ## Options for controlling the global lighting used for the view.
@@ -18,19 +15,19 @@ type
     SKY_LIGHT = 2
 
   Slaves* {.header: "View", importcpp: "osg::View::Slaves".} = cint
+
+
 {.push header: "View".}
 
+proc constructView*(): View {.constructor,importcpp: "osg::View::View".}
 
-# Constructors and methods
-proc constructView*(): View {.constructor,importcpp: "View".}
+proc constructView*(view: View, copyop: Copyop = SHALLOW_COPY): View {.constructor,importcpp: "osg::View::View(@)".}
 
-proc constructView*(view: View, copyop: Copyop = SHALLOW_COPY): View {.constructor,importcpp: "View(@)".}
+proc constructSlave*(useMastersSceneData: bool): Slave {.constructor,importcpp: "osg::View::Slave::Slave(@)".}
 
-proc constructSlave*(useMastersSceneData: bool): Slave {.constructor,importcpp: "Slave(@)".}
+proc constructSlave*(camera: ptr Camera , projectionOffset: Matrixd, viewOffset: Matrixd, useMastersSceneData: bool): Slave {.constructor,importcpp: "osg::View::Slave::Slave(@)".}
 
-proc constructSlave*(camera: ptr Camera , projectionOffset: Matrixd, viewOffset: Matrixd, useMastersSceneData: bool): Slave {.constructor,importcpp: "Slave(@)".}
-
-proc constructSlave*(rhs: Slave): Slave {.constructor,importcpp: "Slave(@)".}
+proc constructSlave*(rhs: Slave): Slave {.constructor,importcpp: "osg::View::Slave::Slave(@)".}
 
 proc cloneType*(this: View): ptr Object   {.importcpp: "cloneType".}
 
@@ -121,4 +118,4 @@ proc releaseGLObjects*(this: View, ptr State  = 0)  {.importcpp: "releaseGLObjec
 
 proc createRenderer*(this: var View, ptr Camera ): ptr Graphicsoperation   {.importcpp: "createRenderer".}
 
-{.pop.} # header: "View
+{.pop.}  # header: "View"

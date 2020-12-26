@@ -1,18 +1,19 @@
-import Polytope # Provides Polytope
-import Node # Provides NodePath
-
-
+import /usr/include/osg/BoundingSphere  # provides: osg::BoundingSphere
+import /usr/include/osg/CullStack  # provides: osg::CullStack
+import /usr/include/osg/Polytope  # provides: osg::Polytope
+import /usr/include/osg/Node  # provides: osg::NodePath
+import /usr/include/osg/BoundingBox  # provides: osg::BoundingBox
+import /usr/include/osg/ConvexPlanarOccluder  # provides: osg::ConvexPlanarOccluder
+import /usr/include/osg/Matrix  # provides: osg::Matrix
 type
-  # Typedefs
   HoleList* {.header: "ShadowVolumeOccluder", importcpp: "osg::ShadowVolumeOccluder::HoleList".} = cint
-  ShadowVolumeOccluderList* {.header: "ShadowVolumeOccluder", importcpp: "osg::ShadowVolumeOccluderList".} = cint
+
+
 {.push header: "ShadowVolumeOccluder".}
 
+proc constructShadowVolumeOccluder*(svo: Shadowvolumeoccluder): ShadowVolumeOccluder {.constructor,importcpp: "osg::ShadowVolumeOccluder::ShadowVolumeOccluder(@)".}
 
-# Constructors and methods
-proc constructShadowVolumeOccluder*(svo: Shadowvolumeoccluder): ShadowVolumeOccluder {.constructor,importcpp: "ShadowVolumeOccluder(@)".}
-
-proc constructShadowVolumeOccluder*(): ShadowVolumeOccluder {.constructor,importcpp: "ShadowVolumeOccluder".}
+proc constructShadowVolumeOccluder*(): ShadowVolumeOccluder {.constructor,importcpp: "osg::ShadowVolumeOccluder::ShadowVolumeOccluder".}
 
 proc `<`*(this: ShadowVolumeOccluder, svo: Shadowvolumeoccluder): bool  {.importcpp: "# < #".}
 
@@ -74,4 +75,4 @@ proc pushCurrentMask*(this: var ShadowVolumeOccluder)  {.importcpp: "pushCurrent
 
 proc popCurrentMask*(this: var ShadowVolumeOccluder)  {.importcpp: "popCurrentMask".}
 
-{.pop.} # header: "ShadowVolumeOccluder
+{.pop.}  # header: "ShadowVolumeOccluder"

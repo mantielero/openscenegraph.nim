@@ -1,19 +1,15 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import Matrix # Provides Matrix
-import NodeVisitor # Provides NodeVisitor
-
-
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/Matrix  # provides: osg::Matrix
+import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
 {.push header: "MatrixTransform".}
 
+proc constructMatrixTransform*(): MatrixTransform {.constructor,importcpp: "osg::MatrixTransform::MatrixTransform".}
 
-# Constructors and methods
-proc constructMatrixTransform*(): MatrixTransform {.constructor,importcpp: "MatrixTransform".}
-
-proc constructMatrixTransform*(Matrixtransform, copyop: Copyop = SHALLOW_COPY): MatrixTransform {.constructor,importcpp: "MatrixTransform(@)".}
+proc constructMatrixTransform*(Matrixtransform, copyop: Copyop = SHALLOW_COPY): MatrixTransform {.constructor,importcpp: "osg::MatrixTransform::MatrixTransform(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
-proc constructMatrixTransform*(matix: Matrix): MatrixTransform {.constructor,importcpp: "MatrixTransform(@)".}
+proc constructMatrixTransform*(matix: Matrix): MatrixTransform {.constructor,importcpp: "osg::MatrixTransform::MatrixTransform(@)".}
 
 proc cloneType*(this: MatrixTransform): ptr Object   {.importcpp: "cloneType".}
 
@@ -50,4 +46,4 @@ proc computeLocalToWorldMatrix*(this: MatrixTransform, matrix: Matrix, ptr Nodev
 
 proc computeWorldToLocalMatrix*(this: MatrixTransform, matrix: Matrix, ptr Nodevisitor ): bool  {.importcpp: "computeWorldToLocalMatrix".}
 
-{.pop.} # header: "MatrixTransform
+{.pop.}  # header: "MatrixTransform"

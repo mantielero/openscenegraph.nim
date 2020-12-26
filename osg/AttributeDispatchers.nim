@@ -1,14 +1,13 @@
-
-
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Array  # provides: osg::Array
 type
-  # Typedefs
   AttributeDispatchMapList* {.header: "AttributeDispatchers", importcpp: "osg::AttributeDispatchers::AttributeDispatchMapList".} = cint
   AttributeDispatchList* {.header: "AttributeDispatchers", importcpp: "osg::AttributeDispatchers::AttributeDispatchList".} = cint
+
+
 {.push header: "AttributeDispatchers".}
 
-
-# Constructors and methods
-proc constructAttributeDispatchers*(): AttributeDispatchers {.constructor,importcpp: "AttributeDispatchers".}
+proc constructAttributeDispatchers*(): AttributeDispatchers {.constructor,importcpp: "osg::AttributeDispatchers::AttributeDispatchers".}
 
 proc assign*(this: var AttributeDispatch, ptr GLvoid)  {.importcpp: "assign".}
 
@@ -52,4 +51,4 @@ proc assignTexCoordDispatchers*(this: var AttributeDispatchers, unit: cuint)  {.
 
 proc assignVertexAttribDispatchers*(this: var AttributeDispatchers, unit: cuint)  {.importcpp: "assignVertexAttribDispatchers".}
 
-{.pop.} # header: "AttributeDispatchers
+{.pop.}  # header: "AttributeDispatchers"

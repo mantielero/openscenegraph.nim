@@ -1,23 +1,21 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import StateSet # Provides StateSet
-import BoundingSphere # Provides BoundingSphere
-import NodeVisitor # Provides NodeVisitor
-import Light # Provides Light
-
-
+import /usr/include/osg/BoundingSphere  # provides: osg::BoundingSphere
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateSet  # provides: osg::StateSet
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/Light  # provides: osg::Light
+import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
 type
   ReferenceFrame* {.size:sizeof(cuint),header: "LightSource", importcpp: "osg::LightSource::ReferenceFrame".} = enum
     RELATIVE_RF = 0,
     ABSOLUTE_RF = 1
 
+
+
 {.push header: "LightSource".}
 
+proc constructLightSource*(): LightSource {.constructor,importcpp: "osg::LightSource::LightSource".}
 
-# Constructors and methods
-proc constructLightSource*(): LightSource {.constructor,importcpp: "LightSource".}
-
-proc constructLightSource*(ls: Lightsource, copyop: Copyop = SHALLOW_COPY): LightSource {.constructor,importcpp: "LightSource(@)".}
+proc constructLightSource*(ls: Lightsource, copyop: Copyop = SHALLOW_COPY): LightSource {.constructor,importcpp: "osg::LightSource::LightSource(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: LightSource): ptr Object   {.importcpp: "cloneType".}
@@ -66,4 +64,4 @@ proc setThreadSafeRefUnref*(this: var LightSource, threadSafe: bool)  {.importcp
 
 proc computeBound*(this: LightSource): Boundingsphere  {.importcpp: "computeBound".}
 
-{.pop.} # header: "LightSource
+{.pop.}  # header: "LightSource"

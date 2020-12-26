@@ -1,19 +1,35 @@
-import gl # Provides GLubyte, GLushort, GLuint
-
-
+import /usr/include/osg/Vec3  # provides: osg::Vec3
+import /usr/include/osg/Vec4  # provides: osg::Vec4
+import /usr/include/osg/Vec2  # provides: osg::Vec2
+import /usr/include/osg/Vec4d  # provides: osg::Vec4d
+import /usr/include/osg/Vec3d  # provides: osg::Vec3d
+import /usr/include/osg/Vec2d  # provides: osg::Vec2d
 type
-  # Typedefs
-  Index* {.header: "TemplatePrimitiveIndexFunctor", importcpp: "osg::TemplatePrimitiveIndexFunctor::drawElements::Index".} = GLubyte
-  IndexPointer* {.header: "TemplatePrimitiveIndexFunctor", importcpp: "osg::TemplatePrimitiveIndexFunctor::drawElements::IndexPointer".} = ptr Index
-  Index* {.header: "TemplatePrimitiveIndexFunctor", importcpp: "osg::TemplatePrimitiveIndexFunctor::drawElements::Index".} = GLushort
-  IndexPointer* {.header: "TemplatePrimitiveIndexFunctor", importcpp: "osg::TemplatePrimitiveIndexFunctor::drawElements::IndexPointer".} = ptr Index
   Index* {.header: "TemplatePrimitiveIndexFunctor", importcpp: "osg::TemplatePrimitiveIndexFunctor::drawElements::Index".} = GLuint
   IndexPointer* {.header: "TemplatePrimitiveIndexFunctor", importcpp: "osg::TemplatePrimitiveIndexFunctor::drawElements::IndexPointer".} = ptr Index
+  TemplatePrimitiveIndexFunctor* {.header: "TemplatePrimitiveIndexFunctor", importcpp: "osg::TemplatePrimitiveIndexFunctor", byref.} [T] = object #of class osg::PrimitiveIndexFunctor
+    ## Provides access to the primitives that compose an osg::Drawable.
+    ## Notice that TemplatePrimitiveIndexFunctor is a class template, and
+    ## that it inherits from its template parameter T. This template
+    ## parameter must implement operator()(const osg::Vec3 v1, const
+    ## osg::Vec3 v2, const osg::Vec3 v3, bool treatVertexDataAsTemporary),
+    ## operator()(const osg::Vec3 v1, const osg::Vec3 v2, bool
+    ## treatVertexDataAsTemporary), operator()(const osg::Vec3 v1, const
+    ## osg::Vec3 v2, const osg::Vec3 v3, bool treatVertexDataAsTemporary),
+    ## and operator()(const osg::Vec3 v1, const osg::Vec3 v2, const osg::Vec3
+    ## v3, const osg::Vec3 v4, bool treatVertexDataAsTemporary) which will be
+    ## called for the matching primitive when the functor is applied to a
+    ## Drawable. Parameters v1, v2, v3, and v4 are the vertices of the
+    ## primitive. The last parameter, treatVertexDataAsTemporary, indicates
+    ## whether these vertices are coming from a "real" vertex array, or from
+    ## a temporary vertex array, created by the TemplatePrimitiveIndexFunctor
+    ## from some other geometry representation.
+
+
+
 {.push header: "TemplatePrimitiveIndexFunctor".}
 
-
-# Constructors and methods
-proc constructTemplatePrimitiveIndexFunctor*[T](): TemplatePrimitiveIndexFunctor {.constructor,importcpp: "TemplatePrimitiveIndexFunctor<T>".}
+proc constructTemplatePrimitiveIndexFunctor*[T](): TemplatePrimitiveIndexFunctor {.constructor,importcpp: "osg::TemplatePrimitiveIndexFunctor::TemplatePrimitiveIndexFunctor<T>".}
 
 proc setVertexArray*(this: var TemplatePrimitiveIndexFunctor, cuint, ptr Vec2 )  {.importcpp: "setVertexArray".}
 
@@ -35,4 +51,4 @@ proc drawElements*(this: var TemplatePrimitiveIndexFunctor, mode: GLenum, count:
 
 proc drawElements*(this: var TemplatePrimitiveIndexFunctor, mode: GLenum, count: GLsizei, indices: ptr GLuint)  {.importcpp: "drawElements".}
 
-{.pop.} # header: "TemplatePrimitiveIndexFunctor
+{.pop.}  # header: "TemplatePrimitiveIndexFunctor"

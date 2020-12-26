@@ -1,25 +1,23 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import StateSet # Provides StateSet
-import BoundingSphere # Provides BoundingSphere
-import BoundingBox # Provides BoundingBox
-import NodeVisitor # Provides NodeVisitor
-import ClipPlane # Provides ClipPlane
-
-
+import /usr/include/osg/BoundingSphere  # provides: osg::BoundingSphere
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/ClipPlane  # provides: osg::ClipPlane
+import /usr/include/osg/BoundingBox  # provides: osg::BoundingBox
+import /usr/include/osg/StateSet  # provides: osg::StateSet
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
 type
   ReferenceFrame* {.size:sizeof(cuint),header: "ClipNode", importcpp: "osg::ClipNode::ReferenceFrame".} = enum
     RELATIVE_RF = 0,
     ABSOLUTE_RF = 1
 
   ClipPlaneList* {.header: "ClipNode", importcpp: "osg::ClipNode::ClipPlaneList".} = cint
+
+
 {.push header: "ClipNode".}
 
+proc constructClipNode*(): ClipNode {.constructor,importcpp: "osg::ClipNode::ClipNode".}
 
-# Constructors and methods
-proc constructClipNode*(): ClipNode {.constructor,importcpp: "ClipNode".}
-
-proc constructClipNode*(es: Clipnode, copyop: Copyop = SHALLOW_COPY): ClipNode {.constructor,importcpp: "ClipNode(@)".}
+proc constructClipNode*(es: Clipnode, copyop: Copyop = SHALLOW_COPY): ClipNode {.constructor,importcpp: "osg::ClipNode::ClipNode(@)".}
 
 proc cloneType*(this: ClipNode): ptr Object   {.importcpp: "cloneType".}
 
@@ -87,4 +85,4 @@ proc setLocalStateSetModes*(this: var ClipNode, Glmodevalue)  {.importcpp: "setL
 
 proc computeBound*(this: ClipNode): Boundingsphere  {.importcpp: "computeBound".}
 
-{.pop.} # header: "ClipNode
+{.pop.}  # header: "ClipNode"

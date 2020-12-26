@@ -1,25 +1,26 @@
-import gl # Provides GLenum, GLsizei
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import StateAttribute # Provides StateAttribute, Type
-import Image # Provides Image
-import State # Provides State
-
-
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/Image  # provides: osg::Image
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
 type
   ImageModifiedCount* {.header: "Texture3D", importcpp: "osg::Texture3D::ImageModifiedCount".} = buffered_value[unsigned int]
+  Texture3D* {.header: "Texture3D", importcpp: "osg::Texture3D", byref.} = object #of class osg::Texture
+    ## Encapsulates OpenGL 3D texture functionality. Doesn't support cube
+    ## maps, so ignore face parameters.
+
+  SubloadCallback* {.header: "Texture3D", importcpp: "osg::Texture3D::SubloadCallback", byref.} = object #of class osg::Referenced
+
+
+
 {.push header: "Texture3D".}
 
+proc constructTexture3D*(): Texture3D {.constructor,importcpp: "osg::Texture3D::Texture3D".}
 
-# Constructors and methods
-proc constructTexture3D*(): Texture3D {.constructor,importcpp: "Texture3D".}
+proc constructTexture3D*(image: ptr Image ): Texture3D {.constructor,importcpp: "osg::Texture3D::Texture3D(@)".}
 
-proc constructTexture3D*(image: ptr Image ): Texture3D {.constructor,importcpp: "Texture3D(@)".}
-
-proc constructTexture3D*(text: Texture3d, copyop: Copyop = SHALLOW_COPY): Texture3D {.constructor,importcpp: "Texture3D(@)".}
+proc constructTexture3D*(text: Texture3d, copyop: Copyop = SHALLOW_COPY): Texture3D {.constructor,importcpp: "osg::Texture3D::Texture3D(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
-
-proc texture3D*[T](this: var Texture3D, image: Ref_ptr[T])  {.importcpp: "Texture3D".}
 
 proc cloneType*(this: Texture3D): ptr Object   {.importcpp: "cloneType".}
 
@@ -40,8 +41,6 @@ proc getTextureTarget*(this: Texture3D): GLenum  {.importcpp: "getTextureTarget"
 
 proc setImage*(this: var Texture3D, image: ptr Image )  {.importcpp: "setImage".}
     ## Sets the texture image.
-
-proc setImage*[T](this: var Texture3D, image: ref_ptr[T])  {.importcpp: "setImage".}
 
 proc getImage*(this: var Texture3D): ptr Image   {.importcpp: "getImage".}
     ## Gets the texture image.
@@ -124,4 +123,4 @@ proc allocateMipmap*(this: Texture3D, state: State)  {.importcpp: "allocateMipma
 
 proc applyTexImage3D*(this: Texture3D, target: GLenum, image: ptr Image , state: State, inwidth: var GLsizei, inheight: var GLsizei, indepth: var GLsizei, numMipmapLevels: var GLsizei)  {.importcpp: "applyTexImage3D".}
 
-{.pop.} # header: "Texture3D
+{.pop.}  # header: "Texture3D"

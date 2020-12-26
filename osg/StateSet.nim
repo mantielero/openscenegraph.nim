@@ -1,15 +1,11 @@
-import CopyOp # Provides CopyOp
-import stringfwd # Provides string
-import Object # Provides Object
-import StateAttribute # Provides StateAttribute
-import Uniform # Provides Uniform
-import State # Provides State
-import NodeVisitor # Provides NodeVisitor
-import Node # Provides Node
-
-
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute
+import /usr/include/osg/Node  # provides: osg::Node
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/Uniform  # provides: osg::Uniform
+import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
 type
-  # Enums
   RenderingHint* {.size:sizeof(cuint),header: "StateSet", importcpp: "osg::StateSet::RenderingHint".} = enum
     DEFAULT_BIN = 0,
     OPAQUE_BIN = 1,
@@ -22,7 +18,6 @@ type
     PROTECTED_RENDERBIN_DETAILS = 4,
     OVERRIDE_PROTECTED_RENDERBIN_DETAILS = 6
 
-  # Typedefs
   ParentList* {.header: "StateSet", importcpp: "osg::StateSet::ParentList".} = cint
   ModeList* {.header: "StateSet", importcpp: "osg::StateSet::ModeList".} = cint
   RefAttributePair* {.header: "StateSet", importcpp: "osg::StateSet::RefAttributePair".} = Pair[ref_ptr<StateAttribute]
@@ -33,17 +28,17 @@ type
   UniformList* {.header: "StateSet", importcpp: "osg::StateSet::UniformList".} = cint
   DefinePair* {.header: "StateSet", importcpp: "osg::StateSet::DefinePair".} = Pair[String,Overridevalue]
   DefineList* {.header: "StateSet", importcpp: "osg::StateSet::DefineList".} = cint
+
+
 {.push header: "StateSet".}
 
+proc constructStateSet*(): StateSet {.constructor,importcpp: "osg::StateSet::StateSet".}
 
-# Constructors and methods
-proc constructStateSet*(): StateSet {.constructor,importcpp: "StateSet".}
+proc constructStateSet*(Stateset, copyop: Copyop = SHALLOW_COPY): StateSet {.constructor,importcpp: "osg::StateSet::StateSet(@)".}
 
-proc constructStateSet*(Stateset, copyop: Copyop = SHALLOW_COPY): StateSet {.constructor,importcpp: "StateSet(@)".}
+proc constructCallback*(): Callback {.constructor,importcpp: "osg::StateSet::Callback::Callback".}
 
-proc constructCallback*(): Callback {.constructor,importcpp: "Callback".}
-
-proc constructCallback*(org: Callback, copyop: Copyop): Callback {.constructor,importcpp: "Callback(@)".}
+proc constructCallback*(org: Callback, copyop: Copyop): Callback {.constructor,importcpp: "osg::StateSet::Callback::Callback(@)".}
 
 proc cloneType*(this: StateSet): ptr Object   {.importcpp: "cloneType".}
 
@@ -125,21 +120,15 @@ proc getModeList*(this: StateSet): Modelist  {.importcpp: "getModeList".}
 proc setAttribute*(this: var StateSet, attribute: ptr Stateattribute , value: Overridevalue)  {.importcpp: "setAttribute".}
     ## Set this StateSet to contain specified attribute and override flag.
 
-proc setAttribute*[T](this: var StateSet, attribute: ref_ptr[T], value: Overridevalue)  {.importcpp: "setAttribute".}
-
 proc setAttributeAndModes*(this: var StateSet, attribute: ptr Stateattribute , value: Glmodevalue)  {.importcpp: "setAttributeAndModes".}
     ## Set this StateSet to contain specified attribute and set the
     ## associated GLMode's to specified value.
-
-proc setAttributeAndModes*[T](this: var StateSet, attribute: ref_ptr[T], value: Glmodevalue)  {.importcpp: "setAttributeAndModes".}
 
 proc removeAttribute*(this: var StateSet, `type`: Type, member: cuint = 0)  {.importcpp: "removeAttribute".}
     ## remove attribute of specified type from StateSet.
 
 proc removeAttribute*(this: var StateSet, attribute: ptr Stateattribute )  {.importcpp: "removeAttribute".}
     ## remove attribute from StateSet.
-
-proc removeAttribute*[T](this: var StateSet, attribute: ref_ptr[T])  {.importcpp: "removeAttribute".}
 
 proc getAttribute*(this: var StateSet, `type`: Type, member: cuint = 0): ptr Stateattribute   {.importcpp: "getAttribute".}
     ## Get specified StateAttribute for specified type. Returns NULL if no
@@ -195,21 +184,15 @@ proc getNumTextureModeLists*(this: StateSet): cuint  {.importcpp: "getNumTexture
 proc setTextureAttribute*(this: var StateSet, unit: cuint, attribute: ptr Stateattribute , value: Overridevalue)  {.importcpp: "setTextureAttribute".}
     ## Set this StateSet to contain specified attribute and override flag.
 
-proc setTextureAttribute*[T](this: var StateSet, unit: cuint, attribute: ref_ptr[T], value: Overridevalue)  {.importcpp: "setTextureAttribute".}
-
 proc setTextureAttributeAndModes*(this: var StateSet, unit: cuint, attribute: ptr Stateattribute , value: Glmodevalue)  {.importcpp: "setTextureAttributeAndModes".}
     ## Set this StateSet to contain specified attribute and set the
     ## associated GLMode's to specified value.
-
-proc setTextureAttributeAndModes*[T](this: var StateSet, unit: cuint, attribute: ref_ptr[T], value: Overridevalue)  {.importcpp: "setTextureAttributeAndModes".}
 
 proc removeTextureAttribute*(this: var StateSet, unit: cuint, `type`: Type)  {.importcpp: "removeTextureAttribute".}
     ## remove texture attribute of specified type from StateSet.
 
 proc removeTextureAttribute*(this: var StateSet, unit: cuint, attribute: ptr Stateattribute )  {.importcpp: "removeTextureAttribute".}
     ## remove texture attribute from StateSet.
-
-proc removeTextureAttribute*[T](this: var StateSet, unit: cuint, attribute: ref_ptr[T])  {.importcpp: "removeTextureAttribute".}
 
 proc getTextureAttribute*(this: var StateSet, unit: cuint, `type`: Type): ptr Stateattribute   {.importcpp: "getTextureAttribute".}
     ## Get specified Texture related StateAttribute for specified type.
@@ -253,15 +236,11 @@ proc removeAssociatedTextureModes*(this: var StateSet, unit: cuint, attribute: p
 proc addUniform*(this: var StateSet, uniform: ptr Uniform , value: Overridevalue)  {.importcpp: "addUniform".}
     ## Set this StateSet to contain specified uniform and override flag.
 
-proc addUniform*[T](this: var StateSet, uniform: ref_ptr[T], value: Overridevalue)  {.importcpp: "addUniform".}
-
 proc removeUniform*(this: var StateSet, name: String)  {.importcpp: "removeUniform".}
     ## remove uniform of specified name from StateSet.
 
 proc removeUniform*(this: var StateSet, uniform: ptr Uniform )  {.importcpp: "removeUniform".}
     ## remove Uniform from StateSet.
-
-proc removeUniform*[T](this: var StateSet, uniform: ref_ptr[T])  {.importcpp: "removeUniform".}
 
 proc getUniform*(this: var StateSet, name: String): ptr Uniform   {.importcpp: "getUniform".}
     ## Get Uniform for specified name. Returns NULL if no matching Uniform is
@@ -389,8 +368,6 @@ proc setUpdateCallback*(this: var StateSet, ac: ptr Callback )  {.importcpp: "se
     ## Set the Update Callback which allows users to attach customize the
     ## updating of an object during the update traversal.
 
-proc setUpdateCallback*[T](this: var StateSet, ac: ref_ptr[T])  {.importcpp: "setUpdateCallback".}
-
 proc getUpdateCallback*(this: var StateSet): ptr Callback   {.importcpp: "getUpdateCallback".}
     ## Get the non const Update Callback.
 
@@ -413,8 +390,6 @@ proc runUpdateCallbacks*(this: var StateSet, nv: ptr Nodevisitor )  {.importcpp:
 proc setEventCallback*(this: var StateSet, ac: ptr Callback )  {.importcpp: "setEventCallback".}
     ## Set the Event Callback which allows users to attach customize the
     ## updating of an object during the event traversal.
-
-proc setEventCallback*[T](this: var StateSet, ec: ref_ptr[T])  {.importcpp: "setEventCallback".}
 
 proc getEventCallback*(this: var StateSet): ptr Callback   {.importcpp: "getEventCallback".}
     ## Get the non const Event Callback.
@@ -489,4 +464,4 @@ proc setNumChildrenRequiringUpdateTraversal*(this: var StateSet, num: cuint)  {.
 
 proc setNumChildrenRequiringEventTraversal*(this: var StateSet, num: cuint)  {.importcpp: "setNumChildrenRequiringEventTraversal".}
 
-{.pop.} # header: "StateSet
+{.pop.}  # header: "StateSet"

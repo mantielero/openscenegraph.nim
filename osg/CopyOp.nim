@@ -1,18 +1,16 @@
-import Drawable # Provides Drawable
-import StateSet # Provides StateSet
-import Texture # Provides Texture
-import Shape # Provides Shape
-import Array # Provides Array
-import StateAttribute # Provides StateAttribute
-import Node # Provides Node
-import Referenced # Provides Referenced
-import PrimitiveSet # Provides PrimitiveSet
-import Callback # Provides Callback, UniformCallback, StateAttributeCallback
-import Object # Provides Object
-import Image # Provides Image
-import Uniform # Provides Uniform
-
-
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/Referenced  # provides: osg::Referenced
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute
+import /usr/include/osg/Array  # provides: osg::Array
+import /usr/include/osg/Shape  # provides: osg::Shape
+import /usr/include/osg/PrimitiveSet  # provides: osg::PrimitiveSet
+import /usr/include/osg/Node  # provides: osg::Node
+import /usr/include/osg/Image  # provides: osg::Image
+import /usr/include/osg/Drawable  # provides: osg::Drawable
+import /usr/include/osg/Callback  # provides: osg::Callback, osg::UniformCallback, osg::StateAttributeCallback
+import /usr/include/osg/StateSet  # provides: osg::StateSet
+import /usr/include/osg/Uniform  # provides: osg::Uniform
+import /usr/include/osg/Texture  # provides: osg::Texture
 type
   Options* {.size:sizeof(cuint),header: "CopyOp", importcpp: "osg::CopyOp::Options".} = enum
     SHALLOW_COPY = 0,
@@ -32,11 +30,11 @@ type
     DEEP_COPY_ALL = 2147483647
 
   CopyFlags* {.header: "CopyOp", importcpp: "osg::CopyOp::CopyFlags".} = cuint
+
+
 {.push header: "CopyOp".}
 
-
-# Constructors and methods
-proc constructCopyOp*(flags: Copyflags): CopyOp {.constructor,importcpp: "CopyOp(@)".}
+proc constructCopyOp*(flags: Copyflags): CopyOp {.constructor,importcpp: "osg::CopyOp::CopyOp(@)".}
 
 proc setCopyFlags*(this: var CopyOp, flags: Copyflags)  {.importcpp: "setCopyFlags".}
 
@@ -72,4 +70,4 @@ proc `()`*(this: CopyOp, stateattributecallback: ptr Stateattributecallback ): p
 
 proc `()`*(this: CopyOp, uniformcallback: ptr Uniformcallback ): ptr Uniformcallback   {.importcpp: "# () #".}
 
-{.pop.} # header: "CopyOp
+{.pop.}  # header: "CopyOp"

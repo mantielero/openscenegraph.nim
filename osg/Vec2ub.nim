@@ -1,15 +1,17 @@
+const
+  num_components* = 2
 
 
 type
   Value_type* {.header: "Vec2ub", importcpp: "osg::Vec2ub::value_type".} = cuchar
+
+
 {.push header: "Vec2ub".}
 
-
-# Constructors and methods
-proc constructVec2ub*(): Vec2ub {.constructor,importcpp: "Vec2ub".}
+proc constructVec2ub*(): Vec2ub {.constructor,importcpp: "osg::Vec2ub::Vec2ub".}
     ## Constructor that sets all components of the vector to zero
 
-proc constructVec2ub*(r: Value_type, g: Value_type): Vec2ub {.constructor,importcpp: "Vec2ub(@)".}
+proc constructVec2ub*(r: Value_type, g: Value_type): Vec2ub {.constructor,importcpp: "osg::Vec2ub::Vec2ub(@)".}
 
 proc `==`*(this: Vec2ub, v: Vec2ub): bool  {.importcpp: "# == #".}
 
@@ -70,4 +72,4 @@ proc `-`*(this: Vec2ub, rhs: Vec2ub): Vec2ub  {.importcpp: "# - #".}
 proc `-=`*(this: var Vec2ub, rhs: Vec2ub): Vec2ub  {.importcpp: "# -= #".}
     ## Unary vector subtract.
 
-{.pop.} # header: "Vec2ub
+{.pop.}  # header: "Vec2ub"

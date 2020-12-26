@@ -1,25 +1,23 @@
-import CopyOp # Provides CopyOp
-import stringfwd # Provides string
-import Object # Provides Object
-import gl # Provides GLenum, GLuint
-import StateAttribute # Provides StateAttribute, Type
-import Vec4 # Provides Vec4
-import Matrix # Provides Matrix
-import State # Provides State
-
-
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Vec4  # provides: osg::Vec4
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/Matrix  # provides: osg::Matrix
 type
-  # Typedefs
   LocalParamList* {.header: "FragmentProgram", importcpp: "osg::FragmentProgram::LocalParamList".} = cint
   MatrixList* {.header: "FragmentProgram", importcpp: "osg::FragmentProgram::MatrixList".} = cint
   FragmentProgramIDList* {.header: "FragmentProgram", importcpp: "osg::FragmentProgram::FragmentProgramIDList".} = buffered_value[GLuint]
+  FragmentProgram* {.header: "FragmentProgram", importcpp: "osg::FragmentProgram", byref.} = object #of class osg::StateAttribute
+    ## FragmentProgram - encapsulates the OpenGL ARB fragment program state.
+
+
+
 {.push header: "FragmentProgram".}
 
+proc constructFragmentProgram*(): FragmentProgram {.constructor,importcpp: "osg::FragmentProgram::FragmentProgram".}
 
-# Constructors and methods
-proc constructFragmentProgram*(): FragmentProgram {.constructor,importcpp: "FragmentProgram".}
-
-proc constructFragmentProgram*(vp: Fragmentprogram, copyop: Copyop = SHALLOW_COPY): FragmentProgram {.constructor,importcpp: "FragmentProgram(@)".}
+proc constructFragmentProgram*(vp: Fragmentprogram, copyop: Copyop = SHALLOW_COPY): FragmentProgram {.constructor,importcpp: "osg::FragmentProgram::FragmentProgram(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: FragmentProgram): ptr Object   {.importcpp: "cloneType".}
@@ -91,4 +89,4 @@ proc releaseGLObjects*(this: FragmentProgram, state: ptr State  = 0)  {.importcp
     ## object is passed, otherwise release OpenGL objects for all graphics
     ## context if State object pointer == NULL.
 
-{.pop.} # header: "FragmentProgram
+{.pop.}  # header: "FragmentProgram"

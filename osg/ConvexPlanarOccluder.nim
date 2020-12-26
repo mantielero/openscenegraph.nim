@@ -1,17 +1,15 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import ConvexPlanarPolygon # Provides ConvexPlanarPolygon
-
-
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/ConvexPlanarPolygon  # provides: osg::ConvexPlanarPolygon
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
 type
   HoleList* {.header: "ConvexPlanarOccluder", importcpp: "osg::ConvexPlanarOccluder::HoleList".} = cint
+
+
 {.push header: "ConvexPlanarOccluder".}
 
+proc constructConvexPlanarOccluder*(): ConvexPlanarOccluder {.constructor,importcpp: "osg::ConvexPlanarOccluder::ConvexPlanarOccluder".}
 
-# Constructors and methods
-proc constructConvexPlanarOccluder*(): ConvexPlanarOccluder {.constructor,importcpp: "ConvexPlanarOccluder".}
-
-proc constructConvexPlanarOccluder*(cpo: Convexplanaroccluder, copyop: Copyop = SHALLOW_COPY): ConvexPlanarOccluder {.constructor,importcpp: "ConvexPlanarOccluder(@)".}
+proc constructConvexPlanarOccluder*(cpo: Convexplanaroccluder, copyop: Copyop = SHALLOW_COPY): ConvexPlanarOccluder {.constructor,importcpp: "osg::ConvexPlanarOccluder::ConvexPlanarOccluder(@)".}
 
 proc cloneType*(this: ConvexPlanarOccluder): ptr Object   {.importcpp: "cloneType".}
 
@@ -37,4 +35,4 @@ proc getHoleList*(this: var ConvexPlanarOccluder): Holelist  {.importcpp: "getHo
 
 proc getHoleList*(this: ConvexPlanarOccluder): Holelist  {.importcpp: "getHoleList".}
 
-{.pop.} # header: "ConvexPlanarOccluder
+{.pop.}  # header: "ConvexPlanarOccluder"

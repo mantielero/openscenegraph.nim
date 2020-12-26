@@ -1,28 +1,12 @@
-import gl # Provides GLenum, GLuint
-import stringfwd # Provides string
-
-
 {.push header: "GLExtensions".}
 
+proc constructVertexAttribAlias*(): VertexAttribAlias {.constructor,importcpp: "osg::VertexAttribAlias::VertexAttribAlias".}
 
-# Constructors and methods
-proc constructVertexAttribAlias*(): VertexAttribAlias {.constructor,importcpp: "VertexAttribAlias".}
+proc constructVertexAttribAlias*(rhs: Vertexattribalias): VertexAttribAlias {.constructor,importcpp: "osg::VertexAttribAlias::VertexAttribAlias(@)".}
 
-proc constructVertexAttribAlias*(rhs: Vertexattribalias): VertexAttribAlias {.constructor,importcpp: "VertexAttribAlias(@)".}
+proc constructVertexAttribAlias*(location: GLuint, glName: String, osgName: String, declaration: String): VertexAttribAlias {.constructor,importcpp: "osg::VertexAttribAlias::VertexAttribAlias(@)".}
 
-proc constructVertexAttribAlias*(location: GLuint, glName: String, osgName: String, declaration: String): VertexAttribAlias {.constructor,importcpp: "VertexAttribAlias(@)".}
-
-proc constructGLExtensions*(in_contextID: cuint): GLExtensions {.constructor,importcpp: "GLExtensions(@)".}
-
-proc convertPointer*[T;R](this: var osg, dest: var T, src: R): bool  {.importcpp: "convertPointer".}
-
-proc convertPointerType*[T;R](this: var osg, src: R): T  {.importcpp: "convertPointerType".}
-
-proc setGLExtensionFuncPtr*[T](this: var osg, t: var T, str1: cstring, validContext: bool): bool  {.importcpp: "setGLExtensionFuncPtr".}
-
-proc setGLExtensionFuncPtr*[T](this: var osg, t: var T, str1: cstring, str2: cstring, validContext: bool): bool  {.importcpp: "setGLExtensionFuncPtr".}
-
-proc setGLExtensionFuncPtr*[T](this: var osg, t: var T, str1: cstring, str2: cstring, str3: cstring, validContext: bool): bool  {.importcpp: "setGLExtensionFuncPtr".}
+proc constructGLExtensions*(in_contextID: cuint): GLExtensions {.constructor,importcpp: "osg::GLExtensions::GLExtensions(@)".}
 
 proc get*(this: var GLExtensions, in_contextID: cuint, createIfNotInitalized: bool): ptr Glextensions   {.importcpp: "Get".}
     ## Function to call to get the extension of a specified context. If the
@@ -70,4 +54,4 @@ proc debugObjectLabel*(this: GLExtensions, identifier: GLenum, name: GLuint, lab
     ## convenience wrapper around glObjectLabel that calls glObjectLabel if
     ## it's supported and using std::string as a label parameter.
 
-{.pop.} # header: "GLExtensions
+{.pop.}  # header: "GLExtensions"

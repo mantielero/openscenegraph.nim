@@ -1,31 +1,32 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import StateAttribute # Provides StateAttribute, Type
-import State # Provides State
-
-
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
 type
   Equation* {.size:sizeof(cuint),header: "BlendEquation", importcpp: "osg::BlendEquation::Equation".} = enum
-    RGBA_MIN = 32775,
-    RGBA_MAX = 32776,
-    ALPHA_MIN = 33568,
-    ALPHA_MAX = 33569,
     LOGIC_OP = 3057,
     FUNC_ADD = 32774,
+    RGBA_MIN = 32775,
+    RGBA_MAX = 32776,
     FUNC_SUBTRACT = 32778,
-    FUNC_REVERSE_SUBTRACT = 32779
+    FUNC_REVERSE_SUBTRACT = 32779,
+    ALPHA_MIN = 33568,
+    ALPHA_MAX = 33569
+
+  BlendEquation* {.header: "BlendEquation", importcpp: "osg::BlendEquation", byref.} = object #of class osg::StateAttribute
+    ## Encapsulates OpenGL BlendEquation state.
+
+
 
 {.push header: "BlendEquation".}
 
+proc constructBlendEquation*(): BlendEquation {.constructor,importcpp: "osg::BlendEquation::BlendEquation".}
 
-# Constructors and methods
-proc constructBlendEquation*(): BlendEquation {.constructor,importcpp: "BlendEquation".}
+proc constructBlendEquation*(equation: Equation): BlendEquation {.constructor,importcpp: "osg::BlendEquation::BlendEquation(@)".}
 
-proc constructBlendEquation*(equation: Equation): BlendEquation {.constructor,importcpp: "BlendEquation(@)".}
+proc constructBlendEquation*(equationRGB: Equation, equationAlpha: Equation): BlendEquation {.constructor,importcpp: "osg::BlendEquation::BlendEquation(@)".}
 
-proc constructBlendEquation*(equationRGB: Equation, equationAlpha: Equation): BlendEquation {.constructor,importcpp: "BlendEquation(@)".}
-
-proc constructBlendEquation*(trans: Blendequation, copyop: Copyop = SHALLOW_COPY): BlendEquation {.constructor,importcpp: "BlendEquation(@)".}
+proc constructBlendEquation*(trans: Blendequation, copyop: Copyop = SHALLOW_COPY): BlendEquation {.constructor,importcpp: "osg::BlendEquation::BlendEquation(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: BlendEquation): ptr Object   {.importcpp: "cloneType".}
@@ -59,4 +60,4 @@ proc getEquationAlpha*(this: BlendEquation): Equation  {.importcpp: "getEquation
 
 proc apply*(this: BlendEquation, state: State)  {.importcpp: "apply".}
 
-{.pop.} # header: "BlendEquation
+{.pop.}  # header: "BlendEquation"

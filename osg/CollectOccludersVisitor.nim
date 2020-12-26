@@ -1,13 +1,20 @@
-import Object # Provides Object
-
-
+import /usr/include/osg/Vec3  # provides: osg::Vec3
+import /usr/include/osg/LOD  # provides: osg::LOD
+import /usr/include/osg/Projection  # provides: osg::Projection
+import /usr/include/osg/Switch  # provides: osg::Switch
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/Transform  # provides: osg::Transform
+import /usr/include/osg/Node  # provides: osg::Node
+import /usr/include/osg/OccluderNode  # provides: osg::OccluderNode
 type
   ShadowVolumeOccluderSet* {.header: "CollectOccludersVisitor", importcpp: "osg::CollectOccludersVisitor::ShadowVolumeOccluderSet".} = cint
+  CollectOccludersVisitor* {.header: "CollectOccludersVisitor", importcpp: "osg::CollectOccludersVisitor", byref.} = object #of osg::NodeVisitor
+
+
+
 {.push header: "CollectOccludersVisitor".}
 
-
-# Constructors and methods
-proc constructCollectOccludersVisitor*(): CollectOccludersVisitor {.constructor,importcpp: "CollectOccludersVisitor".}
+proc constructCollectOccludersVisitor*(): CollectOccludersVisitor {.constructor,importcpp: "osg::CollectOccludersVisitor::CollectOccludersVisitor".}
 
 proc libraryName*(this: CollectOccludersVisitor): cstring  {.importcpp: "libraryName".}
 
@@ -70,4 +77,4 @@ proc handle_cull_callbacks_and_traverse*(this: var CollectOccludersVisitor, node
 
 proc handle_cull_callbacks_and_accept*(this: var CollectOccludersVisitor, node: Node, acceptNode: ptr Node )  {.importcpp: "handle_cull_callbacks_and_accept".}
 
-{.pop.} # header: "CollectOccludersVisitor
+{.pop.}  # header: "CollectOccludersVisitor"

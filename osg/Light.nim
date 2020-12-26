@@ -1,20 +1,16 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import StateAttribute # Provides StateAttribute, Type
-import Vec3 # Provides Vec3
-import Vec4 # Provides Vec4
-import State # Provides State
-
-
+import /usr/include/osg/Vec3  # provides: osg::Vec3
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Vec4  # provides: osg::Vec4
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
 {.push header: "Light".}
 
+proc constructLight*(): Light {.constructor,importcpp: "osg::Light::Light".}
 
-# Constructors and methods
-proc constructLight*(): Light {.constructor,importcpp: "Light".}
+proc constructLight*(lightnum: cuint): Light {.constructor,importcpp: "osg::Light::Light(@)".}
 
-proc constructLight*(lightnum: cuint): Light {.constructor,importcpp: "Light(@)".}
-
-proc constructLight*(light: Light, copyop: Copyop = SHALLOW_COPY): Light {.constructor,importcpp: "Light(@)".}
+proc constructLight*(light: Light, copyop: Copyop = SHALLOW_COPY): Light {.constructor,importcpp: "osg::Light::Light(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: Light): ptr Object   {.importcpp: "cloneType".}
@@ -112,4 +108,4 @@ proc apply*(this: Light, state: State)  {.importcpp: "apply".}
 proc init*(this: var Light)  {.importcpp: "init".}
     ## Initialize the light's settings with some decent defaults.
 
-{.pop.} # header: "Light
+{.pop.}  # header: "Light"

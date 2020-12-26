@@ -1,18 +1,14 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import Vec3d # Provides Vec3d
-import Quat # Provides Quat
-import Matrix # Provides Matrix
-import NodeVisitor # Provides NodeVisitor
-
-
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/Matrix  # provides: osg::Matrix
+import /usr/include/osg/Vec3d  # provides: osg::Vec3d
+import /usr/include/osg/Quat  # provides: osg::Quat
+import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
 {.push header: "PositionAttitudeTransform".}
 
+proc constructPositionAttitudeTransform*(): PositionAttitudeTransform {.constructor,importcpp: "osg::PositionAttitudeTransform::PositionAttitudeTransform".}
 
-# Constructors and methods
-proc constructPositionAttitudeTransform*(): PositionAttitudeTransform {.constructor,importcpp: "PositionAttitudeTransform".}
-
-proc constructPositionAttitudeTransform*(pat: Positionattitudetransform, copyop: Copyop = SHALLOW_COPY): PositionAttitudeTransform {.constructor,importcpp: "PositionAttitudeTransform(@)".}
+proc constructPositionAttitudeTransform*(pat: Positionattitudetransform, copyop: Copyop = SHALLOW_COPY): PositionAttitudeTransform {.constructor,importcpp: "osg::PositionAttitudeTransform::PositionAttitudeTransform(@)".}
 
 proc cloneType*(this: PositionAttitudeTransform): ptr Object   {.importcpp: "cloneType".}
 
@@ -50,4 +46,4 @@ proc computeLocalToWorldMatrix*(this: PositionAttitudeTransform, matrix: Matrix,
 
 proc computeWorldToLocalMatrix*(this: PositionAttitudeTransform, matrix: Matrix, nv: ptr Nodevisitor ): bool  {.importcpp: "computeWorldToLocalMatrix".}
 
-{.pop.} # header: "PositionAttitudeTransform
+{.pop.}  # header: "PositionAttitudeTransform"

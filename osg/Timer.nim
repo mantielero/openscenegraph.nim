@@ -1,16 +1,20 @@
-
-
 type
-  Timer_t* {.header: "Timer", importcpp: "osg::Timer_t".} = culonglong
+  Timer* {.header: "Timer", importcpp: "osg::Timer", byref.} = object
+    ## Timer class is used for measuring elapsed time or time between two
+    ## points.
+
+  ElapsedTime* {.header: "Timer", importcpp: "osg::ElapsedTime", byref.} = object
+    ## Helper class for timing sections of code.
+
+
+
 {.push header: "Timer".}
 
+proc constructTimer*(): Timer {.constructor,importcpp: "osg::Timer::Timer".}
 
-# Constructors and methods
-proc constructTimer*(): Timer {.constructor,importcpp: "Timer".}
+proc constructElapsedTime*(elapsedTime: ptr double, timer: ptr Timer  = 0): ElapsedTime {.constructor,importcpp: "osg::ElapsedTime::ElapsedTime(@)".}
 
-proc constructElapsedTime*(elapsedTime: ptr double, timer: ptr Timer  = 0): ElapsedTime {.constructor,importcpp: "ElapsedTime(@)".}
-
-proc constructElapsedTime*(timer: ptr Timer  = 0): ElapsedTime {.constructor,importcpp: "ElapsedTime(@)".}
+proc constructElapsedTime*(timer: ptr Timer  = 0): ElapsedTime {.constructor,importcpp: "osg::ElapsedTime::ElapsedTime(@)".}
 
 proc instance*(this: var Timer): ptr Timer   {.importcpp: "instance".}
 
@@ -69,4 +73,4 @@ proc finish*(this: var ElapsedTime)  {.importcpp: "finish".}
 
 proc init*(this: var ElapsedTime, timer: ptr Timer )  {.importcpp: "init".}
 
-{.pop.} # header: "Timer
+{.pop.}  # header: "Timer"

@@ -1,40 +1,36 @@
-import CopyOp # Provides CopyOp
-import stringfwd # Provides string
-import Object # Provides Object
-import Vec2f # Provides Vec2f
-import Vec3f # Provides Vec3f
-import Vec2d # Provides Vec2d
-import Vec3d # Provides Vec3d
-import BoundingBox # Provides BoundingBoxf, BoundingBoxd
-import BoundingSphere # Provides BoundingSpheref, BoundingSphered
-import Vec4b # Provides Vec4b
-import Vec4i # Provides Vec4i
-import Vec4f # Provides Vec4f
-import Vec3s # Provides Vec3s
-import Vec3ub # Provides Vec3ub
-import Vec2b # Provides Vec2b
-import Matrixd # Provides Matrixd
-import Matrixf # Provides Matrixf
-import Vec2ui # Provides Vec2ui
-import Vec4ub # Provides Vec4ub
-import Vec4ui # Provides Vec4ui
-import Vec2ub # Provides Vec2ub
-import Vec2i # Provides Vec2i
-import Vec3ui # Provides Vec3ui
-import Vec3b # Provides Vec3b
-import Vec4d # Provides Vec4d
-import Vec2us # Provides Vec2us
-import Vec4us # Provides Vec4us
-import Vec3us # Provides Vec3us
-import Vec4s # Provides Vec4s
-import Plane # Provides Plane
-import Quat # Provides Quat
-import Vec3i # Provides Vec3i
-import Vec2s # Provides Vec2s
-
-
+import /usr/include/osg/Vec4us  # provides: osg::Vec4us
+import /usr/include/osg/BoundingSphere  # provides: osg::BoundingSphered, osg::BoundingSpheref
+import /usr/include/osg/Vec3i  # provides: osg::Vec3i
+import /usr/include/osg/Vec3s  # provides: osg::Vec3s
+import /usr/include/osg/Vec2us  # provides: osg::Vec2us
+import /usr/include/osg/Vec2s  # provides: osg::Vec2s
+import /usr/include/osg/Vec2b  # provides: osg::Vec2b
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/Vec3ui  # provides: osg::Vec3ui
+import /usr/include/osg/Matrixf  # provides: osg::Matrixf
+import /usr/include/osg/Vec2ub  # provides: osg::Vec2ub
+import /usr/include/osg/Plane  # provides: osg::Plane
+import /usr/include/osg/Vec2ui  # provides: osg::Vec2ui
+import /usr/include/osg/Vec3f  # provides: osg::Vec3f
+import /usr/include/osg/Vec3us  # provides: osg::Vec3us
+import /usr/include/osg/BoundingBox  # provides: osg::BoundingBoxf, osg::BoundingBoxd
+import /usr/include/osg/Vec2f  # provides: osg::Vec2f
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/Matrixd  # provides: osg::Matrixd
+import /usr/include/osg/Vec3b  # provides: osg::Vec3b
+import /usr/include/osg/Vec4b  # provides: osg::Vec4b
+import /usr/include/osg/Vec4ui  # provides: osg::Vec4ui
+import /usr/include/osg/Vec3ub  # provides: osg::Vec3ub
+import /usr/include/osg/Vec4d  # provides: osg::Vec4d
+import /usr/include/osg/Vec4s  # provides: osg::Vec4s
+import /usr/include/osg/Vec2i  # provides: osg::Vec2i
+import /usr/include/osg/Vec3d  # provides: osg::Vec3d
+import /usr/include/osg/Vec2d  # provides: osg::Vec2d
+import /usr/include/osg/Quat  # provides: osg::Quat
+import /usr/include/osg/Vec4ub  # provides: osg::Vec4ub
+import /usr/include/osg/Vec4i  # provides: osg::Vec4i
+import /usr/include/osg/Vec4f  # provides: osg::Vec4f
 type
-  # Typedefs
   StringValueObject* {.header: "ValueObject", importcpp: "osg::StringValueObject".} = Templatevalueobject[String]
   BoolValueObject* {.header: "ValueObject", importcpp: "osg::BoolValueObject".} = TemplateValueObject[bool]
   CharValueObject* {.header: "ValueObject", importcpp: "osg::CharValueObject".} = TemplateValueObject[char]
@@ -59,31 +55,42 @@ type
   BoundingBoxdValueObject* {.header: "ValueObject", importcpp: "osg::BoundingBoxdValueObject".} = Templatevalueobject[Boundingboxd]
   BoundingSpherefValueObject* {.header: "ValueObject", importcpp: "osg::BoundingSpherefValueObject".} = Templatevalueobject[Boundingspheref]
   BoundingSpheredValueObject* {.header: "ValueObject", importcpp: "osg::BoundingSpheredValueObject".} = Templatevalueobject[Boundingsphered]
-  UserValueObject* {.header: "ValueObject", importcpp: "osg::Object::getUserValue::UserValueObject".} = TemplateValueObject[T]
   UserValueObject* {.header: "ValueObject", importcpp: "osg::Object::setUserValue::UserValueObject".} = TemplateValueObject[T]
+  GetValueVisitor* {.header: "ValueObject", importcpp: "osg::ValueObject::GetValueVisitor", byref.} = object
+
+  SetValueVisitor* {.header: "ValueObject", importcpp: "osg::ValueObject::SetValueVisitor", byref.} = object
+
+  GetScalarValue* {.header: "ValueObject", importcpp: "osg::GetScalarValue", byref.} = object #of class ValueObject::GetValueVisitor
+
+  SetScalarValue* {.header: "ValueObject", importcpp: "osg::SetScalarValue", byref.} [T] = object #of class ValueObject::SetValueVisitor
+
+  ValueObjectClassNameTrait* {.header: "ValueObject", importcpp: "osg::ValueObjectClassNameTrait", byref.} [T] = object
+
+  TemplateValueObject* {.header: "ValueObject", importcpp: "osg::TemplateValueObject", byref.} [T] = object #of class osg::ValueObject
+
+
+
 {.push header: "ValueObject".}
 
+proc constructValueObject*(): ValueObject {.constructor,importcpp: "osg::ValueObject::ValueObject".}
 
-# Constructors and methods
-proc constructValueObject*(): ValueObject {.constructor,importcpp: "ValueObject".}
+proc constructValueObject*(name: String): ValueObject {.constructor,importcpp: "osg::ValueObject::ValueObject(@)".}
 
-proc constructValueObject*(name: String): ValueObject {.constructor,importcpp: "ValueObject(@)".}
+proc constructValueObject*(rhs: Valueobject, copyop: Copyop = SHALLOW_COPY): ValueObject {.constructor,importcpp: "osg::ValueObject::ValueObject(@)".}
 
-proc constructValueObject*(rhs: Valueobject, copyop: Copyop = SHALLOW_COPY): ValueObject {.constructor,importcpp: "ValueObject(@)".}
+proc constructGetScalarValue*[T](): GetScalarValue {.constructor,importcpp: "osg::GetScalarValue::GetScalarValue<T>".}
 
-proc constructGetScalarValue*[T](): GetScalarValue {.constructor,importcpp: "GetScalarValue<T>".}
+proc constructGetScalarValue*(): GetScalarValue {.constructor,importcpp: "osg::GetScalarValue::GetScalarValue".}
 
-proc constructGetScalarValue*(): GetScalarValue {.constructor,importcpp: "GetScalarValue".}
+proc constructSetScalarValue*[T](in_value: T): SetScalarValue {.constructor,importcpp: "osg::SetScalarValue::SetScalarValue<T>(@)".}
 
-proc constructSetScalarValue*[T](in_value: T): SetScalarValue {.constructor,importcpp: "SetScalarValue<T>(@)".}
+proc constructTemplateValueObject*[T](): TemplateValueObject {.constructor,importcpp: "osg::TemplateValueObject::TemplateValueObject<T>".}
 
-proc constructTemplateValueObject*[T](): TemplateValueObject {.constructor,importcpp: "TemplateValueObject<T>".}
+proc constructTemplateValueObject*[T](value: T): TemplateValueObject {.constructor,importcpp: "osg::TemplateValueObject::TemplateValueObject<T>(@)".}
 
-proc constructTemplateValueObject*[T](value: T): TemplateValueObject {.constructor,importcpp: "TemplateValueObject<T>(@)".}
+proc constructTemplateValueObject*[T](name: String, value: T): TemplateValueObject {.constructor,importcpp: "osg::TemplateValueObject::TemplateValueObject<T>(@)".}
 
-proc constructTemplateValueObject*[T](name: String, value: T): TemplateValueObject {.constructor,importcpp: "TemplateValueObject<T>(@)".}
-
-proc constructTemplateValueObject*[T](rhs: TemplateValueObject[T], copyop: Copyop = SHALLOW_COPY): TemplateValueObject {.constructor,importcpp: "TemplateValueObject<T>(@)".}
+proc constructTemplateValueObject*[T](rhs: TemplateValueObject[T], copyop: Copyop = SHALLOW_COPY): TemplateValueObject {.constructor,importcpp: "osg::TemplateValueObject::TemplateValueObject<T>(@)".}
 
 proc cloneType*(this: ValueObject): ptr Object   {.importcpp: "cloneType".}
 
@@ -275,10 +282,6 @@ proc get*(this: ValueObject, Getvaluevisitor): bool  {.importcpp: "get".}
 
 proc set*(this: var ValueObject, Setvaluevisitor): bool  {.importcpp: "set".}
 
-proc getScalarValue*[T](this: var ValueObject, value: var T): bool  {.importcpp: "getScalarValue".}
-
-proc setScalarValue*[T](this: var ValueObject, value: T): bool  {.importcpp: "setScalarValue".}
-
 proc apply*(this: var GetScalarValue, in_value: bool)  {.importcpp: "apply".}
 
 proc apply*(this: var GetScalarValue, in_value: cchar)  {.importcpp: "apply".}
@@ -401,12 +404,4 @@ proc className*(this: var ValueObjectClassNameTrait): cstring  {.importcpp: "cla
 
 proc className*(this: var ValueObjectClassNameTrait): cstring  {.importcpp: "className".}
 
-proc getUserValue*[T](this: Object, name: String, value: var T): bool  {.importcpp: "getUserValue".}
-    ## provide implementation of osg::Object::getUserValue(..) template
-
-proc setUserValue*[T](this: var Object, name: String, value: T)  {.importcpp: "setUserValue".}
-    ## provide implementation of osg::Object::setUserValue(..) template.
-
-proc getOrCreateUserObjectOfType*[P;T](this: var osg, parent: ptr P): ptr T  {.importcpp: "getOrCreateUserObjectOfType".}
-
-{.pop.} # header: "ValueObject
+{.pop.}  # header: "ValueObject"

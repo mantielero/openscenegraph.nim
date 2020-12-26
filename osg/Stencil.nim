@@ -1,11 +1,8 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import StateAttribute # Provides StateAttribute, Type
-import State # Provides State
-
-
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
 type
-  # Enums
   Function* {.size:sizeof(cuint),header: "Stencil", importcpp: "osg::Stencil::Function".} = enum
     NEVER = 512,
     LESS = 513,
@@ -17,22 +14,25 @@ type
     ALWAYS = 519
 
   Operation* {.size:sizeof(cuint),header: "Stencil", importcpp: "osg::Stencil::Operation".} = enum
-    KEEP = 7680,
     ZERO = 0,
+    INVERT = 5386,
+    KEEP = 7680,
     REPLACE = 7681,
     INCR = 7682,
     DECR = 7683,
-    INVERT = 5386,
     INCR_WRAP = 34055,
     DECR_WRAP = 34056
 
+  Stencil* {.header: "Stencil", importcpp: "osg::Stencil", byref.} = object #of class osg::StateAttribute
+    ## Encapsulate OpenGL glStencilFunc/Op/Mask functions.
+
+
+
 {.push header: "Stencil".}
 
+proc constructStencil*(): Stencil {.constructor,importcpp: "osg::Stencil::Stencil".}
 
-# Constructors and methods
-proc constructStencil*(): Stencil {.constructor,importcpp: "Stencil".}
-
-proc constructStencil*(stencil: Stencil, copyop: Copyop = SHALLOW_COPY): Stencil {.constructor,importcpp: "Stencil(@)".}
+proc constructStencil*(stencil: Stencil, copyop: Copyop = SHALLOW_COPY): Stencil {.constructor,importcpp: "osg::Stencil::Stencil(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: Stencil): ptr Object   {.importcpp: "cloneType".}
@@ -100,4 +100,4 @@ proc getWriteMask*(this: Stencil): cuint  {.importcpp: "getWriteMask".}
 
 proc apply*(this: Stencil, state: State)  {.importcpp: "apply".}
 
-{.pop.} # header: "Stencil
+{.pop.}  # header: "Stencil"

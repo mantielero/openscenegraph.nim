@@ -1,19 +1,21 @@
-import Vec3 # Provides Vec3
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import StateAttribute # Provides StateAttribute, Type
-import State # Provides State
+import /usr/include/osg/Vec3  # provides: osg::Vec3
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+type
+  Point* {.header: "Point", importcpp: "osg::Point", byref.} = object #of class osg::StateAttribute
+    ## Point - encapsulates the OpenGL point smoothing and size state.
+
 
 
 {.push header: "Point".}
 
+proc constructPoint*(): Point {.constructor,importcpp: "osg::Point::Point".}
 
-# Constructors and methods
-proc constructPoint*(): Point {.constructor,importcpp: "Point".}
+proc constructPoint*(size: cfloat): Point {.constructor,importcpp: "osg::Point::Point(@)".}
 
-proc constructPoint*(size: cfloat): Point {.constructor,importcpp: "Point(@)".}
-
-proc constructPoint*(point: Point, copyop: Copyop = SHALLOW_COPY): Point {.constructor,importcpp: "Point(@)".}
+proc constructPoint*(point: Point, copyop: Copyop = SHALLOW_COPY): Point {.constructor,importcpp: "osg::Point::Point(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: Point): ptr Object   {.importcpp: "cloneType".}
@@ -55,4 +57,4 @@ proc getMaxSize*(this: Point): cfloat  {.importcpp: "getMaxSize".}
 
 proc apply*(this: Point, state: State)  {.importcpp: "apply".}
 
-{.pop.} # header: "Point
+{.pop.}  # header: "Point"

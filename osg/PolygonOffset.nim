@@ -1,18 +1,20 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import StateAttribute # Provides StateAttribute, Type
-import State # Provides State
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+type
+  PolygonOffset* {.header: "PolygonOffset", importcpp: "osg::PolygonOffset", byref.} = object #of class osg::StateAttribute
+    ## PolygonOffset - encapsulates the OpenGL glPolygonOffset state.
+
 
 
 {.push header: "PolygonOffset".}
 
+proc constructPolygonOffset*(): PolygonOffset {.constructor,importcpp: "osg::PolygonOffset::PolygonOffset".}
 
-# Constructors and methods
-proc constructPolygonOffset*(): PolygonOffset {.constructor,importcpp: "PolygonOffset".}
+proc constructPolygonOffset*(factor: cfloat, units: cfloat): PolygonOffset {.constructor,importcpp: "osg::PolygonOffset::PolygonOffset(@)".}
 
-proc constructPolygonOffset*(factor: cfloat, units: cfloat): PolygonOffset {.constructor,importcpp: "PolygonOffset(@)".}
-
-proc constructPolygonOffset*(po: Polygonoffset, copyop: Copyop = SHALLOW_COPY): PolygonOffset {.constructor,importcpp: "PolygonOffset(@)".}
+proc constructPolygonOffset*(po: Polygonoffset, copyop: Copyop = SHALLOW_COPY): PolygonOffset {.constructor,importcpp: "osg::PolygonOffset::PolygonOffset(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: PolygonOffset): ptr Object   {.importcpp: "cloneType".}
@@ -57,4 +59,4 @@ proc setFactorAndUnitsMultipliersUsingBestGuessForDriver*(this: var PolygonOffse
     ## for the hardware. note, requires a valid graphics context to be
     ## current.
 
-{.pop.} # header: "PolygonOffset
+{.pop.}  # header: "PolygonOffset"

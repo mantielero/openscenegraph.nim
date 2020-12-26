@@ -1,18 +1,14 @@
-import gl # Provides GLenum, GLvoid, GLint, GLubyte, GLushort, GLuint, GLsizei
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import Vec2d # Provides Vec2d
-import Vec3d # Provides Vec3d
-import Vec4d # Provides Vec4d
-import Vec2 # Provides Vec2
-import Vec3 # Provides Vec3
-import Vec4 # Provides Vec4
-import BufferObject # Provides ElementBufferObject
-import State # Provides State
-
-
+import /usr/include/osg/Vec3  # provides: osg::Vec3
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Vec4  # provides: osg::Vec4
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/BufferObject  # provides: osg::ElementBufferObject
+import /usr/include/osg/Vec2  # provides: osg::Vec2
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/Vec4d  # provides: osg::Vec4d
+import /usr/include/osg/Vec3d  # provides: osg::Vec3d
+import /usr/include/osg/Vec2d  # provides: osg::Vec2d
 type
-  # Enums
   Type* {.size:sizeof(cuint),header: "PrimitiveSet", importcpp: "osg::PrimitiveSet::Type".} = enum
     PrimitiveType = 0,
     DrawArraysPrimitiveType = 1,
@@ -33,8 +29,8 @@ type
   Mode* {.size:sizeof(cuint),header: "PrimitiveSet", importcpp: "osg::PrimitiveSet::Mode".} = enum
     POINTS = 0,
     LINES = 1,
-    LINE_STRIP = 3,
     LINE_LOOP = 2,
+    LINE_STRIP = 3,
     TRIANGLES = 4,
     TRIANGLE_STRIP = 5,
     TRIANGLE_FAN = 6,
@@ -47,78 +43,85 @@ type
     TRIANGLE_STRIP_ADJACENCY = 13,
     PATCHES = 14
 
-  # Typedefs
   VectorGLsizei* {.header: "PrimitiveSet", importcpp: "osg::VectorGLsizei".} = MixinVector[GLsizei]
   VectorGLubyte* {.header: "PrimitiveSet", importcpp: "osg::VectorGLubyte".} = MixinVector[GLubyte]
   VectorGLushort* {.header: "PrimitiveSet", importcpp: "osg::VectorGLushort".} = MixinVector[GLushort]
-  VectorGLuint* {.header: "PrimitiveSet", importcpp: "osg::VectorGLuint".} = MixinVector[GLuint]
-  Vector_type* {.header: "PrimitiveSet", importcpp: "osg::DrawArrayLengths::vector_type".} = Vectorglsizei
-  Vector_type* {.header: "PrimitiveSet", importcpp: "osg::DrawElementsUByte::vector_type".} = Vectorglubyte
-  Vector_type* {.header: "PrimitiveSet", importcpp: "osg::DrawElementsUShort::vector_type".} = Vectorglushort
   Vector_type* {.header: "PrimitiveSet", importcpp: "osg::DrawElementsUInt::vector_type".} = Vectorgluint
   Firsts* {.header: "PrimitiveSet", importcpp: "osg::MultiDrawArrays::Firsts".} = cint
   Counts* {.header: "PrimitiveSet", importcpp: "osg::MultiDrawArrays::Counts".} = cint
+  DrawArrays* {.header: "PrimitiveSet", importcpp: "osg::DrawArrays", byref.} = object #of class osg::PrimitiveSet
+
+  DrawArrayLengths* {.header: "PrimitiveSet", importcpp: "osg::DrawArrayLengths", byref.} = object #of class osg::PrimitiveSet
+
+  DrawElementsUByte* {.header: "PrimitiveSet", importcpp: "osg::DrawElementsUByte", byref.} = object #of class osg::DrawElements
+
+  DrawElementsUShort* {.header: "PrimitiveSet", importcpp: "osg::DrawElementsUShort", byref.} = object #of class osg::DrawElements
+
+  DrawElementsUInt* {.header: "PrimitiveSet", importcpp: "osg::DrawElementsUInt", byref.} = object #of class osg::DrawElements
+
+  MultiDrawArrays* {.header: "PrimitiveSet", importcpp: "osg::MultiDrawArrays", byref.} = object #of osg::PrimitiveSet
+
+
+
 {.push header: "PrimitiveSet".}
 
+proc constructPrimitiveSet*(primType: Type, mode: GLenum = 0, numInstances: cint): PrimitiveSet {.constructor,importcpp: "osg::PrimitiveSet::PrimitiveSet(@)".}
 
-# Constructors and methods
-proc constructPrimitiveSet*(primType: Type, mode: GLenum = 0, numInstances: cint): PrimitiveSet {.constructor,importcpp: "PrimitiveSet(@)".}
+proc constructPrimitiveSet*(prim: Primitiveset, copyop: Copyop = SHALLOW_COPY): PrimitiveSet {.constructor,importcpp: "osg::PrimitiveSet::PrimitiveSet(@)".}
 
-proc constructPrimitiveSet*(prim: Primitiveset, copyop: Copyop = SHALLOW_COPY): PrimitiveSet {.constructor,importcpp: "PrimitiveSet(@)".}
+proc constructDrawArrays*(mode: GLenum = 0): DrawArrays {.constructor,importcpp: "osg::DrawArrays::DrawArrays(@)".}
 
-proc constructDrawArrays*(mode: GLenum = 0): DrawArrays {.constructor,importcpp: "DrawArrays(@)".}
+proc constructDrawArrays*(mode: GLenum, first: GLint, count: GLsizei, numInstances: cint): DrawArrays {.constructor,importcpp: "osg::DrawArrays::DrawArrays(@)".}
 
-proc constructDrawArrays*(mode: GLenum, first: GLint, count: GLsizei, numInstances: cint): DrawArrays {.constructor,importcpp: "DrawArrays(@)".}
+proc constructDrawArrays*(da: Drawarrays, copyop: Copyop = SHALLOW_COPY): DrawArrays {.constructor,importcpp: "osg::DrawArrays::DrawArrays(@)".}
 
-proc constructDrawArrays*(da: Drawarrays, copyop: Copyop = SHALLOW_COPY): DrawArrays {.constructor,importcpp: "DrawArrays(@)".}
+proc constructDrawArrayLengths*(mode: GLenum = 0): DrawArrayLengths {.constructor,importcpp: "osg::DrawArrayLengths::DrawArrayLengths(@)".}
 
-proc constructDrawArrayLengths*(mode: GLenum = 0): DrawArrayLengths {.constructor,importcpp: "DrawArrayLengths(@)".}
+proc constructDrawArrayLengths*(dal: Drawarraylengths, copyop: Copyop = SHALLOW_COPY): DrawArrayLengths {.constructor,importcpp: "osg::DrawArrayLengths::DrawArrayLengths(@)".}
 
-proc constructDrawArrayLengths*(dal: Drawarraylengths, copyop: Copyop = SHALLOW_COPY): DrawArrayLengths {.constructor,importcpp: "DrawArrayLengths(@)".}
+proc constructDrawArrayLengths*(mode: GLenum, first: GLint, no: cuint, `ptr`: ptr GLsizei): DrawArrayLengths {.constructor,importcpp: "osg::DrawArrayLengths::DrawArrayLengths(@)".}
 
-proc constructDrawArrayLengths*(mode: GLenum, first: GLint, no: cuint, `ptr`: ptr GLsizei): DrawArrayLengths {.constructor,importcpp: "DrawArrayLengths(@)".}
+proc constructDrawArrayLengths*(mode: GLenum, first: GLint, no: cuint): DrawArrayLengths {.constructor,importcpp: "osg::DrawArrayLengths::DrawArrayLengths(@)".}
 
-proc constructDrawArrayLengths*(mode: GLenum, first: GLint, no: cuint): DrawArrayLengths {.constructor,importcpp: "DrawArrayLengths(@)".}
+proc constructDrawArrayLengths*(mode: GLenum, first: GLint): DrawArrayLengths {.constructor,importcpp: "osg::DrawArrayLengths::DrawArrayLengths(@)".}
 
-proc constructDrawArrayLengths*(mode: GLenum, first: GLint): DrawArrayLengths {.constructor,importcpp: "DrawArrayLengths(@)".}
+proc constructDrawElements*(primType: Type, mode: GLenum = 0, numInstances: cint): DrawElements {.constructor,importcpp: "osg::DrawElements::DrawElements(@)".}
 
-proc constructDrawElements*(primType: Type, mode: GLenum = 0, numInstances: cint): DrawElements {.constructor,importcpp: "DrawElements(@)".}
+proc constructDrawElements*(copy: Drawelements, copyop: Copyop = SHALLOW_COPY): DrawElements {.constructor,importcpp: "osg::DrawElements::DrawElements(@)".}
 
-proc constructDrawElements*(copy: Drawelements, copyop: Copyop = SHALLOW_COPY): DrawElements {.constructor,importcpp: "DrawElements(@)".}
+proc constructDrawElementsUByte*(mode: GLenum = 0): DrawElementsUByte {.constructor,importcpp: "osg::DrawElementsUByte::DrawElementsUByte(@)".}
 
-proc constructDrawElementsUByte*(mode: GLenum = 0): DrawElementsUByte {.constructor,importcpp: "DrawElementsUByte(@)".}
+proc constructDrawElementsUByte*(array: Drawelementsubyte, copyop: Copyop = SHALLOW_COPY): DrawElementsUByte {.constructor,importcpp: "osg::DrawElementsUByte::DrawElementsUByte(@)".}
 
-proc constructDrawElementsUByte*(array: Drawelementsubyte, copyop: Copyop = SHALLOW_COPY): DrawElementsUByte {.constructor,importcpp: "DrawElementsUByte(@)".}
-
-proc constructDrawElementsUByte*(mode: GLenum, no: cuint, `ptr`: ptr GLubyte, numInstances: cint): DrawElementsUByte {.constructor,importcpp: "DrawElementsUByte(@)".}
+proc constructDrawElementsUByte*(mode: GLenum, no: cuint, `ptr`: ptr GLubyte, numInstances: cint): DrawElementsUByte {.constructor,importcpp: "osg::DrawElementsUByte::DrawElementsUByte(@)".}
     ## 
 
-proc constructDrawElementsUByte*(mode: GLenum, no: cuint): DrawElementsUByte {.constructor,importcpp: "DrawElementsUByte(@)".}
+proc constructDrawElementsUByte*(mode: GLenum, no: cuint): DrawElementsUByte {.constructor,importcpp: "osg::DrawElementsUByte::DrawElementsUByte(@)".}
     ## 
 
-proc constructDrawElementsUShort*(mode: GLenum = 0): DrawElementsUShort {.constructor,importcpp: "DrawElementsUShort(@)".}
+proc constructDrawElementsUShort*(mode: GLenum = 0): DrawElementsUShort {.constructor,importcpp: "osg::DrawElementsUShort::DrawElementsUShort(@)".}
 
-proc constructDrawElementsUShort*(array: Drawelementsushort, copyop: Copyop = SHALLOW_COPY): DrawElementsUShort {.constructor,importcpp: "DrawElementsUShort(@)".}
+proc constructDrawElementsUShort*(array: Drawelementsushort, copyop: Copyop = SHALLOW_COPY): DrawElementsUShort {.constructor,importcpp: "osg::DrawElementsUShort::DrawElementsUShort(@)".}
 
-proc constructDrawElementsUShort*(mode: GLenum, no: cuint, `ptr`: ptr GLushort, numInstances: cint): DrawElementsUShort {.constructor,importcpp: "DrawElementsUShort(@)".}
+proc constructDrawElementsUShort*(mode: GLenum, no: cuint, `ptr`: ptr GLushort, numInstances: cint): DrawElementsUShort {.constructor,importcpp: "osg::DrawElementsUShort::DrawElementsUShort(@)".}
     ## 
 
-proc constructDrawElementsUShort*(mode: GLenum, no: cuint): DrawElementsUShort {.constructor,importcpp: "DrawElementsUShort(@)".}
+proc constructDrawElementsUShort*(mode: GLenum, no: cuint): DrawElementsUShort {.constructor,importcpp: "osg::DrawElementsUShort::DrawElementsUShort(@)".}
     ## 
 
-proc constructDrawElementsUInt*(mode: GLenum = 0): DrawElementsUInt {.constructor,importcpp: "DrawElementsUInt(@)".}
+proc constructDrawElementsUInt*(mode: GLenum = 0): DrawElementsUInt {.constructor,importcpp: "osg::DrawElementsUInt::DrawElementsUInt(@)".}
 
-proc constructDrawElementsUInt*(array: Drawelementsuint, copyop: Copyop = SHALLOW_COPY): DrawElementsUInt {.constructor,importcpp: "DrawElementsUInt(@)".}
+proc constructDrawElementsUInt*(array: Drawelementsuint, copyop: Copyop = SHALLOW_COPY): DrawElementsUInt {.constructor,importcpp: "osg::DrawElementsUInt::DrawElementsUInt(@)".}
 
-proc constructDrawElementsUInt*(mode: GLenum, no: cuint, `ptr`: ptr GLuint, numInstances: cint): DrawElementsUInt {.constructor,importcpp: "DrawElementsUInt(@)".}
+proc constructDrawElementsUInt*(mode: GLenum, no: cuint, `ptr`: ptr GLuint, numInstances: cint): DrawElementsUInt {.constructor,importcpp: "osg::DrawElementsUInt::DrawElementsUInt(@)".}
     ## 
 
-proc constructDrawElementsUInt*(mode: GLenum, no: cuint): DrawElementsUInt {.constructor,importcpp: "DrawElementsUInt(@)".}
+proc constructDrawElementsUInt*(mode: GLenum, no: cuint): DrawElementsUInt {.constructor,importcpp: "osg::DrawElementsUInt::DrawElementsUInt(@)".}
     ## 
 
-proc constructMultiDrawArrays*(mode: GLenum = 0): MultiDrawArrays {.constructor,importcpp: "MultiDrawArrays(@)".}
+proc constructMultiDrawArrays*(mode: GLenum = 0): MultiDrawArrays {.constructor,importcpp: "osg::MultiDrawArrays::MultiDrawArrays(@)".}
 
-proc constructMultiDrawArrays*(dal: Multidrawarrays, copyop: Copyop = SHALLOW_COPY): MultiDrawArrays {.constructor,importcpp: "MultiDrawArrays(@)".}
+proc constructMultiDrawArrays*(dal: Multidrawarrays, copyop: Copyop = SHALLOW_COPY): MultiDrawArrays {.constructor,importcpp: "osg::MultiDrawArrays::MultiDrawArrays(@)".}
 
 proc setVertexArray*(this: var PrimitiveFunctor, count: cuint, vertices: ptr Vec2 )  {.importcpp: "setVertexArray".}
     ## Sets the array of vertices used to describe the primitives. Somehow
@@ -347,8 +350,6 @@ proc getElement*(this: var DrawElementsUByte, i: cuint): cuint  {.importcpp: "ge
 
 proc addElement*(this: var DrawElementsUByte, v: cuint)  {.importcpp: "addElement".}
 
-proc drawElementsUShort*[InputIterator](this: var DrawElementsUShort, mode: GLenum, first: InputIterator, last: InputIterator)  {.importcpp: "DrawElementsUShort".}
-
 proc cloneType*(this: DrawElementsUShort): ptr Object   {.importcpp: "cloneType".}
 
 proc clone*(this: DrawElementsUShort, copyop: Copyop): ptr Object   {.importcpp: "clone".}
@@ -388,8 +389,6 @@ proc setElement*(this: var DrawElementsUShort, i: cuint, v: cuint)  {.importcpp:
 proc getElement*(this: var DrawElementsUShort, i: cuint): cuint  {.importcpp: "getElement".}
 
 proc addElement*(this: var DrawElementsUShort, v: cuint)  {.importcpp: "addElement".}
-
-proc drawElementsUInt*[InputIterator](this: var DrawElementsUInt, mode: GLenum, first: InputIterator, last: InputIterator)  {.importcpp: "DrawElementsUInt".}
 
 proc cloneType*(this: DrawElementsUInt): ptr Object   {.importcpp: "cloneType".}
 
@@ -469,4 +468,4 @@ proc getCounts*(this: MultiDrawArrays): Counts  {.importcpp: "getCounts".}
 
 proc add*(this: var MultiDrawArrays, first: GLint, count: GLsizei)  {.importcpp: "add".}
 
-{.pop.} # header: "PrimitiveSet
+{.pop.}  # header: "PrimitiveSet"

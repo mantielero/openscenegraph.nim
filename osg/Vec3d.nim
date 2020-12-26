@@ -1,21 +1,21 @@
-import Vec2d # Provides Vec2d
-import Vec3f # Provides Vec3f
+const
+  num_components* = 3
 
 
 type
   Value_type* {.header: "Vec3d", importcpp: "osg::Vec3d::value_type".} = cdouble
+
+
 {.push header: "Vec3d".}
 
-
-# Constructors and methods
-proc constructVec3d*(): Vec3d {.constructor,importcpp: "Vec3d".}
+proc constructVec3d*(): Vec3d {.constructor,importcpp: "osg::Vec3d::Vec3d".}
     ## Constructor that sets all components of the vector to zero
 
-proc constructVec3d*(vec: Vec3f): Vec3d {.constructor,importcpp: "Vec3d(@)".}
+proc constructVec3d*(vec: Vec3f): Vec3d {.constructor,importcpp: "osg::Vec3d::Vec3d(@)".}
 
-proc constructVec3d*(x: Value_type, y: Value_type, z: Value_type): Vec3d {.constructor,importcpp: "Vec3d(@)".}
+proc constructVec3d*(x: Value_type, y: Value_type, z: Value_type): Vec3d {.constructor,importcpp: "osg::Vec3d::Vec3d(@)".}
 
-proc constructVec3d*(v2: Vec2d, zz: Value_type): Vec3d {.constructor,importcpp: "Vec3d(@)".}
+proc constructVec3d*(v2: Vec2d, zz: Value_type): Vec3d {.constructor,importcpp: "osg::Vec3d::Vec3d(@)".}
 
 proc `==`*(this: Vec3d, v: Vec3d): bool  {.importcpp: "# == #".}
 
@@ -98,4 +98,4 @@ proc normalize*(this: var Vec3d): Value_type  {.importcpp: "normalize".}
     ## length of the vector. If the vector is zero length, it is left
     ## unchanged and zero is returned.
 
-{.pop.} # header: "Vec3d
+{.pop.}  # header: "Vec3d"

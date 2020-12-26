@@ -1,31 +1,25 @@
-import Mutex # Provides Mutex
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import gl # Provides GLenum, GLbitfield
-import Vec3f # Provides Vec3f
-import Vec3d # Provides Vec3d
-import Matrixd # Provides Matrixd
-import DisplaySettings # Provides DisplaySettings
-import Vec4 # Provides Vec4
-import Matrixf # Provides Matrixf
-import Matrix # Provides Matrix
-import NodeVisitor # Provides NodeVisitor
-import Viewport # Provides Viewport
-import ColorMask # Provides ColorMask
-import CullSettings # Provides CullSettings
-import Image # Provides Image
-import State # Provides State
-import Affinity # Provides Affinity
-import OperationThread # Provides OperationThread
-import GraphicsContext # Provides GraphicsContext
-import Texture # Provides Texture
-import Stats # Provides Stats
-import View # Provides View
-import RenderInfo # Provides RenderInfo
-
-
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/CullSettings  # provides: osg::CullSettings
+import /usr/include/osg/Vec4  # provides: osg::Vec4
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/Matrixf  # provides: osg::Matrixf
+import /usr/include/osg/Stats  # provides: osg::Stats
+import /usr/include/osg/View  # provides: osg::View
+import /usr/include/osg/OperationThread  # provides: osg::OperationThread
+import /usr/include/osg/Image  # provides: osg::Image
+import /usr/include/osg/Viewport  # provides: osg::Viewport
+import /usr/include/osg/ColorMask  # provides: osg::ColorMask
+import /usr/include/osg/Vec3f  # provides: osg::Vec3f
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/Matrix  # provides: osg::Matrix
+import /usr/include/osg/Matrixd  # provides: osg::Matrixd
+import /usr/include/osg/GraphicsContext  # provides: osg::GraphicsContext
+import /usr/include/osg/RenderInfo  # provides: osg::RenderInfo
+import /usr/include/osg/Vec3d  # provides: osg::Vec3d
+import /usr/include/osg/DisplaySettings  # provides: osg::DisplaySettings
+import /usr/include/osg/Texture  # provides: osg::Texture
+import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
 type
-  # Enums
   TransformOrder* {.size:sizeof(cuint),header: "Camera", importcpp: "osg::Camera::TransformOrder".} = enum
     PRE_MULTIPLY = 0,
     POST_MULTIPLY = 1
@@ -75,36 +69,35 @@ type
   ResizeMask* {.size:sizeof(cuint),header: "Camera", importcpp: "osg::Camera::ResizeMask".} = enum
     RESIZE_VIEWPORT = 1,
     RESIZE_ATTACHMENTS = 2,
-    RESIZE_PROJECTIONMATRIX = 4,
-    RESIZE_DEFAULT = 3
+    RESIZE_DEFAULT = 3,
+    RESIZE_PROJECTIONMATRIX = 4
 
   ImplicitBufferAttachment* {.size:sizeof(cint),header: "Camera", importcpp: "osg::Camera::ImplicitBufferAttachment".} = enum
     ## Explicit control over implicit allocation of buffers when using FBO.
     ## Implicit buffers are automatically substituted when user have not
     ## attached such buffer.
 
+    USE_DISPLAY_SETTINGS_MASK = -1,
     IMPLICIT_DEPTH_BUFFER_ATTACHMENT = 1,
     IMPLICIT_STENCIL_BUFFER_ATTACHMENT = 2,
-    IMPLICIT_COLOR_BUFFER_ATTACHMENT = 4,
-    USE_DISPLAY_SETTINGS_MASK = -1
+    IMPLICIT_COLOR_BUFFER_ATTACHMENT = 4
 
-  # Typedefs
   BufferAttachmentMap* {.header: "Camera", importcpp: "osg::Camera::BufferAttachmentMap".} = cint
   ImplicitBufferAttachmentMask* {.header: "Camera", importcpp: "osg::Camera::ImplicitBufferAttachmentMask".} = cint
+
+
 {.push header: "Camera".}
 
+proc constructCamera*(): Camera {.constructor,importcpp: "osg::Camera::Camera".}
 
-# Constructors and methods
-proc constructCamera*(): Camera {.constructor,importcpp: "Camera".}
-
-proc constructCamera*(Camera, copyop: Copyop = SHALLOW_COPY): Camera {.constructor,importcpp: "Camera(@)".}
+proc constructCamera*(Camera, copyop: Copyop = SHALLOW_COPY): Camera {.constructor,importcpp: "osg::Camera::Camera(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
-proc constructAttachment*(): Attachment {.constructor,importcpp: "Attachment".}
+proc constructAttachment*(): Attachment {.constructor,importcpp: "osg::Camera::Attachment::Attachment".}
 
-proc constructDrawCallback*(): DrawCallback {.constructor,importcpp: "DrawCallback".}
+proc constructDrawCallback*(): DrawCallback {.constructor,importcpp: "osg::Camera::DrawCallback::DrawCallback".}
 
-proc constructDrawCallback*(org: Drawcallback, copyop: Copyop): DrawCallback {.constructor,importcpp: "DrawCallback(@)".}
+proc constructDrawCallback*(org: Drawcallback, copyop: Copyop): DrawCallback {.constructor,importcpp: "osg::Camera::DrawCallback::DrawCallback(@)".}
 
 proc cloneType*(this: Camera): ptr Object   {.importcpp: "cloneType".}
 
@@ -532,14 +525,10 @@ proc addInitialDrawCallback*(this: var Camera, nc: ptr Drawcallback )  {.importc
     ## Convenience method that sets DrawCallback Initial callback of the node
     ## if it doesn't exist, or nest it into the existing one.
 
-proc addInitialDrawCallback*[T](this: var Camera, nc: ref_ptr[T])  {.importcpp: "addInitialDrawCallback".}
-
 proc removeInitialDrawCallback*(this: var Camera, nc: ptr Drawcallback )  {.importcpp: "removeInitialDrawCallback".}
     ## Convenience method that removes a given callback from a node, even if
     ## that callback is nested. There is no error return in case the given
     ## callback is not found.
-
-proc removeInitialDrawCallback*[T](this: var Camera, nc: ref_ptr[T])  {.importcpp: "removeInitialDrawCallback".}
 
 proc setPreDrawCallback*(this: var Camera, cb: ptr Drawcallback )  {.importcpp: "setPreDrawCallback".}
     ## Set the pre draw callback for custom operations to be done before the
@@ -556,14 +545,10 @@ proc addPreDrawCallback*(this: var Camera, nc: ptr Drawcallback )  {.importcpp: 
     ## Convenience method that sets DrawCallback Initial callback of the node
     ## if it doesn't exist, or nest it into the existing one.
 
-proc addPreDrawCallback*[T](this: var Camera, nc: ref_ptr[T])  {.importcpp: "addPreDrawCallback".}
-
 proc removePreDrawCallback*(this: var Camera, nc: ptr Drawcallback )  {.importcpp: "removePreDrawCallback".}
     ## Convenience method that removes a given callback from a node, even if
     ## that callback is nested. There is no error return in case the given
     ## callback is not found.
-
-proc removePreDrawCallback*[T](this: var Camera, nc: ref_ptr[T])  {.importcpp: "removePreDrawCallback".}
 
 proc setPostDrawCallback*(this: var Camera, cb: ptr Drawcallback )  {.importcpp: "setPostDrawCallback".}
     ## Set the post draw callback for custom operations to be done after the
@@ -580,14 +565,10 @@ proc addPostDrawCallback*(this: var Camera, nc: ptr Drawcallback )  {.importcpp:
     ## Convenience method that sets DrawCallback Initial callback of the node
     ## if it doesn't exist, or nest it into the existing one.
 
-proc addPostDrawCallback*[T](this: var Camera, nc: ref_ptr[T])  {.importcpp: "addPostDrawCallback".}
-
 proc removePostDrawCallback*(this: var Camera, nc: ptr Drawcallback )  {.importcpp: "removePostDrawCallback".}
     ## Convenience method that removes a given callback from a node, even if
     ## that callback is nested. There is no error return in case the given
     ## callback is not found.
-
-proc removePostDrawCallback*[T](this: var Camera, nc: ref_ptr[T])  {.importcpp: "removePostDrawCallback".}
 
 proc setFinalDrawCallback*(this: var Camera, cb: ptr Drawcallback )  {.importcpp: "setFinalDrawCallback".}
     ## Set the final draw callback for custom operations to be done after the
@@ -604,14 +585,10 @@ proc addFinalDrawCallback*(this: var Camera, nc: ptr Drawcallback )  {.importcpp
     ## Convenience method that sets DrawCallback Initial callback of the node
     ## if it doesn't exist, or nest it into the existing one.
 
-proc addFinalDrawCallback*[T](this: var Camera, nc: ref_ptr[T])  {.importcpp: "addFinalDrawCallback".}
-
 proc removeFinalDrawCallback*(this: var Camera, nc: ptr Drawcallback )  {.importcpp: "removeFinalDrawCallback".}
     ## Convenience method that removes a given callback from a node, even if
     ## that callback is nested. There is no error return in case the given
     ## callback is not found.
-
-proc removeFinalDrawCallback*[T](this: var Camera, nc: ref_ptr[T])  {.importcpp: "removeFinalDrawCallback".}
 
 proc getDataChangeMutex*(this: Camera): ptr Mutex   {.importcpp: "getDataChangeMutex".}
 
@@ -637,4 +614,4 @@ proc inheritCullSettings*(this: var Camera, settings: Cullsettings, inheritanceM
 
 proc `()`*(this: CameraRenderOrderSortOp, lhs: ptr Camera , rhs: ptr Camera ): bool  {.importcpp: "# () #".}
 
-{.pop.} # header: "Camera
+{.pop.}  # header: "Camera"

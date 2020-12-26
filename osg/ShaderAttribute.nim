@@ -1,20 +1,20 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import Shader # Provides Shader
-import StateAttribute # Provides StateAttribute, Type
-import Uniform # Provides Uniform
-import State # Provides State
-
-
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/Shader  # provides: osg::Shader
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/Uniform  # provides: osg::Uniform
 type
   Uniforms* {.header: "ShaderAttribute", importcpp: "osg::ShaderAttribute::Uniforms".} = cint
+  ShaderAttribute* {.header: "ShaderAttribute", importcpp: "osg::ShaderAttribute", byref.} = object #of class osg::StateAttribute
+
+
+
 {.push header: "ShaderAttribute".}
 
+proc constructShaderAttribute*(): ShaderAttribute {.constructor,importcpp: "osg::ShaderAttribute::ShaderAttribute".}
 
-# Constructors and methods
-proc constructShaderAttribute*(): ShaderAttribute {.constructor,importcpp: "ShaderAttribute".}
-
-proc constructShaderAttribute*(sa: Shaderattribute, copyop: Copyop = SHALLOW_COPY): ShaderAttribute {.constructor,importcpp: "ShaderAttribute(@)".}
+proc constructShaderAttribute*(sa: Shaderattribute, copyop: Copyop = SHALLOW_COPY): ShaderAttribute {.constructor,importcpp: "osg::ShaderAttribute::ShaderAttribute(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: ShaderAttribute): ptr Object   {.importcpp: "cloneType".}
@@ -64,4 +64,4 @@ proc resizeGLObjectBuffers*(this: var ShaderAttribute, maxSize: cuint)  {.import
 
 proc releaseGLObjects*(this: ShaderAttribute, state: ptr State  = 0)  {.importcpp: "releaseGLObjects".}
 
-{.pop.} # header: "ShaderAttribute
+{.pop.}  # header: "ShaderAttribute"

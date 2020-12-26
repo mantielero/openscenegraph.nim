@@ -1,22 +1,25 @@
-import gl # Provides GLenum, GLint, GLsizei
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import StateAttribute # Provides StateAttribute, Type
-import Image # Provides Image
-import State # Provides State
-
-
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/Image  # provides: osg::Image
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
 type
-  # Typedefs
   Images* {.header: "Texture2DArray", importcpp: "osg::Texture2DArray::Images".} = cint
   ImageModifiedCount* {.header: "Texture2DArray", importcpp: "osg::Texture2DArray::ImageModifiedCount".} = buffered_value[unsigned int]
+  Texture2DArray* {.header: "Texture2DArray", importcpp: "osg::Texture2DArray", byref.} = object #of class osg::Texture
+    ## Texture2DArray state class which encapsulates OpenGL 2D array texture
+    ## functionality. Texture arrays were introduced with Shader Model 4.0
+    ## hardware.
+
+  SubloadCallback* {.header: "Texture2DArray", importcpp: "osg::Texture2DArray::SubloadCallback", byref.} = object #of class osg::Referenced
+
+
+
 {.push header: "Texture2DArray".}
 
+proc constructTexture2DArray*(): Texture2DArray {.constructor,importcpp: "osg::Texture2DArray::Texture2DArray".}
 
-# Constructors and methods
-proc constructTexture2DArray*(): Texture2DArray {.constructor,importcpp: "Texture2DArray".}
-
-proc constructTexture2DArray*(cm: Texture2darray, copyop: Copyop = SHALLOW_COPY): Texture2DArray {.constructor,importcpp: "Texture2DArray(@)".}
+proc constructTexture2DArray*(cm: Texture2darray, copyop: Copyop = SHALLOW_COPY): Texture2DArray {.constructor,importcpp: "osg::Texture2DArray::Texture2DArray(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: Texture2DArray): ptr Object   {.importcpp: "cloneType".}
@@ -42,8 +45,6 @@ proc getModeUsage*(this: Texture2DArray, Modeusage): bool  {.importcpp: "getMode
 
 proc setImage*(this: var Texture2DArray, layer: cuint, image: ptr Image )  {.importcpp: "setImage".}
     ## Set the texture image for specified layer.
-
-proc setImage*[T](this: var Texture2DArray, layer: cuint, image: ref_ptr[T])  {.importcpp: "setImage".}
 
 proc getImage*(this: var Texture2DArray, layer: cuint): ptr Image   {.importcpp: "getImage".}
     ## Get the texture image for specified layer.
@@ -120,4 +121,4 @@ proc allocateMipmap*(this: Texture2DArray, state: State)  {.importcpp: "allocate
 
 proc applyTexImage2DArray_subload*(this: Texture2DArray, state: State, image: ptr Image , layer: GLsizei, inwidth: GLsizei, inheight: GLsizei, indepth: GLsizei, inInternalFormat: GLint, numMipmapLevels: var GLsizei)  {.importcpp: "applyTexImage2DArray_subload".}
 
-{.pop.} # header: "Texture2DArray
+{.pop.}  # header: "Texture2DArray"

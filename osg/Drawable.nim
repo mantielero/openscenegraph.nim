@@ -1,26 +1,23 @@
-import Vec3 # Provides Vec3
-import Vec2d # Provides Vec2d
-import Vec3d # Provides Vec3d
-import BoundingBox # Provides BoundingBox
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import Vec4d # Provides Vec4d
-import Vec4 # Provides Vec4
-import BoundingSphere # Provides BoundingSphere
-import Vec4ub # Provides Vec4ub
-import Vec2 # Provides Vec2
-import gl # Provides GLbyte, GLshort, GLint, GLubyte, GLushort, GLuint
-import Array # Provides Array, ByteArray, ShortArray, IntArray, UByteArray, UShortArray, UIntArray, FloatArray, DoubleArray, Vec4ubArray, Vec2Array, Vec3Array, Vec4Array, Vec2dArray, Vec3dArray, Vec4dArray
-import Shape # Provides Shape
-import PrimitiveSet # Provides PrimitiveFunctor, PrimitiveIndexFunctor
-import Callback # Provides DrawableUpdateCallback, DrawableEventCallback, DrawableCullCallback
-import VertexArrayState # Provides VertexArrayState, VertexArrayStateList
-import State # Provides State
-import Node # Provides MatrixList, Node
-import NodeVisitor # Provides NodeVisitor
-import RenderInfo # Provides RenderInfo
-
-
+import /usr/include/osg/Vec3  # provides: osg::Vec3
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/BoundingSphere  # provides: osg::BoundingSphere
+import /usr/include/osg/Vec4  # provides: osg::Vec4
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/Array  # provides: osg::ShortArray, osg::Vec3Array, osg::UByteArray, osg::Vec4Array, osg::IntArray, osg::Vec2Array, osg::Vec4ubArray, osg::FloatArray, osg::UShortArray, osg::Vec3dArray, osg::ByteArray, osg::DoubleArray, osg::Vec2dArray, osg::Vec4dArray, osg::Array, osg::UIntArray
+import /usr/include/osg/Shape  # provides: osg::Shape
+import /usr/include/osg/PrimitiveSet  # provides: osg::PrimitiveIndexFunctor, osg::PrimitiveFunctor
+import /usr/include/osg/Node  # provides: osg::MatrixList, osg::Node
+import /usr/include/osg/Callback  # provides: osg::DrawableUpdateCallback, osg::DrawableEventCallback, osg::DrawableCullCallback
+import /usr/include/osg/Vec2  # provides: osg::Vec2
+import /usr/include/osg/BoundingBox  # provides: osg::BoundingBox
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/VertexArrayState  # provides: osg::VertexArrayStateList, osg::VertexArrayState
+import /usr/include/osg/RenderInfo  # provides: osg::RenderInfo
+import /usr/include/osg/Vec4d  # provides: osg::Vec4d
+import /usr/include/osg/Vec3d  # provides: osg::Vec3d
+import /usr/include/osg/Vec2d  # provides: osg::Vec2d
+import /usr/include/osg/Vec4ub  # provides: osg::Vec4ub
+import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
 type
   AttributeTypes* {.size:sizeof(cuint),header: "Drawable", importcpp: "osg::Drawable::AttributeTypes".} = enum
     VERTICES = 0,
@@ -33,6 +30,8 @@ type
     ATTRIBUTE_7 = 7,
     TEXTURE_COORDS = 8,
     TEXTURE_COORDS_0 = 8,
+    TEXTURE_COORDS = 8,
+    TEXTURE_COORDS_0 = 8,
     TEXTURE_COORDS_1 = 9,
     TEXTURE_COORDS_2 = 10,
     TEXTURE_COORDS_3 = 11,
@@ -41,36 +40,43 @@ type
     TEXTURE_COORDS_6 = 14,
     TEXTURE_COORDS_7 = 15
 
-  # Typedefs
   UpdateCallback* {.header: "Drawable", importcpp: "osg::Drawable::UpdateCallback".} = Drawableupdatecallback
   EventCallback* {.header: "Drawable", importcpp: "osg::Drawable::EventCallback".} = Drawableeventcallback
   CullCallback* {.header: "Drawable", importcpp: "osg::Drawable::CullCallback".} = Drawablecullcallback
   AttributeType* {.header: "Drawable", importcpp: "osg::Drawable::AttributeType".} = cuint
   GLObjectList* {.header: "Drawable", importcpp: "osg::Drawable::GLObjectList".} = Buffered_value[GLuint]
+  AttributeFunctor* {.header: "Drawable", importcpp: "osg::Drawable::AttributeFunctor", byref.} = object
+
+  ConstAttributeFunctor* {.header: "Drawable", importcpp: "osg::Drawable::ConstAttributeFunctor", byref.} = object
+
+  AttributeFunctorArrayVisitor* {.header: "Drawable", importcpp: "osg::AttributeFunctorArrayVisitor", byref.} = object #of class osg::ArrayVisitor
+
+  ConstAttributeFunctorArrayVisitor* {.header: "Drawable", importcpp: "osg::ConstAttributeFunctorArrayVisitor", byref.} = object #of class osg::ConstArrayVisitor
+
+
+
 {.push header: "Drawable".}
 
+proc constructDrawable*(): Drawable {.constructor,importcpp: "osg::Drawable::Drawable".}
 
-# Constructors and methods
-proc constructDrawable*(): Drawable {.constructor,importcpp: "Drawable".}
-
-proc constructDrawable*(drawable: Drawable, copyop: Copyop = SHALLOW_COPY): Drawable {.constructor,importcpp: "Drawable(@)".}
+proc constructDrawable*(drawable: Drawable, copyop: Copyop = SHALLOW_COPY): Drawable {.constructor,importcpp: "osg::Drawable::Drawable(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
-proc constructComputeBoundingBoxCallback*(): ComputeBoundingBoxCallback {.constructor,importcpp: "ComputeBoundingBoxCallback".}
+proc constructComputeBoundingBoxCallback*(): ComputeBoundingBoxCallback {.constructor,importcpp: "osg::Drawable::ComputeBoundingBoxCallback::ComputeBoundingBoxCallback".}
 
-proc constructComputeBoundingBoxCallback*(org: Computeboundingboxcallback, copyop: Copyop): ComputeBoundingBoxCallback {.constructor,importcpp: "ComputeBoundingBoxCallback(@)".}
+proc constructComputeBoundingBoxCallback*(org: Computeboundingboxcallback, copyop: Copyop): ComputeBoundingBoxCallback {.constructor,importcpp: "osg::Drawable::ComputeBoundingBoxCallback::ComputeBoundingBoxCallback(@)".}
 
-proc constructCreateVertexArrayStateCallback*(): CreateVertexArrayStateCallback {.constructor,importcpp: "CreateVertexArrayStateCallback".}
+proc constructCreateVertexArrayStateCallback*(): CreateVertexArrayStateCallback {.constructor,importcpp: "osg::Drawable::CreateVertexArrayStateCallback::CreateVertexArrayStateCallback".}
 
-proc constructCreateVertexArrayStateCallback*(rhs: Createvertexarraystatecallback, copyop: Copyop): CreateVertexArrayStateCallback {.constructor,importcpp: "CreateVertexArrayStateCallback(@)".}
+proc constructCreateVertexArrayStateCallback*(rhs: Createvertexarraystatecallback, copyop: Copyop): CreateVertexArrayStateCallback {.constructor,importcpp: "osg::Drawable::CreateVertexArrayStateCallback::CreateVertexArrayStateCallback(@)".}
 
-proc constructDrawCallback*(): DrawCallback {.constructor,importcpp: "DrawCallback".}
+proc constructDrawCallback*(): DrawCallback {.constructor,importcpp: "osg::Drawable::DrawCallback::DrawCallback".}
 
-proc constructDrawCallback*(org: Drawcallback, copyop: Copyop): DrawCallback {.constructor,importcpp: "DrawCallback(@)".}
+proc constructDrawCallback*(org: Drawcallback, copyop: Copyop): DrawCallback {.constructor,importcpp: "osg::Drawable::DrawCallback::DrawCallback(@)".}
 
-proc constructAttributeFunctorArrayVisitor*(af: Attributefunctor): AttributeFunctorArrayVisitor {.constructor,importcpp: "AttributeFunctorArrayVisitor(@)".}
+proc constructAttributeFunctorArrayVisitor*(af: Attributefunctor): AttributeFunctorArrayVisitor {.constructor,importcpp: "osg::AttributeFunctorArrayVisitor::AttributeFunctorArrayVisitor(@)".}
 
-proc constructConstAttributeFunctorArrayVisitor*(af: Constattributefunctor): ConstAttributeFunctorArrayVisitor {.constructor,importcpp: "ConstAttributeFunctorArrayVisitor(@)".}
+proc constructConstAttributeFunctorArrayVisitor*(af: Constattributefunctor): ConstAttributeFunctorArrayVisitor {.constructor,importcpp: "osg::ConstAttributeFunctorArrayVisitor::ConstAttributeFunctorArrayVisitor(@)".}
 
 proc cloneType*(this: Drawable): ptr Object   {.importcpp: "cloneType".}
 
@@ -146,8 +152,6 @@ proc getComputeBoundingBoxCallback*(this: Drawable): ptr Computeboundingboxcallb
 proc setShape*(this: var Drawable, shape: ptr Shape )  {.importcpp: "setShape".}
     ## Set the Shape of the Drawable. The shape can be used to speed up
     ## collision detection or as a guide for procedural geometry generation.
-
-proc setShape*[T](this: var Drawable, shape: ref_ptr[T])  {.importcpp: "setShape".}
 
 proc getShape*(this: var Drawable): ptr Shape   {.importcpp: "getShape".}
     ## Get the Shape of the Drawable.
@@ -496,4 +500,4 @@ proc applyArray*(this: var ConstAttributeFunctorArrayVisitor, `type`: Attributet
 
 proc `=`*(this: var ConstAttributeFunctorArrayVisitor, Constattributefunctorarrayvisitor): Constattributefunctorarrayvisitor  {.importcpp: "# = #".}
 
-{.pop.} # header: "Drawable
+{.pop.}  # header: "Drawable"

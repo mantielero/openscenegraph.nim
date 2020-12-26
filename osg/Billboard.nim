@@ -1,14 +1,11 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import Matrix # Provides Matrix
-import Vec3 # Provides Vec3
-import BoundingSphere # Provides BoundingSphere
-import NodeVisitor # Provides NodeVisitor
-import Drawable # Provides Drawable
-
-
+import /usr/include/osg/Vec3  # provides: osg::Vec3
+import /usr/include/osg/BoundingSphere  # provides: osg::BoundingSphere
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/Drawable  # provides: osg::Drawable
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/Matrix  # provides: osg::Matrix
+import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
 type
-  # Enums
   Mode* {.size:sizeof(cuint),header: "Billboard", importcpp: "osg::Billboard::Mode".} = enum
     POINT_ROT_EYE = 0,
     POINT_ROT_WORLD = 1,
@@ -22,13 +19,13 @@ type
     CACHE_DIRTY = 7
 
   PositionList* {.header: "Billboard", importcpp: "osg::Billboard::PositionList".} = cint
+
+
 {.push header: "Billboard".}
 
+proc constructBillboard*(): Billboard {.constructor,importcpp: "osg::Billboard::Billboard".}
 
-# Constructors and methods
-proc constructBillboard*(): Billboard {.constructor,importcpp: "Billboard".}
-
-proc constructBillboard*(Billboard, copyop: Copyop = SHALLOW_COPY): Billboard {.constructor,importcpp: "Billboard(@)".}
+proc constructBillboard*(Billboard, copyop: Copyop = SHALLOW_COPY): Billboard {.constructor,importcpp: "osg::Billboard::Billboard(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: Billboard): ptr Object   {.importcpp: "cloneType".}
@@ -101,4 +98,4 @@ proc computeBound*(this: Billboard): Boundingsphere  {.importcpp: "computeBound"
 
 proc updateCache*(this: var Billboard)  {.importcpp: "updateCache".}
 
-{.pop.} # header: "Billboard
+{.pop.}  # header: "Billboard"

@@ -1,5 +1,1 @@
-import Vec3f # Provides Vec3f
-
-
-type
-  Vec3* {.header: "Vec3", importcpp: "osg::Vec3".} = Vec3f
+import /usr/include/osg/Vec3f  # provides: osg::Vec3f

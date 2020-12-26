@@ -1,27 +1,30 @@
-import CopyOp # Provides CopyOp
-import stringfwd # Provides string
-import Object # Provides Object
-import Vec3d # Provides Vec3d
-import Matrixd # Provides Matrixd
-import NodeVisitor # Provides NodeVisitor
-
-
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/Matrixd  # provides: osg::Matrixd
+import /usr/include/osg/Vec3d  # provides: osg::Vec3d
+import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
 type
   CoordinateFrame* {.header: "CoordinateSystemNode", importcpp: "osg::CoordinateFrame".} = Matrixd
+  EllipsoidModel* {.header: "CoordinateSystemNode", importcpp: "osg::EllipsoidModel", byref.} = object #of class osg::Object
+    ## EllipsoidModel encapsulates the ellipsoid used to model astronomical
+    ## bodies, such as sun, planets, moon etc. All distance quantities (i.e.
+    ## heights + radius) are in meters, and latitude and longitude are in
+    ## radians.
+
+
+
 {.push header: "CoordinateSystemNode".}
 
-
-# Constructors and methods
-proc constructEllipsoidModel*(radiusEquator: cdouble, radiusPolar: cdouble): EllipsoidModel {.constructor,importcpp: "EllipsoidModel(@)".}
+proc constructEllipsoidModel*(radiusEquator: cdouble, radiusPolar: cdouble): EllipsoidModel {.constructor,importcpp: "osg::EllipsoidModel::EllipsoidModel(@)".}
     ## WGS_84 is a common representation of the earth's spheroid
 
-proc constructEllipsoidModel*(et: Ellipsoidmodel, copyop: Copyop = SHALLOW_COPY): EllipsoidModel {.constructor,importcpp: "EllipsoidModel(@)".}
+proc constructEllipsoidModel*(et: Ellipsoidmodel, copyop: Copyop = SHALLOW_COPY): EllipsoidModel {.constructor,importcpp: "osg::EllipsoidModel::EllipsoidModel(@)".}
 
-proc constructCoordinateSystemNode*(): CoordinateSystemNode {.constructor,importcpp: "CoordinateSystemNode".}
+proc constructCoordinateSystemNode*(): CoordinateSystemNode {.constructor,importcpp: "osg::CoordinateSystemNode::CoordinateSystemNode".}
 
-proc constructCoordinateSystemNode*(format: String, cs: String): CoordinateSystemNode {.constructor,importcpp: "CoordinateSystemNode(@)".}
+proc constructCoordinateSystemNode*(format: String, cs: String): CoordinateSystemNode {.constructor,importcpp: "osg::CoordinateSystemNode::CoordinateSystemNode(@)".}
 
-proc constructCoordinateSystemNode*(Coordinatesystemnode, copyop: Copyop = SHALLOW_COPY): CoordinateSystemNode {.constructor,importcpp: "CoordinateSystemNode(@)".}
+proc constructCoordinateSystemNode*(Coordinatesystemnode, copyop: Copyop = SHALLOW_COPY): CoordinateSystemNode {.constructor,importcpp: "osg::CoordinateSystemNode::CoordinateSystemNode(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: EllipsoidModel): ptr Object   {.importcpp: "cloneType".}
@@ -120,4 +123,4 @@ proc computeCoordinateFrame*(this: EllipsoidModel, latitude: cdouble, longitude:
 
 proc computeLocalUpVector*(this: EllipsoidModel, X: cdouble, Y: cdouble, Z: cdouble): Vec3d  {.importcpp: "computeLocalUpVector".}
 
-{.pop.} # header: "CoordinateSystemNode
+{.pop.}  # header: "CoordinateSystemNode"

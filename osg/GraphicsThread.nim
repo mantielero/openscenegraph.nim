@@ -1,36 +1,37 @@
-import stringfwd # Provides string
-import Object # Provides Object
-import State # Provides State
-import GraphicsContext # Provides GraphicsContext
-
-
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/GraphicsContext  # provides: osg::GraphicsContext
 type
   PreBlockOp* {.size:sizeof(cuint),header: "GraphicsThread", importcpp: "osg::BarrierOperation::PreBlockOp".} = enum
     NO_OPERATION = 0,
     GL_FLUSH = 1,
     GL_FINISH = 2
 
+  RunOperations* {.header: "GraphicsThread", importcpp: "osg::RunOperations", byref.} = object #of osg::GraphicsOperation
+
+  EndOfDynamicDrawBlock* {.header: "GraphicsThread", importcpp: "osg::EndOfDynamicDrawBlock", byref.} = object #of OpenThreads::BlockCount
+
+
+
 {.push header: "GraphicsThread".}
 
+proc constructGraphicsThread*(): GraphicsThread {.constructor,importcpp: "osg::GraphicsThread::GraphicsThread".}
 
-# Constructors and methods
-proc constructGraphicsThread*(): GraphicsThread {.constructor,importcpp: "GraphicsThread".}
+proc constructGraphicsOperation*(name: String, keep: bool): GraphicsOperation {.constructor,importcpp: "osg::GraphicsOperation::GraphicsOperation(@)".}
 
-proc constructGraphicsOperation*(name: String, keep: bool): GraphicsOperation {.constructor,importcpp: "GraphicsOperation(@)".}
+proc constructSwapBuffersOperation*(): SwapBuffersOperation {.constructor,importcpp: "osg::SwapBuffersOperation::SwapBuffersOperation".}
 
-proc constructSwapBuffersOperation*(): SwapBuffersOperation {.constructor,importcpp: "SwapBuffersOperation".}
+proc constructBarrierOperation*(numThreads: cint, op: Preblockop, keep: bool): BarrierOperation {.constructor,importcpp: "osg::BarrierOperation::BarrierOperation(@)".}
 
-proc constructBarrierOperation*(numThreads: cint, op: Preblockop, keep: bool): BarrierOperation {.constructor,importcpp: "BarrierOperation(@)".}
+proc constructReleaseContext_Block_MakeCurrentOperation*(): ReleaseContext_Block_MakeCurrentOperation {.constructor,importcpp: "osg::ReleaseContext_Block_MakeCurrentOperation::ReleaseContext_Block_MakeCurrentOperation".}
 
-proc constructReleaseContext_Block_MakeCurrentOperation*(): ReleaseContext_Block_MakeCurrentOperation {.constructor,importcpp: "ReleaseContext_Block_MakeCurrentOperation".}
+proc constructBlockAndFlushOperation*(): BlockAndFlushOperation {.constructor,importcpp: "osg::BlockAndFlushOperation::BlockAndFlushOperation".}
 
-proc constructBlockAndFlushOperation*(): BlockAndFlushOperation {.constructor,importcpp: "BlockAndFlushOperation".}
+proc constructFlushDeletedGLObjectsOperation*(availableTime: cdouble, keep: bool): FlushDeletedGLObjectsOperation {.constructor,importcpp: "osg::FlushDeletedGLObjectsOperation::FlushDeletedGLObjectsOperation(@)".}
 
-proc constructFlushDeletedGLObjectsOperation*(availableTime: cdouble, keep: bool): FlushDeletedGLObjectsOperation {.constructor,importcpp: "FlushDeletedGLObjectsOperation(@)".}
+proc constructRunOperations*(): RunOperations {.constructor,importcpp: "osg::RunOperations::RunOperations".}
 
-proc constructRunOperations*(): RunOperations {.constructor,importcpp: "RunOperations".}
-
-proc constructEndOfDynamicDrawBlock*(cuint): EndOfDynamicDrawBlock {.constructor,importcpp: "EndOfDynamicDrawBlock(@)".}
+proc constructEndOfDynamicDrawBlock*(cuint): EndOfDynamicDrawBlock {.constructor,importcpp: "osg::EndOfDynamicDrawBlock::EndOfDynamicDrawBlock(@)".}
 
 proc run*(this: var GraphicsThread)  {.importcpp: "run".}
     ## Run does the graphics thread run loop.
@@ -69,4 +70,4 @@ proc `()`*(this: var RunOperations, context: ptr Graphicscontext )  {.importcpp:
 
 proc completed*(this: var EndOfDynamicDrawBlock, state: ptr State )  {.importcpp: "completed".}
 
-{.pop.} # header: "GraphicsThread
+{.pop.}  # header: "GraphicsThread"

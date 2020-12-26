@@ -1,40 +1,47 @@
-import gl # Provides GLenum
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import StateAttribute # Provides StateAttribute, Type
-import State # Provides State
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+type
+  Capability* {.header: "Capability", importcpp: "osg::Capability", byref.} = object #of osg::StateAttribute
+
+  Capabilityi* {.header: "Capability", importcpp: "osg::Capabilityi", byref.} = object #of osg::Capability
+    ## Encapsulates glEnablei/glDisablei
+
+  Enablei* {.header: "Capability", importcpp: "osg::Enablei", byref.} = object #of class osg::Capabilityi
+
+  Disablei* {.header: "Capability", importcpp: "osg::Disablei", byref.} = object #of class osg::Capabilityi
+
 
 
 {.push header: "Capability".}
 
+proc constructCapability*(): Capability {.constructor,importcpp: "osg::Capability::Capability".}
 
-# Constructors and methods
-proc constructCapability*(): Capability {.constructor,importcpp: "Capability".}
+proc constructCapability*(capability: GLenum): Capability {.constructor,importcpp: "osg::Capability::Capability(@)".}
 
-proc constructCapability*(capability: GLenum): Capability {.constructor,importcpp: "Capability(@)".}
-
-proc constructCapability*(cap: Capability, copyop: Copyop = SHALLOW_COPY): Capability {.constructor,importcpp: "Capability(@)".}
+proc constructCapability*(cap: Capability, copyop: Copyop = SHALLOW_COPY): Capability {.constructor,importcpp: "osg::Capability::Capability(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
-proc constructCapabilityi*(): Capabilityi {.constructor,importcpp: "Capabilityi".}
+proc constructCapabilityi*(): Capabilityi {.constructor,importcpp: "osg::Capabilityi::Capabilityi".}
 
-proc constructCapabilityi*(capability: GLenum, buf: cuint): Capabilityi {.constructor,importcpp: "Capabilityi(@)".}
+proc constructCapabilityi*(capability: GLenum, buf: cuint): Capabilityi {.constructor,importcpp: "osg::Capabilityi::Capabilityi(@)".}
 
-proc constructCapabilityi*(cap: Capabilityi, copyop: Copyop = SHALLOW_COPY): Capabilityi {.constructor,importcpp: "Capabilityi(@)".}
+proc constructCapabilityi*(cap: Capabilityi, copyop: Copyop = SHALLOW_COPY): Capabilityi {.constructor,importcpp: "osg::Capabilityi::Capabilityi(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
-proc constructEnablei*(): Enablei {.constructor,importcpp: "Enablei".}
+proc constructEnablei*(): Enablei {.constructor,importcpp: "osg::Enablei::Enablei".}
 
-proc constructEnablei*(buf: cuint, capability: GLenum): Enablei {.constructor,importcpp: "Enablei(@)".}
+proc constructEnablei*(buf: cuint, capability: GLenum): Enablei {.constructor,importcpp: "osg::Enablei::Enablei(@)".}
 
-proc constructEnablei*(ei: Enablei, copyop: Copyop = SHALLOW_COPY): Enablei {.constructor,importcpp: "Enablei(@)".}
+proc constructEnablei*(ei: Enablei, copyop: Copyop = SHALLOW_COPY): Enablei {.constructor,importcpp: "osg::Enablei::Enablei(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
-proc constructDisablei*(): Disablei {.constructor,importcpp: "Disablei".}
+proc constructDisablei*(): Disablei {.constructor,importcpp: "osg::Disablei::Disablei".}
 
-proc constructDisablei*(buf: cuint, capability: GLenum): Disablei {.constructor,importcpp: "Disablei(@)".}
+proc constructDisablei*(buf: cuint, capability: GLenum): Disablei {.constructor,importcpp: "osg::Disablei::Disablei(@)".}
 
-proc constructDisablei*(ei: Disablei, copyop: Copyop = SHALLOW_COPY): Disablei {.constructor,importcpp: "Disablei(@)".}
+proc constructDisablei*(ei: Disablei, copyop: Copyop = SHALLOW_COPY): Disablei {.constructor,importcpp: "osg::Disablei::Disablei(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: Capability): ptr Object   {.importcpp: "cloneType".}
@@ -104,4 +111,4 @@ proc className*(this: Disablei): cstring  {.importcpp: "className".}
 
 proc apply*(this: Disablei, State)  {.importcpp: "apply".}
 
-{.pop.} # header: "Capability
+{.pop.}  # header: "Capability"

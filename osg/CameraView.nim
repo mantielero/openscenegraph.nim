@@ -1,24 +1,22 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import Vec3d # Provides Vec3d
-import Quat # Provides Quat
-import Matrix # Provides Matrix
-import NodeVisitor # Provides NodeVisitor
-
-
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/Matrix  # provides: osg::Matrix
+import /usr/include/osg/Vec3d  # provides: osg::Vec3d
+import /usr/include/osg/Quat  # provides: osg::Quat
+import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
 type
   FieldOfViewMode* {.size:sizeof(cuint),header: "CameraView", importcpp: "osg::CameraView::FieldOfViewMode".} = enum
     UNCONSTRAINED = 0,
     HORIZONTAL = 1,
     VERTICAL = 2
 
+
+
 {.push header: "CameraView".}
 
+proc constructCameraView*(): CameraView {.constructor,importcpp: "osg::CameraView::CameraView".}
 
-# Constructors and methods
-proc constructCameraView*(): CameraView {.constructor,importcpp: "CameraView".}
-
-proc constructCameraView*(pat: Cameraview, copyop: Copyop = SHALLOW_COPY): CameraView {.constructor,importcpp: "CameraView(@)".}
+proc constructCameraView*(pat: Cameraview, copyop: Copyop = SHALLOW_COPY): CameraView {.constructor,importcpp: "osg::CameraView::CameraView(@)".}
 
 proc cloneType*(this: CameraView): ptr Object   {.importcpp: "cloneType".}
 
@@ -72,4 +70,4 @@ proc computeLocalToWorldMatrix*(this: CameraView, matrix: Matrix, nv: ptr Nodevi
 
 proc computeWorldToLocalMatrix*(this: CameraView, matrix: Matrix, nv: ptr Nodevisitor ): bool  {.importcpp: "computeWorldToLocalMatrix".}
 
-{.pop.} # header: "CameraView
+{.pop.}  # header: "CameraView"

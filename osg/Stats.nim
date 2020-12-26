@@ -1,19 +1,14 @@
-import stringfwd # Provides string
-import iosfwd # Provides ostream
-
-
 type
-  # Typedefs
   AttributeMap* {.header: "Stats", importcpp: "osg::Stats::AttributeMap".} = cint
   AttributeMapList* {.header: "Stats", importcpp: "osg::Stats::AttributeMapList".} = cint
   CollectMap* {.header: "Stats", importcpp: "osg::Stats::CollectMap".} = cint
+
+
 {.push header: "Stats".}
 
+proc constructStats*(name: String): Stats {.constructor,importcpp: "osg::Stats::Stats(@)".}
 
-# Constructors and methods
-proc constructStats*(name: String): Stats {.constructor,importcpp: "Stats(@)".}
-
-proc constructStats*(name: String, numberOfFrames: cuint): Stats {.constructor,importcpp: "Stats(@)".}
+proc constructStats*(name: String, numberOfFrames: cuint): Stats {.constructor,importcpp: "osg::Stats::Stats(@)".}
 
 proc setName*(this: var Stats, name: String)  {.importcpp: "setName".}
 
@@ -53,4 +48,4 @@ proc getAttributeMapNoMutex*(this: Stats, frameNumber: cuint): Attributemap  {.i
 
 proc getIndex*(this: Stats, frameNumber: cuint): cint  {.importcpp: "getIndex".}
 
-{.pop.} # header: "Stats
+{.pop.}  # header: "Stats"

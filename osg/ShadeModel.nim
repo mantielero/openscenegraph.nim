@@ -1,21 +1,22 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import StateAttribute # Provides StateAttribute, Type
-import State # Provides State
-
-
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
 type
   Mode* {.size:sizeof(cuint),header: "ShadeModel", importcpp: "osg::ShadeModel::Mode".} = enum
     FLAT = 7424,
     SMOOTH = 7425
 
+  ShadeModel* {.header: "ShadeModel", importcpp: "osg::ShadeModel", byref.} = object #of class osg::StateAttribute
+    ## Class which encapsulates glShadeModel(..).
+
+
+
 {.push header: "ShadeModel".}
 
+proc constructShadeModel*(mode: Mode): ShadeModel {.constructor,importcpp: "osg::ShadeModel::ShadeModel(@)".}
 
-# Constructors and methods
-proc constructShadeModel*(mode: Mode): ShadeModel {.constructor,importcpp: "ShadeModel(@)".}
-
-proc constructShadeModel*(sm: Shademodel, copyop: Copyop = SHALLOW_COPY): ShadeModel {.constructor,importcpp: "ShadeModel(@)".}
+proc constructShadeModel*(sm: Shademodel, copyop: Copyop = SHALLOW_COPY): ShadeModel {.constructor,importcpp: "osg::ShadeModel::ShadeModel(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: ShadeModel): ptr Object   {.importcpp: "cloneType".}
@@ -39,4 +40,4 @@ proc getMode*(this: ShadeModel): Mode  {.importcpp: "getMode".}
 
 proc apply*(this: ShadeModel, state: State)  {.importcpp: "apply".}
 
-{.pop.} # header: "ShadeModel
+{.pop.}  # header: "ShadeModel"

@@ -1,25 +1,28 @@
-import Vec3 # Provides Vec3
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import Matrixd # Provides Matrixd
-import Callback # Provides NodeCallback, DrawableCullCallback
-import State # Provides State
-import Node # Provides Node
-import NodeVisitor # Provides NodeVisitor
-import Drawable # Provides Drawable
+import /usr/include/osg/Vec3  # provides: osg::Vec3
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/Node  # provides: osg::Node
+import /usr/include/osg/Drawable  # provides: osg::Drawable
+import /usr/include/osg/Callback  # provides: osg::NodeCallback, osg::DrawableCullCallback
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/Matrixd  # provides: osg::Matrixd
+import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
+type
+  ClusterCullingCallback* {.header: "ClusterCullingCallback", importcpp: "osg::ClusterCullingCallback", byref.} = object #of class osg::DrawableCullCallback
+    ## Implements cluster culling to cull back facing subgraphs and
+    ## drawables. Derived from Drawable::CullCallback and osg::NodeCallback.
+
 
 
 {.push header: "ClusterCullingCallback".}
 
+proc constructClusterCullingCallback*(): ClusterCullingCallback {.constructor,importcpp: "osg::ClusterCullingCallback::ClusterCullingCallback".}
 
-# Constructors and methods
-proc constructClusterCullingCallback*(): ClusterCullingCallback {.constructor,importcpp: "ClusterCullingCallback".}
+proc constructClusterCullingCallback*(ccc: Clustercullingcallback, copyop: Copyop): ClusterCullingCallback {.constructor,importcpp: "osg::ClusterCullingCallback::ClusterCullingCallback(@)".}
 
-proc constructClusterCullingCallback*(ccc: Clustercullingcallback, copyop: Copyop): ClusterCullingCallback {.constructor,importcpp: "ClusterCullingCallback(@)".}
+proc constructClusterCullingCallback*(controlPoint: Vec3, normal: Vec3, deviation: cfloat, radius: cfloat): ClusterCullingCallback {.constructor,importcpp: "osg::ClusterCullingCallback::ClusterCullingCallback(@)".}
 
-proc constructClusterCullingCallback*(controlPoint: Vec3, normal: Vec3, deviation: cfloat, radius: cfloat): ClusterCullingCallback {.constructor,importcpp: "ClusterCullingCallback(@)".}
-
-proc constructClusterCullingCallback*(drawable: ptr Drawable ): ClusterCullingCallback {.constructor,importcpp: "ClusterCullingCallback(@)".}
+proc constructClusterCullingCallback*(drawable: ptr Drawable ): ClusterCullingCallback {.constructor,importcpp: "osg::ClusterCullingCallback::ClusterCullingCallback(@)".}
 
 proc cloneType*(this: ClusterCullingCallback): ptr Object   {.importcpp: "cloneType".}
 
@@ -72,4 +75,4 @@ proc cull*(this: ClusterCullingCallback, ptr Nodevisitor , ptr Drawable , ptr St
 proc `()`*(this: var ClusterCullingCallback, node: ptr Node , nv: ptr Nodevisitor )  {.importcpp: "# () #".}
     ## Callback method called by the NodeVisitor when visiting a node.
 
-{.pop.} # header: "ClusterCullingCallback
+{.pop.}  # header: "ClusterCullingCallback"

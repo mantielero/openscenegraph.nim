@@ -1,19 +1,21 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import StateAttribute # Provides StateAttribute, Type
-import Viewport # Provides value_type
-import State # Provides State
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+type
+  ViewportIndexed* {.header: "ViewportIndexed", importcpp: "osg::ViewportIndexed", byref.} = object #of class osg::Viewport
+    ## Encapsulates glViewportIndexed function : the index version of
+    ## glViewport for multiple render target.
+
 
 
 {.push header: "ViewportIndexed".}
 
+proc constructViewportIndexed*(): ViewportIndexed {.constructor,importcpp: "osg::ViewportIndexed::ViewportIndexed".}
 
-# Constructors and methods
-proc constructViewportIndexed*(): ViewportIndexed {.constructor,importcpp: "ViewportIndexed".}
+proc constructViewportIndexed*(index: cuint, x: Value_type, y: Value_type, width: Value_type, height: Value_type): ViewportIndexed {.constructor,importcpp: "osg::ViewportIndexed::ViewportIndexed(@)".}
 
-proc constructViewportIndexed*(index: cuint, x: Value_type, y: Value_type, width: Value_type, height: Value_type): ViewportIndexed {.constructor,importcpp: "ViewportIndexed(@)".}
-
-proc constructViewportIndexed*(cm: Viewportindexed, copyop: Copyop = SHALLOW_COPY): ViewportIndexed {.constructor,importcpp: "ViewportIndexed(@)".}
+proc constructViewportIndexed*(cm: Viewportindexed, copyop: Copyop = SHALLOW_COPY): ViewportIndexed {.constructor,importcpp: "osg::ViewportIndexed::ViewportIndexed(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: ViewportIndexed): ptr Object   {.importcpp: "cloneType".}
@@ -42,4 +44,4 @@ proc getIndex*(this: ViewportIndexed): cuint  {.importcpp: "getIndex".}
 
 proc apply*(this: ViewportIndexed, state: State)  {.importcpp: "apply".}
 
-{.pop.} # header: "ViewportIndexed
+{.pop.}  # header: "ViewportIndexed"

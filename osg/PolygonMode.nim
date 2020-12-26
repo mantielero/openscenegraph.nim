@@ -1,11 +1,8 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import StateAttribute # Provides StateAttribute, Type
-import State # Provides State
-
-
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
 type
-  # Enums
   Mode* {.size:sizeof(cuint),header: "PolygonMode", importcpp: "osg::PolygonMode::Mode".} = enum
     POINT = 6912,
     LINE = 6913,
@@ -16,15 +13,18 @@ type
     FRONT = 1,
     BACK = 2
 
+  PolygonMode* {.header: "PolygonMode", importcpp: "osg::PolygonMode", byref.} = object #of class osg::StateAttribute
+    ## State Class for setting OpenGL's polygon culling mode.
+
+
+
 {.push header: "PolygonMode".}
 
+proc constructPolygonMode*(): PolygonMode {.constructor,importcpp: "osg::PolygonMode::PolygonMode".}
 
-# Constructors and methods
-proc constructPolygonMode*(): PolygonMode {.constructor,importcpp: "PolygonMode".}
+proc constructPolygonMode*(face: Face, mode: Mode): PolygonMode {.constructor,importcpp: "osg::PolygonMode::PolygonMode(@)".}
 
-proc constructPolygonMode*(face: Face, mode: Mode): PolygonMode {.constructor,importcpp: "PolygonMode(@)".}
-
-proc constructPolygonMode*(pm: Polygonmode, copyop: Copyop = SHALLOW_COPY): PolygonMode {.constructor,importcpp: "PolygonMode(@)".}
+proc constructPolygonMode*(pm: Polygonmode, copyop: Copyop = SHALLOW_COPY): PolygonMode {.constructor,importcpp: "osg::PolygonMode::PolygonMode(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: PolygonMode): ptr Object   {.importcpp: "cloneType".}
@@ -50,4 +50,4 @@ proc getFrontAndBack*(this: PolygonMode): bool  {.importcpp: "getFrontAndBack".}
 
 proc apply*(this: PolygonMode, state: State)  {.importcpp: "apply".}
 
-{.pop.} # header: "PolygonMode
+{.pop.}  # header: "PolygonMode"

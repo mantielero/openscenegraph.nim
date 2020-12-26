@@ -1,17 +1,13 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import BoundingSphere # Provides BoundingSphere
-import NodeVisitor # Provides NodeVisitor
-import ConvexPlanarOccluder # Provides ConvexPlanarOccluder
-
-
+import /usr/include/osg/BoundingSphere  # provides: osg::BoundingSphere
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/ConvexPlanarOccluder  # provides: osg::ConvexPlanarOccluder
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
 {.push header: "OccluderNode".}
 
+proc constructOccluderNode*(): OccluderNode {.constructor,importcpp: "osg::OccluderNode::OccluderNode".}
 
-# Constructors and methods
-proc constructOccluderNode*(): OccluderNode {.constructor,importcpp: "OccluderNode".}
-
-proc constructOccluderNode*(Occludernode, copyop: Copyop = SHALLOW_COPY): OccluderNode {.constructor,importcpp: "OccluderNode(@)".}
+proc constructOccluderNode*(Occludernode, copyop: Copyop = SHALLOW_COPY): OccluderNode {.constructor,importcpp: "osg::OccluderNode::OccluderNode(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: OccluderNode): ptr Object   {.importcpp: "cloneType".}
@@ -38,4 +34,4 @@ proc getOccluder*(this: OccluderNode): ptr Convexplanaroccluder   {.importcpp: "
 proc computeBound*(this: OccluderNode): Boundingsphere  {.importcpp: "computeBound".}
     ## Overrides Group's computeBound.
 
-{.pop.} # header: "OccluderNode
+{.pop.}  # header: "OccluderNode"

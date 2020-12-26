@@ -1,15 +1,17 @@
+const
+  num_components* = 2
 
 
 type
   Value_type* {.header: "Vec2s", importcpp: "osg::Vec2s::value_type".} = cshort
+
+
 {.push header: "Vec2s".}
 
-
-# Constructors and methods
-proc constructVec2s*(): Vec2s {.constructor,importcpp: "Vec2s".}
+proc constructVec2s*(): Vec2s {.constructor,importcpp: "osg::Vec2s::Vec2s".}
     ## Constructor that sets all components of the vector to zero
 
-proc constructVec2s*(x: Value_type, y: Value_type): Vec2s {.constructor,importcpp: "Vec2s(@)".}
+proc constructVec2s*(x: Value_type, y: Value_type): Vec2s {.constructor,importcpp: "osg::Vec2s::Vec2s(@)".}
 
 proc `==`*(this: Vec2s, v: Vec2s): bool  {.importcpp: "# == #".}
 
@@ -65,4 +67,4 @@ proc `-=`*(this: var Vec2s, rhs: Vec2s): Vec2s  {.importcpp: "# -= #".}
 
 proc `-`*(this: Vec2s): Vec2s  {.importcpp: "# - #".}
 
-{.pop.} # header: "Vec2s
+{.pop.}  # header: "Vec2s"

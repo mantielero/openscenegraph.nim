@@ -1,19 +1,16 @@
-import Node # Provides NodePath, Node
-
-
+import /usr/include/osg/Node  # provides: osg::NodePath, osg::Node
 type
-  # Typedefs
   RefNodePath* {.header: "ObserverNodePath", importcpp: "osg::RefNodePath".} = cint
   ObsNodePath* {.header: "ObserverNodePath", importcpp: "osg::ObserverNodePath::ObsNodePath".} = cint
+
+
 {.push header: "ObserverNodePath".}
 
+proc constructObserverNodePath*(): ObserverNodePath {.constructor,importcpp: "osg::ObserverNodePath::ObserverNodePath".}
 
-# Constructors and methods
-proc constructObserverNodePath*(): ObserverNodePath {.constructor,importcpp: "ObserverNodePath".}
+proc constructObserverNodePath*(rhs: Observernodepath): ObserverNodePath {.constructor,importcpp: "osg::ObserverNodePath::ObserverNodePath(@)".}
 
-proc constructObserverNodePath*(rhs: Observernodepath): ObserverNodePath {.constructor,importcpp: "ObserverNodePath(@)".}
-
-proc constructObserverNodePath*(nodePath: Nodepath): ObserverNodePath {.constructor,importcpp: "ObserverNodePath(@)".}
+proc constructObserverNodePath*(nodePath: Nodepath): ObserverNodePath {.constructor,importcpp: "osg::ObserverNodePath::ObserverNodePath(@)".}
 
 proc `=`*(this: var ObserverNodePath, rhs: Observernodepath): Observernodepath  {.importcpp: "# = #".}
 
@@ -42,4 +39,4 @@ proc prefixsetNodePath*(this: var ObserverNodePath, nodePath: Nodepath)  {.impor
 
 proc prefixclearNodePath*(this: var ObserverNodePath)  {.importcpp: "_clearNodePath".}
 
-{.pop.} # header: "ObserverNodePath
+{.pop.}  # header: "ObserverNodePath"

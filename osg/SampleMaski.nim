@@ -1,16 +1,19 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import StateAttribute # Provides StateAttribute, Type
-import State # Provides State
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+type
+  SampleMaski* {.header: "SampleMaski", importcpp: "osg::SampleMaski", byref.} = object #of class osg::StateAttribute
+    ## osg::SampleMaski does nothing if OpenGL 3.2 or ARB_texture_multisample
+    ## are not available.
+
 
 
 {.push header: "SampleMaski".}
 
+proc constructSampleMaski*(): SampleMaski {.constructor,importcpp: "osg::SampleMaski::SampleMaski".}
 
-# Constructors and methods
-proc constructSampleMaski*(): SampleMaski {.constructor,importcpp: "SampleMaski".}
-
-proc constructSampleMaski*(sampleMaski: Samplemaski, copyop: Copyop = SHALLOW_COPY): SampleMaski {.constructor,importcpp: "SampleMaski(@)".}
+proc constructSampleMaski*(sampleMaski: Samplemaski, copyop: Copyop = SHALLOW_COPY): SampleMaski {.constructor,importcpp: "osg::SampleMaski::SampleMaski(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: SampleMaski): ptr Object   {.importcpp: "cloneType".}
@@ -34,4 +37,4 @@ proc getMask*(this: SampleMaski, maskNumber: cuint): cuint  {.importcpp: "getMas
 
 proc apply*(this: SampleMaski, state: State)  {.importcpp: "apply".}
 
-{.pop.} # header: "SampleMaski
+{.pop.}  # header: "SampleMaski"

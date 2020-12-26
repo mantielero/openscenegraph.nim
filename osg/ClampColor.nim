@@ -1,19 +1,20 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import gl # Provides GLenum
-import StateAttribute # Provides StateAttribute, Type
-import State # Provides State
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+type
+  ClampColor* {.header: "ClampColor", importcpp: "osg::ClampColor", byref.} = object #of class osg::StateAttribute
+    ## Encapsulates OpenGL ClampColor state.
+
 
 
 {.push header: "ClampColor".}
 
+proc constructClampColor*(): ClampColor {.constructor,importcpp: "osg::ClampColor::ClampColor".}
 
-# Constructors and methods
-proc constructClampColor*(): ClampColor {.constructor,importcpp: "ClampColor".}
+proc constructClampColor*(vertexMode: GLenum, fragmentMode: GLenum, readMode: GLenum): ClampColor {.constructor,importcpp: "osg::ClampColor::ClampColor(@)".}
 
-proc constructClampColor*(vertexMode: GLenum, fragmentMode: GLenum, readMode: GLenum): ClampColor {.constructor,importcpp: "ClampColor(@)".}
-
-proc constructClampColor*(rhs: Clampcolor, copyop: Copyop = SHALLOW_COPY): ClampColor {.constructor,importcpp: "ClampColor(@)".}
+proc constructClampColor*(rhs: Clampcolor, copyop: Copyop = SHALLOW_COPY): ClampColor {.constructor,importcpp: "osg::ClampColor::ClampColor(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: ClampColor): ptr Object   {.importcpp: "cloneType".}
@@ -45,4 +46,4 @@ proc getClampReadColor*(this: ClampColor): GLenum  {.importcpp: "getClampReadCol
 
 proc apply*(this: ClampColor, state: State)  {.importcpp: "apply".}
 
-{.pop.} # header: "ClampColor
+{.pop.}  # header: "ClampColor"

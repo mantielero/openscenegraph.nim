@@ -1,15 +1,10 @@
-import gl # Provides GLenum, GLvoid, GLuint
-import glext # Provides GLsizeiptr
-import iosfwd # Provides ostream
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import FrameStamp # Provides FrameStamp
-import Array # Provides Array
-import PrimitiveSet # Provides DrawElements, PrimitiveSet
-import Image # Provides Image
-import State # Provides State
-
-
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/Array  # provides: osg::Array
+import /usr/include/osg/PrimitiveSet  # provides: osg::DrawElements, osg::PrimitiveSet
+import /usr/include/osg/Image  # provides: osg::Image
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/FrameStamp  # provides: osg::FrameStamp
 type
   Mode* {.size:sizeof(cuint),header: "BufferObject", importcpp: "osg::PixelDataBufferObject::Mode".} = enum
     NONE = 0,
@@ -19,82 +14,103 @@ type
     WRITE = 2
       ## Buffer is in write mode (
 
-  # Typedefs
   BufferEntries* {.header: "BufferObject", importcpp: "osg::GLBufferObject::BufferEntries".} = cint
   GLBufferObjectList* {.header: "BufferObject", importcpp: "osg::GLBufferObjectList".} = cint
   GLBufferObjectSetMap* {.header: "BufferObject", importcpp: "osg::GLBufferObjectManager::GLBufferObjectSetMap".} = cint
   BufferDataList* {.header: "BufferObject", importcpp: "osg::BufferObject::BufferDataList".} = cint
   GLBufferObjects* {.header: "BufferObject", importcpp: "osg::BufferObject::GLBufferObjects".} = Buffered_object[Ref_ptr[GLBufferObject]]
   ModeList* {.header: "BufferObject", importcpp: "osg::PixelDataBufferObject::ModeList".} = Buffered_value[cuint]
+  BufferObjectProfile* {.header: "BufferObject", importcpp: "osg::BufferObjectProfile", byref.} = object
+
+  GLBufferObjectSet* {.header: "BufferObject", importcpp: "osg::GLBufferObjectSet", byref.} = object #of class osg::Referenced
+
+  GLBufferObjectManager* {.header: "BufferObject", importcpp: "osg::GLBufferObjectManager", byref.} = object #of class osg::GraphicsObjectManager
+
+  BufferObject* {.header: "BufferObject", importcpp: "osg::BufferObject", byref.} = object #of class osg::Object
+
+  DrawIndirectBufferObject* {.header: "BufferObject", importcpp: "osg::DrawIndirectBufferObject", byref.} = object #of class osg::BufferObject
+
+  PixelDataBufferObject* {.header: "BufferObject", importcpp: "osg::PixelDataBufferObject", byref.} = object #of class osg::BufferObject
+    ## This object represent a general class of pixel buffer objects, which
+    ## are capable of allocating buffer object (memory) on the GPU. The
+    ## memory can then be used either for CPU-GPU pixel transfer or directly
+    ## for GPU-GPU transfer, without CPU intervention.
+
+  UniformBufferObject* {.header: "BufferObject", importcpp: "osg::UniformBufferObject", byref.} = object #of class osg::BufferObject
+
+  AtomicCounterBufferObject* {.header: "BufferObject", importcpp: "osg::AtomicCounterBufferObject", byref.} = object #of class osg::BufferObject
+
+  ShaderStorageBufferObject* {.header: "BufferObject", importcpp: "osg::ShaderStorageBufferObject", byref.} = object #of class osg::BufferObject
+
+
+
 {.push header: "BufferObject".}
 
+proc constructBufferObjectProfile*(): BufferObjectProfile {.constructor,importcpp: "osg::BufferObjectProfile::BufferObjectProfile".}
 
-# Constructors and methods
-proc constructBufferObjectProfile*(): BufferObjectProfile {.constructor,importcpp: "BufferObjectProfile".}
+proc constructBufferObjectProfile*(target: GLenum, usage: GLenum, size: cuint): BufferObjectProfile {.constructor,importcpp: "osg::BufferObjectProfile::BufferObjectProfile(@)".}
 
-proc constructBufferObjectProfile*(target: GLenum, usage: GLenum, size: cuint): BufferObjectProfile {.constructor,importcpp: "BufferObjectProfile(@)".}
+proc constructBufferObjectProfile*(bpo: Bufferobjectprofile): BufferObjectProfile {.constructor,importcpp: "osg::BufferObjectProfile::BufferObjectProfile(@)".}
 
-proc constructBufferObjectProfile*(bpo: Bufferobjectprofile): BufferObjectProfile {.constructor,importcpp: "BufferObjectProfile(@)".}
+proc constructGLBufferObject*(contextID: cuint, bufferObject: ptr Bufferobject , glObjectID: cuint = 0): GLBufferObject {.constructor,importcpp: "osg::GLBufferObject::GLBufferObject(@)".}
 
-proc constructGLBufferObject*(contextID: cuint, bufferObject: ptr Bufferobject , glObjectID: cuint = 0): GLBufferObject {.constructor,importcpp: "GLBufferObject(@)".}
+proc constructBufferEntry*(): BufferEntry {.constructor,importcpp: "osg::GLBufferObject::BufferEntry::BufferEntry".}
 
-proc constructBufferEntry*(): BufferEntry {.constructor,importcpp: "BufferEntry".}
+proc constructBufferEntry*(rhs: Bufferentry): BufferEntry {.constructor,importcpp: "osg::GLBufferObject::BufferEntry::BufferEntry(@)".}
 
-proc constructBufferEntry*(rhs: Bufferentry): BufferEntry {.constructor,importcpp: "BufferEntry(@)".}
+proc constructGLBufferObjectSet*(parent: ptr Glbufferobjectmanager , profile: Bufferobjectprofile): GLBufferObjectSet {.constructor,importcpp: "osg::GLBufferObjectSet::GLBufferObjectSet(@)".}
 
-proc constructGLBufferObjectSet*(parent: ptr Glbufferobjectmanager , profile: Bufferobjectprofile): GLBufferObjectSet {.constructor,importcpp: "GLBufferObjectSet(@)".}
+proc constructGLBufferObjectManager*(contextID: cuint): GLBufferObjectManager {.constructor,importcpp: "osg::GLBufferObjectManager::GLBufferObjectManager(@)".}
 
-proc constructGLBufferObjectManager*(contextID: cuint): GLBufferObjectManager {.constructor,importcpp: "GLBufferObjectManager(@)".}
+proc constructBufferObject*(): BufferObject {.constructor,importcpp: "osg::BufferObject::BufferObject".}
 
-proc constructBufferObject*(): BufferObject {.constructor,importcpp: "BufferObject".}
-
-proc constructBufferObject*(bo: Bufferobject, copyop: Copyop = SHALLOW_COPY): BufferObject {.constructor,importcpp: "BufferObject(@)".}
+proc constructBufferObject*(bo: Bufferobject, copyop: Copyop = SHALLOW_COPY): BufferObject {.constructor,importcpp: "osg::BufferObject::BufferObject(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
-proc constructBufferData*(): BufferData {.constructor,importcpp: "BufferData".}
+proc constructBufferData*(): BufferData {.constructor,importcpp: "osg::BufferData::BufferData".}
 
-proc constructBufferData*(bd: Bufferdata, copyop: Copyop = SHALLOW_COPY): BufferData {.constructor,importcpp: "BufferData(@)".}
+proc constructBufferData*(bd: Bufferdata, copyop: Copyop = SHALLOW_COPY): BufferData {.constructor,importcpp: "osg::BufferData::BufferData(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
-proc constructModifiedCallback*(): ModifiedCallback {.constructor,importcpp: "ModifiedCallback".}
+proc constructModifiedCallback*(): ModifiedCallback {.constructor,importcpp: "osg::BufferData::ModifiedCallback::ModifiedCallback".}
 
-proc constructModifiedCallback*(org: Modifiedcallback, copyop: Copyop): ModifiedCallback {.constructor,importcpp: "ModifiedCallback(@)".}
+proc constructModifiedCallback*(org: Modifiedcallback, copyop: Copyop): ModifiedCallback {.constructor,importcpp: "osg::BufferData::ModifiedCallback::ModifiedCallback(@)".}
 
-proc constructVertexBufferObject*(): VertexBufferObject {.constructor,importcpp: "VertexBufferObject".}
+proc constructVertexBufferObject*(): VertexBufferObject {.constructor,importcpp: "osg::VertexBufferObject::VertexBufferObject".}
 
-proc constructVertexBufferObject*(vbo: Vertexbufferobject, copyop: Copyop = SHALLOW_COPY): VertexBufferObject {.constructor,importcpp: "VertexBufferObject(@)".}
+proc constructVertexBufferObject*(vbo: Vertexbufferobject, copyop: Copyop = SHALLOW_COPY): VertexBufferObject {.constructor,importcpp: "osg::VertexBufferObject::VertexBufferObject(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
-proc constructElementBufferObject*(): ElementBufferObject {.constructor,importcpp: "ElementBufferObject".}
+proc constructElementBufferObject*(): ElementBufferObject {.constructor,importcpp: "osg::ElementBufferObject::ElementBufferObject".}
 
-proc constructElementBufferObject*(pbo: Elementbufferobject, copyop: Copyop = SHALLOW_COPY): ElementBufferObject {.constructor,importcpp: "ElementBufferObject(@)".}
+proc constructElementBufferObject*(pbo: Elementbufferobject, copyop: Copyop = SHALLOW_COPY): ElementBufferObject {.constructor,importcpp: "osg::ElementBufferObject::ElementBufferObject(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
-proc constructDrawIndirectBufferObject*(): DrawIndirectBufferObject {.constructor,importcpp: "DrawIndirectBufferObject".}
+proc constructDrawIndirectBufferObject*(): DrawIndirectBufferObject {.constructor,importcpp: "osg::DrawIndirectBufferObject::DrawIndirectBufferObject".}
 
-proc constructDrawIndirectBufferObject*(vbo: Drawindirectbufferobject, copyop: Copyop = SHALLOW_COPY): DrawIndirectBufferObject {.constructor,importcpp: "DrawIndirectBufferObject(@)".}
+proc constructDrawIndirectBufferObject*(vbo: Drawindirectbufferobject, copyop: Copyop = SHALLOW_COPY): DrawIndirectBufferObject {.constructor,importcpp: "osg::DrawIndirectBufferObject::DrawIndirectBufferObject(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
-proc constructPixelBufferObject*(image: ptr Image  = 0): PixelBufferObject {.constructor,importcpp: "PixelBufferObject(@)".}
+proc constructPixelBufferObject*(image: ptr Image  = 0): PixelBufferObject {.constructor,importcpp: "osg::PixelBufferObject::PixelBufferObject(@)".}
 
-proc constructPixelBufferObject*(pbo: Pixelbufferobject, copyop: Copyop = SHALLOW_COPY): PixelBufferObject {.constructor,importcpp: "PixelBufferObject(@)".}
+proc constructPixelBufferObject*(pbo: Pixelbufferobject, copyop: Copyop = SHALLOW_COPY): PixelBufferObject {.constructor,importcpp: "osg::PixelBufferObject::PixelBufferObject(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
-proc constructPixelDataBufferObject*(): PixelDataBufferObject {.constructor,importcpp: "PixelDataBufferObject".}
+proc constructPixelDataBufferObject*(): PixelDataBufferObject {.constructor,importcpp: "osg::PixelDataBufferObject::PixelDataBufferObject".}
 
-proc constructPixelDataBufferObject*(pbo: Pixeldatabufferobject, copyop: Copyop = SHALLOW_COPY): PixelDataBufferObject {.constructor,importcpp: "PixelDataBufferObject(@)".}
+proc constructPixelDataBufferObject*(pbo: Pixeldatabufferobject, copyop: Copyop = SHALLOW_COPY): PixelDataBufferObject {.constructor,importcpp: "osg::PixelDataBufferObject::PixelDataBufferObject(@)".}
 
-proc constructUniformBufferObject*(): UniformBufferObject {.constructor,importcpp: "UniformBufferObject".}
+proc constructUniformBufferObject*(): UniformBufferObject {.constructor,importcpp: "osg::UniformBufferObject::UniformBufferObject".}
 
-proc constructUniformBufferObject*(ubo: Uniformbufferobject, copyop: Copyop = SHALLOW_COPY): UniformBufferObject {.constructor,importcpp: "UniformBufferObject(@)".}
+proc constructUniformBufferObject*(ubo: Uniformbufferobject, copyop: Copyop = SHALLOW_COPY): UniformBufferObject {.constructor,importcpp: "osg::UniformBufferObject::UniformBufferObject(@)".}
 
-proc constructAtomicCounterBufferObject*(): AtomicCounterBufferObject {.constructor,importcpp: "AtomicCounterBufferObject".}
+proc constructAtomicCounterBufferObject*(): AtomicCounterBufferObject {.constructor,importcpp: "osg::AtomicCounterBufferObject::AtomicCounterBufferObject".}
 
-proc constructAtomicCounterBufferObject*(ubo: Atomiccounterbufferobject, copyop: Copyop = SHALLOW_COPY): AtomicCounterBufferObject {.constructor,importcpp: "AtomicCounterBufferObject(@)".}
+proc constructAtomicCounterBufferObject*(ubo: Atomiccounterbufferobject, copyop: Copyop = SHALLOW_COPY): AtomicCounterBufferObject {.constructor,importcpp: "osg::AtomicCounterBufferObject::AtomicCounterBufferObject(@)".}
 
-proc constructShaderStorageBufferObject*(): ShaderStorageBufferObject {.constructor,importcpp: "ShaderStorageBufferObject".}
+proc constructShaderStorageBufferObject*(): ShaderStorageBufferObject {.constructor,importcpp: "osg::ShaderStorageBufferObject::ShaderStorageBufferObject".}
 
-proc constructShaderStorageBufferObject*(ubo: Shaderstoragebufferobject, copyop: Copyop = SHALLOW_COPY): ShaderStorageBufferObject {.constructor,importcpp: "ShaderStorageBufferObject(@)".}
+proc constructShaderStorageBufferObject*(ubo: Shaderstoragebufferobject, copyop: Copyop = SHALLOW_COPY): ShaderStorageBufferObject {.constructor,importcpp: "osg::ShaderStorageBufferObject::ShaderStorageBufferObject(@)".}
 
 proc `<`*(this: BufferObjectProfile, rhs: Bufferobjectprofile): bool  {.importcpp: "# < #".}
 
@@ -555,4 +571,4 @@ proc libraryName*(this: ShaderStorageBufferObject): cstring  {.importcpp: "libra
 
 proc className*(this: ShaderStorageBufferObject): cstring  {.importcpp: "className".}
 
-{.pop.} # header: "BufferObject
+{.pop.}  # header: "BufferObject"

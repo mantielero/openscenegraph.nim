@@ -1,12 +1,11 @@
-
-
+import /usr/include/osg/Vec3  # provides: osg::Vec3
 type
   VertexList* {.header: "ConvexPlanarPolygon", importcpp: "osg::ConvexPlanarPolygon::VertexList".} = cint
+
+
 {.push header: "ConvexPlanarPolygon".}
 
-
-# Constructors and methods
-proc constructConvexPlanarPolygon*(): ConvexPlanarPolygon {.constructor,importcpp: "ConvexPlanarPolygon".}
+proc constructConvexPlanarPolygon*(): ConvexPlanarPolygon {.constructor,importcpp: "osg::ConvexPlanarPolygon::ConvexPlanarPolygon".}
 
 proc add*(this: var ConvexPlanarPolygon, v: Vec3)  {.importcpp: "add".}
 
@@ -16,4 +15,4 @@ proc getVertexList*(this: var ConvexPlanarPolygon): Vertexlist  {.importcpp: "ge
 
 proc getVertexList*(this: ConvexPlanarPolygon): Vertexlist  {.importcpp: "getVertexList".}
 
-{.pop.} # header: "ConvexPlanarPolygon
+{.pop.}  # header: "ConvexPlanarPolygon"

@@ -1,11 +1,8 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import Node # Provides Node
-import NodeVisitor # Provides NodeVisitor
-
-
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/Node  # provides: osg::Node
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
 type
-  # Enums
   LoopMode* {.size:sizeof(cuint),header: "Sequence", importcpp: "osg::Sequence::LoopMode".} = enum
     ## Interval modes. 'Loop' repeats frames 1-N; 'swing' repeats 1->N,
     ## (N-1)->1.
@@ -21,13 +18,13 @@ type
     PAUSE = 2,
     RESUME = 3
 
+
+
 {.push header: "Sequence".}
 
+proc constructSequence*(): Sequence {.constructor,importcpp: "osg::Sequence::Sequence".}
 
-# Constructors and methods
-proc constructSequence*(): Sequence {.constructor,importcpp: "Sequence".}
-
-proc constructSequence*(Sequence, copyop: Copyop = SHALLOW_COPY): Sequence {.constructor,importcpp: "Sequence(@)".}
+proc constructSequence*(Sequence, copyop: Copyop = SHALLOW_COPY): Sequence {.constructor,importcpp: "osg::Sequence::Sequence(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: Sequence): ptr Object   {.importcpp: "cloneType".}
@@ -48,13 +45,9 @@ proc addChild*(this: var Sequence, child: ptr Node ): bool  {.importcpp: "addChi
 
 proc addChild*(this: var Sequence, child: ptr Node , t: cdouble): bool  {.importcpp: "addChild".}
 
-proc addChild*[T](this: var Sequence, child: ref_ptr[T], t: cdouble): bool  {.importcpp: "addChild".}
-
 proc insertChild*(this: var Sequence, index: cuint, child: ptr Node ): bool  {.importcpp: "insertChild".}
 
 proc insertChild*(this: var Sequence, index: cuint, child: ptr Node , t: cdouble): bool  {.importcpp: "insertChild".}
-
-proc insertChild*[T](this: var Sequence, index: cuint, child: ref_ptr[T], t: cdouble): bool  {.importcpp: "insertChild".}
 
 proc removeChild*(this: var Sequence, child: ptr Node ): bool  {.importcpp: "removeChild".}
 
@@ -158,4 +151,4 @@ proc prefixgetNextValue*(this: var Sequence): cint  {.importcpp: "_getNextValue"
 
 proc prefixupdate*(this: var Sequence)  {.importcpp: "_update".}
 
-{.pop.} # header: "Sequence
+{.pop.}  # header: "Sequence"

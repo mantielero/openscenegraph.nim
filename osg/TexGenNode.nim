@@ -1,23 +1,21 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import NodeVisitor # Provides NodeVisitor
-import TexGen # Provides TexGen
-
-
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/TexGen  # provides: osg::TexGen
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
 type
   ReferenceFrame* {.size:sizeof(cuint),header: "TexGenNode", importcpp: "osg::TexGenNode::ReferenceFrame".} = enum
     RELATIVE_RF = 0,
     ABSOLUTE_RF = 1
 
+
+
 {.push header: "TexGenNode".}
 
+proc constructTexGenNode*(): TexGenNode {.constructor,importcpp: "osg::TexGenNode::TexGenNode".}
 
-# Constructors and methods
-proc constructTexGenNode*(): TexGenNode {.constructor,importcpp: "TexGenNode".}
+proc constructTexGenNode*(texgen: ptr Texgen ): TexGenNode {.constructor,importcpp: "osg::TexGenNode::TexGenNode(@)".}
 
-proc constructTexGenNode*(texgen: ptr Texgen ): TexGenNode {.constructor,importcpp: "TexGenNode(@)".}
-
-proc constructTexGenNode*(tgb: Texgennode, copyop: Copyop = SHALLOW_COPY): TexGenNode {.constructor,importcpp: "TexGenNode(@)".}
+proc constructTexGenNode*(tgb: Texgennode, copyop: Copyop = SHALLOW_COPY): TexGenNode {.constructor,importcpp: "osg::TexGenNode::TexGenNode(@)".}
 
 proc cloneType*(this: TexGenNode): ptr Object   {.importcpp: "cloneType".}
 
@@ -56,4 +54,4 @@ proc setThreadSafeRefUnref*(this: var TexGenNode, threadSafe: bool)  {.importcpp
     ## Set whether to use a mutex to ensure ref() and unref() are thread
     ## safe.
 
-{.pop.} # header: "TexGenNode
+{.pop.}  # header: "TexGenNode"

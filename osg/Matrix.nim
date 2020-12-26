@@ -1,7 +1,1 @@
-import Matrixd # Provides Matrixd, RefMatrixd
-
-
-type
-  # Typedefs
-  Matrix* {.header: "Matrix", importcpp: "osg::Matrix".} = Matrixd
-  RefMatrix* {.header: "Matrix", importcpp: "osg::RefMatrix".} = Refmatrixd
+import /usr/include/osg/Matrixd  # provides: osg::RefMatrixd, osg::Matrixd

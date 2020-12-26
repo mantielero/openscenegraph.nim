@@ -1,19 +1,19 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import gl # Provides GLubyte
-import StateAttribute # Provides StateAttribute, Type
-import State # Provides State
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+type
+  PolygonStipple* {.header: "PolygonStipple", importcpp: "osg::PolygonStipple", byref.} = object #of class osg::StateAttribute
+
 
 
 {.push header: "PolygonStipple".}
 
+proc constructPolygonStipple*(): PolygonStipple {.constructor,importcpp: "osg::PolygonStipple::PolygonStipple".}
 
-# Constructors and methods
-proc constructPolygonStipple*(): PolygonStipple {.constructor,importcpp: "PolygonStipple".}
+proc constructPolygonStipple*(mask: ptr GLubyte): PolygonStipple {.constructor,importcpp: "osg::PolygonStipple::PolygonStipple(@)".}
 
-proc constructPolygonStipple*(mask: ptr GLubyte): PolygonStipple {.constructor,importcpp: "PolygonStipple(@)".}
-
-proc constructPolygonStipple*(lw: Polygonstipple, copyop: Copyop = SHALLOW_COPY): PolygonStipple {.constructor,importcpp: "PolygonStipple(@)".}
+proc constructPolygonStipple*(lw: Polygonstipple, copyop: Copyop = SHALLOW_COPY): PolygonStipple {.constructor,importcpp: "osg::PolygonStipple::PolygonStipple(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: PolygonStipple): ptr Object   {.importcpp: "cloneType".}
@@ -42,4 +42,4 @@ proc getMask*(this: PolygonStipple): ptr GLubyte  {.importcpp: "getMask".}
 
 proc apply*(this: PolygonStipple, state: State)  {.importcpp: "apply".}
 
-{.pop.} # header: "PolygonStipple
+{.pop.}  # header: "PolygonStipple"

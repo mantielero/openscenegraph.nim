@@ -1,21 +1,23 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import StateAttribute # Provides StateAttribute, Type
-import BlendEquation # Provides Equation
-import State # Provides State
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+type
+  BlendEquationi* {.header: "BlendEquationi", importcpp: "osg::BlendEquationi", byref.} = object #of class osg::BlendEquation
+    ## Encapsulates glBlendEquationi function : the index version of
+    ## glBlendEquation for multiple render target.
+
 
 
 {.push header: "BlendEquationi".}
 
+proc constructBlendEquationi*(): BlendEquationi {.constructor,importcpp: "osg::BlendEquationi::BlendEquationi".}
 
-# Constructors and methods
-proc constructBlendEquationi*(): BlendEquationi {.constructor,importcpp: "BlendEquationi".}
+proc constructBlendEquationi*(buf: cuint, equation: Equation): BlendEquationi {.constructor,importcpp: "osg::BlendEquationi::BlendEquationi(@)".}
 
-proc constructBlendEquationi*(buf: cuint, equation: Equation): BlendEquationi {.constructor,importcpp: "BlendEquationi(@)".}
+proc constructBlendEquationi*(buf: cuint, equationRGB: Equation, equationAlpha: Equation): BlendEquationi {.constructor,importcpp: "osg::BlendEquationi::BlendEquationi(@)".}
 
-proc constructBlendEquationi*(buf: cuint, equationRGB: Equation, equationAlpha: Equation): BlendEquationi {.constructor,importcpp: "BlendEquationi(@)".}
-
-proc constructBlendEquationi*(cm: Blendequationi, copyop: Copyop = SHALLOW_COPY): BlendEquationi {.constructor,importcpp: "BlendEquationi(@)".}
+proc constructBlendEquationi*(cm: Blendequationi, copyop: Copyop = SHALLOW_COPY): BlendEquationi {.constructor,importcpp: "osg::BlendEquationi::BlendEquationi(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: BlendEquationi): ptr Object   {.importcpp: "cloneType".}
@@ -44,4 +46,4 @@ proc getIndex*(this: BlendEquationi): cuint  {.importcpp: "getIndex".}
 
 proc apply*(this: BlendEquationi, state: State)  {.importcpp: "apply".}
 
-{.pop.} # header: "BlendEquationi
+{.pop.}  # header: "BlendEquationi"

@@ -1,110 +1,141 @@
-import gl # Provides GLenum, GLvoid, GLubyte, GLushort, GLuint, GLsizei
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import PrimitiveSet # Provides VectorGLubyte, VectorGLushort, VectorGLuint, PrimitiveFunctor, PrimitiveIndexFunctor, Type
-import State # Provides State
-
-
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/PrimitiveSet  # provides: osg::PrimitiveIndexFunctor, osg::PrimitiveFunctor, osg::VectorGLuint
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
 type
-  # Typedefs
-  Vector_type* {.header: "PrimitiveSetIndirect", importcpp: "osg::DrawElementsIndirectUByte::vector_type".} = Vectorglubyte
-  Vector_type* {.header: "PrimitiveSetIndirect", importcpp: "osg::DrawElementsIndirectUShort::vector_type".} = Vectorglushort
   Vector_type* {.header: "PrimitiveSetIndirect", importcpp: "osg::DrawElementsIndirectUInt::vector_type".} = Vectorgluint
+  IndirectCommandDrawArrays* {.header: "PrimitiveSetIndirect", importcpp: "osg::IndirectCommandDrawArrays", byref.} = object #of class osg::BufferData
+    ## common interface for IndirectCommandDrawArrayss
+
+  IndirectCommandDrawElements* {.header: "PrimitiveSetIndirect", importcpp: "osg::IndirectCommandDrawElements", byref.} = object #of class osg::BufferData
+
+  DefaultIndirectCommandDrawArrays* {.header: "PrimitiveSetIndirect", importcpp: "osg::DefaultIndirectCommandDrawArrays", byref.} = object #of class osg::IndirectCommandDrawArrays
+    ## default implementation of IndirectCommandDrawArrays
+    ## DefaultIndirectCommandDrawArrays to be hosted on GPU
+
+  DefaultIndirectCommandDrawElements* {.header: "PrimitiveSetIndirect", importcpp: "osg::DefaultIndirectCommandDrawElements", byref.} = object #of class osg::IndirectCommandDrawElements
+    ## vector of DrawElementsCommand to be hosted on GPU
+
+  DrawElementsIndirect* {.header: "PrimitiveSetIndirect", importcpp: "osg::DrawElementsIndirect", byref.} = object #of class osg::DrawElements
+    ## The DrawElementsIndirect base PrimitiveSet
+
+  DrawElementsIndirectUByte* {.header: "PrimitiveSetIndirect", importcpp: "osg::DrawElementsIndirectUByte", byref.} = object #of class osg::DrawElementsIndirect
+    ## The DrawElementsIndirectUByte PrimitiveSet
+
+  DrawElementsIndirectUShort* {.header: "PrimitiveSetIndirect", importcpp: "osg::DrawElementsIndirectUShort", byref.} = object #of class osg::DrawElementsIndirect
+    ## The DrawElementsIndirectUShort PrimitiveSet
+
+  DrawElementsIndirectUInt* {.header: "PrimitiveSetIndirect", importcpp: "osg::DrawElementsIndirectUInt", byref.} = object #of class osg::DrawElementsIndirect
+    ## The DrawElementsIndirectUInt PrimitiveSet
+
+  MultiDrawElementsIndirectUShort* {.header: "PrimitiveSetIndirect", importcpp: "osg::MultiDrawElementsIndirectUShort", byref.} = object #of class osg::DrawElementsIndirectUShort
+    ## The MultiDrawElementsIndirect PrimitiveSets
+
+  MultiDrawElementsIndirectUByte* {.header: "PrimitiveSetIndirect", importcpp: "osg::MultiDrawElementsIndirectUByte", byref.} = object #of class osg::DrawElementsIndirectUByte
+
+  MultiDrawElementsIndirectUInt* {.header: "PrimitiveSetIndirect", importcpp: "osg::MultiDrawElementsIndirectUInt", byref.} = object #of class osg::DrawElementsIndirectUInt
+
+  DrawArraysIndirect* {.header: "PrimitiveSetIndirect", importcpp: "osg::DrawArraysIndirect", byref.} = object #of osg::PrimitiveSet
+    ## The MultiDrawArraysIndirect PrimitiveSet
+
+  MultiDrawArraysIndirect* {.header: "PrimitiveSetIndirect", importcpp: "osg::MultiDrawArraysIndirect", byref.} = object #of class osg::DrawArraysIndirect
+    ## The MultiDrawArraysIndirect PrimitiveSet
+
+
+
 {.push header: "PrimitiveSetIndirect".}
 
+proc constructIndirectCommandDrawArrays*(): IndirectCommandDrawArrays {.constructor,importcpp: "osg::IndirectCommandDrawArrays::IndirectCommandDrawArrays".}
 
-# Constructors and methods
-proc constructIndirectCommandDrawArrays*(): IndirectCommandDrawArrays {.constructor,importcpp: "IndirectCommandDrawArrays".}
+proc constructIndirectCommandDrawArrays*(copy: Indirectcommanddrawarrays, copyop: Copyop): IndirectCommandDrawArrays {.constructor,importcpp: "osg::IndirectCommandDrawArrays::IndirectCommandDrawArrays(@)".}
 
-proc constructIndirectCommandDrawArrays*(copy: Indirectcommanddrawarrays, copyop: Copyop): IndirectCommandDrawArrays {.constructor,importcpp: "IndirectCommandDrawArrays(@)".}
+proc constructIndirectCommandDrawElements*(): IndirectCommandDrawElements {.constructor,importcpp: "osg::IndirectCommandDrawElements::IndirectCommandDrawElements".}
 
-proc constructIndirectCommandDrawElements*(): IndirectCommandDrawElements {.constructor,importcpp: "IndirectCommandDrawElements".}
+proc constructIndirectCommandDrawElements*(copy: Indirectcommanddrawelements, copyop: Copyop): IndirectCommandDrawElements {.constructor,importcpp: "osg::IndirectCommandDrawElements::IndirectCommandDrawElements(@)".}
 
-proc constructIndirectCommandDrawElements*(copy: Indirectcommanddrawelements, copyop: Copyop): IndirectCommandDrawElements {.constructor,importcpp: "IndirectCommandDrawElements(@)".}
+proc constructDrawArraysIndirectCommand*(pcount: cuint = 0, pinstanceCount: cuint = 0, pfirst: cuint = 0, pbaseInstance: cuint = 0): DrawArraysIndirectCommand {.constructor,importcpp: "osg::DrawArraysIndirectCommand::DrawArraysIndirectCommand(@)".}
 
-proc constructDrawArraysIndirectCommand*(pcount: cuint = 0, pinstanceCount: cuint = 0, pfirst: cuint = 0, pbaseInstance: cuint = 0): DrawArraysIndirectCommand {.constructor,importcpp: "DrawArraysIndirectCommand(@)".}
+proc constructDefaultIndirectCommandDrawArrays*(): DefaultIndirectCommandDrawArrays {.constructor,importcpp: "osg::DefaultIndirectCommandDrawArrays::DefaultIndirectCommandDrawArrays".}
 
-proc constructDefaultIndirectCommandDrawArrays*(): DefaultIndirectCommandDrawArrays {.constructor,importcpp: "DefaultIndirectCommandDrawArrays".}
+proc constructDefaultIndirectCommandDrawArrays*(copy: Defaultindirectcommanddrawarrays, copyop: Copyop): DefaultIndirectCommandDrawArrays {.constructor,importcpp: "osg::DefaultIndirectCommandDrawArrays::DefaultIndirectCommandDrawArrays(@)".}
 
-proc constructDefaultIndirectCommandDrawArrays*(copy: Defaultindirectcommanddrawarrays, copyop: Copyop): DefaultIndirectCommandDrawArrays {.constructor,importcpp: "DefaultIndirectCommandDrawArrays(@)".}
+proc constructDrawElementsIndirectCommand*(pcount: cuint = 0, pinstanceCount: cuint = 0, pfirstIndex: cuint = 0, pbaseVertex: cuint = 0, pbaseInstance: cuint = 0): DrawElementsIndirectCommand {.constructor,importcpp: "osg::DrawElementsIndirectCommand::DrawElementsIndirectCommand(@)".}
 
-proc constructDrawElementsIndirectCommand*(pcount: cuint = 0, pinstanceCount: cuint = 0, pfirstIndex: cuint = 0, pbaseVertex: cuint = 0, pbaseInstance: cuint = 0): DrawElementsIndirectCommand {.constructor,importcpp: "DrawElementsIndirectCommand(@)".}
+proc constructDefaultIndirectCommandDrawElements*(): DefaultIndirectCommandDrawElements {.constructor,importcpp: "osg::DefaultIndirectCommandDrawElements::DefaultIndirectCommandDrawElements".}
 
-proc constructDefaultIndirectCommandDrawElements*(): DefaultIndirectCommandDrawElements {.constructor,importcpp: "DefaultIndirectCommandDrawElements".}
+proc constructDefaultIndirectCommandDrawElements*(copy: Defaultindirectcommanddrawelements, copyop: Copyop): DefaultIndirectCommandDrawElements {.constructor,importcpp: "osg::DefaultIndirectCommandDrawElements::DefaultIndirectCommandDrawElements(@)".}
 
-proc constructDefaultIndirectCommandDrawElements*(copy: Defaultindirectcommanddrawelements, copyop: Copyop): DefaultIndirectCommandDrawElements {.constructor,importcpp: "DefaultIndirectCommandDrawElements(@)".}
+proc constructDrawElementsIndirect*(primType: Type, mode: GLenum = 0, firstCommand: cuint = 0, stride: GLsizei): DrawElementsIndirect {.constructor,importcpp: "osg::DrawElementsIndirect::DrawElementsIndirect(@)".}
 
-proc constructDrawElementsIndirect*(primType: Type, mode: GLenum = 0, firstCommand: cuint = 0, stride: GLsizei): DrawElementsIndirect {.constructor,importcpp: "DrawElementsIndirect(@)".}
+proc constructDrawElementsIndirect*(rhs: Drawelementsindirect, copyop: Copyop = SHALLOW_COPY): DrawElementsIndirect {.constructor,importcpp: "osg::DrawElementsIndirect::DrawElementsIndirect(@)".}
 
-proc constructDrawElementsIndirect*(rhs: Drawelementsindirect, copyop: Copyop = SHALLOW_COPY): DrawElementsIndirect {.constructor,importcpp: "DrawElementsIndirect(@)".}
+proc constructDrawElementsIndirectUByte*(mode: GLenum = 0): DrawElementsIndirectUByte {.constructor,importcpp: "osg::DrawElementsIndirectUByte::DrawElementsIndirectUByte(@)".}
 
-proc constructDrawElementsIndirectUByte*(mode: GLenum = 0): DrawElementsIndirectUByte {.constructor,importcpp: "DrawElementsIndirectUByte(@)".}
+proc constructDrawElementsIndirectUByte*(array: Drawelementsindirectubyte, copyop: Copyop = SHALLOW_COPY): DrawElementsIndirectUByte {.constructor,importcpp: "osg::DrawElementsIndirectUByte::DrawElementsIndirectUByte(@)".}
 
-proc constructDrawElementsIndirectUByte*(array: Drawelementsindirectubyte, copyop: Copyop = SHALLOW_COPY): DrawElementsIndirectUByte {.constructor,importcpp: "DrawElementsIndirectUByte(@)".}
-
-proc constructDrawElementsIndirectUByte*(mode: GLenum, no: cuint, `ptr`: ptr GLubyte): DrawElementsIndirectUByte {.constructor,importcpp: "DrawElementsIndirectUByte(@)".}
+proc constructDrawElementsIndirectUByte*(mode: GLenum, no: cuint, `ptr`: ptr GLubyte): DrawElementsIndirectUByte {.constructor,importcpp: "osg::DrawElementsIndirectUByte::DrawElementsIndirectUByte(@)".}
     ## 
 
-proc constructDrawElementsIndirectUByte*(mode: GLenum, no: cuint): DrawElementsIndirectUByte {.constructor,importcpp: "DrawElementsIndirectUByte(@)".}
+proc constructDrawElementsIndirectUByte*(mode: GLenum, no: cuint): DrawElementsIndirectUByte {.constructor,importcpp: "osg::DrawElementsIndirectUByte::DrawElementsIndirectUByte(@)".}
     ## 
 
-proc constructDrawElementsIndirectUShort*(mode: GLenum = 0): DrawElementsIndirectUShort {.constructor,importcpp: "DrawElementsIndirectUShort(@)".}
+proc constructDrawElementsIndirectUShort*(mode: GLenum = 0): DrawElementsIndirectUShort {.constructor,importcpp: "osg::DrawElementsIndirectUShort::DrawElementsIndirectUShort(@)".}
 
-proc constructDrawElementsIndirectUShort*(array: Drawelementsindirectushort, copyop: Copyop = SHALLOW_COPY): DrawElementsIndirectUShort {.constructor,importcpp: "DrawElementsIndirectUShort(@)".}
+proc constructDrawElementsIndirectUShort*(array: Drawelementsindirectushort, copyop: Copyop = SHALLOW_COPY): DrawElementsIndirectUShort {.constructor,importcpp: "osg::DrawElementsIndirectUShort::DrawElementsIndirectUShort(@)".}
 
-proc constructDrawElementsIndirectUShort*(mode: GLenum, no: cuint, `ptr`: ptr GLushort): DrawElementsIndirectUShort {.constructor,importcpp: "DrawElementsIndirectUShort(@)".}
+proc constructDrawElementsIndirectUShort*(mode: GLenum, no: cuint, `ptr`: ptr GLushort): DrawElementsIndirectUShort {.constructor,importcpp: "osg::DrawElementsIndirectUShort::DrawElementsIndirectUShort(@)".}
     ## 
 
-proc constructDrawElementsIndirectUShort*(mode: GLenum, no: cuint): DrawElementsIndirectUShort {.constructor,importcpp: "DrawElementsIndirectUShort(@)".}
+proc constructDrawElementsIndirectUShort*(mode: GLenum, no: cuint): DrawElementsIndirectUShort {.constructor,importcpp: "osg::DrawElementsIndirectUShort::DrawElementsIndirectUShort(@)".}
     ## 
 
-proc constructDrawElementsIndirectUInt*(mode: GLenum = 0): DrawElementsIndirectUInt {.constructor,importcpp: "DrawElementsIndirectUInt(@)".}
+proc constructDrawElementsIndirectUInt*(mode: GLenum = 0): DrawElementsIndirectUInt {.constructor,importcpp: "osg::DrawElementsIndirectUInt::DrawElementsIndirectUInt(@)".}
 
-proc constructDrawElementsIndirectUInt*(array: Drawelementsindirectuint, copyop: Copyop = SHALLOW_COPY): DrawElementsIndirectUInt {.constructor,importcpp: "DrawElementsIndirectUInt(@)".}
+proc constructDrawElementsIndirectUInt*(array: Drawelementsindirectuint, copyop: Copyop = SHALLOW_COPY): DrawElementsIndirectUInt {.constructor,importcpp: "osg::DrawElementsIndirectUInt::DrawElementsIndirectUInt(@)".}
 
-proc constructDrawElementsIndirectUInt*(mode: GLenum, no: cuint, `ptr`: ptr GLuint): DrawElementsIndirectUInt {.constructor,importcpp: "DrawElementsIndirectUInt(@)".}
+proc constructDrawElementsIndirectUInt*(mode: GLenum, no: cuint, `ptr`: ptr GLuint): DrawElementsIndirectUInt {.constructor,importcpp: "osg::DrawElementsIndirectUInt::DrawElementsIndirectUInt(@)".}
     ## 
 
-proc constructDrawElementsIndirectUInt*(mode: GLenum, no: cuint): DrawElementsIndirectUInt {.constructor,importcpp: "DrawElementsIndirectUInt(@)".}
+proc constructDrawElementsIndirectUInt*(mode: GLenum, no: cuint): DrawElementsIndirectUInt {.constructor,importcpp: "osg::DrawElementsIndirectUInt::DrawElementsIndirectUInt(@)".}
     ## 
 
-proc constructMultiDrawElementsIndirectUShort*(mode: GLenum = 0): MultiDrawElementsIndirectUShort {.constructor,importcpp: "MultiDrawElementsIndirectUShort(@)".}
+proc constructMultiDrawElementsIndirectUShort*(mode: GLenum = 0): MultiDrawElementsIndirectUShort {.constructor,importcpp: "osg::MultiDrawElementsIndirectUShort::MultiDrawElementsIndirectUShort(@)".}
 
-proc constructMultiDrawElementsIndirectUShort*(mdi: Multidrawelementsindirectushort, copyop: Copyop = SHALLOW_COPY): MultiDrawElementsIndirectUShort {.constructor,importcpp: "MultiDrawElementsIndirectUShort(@)".}
+proc constructMultiDrawElementsIndirectUShort*(mdi: Multidrawelementsindirectushort, copyop: Copyop = SHALLOW_COPY): MultiDrawElementsIndirectUShort {.constructor,importcpp: "osg::MultiDrawElementsIndirectUShort::MultiDrawElementsIndirectUShort(@)".}
 
-proc constructMultiDrawElementsIndirectUShort*(mode: GLenum, no: cuint, `ptr`: ptr GLushort): MultiDrawElementsIndirectUShort {.constructor,importcpp: "MultiDrawElementsIndirectUShort(@)".}
+proc constructMultiDrawElementsIndirectUShort*(mode: GLenum, no: cuint, `ptr`: ptr GLushort): MultiDrawElementsIndirectUShort {.constructor,importcpp: "osg::MultiDrawElementsIndirectUShort::MultiDrawElementsIndirectUShort(@)".}
     ## 
 
-proc constructMultiDrawElementsIndirectUShort*(mode: GLenum, no: cuint): MultiDrawElementsIndirectUShort {.constructor,importcpp: "MultiDrawElementsIndirectUShort(@)".}
+proc constructMultiDrawElementsIndirectUShort*(mode: GLenum, no: cuint): MultiDrawElementsIndirectUShort {.constructor,importcpp: "osg::MultiDrawElementsIndirectUShort::MultiDrawElementsIndirectUShort(@)".}
     ## 
 
-proc constructMultiDrawElementsIndirectUByte*(mode: GLenum = 0): MultiDrawElementsIndirectUByte {.constructor,importcpp: "MultiDrawElementsIndirectUByte(@)".}
+proc constructMultiDrawElementsIndirectUByte*(mode: GLenum = 0): MultiDrawElementsIndirectUByte {.constructor,importcpp: "osg::MultiDrawElementsIndirectUByte::MultiDrawElementsIndirectUByte(@)".}
 
-proc constructMultiDrawElementsIndirectUByte*(mdi: Multidrawelementsindirectubyte, copyop: Copyop = SHALLOW_COPY): MultiDrawElementsIndirectUByte {.constructor,importcpp: "MultiDrawElementsIndirectUByte(@)".}
+proc constructMultiDrawElementsIndirectUByte*(mdi: Multidrawelementsindirectubyte, copyop: Copyop = SHALLOW_COPY): MultiDrawElementsIndirectUByte {.constructor,importcpp: "osg::MultiDrawElementsIndirectUByte::MultiDrawElementsIndirectUByte(@)".}
 
-proc constructMultiDrawElementsIndirectUByte*(mode: GLenum, no: cuint, `ptr`: ptr GLubyte): MultiDrawElementsIndirectUByte {.constructor,importcpp: "MultiDrawElementsIndirectUByte(@)".}
+proc constructMultiDrawElementsIndirectUByte*(mode: GLenum, no: cuint, `ptr`: ptr GLubyte): MultiDrawElementsIndirectUByte {.constructor,importcpp: "osg::MultiDrawElementsIndirectUByte::MultiDrawElementsIndirectUByte(@)".}
     ## 
 
-proc constructMultiDrawElementsIndirectUByte*(mode: GLenum, no: cuint): MultiDrawElementsIndirectUByte {.constructor,importcpp: "MultiDrawElementsIndirectUByte(@)".}
+proc constructMultiDrawElementsIndirectUByte*(mode: GLenum, no: cuint): MultiDrawElementsIndirectUByte {.constructor,importcpp: "osg::MultiDrawElementsIndirectUByte::MultiDrawElementsIndirectUByte(@)".}
     ## 
 
-proc constructMultiDrawElementsIndirectUInt*(mode: GLenum = 0): MultiDrawElementsIndirectUInt {.constructor,importcpp: "MultiDrawElementsIndirectUInt(@)".}
+proc constructMultiDrawElementsIndirectUInt*(mode: GLenum = 0): MultiDrawElementsIndirectUInt {.constructor,importcpp: "osg::MultiDrawElementsIndirectUInt::MultiDrawElementsIndirectUInt(@)".}
 
-proc constructMultiDrawElementsIndirectUInt*(mdi: Multidrawelementsindirectuint, copyop: Copyop = SHALLOW_COPY): MultiDrawElementsIndirectUInt {.constructor,importcpp: "MultiDrawElementsIndirectUInt(@)".}
+proc constructMultiDrawElementsIndirectUInt*(mdi: Multidrawelementsindirectuint, copyop: Copyop = SHALLOW_COPY): MultiDrawElementsIndirectUInt {.constructor,importcpp: "osg::MultiDrawElementsIndirectUInt::MultiDrawElementsIndirectUInt(@)".}
 
-proc constructMultiDrawElementsIndirectUInt*(mode: GLenum, no: cuint, `ptr`: ptr GLuint): MultiDrawElementsIndirectUInt {.constructor,importcpp: "MultiDrawElementsIndirectUInt(@)".}
+proc constructMultiDrawElementsIndirectUInt*(mode: GLenum, no: cuint, `ptr`: ptr GLuint): MultiDrawElementsIndirectUInt {.constructor,importcpp: "osg::MultiDrawElementsIndirectUInt::MultiDrawElementsIndirectUInt(@)".}
     ## 
 
-proc constructMultiDrawElementsIndirectUInt*(mode: GLenum, no: cuint): MultiDrawElementsIndirectUInt {.constructor,importcpp: "MultiDrawElementsIndirectUInt(@)".}
+proc constructMultiDrawElementsIndirectUInt*(mode: GLenum, no: cuint): MultiDrawElementsIndirectUInt {.constructor,importcpp: "osg::MultiDrawElementsIndirectUInt::MultiDrawElementsIndirectUInt(@)".}
     ## 
 
-proc constructDrawArraysIndirect*(mode: GLenum = 0, firstcommand: cuint = 0, stride: GLsizei): DrawArraysIndirect {.constructor,importcpp: "DrawArraysIndirect(@)".}
+proc constructDrawArraysIndirect*(mode: GLenum = 0, firstcommand: cuint = 0, stride: GLsizei): DrawArraysIndirect {.constructor,importcpp: "osg::DrawArraysIndirect::DrawArraysIndirect(@)".}
 
-proc constructDrawArraysIndirect*(dal: Drawarraysindirect, copyop: Copyop = SHALLOW_COPY): DrawArraysIndirect {.constructor,importcpp: "DrawArraysIndirect(@)".}
+proc constructDrawArraysIndirect*(dal: Drawarraysindirect, copyop: Copyop = SHALLOW_COPY): DrawArraysIndirect {.constructor,importcpp: "osg::DrawArraysIndirect::DrawArraysIndirect(@)".}
 
-proc constructMultiDrawArraysIndirect*(mode: GLenum = 0, firstcommand: cuint = 0, count: cuint = 0, stride: GLsizei): MultiDrawArraysIndirect {.constructor,importcpp: "MultiDrawArraysIndirect(@)".}
+proc constructMultiDrawArraysIndirect*(mode: GLenum = 0, firstcommand: cuint = 0, count: cuint = 0, stride: GLsizei): MultiDrawArraysIndirect {.constructor,importcpp: "osg::MultiDrawArraysIndirect::MultiDrawArraysIndirect(@)".}
 
-proc constructMultiDrawArraysIndirect*(dal: Multidrawarraysindirect, copyop: Copyop = SHALLOW_COPY): MultiDrawArraysIndirect {.constructor,importcpp: "MultiDrawArraysIndirect(@)".}
+proc constructMultiDrawArraysIndirect*(dal: Multidrawarraysindirect, copyop: Copyop = SHALLOW_COPY): MultiDrawArraysIndirect {.constructor,importcpp: "osg::MultiDrawArraysIndirect::MultiDrawArraysIndirect(@)".}
 
 proc getTotalDataSize*(this: IndirectCommandDrawArrays): cuint  {.importcpp: "getTotalDataSize".}
 
@@ -267,8 +298,6 @@ proc addElement*(this: var DrawElementsIndirectUByte, v: cuint)  {.importcpp: "a
 
 proc getNumPrimitives*(this: DrawElementsIndirectUByte): cuint  {.importcpp: "getNumPrimitives".}
 
-proc drawElementsIndirectUShort*[InputIterator](this: var DrawElementsIndirectUShort, mode: GLenum, first: InputIterator, last: InputIterator)  {.importcpp: "DrawElementsIndirectUShort".}
-
 proc cloneType*(this: DrawElementsIndirectUShort): ptr Object   {.importcpp: "cloneType".}
 
 proc clone*(this: DrawElementsIndirectUShort, copyop: Copyop): ptr Object   {.importcpp: "clone".}
@@ -310,8 +339,6 @@ proc getElement*(this: var DrawElementsIndirectUShort, i: cuint): cuint  {.impor
 proc addElement*(this: var DrawElementsIndirectUShort, v: cuint)  {.importcpp: "addElement".}
 
 proc getNumPrimitives*(this: DrawElementsIndirectUShort): cuint  {.importcpp: "getNumPrimitives".}
-
-proc drawElementsIndirectUInt*[InputIterator](this: var DrawElementsIndirectUInt, mode: GLenum, first: InputIterator, last: InputIterator)  {.importcpp: "DrawElementsIndirectUInt".}
 
 proc cloneType*(this: DrawElementsIndirectUInt): ptr Object   {.importcpp: "cloneType".}
 
@@ -355,8 +382,6 @@ proc addElement*(this: var DrawElementsIndirectUInt, v: cuint)  {.importcpp: "ad
 
 proc getNumPrimitives*(this: DrawElementsIndirectUInt): cuint  {.importcpp: "getNumPrimitives".}
 
-proc multiDrawElementsIndirectUShort*[InputIterator](this: var MultiDrawElementsIndirectUShort, mode: GLenum, first: InputIterator, last: InputIterator)  {.importcpp: "MultiDrawElementsIndirectUShort".}
-
 proc cloneType*(this: MultiDrawElementsIndirectUShort): ptr Object   {.importcpp: "cloneType".}
 
 proc clone*(this: MultiDrawElementsIndirectUShort, copyop: Copyop): ptr Object   {.importcpp: "clone".}
@@ -379,8 +404,6 @@ proc setNumCommandsToDraw*(this: var MultiDrawElementsIndirectUShort, i: cuint) 
 proc getNumCommandsToDraw*(this: MultiDrawElementsIndirectUShort): cuint  {.importcpp: "getNumCommandsToDraw".}
     ## count of Indirect Command to execute
 
-proc multiDrawElementsIndirectUByte*[InputIterator](this: var MultiDrawElementsIndirectUByte, mode: GLenum, first: InputIterator, last: InputIterator)  {.importcpp: "MultiDrawElementsIndirectUByte".}
-
 proc cloneType*(this: MultiDrawElementsIndirectUByte): ptr Object   {.importcpp: "cloneType".}
 
 proc clone*(this: MultiDrawElementsIndirectUByte, copyop: Copyop): ptr Object   {.importcpp: "clone".}
@@ -402,8 +425,6 @@ proc setNumCommandsToDraw*(this: var MultiDrawElementsIndirectUByte, i: cuint)  
 
 proc getNumCommandsToDraw*(this: MultiDrawElementsIndirectUByte): cuint  {.importcpp: "getNumCommandsToDraw".}
     ## count of Indirect Command to execute
-
-proc multiDrawElementsIndirectUInt*[InputIterator](this: var MultiDrawElementsIndirectUInt, mode: GLenum, first: InputIterator, last: InputIterator)  {.importcpp: "MultiDrawElementsIndirectUInt".}
 
 proc cloneType*(this: MultiDrawElementsIndirectUInt): ptr Object   {.importcpp: "cloneType".}
 
@@ -497,4 +518,4 @@ proc setNumCommandsToDraw*(this: var MultiDrawArraysIndirect, i: cuint)  {.impor
 proc getNumCommandsToDraw*(this: MultiDrawArraysIndirect): cuint  {.importcpp: "getNumCommandsToDraw".}
     ## count of Indirect Command to execute
 
-{.pop.} # header: "PrimitiveSetIndirect
+{.pop.}  # header: "PrimitiveSetIndirect"

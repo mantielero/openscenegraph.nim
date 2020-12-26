@@ -1,25 +1,23 @@
-import CopyOp # Provides CopyOp
-import stringfwd # Provides string
-import Object # Provides Object
-import gl # Provides GLenum, GLuint
-import StateAttribute # Provides StateAttribute, Type
-import Vec4 # Provides Vec4
-import Matrix # Provides Matrix
-import State # Provides State
-
-
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Vec4  # provides: osg::Vec4
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/Matrix  # provides: osg::Matrix
 type
-  # Typedefs
   LocalParamList* {.header: "VertexProgram", importcpp: "osg::VertexProgram::LocalParamList".} = cint
   MatrixList* {.header: "VertexProgram", importcpp: "osg::VertexProgram::MatrixList".} = cint
   VertexProgramIDList* {.header: "VertexProgram", importcpp: "osg::VertexProgram::VertexProgramIDList".} = buffered_value[GLuint]
+  VertexProgram* {.header: "VertexProgram", importcpp: "osg::VertexProgram", byref.} = object #of class osg::StateAttribute
+    ## VertexProgram - encapsulates the OpenGL ARB vertex program state.
+
+
+
 {.push header: "VertexProgram".}
 
+proc constructVertexProgram*(): VertexProgram {.constructor,importcpp: "osg::VertexProgram::VertexProgram".}
 
-# Constructors and methods
-proc constructVertexProgram*(): VertexProgram {.constructor,importcpp: "VertexProgram".}
-
-proc constructVertexProgram*(vp: Vertexprogram, copyop: Copyop = SHALLOW_COPY): VertexProgram {.constructor,importcpp: "VertexProgram(@)".}
+proc constructVertexProgram*(vp: Vertexprogram, copyop: Copyop = SHALLOW_COPY): VertexProgram {.constructor,importcpp: "osg::VertexProgram::VertexProgram(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: VertexProgram): ptr Object   {.importcpp: "cloneType".}
@@ -91,4 +89,4 @@ proc releaseGLObjects*(this: VertexProgram, state: ptr State  = 0)  {.importcpp:
     ## object is passed, otherwise release OpenGL objects for all graphics
     ## contexts if State object pointer is NULL.
 
-{.pop.} # header: "VertexProgram
+{.pop.}  # header: "VertexProgram"

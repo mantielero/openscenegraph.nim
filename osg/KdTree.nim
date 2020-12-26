@@ -1,32 +1,35 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import Array # Provides Vec3Array
-import Shape # Provides ShapeVisitor, ConstShapeVisitor
-import Geometry # Provides Geometry
-
-
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/Array  # provides: osg::Vec3Array
+import /usr/include/osg/Shape  # provides: osg::ShapeVisitor, osg::ConstShapeVisitor
+import /usr/include/osg/Geometry  # provides: osg::Geometry
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
 type
-  # Typedefs
   Indices* {.header: "KdTree", importcpp: "osg::KdTree::Indices".} = cint
   Value_type* {.header: "KdTree", importcpp: "osg::KdTree::value_type".} = cint
   KdNodeList* {.header: "KdTree", importcpp: "osg::KdTree::KdNodeList".} = cint
+  KdTree* {.header: "KdTree", importcpp: "osg::KdTree", byref.} = object #of osg::Shape
+    ## Implementation of a kdtree for Geometry leaves, to enable fast
+    ## intersection tests.
+
+  KdTreeBuilder* {.header: "KdTree", importcpp: "osg::KdTreeBuilder", byref.} = object #of osg::NodeVisitor
+
+
+
 {.push header: "KdTree".}
 
+proc constructKdTree*(): KdTree {.constructor,importcpp: "osg::KdTree::KdTree".}
 
-# Constructors and methods
-proc constructKdTree*(): KdTree {.constructor,importcpp: "KdTree".}
+proc constructKdTree*(rhs: Kdtree, copyop: Copyop = SHALLOW_COPY): KdTree {.constructor,importcpp: "osg::KdTree::KdTree(@)".}
 
-proc constructKdTree*(rhs: Kdtree, copyop: Copyop = SHALLOW_COPY): KdTree {.constructor,importcpp: "KdTree(@)".}
+proc constructBuildOptions*(): BuildOptions {.constructor,importcpp: "osg::KdTree::BuildOptions::BuildOptions".}
 
-proc constructBuildOptions*(): BuildOptions {.constructor,importcpp: "BuildOptions".}
+proc constructKdNode*(): KdNode {.constructor,importcpp: "osg::KdTree::KdNode::KdNode".}
 
-proc constructKdNode*(): KdNode {.constructor,importcpp: "KdNode".}
+proc constructKdNode*(f: Value_type, s: Value_type): KdNode {.constructor,importcpp: "osg::KdTree::KdNode::KdNode(@)".}
 
-proc constructKdNode*(f: Value_type, s: Value_type): KdNode {.constructor,importcpp: "KdNode(@)".}
+proc constructKdTreeBuilder*(): KdTreeBuilder {.constructor,importcpp: "osg::KdTreeBuilder::KdTreeBuilder".}
 
-proc constructKdTreeBuilder*(): KdTreeBuilder {.constructor,importcpp: "KdTreeBuilder".}
-
-proc constructKdTreeBuilder*(rhs: Kdtreebuilder): KdTreeBuilder {.constructor,importcpp: "KdTreeBuilder(@)".}
+proc constructKdTreeBuilder*(rhs: Kdtreebuilder): KdTreeBuilder {.constructor,importcpp: "osg::KdTreeBuilder::KdTreeBuilder(@)".}
 
 proc cloneType*(this: KdTree): ptr Object   {.importcpp: "cloneType".}
 
@@ -80,8 +83,6 @@ proc getNodes*(this: var KdTree): Kdnodelist  {.importcpp: "getNodes".}
 
 proc getNodes*(this: KdTree): Kdnodelist  {.importcpp: "getNodes".}
 
-proc intersect*[IntersectFunctor](this: KdTree, functor: var IntersectFunctor, node: Kdnode)  {.importcpp: "intersect".}
-
 proc libraryName*(this: KdTreeBuilder): cstring  {.importcpp: "libraryName".}
 
 proc className*(this: KdTreeBuilder): cstring  {.importcpp: "className".}
@@ -90,4 +91,4 @@ proc clone*(this: var KdTreeBuilder): ptr Kdtreebuilder   {.importcpp: "clone".}
 
 proc apply*(this: var KdTreeBuilder, geometry: Geometry)  {.importcpp: "apply".}
 
-{.pop.} # header: "KdTree
+{.pop.}  # header: "KdTree"

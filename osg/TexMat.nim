@@ -1,19 +1,22 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import StateAttribute # Provides StateAttribute, Type
-import Matrix # Provides Matrix
-import State # Provides State
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/Matrix  # provides: osg::Matrix
+type
+  TexMat* {.header: "TexMat", importcpp: "osg::TexMat", byref.} = object #of class osg::StateAttribute
+    ## A texture matrix state class that encapsulates OpenGL texture matrix
+    ## functionality.
+
 
 
 {.push header: "TexMat".}
 
+proc constructTexMat*(): TexMat {.constructor,importcpp: "osg::TexMat::TexMat".}
 
-# Constructors and methods
-proc constructTexMat*(): TexMat {.constructor,importcpp: "TexMat".}
+proc constructTexMat*(matrix: Matrix): TexMat {.constructor,importcpp: "osg::TexMat::TexMat(@)".}
 
-proc constructTexMat*(matrix: Matrix): TexMat {.constructor,importcpp: "TexMat(@)".}
-
-proc constructTexMat*(texmat: Texmat, copyop: Copyop = SHALLOW_COPY): TexMat {.constructor,importcpp: "TexMat(@)".}
+proc constructTexMat*(texmat: Texmat, copyop: Copyop = SHALLOW_COPY): TexMat {.constructor,importcpp: "osg::TexMat::TexMat(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: TexMat): ptr Object   {.importcpp: "cloneType".}
@@ -58,4 +61,4 @@ proc getScaleByTextureRectangleSize*(this: TexMat): bool  {.importcpp: "getScale
 proc apply*(this: TexMat, state: State)  {.importcpp: "apply".}
     ## Apply texture matrix to OpenGL state.
 
-{.pop.} # header: "TexMat
+{.pop.}  # header: "TexMat"

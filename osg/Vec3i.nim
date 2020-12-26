@@ -1,14 +1,16 @@
+const
+  num_components* = 3
 
 
 type
   Value_type* {.header: "Vec3i", importcpp: "osg::Vec3i::value_type".} = cint
+
+
 {.push header: "Vec3i".}
 
+proc constructVec3i*(): Vec3i {.constructor,importcpp: "osg::Vec3i::Vec3i".}
 
-# Constructors and methods
-proc constructVec3i*(): Vec3i {.constructor,importcpp: "Vec3i".}
-
-proc constructVec3i*(r: Value_type, g: Value_type, b: Value_type): Vec3i {.constructor,importcpp: "Vec3i(@)".}
+proc constructVec3i*(r: Value_type, g: Value_type, b: Value_type): Vec3i {.constructor,importcpp: "osg::Vec3i::Vec3i(@)".}
 
 proc `==`*(this: Vec3i, v: Vec3i): bool  {.importcpp: "# == #".}
 
@@ -67,4 +69,4 @@ proc `-`*(this: Vec3i, rhs: Vec3i): Vec3i  {.importcpp: "# - #".}
 
 proc `*`*(this: Vec3i, rhs: Vec3i): Vec3i  {.importcpp: "# * #".}
 
-{.pop.} # header: "Vec3i
+{.pop.}  # header: "Vec3i"

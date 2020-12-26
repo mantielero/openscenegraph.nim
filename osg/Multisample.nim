@@ -1,22 +1,23 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import StateAttribute # Provides StateAttribute, Type
-import State # Provides State
-
-
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
 type
   Mode* {.size:sizeof(cuint),header: "Multisample", importcpp: "osg::Multisample::Mode".} = enum
+    DONT_CARE = 4352,
     FASTEST = 4353,
-    NICEST = 4354,
-    DONT_CARE = 4352
+    NICEST = 4354
+
+  Multisample* {.header: "Multisample", importcpp: "osg::Multisample", byref.} = object #of class osg::StateAttribute
+    ## Multisample - encapsulates the OpenGL Multisample state.
+
+
 
 {.push header: "Multisample".}
 
+proc constructMultisample*(): Multisample {.constructor,importcpp: "osg::Multisample::Multisample".}
 
-# Constructors and methods
-proc constructMultisample*(): Multisample {.constructor,importcpp: "Multisample".}
-
-proc constructMultisample*(trans: Multisample, copyop: Copyop = SHALLOW_COPY): Multisample {.constructor,importcpp: "Multisample(@)".}
+proc constructMultisample*(trans: Multisample, copyop: Copyop = SHALLOW_COPY): Multisample {.constructor,importcpp: "osg::Multisample::Multisample(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: Multisample): ptr Object   {.importcpp: "cloneType".}
@@ -50,4 +51,4 @@ proc getHint*(this: Multisample): Mode  {.importcpp: "getHint".}
 
 proc apply*(this: Multisample, state: State)  {.importcpp: "apply".}
 
-{.pop.} # header: "Multisample
+{.pop.}  # header: "Multisample"

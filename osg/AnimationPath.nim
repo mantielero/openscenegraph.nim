@@ -1,14 +1,11 @@
-import iosfwd # Provides istream, ostream
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import Vec3d # Provides Vec3d
-import Quat # Provides Quat
-import Matrixf # Provides Matrixf
-import Matrixd # Provides Matrixd
-import NodeVisitor # Provides NodeVisitor
-import Node # Provides Node
-
-
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/Matrixf  # provides: osg::Matrixf
+import /usr/include/osg/Node  # provides: osg::Node
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/Matrixd  # provides: osg::Matrixd
+import /usr/include/osg/Vec3d  # provides: osg::Vec3d
+import /usr/include/osg/Quat  # provides: osg::Quat
+import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
 type
   LoopMode* {.size:sizeof(cuint),header: "AnimationPath", importcpp: "osg::AnimationPath::LoopMode".} = enum
     SWING = 0,
@@ -16,30 +13,40 @@ type
     NO_LOOPING = 2
 
   TimeControlPointMap* {.header: "AnimationPath", importcpp: "osg::AnimationPath::TimeControlPointMap".} = cint
+  AnimationPath* {.header: "AnimationPath", importcpp: "osg::AnimationPath", byref.} = object #of osg::Object
+    ## AnimationPath encapsulates a time varying transformation pathway. Can
+    ## be used for updating camera position and model object position.
+    ## AnimationPathCallback can be attached directly to Transform nodes to
+    ## move subgraphs around the scene.
+
+  ControlPoint* {.header: "AnimationPath", importcpp: "osg::AnimationPath::ControlPoint", byref.} = object
+
+  AnimationPathCallback* {.header: "AnimationPath", importcpp: "osg::AnimationPathCallback", byref.} = object #of class osg::NodeCallback
+
+
+
 {.push header: "AnimationPath".}
 
+proc constructAnimationPath*(): AnimationPath {.constructor,importcpp: "osg::AnimationPath::AnimationPath".}
 
-# Constructors and methods
-proc constructAnimationPath*(): AnimationPath {.constructor,importcpp: "AnimationPath".}
+proc constructAnimationPath*(ap: Animationpath, copyop: Copyop = SHALLOW_COPY): AnimationPath {.constructor,importcpp: "osg::AnimationPath::AnimationPath(@)".}
 
-proc constructAnimationPath*(ap: Animationpath, copyop: Copyop = SHALLOW_COPY): AnimationPath {.constructor,importcpp: "AnimationPath(@)".}
+proc constructControlPoint*(): ControlPoint {.constructor,importcpp: "osg::AnimationPath::ControlPoint::ControlPoint".}
 
-proc constructControlPoint*(): ControlPoint {.constructor,importcpp: "ControlPoint".}
+proc constructControlPoint*(position: Vec3d): ControlPoint {.constructor,importcpp: "osg::AnimationPath::ControlPoint::ControlPoint(@)".}
 
-proc constructControlPoint*(position: Vec3d): ControlPoint {.constructor,importcpp: "ControlPoint(@)".}
+proc constructControlPoint*(position: Vec3d, rotation: Quat): ControlPoint {.constructor,importcpp: "osg::AnimationPath::ControlPoint::ControlPoint(@)".}
 
-proc constructControlPoint*(position: Vec3d, rotation: Quat): ControlPoint {.constructor,importcpp: "ControlPoint(@)".}
+proc constructControlPoint*(position: Vec3d, rotation: Quat, scale: Vec3d): ControlPoint {.constructor,importcpp: "osg::AnimationPath::ControlPoint::ControlPoint(@)".}
 
-proc constructControlPoint*(position: Vec3d, rotation: Quat, scale: Vec3d): ControlPoint {.constructor,importcpp: "ControlPoint(@)".}
+proc constructAnimationPathCallback*(): AnimationPathCallback {.constructor,importcpp: "osg::AnimationPathCallback::AnimationPathCallback".}
 
-proc constructAnimationPathCallback*(): AnimationPathCallback {.constructor,importcpp: "AnimationPathCallback".}
+proc constructAnimationPathCallback*(apc: Animationpathcallback, copyop: Copyop): AnimationPathCallback {.constructor,importcpp: "osg::AnimationPathCallback::AnimationPathCallback(@)".}
 
-proc constructAnimationPathCallback*(apc: Animationpathcallback, copyop: Copyop): AnimationPathCallback {.constructor,importcpp: "AnimationPathCallback(@)".}
-
-proc constructAnimationPathCallback*(ap: ptr Animationpath , timeOffset: cdouble, timeMultiplier: cdouble): AnimationPathCallback {.constructor,importcpp: "AnimationPathCallback(@)".}
+proc constructAnimationPathCallback*(ap: ptr Animationpath , timeOffset: cdouble, timeMultiplier: cdouble): AnimationPathCallback {.constructor,importcpp: "osg::AnimationPathCallback::AnimationPathCallback(@)".}
     ## Construct an AnimationPathCallback with a specified animation path.
 
-proc constructAnimationPathCallback*(pivot: Vec3d, axis: Vec3d, angularVelocity: cfloat): AnimationPathCallback {.constructor,importcpp: "AnimationPathCallback(@)".}
+proc constructAnimationPathCallback*(pivot: Vec3d, axis: Vec3d, angularVelocity: cfloat): AnimationPathCallback {.constructor,importcpp: "osg::AnimationPathCallback::AnimationPathCallback(@)".}
     ## Construct an AnimationPathCallback and automatically create an
     ## animation path to produce a rotation about a point.
 
@@ -173,4 +180,4 @@ proc `()`*(this: var AnimationPathCallback, node: ptr Node , nv: ptr Nodevisitor
 
 proc update*(this: var AnimationPathCallback, node: Node)  {.importcpp: "update".}
 
-{.pop.} # header: "AnimationPath
+{.pop.}  # header: "AnimationPath"

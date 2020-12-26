@@ -1,18 +1,21 @@
-import Vec3 # Provides Vec3
-import BoundingBox # Provides BoundingBox
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import Image # Provides Image
-import RenderInfo # Provides RenderInfo
+import /usr/include/osg/Vec3  # provides: osg::Vec3
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/Image  # provides: osg::Image
+import /usr/include/osg/BoundingBox  # provides: osg::BoundingBox
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/RenderInfo  # provides: osg::RenderInfo
+type
+  DrawPixels* {.header: "DrawPixels", importcpp: "osg::DrawPixels", byref.} = object #of class osg::Drawable
+    ## DrawPixels is an osg::Drawable subclass which encapsulates the drawing
+    ## of images using glDrawPixels.
+
 
 
 {.push header: "DrawPixels".}
 
+proc constructDrawPixels*(): DrawPixels {.constructor,importcpp: "osg::DrawPixels::DrawPixels".}
 
-# Constructors and methods
-proc constructDrawPixels*(): DrawPixels {.constructor,importcpp: "DrawPixels".}
-
-proc constructDrawPixels*(drawimage: Drawpixels, copyop: Copyop = SHALLOW_COPY): DrawPixels {.constructor,importcpp: "DrawPixels(@)".}
+proc constructDrawPixels*(drawimage: Drawpixels, copyop: Copyop = SHALLOW_COPY): DrawPixels {.constructor,importcpp: "osg::DrawPixels::DrawPixels(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: DrawPixels): ptr Object   {.importcpp: "cloneType".}
@@ -51,4 +54,4 @@ proc computeBoundingBox*(this: DrawPixels): Boundingbox  {.importcpp: "computeBo
 
 proc `=`*(this: var DrawPixels, Drawpixels): Drawpixels  {.importcpp: "# = #".}
 
-{.pop.} # header: "DrawPixels
+{.pop.}  # header: "DrawPixels"

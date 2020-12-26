@@ -1,25 +1,25 @@
-import gl # Provides GLenum, GLint, GLsizei
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import StateAttribute # Provides StateAttribute, Type
-import Image # Provides Image
-import State # Provides State
-
-
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/Image  # provides: osg::Image
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
 type
   ImageModifiedCount* {.header: "TextureRectangle", importcpp: "osg::TextureRectangle::ImageModifiedCount".} = buffered_value[unsigned int]
+  TextureRectangle* {.header: "TextureRectangle", importcpp: "osg::TextureRectangle", byref.} = object #of class osg::Texture
+    ## Texture state class which encapsulates OpenGL texture functionality.
+
+  SubloadCallback* {.header: "TextureRectangle", importcpp: "osg::TextureRectangle::SubloadCallback", byref.} = object #of class osg::Referenced
+
+
+
 {.push header: "TextureRectangle".}
 
+proc constructTextureRectangle*(): TextureRectangle {.constructor,importcpp: "osg::TextureRectangle::TextureRectangle".}
 
-# Constructors and methods
-proc constructTextureRectangle*(): TextureRectangle {.constructor,importcpp: "TextureRectangle".}
+proc constructTextureRectangle*(image: ptr Image ): TextureRectangle {.constructor,importcpp: "osg::TextureRectangle::TextureRectangle(@)".}
 
-proc constructTextureRectangle*(image: ptr Image ): TextureRectangle {.constructor,importcpp: "TextureRectangle(@)".}
-
-proc constructTextureRectangle*(text: Texturerectangle, copyop: Copyop = SHALLOW_COPY): TextureRectangle {.constructor,importcpp: "TextureRectangle(@)".}
+proc constructTextureRectangle*(text: Texturerectangle, copyop: Copyop = SHALLOW_COPY): TextureRectangle {.constructor,importcpp: "osg::TextureRectangle::TextureRectangle(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
-
-proc textureRectangle*[T](this: var TextureRectangle, image: Ref_ptr[T])  {.importcpp: "TextureRectangle".}
 
 proc cloneType*(this: TextureRectangle): ptr Object   {.importcpp: "cloneType".}
 
@@ -40,8 +40,6 @@ proc getTextureTarget*(this: TextureRectangle): GLenum  {.importcpp: "getTexture
 
 proc setImage*(this: var TextureRectangle, image: ptr Image )  {.importcpp: "setImage".}
     ## Set the texture image.
-
-proc setImage*[T](this: var TextureRectangle, image: ref_ptr[T])  {.importcpp: "setImage".}
 
 proc getImage*(this: var TextureRectangle): ptr Image   {.importcpp: "getImage".}
     ## Get the texture image.
@@ -118,4 +116,4 @@ proc applyTexImage_load*(this: TextureRectangle, target: GLenum, image: ptr Imag
 
 proc applyTexImage_subload*(this: TextureRectangle, target: GLenum, image: ptr Image , state: State, inwidth: var GLsizei, inheight: var GLsizei, inInternalFormat: var GLint)  {.importcpp: "applyTexImage_subload".}
 
-{.pop.} # header: "TextureRectangle
+{.pop.}  # header: "TextureRectangle"

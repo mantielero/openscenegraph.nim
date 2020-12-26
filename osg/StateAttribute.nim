@@ -1,15 +1,11 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import Callback # Provides StateAttributeCallback
-import gl # Provides GLenum
-import Shader # Provides ShaderComponent
-import StateSet # Provides StateSet
-import Texture # Provides Texture
-import State # Provides State
-
-
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/Shader  # provides: osg::ShaderComponent
+import /usr/include/osg/Callback  # provides: osg::StateAttributeCallback
+import /usr/include/osg/StateSet  # provides: osg::StateSet
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/Texture  # provides: osg::Texture
 type
-  # Enums
   Values* {.size:sizeof(cuint),header: "StateAttribute", importcpp: "osg::StateAttribute::Values".} = enum
     ## list values which can be used to set either GLModeValues or
     ## OverrideValues. When using in conjunction with GLModeValues, all
@@ -32,120 +28,21 @@ type
     INHERIT = 8
       ## means that GLMode or StateAttribute should be inherited from above.
 
-  Type* {.size:sizeof(cuint),header: "StateAttribute", importcpp: "osg::StateAttribute::Type".} = enum
-    ## Values of StateAttribute::Type used to aid identification of different
-    ## StateAttribute subclasses. Each subclass defines its own value in the
-    ## virtual Type getType() method. When extending the osg's
-    ## StateAttribute's simply define your own Type value which is unique,
-    ## using the StateAttribute::Type enum as a guide of what values to use.
-    ## If your new subclass needs to override a standard StateAttribute then
-    ## simply use that type's value.
-
-    TEXTURE = 0,
-    POLYGONMODE = 1,
-    POLYGONOFFSET = 2,
-    MATERIAL = 3,
-    ALPHAFUNC = 4,
-    ANTIALIAS = 5,
-    COLORTABLE = 6,
-    CULLFACE = 7,
-    FOG = 8,
-    FRONTFACE = 9,
-    LIGHT = 10,
-    POINT = 11,
-    LINEWIDTH = 12,
-    LINESTIPPLE = 13,
-    POLYGONSTIPPLE = 14,
-    SHADEMODEL = 15,
-    TEXENV = 16,
-    TEXENVFILTER = 17,
-    TEXGEN = 18,
-    TEXMAT = 19,
-    LIGHTMODEL = 20,
-    BLENDFUNC = 21,
-    BLENDEQUATION = 22,
-    LOGICOP = 23,
-    STENCIL = 24,
-    COLORMASK = 25,
-    DEPTH = 26,
-    VIEWPORT = 27,
-    SCISSOR = 28,
-    BLENDCOLOR = 29,
-    MULTISAMPLE = 30,
-    CLIPPLANE = 31,
-    COLORMATRIX = 32,
-    VERTEXPROGRAM = 33,
-    FRAGMENTPROGRAM = 34,
-    POINTSPRITE = 35,
-    PROGRAM = 36,
-    CLAMPCOLOR = 37,
-    HINT = 38,
-    SAMPLEMASKI = 39,
-    PRIMITIVERESTARTINDEX = 40,
-    CLIPCONTROL = 41,
-    VALIDATOR = 42,
-      ## osgFX namespace
-    VIEWMATRIXEXTRACTOR = 43,
-      ## osgFX namespace
-    OSGNV_PARAMETER_BLOCK = 44,
-      ## osgNV namespace
-    OSGNVEXT_TEXTURE_SHADER = 45,
-      ## osgNV namespace
-    OSGNVEXT_VERTEX_PROGRAM = 46,
-      ## osgNV namespace
-    OSGNVEXT_REGISTER_COMBINERS = 47,
-      ## osgNV namespace
-    OSGNVCG_PROGRAM = 48,
-      ## osgNVCg namespace
-    OSGNVSLANG_PROGRAM = 49,
-      ## osgNVCg namespace
-    OSGNVPARSE_PROGRAM_PARSER = 50,
-      ## osgNVCg namespace
-    UNIFORMBUFFERBINDING = 51,
-      ## osgNVCg namespace
-    TRANSFORMFEEDBACKBUFFERBINDING = 52,
-      ## osgNVCg namespace
-    ATOMICCOUNTERBUFFERBINDING = 53,
-      ## osgNVCg namespace
-    PATCH_PARAMETER = 54,
-      ## osgNVCg namespace
-    FRAME_BUFFER_OBJECT = 55,
-      ## osgNVCg namespace
-    VERTEX_ATTRIB_DIVISOR = 56,
-      ## osgNVCg namespace
-    SHADERSTORAGEBUFFERBINDING = 57,
-      ## osgNVCg namespace
-    INDIRECTDRAWBUFFERBINDING = 58,
-      ## osgNVCg namespace
-    VIEWPORTINDEXED = 59,
-      ## osgNVCg namespace
-    DEPTHRANGEINDEXED = 60,
-      ## osgNVCg namespace
-    SCISSORINDEXED = 61,
-      ## osgNVCg namespace
-    BINDIMAGETEXTURE = 62,
-      ## osgNVCg namespace
-    SAMPLER = 63,
-      ## osgNVCg namespace
-    CAPABILITY = 100
-      ## osgNVCg namespace
-
-  # Typedefs
   GLMode* {.header: "StateAttribute", importcpp: "osg::StateAttribute::GLMode".} = GLenum
   GLModeValue* {.header: "StateAttribute", importcpp: "osg::StateAttribute::GLModeValue".} = cuint
   OverrideValue* {.header: "StateAttribute", importcpp: "osg::StateAttribute::OverrideValue".} = cuint
   TypeMemberPair* {.header: "StateAttribute", importcpp: "osg::StateAttribute::TypeMemberPair".} = Pair[Type,cuint]
   ParentList* {.header: "StateAttribute", importcpp: "osg::StateAttribute::ParentList".} = cint
   Callback* {.header: "StateAttribute", importcpp: "osg::StateAttribute::Callback".} = Stateattributecallback
+
+
 {.push header: "StateAttribute".}
 
+proc constructStateAttribute*(): StateAttribute {.constructor,importcpp: "osg::StateAttribute::StateAttribute".}
 
-# Constructors and methods
-proc constructStateAttribute*(): StateAttribute {.constructor,importcpp: "StateAttribute".}
+proc constructStateAttribute*(sa: Stateattribute, copyop: Copyop = SHALLOW_COPY): StateAttribute {.constructor,importcpp: "osg::StateAttribute::StateAttribute(@)".}
 
-proc constructStateAttribute*(sa: Stateattribute, copyop: Copyop = SHALLOW_COPY): StateAttribute {.constructor,importcpp: "StateAttribute(@)".}
-
-proc constructReassignToParents*(att: ptr Stateattribute ): ReassignToParents {.constructor,importcpp: "ReassignToParents(@)".}
+proc constructReassignToParents*(att: ptr Stateattribute ): ReassignToParents {.constructor,importcpp: "osg::StateAttribute::ReassignToParents::ReassignToParents(@)".}
     ## Constructor caches and then removes attribute for all of it's parents.
 
 proc cloneType*(this: StateAttribute): ptr Object   {.importcpp: "cloneType".}
@@ -276,4 +173,4 @@ proc addParent*(this: var StateAttribute, `object`: ptr Stateset )  {.importcpp:
 
 proc removeParent*(this: var StateAttribute, `object`: ptr Stateset )  {.importcpp: "removeParent".}
 
-{.pop.} # header: "StateAttribute
+{.pop.}  # header: "StateAttribute"

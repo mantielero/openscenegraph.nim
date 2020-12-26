@@ -1,45 +1,46 @@
-import Vec3f # Provides Vec3f
-import Vec4f # Provides Vec4f
-import Vec3d # Provides Vec3d
-import Vec4d # Provides Vec4d
-import Matrix # Provides Matrix
-import BoundingSphere # Provides BoundingSphere
-import BoundingBox # Provides BoundingBox
+import /usr/include/osg/BoundingSphere  # provides: osg::BoundingSphere
+import /usr/include/osg/Vec3f  # provides: osg::Vec3f
+import /usr/include/osg/BoundingBox  # provides: osg::BoundingBox
+import /usr/include/osg/Matrix  # provides: osg::Matrix
+import /usr/include/osg/Vec4d  # provides: osg::Vec4d
+import /usr/include/osg/Vec3d  # provides: osg::Vec3d
+import /usr/include/osg/Vec4f  # provides: osg::Vec4f
+const
+  num_components* = 3
 
 
 type
-  # Typedefs
   Value_type* {.header: "Plane", importcpp: "osg::Plane::value_type".} = cdouble
   Vec3_type* {.header: "Plane", importcpp: "osg::Plane::Vec3_type".} = Vec3d
   Vec4_type* {.header: "Plane", importcpp: "osg::Plane::Vec4_type".} = Vec4d
+
+
 {.push header: "Plane".}
 
-
-# Constructors and methods
-proc constructPlane*(): Plane {.constructor,importcpp: "Plane".}
+proc constructPlane*(): Plane {.constructor,importcpp: "osg::Plane::Plane".}
     ## Default constructor The default constructor initializes all values to
     ## zero.
 
-proc constructPlane*(pl: Plane): Plane {.constructor,importcpp: "Plane(@)".}
+proc constructPlane*(pl: Plane): Plane {.constructor,importcpp: "osg::Plane::Plane(@)".}
 
-proc constructPlane*(a: Value_type, b: Value_type, c: Value_type, d: Value_type): Plane {.constructor,importcpp: "Plane(@)".}
+proc constructPlane*(a: Value_type, b: Value_type, c: Value_type, d: Value_type): Plane {.constructor,importcpp: "osg::Plane::Plane(@)".}
     ## Constructor The plane is described as a*x+b*y+c*z+d = 0.
 
-proc constructPlane*(vec: Vec4f): Plane {.constructor,importcpp: "Plane(@)".}
+proc constructPlane*(vec: Vec4f): Plane {.constructor,importcpp: "osg::Plane::Plane(@)".}
     ## Constructor The plane can also be described as vec*[x,y,z,1].
 
-proc constructPlane*(vec: Vec4d): Plane {.constructor,importcpp: "Plane(@)".}
+proc constructPlane*(vec: Vec4d): Plane {.constructor,importcpp: "osg::Plane::Plane(@)".}
     ## Constructor The plane can also be described as vec*[x,y,z,1].
 
-proc constructPlane*(norm: Vec3_type, d: Value_type): Plane {.constructor,importcpp: "Plane(@)".}
+proc constructPlane*(norm: Vec3_type, d: Value_type): Plane {.constructor,importcpp: "osg::Plane::Plane(@)".}
     ## Constructor This constructor initializes the internal values directly
     ## without any checking or manipulation.
 
-proc constructPlane*(v1: Vec3_type, v2: Vec3_type, v3: Vec3_type): Plane {.constructor,importcpp: "Plane(@)".}
+proc constructPlane*(v1: Vec3_type, v2: Vec3_type, v3: Vec3_type): Plane {.constructor,importcpp: "osg::Plane::Plane(@)".}
     ## Constructor This constructor calculates from the three points
     ## describing an infinite plane the internal values.
 
-proc constructPlane*(norm: Vec3_type, point: Vec3_type): Plane {.constructor,importcpp: "Plane(@)".}
+proc constructPlane*(norm: Vec3_type, point: Vec3_type): Plane {.constructor,importcpp: "osg::Plane::Plane(@)".}
     ## Constructor This constructor initializes the internal values directly
     ## without any checking or manipulation.
 
@@ -140,4 +141,4 @@ proc transformProvidingInverse*(this: var Plane, matrix: Matrix)  {.importcpp: "
     ## Transform the plane by providing a pre inverted matrix. see transform
     ## for details.
 
-{.pop.} # header: "Plane
+{.pop.}  # header: "Plane"

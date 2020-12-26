@@ -1,54 +1,47 @@
-import CopyOp # Provides CopyOp
-import stringfwd # Provides string
-import Object # Provides Object
-import Drawable # Provides Drawable
-import State # Provides State
-import Uniform # Provides Uniform
-import NodeVisitor # Provides NodeVisitor
-import StateAttribute # Provides StateAttribute
-import RenderInfo # Provides RenderInfo
-import Node # Provides Node
-
-
-type
-  Parameters* {.header: "Callback", importcpp: "osg::Parameters".} = cint
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute
+import /usr/include/osg/Node  # provides: osg::Node
+import /usr/include/osg/Drawable  # provides: osg::Drawable
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/Uniform  # provides: osg::Uniform
+import /usr/include/osg/RenderInfo  # provides: osg::RenderInfo
+import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
 {.push header: "Callback".}
 
+proc constructCallback*(): Callback {.constructor,importcpp: "osg::Callback::Callback".}
 
-# Constructors and methods
-proc constructCallback*(): Callback {.constructor,importcpp: "Callback".}
+proc constructCallback*(cb: Callback, copyop: Copyop): Callback {.constructor,importcpp: "osg::Callback::Callback(@)".}
 
-proc constructCallback*(cb: Callback, copyop: Copyop): Callback {.constructor,importcpp: "Callback(@)".}
+proc constructCallbackObject*(): CallbackObject {.constructor,importcpp: "osg::CallbackObject::CallbackObject".}
 
-proc constructCallbackObject*(): CallbackObject {.constructor,importcpp: "CallbackObject".}
+proc constructCallbackObject*(name: String): CallbackObject {.constructor,importcpp: "osg::CallbackObject::CallbackObject(@)".}
 
-proc constructCallbackObject*(name: String): CallbackObject {.constructor,importcpp: "CallbackObject(@)".}
+proc constructCallbackObject*(co: Callbackobject, copyop: Copyop = SHALLOW_COPY): CallbackObject {.constructor,importcpp: "osg::CallbackObject::CallbackObject(@)".}
 
-proc constructCallbackObject*(co: Callbackobject, copyop: Copyop = SHALLOW_COPY): CallbackObject {.constructor,importcpp: "CallbackObject(@)".}
+proc constructNodeCallback*(): NodeCallback {.constructor,importcpp: "osg::NodeCallback::NodeCallback".}
 
-proc constructNodeCallback*(): NodeCallback {.constructor,importcpp: "NodeCallback".}
+proc constructNodeCallback*(nc: Nodecallback, copyop: Copyop): NodeCallback {.constructor,importcpp: "osg::NodeCallback::NodeCallback(@)".}
 
-proc constructNodeCallback*(nc: Nodecallback, copyop: Copyop): NodeCallback {.constructor,importcpp: "NodeCallback(@)".}
+proc constructStateAttributeCallback*(): StateAttributeCallback {.constructor,importcpp: "osg::StateAttributeCallback::StateAttributeCallback".}
 
-proc constructStateAttributeCallback*(): StateAttributeCallback {.constructor,importcpp: "StateAttributeCallback".}
+proc constructStateAttributeCallback*(org: Stateattributecallback, copyop: Copyop): StateAttributeCallback {.constructor,importcpp: "osg::StateAttributeCallback::StateAttributeCallback(@)".}
 
-proc constructStateAttributeCallback*(org: Stateattributecallback, copyop: Copyop): StateAttributeCallback {.constructor,importcpp: "StateAttributeCallback(@)".}
+proc constructUniformCallback*(): UniformCallback {.constructor,importcpp: "osg::UniformCallback::UniformCallback".}
 
-proc constructUniformCallback*(): UniformCallback {.constructor,importcpp: "UniformCallback".}
+proc constructUniformCallback*(org: Uniformcallback, copyop: Copyop): UniformCallback {.constructor,importcpp: "osg::UniformCallback::UniformCallback(@)".}
 
-proc constructUniformCallback*(org: Uniformcallback, copyop: Copyop): UniformCallback {.constructor,importcpp: "UniformCallback(@)".}
+proc constructDrawableUpdateCallback*(): DrawableUpdateCallback {.constructor,importcpp: "osg::DrawableUpdateCallback::DrawableUpdateCallback".}
 
-proc constructDrawableUpdateCallback*(): DrawableUpdateCallback {.constructor,importcpp: "DrawableUpdateCallback".}
+proc constructDrawableUpdateCallback*(org: Drawableupdatecallback, copyop: Copyop): DrawableUpdateCallback {.constructor,importcpp: "osg::DrawableUpdateCallback::DrawableUpdateCallback(@)".}
 
-proc constructDrawableUpdateCallback*(org: Drawableupdatecallback, copyop: Copyop): DrawableUpdateCallback {.constructor,importcpp: "DrawableUpdateCallback(@)".}
+proc constructDrawableEventCallback*(): DrawableEventCallback {.constructor,importcpp: "osg::DrawableEventCallback::DrawableEventCallback".}
 
-proc constructDrawableEventCallback*(): DrawableEventCallback {.constructor,importcpp: "DrawableEventCallback".}
+proc constructDrawableEventCallback*(org: Drawableeventcallback, copyop: Copyop): DrawableEventCallback {.constructor,importcpp: "osg::DrawableEventCallback::DrawableEventCallback(@)".}
 
-proc constructDrawableEventCallback*(org: Drawableeventcallback, copyop: Copyop): DrawableEventCallback {.constructor,importcpp: "DrawableEventCallback(@)".}
+proc constructDrawableCullCallback*(): DrawableCullCallback {.constructor,importcpp: "osg::DrawableCullCallback::DrawableCullCallback".}
 
-proc constructDrawableCullCallback*(): DrawableCullCallback {.constructor,importcpp: "DrawableCullCallback".}
-
-proc constructDrawableCullCallback*(org: Drawablecullcallback, copyop: Copyop): DrawableCullCallback {.constructor,importcpp: "DrawableCullCallback(@)".}
+proc constructDrawableCullCallback*(org: Drawablecullcallback, copyop: Copyop): DrawableCullCallback {.constructor,importcpp: "osg::DrawableCullCallback::DrawableCullCallback(@)".}
 
 proc cloneType*(this: Callback): ptr Object   {.importcpp: "cloneType".}
 
@@ -268,4 +261,4 @@ proc cull*(this: DrawableCullCallback, ptr Nodevisitor , ptr Drawable , ptr Stat
 proc cull*(this: DrawableCullCallback, nv: ptr Nodevisitor , drawable: ptr Drawable , renderInfo: ptr Renderinfo ): bool  {.importcpp: "cull".}
     ## do customized cull code, return true if drawable should be culled.
 
-{.pop.} # header: "Callback
+{.pop.}  # header: "Callback"

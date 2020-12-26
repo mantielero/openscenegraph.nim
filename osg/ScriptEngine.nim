@@ -1,26 +1,34 @@
-import CopyOp # Provides CopyOp
-import stringfwd # Provides string
-import Object # Provides Object
-import Callback # Provides Parameters
-import Node # Provides NodePath, Node
-import NodeVisitor # Provides NodeVisitor
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/Node  # provides: osg::NodePath, osg::Node
+import /usr/include/osg/Callback  # provides: osg::Parameters
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
+type
+  Script* {.header: "ScriptEngine", importcpp: "osg::Script", byref.} = object #of osg::Object
+
+  ScriptNodeCallback* {.header: "ScriptEngine", importcpp: "osg::ScriptNodeCallback", byref.} = object #of osg::NodeCallback
+    ## NodeCallback for attaching a script to a NodeCallback so that it can
+    ## be called as an update or event callback.
+
+  ScriptEngine* {.header: "ScriptEngine", importcpp: "osg::ScriptEngine", byref.} = object #of osg::Object
+    ## ScriptEngine base class for integrating different scripting languages.
+    ## Concrete ScriptEngine's are provided by osgDB::readFile<ScriptEngine>
+
 
 
 {.push header: "ScriptEngine".}
 
+proc constructScript*(): Script {.constructor,importcpp: "osg::Script::Script".}
 
-# Constructors and methods
-proc constructScript*(): Script {.constructor,importcpp: "Script".}
+proc constructScript*(language: String, str: String): Script {.constructor,importcpp: "osg::Script::Script(@)".}
 
-proc constructScript*(language: String, str: String): Script {.constructor,importcpp: "Script(@)".}
+proc constructScript*(rhs: Script, copyop: Copyop = SHALLOW_COPY): Script {.constructor,importcpp: "osg::Script::Script(@)".}
 
-proc constructScript*(rhs: Script, copyop: Copyop = SHALLOW_COPY): Script {.constructor,importcpp: "Script(@)".}
+proc constructScriptNodeCallback*(script: ptr Script  = 0, entryPoint: String): ScriptNodeCallback {.constructor,importcpp: "osg::ScriptNodeCallback::ScriptNodeCallback(@)".}
 
-proc constructScriptNodeCallback*(script: ptr Script  = 0, entryPoint: String): ScriptNodeCallback {.constructor,importcpp: "ScriptNodeCallback(@)".}
+proc constructScriptNodeCallback*(rhs: Scriptnodecallback, copyop: Copyop = SHALLOW_COPY): ScriptNodeCallback {.constructor,importcpp: "osg::ScriptNodeCallback::ScriptNodeCallback(@)".}
 
-proc constructScriptNodeCallback*(rhs: Scriptnodecallback, copyop: Copyop = SHALLOW_COPY): ScriptNodeCallback {.constructor,importcpp: "ScriptNodeCallback(@)".}
-
-proc constructScriptEngine*(language: String): ScriptEngine {.constructor,importcpp: "ScriptEngine(@)".}
+proc constructScriptEngine*(language: String): ScriptEngine {.constructor,importcpp: "osg::ScriptEngine::ScriptEngine(@)".}
 
 proc cloneType*(this: Script): ptr Object   {.importcpp: "cloneType".}
 
@@ -85,4 +93,4 @@ proc run*(this: var ScriptEngine, script: ptr Script ): bool  {.importcpp: "run"
 proc run*(this: var ScriptEngine, script: ptr Script , entryPoint: String, inputParameters: Parameters, outputParameters: Parameters): bool  {.importcpp: "run".}
     ## run a Script.
 
-{.pop.} # header: "ScriptEngine
+{.pop.}  # header: "ScriptEngine"

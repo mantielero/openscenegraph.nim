@@ -1,17 +1,12 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import gl # Provides GLbitfield
-import Vec4 # Provides Vec4
-import NodeVisitor # Provides NodeVisitor
-
-
+import /usr/include/osg/Vec4  # provides: osg::Vec4
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
 {.push header: "ClearNode".}
 
+proc constructClearNode*(): ClearNode {.constructor,importcpp: "osg::ClearNode::ClearNode".}
 
-# Constructors and methods
-proc constructClearNode*(): ClearNode {.constructor,importcpp: "ClearNode".}
-
-proc constructClearNode*(cs: Clearnode, copyop: Copyop = SHALLOW_COPY): ClearNode {.constructor,importcpp: "ClearNode(@)".}
+proc constructClearNode*(cs: Clearnode, copyop: Copyop = SHALLOW_COPY): ClearNode {.constructor,importcpp: "osg::ClearNode::ClearNode(@)".}
 
 proc cloneType*(this: ClearNode): ptr Object   {.importcpp: "cloneType".}
 
@@ -44,4 +39,4 @@ proc setClearMask*(this: var ClearNode, mask: GLbitfield)  {.importcpp: "setClea
 proc getClearMask*(this: ClearNode): GLbitfield  {.importcpp: "getClearMask".}
     ## Get the clear mask.
 
-{.pop.} # header: "ClearNode
+{.pop.}  # header: "ClearNode"

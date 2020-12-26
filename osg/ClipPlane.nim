@@ -1,26 +1,22 @@
-import Vec4d # Provides Vec4d
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import Plane # Provides Plane
-import StateAttribute # Provides StateAttribute, Type
-import State # Provides State
-
-
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/Plane  # provides: osg::Plane
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/Vec4d  # provides: osg::Vec4d
 {.push header: "ClipPlane".}
 
+proc constructClipPlane*(): ClipPlane {.constructor,importcpp: "osg::ClipPlane::ClipPlane".}
 
-# Constructors and methods
-proc constructClipPlane*(): ClipPlane {.constructor,importcpp: "ClipPlane".}
+proc constructClipPlane*(no: cuint): ClipPlane {.constructor,importcpp: "osg::ClipPlane::ClipPlane(@)".}
 
-proc constructClipPlane*(no: cuint): ClipPlane {.constructor,importcpp: "ClipPlane(@)".}
+proc constructClipPlane*(no: cuint, plane: Vec4d): ClipPlane {.constructor,importcpp: "osg::ClipPlane::ClipPlane(@)".}
 
-proc constructClipPlane*(no: cuint, plane: Vec4d): ClipPlane {.constructor,importcpp: "ClipPlane(@)".}
+proc constructClipPlane*(no: cuint, plane: Plane): ClipPlane {.constructor,importcpp: "osg::ClipPlane::ClipPlane(@)".}
 
-proc constructClipPlane*(no: cuint, plane: Plane): ClipPlane {.constructor,importcpp: "ClipPlane(@)".}
+proc constructClipPlane*(no: cuint, a: cdouble, b: cdouble, c: cdouble, d: cdouble): ClipPlane {.constructor,importcpp: "osg::ClipPlane::ClipPlane(@)".}
 
-proc constructClipPlane*(no: cuint, a: cdouble, b: cdouble, c: cdouble, d: cdouble): ClipPlane {.constructor,importcpp: "ClipPlane(@)".}
-
-proc constructClipPlane*(cp: Clipplane, copyop: Copyop = SHALLOW_COPY): ClipPlane {.constructor,importcpp: "ClipPlane(@)".}
+proc constructClipPlane*(cp: Clipplane, copyop: Copyop = SHALLOW_COPY): ClipPlane {.constructor,importcpp: "osg::ClipPlane::ClipPlane(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: ClipPlane): ptr Object   {.importcpp: "cloneType".}
@@ -63,4 +59,4 @@ proc getClipPlaneNum*(this: ClipPlane): cuint  {.importcpp: "getClipPlaneNum".}
 proc apply*(this: ClipPlane, state: State)  {.importcpp: "apply".}
     ## Applies the clip plane's state to the OpenGL state machine.
 
-{.pop.} # header: "ClipPlane
+{.pop.}  # header: "ClipPlane"

@@ -1,19 +1,17 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import BoundingSphere # Provides BoundingSphere
-import Node # Provides Node
-import NodeVisitor # Provides NodeVisitor
-
-
+import /usr/include/osg/BoundingSphere  # provides: osg::BoundingSphere
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/Node  # provides: osg::Node
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
 type
   ValueList* {.header: "Switch", importcpp: "osg::Switch::ValueList".} = cint
+
+
 {.push header: "Switch".}
 
+proc constructSwitch*(): Switch {.constructor,importcpp: "osg::Switch::Switch".}
 
-# Constructors and methods
-proc constructSwitch*(): Switch {.constructor,importcpp: "Switch".}
-
-proc constructSwitch*(Switch, copyop: Copyop = SHALLOW_COPY): Switch {.constructor,importcpp: "Switch(@)".}
+proc constructSwitch*(Switch, copyop: Copyop = SHALLOW_COPY): Switch {.constructor,importcpp: "osg::Switch::Switch(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc asSwitch*(this: var Switch): ptr Switch   {.importcpp: "asSwitch".}
@@ -73,4 +71,4 @@ proc getValueList*(this: Switch): Valuelist  {.importcpp: "getValueList".}
 
 proc computeBound*(this: Switch): Boundingsphere  {.importcpp: "computeBound".}
 
-{.pop.} # header: "Switch
+{.pop.}  # header: "Switch"

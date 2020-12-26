@@ -1,16 +1,19 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import StateAttribute # Provides StateAttribute, Type
-import State # Provides State
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+type
+  LineWidth* {.header: "LineWidth", importcpp: "osg::LineWidth", byref.} = object #of class osg::StateAttribute
+    ## LineWidth - encapsulates the OpenGL glLineWidth for setting the width
+    ## of lines in pixels.
+
 
 
 {.push header: "LineWidth".}
 
+proc constructLineWidth*(width: cfloat): LineWidth {.constructor,importcpp: "osg::LineWidth::LineWidth(@)".}
 
-# Constructors and methods
-proc constructLineWidth*(width: cfloat): LineWidth {.constructor,importcpp: "LineWidth(@)".}
-
-proc constructLineWidth*(lw: Linewidth, copyop: Copyop = SHALLOW_COPY): LineWidth {.constructor,importcpp: "LineWidth(@)".}
+proc constructLineWidth*(lw: Linewidth, copyop: Copyop = SHALLOW_COPY): LineWidth {.constructor,importcpp: "osg::LineWidth::LineWidth(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: LineWidth): ptr Object   {.importcpp: "cloneType".}
@@ -34,4 +37,4 @@ proc getWidth*(this: LineWidth): cfloat  {.importcpp: "getWidth".}
 
 proc apply*(this: LineWidth, state: State)  {.importcpp: "apply".}
 
-{.pop.} # header: "LineWidth
+{.pop.}  # header: "LineWidth"

@@ -1,24 +1,21 @@
-
-
 type
   Element_type* {.header: "ref_ptr", importcpp: "osg::ref_ptr::element_type".} = T
+  ref_ptr* {.header: "ref_ptr", importcpp: "osg::ref_ptr", byref.} [T] = object
+    ## Smart pointer for handling referenced counted objects.
+
+
+
 {.push header: "ref_ptr".}
 
+proc constructref_ptr*[T](): ref_ptr {.constructor,importcpp: "osg::ref_ptr::ref_ptr<T>".}
 
-# Constructors and methods
-proc constructref_ptr*[T](): ref_ptr {.constructor,importcpp: "ref_ptr<T>".}
+proc constructref_ptr*[T](`ptr`: ptr T): ref_ptr {.constructor,importcpp: "osg::ref_ptr::ref_ptr<T>(@)".}
 
-proc constructref_ptr*[T](`ptr`: ptr T): ref_ptr {.constructor,importcpp: "ref_ptr<T>(@)".}
+proc constructref_ptr*[T](rp: ref_ptr[T]): ref_ptr {.constructor,importcpp: "osg::ref_ptr::ref_ptr<T>(@)".}
 
-proc constructref_ptr*[T](rp: ref_ptr[T]): ref_ptr {.constructor,importcpp: "ref_ptr<T>(@)".}
-
-proc constructref_ptr*[T](optr: var observer_ptr[T]): ref_ptr {.constructor,importcpp: "ref_ptr<T>(@)".}
-
-proc ref_ptr<T>*[Other](this: var ref_ptr, rp: ref_ptr[Other])  {.importcpp: "ref_ptr<T>".}
+proc constructref_ptr*[T](optr: var observer_ptr[T]): ref_ptr {.constructor,importcpp: "osg::ref_ptr::ref_ptr<T>(@)".}
 
 proc `=`*(this: var ref_ptr, rp: ref_ptr[T]): ref_ptr[T]  {.importcpp: "# = #".}
-
-proc operator=*[Other](this: var ref_ptr, rp: ref_ptr[Other]): ref_ptr[T]  {.importcpp: "operator=".}
 
 proc `=`*(this: var ref_ptr, `ptr`: ptr T): ref_ptr[T]  {.importcpp: "# = #".}
 
@@ -44,16 +41,4 @@ proc release*(this: var ref_ptr): ptr T  {.importcpp: "release".}
 
 proc swap*(this: var ref_ptr, rp: var ref_ptr[T])  {.importcpp: "swap".}
 
-proc assign*[Other](this: var ref_ptr, rp: ref_ptr[Other])  {.importcpp: "assign".}
-
-proc swap*[T](this: var osg, rp1: var ref_ptr[T], rp2: var ref_ptr[T])  {.importcpp: "swap".}
-
-proc get_pointer*[T](this: var osg, rp: ref_ptr[T]): ptr T  {.importcpp: "get_pointer".}
-
-proc static_pointer_cast*[T;Y](this: var osg, rp: ref_ptr[Y]): ref_ptr[T]  {.importcpp: "static_pointer_cast".}
-
-proc dynamic_pointer_cast*[T;Y](this: var osg, rp: ref_ptr[Y]): ref_ptr[T]  {.importcpp: "dynamic_pointer_cast".}
-
-proc prefixpointer_cast*[T;Y](this: var osg, rp: ref_ptr[Y]): ref_ptr[T]  {.importcpp: "const_pointer_cast".}
-
-{.pop.} # header: "ref_ptr
+{.pop.}  # header: "ref_ptr"

@@ -1,25 +1,26 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import StateAttribute # Provides StateAttribute, Type
-import Vec4 # Provides Vec4
-import State # Provides State
-
-
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Vec4  # provides: osg::Vec4
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
 type
   Mode* {.size:sizeof(cuint),header: "TexEnv", importcpp: "osg::TexEnv::Mode".} = enum
-    DECAL = 8449,
-    MODULATE = 8448,
+    ADD = 260,
     BLEND = 3042,
     REPLACE = 7681,
-    ADD = 260
+    MODULATE = 8448,
+    DECAL = 8449
+
+  TexEnv* {.header: "TexEnv", importcpp: "osg::TexEnv", byref.} = object #of class osg::StateAttribute
+    ## TexEnv encapsulates the OpenGL glTexEnv (texture environment) state.
+
+
 
 {.push header: "TexEnv".}
 
+proc constructTexEnv*(mode: Mode): TexEnv {.constructor,importcpp: "osg::TexEnv::TexEnv(@)".}
 
-# Constructors and methods
-proc constructTexEnv*(mode: Mode): TexEnv {.constructor,importcpp: "TexEnv(@)".}
-
-proc constructTexEnv*(texenv: Texenv, copyop: Copyop = SHALLOW_COPY): TexEnv {.constructor,importcpp: "TexEnv(@)".}
+proc constructTexEnv*(texenv: Texenv, copyop: Copyop = SHALLOW_COPY): TexEnv {.constructor,importcpp: "osg::TexEnv::TexEnv(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: TexEnv): ptr Object   {.importcpp: "cloneType".}
@@ -51,4 +52,4 @@ proc getColor*(this: TexEnv): Vec4  {.importcpp: "getColor".}
 
 proc apply*(this: TexEnv, state: State)  {.importcpp: "apply".}
 
-{.pop.} # header: "TexEnv
+{.pop.}  # header: "TexEnv"

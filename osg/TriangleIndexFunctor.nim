@@ -1,24 +1,18 @@
-import gl # Provides GLenum, GLint, GLubyte, GLushort, GLuint, GLsizei
-import Vec2d # Provides Vec2d
-import Vec3d # Provides Vec3d
-import Vec4d # Provides Vec4d
-import Vec2 # Provides Vec2
-import Vec3 # Provides Vec3
-import Vec4 # Provides Vec4
-
-
+import /usr/include/osg/Vec3  # provides: osg::Vec3
+import /usr/include/osg/Vec4  # provides: osg::Vec4
+import /usr/include/osg/Vec2  # provides: osg::Vec2
+import /usr/include/osg/Vec4d  # provides: osg::Vec4d
+import /usr/include/osg/Vec3d  # provides: osg::Vec3d
+import /usr/include/osg/Vec2d  # provides: osg::Vec2d
 type
-  # Typedefs
-  Index* {.header: "TriangleIndexFunctor", importcpp: "osg::TriangleIndexFunctor::drawElements::Index".} = GLubyte
-  IndexPointer* {.header: "TriangleIndexFunctor", importcpp: "osg::TriangleIndexFunctor::drawElements::IndexPointer".} = ptr Index
-  Index* {.header: "TriangleIndexFunctor", importcpp: "osg::TriangleIndexFunctor::drawElements::Index".} = GLushort
-  IndexPointer* {.header: "TriangleIndexFunctor", importcpp: "osg::TriangleIndexFunctor::drawElements::IndexPointer".} = ptr Index
   Index* {.header: "TriangleIndexFunctor", importcpp: "osg::TriangleIndexFunctor::drawElements::Index".} = GLuint
   IndexPointer* {.header: "TriangleIndexFunctor", importcpp: "osg::TriangleIndexFunctor::drawElements::IndexPointer".} = ptr Index
+  TriangleIndexFunctor* {.header: "TriangleIndexFunctor", importcpp: "osg::TriangleIndexFunctor", byref.} [T] = object #of class osg::PrimitiveIndexFunctor
+
+
+
 {.push header: "TriangleIndexFunctor".}
 
-
-# Constructors and methods
 proc setVertexArray*(this: var TriangleIndexFunctor, cuint, ptr Vec2 )  {.importcpp: "setVertexArray".}
 
 proc setVertexArray*(this: var TriangleIndexFunctor, cuint, ptr Vec3 )  {.importcpp: "setVertexArray".}
@@ -39,4 +33,4 @@ proc drawElements*(this: var TriangleIndexFunctor, mode: GLenum, count: GLsizei,
 
 proc drawElements*(this: var TriangleIndexFunctor, mode: GLenum, count: GLsizei, indices: ptr GLuint)  {.importcpp: "drawElements".}
 
-{.pop.} # header: "TriangleIndexFunctor
+{.pop.}  # header: "TriangleIndexFunctor"

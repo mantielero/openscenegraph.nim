@@ -1,18 +1,19 @@
-import Vec2f # Provides Vec2f
+const
+  num_components* = 3
 
 
 type
   Value_type* {.header: "Vec3f", importcpp: "osg::Vec3f::value_type".} = cfloat
+
+
 {.push header: "Vec3f".}
 
-
-# Constructors and methods
-proc constructVec3f*(): Vec3f {.constructor,importcpp: "Vec3f".}
+proc constructVec3f*(): Vec3f {.constructor,importcpp: "osg::Vec3f::Vec3f".}
     ## Constructor that sets all components of the vector to zero
 
-proc constructVec3f*(x: Value_type, y: Value_type, z: Value_type): Vec3f {.constructor,importcpp: "Vec3f(@)".}
+proc constructVec3f*(x: Value_type, y: Value_type, z: Value_type): Vec3f {.constructor,importcpp: "osg::Vec3f::Vec3f(@)".}
 
-proc constructVec3f*(v2: Vec2f, zz: Value_type): Vec3f {.constructor,importcpp: "Vec3f(@)".}
+proc constructVec3f*(v2: Vec2f, zz: Value_type): Vec3f {.constructor,importcpp: "osg::Vec3f::Vec3f(@)".}
 
 proc `==`*(this: Vec3f, v: Vec3f): bool  {.importcpp: "# == #".}
 
@@ -94,4 +95,4 @@ proc normalize*(this: var Vec3f): Value_type  {.importcpp: "normalize".}
     ## Normalize the vector so that it has length unity. Returns the previous
     ## length of the vector.
 
-{.pop.} # header: "Vec3f
+{.pop.}  # header: "Vec3f"

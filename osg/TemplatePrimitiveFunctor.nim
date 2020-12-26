@@ -1,19 +1,34 @@
-import gl # Provides GLenum, GLint, GLubyte, GLushort, GLuint, GLsizei
-import Vec2d # Provides Vec2d
-import Vec3d # Provides Vec3d
-import Vec4d # Provides Vec4d
-import Vec2 # Provides Vec2
-import Vec3 # Provides Vec3
-import Vec4 # Provides Vec4
-
-
+import /usr/include/osg/Vec3  # provides: osg::Vec3
+import /usr/include/osg/Vec4  # provides: osg::Vec4
+import /usr/include/osg/Vec2  # provides: osg::Vec2
+import /usr/include/osg/Vec4d  # provides: osg::Vec4d
+import /usr/include/osg/Vec3d  # provides: osg::Vec3d
+import /usr/include/osg/Vec2d  # provides: osg::Vec2d
 type
   IndexPointer* {.header: "TemplatePrimitiveFunctor", importcpp: "osg::TemplatePrimitiveFunctor::drawElementsTemplate::IndexPointer".} = ptr IndexType
+  TemplatePrimitiveFunctor* {.header: "TemplatePrimitiveFunctor", importcpp: "osg::TemplatePrimitiveFunctor", byref.} [T] = object #of class osg::PrimitiveFunctor
+    ## Provides access to the primitives that compose an osg::Drawable.
+    ## Notice that TemplatePrimitiveFunctor is a class template, and that it
+    ## inherits from its template parameter T. This template parameter must
+    ## implement operator()(const osg::Vec3 v1, const osg::Vec3 v2, const
+    ## osg::Vec3 v3, bool treatVertexDataAsTemporary), operator()(const
+    ## osg::Vec3 v1, const osg::Vec3 v2, bool treatVertexDataAsTemporary),
+    ## operator()(const osg::Vec3 v1, const osg::Vec3 v2, const osg::Vec3 v3,
+    ## bool treatVertexDataAsTemporary), and operator()(const osg::Vec3 v1,
+    ## const osg::Vec3 v2, const osg::Vec3 v3, const osg::Vec3 v4, bool
+    ## treatVertexDataAsTemporary) which will be called for the matching
+    ## primitive when the functor is applied to a Drawable. Parameters v1,
+    ## v2, v3, and v4 are the vertices of the primitive. The last parameter,
+    ## treatVertexDataAsTemporary, indicates whether these vertices are
+    ## coming from a "real" vertex array, or from a temporary vertex array,
+    ## created by the TemplatePrimitiveFunctor from some other geometry
+    ## representation.
+
+
+
 {.push header: "TemplatePrimitiveFunctor".}
 
-
-# Constructors and methods
-proc constructTemplatePrimitiveFunctor*[T](): TemplatePrimitiveFunctor {.constructor,importcpp: "TemplatePrimitiveFunctor<T>".}
+proc constructTemplatePrimitiveFunctor*[T](): TemplatePrimitiveFunctor {.constructor,importcpp: "osg::TemplatePrimitiveFunctor::TemplatePrimitiveFunctor<T>".}
 
 proc setVertexArray*(this: var TemplatePrimitiveFunctor, cuint, ptr Vec2 )  {.importcpp: "setVertexArray".}
 
@@ -29,12 +44,10 @@ proc setVertexArray*(this: var TemplatePrimitiveFunctor, cuint, ptr Vec4d )  {.i
 
 proc drawArrays*(this: var TemplatePrimitiveFunctor, mode: GLenum, first: GLint, count: GLsizei)  {.importcpp: "drawArrays".}
 
-proc drawElementsTemplate*[IndexType](this: var TemplatePrimitiveFunctor, mode: GLenum, count: GLsizei, indices: ptr IndexType)  {.importcpp: "drawElementsTemplate".}
-
 proc drawElements*(this: var TemplatePrimitiveFunctor, mode: GLenum, count: GLsizei, indices: ptr GLubyte)  {.importcpp: "drawElements".}
 
 proc drawElements*(this: var TemplatePrimitiveFunctor, mode: GLenum, count: GLsizei, indices: ptr GLushort)  {.importcpp: "drawElements".}
 
 proc drawElements*(this: var TemplatePrimitiveFunctor, mode: GLenum, count: GLsizei, indices: ptr GLuint)  {.importcpp: "drawElements".}
 
-{.pop.} # header: "TemplatePrimitiveFunctor
+{.pop.}  # header: "TemplatePrimitiveFunctor"

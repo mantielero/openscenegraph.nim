@@ -1,15 +1,10 @@
-import stringfwd # Provides string
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import gl # Provides GLenum, GLint, GLuint, GLsizei
-import Uniform # Provides Uniform
-import Shader # Provides ShaderDefines, Shader
-import StateAttribute # Provides StateAttribute, Type
-import State # Provides State
-
-
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/Shader  # provides: osg::Shader, osg::ShaderDefines
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/Uniform  # provides: osg::Uniform
 type
-  # Typedefs
   AttribBindingList* {.header: "Program", importcpp: "osg::Program::AttribBindingList".} = cint
   FragDataBindingList* {.header: "Program", importcpp: "osg::Program::FragDataBindingList".} = cint
   UniformBlockBindingList* {.header: "Program", importcpp: "osg::Program::UniformBlockBindingList".} = cint
@@ -18,40 +13,54 @@ type
   UniformBlockMap* {.header: "Program", importcpp: "osg::Program::UniformBlockMap".} = cint
   UniformModifiedCountPair* {.header: "Program", importcpp: "osg::Program::PerContextProgram::UniformModifiedCountPair".} = Pair[Ref_ptr[Uniform]]
   LastAppliedUniformList* {.header: "Program", importcpp: "osg::Program::PerContextProgram::LastAppliedUniformList".} = cint
-  ShaderList* {.header: "Program", importcpp: "osg::Program::PerContextProgram::ShaderList".} = cint
-  PerContextPrograms* {.header: "Program", importcpp: "osg::Program::ProgramObjects::PerContextPrograms".} = cint
   ShaderList* {.header: "Program", importcpp: "osg::Program::ShaderList".} = cint
+  PerContextPrograms* {.header: "Program", importcpp: "osg::Program::ProgramObjects::PerContextPrograms".} = cint
+  ProgramBinary* {.header: "Program", importcpp: "osg::Program::ProgramBinary", byref.} = object #of osg::Object
+    ## Simple class for wrapping up the data used in glProgramBinary and
+    ## glGetProgramBinary. On the first run of your application Programs
+    ## should be assigned an empty ProgramBinary. Before your application
+    ## exits it should retrieve the program binary via
+    ## Program::PerContextProgram::compileProgramBinary and save it to disk.
+    ## When your application is run subsequently, load your binary from disk
+    ## and use it to set the data of a ProgramBinary, and set the
+    ## ProgramBinary on the associated Program. This will typically result in
+    ## Program::compileGLObjects executing much faster.
+
+  PerContextProgram* {.header: "Program", importcpp: "osg::Program::PerContextProgram", byref.} = object #of osg::Referenced
+    ## PerContextProgram (PCP) is an OSG-internal encapsulation of glPrograms
+    ## per-GL context.
+
+
+
 {.push header: "Program".}
 
+proc constructProgram*(): Program {.constructor,importcpp: "osg::Program::Program".}
 
-# Constructors and methods
-proc constructProgram*(): Program {.constructor,importcpp: "Program".}
-
-proc constructProgram*(rhs: Program, copyop: Copyop = SHALLOW_COPY): Program {.constructor,importcpp: "Program(@)".}
+proc constructProgram*(rhs: Program, copyop: Copyop = SHALLOW_COPY): Program {.constructor,importcpp: "osg::Program::Program(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
-proc constructProgramBinary*(): ProgramBinary {.constructor,importcpp: "ProgramBinary".}
+proc constructProgramBinary*(): ProgramBinary {.constructor,importcpp: "osg::Program::ProgramBinary::ProgramBinary".}
 
-proc constructProgramBinary*(rhs: Programbinary, copyop: Copyop = SHALLOW_COPY): ProgramBinary {.constructor,importcpp: "ProgramBinary(@)".}
+proc constructProgramBinary*(rhs: Programbinary, copyop: Copyop = SHALLOW_COPY): ProgramBinary {.constructor,importcpp: "osg::Program::ProgramBinary::ProgramBinary(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
-proc constructActiveVarInfo*(): ActiveVarInfo {.constructor,importcpp: "ActiveVarInfo".}
+proc constructActiveVarInfo*(): ActiveVarInfo {.constructor,importcpp: "osg::Program::ActiveVarInfo::ActiveVarInfo".}
 
-proc constructActiveVarInfo*(loc: GLint, `type`: GLenum, size: GLint): ActiveVarInfo {.constructor,importcpp: "ActiveVarInfo(@)".}
+proc constructActiveVarInfo*(loc: GLint, `type`: GLenum, size: GLint): ActiveVarInfo {.constructor,importcpp: "osg::Program::ActiveVarInfo::ActiveVarInfo(@)".}
 
-proc constructUniformBlockInfo*(): UniformBlockInfo {.constructor,importcpp: "UniformBlockInfo".}
+proc constructUniformBlockInfo*(): UniformBlockInfo {.constructor,importcpp: "osg::Program::UniformBlockInfo::UniformBlockInfo".}
 
-proc constructUniformBlockInfo*(index: GLuint, size: GLsizei): UniformBlockInfo {.constructor,importcpp: "UniformBlockInfo(@)".}
+proc constructUniformBlockInfo*(index: GLuint, size: GLsizei): UniformBlockInfo {.constructor,importcpp: "osg::Program::UniformBlockInfo::UniformBlockInfo(@)".}
 
-proc constructPerContextProgram*(program: ptr Program , contextID: cuint, programHandle: GLuint = 0): PerContextProgram {.constructor,importcpp: "PerContextProgram(@)".}
+proc constructPerContextProgram*(program: ptr Program , contextID: cuint, programHandle: GLuint = 0): PerContextProgram {.constructor,importcpp: "osg::Program::PerContextProgram::PerContextProgram(@)".}
     ## Use "0" as programHandle to let the PeContextProgram execute
     ## "glCreateProgram"and "glDeleteProgram"
 
-proc constructPerContextProgram*(): PerContextProgram {.constructor,importcpp: "PerContextProgram".}
+proc constructPerContextProgram*(): PerContextProgram {.constructor,importcpp: "osg::Program::PerContextProgram::PerContextProgram".}
 
-proc constructPerContextProgram*(Percontextprogram): PerContextProgram {.constructor,importcpp: "PerContextProgram(@)".}
+proc constructPerContextProgram*(Percontextprogram): PerContextProgram {.constructor,importcpp: "osg::Program::PerContextProgram::PerContextProgram(@)".}
 
-proc constructProgramObjects*(program: ptr Program , contextID: cuint): ProgramObjects {.constructor,importcpp: "ProgramObjects(@)".}
+proc constructProgramObjects*(program: ptr Program , contextID: cuint): ProgramObjects {.constructor,importcpp: "osg::Program::ProgramObjects::ProgramObjects(@)".}
 
 proc cloneType*(this: Program): ptr Object   {.importcpp: "cloneType".}
 
@@ -94,8 +103,6 @@ proc addShader*(this: var Program, shader: ptr Shader ): bool  {.importcpp: "add
     ## Attach an osg::Shader to this osg::Program. Mark Program as needing
     ## relink. Return true for success
 
-proc addShader*[T](this: var Program, shader: ref_ptr[T]): bool  {.importcpp: "addShader".}
-
 proc getNumShaders*(this: Program): cuint  {.importcpp: "getNumShaders".}
 
 proc getShader*(this: var Program, i: cuint): ptr Shader   {.importcpp: "getShader".}
@@ -105,8 +112,6 @@ proc getShader*(this: Program, i: cuint): ptr Shader   {.importcpp: "getShader".
 proc removeShader*(this: var Program, shader: ptr Shader ): bool  {.importcpp: "removeShader".}
     ## Remove osg::Shader from this osg::Program. Mark Program as needing
     ## relink. Return true for success
-
-proc removeShader*[T](this: var Program, shader: ref_ptr[T]): bool  {.importcpp: "removeShader".}
 
 proc setParameter*(this: var Program, pname: GLenum, value: GLint)  {.importcpp: "setParameter".}
     ## Set/get GL program parameters
@@ -291,4 +296,4 @@ proc getPCP*(this: Program, state: State): ptr Percontextprogram   {.importcpp: 
 
 proc `=`*(this: var Program, Program): Program  {.importcpp: "# = #".}
 
-{.pop.} # header: "Program
+{.pop.}  # header: "Program"

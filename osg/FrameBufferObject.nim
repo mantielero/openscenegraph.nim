@@ -1,68 +1,73 @@
-import gl # Provides GLenum, GLuint
-import GLExtensions # Provides GLExtensions
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import StateAttribute # Provides StateAttribute, Type
-import State # Provides State
-import Texture # Provides Texture
-import Texture2D # Provides Texture2D
-import TextureRectangle # Provides TextureRectangle
-import Texture2DArray # Provides Texture2DArray
-import Texture3D # Provides Texture3D
-import TextureCubeMap # Provides TextureCubeMap
-import Texture1D # Provides Texture1D
-import Texture2DMultisample # Provides Texture2DMultisample
-
-
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/GLExtensions  # provides: osg::GLExtensions
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/Texture  # provides: osg::Texture
 type
   BindTarget* {.size:sizeof(cuint),header: "FrameBufferObject", importcpp: "osg::FrameBufferObject::BindTarget".} = enum
     READ_FRAMEBUFFER = 36008,
     DRAW_FRAMEBUFFER = 36009,
     READ_DRAW_FRAMEBUFFER = 36160
 
-  # Typedefs
   AttachmentMap* {.header: "FrameBufferObject", importcpp: "osg::FrameBufferObject::AttachmentMap".} = cint
   MultipleRenderingTargets* {.header: "FrameBufferObject", importcpp: "osg::FrameBufferObject::MultipleRenderingTargets".} = cint
   BufferComponent* {.header: "FrameBufferObject", importcpp: "osg::FrameBufferObject::BufferComponent".} = Buffercomponent
+  RenderBuffer* {.header: "FrameBufferObject", importcpp: "osg::RenderBuffer", byref.} = object #of class osg::Object
+    ## **********************************************************************
+    ## ** RenderBuffer ******************************************************
+    ## ******************
+
+  FrameBufferAttachment* {.header: "FrameBufferObject", importcpp: "osg::FrameBufferAttachment", byref.} = object
+
+  FrameBufferObject* {.header: "FrameBufferObject", importcpp: "osg::FrameBufferObject", byref.} = object #of class osg::StateAttribute
+    ## **********************************************************************
+    ## ** FrameBufferObject *************************************************
+    ## ***********************
+
+  GLRenderBufferManager* {.header: "FrameBufferObject", importcpp: "osg::GLRenderBufferManager", byref.} = object #of class osg::GLObjectManager
+
+  GLFrameBufferObjectManager* {.header: "FrameBufferObject", importcpp: "osg::GLFrameBufferObjectManager", byref.} = object #of class osg::GLObjectManager
+
+
+
 {.push header: "FrameBufferObject".}
 
+proc constructRenderBuffer*(): RenderBuffer {.constructor,importcpp: "osg::RenderBuffer::RenderBuffer".}
 
-# Constructors and methods
-proc constructRenderBuffer*(): RenderBuffer {.constructor,importcpp: "RenderBuffer".}
+proc constructRenderBuffer*(width: cint, height: cint, internalFormat: GLenum, samples: cint, colorSamples: cint): RenderBuffer {.constructor,importcpp: "osg::RenderBuffer::RenderBuffer(@)".}
 
-proc constructRenderBuffer*(width: cint, height: cint, internalFormat: GLenum, samples: cint, colorSamples: cint): RenderBuffer {.constructor,importcpp: "RenderBuffer(@)".}
+proc constructRenderBuffer*(copy: Renderbuffer, copyop: Copyop = SHALLOW_COPY): RenderBuffer {.constructor,importcpp: "osg::RenderBuffer::RenderBuffer(@)".}
 
-proc constructRenderBuffer*(copy: Renderbuffer, copyop: Copyop = SHALLOW_COPY): RenderBuffer {.constructor,importcpp: "RenderBuffer(@)".}
+proc constructFrameBufferAttachment*(): FrameBufferAttachment {.constructor,importcpp: "osg::FrameBufferAttachment::FrameBufferAttachment".}
 
-proc constructFrameBufferAttachment*(): FrameBufferAttachment {.constructor,importcpp: "FrameBufferAttachment".}
+proc constructFrameBufferAttachment*(copy: Framebufferattachment): FrameBufferAttachment {.constructor,importcpp: "osg::FrameBufferAttachment::FrameBufferAttachment(@)".}
 
-proc constructFrameBufferAttachment*(copy: Framebufferattachment): FrameBufferAttachment {.constructor,importcpp: "FrameBufferAttachment(@)".}
+proc constructFrameBufferAttachment*(target: ptr Renderbuffer ): FrameBufferAttachment {.constructor,importcpp: "osg::FrameBufferAttachment::FrameBufferAttachment(@)".}
 
-proc constructFrameBufferAttachment*(target: ptr Renderbuffer ): FrameBufferAttachment {.constructor,importcpp: "FrameBufferAttachment(@)".}
+proc constructFrameBufferAttachment*(target: ptr Texture1d , level: cuint = 0): FrameBufferAttachment {.constructor,importcpp: "osg::FrameBufferAttachment::FrameBufferAttachment(@)".}
 
-proc constructFrameBufferAttachment*(target: ptr Texture1d , level: cuint = 0): FrameBufferAttachment {.constructor,importcpp: "FrameBufferAttachment(@)".}
+proc constructFrameBufferAttachment*(target: ptr Texture2d , level: cuint = 0): FrameBufferAttachment {.constructor,importcpp: "osg::FrameBufferAttachment::FrameBufferAttachment(@)".}
 
-proc constructFrameBufferAttachment*(target: ptr Texture2d , level: cuint = 0): FrameBufferAttachment {.constructor,importcpp: "FrameBufferAttachment(@)".}
+proc constructFrameBufferAttachment*(target: ptr Texture2dmultisample , level: cuint = 0): FrameBufferAttachment {.constructor,importcpp: "osg::FrameBufferAttachment::FrameBufferAttachment(@)".}
 
-proc constructFrameBufferAttachment*(target: ptr Texture2dmultisample , level: cuint = 0): FrameBufferAttachment {.constructor,importcpp: "FrameBufferAttachment(@)".}
+proc constructFrameBufferAttachment*(target: ptr Texture3d , zoffset: cuint, level: cuint = 0): FrameBufferAttachment {.constructor,importcpp: "osg::FrameBufferAttachment::FrameBufferAttachment(@)".}
 
-proc constructFrameBufferAttachment*(target: ptr Texture3d , zoffset: cuint, level: cuint = 0): FrameBufferAttachment {.constructor,importcpp: "FrameBufferAttachment(@)".}
+proc constructFrameBufferAttachment*(target: ptr Texture2darray , layer: cuint, level: cuint = 0): FrameBufferAttachment {.constructor,importcpp: "osg::FrameBufferAttachment::FrameBufferAttachment(@)".}
 
-proc constructFrameBufferAttachment*(target: ptr Texture2darray , layer: cuint, level: cuint = 0): FrameBufferAttachment {.constructor,importcpp: "FrameBufferAttachment(@)".}
+proc constructFrameBufferAttachment*(target: ptr Texturecubemap , face: cuint, level: cuint = 0): FrameBufferAttachment {.constructor,importcpp: "osg::FrameBufferAttachment::FrameBufferAttachment(@)".}
 
-proc constructFrameBufferAttachment*(target: ptr Texturecubemap , face: cuint, level: cuint = 0): FrameBufferAttachment {.constructor,importcpp: "FrameBufferAttachment(@)".}
+proc constructFrameBufferAttachment*(target: ptr Texturerectangle ): FrameBufferAttachment {.constructor,importcpp: "osg::FrameBufferAttachment::FrameBufferAttachment(@)".}
 
-proc constructFrameBufferAttachment*(target: ptr Texturerectangle ): FrameBufferAttachment {.constructor,importcpp: "FrameBufferAttachment(@)".}
+proc constructFrameBufferAttachment*(attachment: Attachment): FrameBufferAttachment {.constructor,importcpp: "osg::FrameBufferAttachment::FrameBufferAttachment(@)".}
 
-proc constructFrameBufferAttachment*(attachment: Attachment): FrameBufferAttachment {.constructor,importcpp: "FrameBufferAttachment(@)".}
+proc constructFrameBufferObject*(): FrameBufferObject {.constructor,importcpp: "osg::FrameBufferObject::FrameBufferObject".}
 
-proc constructFrameBufferObject*(): FrameBufferObject {.constructor,importcpp: "FrameBufferObject".}
+proc constructFrameBufferObject*(copy: Framebufferobject, copyop: Copyop = SHALLOW_COPY): FrameBufferObject {.constructor,importcpp: "osg::FrameBufferObject::FrameBufferObject(@)".}
 
-proc constructFrameBufferObject*(copy: Framebufferobject, copyop: Copyop = SHALLOW_COPY): FrameBufferObject {.constructor,importcpp: "FrameBufferObject(@)".}
+proc constructGLRenderBufferManager*(contextID: cuint): GLRenderBufferManager {.constructor,importcpp: "osg::GLRenderBufferManager::GLRenderBufferManager(@)".}
 
-proc constructGLRenderBufferManager*(contextID: cuint): GLRenderBufferManager {.constructor,importcpp: "GLRenderBufferManager(@)".}
-
-proc constructGLFrameBufferObjectManager*(contextID: cuint): GLFrameBufferObjectManager {.constructor,importcpp: "GLFrameBufferObjectManager(@)".}
+proc constructGLFrameBufferObjectManager*(contextID: cuint): GLFrameBufferObjectManager {.constructor,importcpp: "osg::GLFrameBufferObjectManager::GLFrameBufferObjectManager(@)".}
 
 proc cloneType*(this: RenderBuffer): ptr Object   {.importcpp: "cloneType".}
 
@@ -233,4 +238,4 @@ proc deleteGLObject*(this: var GLRenderBufferManager, globj: GLuint)  {.importcp
 
 proc deleteGLObject*(this: var GLFrameBufferObjectManager, globj: GLuint)  {.importcpp: "deleteGLObject".}
 
-{.pop.} # header: "FrameBufferObject
+{.pop.}  # header: "FrameBufferObject"

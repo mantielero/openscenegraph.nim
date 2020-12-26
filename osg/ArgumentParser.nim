@@ -1,10 +1,5 @@
-import stringfwd # Provides string
-import iosfwd # Provides ostream
-import ApplicationUsage # Provides ApplicationUsage
-
-
+import /usr/include/osg/ApplicationUsage  # provides: osg::ApplicationUsage
 type
-  # Enums
   ParameterType* {.size:sizeof(cuint),header: "ArgumentParser", importcpp: "osg::ArgumentParser::Parameter::ParameterType".} = enum
     BOOL_PARAMETER = 0,
     FLOAT_PARAMETER = 1,
@@ -18,25 +13,27 @@ type
     CRITICAL = 1
 
   ErrorMessageMap* {.header: "ArgumentParser", importcpp: "osg::ArgumentParser::ErrorMessageMap".} = cint
+  Parameter* {.header: "ArgumentParser", importcpp: "osg::ArgumentParser::Parameter", byref.} = object
+
+
+
 {.push header: "ArgumentParser".}
 
+proc constructParameter*(value: var bool): Parameter {.constructor,importcpp: "osg::ArgumentParser::Parameter::Parameter(@)".}
 
-# Constructors and methods
-proc constructParameter*(value: var bool): Parameter {.constructor,importcpp: "Parameter(@)".}
+proc constructParameter*(value: cfloat): Parameter {.constructor,importcpp: "osg::ArgumentParser::Parameter::Parameter(@)".}
 
-proc constructParameter*(value: cfloat): Parameter {.constructor,importcpp: "Parameter(@)".}
+proc constructParameter*(value: cdouble): Parameter {.constructor,importcpp: "osg::ArgumentParser::Parameter::Parameter(@)".}
 
-proc constructParameter*(value: cdouble): Parameter {.constructor,importcpp: "Parameter(@)".}
+proc constructParameter*(value: cint): Parameter {.constructor,importcpp: "osg::ArgumentParser::Parameter::Parameter(@)".}
 
-proc constructParameter*(value: cint): Parameter {.constructor,importcpp: "Parameter(@)".}
+proc constructParameter*(value: cuint): Parameter {.constructor,importcpp: "osg::ArgumentParser::Parameter::Parameter(@)".}
 
-proc constructParameter*(value: cuint): Parameter {.constructor,importcpp: "Parameter(@)".}
+proc constructParameter*(value: String): Parameter {.constructor,importcpp: "osg::ArgumentParser::Parameter::Parameter(@)".}
 
-proc constructParameter*(value: String): Parameter {.constructor,importcpp: "Parameter(@)".}
+proc constructParameter*(param: Parameter): Parameter {.constructor,importcpp: "osg::ArgumentParser::Parameter::Parameter(@)".}
 
-proc constructParameter*(param: Parameter): Parameter {.constructor,importcpp: "Parameter(@)".}
-
-proc constructArgumentParser*(argc: ptr int, argv: ptr char *): ArgumentParser {.constructor,importcpp: "ArgumentParser(@)".}
+proc constructArgumentParser*(argc: ptr int, argv: ptr char *): ArgumentParser {.constructor,importcpp: "osg::ArgumentParser::ArgumentParser(@)".}
 
 proc `=`*(this: var Parameter, param: Parameter): Parameter  {.importcpp: "# = #".}
 
@@ -172,4 +169,4 @@ proc readHelpType*(this: var ArgumentParser): Type  {.importcpp: "readHelpType".
     ## If ApplicationUsage::NO_HELP is returned then no help commandline
     ## option was found on the command line.
 
-{.pop.} # header: "ArgumentParser
+{.pop.}  # header: "ArgumentParser"

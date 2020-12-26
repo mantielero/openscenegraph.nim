@@ -1,14 +1,16 @@
+const
+  num_components* = 4
 
 
 type
   Value_type* {.header: "Vec4ui", importcpp: "osg::Vec4ui::value_type".} = cuint
+
+
 {.push header: "Vec4ui".}
 
+proc constructVec4ui*(): Vec4ui {.constructor,importcpp: "osg::Vec4ui::Vec4ui".}
 
-# Constructors and methods
-proc constructVec4ui*(): Vec4ui {.constructor,importcpp: "Vec4ui".}
-
-proc constructVec4ui*(x: Value_type, y: Value_type, z: Value_type, w: Value_type): Vec4ui {.constructor,importcpp: "Vec4ui(@)".}
+proc constructVec4ui*(x: Value_type, y: Value_type, z: Value_type, w: Value_type): Vec4ui {.constructor,importcpp: "osg::Vec4ui::Vec4ui(@)".}
 
 proc `==`*(this: Vec4ui, v: Vec4ui): bool  {.importcpp: "# == #".}
 
@@ -72,4 +74,4 @@ proc `-`*(this: Vec4ui, rhs: Vec4ui): Vec4ui  {.importcpp: "# - #".}
 
 proc `*`*(this: Vec4ui, rhs: Vec4ui): Vec4ui  {.importcpp: "# * #".}
 
-{.pop.} # header: "Vec4ui
+{.pop.}  # header: "Vec4ui"

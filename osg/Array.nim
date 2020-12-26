@@ -1,10 +1,34 @@
-import Object # Provides Object
-import gl # Provides GLenum, GLvoid, GLint
-import BufferObject # Provides VertexBufferObject
-
-
+import /usr/include/osg/Vec4us  # provides: osg::Vec4us
+import /usr/include/osg/Vec3  # provides: osg::Vec3
+import /usr/include/osg/Vec3i  # provides: osg::Vec3i
+import /usr/include/osg/Vec4  # provides: osg::Vec4
+import /usr/include/osg/Vec3s  # provides: osg::Vec3s
+import /usr/include/osg/Vec2us  # provides: osg::Vec2us
+import /usr/include/osg/Vec2s  # provides: osg::Vec2s
+import /usr/include/osg/Vec2b  # provides: osg::Vec2b
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/BufferObject  # provides: osg::VertexBufferObject
+import /usr/include/osg/Vec3ui  # provides: osg::Vec3ui
+import /usr/include/osg/Matrixf  # provides: osg::Matrixf
+import /usr/include/osg/Vec2ub  # provides: osg::Vec2ub
+import /usr/include/osg/Vec2ui  # provides: osg::Vec2ui
+import /usr/include/osg/Vec3us  # provides: osg::Vec3us
+import /usr/include/osg/Vec2  # provides: osg::Vec2
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/Matrixd  # provides: osg::Matrixd
+import /usr/include/osg/Vec3b  # provides: osg::Vec3b
+import /usr/include/osg/Vec4b  # provides: osg::Vec4b
+import /usr/include/osg/Vec4ui  # provides: osg::Vec4ui
+import /usr/include/osg/Vec3ub  # provides: osg::Vec3ub
+import /usr/include/osg/Vec4d  # provides: osg::Vec4d
+import /usr/include/osg/Vec4s  # provides: osg::Vec4s
+import /usr/include/osg/Vec2i  # provides: osg::Vec2i
+import /usr/include/osg/Vec3d  # provides: osg::Vec3d
+import /usr/include/osg/Vec2d  # provides: osg::Vec2d
+import /usr/include/osg/Quat  # provides: osg::Quat
+import /usr/include/osg/Vec4ub  # provides: osg::Vec4ub
+import /usr/include/osg/Vec4i  # provides: osg::Vec4i
 type
-  # Enums
   Type* {.size:sizeof(cuint),header: "Array", importcpp: "osg::Array::Type".} = enum
     ## The type of data stored in this array.
 
@@ -46,28 +70,11 @@ type
     QuatArrayType = 35,
     UInt64ArrayType = 36,
     Int64ArrayType = 37,
+    LastArrayType = 37,
+    Int64ArrayType = 37,
     LastArrayType = 37
 
-  Binding* {.size:sizeof(cint),header: "Array", importcpp: "osg::Array::Binding".} = enum
-    ## The scope of applicability of the values in this array
-
-    BIND_UNDEFINED = -1,
-    BIND_OFF = 0,
-    BIND_OVERALL = 1,
-    BIND_PER_PRIMITIVE_SET = 2,
-    BIND_PER_VERTEX = 4
-
-  # Typedefs
-  ElementDataType* {.header: "Array", importcpp: "osg::TemplateArray::ElementDataType".} = T
   ElementDataType* {.header: "Array", importcpp: "osg::TemplateIndexArray::ElementDataType".} = T
-  ByteArray* {.header: "Array", importcpp: "osg::ByteArray".} = Templateindexarray[GLbyte,Bytearraytype,1,5120]
-  ShortArray* {.header: "Array", importcpp: "osg::ShortArray".} = Templateindexarray[GLshort,Shortarraytype,1,5122]
-  IntArray* {.header: "Array", importcpp: "osg::IntArray".} = Templateindexarray[GLint,Intarraytype,1,5124]
-  UByteArray* {.header: "Array", importcpp: "osg::UByteArray".} = Templateindexarray[GLubyte,Ubytearraytype,1,5121]
-  UShortArray* {.header: "Array", importcpp: "osg::UShortArray".} = Templateindexarray[GLushort,Ushortarraytype,1,5123]
-  UIntArray* {.header: "Array", importcpp: "osg::UIntArray".} = Templateindexarray[GLuint,Uintarraytype,1,5125]
-  FloatArray* {.header: "Array", importcpp: "osg::FloatArray".} = Templatearray[GLfloat,Floatarraytype,1,5126]
-  DoubleArray* {.header: "Array", importcpp: "osg::DoubleArray".} = Templatearray[GLdouble,Doublearraytype,1,5130]
   Vec2bArray* {.header: "Array", importcpp: "osg::Vec2bArray".} = Templatearray[Vec2b,Vec2barraytype,2,5120]
   Vec3bArray* {.header: "Array", importcpp: "osg::Vec3bArray".} = Templatearray[Vec3b,Vec3barraytype,3,5120]
   Vec4bArray* {.header: "Array", importcpp: "osg::Vec4bArray".} = Templatearray[Vec4b,Vec4barraytype,4,5120]
@@ -79,63 +86,67 @@ type
   Vec4iArray* {.header: "Array", importcpp: "osg::Vec4iArray".} = Templatearray[Vec4i,Vec4iarraytype,4,5124]
   Vec2ubArray* {.header: "Array", importcpp: "osg::Vec2ubArray".} = Templatearray[Vec2ub,Vec2ubarraytype,2,5121]
   Vec3ubArray* {.header: "Array", importcpp: "osg::Vec3ubArray".} = Templatearray[Vec3ub,Vec3ubarraytype,3,5121]
-  Vec4ubArray* {.header: "Array", importcpp: "osg::Vec4ubArray".} = Templatearray[Vec4ub,Vec4ubarraytype,4,5121]
   Vec2usArray* {.header: "Array", importcpp: "osg::Vec2usArray".} = Templatearray[Vec2us,Vec2usarraytype,2,5123]
   Vec3usArray* {.header: "Array", importcpp: "osg::Vec3usArray".} = Templatearray[Vec3us,Vec3usarraytype,3,5123]
   Vec4usArray* {.header: "Array", importcpp: "osg::Vec4usArray".} = Templatearray[Vec4us,Vec4usarraytype,4,5123]
   Vec2uiArray* {.header: "Array", importcpp: "osg::Vec2uiArray".} = Templatearray[Vec2ui,Vec2uiarraytype,2,5125]
   Vec3uiArray* {.header: "Array", importcpp: "osg::Vec3uiArray".} = Templatearray[Vec3ui,Vec3uiarraytype,3,5125]
   Vec4uiArray* {.header: "Array", importcpp: "osg::Vec4uiArray".} = Templatearray[Vec4ui,Vec4uiarraytype,4,5125]
-  Vec2Array* {.header: "Array", importcpp: "osg::Vec2Array".} = Templatearray[Vec2,Vec2arraytype,2,5126]
-  Vec3Array* {.header: "Array", importcpp: "osg::Vec3Array".} = Templatearray[Vec3,Vec3arraytype,3,5126]
-  Vec4Array* {.header: "Array", importcpp: "osg::Vec4Array".} = Templatearray[Vec4,Vec4arraytype,4,5126]
-  Vec2dArray* {.header: "Array", importcpp: "osg::Vec2dArray".} = Templatearray[Vec2d,Vec2darraytype,2,5130]
-  Vec3dArray* {.header: "Array", importcpp: "osg::Vec3dArray".} = Templatearray[Vec3d,Vec3darraytype,3,5130]
-  Vec4dArray* {.header: "Array", importcpp: "osg::Vec4dArray".} = Templatearray[Vec4d,Vec4darraytype,4,5130]
   MatrixfArray* {.header: "Array", importcpp: "osg::MatrixfArray".} = Templatearray[Matrixf,Matrixarraytype,16,5126]
   MatrixdArray* {.header: "Array", importcpp: "osg::MatrixdArray".} = Templatearray[Matrixd,Matrixdarraytype,16,5130]
   QuatArray* {.header: "Array", importcpp: "osg::QuatArray".} = Templatearray[Quat,Quatarraytype,4,5130]
-  UInt64Array* {.header: "Array", importcpp: "osg::UInt64Array".} = Templateindexarray[GLuint64,Uint64arraytype,1,5135]
-  Int64Array* {.header: "Array", importcpp: "osg::Int64Array".} = Templateindexarray[GLint64,Int64arraytype,1,5134]
+  TemplateArray* {.header: "Array", importcpp: "osg::TemplateArray", byref.} [T] = object #of class osg::Array
+    ## A concrete array holding elements of type T.
+
+  TemplateIndexArray* {.header: "Array", importcpp: "osg::TemplateIndexArray", byref.} [T] = object #of class osg::IndexArray
+
+  ArrayVisitor* {.header: "Array", importcpp: "osg::ArrayVisitor", byref.} = object
+
+  ConstArrayVisitor* {.header: "Array", importcpp: "osg::ConstArrayVisitor", byref.} = object
+
+  ValueVisitor* {.header: "Array", importcpp: "osg::ValueVisitor", byref.} = object
+
+  ConstValueVisitor* {.header: "Array", importcpp: "osg::ConstValueVisitor", byref.} = object
+
+
+
 {.push header: "Array".}
 
+proc constructArray*(arrayType: Type, dataSize: GLint, dataType: GLenum = 0, binding: Binding): Array {.constructor,importcpp: "osg::Array::Array(@)".}
 
-# Constructors and methods
-proc constructArray*(arrayType: Type, dataSize: GLint, dataType: GLenum = 0, binding: Binding): Array {.constructor,importcpp: "Array(@)".}
+proc constructArray*(array: Array, copyop: Copyop = SHALLOW_COPY): Array {.constructor,importcpp: "osg::Array::Array(@)".}
 
-proc constructArray*(array: Array, copyop: Copyop = SHALLOW_COPY): Array {.constructor,importcpp: "Array(@)".}
+proc constructTemplateArray*[T, ARRAYTYPE, DataSize, DataType](binding: Binding): TemplateArray {.constructor,importcpp: "osg::TemplateArray::TemplateArray<T, ARRAYTYPE, DataSize, DataType>(@)".}
 
-proc constructTemplateArray*[T, ARRAYTYPE, DataSize, DataType](binding: Binding): TemplateArray {.constructor,importcpp: "TemplateArray<T, ARRAYTYPE, DataSize, DataType>(@)".}
+proc constructTemplateArray*[T, ARRAYTYPE, DataSize, DataType](ta: TemplateArray[T, ARRAYTYPE, DataSize, DataType], copyop: Copyop = SHALLOW_COPY): TemplateArray {.constructor,importcpp: "osg::TemplateArray::TemplateArray<T, ARRAYTYPE, DataSize, DataType>(@)".}
 
-proc constructTemplateArray*[T, ARRAYTYPE, DataSize, DataType](ta: TemplateArray[T, ARRAYTYPE, DataSize, DataType], copyop: Copyop = SHALLOW_COPY): TemplateArray {.constructor,importcpp: "TemplateArray<T, ARRAYTYPE, DataSize, DataType>(@)".}
+proc constructTemplateArray*[T, ARRAYTYPE, DataSize, DataType](no: cuint): TemplateArray {.constructor,importcpp: "osg::TemplateArray::TemplateArray<T, ARRAYTYPE, DataSize, DataType>(@)".}
 
-proc constructTemplateArray*[T, ARRAYTYPE, DataSize, DataType](no: cuint): TemplateArray {.constructor,importcpp: "TemplateArray<T, ARRAYTYPE, DataSize, DataType>(@)".}
+proc constructTemplateArray*[T, ARRAYTYPE, DataSize, DataType](no: cuint, `ptr`: ptr T): TemplateArray {.constructor,importcpp: "osg::TemplateArray::TemplateArray<T, ARRAYTYPE, DataSize, DataType>(@)".}
 
-proc constructTemplateArray*[T, ARRAYTYPE, DataSize, DataType](no: cuint, `ptr`: ptr T): TemplateArray {.constructor,importcpp: "TemplateArray<T, ARRAYTYPE, DataSize, DataType>(@)".}
+proc constructTemplateArray*[T, ARRAYTYPE, DataSize, DataType](binding: Binding, no: cuint): TemplateArray {.constructor,importcpp: "osg::TemplateArray::TemplateArray<T, ARRAYTYPE, DataSize, DataType>(@)".}
 
-proc constructTemplateArray*[T, ARRAYTYPE, DataSize, DataType](binding: Binding, no: cuint): TemplateArray {.constructor,importcpp: "TemplateArray<T, ARRAYTYPE, DataSize, DataType>(@)".}
+proc constructTemplateArray*[T, ARRAYTYPE, DataSize, DataType](binding: Binding, no: cuint, `ptr`: ptr T): TemplateArray {.constructor,importcpp: "osg::TemplateArray::TemplateArray<T, ARRAYTYPE, DataSize, DataType>(@)".}
 
-proc constructTemplateArray*[T, ARRAYTYPE, DataSize, DataType](binding: Binding, no: cuint, `ptr`: ptr T): TemplateArray {.constructor,importcpp: "TemplateArray<T, ARRAYTYPE, DataSize, DataType>(@)".}
+proc constructIndexArray*(arrayType: Type, dataSize: GLint, dataType: GLenum = 0): IndexArray {.constructor,importcpp: "osg::IndexArray::IndexArray(@)".}
 
-proc constructIndexArray*(arrayType: Type, dataSize: GLint, dataType: GLenum = 0): IndexArray {.constructor,importcpp: "IndexArray(@)".}
+proc constructIndexArray*(array: Array, copyop: Copyop = SHALLOW_COPY): IndexArray {.constructor,importcpp: "osg::IndexArray::IndexArray(@)".}
 
-proc constructIndexArray*(array: Array, copyop: Copyop = SHALLOW_COPY): IndexArray {.constructor,importcpp: "IndexArray(@)".}
+proc constructTemplateIndexArray*[T, ARRAYTYPE, DataSize, DataType](): TemplateIndexArray {.constructor,importcpp: "osg::TemplateIndexArray::TemplateIndexArray<T, ARRAYTYPE, DataSize, DataType>".}
 
-proc constructTemplateIndexArray*[T, ARRAYTYPE, DataSize, DataType](): TemplateIndexArray {.constructor,importcpp: "TemplateIndexArray<T, ARRAYTYPE, DataSize, DataType>".}
+proc constructTemplateIndexArray*[T, ARRAYTYPE, DataSize, DataType](ta: TemplateIndexArray[T, ARRAYTYPE, DataSize, DataType], copyop: Copyop = SHALLOW_COPY): TemplateIndexArray {.constructor,importcpp: "osg::TemplateIndexArray::TemplateIndexArray<T, ARRAYTYPE, DataSize, DataType>(@)".}
 
-proc constructTemplateIndexArray*[T, ARRAYTYPE, DataSize, DataType](ta: TemplateIndexArray[T, ARRAYTYPE, DataSize, DataType], copyop: Copyop = SHALLOW_COPY): TemplateIndexArray {.constructor,importcpp: "TemplateIndexArray<T, ARRAYTYPE, DataSize, DataType>(@)".}
+proc constructTemplateIndexArray*[T, ARRAYTYPE, DataSize, DataType](no: cuint): TemplateIndexArray {.constructor,importcpp: "osg::TemplateIndexArray::TemplateIndexArray<T, ARRAYTYPE, DataSize, DataType>(@)".}
 
-proc constructTemplateIndexArray*[T, ARRAYTYPE, DataSize, DataType](no: cuint): TemplateIndexArray {.constructor,importcpp: "TemplateIndexArray<T, ARRAYTYPE, DataSize, DataType>(@)".}
+proc constructTemplateIndexArray*[T, ARRAYTYPE, DataSize, DataType](no: cuint, `ptr`: ptr T): TemplateIndexArray {.constructor,importcpp: "osg::TemplateIndexArray::TemplateIndexArray<T, ARRAYTYPE, DataSize, DataType>(@)".}
 
-proc constructTemplateIndexArray*[T, ARRAYTYPE, DataSize, DataType](no: cuint, `ptr`: ptr T): TemplateIndexArray {.constructor,importcpp: "TemplateIndexArray<T, ARRAYTYPE, DataSize, DataType>(@)".}
+proc constructArrayVisitor*(): ArrayVisitor {.constructor,importcpp: "osg::ArrayVisitor::ArrayVisitor".}
 
-proc constructArrayVisitor*(): ArrayVisitor {.constructor,importcpp: "ArrayVisitor".}
+proc constructConstArrayVisitor*(): ConstArrayVisitor {.constructor,importcpp: "osg::ConstArrayVisitor::ConstArrayVisitor".}
 
-proc constructConstArrayVisitor*(): ConstArrayVisitor {.constructor,importcpp: "ConstArrayVisitor".}
+proc constructValueVisitor*(): ValueVisitor {.constructor,importcpp: "osg::ValueVisitor::ValueVisitor".}
 
-proc constructValueVisitor*(): ValueVisitor {.constructor,importcpp: "ValueVisitor".}
-
-proc constructConstValueVisitor*(): ConstValueVisitor {.constructor,importcpp: "ConstValueVisitor".}
+proc constructConstValueVisitor*(): ConstValueVisitor {.constructor,importcpp: "osg::ConstValueVisitor::ConstValueVisitor".}
 
 proc isSameKindAs*(this: Array, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -214,8 +225,6 @@ proc getVertexBufferObject*(this: var Array): ptr Vertexbufferobject   {.importc
 proc getVertexBufferObject*(this: Array): ptr Vertexbufferobject   {.importcpp: "getVertexBufferObject".}
     ## Get the const VertexBufferObject. If no VBO is assigned returns NULL
 
-proc templateArray<T, ARRAYTYPE, DataSize, DataType>*[InputIterator](this: var TemplateArray, first: InputIterator, last: InputIterator)  {.importcpp: "TemplateArray<T, ARRAYTYPE, DataSize, DataType>".}
-
 proc `=`*(this: var TemplateArray, array: TemplateArray[T, ARRAYTYPE, DataSize, DataType]): TemplateArray[T, ARRAYTYPE, DataSize, DataType]  {.importcpp: "# = #".}
 
 proc cloneType*(this: TemplateArray): ptr Object   {.importcpp: "cloneType".}
@@ -253,8 +262,6 @@ proc resizeArray*(this: var TemplateArray, num: cuint)  {.importcpp: "resizeArra
 proc isSameKindAs*(this: IndexArray, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
 proc index*(this: IndexArray, pos: cuint): cuint  {.importcpp: "index".}
-
-proc templateIndexArray<T, ARRAYTYPE, DataSize, DataType>*[InputIterator](this: var TemplateIndexArray, first: InputIterator, last: InputIterator)  {.importcpp: "TemplateIndexArray<T, ARRAYTYPE, DataSize, DataType>".}
 
 proc `=`*(this: var TemplateIndexArray, array: TemplateIndexArray[T, ARRAYTYPE, DataSize, DataType]): TemplateIndexArray[T, ARRAYTYPE, DataSize, DataType]  {.importcpp: "# = #".}
 
@@ -604,4 +611,4 @@ proc accept*(this: var TemplateIndexArray, index: cuint, vv: Valuevisitor)  {.im
 
 proc accept*(this: TemplateIndexArray, index: cuint, vv: Constvaluevisitor)  {.importcpp: "accept".}
 
-{.pop.} # header: "Array
+{.pop.}  # header: "Array"

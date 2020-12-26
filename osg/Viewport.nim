@@ -1,21 +1,19 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import StateAttribute # Provides StateAttribute, Type
-import Matrix # Provides Matrix
-import State # Provides State
-
-
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/Matrix  # provides: osg::Matrix
 type
   Value_type* {.header: "Viewport", importcpp: "osg::Viewport::value_type".} = cdouble
+
+
 {.push header: "Viewport".}
 
+proc constructViewport*(): Viewport {.constructor,importcpp: "osg::Viewport::Viewport".}
 
-# Constructors and methods
-proc constructViewport*(): Viewport {.constructor,importcpp: "Viewport".}
+proc constructViewport*(x: Value_type, y: Value_type, width: Value_type, height: Value_type): Viewport {.constructor,importcpp: "osg::Viewport::Viewport(@)".}
 
-proc constructViewport*(x: Value_type, y: Value_type, width: Value_type, height: Value_type): Viewport {.constructor,importcpp: "Viewport(@)".}
-
-proc constructViewport*(vp: Viewport, copyop: Copyop = SHALLOW_COPY): Viewport {.constructor,importcpp: "Viewport(@)".}
+proc constructViewport*(vp: Viewport, copyop: Copyop = SHALLOW_COPY): Viewport {.constructor,importcpp: "osg::Viewport::Viewport(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: Viewport): ptr Object   {.importcpp: "cloneType".}
@@ -71,4 +69,4 @@ proc computeWindowMatrix*(this: Viewport): Matrix  {.importcpp: "computeWindowMa
 
 proc apply*(this: Viewport, state: State)  {.importcpp: "apply".}
 
-{.pop.} # header: "Viewport
+{.pop.}  # header: "Viewport"

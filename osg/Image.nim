@@ -1,51 +1,45 @@
-import gl # Provides GLenum, GLvoid, GLint
-import stringfwd # Provides string
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import FrameStamp # Provides FrameStamp
-import BufferObject # Provides PixelBufferObject
-import Vec2 # Provides Vec2
-import Vec3 # Provides Vec3
-import Vec3i # Provides Vec3i
-import Vec4 # Provides Vec4
-import StateAttribute # Provides StateAttribute
-import Geode # Provides Geode
-import NodeVisitor # Provides NodeVisitor
-
-
+import /usr/include/osg/Vec3  # provides: osg::Vec3
+import /usr/include/osg/Vec3i  # provides: osg::Vec3i
+import /usr/include/osg/Vec4  # provides: osg::Vec4
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/BufferObject  # provides: osg::PixelBufferObject
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute
+import /usr/include/osg/Vec2  # provides: osg::Vec2
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import /usr/include/osg/FrameStamp  # provides: osg::FrameStamp
+import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
 type
-  # Enums
   WriteHint* {.size:sizeof(cuint),header: "Image", importcpp: "osg::Image::WriteHint".} = enum
     NO_PREFERENCE = 0,
     STORE_INLINE = 1,
     EXTERNAL_FILE = 2
 
-  AllocationMode* {.size:sizeof(cuint),header: "Image", importcpp: "osg::Image::AllocationMode".} = enum
-    NO_DELETE = 0,
-    USE_NEW_DELETE = 1,
-    USE_MALLOC_FREE = 2
-
   Origin* {.size:sizeof(cuint),header: "Image", importcpp: "osg::Image::Origin".} = enum
     BOTTOM_LEFT = 0,
     TOP_LEFT = 1
 
-  # Typedefs
   MipmapDataType* {.header: "Image", importcpp: "osg::Image::MipmapDataType".} = cint
   DimensionsChangedCallbackVector* {.header: "Image", importcpp: "osg::Image::DimensionsChangedCallbackVector".} = cint
+  DataIterator* {.header: "Image", importcpp: "osg::Image::DataIterator", byref.} = object
+    ## Convenience class for assisting the copying of image data when the
+    ## image data isn't contiguous.
+
+  DimensionsChangedCallback* {.header: "Image", importcpp: "osg::Image::DimensionsChangedCallback", byref.} = object #of osg::Referenced
+
+
+
 {.push header: "Image".}
 
+proc constructImage*(): Image {.constructor,importcpp: "osg::Image::Image".}
 
-# Constructors and methods
-proc constructImage*(): Image {.constructor,importcpp: "Image".}
-
-proc constructImage*(image: Image, copyop: Copyop = SHALLOW_COPY): Image {.constructor,importcpp: "Image(@)".}
+proc constructImage*(image: Image, copyop: Copyop = SHALLOW_COPY): Image {.constructor,importcpp: "osg::Image::Image(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
-proc constructDataIterator*(image: ptr Image ): DataIterator {.constructor,importcpp: "DataIterator(@)".}
+proc constructDataIterator*(image: ptr Image ): DataIterator {.constructor,importcpp: "osg::Image::DataIterator::DataIterator(@)".}
 
-proc constructDataIterator*(ri: Dataiterator): DataIterator {.constructor,importcpp: "DataIterator(@)".}
+proc constructDataIterator*(ri: Dataiterator): DataIterator {.constructor,importcpp: "osg::Image::DataIterator::DataIterator(@)".}
 
-proc constructDimensionsChangedCallback*(): DimensionsChangedCallback {.constructor,importcpp: "DimensionsChangedCallback".}
+proc constructDimensionsChangedCallback*(): DimensionsChangedCallback {.constructor,importcpp: "osg::Image::DimensionsChangedCallback::DimensionsChangedCallback".}
 
 proc cloneType*(this: Image): ptr Object   {.importcpp: "cloneType".}
 
@@ -365,8 +359,4 @@ proc deallocateData*(this: var Image)  {.importcpp: "deallocateData".}
 
 proc setData*(this: var Image, data: ptr unsigned char, allocationMode: Allocationmode)  {.importcpp: "setData".}
 
-proc createGeodeForImage*[T](this: var osg, image: ref_ptr[T]): ptr Geode   {.importcpp: "createGeodeForImage".}
-
-proc createGeodeForImage*[T](this: var osg, image: ref_ptr[T], s: cfloat, t: cfloat): ptr Geode   {.importcpp: "createGeodeForImage".}
-
-{.pop.} # header: "Image
+{.pop.}  # header: "Image"

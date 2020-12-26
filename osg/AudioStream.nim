@@ -1,7 +1,5 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-
-
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
 type
   SampleFormat* {.size:sizeof(cuint),header: "AudioStream", importcpp: "osg::AudioStream::SampleFormat".} = enum
     SAMPLE_FORMAT_U8 = 0,
@@ -10,15 +8,23 @@ type
     SAMPLE_FORMAT_S32 = 3,
     SAMPLE_FORMAT_F32 = 4
 
+  AudioSink* {.header: "AudioStream", importcpp: "osg::AudioSink", byref.} = object #of osg::Object
+    ## Pure virtual AudioSink bass class that is used to connect the audio
+    ## system with AudioStreams.
+
+  AudioStream* {.header: "AudioStream", importcpp: "osg::AudioStream", byref.} = object #of osg::Object
+    ## Pure virtual AudioStream base class. Subclasses provide mechanism for
+    ## reading/generating audio data
+
+
+
 {.push header: "AudioStream".}
 
+proc constructAudioSink*(): AudioSink {.constructor,importcpp: "osg::AudioSink::AudioSink".}
 
-# Constructors and methods
-proc constructAudioSink*(): AudioSink {.constructor,importcpp: "AudioSink".}
+proc constructAudioStream*(): AudioStream {.constructor,importcpp: "osg::AudioStream::AudioStream".}
 
-proc constructAudioStream*(): AudioStream {.constructor,importcpp: "AudioStream".}
-
-proc constructAudioStream*(audio: Audiostream, copyop: Copyop = SHALLOW_COPY): AudioStream {.constructor,importcpp: "AudioStream(@)".}
+proc constructAudioStream*(audio: Audiostream, copyop: Copyop = SHALLOW_COPY): AudioStream {.constructor,importcpp: "osg::AudioStream::AudioStream(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc libraryName*(this: AudioSink): cstring  {.importcpp: "libraryName".}
@@ -61,4 +67,4 @@ proc audioNbChannels*(this: AudioStream): cint  {.importcpp: "audioNbChannels".}
 
 proc audioSampleFormat*(this: AudioStream): Sampleformat  {.importcpp: "audioSampleFormat".}
 
-{.pop.} # header: "AudioStream
+{.pop.}  # header: "AudioStream"

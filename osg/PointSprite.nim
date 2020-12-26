@@ -1,21 +1,22 @@
-import CopyOp # Provides CopyOp
-import Object # Provides Object
-import StateAttribute # Provides StateAttribute, Type
-import State # Provides State
-
-
+import /usr/include/osg/State  # provides: osg::State
+import /usr/include/osg/Object  # provides: osg::Object
+import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import /usr/include/osg/CopyOp  # provides: osg::CopyOp
 type
   CoordOriginMode* {.size:sizeof(cuint),header: "PointSprite", importcpp: "osg::PointSprite::CoordOriginMode".} = enum
-    UPPER_LEFT = 36002,
-    LOWER_LEFT = 36001
+    LOWER_LEFT = 36001,
+    UPPER_LEFT = 36002
+
+  PointSprite* {.header: "PointSprite", importcpp: "osg::PointSprite", byref.} = object #of osg::StateAttribute
+    ## PointSprite base class which encapsulates enabling of point sprites .
+
+
 
 {.push header: "PointSprite".}
 
+proc constructPointSprite*(): PointSprite {.constructor,importcpp: "osg::PointSprite::PointSprite".}
 
-# Constructors and methods
-proc constructPointSprite*(): PointSprite {.constructor,importcpp: "PointSprite".}
-
-proc constructPointSprite*(ps: Pointsprite, copyop: Copyop = SHALLOW_COPY): PointSprite {.constructor,importcpp: "PointSprite(@)".}
+proc constructPointSprite*(ps: Pointsprite, copyop: Copyop = SHALLOW_COPY): PointSprite {.constructor,importcpp: "osg::PointSprite::PointSprite(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: PointSprite): ptr Object   {.importcpp: "cloneType".}
@@ -45,4 +46,4 @@ proc setCoordOriginMode*(this: var PointSprite, mode: Coordoriginmode)  {.import
 
 proc getCoordOriginMode*(this: PointSprite): Coordoriginmode  {.importcpp: "getCoordOriginMode".}
 
-{.pop.} # header: "PointSprite
+{.pop.}  # header: "PointSprite"
