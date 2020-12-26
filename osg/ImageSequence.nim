@@ -1,8 +1,8 @@
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/Referenced  # provides: osg::Referenced
-import /usr/include/osg/Image  # provides: osg::Image::AllocationMode, osg::Image
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
-import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
+import Object  # provides: osg::Object
+import Referenced  # provides: osg::Referenced
+import Image  # provides: osg::Image, osg::Image::AllocationMode
+import CopyOp  # provides: osg::CopyOp
+import NodeVisitor  # provides: osg::NodeVisitor
 type
   Mode* {.size:sizeof(cuint),header: "ImageSequence", importcpp: "osg::ImageSequence::Mode".} = enum
     PRE_LOAD_ALL_IMAGES = 0,

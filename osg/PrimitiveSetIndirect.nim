@@ -1,7 +1,7 @@
-import /usr/include/osg/State  # provides: osg::State
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/PrimitiveSet  # provides: osg::PrimitiveIndexFunctor, osg::PrimitiveFunctor, osg::VectorGLuint
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import State  # provides: osg::State
+import Object  # provides: osg::Object
+import PrimitiveSet  # provides: osg::PrimitiveIndexFunctor, osg::PrimitiveFunctor, osg::VectorGLuint
+import CopyOp  # provides: osg::CopyOp
 type
   Vector_type* {.header: "PrimitiveSetIndirect", importcpp: "osg::DrawElementsIndirectUInt::vector_type".} = Vectorgluint
   IndirectCommandDrawArrays* {.header: "PrimitiveSetIndirect", importcpp: "osg::IndirectCommandDrawArrays", byref.} = object #of class osg::BufferData

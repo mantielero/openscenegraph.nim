@@ -1,5 +1,5 @@
-import /usr/include/osg/State  # provides: osg::State
-import /usr/include/osg/Array  # provides: osg::Array
+import State  # provides: osg::State
+import Array  # provides: osg::Array
 type
   AttributeDispatchMapList* {.header: "AttributeDispatchers", importcpp: "osg::AttributeDispatchers::AttributeDispatchMapList".} = cint
   AttributeDispatchList* {.header: "AttributeDispatchers", importcpp: "osg::AttributeDispatchers::AttributeDispatchList".} = cint

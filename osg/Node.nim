@@ -1,16 +1,16 @@
-import /usr/include/osg/State  # provides: osg::State
-import /usr/include/osg/BoundingSphere  # provides: osg::BoundingSphere
-import /usr/include/osg/Switch  # provides: osg::Switch
-import /usr/include/osg/Geode  # provides: osg::Geode
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/Transform  # provides: osg::Transform
-import /usr/include/osg/Geometry  # provides: osg::Geometry
-import /usr/include/osg/Drawable  # provides: osg::Drawable
-import /usr/include/osg/Callback  # provides: osg::Callback
-import /usr/include/osg/Group  # provides: osg::Group
-import /usr/include/osg/StateSet  # provides: osg::StateSet
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
-import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
+import State  # provides: osg::State
+import BoundingSphere  # provides: osg::BoundingSphere
+import Switch  # provides: osg::Switch
+import Geode  # provides: osg::Geode
+import Object  # provides: osg::Object
+import Transform  # provides: osg::Transform
+import Geometry  # provides: osg::Geometry
+import Drawable  # provides: osg::Drawable
+import Callback  # provides: osg::Callback
+import Group  # provides: osg::Group
+import StateSet  # provides: osg::StateSet
+import CopyOp  # provides: osg::CopyOp
+import NodeVisitor  # provides: osg::NodeVisitor
 type
   NodePathList* {.header: "Node", importcpp: "osg::NodePathList".} = cint
   ParentList* {.header: "Node", importcpp: "osg::Node::ParentList".} = cint

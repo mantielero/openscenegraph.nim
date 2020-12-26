@@ -1,12 +1,12 @@
-import /usr/include/osg/State  # provides: osg::State
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute::Type
-import /usr/include/osg/Image  # provides: osg::Image
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
-import /usr/include/osg/GraphicsContext  # provides: osg::GraphicsContext
-import /usr/include/osg/Vec4d  # provides: osg::Vec4d
-import /usr/include/osg/FrameStamp  # provides: osg::FrameStamp
-import /usr/include/osg/Vec4i  # provides: osg::Vec4i
+import State  # provides: osg::State
+import Object  # provides: osg::Object
+import StateAttribute  # provides: osg::StateAttribute::Type
+import Image  # provides: osg::Image
+import CopyOp  # provides: osg::CopyOp
+import GraphicsContext  # provides: osg::GraphicsContext
+import Vec4d  # provides: osg::Vec4d
+import FrameStamp  # provides: osg::FrameStamp
+import Vec4i  # provides: osg::Vec4i
 type
   WrapParameter* {.size:sizeof(cuint),header: "Texture", importcpp: "osg::Texture::WrapParameter".} = enum
     WRAP_S = 0,

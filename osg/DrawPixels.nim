@@ -1,9 +1,9 @@
-import /usr/include/osg/Vec3  # provides: osg::Vec3
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/Image  # provides: osg::Image
-import /usr/include/osg/BoundingBox  # provides: osg::BoundingBox
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
-import /usr/include/osg/RenderInfo  # provides: osg::RenderInfo
+import Vec3  # provides: osg::Vec3
+import Object  # provides: osg::Object
+import Image  # provides: osg::Image
+import BoundingBox  # provides: osg::BoundingBox
+import CopyOp  # provides: osg::CopyOp
+import RenderInfo  # provides: osg::RenderInfo
 type
   DrawPixels* {.header: "DrawPixels", importcpp: "osg::DrawPixels", byref.} = object #of class osg::Drawable
     ## DrawPixels is an osg::Drawable subclass which encapsulates the drawing

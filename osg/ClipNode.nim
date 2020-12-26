@@ -1,10 +1,10 @@
-import /usr/include/osg/BoundingSphere  # provides: osg::BoundingSphere
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/ClipPlane  # provides: osg::ClipPlane
-import /usr/include/osg/BoundingBox  # provides: osg::BoundingBox
-import /usr/include/osg/StateSet  # provides: osg::StateSet
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
-import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
+import BoundingSphere  # provides: osg::BoundingSphere
+import Object  # provides: osg::Object
+import ClipPlane  # provides: osg::ClipPlane
+import BoundingBox  # provides: osg::BoundingBox
+import StateSet  # provides: osg::StateSet
+import CopyOp  # provides: osg::CopyOp
+import NodeVisitor  # provides: osg::NodeVisitor
 type
   ReferenceFrame* {.size:sizeof(cuint),header: "ClipNode", importcpp: "osg::ClipNode::ReferenceFrame".} = enum
     RELATIVE_RF = 0,

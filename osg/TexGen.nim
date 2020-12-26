@@ -1,9 +1,9 @@
-import /usr/include/osg/State  # provides: osg::State
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
-import /usr/include/osg/Plane  # provides: osg::Plane
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
-import /usr/include/osg/Matrixd  # provides: osg::Matrixd
+import State  # provides: osg::State
+import Object  # provides: osg::Object
+import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import Plane  # provides: osg::Plane
+import CopyOp  # provides: osg::CopyOp
+import Matrixd  # provides: osg::Matrixd
 type
   Mode* {.size:sizeof(cuint),header: "TexGen", importcpp: "osg::TexGen::Mode".} = enum
     EYE_LINEAR = 9216,

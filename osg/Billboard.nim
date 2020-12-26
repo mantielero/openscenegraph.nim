@@ -1,10 +1,10 @@
-import /usr/include/osg/Vec3  # provides: osg::Vec3
-import /usr/include/osg/BoundingSphere  # provides: osg::BoundingSphere
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/Drawable  # provides: osg::Drawable
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
-import /usr/include/osg/Matrix  # provides: osg::Matrix
-import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
+import Vec3  # provides: osg::Vec3
+import BoundingSphere  # provides: osg::BoundingSphere
+import Object  # provides: osg::Object
+import Drawable  # provides: osg::Drawable
+import CopyOp  # provides: osg::CopyOp
+import Matrix  # provides: osg::Matrix
+import NodeVisitor  # provides: osg::NodeVisitor
 type
   Mode* {.size:sizeof(cuint),header: "Billboard", importcpp: "osg::Billboard::Mode".} = enum
     POINT_ROT_EYE = 0,

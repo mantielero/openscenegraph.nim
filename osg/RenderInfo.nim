@@ -1,7 +1,7 @@
-import /usr/include/osg/State  # provides: osg::State
-import /usr/include/osg/Camera  # provides: osg::Camera
-import /usr/include/osg/Referenced  # provides: osg::Referenced
-import /usr/include/osg/View  # provides: osg::View
+import State  # provides: osg::State
+import Camera  # provides: osg::Camera
+import Referenced  # provides: osg::Referenced
+import View  # provides: osg::View
 type
   CameraStack* {.header: "RenderInfo", importcpp: "osg::RenderInfo::CameraStack".} = cint
   RenderBinStack* {.header: "RenderInfo", importcpp: "osg::RenderInfo::RenderBinStack".} = cint

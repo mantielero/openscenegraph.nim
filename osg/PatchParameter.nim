@@ -1,9 +1,9 @@
-import /usr/include/osg/State  # provides: osg::State
-import /usr/include/osg/Vec4  # provides: osg::Vec4
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
-import /usr/include/osg/Vec2  # provides: osg::Vec2
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import State  # provides: osg::State
+import Vec4  # provides: osg::Vec4
+import Object  # provides: osg::Object
+import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import Vec2  # provides: osg::Vec2
+import CopyOp  # provides: osg::CopyOp
 type
   PatchParameter* {.header: "PatchParameter", importcpp: "osg::PatchParameter", byref.} = object #of class osg::StateAttribute
     ## Class which encapsulates glPatchParameter(..).

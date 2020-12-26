@@ -1,7 +1,7 @@
-import /usr/include/osg/ArgumentParser  # provides: osg::ArgumentParser
-import /usr/include/osg/Matrixf  # provides: osg::Matrixf
-import /usr/include/osg/Node  # provides: osg::Node::NodeMask
-import /usr/include/osg/Matrixd  # provides: osg::Matrixd
+import ArgumentParser  # provides: osg::ArgumentParser
+import Matrixf  # provides: osg::Matrixf
+import Node  # provides: osg::Node::NodeMask
+import Matrixd  # provides: osg::Matrixd
 type
   VariablesMask* {.size:sizeof(cuint),header: "CullSettings", importcpp: "osg::CullSettings::VariablesMask".} = enum
     NO_VARIABLES = 0,

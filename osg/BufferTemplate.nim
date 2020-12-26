@@ -1,5 +1,5 @@
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import Object  # provides: osg::Object
+import CopyOp  # provides: osg::CopyOp
 type
   BufferTemplate* {.header: "BufferTemplate", importcpp: "osg::BufferTemplate", byref.} [T] = object #of class osg::BufferData
     ## Template buffer class to be used with a struct as template parameter.

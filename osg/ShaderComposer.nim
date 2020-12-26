@@ -1,8 +1,8 @@
-import /usr/include/osg/State  # provides: osg::State
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/Shader  # provides: osg::Shader
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
-import /usr/include/osg/Program  # provides: osg::Program
+import State  # provides: osg::State
+import Object  # provides: osg::Object
+import Shader  # provides: osg::Shader
+import CopyOp  # provides: osg::CopyOp
+import Program  # provides: osg::Program
 type
   ShaderComponents* {.header: "ShaderComposer", importcpp: "osg::ShaderComponents".} = cint
   Shaders* {.header: "ShaderComposer", importcpp: "osg::ShaderComposer::Shaders".} = cint

@@ -1,8 +1,8 @@
-import /usr/include/osg/Polytope  # provides: osg::Polytope
-import /usr/include/osg/Transform  # provides: osg::Transform
-import /usr/include/osg/Drawable  # provides: osg::Drawable
-import /usr/include/osg/BoundingBox  # provides: osg::BoundingBox
-import /usr/include/osg/Matrix  # provides: osg::Matrix
+import Polytope  # provides: osg::Polytope
+import Transform  # provides: osg::Transform
+import Drawable  # provides: osg::Drawable
+import BoundingBox  # provides: osg::BoundingBox
+import Matrix  # provides: osg::Matrix
 type
   MatrixStack* {.header: "ComputeBoundsVisitor", importcpp: "osg::ComputeBoundsVisitor::MatrixStack".} = cint
   ComputeBoundsVisitor* {.header: "ComputeBoundsVisitor", importcpp: "osg::ComputeBoundsVisitor", byref.} = object #of osg::NodeVisitor

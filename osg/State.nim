@@ -1,21 +1,21 @@
-import /usr/include/osg/AttributeDispatchers  # provides: osg::AttributeDispatchers
-import /usr/include/osg/GLExtensions  # provides: osg::GLExtensions, osg::VertexAttribAlias
-import /usr/include/osg/ShaderComposer  # provides: osg::ShaderComposer
-import /usr/include/osg/BufferObject  # provides: osg::GLBufferObject
-import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute
-import /usr/include/osg/Array  # provides: osg::Array
-import /usr/include/osg/Polytope  # provides: osg::Polytope
-import /usr/include/osg/Shader  # provides: osg::ShaderDefines
-import /usr/include/osg/Viewport  # provides: osg::Viewport
-import /usr/include/osg/Timer  # provides: osg::Timer_t
-import /usr/include/osg/StateSet  # provides: osg::StateSet
-import /usr/include/osg/Matrix  # provides: osg::RefMatrix, osg::Matrix
-import /usr/include/osg/GraphicsCostEstimator  # provides: osg::GraphicsCostEstimator
-import /usr/include/osg/VertexArrayState  # provides: osg::VertexArrayState
-import /usr/include/osg/GraphicsContext  # provides: osg::GraphicsContext
-import /usr/include/osg/Uniform  # provides: osg::Uniform
-import /usr/include/osg/FrameStamp  # provides: osg::FrameStamp
-import /usr/include/osg/DisplaySettings  # provides: osg::DisplaySettings
+import AttributeDispatchers  # provides: osg::AttributeDispatchers
+import GLExtensions  # provides: osg::VertexAttribAlias, osg::GLExtensions
+import ShaderComposer  # provides: osg::ShaderComposer
+import BufferObject  # provides: osg::GLBufferObject
+import StateAttribute  # provides: osg::StateAttribute
+import Array  # provides: osg::Array
+import Polytope  # provides: osg::Polytope
+import Shader  # provides: osg::ShaderDefines
+import Viewport  # provides: osg::Viewport
+import Timer  # provides: osg::Timer_t
+import StateSet  # provides: osg::StateSet
+import Matrix  # provides: osg::RefMatrix, osg::Matrix
+import GraphicsCostEstimator  # provides: osg::GraphicsCostEstimator
+import VertexArrayState  # provides: osg::VertexArrayState
+import GraphicsContext  # provides: osg::GraphicsContext
+import Uniform  # provides: osg::Uniform
+import FrameStamp  # provides: osg::FrameStamp
+import DisplaySettings  # provides: osg::DisplaySettings
 type
   CheckForGLErrors* {.size:sizeof(cuint),header: "State", importcpp: "osg::State::CheckForGLErrors".} = enum
     NEVER_CHECK_GL_ERRORS = 0,

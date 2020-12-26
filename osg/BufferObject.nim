@@ -1,10 +1,10 @@
-import /usr/include/osg/State  # provides: osg::State
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/Array  # provides: osg::Array
-import /usr/include/osg/PrimitiveSet  # provides: osg::DrawElements, osg::PrimitiveSet
-import /usr/include/osg/Image  # provides: osg::Image
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
-import /usr/include/osg/FrameStamp  # provides: osg::FrameStamp
+import State  # provides: osg::State
+import Object  # provides: osg::Object
+import Array  # provides: osg::Array
+import PrimitiveSet  # provides: osg::PrimitiveSet, osg::DrawElements
+import Image  # provides: osg::Image
+import CopyOp  # provides: osg::CopyOp
+import FrameStamp  # provides: osg::FrameStamp
 type
   Mode* {.size:sizeof(cuint),header: "BufferObject", importcpp: "osg::PixelDataBufferObject::Mode".} = enum
     NONE = 0,

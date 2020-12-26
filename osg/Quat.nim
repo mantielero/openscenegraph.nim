@@ -1,9 +1,9 @@
-import /usr/include/osg/Matrixf  # provides: osg::Matrixf
-import /usr/include/osg/Vec3f  # provides: osg::Vec3f
-import /usr/include/osg/Matrixd  # provides: osg::Matrixd
-import /usr/include/osg/Vec4d  # provides: osg::Vec4d
-import /usr/include/osg/Vec3d  # provides: osg::Vec3d
-import /usr/include/osg/Vec4f  # provides: osg::Vec4f
+import Matrixf  # provides: osg::Matrixf
+import Vec3f  # provides: osg::Vec3f
+import Matrixd  # provides: osg::Matrixd
+import Vec4d  # provides: osg::Vec4d
+import Vec3d  # provides: osg::Vec3d
+import Vec4f  # provides: osg::Vec4f
 const
   num_components* = 4
 

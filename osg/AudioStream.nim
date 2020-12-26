@@ -1,5 +1,5 @@
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import Object  # provides: osg::Object
+import CopyOp  # provides: osg::CopyOp
 type
   SampleFormat* {.size:sizeof(cuint),header: "AudioStream", importcpp: "osg::AudioStream::SampleFormat".} = enum
     SAMPLE_FORMAT_U8 = 0,

@@ -1,11 +1,11 @@
-import /usr/include/osg/State  # provides: osg::State
-import /usr/include/osg/Camera  # provides: osg::Camera
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/Stats  # provides: osg::Stats
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
-import /usr/include/osg/Matrix  # provides: osg::Matrix
-import /usr/include/osg/Light  # provides: osg::Light
-import /usr/include/osg/FrameStamp  # provides: osg::FrameStamp
+import State  # provides: osg::State
+import Camera  # provides: osg::Camera
+import Object  # provides: osg::Object
+import Stats  # provides: osg::Stats
+import CopyOp  # provides: osg::CopyOp
+import Matrix  # provides: osg::Matrix
+import Light  # provides: osg::Light
+import FrameStamp  # provides: osg::FrameStamp
 type
   LightingMode* {.size:sizeof(cuint),header: "View", importcpp: "osg::View::LightingMode".} = enum
     ## Options for controlling the global lighting used for the view.

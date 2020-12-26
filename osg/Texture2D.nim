@@ -1,8 +1,8 @@
-import /usr/include/osg/State  # provides: osg::State
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
-import /usr/include/osg/Image  # provides: osg::Image
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import State  # provides: osg::State
+import Object  # provides: osg::Object
+import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import Image  # provides: osg::Image
+import CopyOp  # provides: osg::CopyOp
 type
   ImageModifiedCount* {.header: "Texture2D", importcpp: "osg::Texture2D::ImageModifiedCount".} = buffered_value[unsigned int]
   Texture2D* {.header: "Texture2D", importcpp: "osg::Texture2D", byref.} = object #of class osg::Texture

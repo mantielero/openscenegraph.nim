@@ -1,7 +1,7 @@
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
-import /usr/include/osg/Matrix  # provides: osg::Matrix
-import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
+import Object  # provides: osg::Object
+import CopyOp  # provides: osg::CopyOp
+import Matrix  # provides: osg::Matrix
+import NodeVisitor  # provides: osg::NodeVisitor
 {.push header: "MatrixTransform".}
 
 proc constructMatrixTransform*(): MatrixTransform {.constructor,importcpp: "osg::MatrixTransform::MatrixTransform".}

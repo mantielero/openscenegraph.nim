@@ -1,5 +1,5 @@
-import /usr/include/osg/GraphicsContext  # provides: osg::GraphicsContext
-import /usr/include/osg/FrameStamp  # provides: osg::FrameStamp
+import GraphicsContext  # provides: osg::GraphicsContext
+import FrameStamp  # provides: osg::FrameStamp
 type
   GraphicsContexts* {.header: "ContextData", importcpp: "osg::ContextData::GraphicsContexts".} = Graphicscontexts
   ManagerMap* {.header: "ContextData", importcpp: "osg::ContextData::ManagerMap".} = cint

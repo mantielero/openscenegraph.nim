@@ -1,16 +1,16 @@
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/Referenced  # provides: osg::Referenced
-import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute
-import /usr/include/osg/Array  # provides: osg::Array
-import /usr/include/osg/Shape  # provides: osg::Shape
-import /usr/include/osg/PrimitiveSet  # provides: osg::PrimitiveSet
-import /usr/include/osg/Node  # provides: osg::Node
-import /usr/include/osg/Image  # provides: osg::Image
-import /usr/include/osg/Drawable  # provides: osg::Drawable
-import /usr/include/osg/Callback  # provides: osg::Callback, osg::UniformCallback, osg::StateAttributeCallback
-import /usr/include/osg/StateSet  # provides: osg::StateSet
-import /usr/include/osg/Uniform  # provides: osg::Uniform
-import /usr/include/osg/Texture  # provides: osg::Texture
+import Object  # provides: osg::Object
+import Referenced  # provides: osg::Referenced
+import StateAttribute  # provides: osg::StateAttribute
+import Array  # provides: osg::Array
+import Shape  # provides: osg::Shape
+import PrimitiveSet  # provides: osg::PrimitiveSet
+import Node  # provides: osg::Node
+import Image  # provides: osg::Image
+import Drawable  # provides: osg::Drawable
+import Callback  # provides: osg::Callback, osg::UniformCallback, osg::StateAttributeCallback
+import StateSet  # provides: osg::StateSet
+import Uniform  # provides: osg::Uniform
+import Texture  # provides: osg::Texture
 type
   Options* {.size:sizeof(cuint),header: "CopyOp", importcpp: "osg::CopyOp::Options".} = enum
     SHALLOW_COPY = 0,

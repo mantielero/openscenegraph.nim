@@ -1,24 +1,24 @@
-import /usr/include/osg/State  # provides: osg::State
-import /usr/include/osg/CullSettings  # provides: osg::CullSettings
-import /usr/include/osg/Vec4  # provides: osg::Vec4
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/Matrixf  # provides: osg::Matrixf
-import /usr/include/osg/Stats  # provides: osg::Stats
-import /usr/include/osg/View  # provides: osg::View
-import /usr/include/osg/OperationThread  # provides: osg::OperationThread
-import /usr/include/osg/Image  # provides: osg::Image
-import /usr/include/osg/Viewport  # provides: osg::Viewport
-import /usr/include/osg/ColorMask  # provides: osg::ColorMask
-import /usr/include/osg/Vec3f  # provides: osg::Vec3f
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
-import /usr/include/osg/Matrix  # provides: osg::Matrix
-import /usr/include/osg/Matrixd  # provides: osg::Matrixd
-import /usr/include/osg/GraphicsContext  # provides: osg::GraphicsContext
-import /usr/include/osg/RenderInfo  # provides: osg::RenderInfo
-import /usr/include/osg/Vec3d  # provides: osg::Vec3d
-import /usr/include/osg/DisplaySettings  # provides: osg::DisplaySettings
-import /usr/include/osg/Texture  # provides: osg::Texture
-import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
+import State  # provides: osg::State
+import CullSettings  # provides: osg::CullSettings
+import Vec4  # provides: osg::Vec4
+import Object  # provides: osg::Object
+import Matrixf  # provides: osg::Matrixf
+import Stats  # provides: osg::Stats
+import View  # provides: osg::View
+import OperationThread  # provides: osg::OperationThread
+import Image  # provides: osg::Image
+import Viewport  # provides: osg::Viewport
+import ColorMask  # provides: osg::ColorMask
+import Vec3f  # provides: osg::Vec3f
+import CopyOp  # provides: osg::CopyOp
+import Matrix  # provides: osg::Matrix
+import Matrixd  # provides: osg::Matrixd
+import GraphicsContext  # provides: osg::GraphicsContext
+import RenderInfo  # provides: osg::RenderInfo
+import Vec3d  # provides: osg::Vec3d
+import DisplaySettings  # provides: osg::DisplaySettings
+import Texture  # provides: osg::Texture
+import NodeVisitor  # provides: osg::NodeVisitor
 type
   TransformOrder* {.size:sizeof(cuint),header: "Camera", importcpp: "osg::Camera::TransformOrder".} = enum
     PRE_MULTIPLY = 0,

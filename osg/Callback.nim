@@ -1,12 +1,12 @@
-import /usr/include/osg/State  # provides: osg::State
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute
-import /usr/include/osg/Node  # provides: osg::Node
-import /usr/include/osg/Drawable  # provides: osg::Drawable
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
-import /usr/include/osg/Uniform  # provides: osg::Uniform
-import /usr/include/osg/RenderInfo  # provides: osg::RenderInfo
-import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
+import State  # provides: osg::State
+import Object  # provides: osg::Object
+import StateAttribute  # provides: osg::StateAttribute
+import Node  # provides: osg::Node
+import Drawable  # provides: osg::Drawable
+import CopyOp  # provides: osg::CopyOp
+import Uniform  # provides: osg::Uniform
+import RenderInfo  # provides: osg::RenderInfo
+import NodeVisitor  # provides: osg::NodeVisitor
 {.push header: "Callback".}
 
 proc constructCallback*(): Callback {.constructor,importcpp: "osg::Callback::Callback".}

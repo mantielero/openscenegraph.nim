@@ -1,13 +1,13 @@
-import /usr/include/osg/Vec3  # provides: osg::Vec3
-import /usr/include/osg/Vec3i  # provides: osg::Vec3i
-import /usr/include/osg/Vec4  # provides: osg::Vec4
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/BufferObject  # provides: osg::PixelBufferObject
-import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute
-import /usr/include/osg/Vec2  # provides: osg::Vec2
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
-import /usr/include/osg/FrameStamp  # provides: osg::FrameStamp
-import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
+import Vec3  # provides: osg::Vec3
+import Vec3i  # provides: osg::Vec3i
+import Vec4  # provides: osg::Vec4
+import Object  # provides: osg::Object
+import BufferObject  # provides: osg::PixelBufferObject
+import StateAttribute  # provides: osg::StateAttribute
+import Vec2  # provides: osg::Vec2
+import CopyOp  # provides: osg::CopyOp
+import FrameStamp  # provides: osg::FrameStamp
+import NodeVisitor  # provides: osg::NodeVisitor
 type
   WriteHint* {.size:sizeof(cuint),header: "Image", importcpp: "osg::Image::WriteHint".} = enum
     NO_PREFERENCE = 0,

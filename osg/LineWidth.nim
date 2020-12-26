@@ -1,7 +1,7 @@
-import /usr/include/osg/State  # provides: osg::State
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import State  # provides: osg::State
+import Object  # provides: osg::Object
+import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import CopyOp  # provides: osg::CopyOp
 type
   LineWidth* {.header: "LineWidth", importcpp: "osg::LineWidth", byref.} = object #of class osg::StateAttribute
     ## LineWidth - encapsulates the OpenGL glLineWidth for setting the width

@@ -1,4 +1,4 @@
-import /usr/include/osg/FrameStamp  # provides: osg::FrameStamp
+import FrameStamp  # provides: osg::FrameStamp
 type
   GLObjectHandleList* {.header: "GLObjects", importcpp: "osg::GLObjectManager::GLObjectHandleList".} = cint
   GraphicsObject* {.header: "GLObjects", importcpp: "osg::GraphicsObject", byref.} = object #of osg::Referenced

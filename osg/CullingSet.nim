@@ -1,13 +1,13 @@
-import /usr/include/osg/Vec3  # provides: osg::Vec3
-import /usr/include/osg/BoundingSphere  # provides: osg::BoundingSphere
-import /usr/include/osg/Vec4  # provides: osg::Vec4
-import /usr/include/osg/ShadowVolumeOccluder  # provides: osg::ShadowVolumeOccluder
-import /usr/include/osg/Polytope  # provides: osg::Polytope
-import /usr/include/osg/Node  # provides: osg::NodePath
-import /usr/include/osg/Viewport  # provides: osg::Viewport
-import /usr/include/osg/BoundingBox  # provides: osg::BoundingBox
-import /usr/include/osg/StateSet  # provides: osg::StateSet
-import /usr/include/osg/Matrix  # provides: osg::Matrix
+import Vec3  # provides: osg::Vec3
+import BoundingSphere  # provides: osg::BoundingSphere
+import Vec4  # provides: osg::Vec4
+import ShadowVolumeOccluder  # provides: osg::ShadowVolumeOccluder
+import Polytope  # provides: osg::Polytope
+import Node  # provides: osg::NodePath
+import Viewport  # provides: osg::Viewport
+import BoundingBox  # provides: osg::BoundingBox
+import StateSet  # provides: osg::StateSet
+import Matrix  # provides: osg::Matrix
 type
   MaskValues* {.size:sizeof(cuint),header: "CullingSet", importcpp: "osg::CullingSet::MaskValues".} = enum
     NO_CULLING = 0,

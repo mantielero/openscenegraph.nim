@@ -1,4 +1,4 @@
-import /usr/include/osg/Object  # provides: osg::Object
+import Object  # provides: osg::Object
 type
   OperationThreads* {.header: "OperationThread", importcpp: "osg::OperationQueue::OperationThreads".} = cint
   Operations* {.header: "OperationThread", importcpp: "osg::OperationQueue::Operations".} = cint

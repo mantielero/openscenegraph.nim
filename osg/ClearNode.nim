@@ -1,7 +1,7 @@
-import /usr/include/osg/Vec4  # provides: osg::Vec4
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
-import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
+import Vec4  # provides: osg::Vec4
+import Object  # provides: osg::Object
+import CopyOp  # provides: osg::CopyOp
+import NodeVisitor  # provides: osg::NodeVisitor
 {.push header: "ClearNode".}
 
 proc constructClearNode*(): ClearNode {.constructor,importcpp: "osg::ClearNode::ClearNode".}

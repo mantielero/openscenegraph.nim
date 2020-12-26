@@ -1,5 +1,5 @@
-import /usr/include/osg/DeleteHandler  # provides: osg::DeleteHandler
-import /usr/include/osg/Observer  # provides: osg::Observer, osg::ObserverSet
+import DeleteHandler  # provides: osg::DeleteHandler
+import Observer  # provides: osg::Observer, osg::ObserverSet
 type
   depends_on* {.header: "Referenced", importcpp: "osg::depends_on", byref.} [T] = object
     ## template class to help enforce static initialization order.

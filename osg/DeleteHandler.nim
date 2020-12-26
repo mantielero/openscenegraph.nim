@@ -1,4 +1,4 @@
-import /usr/include/osg/Referenced  # provides: osg::Referenced
+import Referenced  # provides: osg::Referenced
 type
   FrameNumberObjectPair* {.header: "DeleteHandler", importcpp: "osg::DeleteHandler::FrameNumberObjectPair".} = Pair[cuint,ptr Referenced ]
   ObjectsToDeleteList* {.header: "DeleteHandler", importcpp: "osg::DeleteHandler::ObjectsToDeleteList".} = cint

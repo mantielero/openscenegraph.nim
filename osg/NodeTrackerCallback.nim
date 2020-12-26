@@ -1,6 +1,6 @@
-import /usr/include/osg/ObserverNodePath  # provides: osg::ObserverNodePath
-import /usr/include/osg/Node  # provides: osg::NodePath, osg::Node
-import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
+import ObserverNodePath  # provides: osg::ObserverNodePath
+import Node  # provides: osg::Node, osg::NodePath
+import NodeVisitor  # provides: osg::NodeVisitor
 type
   NodeTrackerCallback* {.header: "NodeTrackerCallback", importcpp: "osg::NodeTrackerCallback", byref.} = object #of class osg::NodeCallback
 

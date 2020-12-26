@@ -1,8 +1,8 @@
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/Node  # provides: osg::NodePath, osg::Node
-import /usr/include/osg/Callback  # provides: osg::Parameters
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
-import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
+import Object  # provides: osg::Object
+import Node  # provides: osg::Node, osg::NodePath
+import Callback  # provides: osg::Parameters
+import CopyOp  # provides: osg::CopyOp
+import NodeVisitor  # provides: osg::NodeVisitor
 type
   Script* {.header: "ScriptEngine", importcpp: "osg::Script", byref.} = object #of osg::Object
 

@@ -1,6 +1,6 @@
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/Referenced  # provides: osg::Referenced
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import Object  # provides: osg::Object
+import Referenced  # provides: osg::Referenced
+import CopyOp  # provides: osg::CopyOp
 type
   KeyValueMap* {.header: "ValueMap", importcpp: "osg::ValueMap::KeyValueMap".} = cint
   UserValueObject* {.header: "ValueMap", importcpp: "osg::ValueMap::getValue::UserValueObject".} = TemplateValueObject[T]

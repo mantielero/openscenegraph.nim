@@ -1,11 +1,11 @@
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/Matrixf  # provides: osg::Matrixf
-import /usr/include/osg/Vec3f  # provides: osg::Vec3f
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
-import /usr/include/osg/Vec4d  # provides: osg::Vec4d
-import /usr/include/osg/Vec3d  # provides: osg::Vec3d
-import /usr/include/osg/Quat  # provides: osg::Quat
-import /usr/include/osg/Vec4f  # provides: osg::Vec4f
+import Object  # provides: osg::Object
+import Matrixf  # provides: osg::Matrixf
+import Vec3f  # provides: osg::Vec3f
+import CopyOp  # provides: osg::CopyOp
+import Vec4d  # provides: osg::Vec4d
+import Vec3d  # provides: osg::Vec3d
+import Quat  # provides: osg::Quat
+import Vec4f  # provides: osg::Vec4f
 type
   Value_type* {.header: "Matrixd", importcpp: "osg::Matrixd::value_type".} = cdouble
   Other_value_type* {.header: "Matrixd", importcpp: "osg::Matrixd::other_value_type".} = cfloat

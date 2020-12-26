@@ -1,10 +1,10 @@
-import /usr/include/osg/BoundingSphere  # provides: osg::BoundingSphere
-import /usr/include/osg/CullStack  # provides: osg::CullStack
-import /usr/include/osg/Polytope  # provides: osg::Polytope
-import /usr/include/osg/Node  # provides: osg::NodePath
-import /usr/include/osg/BoundingBox  # provides: osg::BoundingBox
-import /usr/include/osg/ConvexPlanarOccluder  # provides: osg::ConvexPlanarOccluder
-import /usr/include/osg/Matrix  # provides: osg::Matrix
+import BoundingSphere  # provides: osg::BoundingSphere
+import CullStack  # provides: osg::CullStack
+import Polytope  # provides: osg::Polytope
+import Node  # provides: osg::NodePath
+import BoundingBox  # provides: osg::BoundingBox
+import ConvexPlanarOccluder  # provides: osg::ConvexPlanarOccluder
+import Matrix  # provides: osg::Matrix
 type
   HoleList* {.header: "ShadowVolumeOccluder", importcpp: "osg::ShadowVolumeOccluder::HoleList".} = cint
 

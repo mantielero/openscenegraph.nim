@@ -1,9 +1,9 @@
-import /usr/include/osg/State  # provides: osg::State
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
-import /usr/include/osg/Plane  # provides: osg::Plane
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
-import /usr/include/osg/Vec4d  # provides: osg::Vec4d
+import State  # provides: osg::State
+import Object  # provides: osg::Object
+import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import Plane  # provides: osg::Plane
+import CopyOp  # provides: osg::CopyOp
+import Vec4d  # provides: osg::Vec4d
 {.push header: "ClipPlane".}
 
 proc constructClipPlane*(): ClipPlane {.constructor,importcpp: "osg::ClipPlane::ClipPlane".}

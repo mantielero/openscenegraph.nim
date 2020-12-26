@@ -1,7 +1,7 @@
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/Node  # provides: osg::Node
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
-import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
+import Object  # provides: osg::Object
+import Node  # provides: osg::Node
+import CopyOp  # provides: osg::CopyOp
+import NodeVisitor  # provides: osg::NodeVisitor
 type
   LoopMode* {.size:sizeof(cuint),header: "Sequence", importcpp: "osg::Sequence::LoopMode".} = enum
     ## Interval modes. 'Loop' repeats frames 1-N; 'swing' repeats 1->N,

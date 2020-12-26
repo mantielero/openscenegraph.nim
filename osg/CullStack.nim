@@ -1,11 +1,11 @@
-import /usr/include/osg/Vec3  # provides: osg::Vec3
-import /usr/include/osg/BoundingSphere  # provides: osg::BoundingSphere
-import /usr/include/osg/ShadowVolumeOccluder  # provides: osg::ShadowVolumeOccluderList
-import /usr/include/osg/Node  # provides: osg::NodePath, osg::Node
-import /usr/include/osg/Viewport  # provides: osg::Viewport
-import /usr/include/osg/BoundingBox  # provides: osg::BoundingBox
-import /usr/include/osg/Matrix  # provides: osg::RefMatrix, osg::Matrix
-import /usr/include/osg/CullingSet  # provides: osg::CullingSet
+import Vec3  # provides: osg::Vec3
+import BoundingSphere  # provides: osg::BoundingSphere
+import ShadowVolumeOccluder  # provides: osg::ShadowVolumeOccluderList
+import Node  # provides: osg::Node, osg::NodePath
+import Viewport  # provides: osg::Viewport
+import BoundingBox  # provides: osg::BoundingBox
+import Matrix  # provides: osg::RefMatrix, osg::Matrix
+import CullingSet  # provides: osg::CullingSet
 type
   OccluderList* {.header: "CullStack", importcpp: "osg::CullStack::OccluderList".} = cint
   CullingStack* {.header: "CullStack", importcpp: "osg::CullStack::CullingStack".} = cint

@@ -1,9 +1,9 @@
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
-import /usr/include/osg/Matrix  # provides: osg::Matrix
-import /usr/include/osg/Vec3d  # provides: osg::Vec3d
-import /usr/include/osg/Quat  # provides: osg::Quat
-import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
+import Object  # provides: osg::Object
+import CopyOp  # provides: osg::CopyOp
+import Matrix  # provides: osg::Matrix
+import Vec3d  # provides: osg::Vec3d
+import Quat  # provides: osg::Quat
+import NodeVisitor  # provides: osg::NodeVisitor
 {.push header: "PositionAttitudeTransform".}
 
 proc constructPositionAttitudeTransform*(): PositionAttitudeTransform {.constructor,importcpp: "osg::PositionAttitudeTransform::PositionAttitudeTransform".}

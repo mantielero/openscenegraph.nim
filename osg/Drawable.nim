@@ -1,23 +1,23 @@
-import /usr/include/osg/Vec3  # provides: osg::Vec3
-import /usr/include/osg/State  # provides: osg::State
-import /usr/include/osg/BoundingSphere  # provides: osg::BoundingSphere
-import /usr/include/osg/Vec4  # provides: osg::Vec4
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/Array  # provides: osg::ShortArray, osg::Vec3Array, osg::UByteArray, osg::Vec4Array, osg::IntArray, osg::Vec2Array, osg::Vec4ubArray, osg::FloatArray, osg::UShortArray, osg::Vec3dArray, osg::ByteArray, osg::DoubleArray, osg::Vec2dArray, osg::Vec4dArray, osg::Array, osg::UIntArray
-import /usr/include/osg/Shape  # provides: osg::Shape
-import /usr/include/osg/PrimitiveSet  # provides: osg::PrimitiveIndexFunctor, osg::PrimitiveFunctor
-import /usr/include/osg/Node  # provides: osg::MatrixList, osg::Node
-import /usr/include/osg/Callback  # provides: osg::DrawableUpdateCallback, osg::DrawableEventCallback, osg::DrawableCullCallback
-import /usr/include/osg/Vec2  # provides: osg::Vec2
-import /usr/include/osg/BoundingBox  # provides: osg::BoundingBox
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
-import /usr/include/osg/VertexArrayState  # provides: osg::VertexArrayStateList, osg::VertexArrayState
-import /usr/include/osg/RenderInfo  # provides: osg::RenderInfo
-import /usr/include/osg/Vec4d  # provides: osg::Vec4d
-import /usr/include/osg/Vec3d  # provides: osg::Vec3d
-import /usr/include/osg/Vec2d  # provides: osg::Vec2d
-import /usr/include/osg/Vec4ub  # provides: osg::Vec4ub
-import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
+import Vec3  # provides: osg::Vec3
+import State  # provides: osg::State
+import BoundingSphere  # provides: osg::BoundingSphere
+import Vec4  # provides: osg::Vec4
+import Object  # provides: osg::Object
+import Array  # provides: osg::Vec2Array, osg::UIntArray, osg::ShortArray, osg::Vec2dArray, osg::IntArray, osg::Array, osg::Vec3dArray, osg::ByteArray, osg::Vec4Array, osg::Vec3Array, osg::UByteArray, osg::FloatArray, osg::Vec4dArray, osg::DoubleArray, osg::Vec4ubArray, osg::UShortArray
+import Shape  # provides: osg::Shape
+import PrimitiveSet  # provides: osg::PrimitiveIndexFunctor, osg::PrimitiveFunctor
+import Node  # provides: osg::Node, osg::MatrixList
+import Callback  # provides: osg::DrawableCullCallback, osg::DrawableUpdateCallback, osg::DrawableEventCallback
+import Vec2  # provides: osg::Vec2
+import BoundingBox  # provides: osg::BoundingBox
+import CopyOp  # provides: osg::CopyOp
+import VertexArrayState  # provides: osg::VertexArrayState, osg::VertexArrayStateList
+import RenderInfo  # provides: osg::RenderInfo
+import Vec4d  # provides: osg::Vec4d
+import Vec3d  # provides: osg::Vec3d
+import Vec2d  # provides: osg::Vec2d
+import Vec4ub  # provides: osg::Vec4ub
+import NodeVisitor  # provides: osg::NodeVisitor
 type
   AttributeTypes* {.size:sizeof(cuint),header: "Drawable", importcpp: "osg::Drawable::AttributeTypes".} = enum
     VERTICES = 0,

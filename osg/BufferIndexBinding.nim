@@ -1,9 +1,9 @@
-import /usr/include/osg/State  # provides: osg::State
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/BufferObject  # provides: osg::BufferData
-import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
-import /usr/include/osg/Array  # provides: osg::UIntArray
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import State  # provides: osg::State
+import Object  # provides: osg::Object
+import BufferObject  # provides: osg::BufferData
+import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import Array  # provides: osg::UIntArray
+import CopyOp  # provides: osg::CopyOp
 type
   BufferIndexBinding* {.header: "BufferIndexBinding", importcpp: "osg::BufferIndexBinding", byref.} = object #of class osg::StateAttribute
     ## Encapsulate binding buffer objects to index targets. This specifically

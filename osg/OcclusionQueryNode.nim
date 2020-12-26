@@ -1,12 +1,12 @@
-import /usr/include/osg/State  # provides: osg::State
-import /usr/include/osg/BoundingSphere  # provides: osg::BoundingSphere
-import /usr/include/osg/Camera  # provides: osg::Camera
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/Geometry  # provides: osg::Geometry
-import /usr/include/osg/StateSet  # provides: osg::StateSet
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
-import /usr/include/osg/RenderInfo  # provides: osg::RenderInfo
-import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
+import State  # provides: osg::State
+import BoundingSphere  # provides: osg::BoundingSphere
+import Camera  # provides: osg::Camera
+import Object  # provides: osg::Object
+import Geometry  # provides: osg::Geometry
+import StateSet  # provides: osg::StateSet
+import CopyOp  # provides: osg::CopyOp
+import RenderInfo  # provides: osg::RenderInfo
+import NodeVisitor  # provides: osg::NodeVisitor
 type
   QueryGeometryState* {.size:sizeof(cuint),header: "OcclusionQueryNode", importcpp: "osg::OcclusionQueryNode::QueryGeometryState".} = enum
     INVALID = 0,

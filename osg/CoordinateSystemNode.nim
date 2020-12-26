@@ -1,8 +1,8 @@
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
-import /usr/include/osg/Matrixd  # provides: osg::Matrixd
-import /usr/include/osg/Vec3d  # provides: osg::Vec3d
-import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
+import Object  # provides: osg::Object
+import CopyOp  # provides: osg::CopyOp
+import Matrixd  # provides: osg::Matrixd
+import Vec3d  # provides: osg::Vec3d
+import NodeVisitor  # provides: osg::NodeVisitor
 type
   CoordinateFrame* {.header: "CoordinateSystemNode", importcpp: "osg::CoordinateFrame".} = Matrixd
   EllipsoidModel* {.header: "CoordinateSystemNode", importcpp: "osg::EllipsoidModel", byref.} = object #of class osg::Object

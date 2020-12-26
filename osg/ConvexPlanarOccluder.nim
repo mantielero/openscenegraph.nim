@@ -1,6 +1,6 @@
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/ConvexPlanarPolygon  # provides: osg::ConvexPlanarPolygon
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import Object  # provides: osg::Object
+import ConvexPlanarPolygon  # provides: osg::ConvexPlanarPolygon
+import CopyOp  # provides: osg::CopyOp
 type
   HoleList* {.header: "ConvexPlanarOccluder", importcpp: "osg::ConvexPlanarOccluder::HoleList".} = cint
 

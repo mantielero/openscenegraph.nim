@@ -1,17 +1,17 @@
-import /usr/include/osg/State  # provides: osg::State
-import /usr/include/osg/Camera  # provides: osg::Camera
-import /usr/include/osg/Referenced  # provides: osg::Referenced
-import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute
-import /usr/include/osg/ValueObject  # provides: osg::ValueObject
-import /usr/include/osg/Node  # provides: osg::Node
-import /usr/include/osg/Image  # provides: osg::Image
-import /usr/include/osg/Drawable  # provides: osg::Drawable
-import /usr/include/osg/Callback  # provides: osg::CallbackObject, osg::Callback
-import /usr/include/osg/StateSet  # provides: osg::StateSet
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
-import /usr/include/osg/UserDataContainer  # provides: osg::UserDataContainer
-import /usr/include/osg/Uniform  # provides: osg::Uniform
-import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
+import State  # provides: osg::State
+import Camera  # provides: osg::Camera
+import Referenced  # provides: osg::Referenced
+import StateAttribute  # provides: osg::StateAttribute
+import ValueObject  # provides: osg::ValueObject
+import Node  # provides: osg::Node
+import Image  # provides: osg::Image
+import Drawable  # provides: osg::Drawable
+import Callback  # provides: osg::Callback, osg::CallbackObject
+import StateSet  # provides: osg::StateSet
+import CopyOp  # provides: osg::CopyOp
+import UserDataContainer  # provides: osg::UserDataContainer
+import Uniform  # provides: osg::Uniform
+import NodeVisitor  # provides: osg::NodeVisitor
 type
   DataVariance* {.size:sizeof(cuint),header: "Object", importcpp: "osg::Object::DataVariance".} = enum
     DYNAMIC = 0,

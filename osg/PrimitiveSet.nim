@@ -1,13 +1,13 @@
-import /usr/include/osg/Vec3  # provides: osg::Vec3
-import /usr/include/osg/State  # provides: osg::State
-import /usr/include/osg/Vec4  # provides: osg::Vec4
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/BufferObject  # provides: osg::ElementBufferObject
-import /usr/include/osg/Vec2  # provides: osg::Vec2
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
-import /usr/include/osg/Vec4d  # provides: osg::Vec4d
-import /usr/include/osg/Vec3d  # provides: osg::Vec3d
-import /usr/include/osg/Vec2d  # provides: osg::Vec2d
+import Vec3  # provides: osg::Vec3
+import State  # provides: osg::State
+import Vec4  # provides: osg::Vec4
+import Object  # provides: osg::Object
+import BufferObject  # provides: osg::ElementBufferObject
+import Vec2  # provides: osg::Vec2
+import CopyOp  # provides: osg::CopyOp
+import Vec4d  # provides: osg::Vec4d
+import Vec3d  # provides: osg::Vec3d
+import Vec2d  # provides: osg::Vec2d
 type
   Type* {.size:sizeof(cuint),header: "PrimitiveSet", importcpp: "osg::PrimitiveSet::Type".} = enum
     PrimitiveType = 0,

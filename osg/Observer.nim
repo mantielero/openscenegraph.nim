@@ -1,4 +1,4 @@
-import /usr/include/osg/Referenced  # provides: osg::Referenced
+import Referenced  # provides: osg::Referenced
 type
   Observers* {.header: "Observer", importcpp: "osg::ObserverSet::Observers".} = cint
 

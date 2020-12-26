@@ -1,10 +1,10 @@
-import /usr/include/osg/State  # provides: osg::State
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/Shader  # provides: osg::ShaderComponent
-import /usr/include/osg/Callback  # provides: osg::StateAttributeCallback
-import /usr/include/osg/StateSet  # provides: osg::StateSet
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
-import /usr/include/osg/Texture  # provides: osg::Texture
+import State  # provides: osg::State
+import Object  # provides: osg::Object
+import Shader  # provides: osg::ShaderComponent
+import Callback  # provides: osg::StateAttributeCallback
+import StateSet  # provides: osg::StateSet
+import CopyOp  # provides: osg::CopyOp
+import Texture  # provides: osg::Texture
 type
   Values* {.size:sizeof(cuint),header: "StateAttribute", importcpp: "osg::StateAttribute::Values".} = enum
     ## list values which can be used to set either GLModeValues or

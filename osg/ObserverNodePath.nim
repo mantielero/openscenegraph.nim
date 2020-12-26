@@ -1,4 +1,4 @@
-import /usr/include/osg/Node  # provides: osg::NodePath, osg::Node
+import Node  # provides: osg::Node, osg::NodePath
 type
   RefNodePath* {.header: "ObserverNodePath", importcpp: "osg::RefNodePath".} = cint
   ObsNodePath* {.header: "ObserverNodePath", importcpp: "osg::ObserverNodePath::ObsNodePath".} = cint

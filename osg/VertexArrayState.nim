@@ -1,6 +1,6 @@
-import /usr/include/osg/State  # provides: osg::State
-import /usr/include/osg/BufferObject  # provides: osg::GLBufferObject
-import /usr/include/osg/Array  # provides: osg::Array
+import State  # provides: osg::State
+import BufferObject  # provides: osg::GLBufferObject
+import Array  # provides: osg::Array
 type
   ArrayDispatchList* {.header: "VertexArrayState", importcpp: "osg::VertexArrayState::ArrayDispatchList".} = cint
   ActiveDispatchers* {.header: "VertexArrayState", importcpp: "osg::VertexArrayState::ActiveDispatchers".} = cint

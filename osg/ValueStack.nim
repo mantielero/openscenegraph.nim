@@ -1,7 +1,7 @@
-import /usr/include/osg/ValueMap  # provides: osg::ValueMap
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/Referenced  # provides: osg::Referenced
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import ValueMap  # provides: osg::ValueMap
+import Object  # provides: osg::Object
+import Referenced  # provides: osg::Referenced
+import CopyOp  # provides: osg::CopyOp
 type
   Values* {.header: "ValueStack", importcpp: "osg::ValueStack::Values".} = cint
   ValueStackMap* {.header: "ValueStack", importcpp: "osg::ValueStack::ValueStackMap".} = cint

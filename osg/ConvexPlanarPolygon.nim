@@ -1,4 +1,4 @@
-import /usr/include/osg/Vec3  # provides: osg::Vec3
+import Vec3  # provides: osg::Vec3
 type
   VertexList* {.header: "ConvexPlanarPolygon", importcpp: "osg::ConvexPlanarPolygon::VertexList".} = cint
 

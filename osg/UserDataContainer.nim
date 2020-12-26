@@ -1,6 +1,6 @@
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/Referenced  # provides: osg::Referenced
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import Object  # provides: osg::Object
+import Referenced  # provides: osg::Referenced
+import CopyOp  # provides: osg::CopyOp
 type
   DescriptionList* {.header: "UserDataContainer", importcpp: "osg::UserDataContainer::DescriptionList".} = cint
   ObjectList* {.header: "UserDataContainer", importcpp: "osg::DefaultUserDataContainer::ObjectList".} = cint

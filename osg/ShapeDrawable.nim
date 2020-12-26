@@ -1,7 +1,7 @@
-import /usr/include/osg/Vec4  # provides: osg::Vec4
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/Shape  # provides: osg::Shape, osg::TessellationHints
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import Vec4  # provides: osg::Vec4
+import Object  # provides: osg::Object
+import Shape  # provides: osg::TessellationHints, osg::Shape
+import CopyOp  # provides: osg::CopyOp
 type
   ShapeDrawable* {.header: "ShapeDrawable", importcpp: "osg::ShapeDrawable", byref.} = object #of osg::Geometry
     ## Allow the use of Shapes as Drawables, so that they can be rendered

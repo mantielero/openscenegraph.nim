@@ -1,11 +1,11 @@
-import /usr/include/osg/State  # provides: osg::State
-import /usr/include/osg/Vec4  # provides: osg::Vec4
-import /usr/include/osg/Camera  # provides: osg::Camera
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/OperationThread  # provides: osg::RefBlock, osg::Operation
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
-import /usr/include/osg/GraphicsThread  # provides: osg::GraphicsThread
-import /usr/include/osg/DisplaySettings  # provides: osg::DisplaySettings
+import State  # provides: osg::State
+import Vec4  # provides: osg::Vec4
+import Camera  # provides: osg::Camera
+import Object  # provides: osg::Object
+import OperationThread  # provides: osg::Operation, osg::RefBlock
+import CopyOp  # provides: osg::CopyOp
+import GraphicsThread  # provides: osg::GraphicsThread
+import DisplaySettings  # provides: osg::DisplaySettings
 type
   ScreenSettingsList* {.header: "GraphicsContext", importcpp: "osg::GraphicsContext::ScreenSettingsList".} = cint
   Interfaces* {.header: "GraphicsContext", importcpp: "osg::GraphicsContext::WindowingSystemInterfaces::Interfaces".} = cint

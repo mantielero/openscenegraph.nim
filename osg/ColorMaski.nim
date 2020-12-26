@@ -1,7 +1,7 @@
-import /usr/include/osg/State  # provides: osg::State
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import State  # provides: osg::State
+import Object  # provides: osg::Object
+import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import CopyOp  # provides: osg::CopyOp
 type
   ColorMaski* {.header: "ColorMaski", importcpp: "osg::ColorMaski", byref.} = object #of class osg::ColorMask
     ## Encapsulates glColorMaski function : the index version of glColorMask

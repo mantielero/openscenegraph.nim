@@ -1,7 +1,7 @@
-import /usr/include/osg/Vec4  # provides: osg::Vec4
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/Image  # provides: osg::Image
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import Vec4  # provides: osg::Vec4
+import Object  # provides: osg::Object
+import Image  # provides: osg::Image
+import CopyOp  # provides: osg::CopyOp
 type
   ColorMap* {.header: "TransferFunction", importcpp: "osg::TransferFunction1D::ColorMap".} = cint
   TransferFunction* {.header: "TransferFunction", importcpp: "osg::TransferFunction", byref.} = object #of osg::Object

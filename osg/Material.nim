@@ -1,8 +1,8 @@
-import /usr/include/osg/State  # provides: osg::State
-import /usr/include/osg/Vec4  # provides: osg::Vec4
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import State  # provides: osg::State
+import Vec4  # provides: osg::Vec4
+import Object  # provides: osg::Object
+import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import CopyOp  # provides: osg::CopyOp
 type
   Face* {.size:sizeof(cuint),header: "Material", importcpp: "osg::Material::Face".} = enum
     FRONT = 1028,

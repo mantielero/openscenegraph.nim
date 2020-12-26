@@ -1,11 +1,11 @@
-import /usr/include/osg/BoundingSphere  # provides: osg::BoundingSphere
-import /usr/include/osg/AutoTransform  # provides: osg::AutoTransform
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/PositionAttitudeTransform  # provides: osg::PositionAttitudeTransform
-import /usr/include/osg/MatrixTransform  # provides: osg::MatrixTransform
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
-import /usr/include/osg/Matrix  # provides: osg::Matrix
-import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
+import BoundingSphere  # provides: osg::BoundingSphere
+import AutoTransform  # provides: osg::AutoTransform
+import Object  # provides: osg::Object
+import PositionAttitudeTransform  # provides: osg::PositionAttitudeTransform
+import MatrixTransform  # provides: osg::MatrixTransform
+import CopyOp  # provides: osg::CopyOp
+import Matrix  # provides: osg::Matrix
+import NodeVisitor  # provides: osg::NodeVisitor
 type
   ReferenceFrame* {.size:sizeof(cuint),header: "Transform", importcpp: "osg::Transform::ReferenceFrame".} = enum
     RELATIVE_RF = 0,

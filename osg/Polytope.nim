@@ -1,9 +1,9 @@
-import /usr/include/osg/Vec3  # provides: osg::Vec3
-import /usr/include/osg/BoundingSphere  # provides: osg::BoundingSphere
-import /usr/include/osg/Plane  # provides: osg::Plane
-import /usr/include/osg/Vec3f  # provides: osg::Vec3f
-import /usr/include/osg/BoundingBox  # provides: osg::BoundingBox
-import /usr/include/osg/Matrix  # provides: osg::Matrix
+import Vec3  # provides: osg::Vec3
+import BoundingSphere  # provides: osg::BoundingSphere
+import Plane  # provides: osg::Plane
+import Vec3f  # provides: osg::Vec3f
+import BoundingBox  # provides: osg::BoundingBox
+import Matrix  # provides: osg::Matrix
 type
   ClippingMask* {.header: "Polytope", importcpp: "osg::Polytope::ClippingMask".} = cuint
   PlaneList* {.header: "Polytope", importcpp: "osg::Polytope::PlaneList".} = cint

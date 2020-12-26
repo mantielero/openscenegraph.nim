@@ -1,10 +1,10 @@
-import /usr/include/osg/State  # provides: osg::State
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute
-import /usr/include/osg/Node  # provides: osg::Node
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
-import /usr/include/osg/Uniform  # provides: osg::Uniform
-import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
+import State  # provides: osg::State
+import Object  # provides: osg::Object
+import StateAttribute  # provides: osg::StateAttribute
+import Node  # provides: osg::Node
+import CopyOp  # provides: osg::CopyOp
+import Uniform  # provides: osg::Uniform
+import NodeVisitor  # provides: osg::NodeVisitor
 type
   RenderingHint* {.size:sizeof(cuint),header: "StateSet", importcpp: "osg::StateSet::RenderingHint".} = enum
     DEFAULT_BIN = 0,

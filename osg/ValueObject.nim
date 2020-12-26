@@ -1,35 +1,35 @@
-import /usr/include/osg/Vec4us  # provides: osg::Vec4us
-import /usr/include/osg/BoundingSphere  # provides: osg::BoundingSphered, osg::BoundingSpheref
-import /usr/include/osg/Vec3i  # provides: osg::Vec3i
-import /usr/include/osg/Vec3s  # provides: osg::Vec3s
-import /usr/include/osg/Vec2us  # provides: osg::Vec2us
-import /usr/include/osg/Vec2s  # provides: osg::Vec2s
-import /usr/include/osg/Vec2b  # provides: osg::Vec2b
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/Vec3ui  # provides: osg::Vec3ui
-import /usr/include/osg/Matrixf  # provides: osg::Matrixf
-import /usr/include/osg/Vec2ub  # provides: osg::Vec2ub
-import /usr/include/osg/Plane  # provides: osg::Plane
-import /usr/include/osg/Vec2ui  # provides: osg::Vec2ui
-import /usr/include/osg/Vec3f  # provides: osg::Vec3f
-import /usr/include/osg/Vec3us  # provides: osg::Vec3us
-import /usr/include/osg/BoundingBox  # provides: osg::BoundingBoxf, osg::BoundingBoxd
-import /usr/include/osg/Vec2f  # provides: osg::Vec2f
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
-import /usr/include/osg/Matrixd  # provides: osg::Matrixd
-import /usr/include/osg/Vec3b  # provides: osg::Vec3b
-import /usr/include/osg/Vec4b  # provides: osg::Vec4b
-import /usr/include/osg/Vec4ui  # provides: osg::Vec4ui
-import /usr/include/osg/Vec3ub  # provides: osg::Vec3ub
-import /usr/include/osg/Vec4d  # provides: osg::Vec4d
-import /usr/include/osg/Vec4s  # provides: osg::Vec4s
-import /usr/include/osg/Vec2i  # provides: osg::Vec2i
-import /usr/include/osg/Vec3d  # provides: osg::Vec3d
-import /usr/include/osg/Vec2d  # provides: osg::Vec2d
-import /usr/include/osg/Quat  # provides: osg::Quat
-import /usr/include/osg/Vec4ub  # provides: osg::Vec4ub
-import /usr/include/osg/Vec4i  # provides: osg::Vec4i
-import /usr/include/osg/Vec4f  # provides: osg::Vec4f
+import Vec4us  # provides: osg::Vec4us
+import BoundingSphere  # provides: osg::BoundingSphered, osg::BoundingSpheref
+import Vec3i  # provides: osg::Vec3i
+import Vec3s  # provides: osg::Vec3s
+import Vec2us  # provides: osg::Vec2us
+import Vec2s  # provides: osg::Vec2s
+import Vec2b  # provides: osg::Vec2b
+import Object  # provides: osg::Object
+import Vec3ui  # provides: osg::Vec3ui
+import Matrixf  # provides: osg::Matrixf
+import Vec2ub  # provides: osg::Vec2ub
+import Plane  # provides: osg::Plane
+import Vec2ui  # provides: osg::Vec2ui
+import Vec3f  # provides: osg::Vec3f
+import Vec3us  # provides: osg::Vec3us
+import BoundingBox  # provides: osg::BoundingBoxf, osg::BoundingBoxd
+import Vec2f  # provides: osg::Vec2f
+import CopyOp  # provides: osg::CopyOp
+import Matrixd  # provides: osg::Matrixd
+import Vec3b  # provides: osg::Vec3b
+import Vec4b  # provides: osg::Vec4b
+import Vec4ui  # provides: osg::Vec4ui
+import Vec3ub  # provides: osg::Vec3ub
+import Vec4d  # provides: osg::Vec4d
+import Vec4s  # provides: osg::Vec4s
+import Vec2i  # provides: osg::Vec2i
+import Vec3d  # provides: osg::Vec3d
+import Vec2d  # provides: osg::Vec2d
+import Quat  # provides: osg::Quat
+import Vec4ub  # provides: osg::Vec4ub
+import Vec4i  # provides: osg::Vec4i
+import Vec4f  # provides: osg::Vec4f
 type
   StringValueObject* {.header: "ValueObject", importcpp: "osg::StringValueObject".} = Templatevalueobject[String]
   BoolValueObject* {.header: "ValueObject", importcpp: "osg::BoolValueObject".} = TemplateValueObject[bool]

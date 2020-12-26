@@ -1,8 +1,8 @@
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/Array  # provides: osg::Vec3Array
-import /usr/include/osg/Shape  # provides: osg::ShapeVisitor, osg::ConstShapeVisitor
-import /usr/include/osg/Geometry  # provides: osg::Geometry
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import Object  # provides: osg::Object
+import Array  # provides: osg::Vec3Array
+import Shape  # provides: osg::ShapeVisitor, osg::ConstShapeVisitor
+import Geometry  # provides: osg::Geometry
+import CopyOp  # provides: osg::CopyOp
 type
   Indices* {.header: "KdTree", importcpp: "osg::KdTree::Indices".} = cint
   Value_type* {.header: "KdTree", importcpp: "osg::KdTree::value_type".} = cint

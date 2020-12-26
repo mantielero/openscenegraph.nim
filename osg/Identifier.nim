@@ -1,4 +1,4 @@
-import /usr/include/osg/Referenced  # provides: osg::Referenced
+import Referenced  # provides: osg::Referenced
 type
   Identifier* {.header: "Identifier", importcpp: "osg::Identifier", byref.} = object #of osg::Referenced
     ## Unique Identifier class to help with efficiently comparing road

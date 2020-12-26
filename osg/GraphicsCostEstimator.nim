@@ -1,8 +1,8 @@
-import /usr/include/osg/Node  # provides: osg::Node
-import /usr/include/osg/Geometry  # provides: osg::Geometry
-import /usr/include/osg/RenderInfo  # provides: osg::RenderInfo
-import /usr/include/osg/Program  # provides: osg::Program
-import /usr/include/osg/Texture  # provides: osg::Texture
+import Node  # provides: osg::Node
+import Geometry  # provides: osg::Geometry
+import RenderInfo  # provides: osg::RenderInfo
+import Program  # provides: osg::Program
+import Texture  # provides: osg::Texture
 type
   CostPair* {.header: "GraphicsCostEstimator", importcpp: "osg::CostPair".} = Pair[cdouble,cdouble]
   GeometryCostEstimator* {.header: "GraphicsCostEstimator", importcpp: "osg::GeometryCostEstimator", byref.} = object #of osg::Referenced

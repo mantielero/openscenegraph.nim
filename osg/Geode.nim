@@ -1,10 +1,10 @@
-import /usr/include/osg/BoundingSphere  # provides: osg::BoundingSphere
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/Drawable  # provides: osg::Drawable
-import /usr/include/osg/BoundingBox  # provides: osg::BoundingBox
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
-import /usr/include/osg/RenderInfo  # provides: osg::RenderInfo
-import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
+import BoundingSphere  # provides: osg::BoundingSphere
+import Object  # provides: osg::Object
+import Drawable  # provides: osg::Drawable
+import BoundingBox  # provides: osg::BoundingBox
+import CopyOp  # provides: osg::CopyOp
+import RenderInfo  # provides: osg::RenderInfo
+import NodeVisitor  # provides: osg::NodeVisitor
 {.push header: "Geode".}
 
 proc constructGeode*(): Geode {.constructor,importcpp: "osg::Geode::Geode".}

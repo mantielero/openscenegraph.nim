@@ -1,8 +1,8 @@
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
-import /usr/include/osg/VertexArrayState  # provides: osg::VertexArrayState
-import /usr/include/osg/RenderInfo  # provides: osg::RenderInfo
-import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
+import Object  # provides: osg::Object
+import CopyOp  # provides: osg::CopyOp
+import VertexArrayState  # provides: osg::VertexArrayState
+import RenderInfo  # provides: osg::RenderInfo
+import NodeVisitor  # provides: osg::NodeVisitor
 type
   DispatchCompute* {.header: "DispatchCompute", importcpp: "osg::DispatchCompute", byref.} = object #of osg::Drawable
     ## Wrapper around glDispatchCompute.

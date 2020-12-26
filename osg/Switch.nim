@@ -1,8 +1,8 @@
-import /usr/include/osg/BoundingSphere  # provides: osg::BoundingSphere
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/Node  # provides: osg::Node
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
-import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
+import BoundingSphere  # provides: osg::BoundingSphere
+import Object  # provides: osg::Object
+import Node  # provides: osg::Node
+import CopyOp  # provides: osg::CopyOp
+import NodeVisitor  # provides: osg::NodeVisitor
 type
   ValueList* {.header: "Switch", importcpp: "osg::Switch::ValueList".} = cint
 

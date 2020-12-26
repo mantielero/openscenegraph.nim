@@ -1,11 +1,11 @@
-import /usr/include/osg/Vec3  # provides: osg::Vec3
-import /usr/include/osg/LOD  # provides: osg::LOD
-import /usr/include/osg/Projection  # provides: osg::Projection
-import /usr/include/osg/Switch  # provides: osg::Switch
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/Transform  # provides: osg::Transform
-import /usr/include/osg/Node  # provides: osg::Node
-import /usr/include/osg/OccluderNode  # provides: osg::OccluderNode
+import Vec3  # provides: osg::Vec3
+import LOD  # provides: osg::LOD
+import Projection  # provides: osg::Projection
+import Switch  # provides: osg::Switch
+import Object  # provides: osg::Object
+import Transform  # provides: osg::Transform
+import Node  # provides: osg::Node
+import OccluderNode  # provides: osg::OccluderNode
 type
   ShadowVolumeOccluderSet* {.header: "CollectOccludersVisitor", importcpp: "osg::CollectOccludersVisitor::ShadowVolumeOccluderSet".} = cint
   CollectOccludersVisitor* {.header: "CollectOccludersVisitor", importcpp: "osg::CollectOccludersVisitor", byref.} = object #of osg::NodeVisitor

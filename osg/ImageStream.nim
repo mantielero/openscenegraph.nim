@@ -1,7 +1,7 @@
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/Image  # provides: osg::Image
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
-import /usr/include/osg/Texture  # provides: osg::Texture
+import Object  # provides: osg::Object
+import Image  # provides: osg::Image
+import CopyOp  # provides: osg::CopyOp
+import Texture  # provides: osg::Texture
 type
   StreamStatus* {.size:sizeof(cuint),header: "ImageStream", importcpp: "osg::ImageStream::StreamStatus".} = enum
     INVALID = 0,

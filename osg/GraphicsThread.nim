@@ -1,6 +1,6 @@
-import /usr/include/osg/State  # provides: osg::State
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/GraphicsContext  # provides: osg::GraphicsContext
+import State  # provides: osg::State
+import Object  # provides: osg::Object
+import GraphicsContext  # provides: osg::GraphicsContext
 type
   PreBlockOp* {.size:sizeof(cuint),header: "GraphicsThread", importcpp: "osg::BarrierOperation::PreBlockOp".} = enum
     NO_OPERATION = 0,

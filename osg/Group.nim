@@ -1,9 +1,9 @@
-import /usr/include/osg/State  # provides: osg::State
-import /usr/include/osg/BoundingSphere  # provides: osg::BoundingSphere
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/Node  # provides: osg::Node
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
-import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
+import State  # provides: osg::State
+import BoundingSphere  # provides: osg::BoundingSphere
+import Object  # provides: osg::Object
+import Node  # provides: osg::Node
+import CopyOp  # provides: osg::CopyOp
+import NodeVisitor  # provides: osg::NodeVisitor
 {.push header: "Group".}
 
 proc constructGroup*(): Group {.constructor,importcpp: "osg::Group::Group".}

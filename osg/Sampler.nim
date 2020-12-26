@@ -1,9 +1,9 @@
-import /usr/include/osg/State  # provides: osg::State
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
-import /usr/include/osg/StateSet  # provides: osg::StateSet
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
-import /usr/include/osg/Vec4d  # provides: osg::Vec4d
+import State  # provides: osg::State
+import Object  # provides: osg::Object
+import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import StateSet  # provides: osg::StateSet
+import CopyOp  # provides: osg::CopyOp
+import Vec4d  # provides: osg::Vec4d
 type
   Sampler* {.header: "Sampler", importcpp: "osg::Sampler", byref.} = object #of osg::StateAttribute
     ## OpenGL Sampler OpenGL 3.3 required https://www.khronos.org/registry/Op

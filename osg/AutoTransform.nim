@@ -1,11 +1,11 @@
-import /usr/include/osg/Vec3  # provides: osg::Vec3
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
-import /usr/include/osg/Matrix  # provides: osg::Matrix
-import /usr/include/osg/Matrixd  # provides: osg::Matrixd
-import /usr/include/osg/Vec3d  # provides: osg::Vec3d
-import /usr/include/osg/Quat  # provides: osg::Quat
-import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
+import Vec3  # provides: osg::Vec3
+import Object  # provides: osg::Object
+import CopyOp  # provides: osg::CopyOp
+import Matrix  # provides: osg::Matrix
+import Matrixd  # provides: osg::Matrixd
+import Vec3d  # provides: osg::Vec3d
+import Quat  # provides: osg::Quat
+import NodeVisitor  # provides: osg::NodeVisitor
 type
   AutoRotateMode* {.size:sizeof(cuint),header: "AutoTransform", importcpp: "osg::AutoTransform::AutoRotateMode".} = enum
     NO_ROTATION = 0,

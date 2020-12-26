@@ -1,7 +1,7 @@
-import /usr/include/osg/State  # provides: osg::State
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
-import /usr/include/osg/Program  # provides: osg::Program
+import State  # provides: osg::State
+import Object  # provides: osg::Object
+import CopyOp  # provides: osg::CopyOp
+import Program  # provides: osg::Program
 type
   Type* {.size:sizeof(cint),header: "Shader", importcpp: "osg::Shader::Type".} = enum
     UNDEFINED = -1,

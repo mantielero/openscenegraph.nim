@@ -1,9 +1,9 @@
-import /usr/include/osg/State  # provides: osg::State
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/BufferObject  # provides: osg::BufferData
-import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
-import /usr/include/osg/Image  # provides: osg::Image
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
+import State  # provides: osg::State
+import Object  # provides: osg::Object
+import BufferObject  # provides: osg::BufferData
+import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import Image  # provides: osg::Image
+import CopyOp  # provides: osg::CopyOp
 type
   BufferDataModifiedCount* {.header: "TextureBuffer", importcpp: "osg::TextureBuffer::BufferDataModifiedCount".} = buffered_value[unsigned int]
   TextureBuffer* {.header: "TextureBuffer", importcpp: "osg::TextureBuffer", byref.} = object #of class osg::Texture

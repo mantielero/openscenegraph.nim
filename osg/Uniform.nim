@@ -1,17 +1,17 @@
-import /usr/include/osg/Vec3  # provides: osg::Vec3
-import /usr/include/osg/GLExtensions  # provides: osg::GLExtensions
-import /usr/include/osg/Vec4  # provides: osg::Vec4
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/Matrixf  # provides: osg::Matrixf
-import /usr/include/osg/Array  # provides: osg::Int64Array, osg::IntArray, osg::FloatArray, osg::DoubleArray, osg::UInt64Array, osg::UIntArray
-import /usr/include/osg/Callback  # provides: osg::UniformCallback
-import /usr/include/osg/Vec2  # provides: osg::Vec2
-import /usr/include/osg/StateSet  # provides: osg::StateSet
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
-import /usr/include/osg/Matrixd  # provides: osg::Matrixd
-import /usr/include/osg/Vec4d  # provides: osg::Vec4d
-import /usr/include/osg/Vec3d  # provides: osg::Vec3d
-import /usr/include/osg/Vec2d  # provides: osg::Vec2d
+import Vec3  # provides: osg::Vec3
+import GLExtensions  # provides: osg::GLExtensions
+import Vec4  # provides: osg::Vec4
+import Object  # provides: osg::Object
+import Matrixf  # provides: osg::Matrixf
+import Array  # provides: osg::UInt64Array, osg::UIntArray, osg::IntArray, osg::Int64Array, osg::FloatArray, osg::DoubleArray
+import Callback  # provides: osg::UniformCallback
+import Vec2  # provides: osg::Vec2
+import StateSet  # provides: osg::StateSet
+import CopyOp  # provides: osg::CopyOp
+import Matrixd  # provides: osg::Matrixd
+import Vec4d  # provides: osg::Vec4d
+import Vec3d  # provides: osg::Vec3d
+import Vec2d  # provides: osg::Vec2d
 const
   col_count* = 0
   row_count* = 0

@@ -1,7 +1,7 @@
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/TexGen  # provides: osg::TexGen
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
-import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
+import Object  # provides: osg::Object
+import TexGen  # provides: osg::TexGen
+import CopyOp  # provides: osg::CopyOp
+import NodeVisitor  # provides: osg::NodeVisitor
 type
   ReferenceFrame* {.size:sizeof(cuint),header: "TexGenNode", importcpp: "osg::TexGenNode::ReferenceFrame".} = enum
     RELATIVE_RF = 0,

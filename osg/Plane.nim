@@ -1,10 +1,10 @@
-import /usr/include/osg/BoundingSphere  # provides: osg::BoundingSphere
-import /usr/include/osg/Vec3f  # provides: osg::Vec3f
-import /usr/include/osg/BoundingBox  # provides: osg::BoundingBox
-import /usr/include/osg/Matrix  # provides: osg::Matrix
-import /usr/include/osg/Vec4d  # provides: osg::Vec4d
-import /usr/include/osg/Vec3d  # provides: osg::Vec3d
-import /usr/include/osg/Vec4f  # provides: osg::Vec4f
+import BoundingSphere  # provides: osg::BoundingSphere
+import Vec3f  # provides: osg::Vec3f
+import BoundingBox  # provides: osg::BoundingBox
+import Matrix  # provides: osg::Matrix
+import Vec4d  # provides: osg::Vec4d
+import Vec3d  # provides: osg::Vec3d
+import Vec4f  # provides: osg::Vec4f
 const
   num_components* = 3
 

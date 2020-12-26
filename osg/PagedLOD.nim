@@ -1,9 +1,9 @@
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/Referenced  # provides: osg::Referenced
-import /usr/include/osg/Node  # provides: osg::Node
-import /usr/include/osg/Group  # provides: osg::NodeList
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
-import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
+import Object  # provides: osg::Object
+import Referenced  # provides: osg::Referenced
+import Node  # provides: osg::Node
+import Group  # provides: osg::NodeList
+import CopyOp  # provides: osg::CopyOp
+import NodeVisitor  # provides: osg::NodeVisitor
 type
   PerRangeDataList* {.header: "PagedLOD", importcpp: "osg::PagedLOD::PerRangeDataList".} = cint
 

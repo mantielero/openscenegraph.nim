@@ -1,12 +1,12 @@
-import /usr/include/osg/Vec3  # provides: osg::Vec3
-import /usr/include/osg/State  # provides: osg::State
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/Node  # provides: osg::Node
-import /usr/include/osg/Drawable  # provides: osg::Drawable
-import /usr/include/osg/Callback  # provides: osg::NodeCallback, osg::DrawableCullCallback
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
-import /usr/include/osg/Matrixd  # provides: osg::Matrixd
-import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
+import Vec3  # provides: osg::Vec3
+import State  # provides: osg::State
+import Object  # provides: osg::Object
+import Node  # provides: osg::Node
+import Drawable  # provides: osg::Drawable
+import Callback  # provides: osg::NodeCallback, osg::DrawableCullCallback
+import CopyOp  # provides: osg::CopyOp
+import Matrixd  # provides: osg::Matrixd
+import NodeVisitor  # provides: osg::NodeVisitor
 type
   ClusterCullingCallback* {.header: "ClusterCullingCallback", importcpp: "osg::ClusterCullingCallback", byref.} = object #of class osg::DrawableCullCallback
     ## Implements cluster culling to cull back facing subgraphs and

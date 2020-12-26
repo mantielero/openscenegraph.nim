@@ -1,11 +1,11 @@
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/Matrixf  # provides: osg::Matrixf
-import /usr/include/osg/Node  # provides: osg::Node
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
-import /usr/include/osg/Matrixd  # provides: osg::Matrixd
-import /usr/include/osg/Vec3d  # provides: osg::Vec3d
-import /usr/include/osg/Quat  # provides: osg::Quat
-import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
+import Object  # provides: osg::Object
+import Matrixf  # provides: osg::Matrixf
+import Node  # provides: osg::Node
+import CopyOp  # provides: osg::CopyOp
+import Matrixd  # provides: osg::Matrixd
+import Vec3d  # provides: osg::Vec3d
+import Quat  # provides: osg::Quat
+import NodeVisitor  # provides: osg::NodeVisitor
 type
   LoopMode* {.size:sizeof(cuint),header: "AnimationPath", importcpp: "osg::AnimationPath::LoopMode".} = enum
     SWING = 0,

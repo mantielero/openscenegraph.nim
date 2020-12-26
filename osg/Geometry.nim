@@ -1,12 +1,12 @@
-import /usr/include/osg/State  # provides: osg::State
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/BufferObject  # provides: osg::VertexBufferObject, osg::ElementBufferObject
-import /usr/include/osg/Array  # provides: osg::Array, osg::Array::Binding
-import /usr/include/osg/PrimitiveSet  # provides: osg::PrimitiveIndexFunctor, osg::PrimitiveFunctor, osg::PrimitiveSet
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
-import /usr/include/osg/VertexArrayState  # provides: osg::VertexArrayState
-import /usr/include/osg/RenderInfo  # provides: osg::RenderInfo
-import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
+import State  # provides: osg::State
+import Object  # provides: osg::Object
+import BufferObject  # provides: osg::VertexBufferObject, osg::ElementBufferObject
+import Array  # provides: osg::Array, osg::Array::Binding
+import PrimitiveSet  # provides: osg::PrimitiveIndexFunctor, osg::PrimitiveSet, osg::PrimitiveFunctor
+import CopyOp  # provides: osg::CopyOp
+import VertexArrayState  # provides: osg::VertexArrayState
+import RenderInfo  # provides: osg::RenderInfo
+import NodeVisitor  # provides: osg::NodeVisitor
 type
   AttributeBinding* {.size:sizeof(cuint),header: "Geometry", importcpp: "osg::Geometry::AttributeBinding".} = enum
     ## deprecated, Same values as Array::Binding.

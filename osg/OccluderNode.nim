@@ -1,8 +1,8 @@
-import /usr/include/osg/BoundingSphere  # provides: osg::BoundingSphere
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/ConvexPlanarOccluder  # provides: osg::ConvexPlanarOccluder
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
-import /usr/include/osg/NodeVisitor  # provides: osg::NodeVisitor
+import BoundingSphere  # provides: osg::BoundingSphere
+import Object  # provides: osg::Object
+import ConvexPlanarOccluder  # provides: osg::ConvexPlanarOccluder
+import CopyOp  # provides: osg::CopyOp
+import NodeVisitor  # provides: osg::NodeVisitor
 {.push header: "OccluderNode".}
 
 proc constructOccluderNode*(): OccluderNode {.constructor,importcpp: "osg::OccluderNode::OccluderNode".}

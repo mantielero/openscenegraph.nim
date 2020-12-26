@@ -1,13 +1,13 @@
-import /usr/include/osg/Vec3  # provides: osg::Vec3
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/Array  # provides: osg::FloatArray, osg::IndexArray, osg::Vec3Array
-import /usr/include/osg/Vec3f  # provides: osg::Vec3f
-import /usr/include/osg/Vec2  # provides: osg::Vec2
-import /usr/include/osg/Vec2f  # provides: osg::Vec2f
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
-import /usr/include/osg/Matrix  # provides: osg::Matrix
-import /usr/include/osg/Matrixd  # provides: osg::Matrixd
-import /usr/include/osg/Quat  # provides: osg::Quat
+import Vec3  # provides: osg::Vec3
+import Object  # provides: osg::Object
+import Array  # provides: osg::Vec3Array, osg::FloatArray, osg::IndexArray
+import Vec3f  # provides: osg::Vec3f
+import Vec2  # provides: osg::Vec2
+import Vec2f  # provides: osg::Vec2f
+import CopyOp  # provides: osg::CopyOp
+import Matrix  # provides: osg::Matrix
+import Matrixd  # provides: osg::Matrixd
+import Quat  # provides: osg::Quat
 type
   TessellationMode* {.size:sizeof(cuint),header: "Shape", importcpp: "osg::TessellationHints::TessellationMode".} = enum
     USE_SHAPE_DEFAULTS = 0,

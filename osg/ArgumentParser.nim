@@ -1,4 +1,4 @@
-import /usr/include/osg/ApplicationUsage  # provides: osg::ApplicationUsage
+import ApplicationUsage  # provides: osg::ApplicationUsage
 type
   ParameterType* {.size:sizeof(cuint),header: "ArgumentParser", importcpp: "osg::ArgumentParser::Parameter::ParameterType".} = enum
     BOOL_PARAMETER = 0,

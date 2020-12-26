@@ -1,9 +1,9 @@
-import /usr/include/osg/Vec3  # provides: osg::Vec3
-import /usr/include/osg/Vec4  # provides: osg::Vec4
-import /usr/include/osg/Vec2  # provides: osg::Vec2
-import /usr/include/osg/Vec4d  # provides: osg::Vec4d
-import /usr/include/osg/Vec3d  # provides: osg::Vec3d
-import /usr/include/osg/Vec2d  # provides: osg::Vec2d
+import Vec3  # provides: osg::Vec3
+import Vec4  # provides: osg::Vec4
+import Vec2  # provides: osg::Vec2
+import Vec4d  # provides: osg::Vec4d
+import Vec3d  # provides: osg::Vec3d
+import Vec2d  # provides: osg::Vec2d
 type
   Index* {.header: "TriangleIndexFunctor", importcpp: "osg::TriangleIndexFunctor::drawElements::Index".} = GLuint
   IndexPointer* {.header: "TriangleIndexFunctor", importcpp: "osg::TriangleIndexFunctor::drawElements::IndexPointer".} = ptr Index

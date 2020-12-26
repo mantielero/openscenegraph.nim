@@ -1,5 +1,5 @@
-import /usr/include/osg/ArgumentParser  # provides: osg::ArgumentParser
-import /usr/include/osg/Matrixd  # provides: osg::Matrixd
+import ArgumentParser  # provides: osg::ArgumentParser
+import Matrixd  # provides: osg::Matrixd
 type
   DisplayType* {.size:sizeof(cuint),header: "DisplaySettings", importcpp: "osg::DisplaySettings::DisplayType".} = enum
     MONITOR = 0,

@@ -1,9 +1,9 @@
-import /usr/include/osg/State  # provides: osg::State
-import /usr/include/osg/Object  # provides: osg::Object
-import /usr/include/osg/StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
-import /usr/include/osg/Shader  # provides: osg::Shader, osg::ShaderDefines
-import /usr/include/osg/CopyOp  # provides: osg::CopyOp
-import /usr/include/osg/Uniform  # provides: osg::Uniform
+import State  # provides: osg::State
+import Object  # provides: osg::Object
+import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import Shader  # provides: osg::Shader, osg::ShaderDefines
+import CopyOp  # provides: osg::CopyOp
+import Uniform  # provides: osg::Uniform
 type
   AttribBindingList* {.header: "Program", importcpp: "osg::Program::AttribBindingList".} = cint
   FragDataBindingList* {.header: "Program", importcpp: "osg::Program::FragDataBindingList".} = cint
