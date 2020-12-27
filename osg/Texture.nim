@@ -9,80 +9,80 @@ import FrameStamp  # provides: osg::FrameStamp
 import Vec4i  # provides: osg::Vec4i
 type
   WrapParameter* {.size:sizeof(cuint),header: "Texture", importcpp: "osg::Texture::WrapParameter".} = enum
-    WRAP_S = 0,
-    WRAP_T = 1,
-    WRAP_R = 2
+    wrpprmtrWRAP_S = 0,
+    wrpprmtrWRAP_T = 1,
+    wrpprmtrWRAP_R = 2
 
   WrapMode* {.size:sizeof(cuint),header: "Texture", importcpp: "osg::Texture::WrapMode".} = enum
-    CLAMP = 10496,
-    REPEAT = 10497,
-    CLAMP_TO_BORDER = 33069,
-    CLAMP_TO_EDGE = 33071,
-    MIRROR = 33648
+    wrpmdCLAMP = 10496,
+    wrpmdREPEAT = 10497,
+    wrpmdCLAMP_TO_BORDER = 33069,
+    wrpmdCLAMP_TO_EDGE = 33071,
+    wrpmdMIRROR = 33648
 
   FilterParameter* {.size:sizeof(cuint),header: "Texture", importcpp: "osg::Texture::FilterParameter".} = enum
-    MIN_FILTER = 0,
-    MAG_FILTER = 1
+    fltrprmtrMIN_FILTER = 0,
+    fltrprmtrMAG_FILTER = 1
 
   FilterMode* {.size:sizeof(cuint),header: "Texture", importcpp: "osg::Texture::FilterMode".} = enum
-    NEAREST = 9728,
-    LINEAR = 9729,
-    NEAREST_MIPMAP_NEAREST = 9984,
-    LINEAR_MIPMAP_NEAREST = 9985,
-    NEAREST_MIPMAP_LINEAR = 9986,
-    LINEAR_MIPMAP_LINEAR = 9987
+    fltrmdNEAREST = 9728,
+    fltrmdLINEAR = 9729,
+    fltrmdNEAREST_MIPMAP_NEAREST = 9984,
+    fltrmdLINEAR_MIPMAP_NEAREST = 9985,
+    fltrmdNEAREST_MIPMAP_LINEAR = 9986,
+    fltrmdLINEAR_MIPMAP_LINEAR = 9987
 
   InternalFormatMode* {.size:sizeof(cuint),header: "Texture", importcpp: "osg::Texture::InternalFormatMode".} = enum
-    USE_IMAGE_DATA_FORMAT = 0,
-    USE_USER_DEFINED_FORMAT = 1,
-    USE_ARB_COMPRESSION = 2,
-    USE_S3TC_DXT1_COMPRESSION = 3,
-    USE_S3TC_DXT3_COMPRESSION = 4,
-    USE_S3TC_DXT5_COMPRESSION = 5,
-    USE_PVRTC_2BPP_COMPRESSION = 6,
-    USE_PVRTC_4BPP_COMPRESSION = 7,
-    USE_ETC_COMPRESSION = 8,
-    USE_ETC2_COMPRESSION = 9,
-    USE_RGTC1_COMPRESSION = 10,
-    USE_RGTC2_COMPRESSION = 11,
-    USE_S3TC_DXT1c_COMPRESSION = 12,
-    USE_S3TC_DXT1a_COMPRESSION = 13
+    ntrnlfrmtmdUSE_IMAGE_DATA_FORMAT = 0,
+    ntrnlfrmtmdUSE_USER_DEFINED_FORMAT = 1,
+    ntrnlfrmtmdUSE_ARB_COMPRESSION = 2,
+    ntrnlfrmtmdUSE_S3TC_DXT1_COMPRESSION = 3,
+    ntrnlfrmtmdUSE_S3TC_DXT3_COMPRESSION = 4,
+    ntrnlfrmtmdUSE_S3TC_DXT5_COMPRESSION = 5,
+    ntrnlfrmtmdUSE_PVRTC_2BPP_COMPRESSION = 6,
+    ntrnlfrmtmdUSE_PVRTC_4BPP_COMPRESSION = 7,
+    ntrnlfrmtmdUSE_ETC_COMPRESSION = 8,
+    ntrnlfrmtmdUSE_ETC2_COMPRESSION = 9,
+    ntrnlfrmtmdUSE_RGTC1_COMPRESSION = 10,
+    ntrnlfrmtmdUSE_RGTC2_COMPRESSION = 11,
+    ntrnlfrmtmdUSE_S3TC_DXT1c_COMPRESSION = 12,
+    ntrnlfrmtmdUSE_S3TC_DXT1a_COMPRESSION = 13
 
   InternalFormatType* {.size:sizeof(cuint),header: "Texture", importcpp: "osg::Texture::InternalFormatType".} = enum
     ## Texture type determined by the internal texture format
 
-    NORMALIZED = 0,
+    ntrnlfrmttypNORMALIZED = 0,
       ## default OpenGL format (clamped values to [0,1) or [0,255])
-    FLOAT = 1,
+    ntrnlfrmttypFLOAT = 1,
       ## float values, Shader Model 3.0 (see ARB_texture_float)
-    SIGNED_INTEGER = 2,
+    ntrnlfrmttypSIGNED_INTEGER = 2,
       ## Signed integer values (see EXT_texture_integer)
-    UNSIGNED_INTEGER = 4
+    ntrnlfrmttypUNSIGNED_INTEGER = 4
       ## Unsigned integer value (see EXT_texture_integer)
 
   ShadowCompareFunc* {.size:sizeof(cuint),header: "Texture", importcpp: "osg::Texture::ShadowCompareFunc".} = enum
-    NEVER = 512,
-    LESS = 513,
-    EQUAL = 514,
-    LEQUAL = 515,
-    GREATER = 516,
-    NOTEQUAL = 517,
-    GEQUAL = 518,
-    ALWAYS = 519
+    shdwcmprfncNEVER = 512,
+    shdwcmprfncLESS = 513,
+    shdwcmprfncEQUAL = 514,
+    shdwcmprfncLEQUAL = 515,
+    shdwcmprfncGREATER = 516,
+    shdwcmprfncNOTEQUAL = 517,
+    shdwcmprfncGEQUAL = 518,
+    shdwcmprfncALWAYS = 519
 
   ShadowTextureMode* {.size:sizeof(cuint),header: "Texture", importcpp: "osg::Texture::ShadowTextureMode".} = enum
-    NONE = 0,
-    ALPHA = 6406,
-    LUMINANCE = 6409,
-    INTENSITY = 32841
+    shdwtxtrmdNONE = 0,
+    shdwtxtrmdALPHA = 6406,
+    shdwtxtrmdLUMINANCE = 6409,
+    shdwtxtrmdINTENSITY = 32841
 
   GenerateMipmapMode* {.size:sizeof(cuint),header: "Texture", importcpp: "osg::Texture::GenerateMipmapMode".} = enum
     ## Returned by mipmapBeforeTexImage() to indicate what
     ## mipmapAfterTexImage() should do
 
-    GENERATE_MIPMAP_NONE = 0,
-    GENERATE_MIPMAP = 1,
-    GENERATE_MIPMAP_TEX_PARAMETER = 2
+    gnrtmpmpmdGENERATE_MIPMAP_NONE = 0,
+    gnrtmpmpmdGENERATE_MIPMAP = 1,
+    gnrtmpmpmdGENERATE_MIPMAP_TEX_PARAMETER = 2
 
   TextureObject* {.header: "Texture", importcpp: "osg::Texture::TextureObject", byref.} = object #of class osg::GraphicsObject
 

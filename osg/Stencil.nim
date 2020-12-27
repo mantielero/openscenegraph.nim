@@ -1,27 +1,27 @@
 import State  # provides: osg::State
 import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import StateAttribute  # provides: osg::StateAttribute::Type, osg::StateAttribute
 import CopyOp  # provides: osg::CopyOp
 type
   Function* {.size:sizeof(cuint),header: "Stencil", importcpp: "osg::Stencil::Function".} = enum
-    NEVER = 512,
-    LESS = 513,
-    EQUAL = 514,
-    LEQUAL = 515,
-    GREATER = 516,
-    NOTEQUAL = 517,
-    GEQUAL = 518,
-    ALWAYS = 519
+    fnctnNEVER = 512,
+    fnctnLESS = 513,
+    fnctnEQUAL = 514,
+    fnctnLEQUAL = 515,
+    fnctnGREATER = 516,
+    fnctnNOTEQUAL = 517,
+    fnctnGEQUAL = 518,
+    fnctnALWAYS = 519
 
   Operation* {.size:sizeof(cuint),header: "Stencil", importcpp: "osg::Stencil::Operation".} = enum
-    ZERO = 0,
-    INVERT = 5386,
-    KEEP = 7680,
-    REPLACE = 7681,
-    INCR = 7682,
-    DECR = 7683,
-    INCR_WRAP = 34055,
-    DECR_WRAP = 34056
+    prtnZERO = 0,
+    prtnINVERT = 5386,
+    prtnKEEP = 7680,
+    prtnREPLACE = 7681,
+    prtnINCR = 7682,
+    prtnDECR = 7683,
+    prtnINCR_WRAP = 34055,
+    prtnDECR_WRAP = 34056
 
   Stencil* {.header: "Stencil", importcpp: "osg::Stencil", byref.} = object #of class osg::StateAttribute
     ## Encapsulate OpenGL glStencilFunc/Op/Mask functions.

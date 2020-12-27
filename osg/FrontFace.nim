@@ -1,11 +1,11 @@
 import State  # provides: osg::State
 import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import StateAttribute  # provides: osg::StateAttribute::Type, osg::StateAttribute
 import CopyOp  # provides: osg::CopyOp
 type
   Mode* {.size:sizeof(cuint),header: "FrontFace", importcpp: "osg::FrontFace::Mode".} = enum
-    CLOCKWISE = 2304,
-    COUNTER_CLOCKWISE = 2305
+    mdCLOCKWISE = 2304,
+    mdCOUNTER_CLOCKWISE = 2305
 
   FrontFace* {.header: "FrontFace", importcpp: "osg::FrontFace", byref.} = object #of class osg::StateAttribute
     ## Class to specify the orientation of front-facing polygons.

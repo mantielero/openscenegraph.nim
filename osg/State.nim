@@ -1,5 +1,5 @@
 import AttributeDispatchers  # provides: osg::AttributeDispatchers
-import GLExtensions  # provides: osg::VertexAttribAlias, osg::GLExtensions
+import GLExtensions  # provides: osg::GLExtensions, osg::VertexAttribAlias
 import ShaderComposer  # provides: osg::ShaderComposer
 import BufferObject  # provides: osg::GLBufferObject
 import StateAttribute  # provides: osg::StateAttribute
@@ -18,16 +18,16 @@ import FrameStamp  # provides: osg::FrameStamp
 import DisplaySettings  # provides: osg::DisplaySettings
 type
   CheckForGLErrors* {.size:sizeof(cuint),header: "State", importcpp: "osg::State::CheckForGLErrors".} = enum
-    NEVER_CHECK_GL_ERRORS = 0,
+    chckfrglrrrsNEVER_CHECK_GL_ERRORS = 0,
       ## NEVER_CHECK_GL_ERRORS hints that OpenGL need not be checked for, this
       ## is the fastest option since checking for errors does incur a small
       ## overhead.
-    ONCE_PER_FRAME = 1,
+    chckfrglrrrsONCE_PER_FRAME = 1,
       ## ONCE_PER_FRAME means that OpenGL errors will be checked for once per
       ## frame, the overhead is still small, but at least OpenGL errors that
       ## are occurring will be caught, the reporting isn't fine grained enough
       ## for debugging purposes.
-    ONCE_PER_ATTRIBUTE = 2
+    chckfrglrrrsONCE_PER_ATTRIBUTE = 2
       ## ONCE_PER_ATTRIBUTE means that OpenGL errors will be checked for after
       ## every attribute is applied, allow errors to be directly associated
       ## with particular operations which makes debugging much easier.

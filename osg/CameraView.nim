@@ -6,9 +6,9 @@ import Quat  # provides: osg::Quat
 import NodeVisitor  # provides: osg::NodeVisitor
 type
   FieldOfViewMode* {.size:sizeof(cuint),header: "CameraView", importcpp: "osg::CameraView::FieldOfViewMode".} = enum
-    UNCONSTRAINED = 0,
-    HORIZONTAL = 1,
-    VERTICAL = 2
+    fldfvwmdUNCONSTRAINED = 0,
+    fldfvwmdHORIZONTAL = 1,
+    fldfvwmdVERTICAL = 2
 
 
 

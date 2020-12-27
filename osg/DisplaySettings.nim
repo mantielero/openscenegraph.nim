@@ -2,62 +2,62 @@ import ArgumentParser  # provides: osg::ArgumentParser
 import Matrixd  # provides: osg::Matrixd
 type
   DisplayType* {.size:sizeof(cuint),header: "DisplaySettings", importcpp: "osg::DisplaySettings::DisplayType".} = enum
-    MONITOR = 0,
-    POWERWALL = 1,
-    REALITY_CENTER = 2,
-    HEAD_MOUNTED_DISPLAY = 3
+    dsplytypMONITOR = 0,
+    dsplytypPOWERWALL = 1,
+    dsplytypREALITY_CENTER = 2,
+    dsplytypHEAD_MOUNTED_DISPLAY = 3
 
   StereoMode* {.size:sizeof(cuint),header: "DisplaySettings", importcpp: "osg::DisplaySettings::StereoMode".} = enum
-    QUAD_BUFFER = 0,
-    ANAGLYPHIC = 1,
-    HORIZONTAL_SPLIT = 2,
-    VERTICAL_SPLIT = 3,
-    LEFT_EYE = 4,
-    RIGHT_EYE = 5,
-    HORIZONTAL_INTERLACE = 6,
-    VERTICAL_INTERLACE = 7,
-    CHECKERBOARD = 8
+    strmdQUAD_BUFFER = 0,
+    strmdANAGLYPHIC = 1,
+    strmdHORIZONTAL_SPLIT = 2,
+    strmdVERTICAL_SPLIT = 3,
+    strmdLEFT_EYE = 4,
+    strmdRIGHT_EYE = 5,
+    strmdHORIZONTAL_INTERLACE = 6,
+    strmdVERTICAL_INTERLACE = 7,
+    strmdCHECKERBOARD = 8
 
   SplitStereoHorizontalEyeMapping* {.size:sizeof(cuint),header: "DisplaySettings", importcpp: "osg::DisplaySettings::SplitStereoHorizontalEyeMapping".} = enum
-    LEFT_EYE_LEFT_VIEWPORT = 0,
-    LEFT_EYE_RIGHT_VIEWPORT = 1
+    spltstrhrzntlymppngLEFT_EYE_LEFT_VIEWPORT = 0,
+    spltstrhrzntlymppngLEFT_EYE_RIGHT_VIEWPORT = 1
 
   SplitStereoVerticalEyeMapping* {.size:sizeof(cuint),header: "DisplaySettings", importcpp: "osg::DisplaySettings::SplitStereoVerticalEyeMapping".} = enum
-    LEFT_EYE_TOP_VIEWPORT = 0,
-    LEFT_EYE_BOTTOM_VIEWPORT = 1
+    spltstrvrtclymppngLEFT_EYE_TOP_VIEWPORT = 0,
+    spltstrvrtclymppngLEFT_EYE_BOTTOM_VIEWPORT = 1
 
   ImplicitBufferAttachment* {.size:sizeof(cuint),header: "DisplaySettings", importcpp: "osg::DisplaySettings::ImplicitBufferAttachment".} = enum
     ## Methods used to set and get defaults for Cameras implicit buffer
     ## attachments. For more info: See description of
     ## Camera::setImplicitBufferAttachment method
 
-    IMPLICIT_DEPTH_BUFFER_ATTACHMENT = 1,
-    IMPLICIT_STENCIL_BUFFER_ATTACHMENT = 2,
-    IMPLICIT_COLOR_BUFFER_ATTACHMENT = 4,
-    DEFAULT_IMPLICIT_BUFFER_ATTACHMENT = 5
+    mplctbffrttchmntIMPLICIT_DEPTH_BUFFER_ATTACHMENT = 1,
+    mplctbffrttchmntIMPLICIT_STENCIL_BUFFER_ATTACHMENT = 2,
+    mplctbffrttchmntIMPLICIT_COLOR_BUFFER_ATTACHMENT = 4,
+    mplctbffrttchmntDEFAULT_IMPLICIT_BUFFER_ATTACHMENT = 5
 
   SwapMethod* {.size:sizeof(cuint),header: "DisplaySettings", importcpp: "osg::DisplaySettings::SwapMethod".} = enum
-    SWAP_DEFAULT = 0,
-    SWAP_EXCHANGE = 1,
-    SWAP_COPY = 2,
-    SWAP_UNDEFINED = 3
+    swpmthdSWAP_DEFAULT = 0,
+    swpmthdSWAP_EXCHANGE = 1,
+    swpmthdSWAP_COPY = 2,
+    swpmthdSWAP_UNDEFINED = 3
 
   VertexBufferHint* {.size:sizeof(cuint),header: "DisplaySettings", importcpp: "osg::DisplaySettings::VertexBufferHint".} = enum
-    NO_PREFERENCE = 0,
-    VERTEX_BUFFER_OBJECT = 1,
-    VERTEX_ARRAY_OBJECT = 2
+    vrtxbffrhntNO_PREFERENCE = 0,
+    vrtxbffrhntVERTEX_BUFFER_OBJECT = 1,
+    vrtxbffrhntVERTEX_ARRAY_OBJECT = 2
 
   ShaderHint* {.size:sizeof(cuint),header: "DisplaySettings", importcpp: "osg::DisplaySettings::ShaderHint".} = enum
-    SHADER_NONE = 0,
-    SHADER_GL2 = 1,
-    SHADER_GLES2 = 2,
-    SHADER_GL3 = 3,
-    SHADER_GLES3 = 4
+    shdrhntSHADER_NONE = 0,
+    shdrhntSHADER_GL2 = 1,
+    shdrhntSHADER_GLES2 = 2,
+    shdrhntSHADER_GL3 = 3,
+    shdrhntSHADER_GLES3 = 4
 
   OSXMenubarBehavior* {.size:sizeof(cuint),header: "DisplaySettings", importcpp: "osg::DisplaySettings::OSXMenubarBehavior".} = enum
-    MENUBAR_AUTO_HIDE = 0,
-    MENUBAR_FORCE_HIDE = 1,
-    MENUBAR_FORCE_SHOW = 2
+    sxmnbrbhvrMENUBAR_AUTO_HIDE = 0,
+    sxmnbrbhvrMENUBAR_FORCE_HIDE = 1,
+    sxmnbrbhvrMENUBAR_FORCE_SHOW = 2
 
   ImplicitBufferAttachmentMask* {.header: "DisplaySettings", importcpp: "osg::DisplaySettings::ImplicitBufferAttachmentMask".} = cint
   FileNames* {.header: "DisplaySettings", importcpp: "osg::DisplaySettings::FileNames".} = cint

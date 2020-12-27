@@ -6,8 +6,8 @@ import Light  # provides: osg::Light
 import NodeVisitor  # provides: osg::NodeVisitor
 type
   ReferenceFrame* {.size:sizeof(cuint),header: "LightSource", importcpp: "osg::LightSource::ReferenceFrame".} = enum
-    RELATIVE_RF = 0,
-    ABSOLUTE_RF = 1
+    rfrncfrmRELATIVE_RF = 0,
+    rfrncfrmABSOLUTE_RF = 1
 
 
 

@@ -1,17 +1,17 @@
 import State  # provides: osg::State
 import Vec4  # provides: osg::Vec4
 import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import StateAttribute  # provides: osg::StateAttribute::Type, osg::StateAttribute
 import CopyOp  # provides: osg::CopyOp
 type
   Mode* {.size:sizeof(cuint),header: "Fog", importcpp: "osg::Fog::Mode".} = enum
-    EXP = 2048,
-    EXP2 = 2049,
-    LINEAR = 9729
+    mdEXP = 2048,
+    mdEXP2 = 2049,
+    mdLINEAR = 9729
 
   FogCoordinateSource* {.size:sizeof(cuint),header: "Fog", importcpp: "osg::Fog::FogCoordinateSource".} = enum
-    FOG_COORDINATE = 33873,
-    FRAGMENT_DEPTH = 33874
+    fgcrdntsrcFOG_COORDINATE = 33873,
+    fgcrdntsrcFRAGMENT_DEPTH = 33874
 
   Fog* {.header: "Fog", importcpp: "osg::Fog", byref.} = object #of class osg::StateAttribute
     ## Fog - encapsulates OpenGL fog state.

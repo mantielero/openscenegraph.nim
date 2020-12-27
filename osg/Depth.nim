@@ -1,17 +1,17 @@
 import State  # provides: osg::State
 import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import StateAttribute  # provides: osg::StateAttribute::Type, osg::StateAttribute
 import CopyOp  # provides: osg::CopyOp
 type
   Function* {.size:sizeof(cuint),header: "Depth", importcpp: "osg::Depth::Function".} = enum
-    NEVER = 512,
-    LESS = 513,
-    EQUAL = 514,
-    LEQUAL = 515,
-    GREATER = 516,
-    NOTEQUAL = 517,
-    GEQUAL = 518,
-    ALWAYS = 519
+    fnctnNEVER = 512,
+    fnctnLESS = 513,
+    fnctnEQUAL = 514,
+    fnctnLEQUAL = 515,
+    fnctnGREATER = 516,
+    fnctnNOTEQUAL = 517,
+    fnctnGEQUAL = 518,
+    fnctnALWAYS = 519
 
   Depth* {.header: "Depth", importcpp: "osg::Depth", byref.} = object #of class osg::StateAttribute
     ## Encapsulate OpenGL glDepthFunc/Mask/Range functions.

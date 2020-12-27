@@ -4,17 +4,17 @@ import CopyOp  # provides: osg::CopyOp
 import Program  # provides: osg::Program
 type
   Type* {.size:sizeof(cint),header: "Shader", importcpp: "osg::Shader::Type".} = enum
-    UNDEFINED = -1,
-    FRAGMENT = 35632,
-    VERTEX = 35633,
-    GEOMETRY = 36313,
-    TESSEVALUATION = 36487,
-    TESSCONTROL = 36488,
-    COMPUTE = 37305
+    typUNDEFINED = -1,
+    typFRAGMENT = 35632,
+    typVERTEX = 35633,
+    typGEOMETRY = 36313,
+    typTESSEVALUATION = 36487,
+    typTESSCONTROL = 36488,
+    typCOMPUTE = 37305
 
   ShaderDefinesMode* {.size:sizeof(cuint),header: "Shader", importcpp: "osg::Shader::ShaderDefinesMode".} = enum
-    USE_SHADER_PRAGMA = 0,
-    USE_MANUAL_SETTINGS = 1
+    shdrdfnsmdUSE_SHADER_PRAGMA = 0,
+    shdrdfnsmdUSE_MANUAL_SETTINGS = 1
 
   ShaderBinary* {.header: "Shader", importcpp: "osg::ShaderBinary", byref.} = object #of osg::Object
     ## Simple class for wrapping up the data used in OpenGL ES 2's

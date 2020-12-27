@@ -10,9 +10,9 @@ type
   LightingMode* {.size:sizeof(cuint),header: "View", importcpp: "osg::View::LightingMode".} = enum
     ## Options for controlling the global lighting used for the view.
 
-    NO_LIGHT = 0,
-    HEADLIGHT = 1,
-    SKY_LIGHT = 2
+    lghtngmdNO_LIGHT = 0,
+    lghtngmdHEADLIGHT = 1,
+    lghtngmdSKY_LIGHT = 2
 
   Slaves* {.header: "View", importcpp: "osg::View::Slaves".} = cint
 

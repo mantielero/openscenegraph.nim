@@ -7,16 +7,16 @@ import Uniform  # provides: osg::Uniform
 import NodeVisitor  # provides: osg::NodeVisitor
 type
   RenderingHint* {.size:sizeof(cuint),header: "StateSet", importcpp: "osg::StateSet::RenderingHint".} = enum
-    DEFAULT_BIN = 0,
-    OPAQUE_BIN = 1,
-    TRANSPARENT_BIN = 2
+    rndrnghntDEFAULT_BIN = 0,
+    rndrnghntOPAQUE_BIN = 1,
+    rndrnghntTRANSPARENT_BIN = 2
 
   RenderBinMode* {.size:sizeof(cuint),header: "StateSet", importcpp: "osg::StateSet::RenderBinMode".} = enum
-    INHERIT_RENDERBIN_DETAILS = 0,
-    USE_RENDERBIN_DETAILS = 1,
-    OVERRIDE_RENDERBIN_DETAILS = 2,
-    PROTECTED_RENDERBIN_DETAILS = 4,
-    OVERRIDE_PROTECTED_RENDERBIN_DETAILS = 6
+    rndrbnmdINHERIT_RENDERBIN_DETAILS = 0,
+    rndrbnmdUSE_RENDERBIN_DETAILS = 1,
+    rndrbnmdOVERRIDE_RENDERBIN_DETAILS = 2,
+    rndrbnmdPROTECTED_RENDERBIN_DETAILS = 4,
+    rndrbnmdOVERRIDE_PROTECTED_RENDERBIN_DETAILS = 6
 
   ParentList* {.header: "StateSet", importcpp: "osg::StateSet::ParentList".} = cint
   ModeList* {.header: "StateSet", importcpp: "osg::StateSet::ModeList".} = cint

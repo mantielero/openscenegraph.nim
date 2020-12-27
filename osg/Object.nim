@@ -6,7 +6,7 @@ import ValueObject  # provides: osg::ValueObject
 import Node  # provides: osg::Node
 import Image  # provides: osg::Image
 import Drawable  # provides: osg::Drawable
-import Callback  # provides: osg::CallbackObject, osg::Callback
+import Callback  # provides: osg::Callback, osg::CallbackObject
 import StateSet  # provides: osg::StateSet
 import CopyOp  # provides: osg::CopyOp
 import UserDataContainer  # provides: osg::UserDataContainer
@@ -14,9 +14,9 @@ import Uniform  # provides: osg::Uniform
 import NodeVisitor  # provides: osg::NodeVisitor
 type
   DataVariance* {.size:sizeof(cuint),header: "Object", importcpp: "osg::Object::DataVariance".} = enum
-    DYNAMIC = 0,
-    STATIC = 1,
-    UNSPECIFIED = 2
+    dtvrncDYNAMIC = 0,
+    dtvrncSTATIC = 1,
+    dtvrncUNSPECIFIED = 2
 
   DummyObject* {.header: "Object", importcpp: "osg::DummyObject", byref.} = object #of osg::Object
     ## DummyObject that can be used as placeholder but otherwise has no other

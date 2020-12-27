@@ -1,13 +1,6 @@
 import Vec3f  # provides: osg::Vec3f
 import Vec3d  # provides: osg::Vec3d
 type
-  BoundingSphereImpl* {.header: "BoundingSphere", importcpp: "osg::BoundingSphereImpl", byref.} [VT]= object
-    ## General purpose bounding sphere class for enclosing
-    ## nodes/objects/vertices. Bounds internal osg::Nodes in the scene,
-    ## assists in view frustum culling, etc. Similar in function to
-    ## BoundingBox, it's quicker for evaluating culling but generally will
-    ## not cull as aggressively because it encloses a greater volume.
-
   Vec_type* {.header: "BoundingSphere", importcpp: "osg::BoundingSphereImpl::vec_type".} = VT
   Value_type* {.header: "BoundingSphere", importcpp: "osg::BoundingSphereImpl::value_type".} = Value_type
 

@@ -1,6 +1,6 @@
 import State  # provides: osg::State
 import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import StateAttribute  # provides: osg::StateAttribute::Type, osg::StateAttribute
 import CopyOp  # provides: osg::CopyOp
 type
   ClampColor* {.header: "ClampColor", importcpp: "osg::ClampColor", byref.} = object #of class osg::StateAttribute

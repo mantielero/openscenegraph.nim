@@ -1,31 +1,31 @@
 import State  # provides: osg::State
 import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import StateAttribute  # provides: osg::StateAttribute::Type, osg::StateAttribute
 import CopyOp  # provides: osg::CopyOp
 type
   Face* {.size:sizeof(cuint),header: "StencilTwoSided", importcpp: "osg::StencilTwoSided::Face".} = enum
-    FRONT = 0,
-    BACK = 1
+    fcFRONT = 0,
+    fcBACK = 1
 
   Function* {.size:sizeof(cuint),header: "StencilTwoSided", importcpp: "osg::StencilTwoSided::Function".} = enum
-    NEVER = 512,
-    LESS = 513,
-    EQUAL = 514,
-    LEQUAL = 515,
-    GREATER = 516,
-    NOTEQUAL = 517,
-    GEQUAL = 518,
-    ALWAYS = 519
+    fnctnNEVER = 512,
+    fnctnLESS = 513,
+    fnctnEQUAL = 514,
+    fnctnLEQUAL = 515,
+    fnctnGREATER = 516,
+    fnctnNOTEQUAL = 517,
+    fnctnGEQUAL = 518,
+    fnctnALWAYS = 519
 
   Operation* {.size:sizeof(cuint),header: "StencilTwoSided", importcpp: "osg::StencilTwoSided::Operation".} = enum
-    ZERO = 0,
-    INVERT = 5386,
-    KEEP = 7680,
-    REPLACE = 7681,
-    INCR = 7682,
-    DECR = 7683,
-    INCR_WRAP = 34055,
-    DECR_WRAP = 34056
+    prtnZERO = 0,
+    prtnINVERT = 5386,
+    prtnKEEP = 7680,
+    prtnREPLACE = 7681,
+    prtnINCR = 7682,
+    prtnDECR = 7683,
+    prtnINCR_WRAP = 34055,
+    prtnDECR_WRAP = 34056
 
   StencilTwoSided* {.header: "StencilTwoSided", importcpp: "osg::StencilTwoSided", byref.} = object #of class osg::StateAttribute
     ## Provides OpenGL two sided stencil functionality, also known as

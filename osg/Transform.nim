@@ -8,9 +8,9 @@ import Matrix  # provides: osg::Matrix
 import NodeVisitor  # provides: osg::NodeVisitor
 type
   ReferenceFrame* {.size:sizeof(cuint),header: "Transform", importcpp: "osg::Transform::ReferenceFrame".} = enum
-    RELATIVE_RF = 0,
-    ABSOLUTE_RF = 1,
-    ABSOLUTE_RF_INHERIT_VIEWPOINT = 2
+    rfrncfrmRELATIVE_RF = 0,
+    rfrncfrmABSOLUTE_RF = 1,
+    rfrncfrmABSOLUTE_RF_INHERIT_VIEWPOINT = 2
 
 
 

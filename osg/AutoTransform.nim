@@ -8,16 +8,16 @@ import Quat  # provides: osg::Quat
 import NodeVisitor  # provides: osg::NodeVisitor
 type
   AutoRotateMode* {.size:sizeof(cuint),header: "AutoTransform", importcpp: "osg::AutoTransform::AutoRotateMode".} = enum
-    NO_ROTATION = 0,
-    ROTATE_TO_SCREEN = 1,
-    ROTATE_TO_CAMERA = 2,
-    ROTATE_TO_AXIS = 3
+    trttmdNO_ROTATION = 0,
+    trttmdROTATE_TO_SCREEN = 1,
+    trttmdROTATE_TO_CAMERA = 2,
+    trttmdROTATE_TO_AXIS = 3
 
   AxisAligned* {.size:sizeof(cuint),header: "AutoTransform", importcpp: "osg::AutoTransform::AxisAligned".} = enum
-    AXIAL_ROT_X_AXIS = 4,
-    AXIAL_ROT_Y_AXIS = 5,
-    AXIAL_ROT_Z_AXIS = 6,
-    CACHE_DIRTY = 7
+    xslgndAXIAL_ROT_X_AXIS = 4,
+    xslgndAXIAL_ROT_Y_AXIS = 5,
+    xslgndAXIAL_ROT_Z_AXIS = 6,
+    xslgndCACHE_DIRTY = 7
 
 
 

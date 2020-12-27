@@ -21,66 +21,66 @@ import Texture  # provides: osg::Texture
 import NodeVisitor  # provides: osg::NodeVisitor
 type
   TransformOrder* {.size:sizeof(cuint),header: "Camera", importcpp: "osg::Camera::TransformOrder".} = enum
-    PRE_MULTIPLY = 0,
-    POST_MULTIPLY = 1
+    trnsfrmrdrPRE_MULTIPLY = 0,
+    trnsfrmrdrPOST_MULTIPLY = 1
 
   ProjectionResizePolicy* {.size:sizeof(cuint),header: "Camera", importcpp: "osg::Camera::ProjectionResizePolicy".} = enum
-    FIXED = 0,
+    prjctnrszplcyFIXED = 0,
       ## Keep the projection matrix fixed, despite window resizes.
-    HORIZONTAL = 1,
+    prjctnrszplcyHORIZONTAL = 1,
       ## Adjust the HORIZONTAL field of view on window resizes.
-    VERTICAL = 2
+    prjctnrszplcyVERTICAL = 2
       ## Adjust the VERTICAL field of view on window resizes.
 
   RenderOrder* {.size:sizeof(cuint),header: "Camera", importcpp: "osg::Camera::RenderOrder".} = enum
-    PRE_RENDER = 0,
-    NESTED_RENDER = 1,
-    POST_RENDER = 2
+    rndrrdrPRE_RENDER = 0,
+    rndrrdrNESTED_RENDER = 1,
+    rndrrdrPOST_RENDER = 2
 
   RenderTargetImplementation* {.size:sizeof(cuint),header: "Camera", importcpp: "osg::Camera::RenderTargetImplementation".} = enum
-    FRAME_BUFFER_OBJECT = 0,
-    PIXEL_BUFFER_RTT = 1,
-    PIXEL_BUFFER = 2,
-    FRAME_BUFFER = 3,
-    SEPARATE_WINDOW = 4
+    rndrtrgtmplmnttnFRAME_BUFFER_OBJECT = 0,
+    rndrtrgtmplmnttnPIXEL_BUFFER_RTT = 1,
+    rndrtrgtmplmnttnPIXEL_BUFFER = 2,
+    rndrtrgtmplmnttnFRAME_BUFFER = 3,
+    rndrtrgtmplmnttnSEPARATE_WINDOW = 4
 
   BufferComponent* {.size:sizeof(cuint),header: "Camera", importcpp: "osg::Camera::BufferComponent".} = enum
-    DEPTH_BUFFER = 0,
-    STENCIL_BUFFER = 1,
-    PACKED_DEPTH_STENCIL_BUFFER = 2,
-    COLOR_BUFFER = 3,
-    COLOR_BUFFER0 = 4,
-    COLOR_BUFFER1 = 5,
-    COLOR_BUFFER2 = 6,
-    COLOR_BUFFER3 = 7,
-    COLOR_BUFFER4 = 8,
-    COLOR_BUFFER5 = 9,
-    COLOR_BUFFER6 = 10,
-    COLOR_BUFFER7 = 11,
-    COLOR_BUFFER8 = 12,
-    COLOR_BUFFER9 = 13,
-    COLOR_BUFFER10 = 14,
-    COLOR_BUFFER11 = 15,
-    COLOR_BUFFER12 = 16,
-    COLOR_BUFFER13 = 17,
-    COLOR_BUFFER14 = 18,
-    COLOR_BUFFER15 = 19
+    bffrcmpnntDEPTH_BUFFER = 0,
+    bffrcmpnntSTENCIL_BUFFER = 1,
+    bffrcmpnntPACKED_DEPTH_STENCIL_BUFFER = 2,
+    bffrcmpnntCOLOR_BUFFER = 3,
+    bffrcmpnntCOLOR_BUFFER0 = 4,
+    bffrcmpnntCOLOR_BUFFER1 = 5,
+    bffrcmpnntCOLOR_BUFFER2 = 6,
+    bffrcmpnntCOLOR_BUFFER3 = 7,
+    bffrcmpnntCOLOR_BUFFER4 = 8,
+    bffrcmpnntCOLOR_BUFFER5 = 9,
+    bffrcmpnntCOLOR_BUFFER6 = 10,
+    bffrcmpnntCOLOR_BUFFER7 = 11,
+    bffrcmpnntCOLOR_BUFFER8 = 12,
+    bffrcmpnntCOLOR_BUFFER9 = 13,
+    bffrcmpnntCOLOR_BUFFER10 = 14,
+    bffrcmpnntCOLOR_BUFFER11 = 15,
+    bffrcmpnntCOLOR_BUFFER12 = 16,
+    bffrcmpnntCOLOR_BUFFER13 = 17,
+    bffrcmpnntCOLOR_BUFFER14 = 18,
+    bffrcmpnntCOLOR_BUFFER15 = 19
 
   ResizeMask* {.size:sizeof(cuint),header: "Camera", importcpp: "osg::Camera::ResizeMask".} = enum
-    RESIZE_VIEWPORT = 1,
-    RESIZE_ATTACHMENTS = 2,
-    RESIZE_DEFAULT = 3,
-    RESIZE_PROJECTIONMATRIX = 4
+    rszmskRESIZE_VIEWPORT = 1,
+    rszmskRESIZE_ATTACHMENTS = 2,
+    rszmskRESIZE_DEFAULT = 3,
+    rszmskRESIZE_PROJECTIONMATRIX = 4
 
   ImplicitBufferAttachment* {.size:sizeof(cint),header: "Camera", importcpp: "osg::Camera::ImplicitBufferAttachment".} = enum
     ## Explicit control over implicit allocation of buffers when using FBO.
     ## Implicit buffers are automatically substituted when user have not
     ## attached such buffer.
 
-    USE_DISPLAY_SETTINGS_MASK = -1,
-    IMPLICIT_DEPTH_BUFFER_ATTACHMENT = 1,
-    IMPLICIT_STENCIL_BUFFER_ATTACHMENT = 2,
-    IMPLICIT_COLOR_BUFFER_ATTACHMENT = 4
+    mplctbffrttchmntUSE_DISPLAY_SETTINGS_MASK = -1,
+    mplctbffrttchmntIMPLICIT_DEPTH_BUFFER_ATTACHMENT = 1,
+    mplctbffrttchmntIMPLICIT_STENCIL_BUFFER_ATTACHMENT = 2,
+    mplctbffrttchmntIMPLICIT_COLOR_BUFFER_ATTACHMENT = 4
 
   BufferAttachmentMap* {.header: "Camera", importcpp: "osg::Camera::BufferAttachmentMap".} = cint
   ImplicitBufferAttachmentMask* {.header: "Camera", importcpp: "osg::Camera::ImplicitBufferAttachmentMask".} = cint

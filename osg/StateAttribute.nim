@@ -15,17 +15,17 @@ type
     ## conjunction with each other as when using
     ## StateSet::setAttributeAndModes(..).
 
-    OFF = 0,
+    vlsOFF = 0,
       ## means that associated GLMode and Override is disabled.
-    ON = 1,
+    vlsON = 1,
       ## means that associated GLMode is enabled and Override is disabled.
-    OVERRIDE = 2,
+    vlsOVERRIDE = 2,
       ## Overriding of GLMode's or StateAttributes is enabled, so that state
       ## below it is overridden.
-    PROTECTED = 4,
+    vlsPROTECTED = 4,
       ## Protecting of GLMode's or StateAttributes is enabled, so that state
       ## from above cannot override this and below state.
-    INHERIT = 8
+    vlsINHERIT = 8
       ## means that GLMode or StateAttribute should be inherited from above.
 
   GLMode* {.header: "StateAttribute", importcpp: "osg::StateAttribute::GLMode".} = GLenum

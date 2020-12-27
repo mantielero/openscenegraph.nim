@@ -10,13 +10,13 @@ import FrameStamp  # provides: osg::FrameStamp
 import NodeVisitor  # provides: osg::NodeVisitor
 type
   WriteHint* {.size:sizeof(cuint),header: "Image", importcpp: "osg::Image::WriteHint".} = enum
-    NO_PREFERENCE = 0,
-    STORE_INLINE = 1,
-    EXTERNAL_FILE = 2
+    wrthntNO_PREFERENCE = 0,
+    wrthntSTORE_INLINE = 1,
+    wrthntEXTERNAL_FILE = 2
 
   Origin* {.size:sizeof(cuint),header: "Image", importcpp: "osg::Image::Origin".} = enum
-    BOTTOM_LEFT = 0,
-    TOP_LEFT = 1
+    rgnBOTTOM_LEFT = 0,
+    rgnTOP_LEFT = 1
 
   DataIterator* {.header: "Image", importcpp: "osg::Image::DataIterator", byref.} = object
     ## Convenience class for assisting the copying of image data when the

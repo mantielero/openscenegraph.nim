@@ -1,16 +1,16 @@
 import State  # provides: osg::State
 import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import StateAttribute  # provides: osg::StateAttribute::Type, osg::StateAttribute
 import Image  # provides: osg::Image
 import CopyOp  # provides: osg::CopyOp
 type
   Face* {.size:sizeof(cuint),header: "TextureCubeMap", importcpp: "osg::TextureCubeMap::Face".} = enum
-    POSITIVE_X = 0,
-    NEGATIVE_X = 1,
-    POSITIVE_Y = 2,
-    NEGATIVE_Y = 3,
-    POSITIVE_Z = 4,
-    NEGATIVE_Z = 5
+    fcPOSITIVE_X = 0,
+    fcNEGATIVE_X = 1,
+    fcPOSITIVE_Y = 2,
+    fcNEGATIVE_Y = 3,
+    fcPOSITIVE_Z = 4,
+    fcNEGATIVE_Z = 5
 
   TextureCubeMap* {.header: "TextureCubeMap", importcpp: "osg::TextureCubeMap", byref.} = object #of class osg::Texture
     ## TextureCubeMap state class which encapsulates OpenGL texture cubemap

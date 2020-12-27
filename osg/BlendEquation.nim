@@ -1,17 +1,17 @@
 import State  # provides: osg::State
 import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import StateAttribute  # provides: osg::StateAttribute::Type, osg::StateAttribute
 import CopyOp  # provides: osg::CopyOp
 type
   Equation* {.size:sizeof(cuint),header: "BlendEquation", importcpp: "osg::BlendEquation::Equation".} = enum
-    LOGIC_OP = 3057,
-    FUNC_ADD = 32774,
-    RGBA_MIN = 32775,
-    RGBA_MAX = 32776,
-    FUNC_SUBTRACT = 32778,
-    FUNC_REVERSE_SUBTRACT = 32779,
-    ALPHA_MIN = 33568,
-    ALPHA_MAX = 33569
+    qtnLOGIC_OP = 3057,
+    qtnFUNC_ADD = 32774,
+    qtnRGBA_MIN = 32775,
+    qtnRGBA_MAX = 32776,
+    qtnFUNC_SUBTRACT = 32778,
+    qtnFUNC_REVERSE_SUBTRACT = 32779,
+    qtnALPHA_MIN = 33568,
+    qtnALPHA_MAX = 33569
 
   BlendEquation* {.header: "BlendEquation", importcpp: "osg::BlendEquation", byref.} = object #of class osg::StateAttribute
     ## Encapsulates OpenGL BlendEquation state.

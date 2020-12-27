@@ -3,9 +3,9 @@ import Object  # provides: osg::Object
 import GraphicsContext  # provides: osg::GraphicsContext
 type
   PreBlockOp* {.size:sizeof(cuint),header: "GraphicsThread", importcpp: "osg::BarrierOperation::PreBlockOp".} = enum
-    NO_OPERATION = 0,
-    GL_FLUSH = 1,
-    GL_FINISH = 2
+    prblckpNO_OPERATION = 0,
+    prblckpGL_FLUSH = 1,
+    prblckpGL_FINISH = 2
 
   RunOperations* {.header: "GraphicsThread", importcpp: "osg::RunOperations", byref.} = object #of osg::GraphicsOperation
 

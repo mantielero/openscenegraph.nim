@@ -9,14 +9,14 @@ type
     ## computing which child is active. Furthermore it determines how the
     ## bounding sphere is calculated.
 
-    USE_BOUNDING_SPHERE_CENTER = 0,
+    cntrmdUSE_BOUNDING_SPHERE_CENTER = 0,
       ## Uses the bounding sphere's center as the center of object and the
       ## geometrical bounding sphere of the node's children
-    USER_DEFINED_CENTER = 1,
+    cntrmdUSER_DEFINED_CENTER = 1,
       ## Uses the user defined center as the center of object; the bounding
       ## sphere is determined by the user defined center and user defined
       ## radius
-    UNION_OF_BOUNDING_SPHERE_AND_USER_DEFINED = 2
+    cntrmdUNION_OF_BOUNDING_SPHERE_AND_USER_DEFINED = 2
       ## Uses the user defined center as the center of object; the bounding
       ## sphere is the user defined bounding sphere expanded by the geometrical
       ## bounding sphere of the node's children
@@ -25,8 +25,8 @@ type
     ## Modes that control how the range values should be interpreted when
     ## computing which child is active.
 
-    DISTANCE_FROM_EYE_POINT = 0,
-    PIXEL_SIZE_ON_SCREEN = 1
+    rngmdDISTANCE_FROM_EYE_POINT = 0,
+    rngmdPIXEL_SIZE_ON_SCREEN = 1
 
   Vec_type* {.header: "LOD", importcpp: "osg::LOD::vec_type".} = cint
   Value_type* {.header: "LOD", importcpp: "osg::LOD::value_type".} = cint

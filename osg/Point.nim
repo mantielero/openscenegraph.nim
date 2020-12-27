@@ -1,7 +1,7 @@
 import Vec3  # provides: osg::Vec3
 import State  # provides: osg::State
 import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import StateAttribute  # provides: osg::StateAttribute::Type, osg::StateAttribute
 import CopyOp  # provides: osg::CopyOp
 type
   Point* {.header: "Point", importcpp: "osg::Point", byref.} = object #of class osg::StateAttribute

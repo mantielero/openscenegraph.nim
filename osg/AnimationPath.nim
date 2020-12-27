@@ -8,9 +8,9 @@ import Quat  # provides: osg::Quat
 import NodeVisitor  # provides: osg::NodeVisitor
 type
   LoopMode* {.size:sizeof(cuint),header: "AnimationPath", importcpp: "osg::AnimationPath::LoopMode".} = enum
-    SWING = 0,
-    LOOP = 1,
-    NO_LOOPING = 2
+    lpmdSWING = 0,
+    lpmdLOOP = 1,
+    lpmdNO_LOOPING = 2
 
   AnimationPath* {.header: "AnimationPath", importcpp: "osg::AnimationPath", byref.} = object #of osg::Object
     ## AnimationPath encapsulates a time varying transformation pathway. Can

@@ -1,11 +1,11 @@
 import State  # provides: osg::State
 import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import StateAttribute  # provides: osg::StateAttribute::Type, osg::StateAttribute
 import CopyOp  # provides: osg::CopyOp
 type
   CoordOriginMode* {.size:sizeof(cuint),header: "PointSprite", importcpp: "osg::PointSprite::CoordOriginMode".} = enum
-    LOWER_LEFT = 36001,
-    UPPER_LEFT = 36002
+    crdrgnmdLOWER_LEFT = 36001,
+    crdrgnmdUPPER_LEFT = 36002
 
   PointSprite* {.header: "PointSprite", importcpp: "osg::PointSprite", byref.} = object #of osg::StateAttribute
     ## PointSprite base class which encapsulates enabling of point sprites .

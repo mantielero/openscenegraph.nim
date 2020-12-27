@@ -6,13 +6,13 @@ type
     ## OSGNOTIFYLEVEL or OSG_NOTIFY_LEVEL. See documentation on osg::notify()
     ## for further details.
 
-    ALWAYS = 0,
-    FATAL = 1,
-    WARN = 2,
-    NOTICE = 3,
-    INFO = 4,
-    DEBUG_INFO = 5,
-    DEBUG_FP = 6
+    ntfysvrtyALWAYS = 0,
+    ntfysvrtyFATAL = 1,
+    ntfysvrtyWARN = 2,
+    ntfysvrtyNOTICE = 3,
+    ntfysvrtyINFO = 4,
+    ntfysvrtyDEBUG_INFO = 5,
+    ntfysvrtyDEBUG_FP = 6
 
   NotifyHandler* {.header: "Notify", importcpp: "osg::NotifyHandler", byref.} = object #of osg::Referenced
     ## Handler processing output of notification stream. It acts as a sink to

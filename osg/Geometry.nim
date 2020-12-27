@@ -1,8 +1,8 @@
 import State  # provides: osg::State
 import Object  # provides: osg::Object
-import BufferObject  # provides: osg::ElementBufferObject, osg::VertexBufferObject
+import BufferObject  # provides: osg::VertexBufferObject, osg::ElementBufferObject
 import Array  # provides: osg::Array, osg::Array::Binding
-import PrimitiveSet  # provides: osg::PrimitiveSet, osg::PrimitiveFunctor, osg::PrimitiveIndexFunctor
+import PrimitiveSet  # provides: osg::PrimitiveIndexFunctor, osg::PrimitiveSet, osg::PrimitiveFunctor
 import CopyOp  # provides: osg::CopyOp
 import VertexArrayState  # provides: osg::VertexArrayState
 import RenderInfo  # provides: osg::RenderInfo
@@ -11,10 +11,10 @@ type
   AttributeBinding* {.size:sizeof(cuint),header: "Geometry", importcpp: "osg::Geometry::AttributeBinding".} = enum
     ## deprecated, Same values as Array::Binding.
 
-    BIND_OFF = 0,
-    BIND_OVERALL = 1,
-    BIND_PER_PRIMITIVE_SET = 2,
-    BIND_PER_VERTEX = 4
+    ttrbtbndngBIND_OFF = 0,
+    ttrbtbndngBIND_OVERALL = 1,
+    ttrbtbndngBIND_PER_PRIMITIVE_SET = 2,
+    ttrbtbndngBIND_PER_VERTEX = 4
 
   ConfigureBufferObjectsVisitor* {.header: "Geometry", importcpp: "osg::ConfigureBufferObjectsVisitor", byref.} = object #of osg::NodeVisitor
     ## Convenience visitor for making sure that any BufferObjects that might

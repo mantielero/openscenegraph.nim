@@ -1,12 +1,12 @@
 import State  # provides: osg::State
 import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import StateAttribute  # provides: osg::StateAttribute::Type, osg::StateAttribute
 import CopyOp  # provides: osg::CopyOp
 type
   Mode* {.size:sizeof(cuint),header: "Multisample", importcpp: "osg::Multisample::Mode".} = enum
-    DONT_CARE = 4352,
-    FASTEST = 4353,
-    NICEST = 4354
+    mdDONT_CARE = 4352,
+    mdFASTEST = 4353,
+    mdNICEST = 4354
 
   Multisample* {.header: "Multisample", importcpp: "osg::Multisample", byref.} = object #of class osg::StateAttribute
     ## Multisample - encapsulates the OpenGL Multisample state.

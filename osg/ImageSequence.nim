@@ -5,11 +5,11 @@ import CopyOp  # provides: osg::CopyOp
 import NodeVisitor  # provides: osg::NodeVisitor
 type
   Mode* {.size:sizeof(cuint),header: "ImageSequence", importcpp: "osg::ImageSequence::Mode".} = enum
-    PRE_LOAD_ALL_IMAGES = 0,
-    PAGE_AND_RETAIN_IMAGES = 1,
-    PAGE_AND_DISCARD_USED_IMAGES = 2,
-    LOAD_AND_RETAIN_IN_UPDATE_TRAVERSAL = 3,
-    LOAD_AND_DISCARD_IN_UPDATE_TRAVERSAL = 4
+    mdPRE_LOAD_ALL_IMAGES = 0,
+    mdPAGE_AND_RETAIN_IMAGES = 1,
+    mdPAGE_AND_DISCARD_USED_IMAGES = 2,
+    mdLOAD_AND_RETAIN_IN_UPDATE_TRAVERSAL = 3,
+    mdLOAD_AND_DISCARD_IN_UPDATE_TRAVERSAL = 4
 
   ImageSequence* {.header: "ImageSequence", importcpp: "osg::ImageSequence", byref.} = object #of class osg::ImageStream
     ## Image Buffer class.

@@ -1,21 +1,21 @@
 import State  # provides: osg::State
 import Vec4  # provides: osg::Vec4
 import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import StateAttribute  # provides: osg::StateAttribute::Type, osg::StateAttribute
 import CopyOp  # provides: osg::CopyOp
 type
   Face* {.size:sizeof(cuint),header: "Material", importcpp: "osg::Material::Face".} = enum
-    FRONT = 1028,
-    BACK = 1029,
-    FRONT_AND_BACK = 1032
+    fcFRONT = 1028,
+    fcBACK = 1029,
+    fcFRONT_AND_BACK = 1032
 
   ColorMode* {.size:sizeof(cuint),header: "Material", importcpp: "osg::Material::ColorMode".} = enum
-    AMBIENT = 4608,
-    DIFFUSE = 4609,
-    SPECULAR = 4610,
-    EMISSION = 5632,
-    AMBIENT_AND_DIFFUSE = 5634,
-    OFF = 5635
+    clrmdAMBIENT = 4608,
+    clrmdDIFFUSE = 4609,
+    clrmdSPECULAR = 4610,
+    clrmdEMISSION = 5632,
+    clrmdAMBIENT_AND_DIFFUSE = 5634,
+    clrmdOFF = 5635
 
   Material* {.header: "Material", importcpp: "osg::Material", byref.} = object #of class osg::StateAttribute
     ## Material - encapsulates OpenGL glMaterial state.

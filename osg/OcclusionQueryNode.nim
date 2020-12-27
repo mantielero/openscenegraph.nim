@@ -9,9 +9,9 @@ import RenderInfo  # provides: osg::RenderInfo
 import NodeVisitor  # provides: osg::NodeVisitor
 type
   QueryGeometryState* {.size:sizeof(cuint),header: "OcclusionQueryNode", importcpp: "osg::OcclusionQueryNode::QueryGeometryState".} = enum
-    INVALID = 0,
-    VALID = 1,
-    USER_DEFINED = 2
+    qrygmtrysttINVALID = 0,
+    qrygmtrysttVALID = 1,
+    qrygmtrysttUSER_DEFINED = 2
 
   TestResult* {.header: "OcclusionQueryNode", importcpp: "osg::TestResult", byref.} = object #of osg::Referenced
 

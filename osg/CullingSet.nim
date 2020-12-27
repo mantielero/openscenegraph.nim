@@ -11,15 +11,15 @@ import StateSet  # provides: osg::StateSet
 import Matrix  # provides: osg::Matrix
 type
   MaskValues* {.size:sizeof(cuint),header: "CullingSet", importcpp: "osg::CullingSet::MaskValues".} = enum
-    NO_CULLING = 0,
-    VIEW_FRUSTUM_SIDES_CULLING = 1,
-    NEAR_PLANE_CULLING = 2,
-    FAR_PLANE_CULLING = 4,
-    VIEW_FRUSTUM_CULLING = 7,
-    SMALL_FEATURE_CULLING = 8,
-    SHADOW_OCCLUSION_CULLING = 16,
-    DEFAULT_CULLING = 25,
-    ENABLE_ALL_CULLING = 31
+    mskvlsNO_CULLING = 0,
+    mskvlsVIEW_FRUSTUM_SIDES_CULLING = 1,
+    mskvlsNEAR_PLANE_CULLING = 2,
+    mskvlsFAR_PLANE_CULLING = 4,
+    mskvlsVIEW_FRUSTUM_CULLING = 7,
+    mskvlsSMALL_FEATURE_CULLING = 8,
+    mskvlsSHADOW_OCCLUSION_CULLING = 16,
+    mskvlsDEFAULT_CULLING = 25,
+    mskvlsENABLE_ALL_CULLING = 31
 
   StateFrustumPair* {.header: "CullingSet", importcpp: "osg::CullingSet::StateFrustumPair".} = Pair[Ref_ptr[Stateset]]
   StateFrustumList* {.header: "CullingSet", importcpp: "osg::CullingSet::StateFrustumList".} = cint

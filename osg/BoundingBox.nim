@@ -1,11 +1,6 @@
 import Vec3f  # provides: osg::Vec3f
 import Vec3d  # provides: osg::Vec3d
 type
-  BoundingBoxImpl* {.header: "BoundingBox", importcpp: "osg::BoundingBoxImpl", byref.} [VT]= object
-    ## General purpose axis-aligned bounding box class for enclosing
-    ## objects/vertices. Bounds leaf objects in a scene such as osg::Drawable
-    ## objects. Used for frustum culling etc.
-
   Vec_type* {.header: "BoundingBox", importcpp: "osg::BoundingBoxImpl::vec_type".} = VT
   Value_type* {.header: "BoundingBox", importcpp: "osg::BoundingBoxImpl::value_type".} = Value_type
 

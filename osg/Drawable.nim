@@ -3,12 +3,12 @@ import State  # provides: osg::State
 import BoundingSphere  # provides: osg::BoundingSphere
 import Vec4  # provides: osg::Vec4
 import Object  # provides: osg::Object
-import Array  # provides: osg::UIntArray, osg::ShortArray, osg::UByteArray, osg::ByteArray, osg::Vec4ubArray, osg::Vec2dArray, osg::IntArray, osg::Vec2Array, osg::Vec3Array, osg::Vec4dArray, osg::DoubleArray, osg::Vec3dArray, osg::Array, osg::UShortArray, osg::Vec4Array, osg::FloatArray
+import Array  # provides: osg::DoubleArray, osg::Vec4ubArray, osg::UIntArray, osg::ShortArray, osg::Vec3dArray, osg::Vec3Array, osg::Vec2dArray, osg::Vec2Array, osg::IntArray, osg::Array, osg::Vec4Array, osg::UByteArray, osg::ByteArray, osg::UShortArray, osg::FloatArray, osg::Vec4dArray
 import Shape  # provides: osg::Shape
-import PrimitiveSet  # provides: osg::PrimitiveFunctor, osg::PrimitiveIndexFunctor
+import PrimitiveSet  # provides: osg::PrimitiveIndexFunctor, osg::PrimitiveFunctor
 import Node  # provides: osg::MatrixList, osg::Node
 import buffered_value  # provides: osg::buffered_value
-import Callback  # provides: osg::DrawableUpdateCallback, osg::DrawableEventCallback, osg::DrawableCullCallback
+import Callback  # provides: osg::DrawableEventCallback, osg::DrawableCullCallback, osg::DrawableUpdateCallback
 import Vec2  # provides: osg::Vec2
 import BoundingBox  # provides: osg::BoundingBox
 import CopyOp  # provides: osg::CopyOp
@@ -21,25 +21,25 @@ import Vec4ub  # provides: osg::Vec4ub
 import NodeVisitor  # provides: osg::NodeVisitor
 type
   AttributeTypes* {.size:sizeof(cuint),header: "Drawable", importcpp: "osg::Drawable::AttributeTypes".} = enum
-    VERTICES = 0,
-    WEIGHTS = 1,
-    NORMALS = 2,
-    COLORS = 3,
-    SECONDARY_COLORS = 4,
-    FOG_COORDS = 5,
-    ATTRIBUTE_6 = 6,
-    ATTRIBUTE_7 = 7,
-    TEXTURE_COORDS = 8,
-    TEXTURE_COORDS_0 = 8,
-    TEXTURE_COORDS = 8,
-    TEXTURE_COORDS_0 = 8,
-    TEXTURE_COORDS_1 = 9,
-    TEXTURE_COORDS_2 = 10,
-    TEXTURE_COORDS_3 = 11,
-    TEXTURE_COORDS_4 = 12,
-    TEXTURE_COORDS_5 = 13,
-    TEXTURE_COORDS_6 = 14,
-    TEXTURE_COORDS_7 = 15
+    ttrbttypsVERTICES = 0,
+    ttrbttypsWEIGHTS = 1,
+    ttrbttypsNORMALS = 2,
+    ttrbttypsCOLORS = 3,
+    ttrbttypsSECONDARY_COLORS = 4,
+    ttrbttypsFOG_COORDS = 5,
+    ttrbttypsATTRIBUTE_6 = 6,
+    ttrbttypsATTRIBUTE_7 = 7,
+    ttrbttypsTEXTURE_COORDS = 8,
+    ttrbttypsTEXTURE_COORDS_0 = 8,
+    ttrbttypsTEXTURE_COORDS = 8,
+    ttrbttypsTEXTURE_COORDS_0 = 8,
+    ttrbttypsTEXTURE_COORDS_1 = 9,
+    ttrbttypsTEXTURE_COORDS_2 = 10,
+    ttrbttypsTEXTURE_COORDS_3 = 11,
+    ttrbttypsTEXTURE_COORDS_4 = 12,
+    ttrbttypsTEXTURE_COORDS_5 = 13,
+    ttrbttypsTEXTURE_COORDS_6 = 14,
+    ttrbttypsTEXTURE_COORDS_7 = 15
 
   AttributeFunctor* {.header: "Drawable", importcpp: "osg::Drawable::AttributeFunctor", byref.} = object
 

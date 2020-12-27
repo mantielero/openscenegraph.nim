@@ -2,11 +2,11 @@ import Object  # provides: osg::Object
 import CopyOp  # provides: osg::CopyOp
 type
   SampleFormat* {.size:sizeof(cuint),header: "AudioStream", importcpp: "osg::AudioStream::SampleFormat".} = enum
-    SAMPLE_FORMAT_U8 = 0,
-    SAMPLE_FORMAT_S16 = 1,
-    SAMPLE_FORMAT_S24 = 2,
-    SAMPLE_FORMAT_S32 = 3,
-    SAMPLE_FORMAT_F32 = 4
+    smplfrmtSAMPLE_FORMAT_U8 = 0,
+    smplfrmtSAMPLE_FORMAT_S16 = 1,
+    smplfrmtSAMPLE_FORMAT_S24 = 2,
+    smplfrmtSAMPLE_FORMAT_S32 = 3,
+    smplfrmtSAMPLE_FORMAT_F32 = 4
 
   AudioSink* {.header: "AudioStream", importcpp: "osg::AudioSink", byref.} = object #of osg::Object
     ## Pure virtual AudioSink bass class that is used to connect the audio

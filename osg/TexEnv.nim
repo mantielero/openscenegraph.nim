@@ -1,15 +1,15 @@
 import State  # provides: osg::State
 import Vec4  # provides: osg::Vec4
 import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import StateAttribute  # provides: osg::StateAttribute::Type, osg::StateAttribute
 import CopyOp  # provides: osg::CopyOp
 type
   Mode* {.size:sizeof(cuint),header: "TexEnv", importcpp: "osg::TexEnv::Mode".} = enum
-    ADD = 260,
-    BLEND = 3042,
-    REPLACE = 7681,
-    MODULATE = 8448,
-    DECAL = 8449
+    mdADD = 260,
+    mdBLEND = 3042,
+    mdREPLACE = 7681,
+    mdMODULATE = 8448,
+    mdDECAL = 8449
 
   TexEnv* {.header: "TexEnv", importcpp: "osg::TexEnv", byref.} = object #of class osg::StateAttribute
     ## TexEnv encapsulates the OpenGL glTexEnv (texture environment) state.

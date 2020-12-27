@@ -1,22 +1,22 @@
 import State  # provides: osg::State
 import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import StateAttribute  # provides: osg::StateAttribute::Type, osg::StateAttribute
 import Plane  # provides: osg::Plane
 import CopyOp  # provides: osg::CopyOp
 import Matrixd  # provides: osg::Matrixd
 type
   Mode* {.size:sizeof(cuint),header: "TexGen", importcpp: "osg::TexGen::Mode".} = enum
-    EYE_LINEAR = 9216,
-    OBJECT_LINEAR = 9217,
-    SPHERE_MAP = 9218,
-    NORMAL_MAP = 34065,
-    REFLECTION_MAP = 34066
+    mdEYE_LINEAR = 9216,
+    mdOBJECT_LINEAR = 9217,
+    mdSPHERE_MAP = 9218,
+    mdNORMAL_MAP = 34065,
+    mdREFLECTION_MAP = 34066
 
   Coord* {.size:sizeof(cuint),header: "TexGen", importcpp: "osg::TexGen::Coord".} = enum
-    S = 0,
-    T = 1,
-    R = 2,
-    Q = 3
+    crdS = 0,
+    crdT = 1,
+    crdR = 2,
+    crdQ = 3
 
 
 

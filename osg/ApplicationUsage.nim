@@ -1,10 +1,10 @@
 type
   Type* {.size:sizeof(cuint),header: "ApplicationUsage", importcpp: "osg::ApplicationUsage::Type".} = enum
-    NO_HELP = 0,
-    COMMAND_LINE_OPTION = 1,
-    ENVIRONMENTAL_VARIABLE = 2,
-    KEYBOARD_MOUSE_BINDING = 4,
-    HELP_ALL = 7
+    typNO_HELP = 0,
+    typCOMMAND_LINE_OPTION = 1,
+    typENVIRONMENTAL_VARIABLE = 2,
+    typKEYBOARD_MOUSE_BINDING = 4,
+    typHELP_ALL = 7
 
   ApplicationUsageProxy* {.header: "ApplicationUsage", importcpp: "osg::ApplicationUsageProxy", byref.} = object
 

@@ -9,11 +9,11 @@ import CopyOp  # provides: osg::CopyOp
 import FrameStamp  # provides: osg::FrameStamp
 type
   Mode* {.size:sizeof(cuint),header: "BufferObject", importcpp: "osg::PixelDataBufferObject::Mode".} = enum
-    NONE = 0,
+    mdNONE = 0,
       ## A normal mode of this data buffer
-    READ = 1,
+    mdREAD = 1,
       ## Buffer is in read mode (
-    WRITE = 2
+    mdWRITE = 2
       ## Buffer is in write mode (
 
   BufferObjectProfile* {.header: "BufferObject", importcpp: "osg::BufferObjectProfile", byref.} = object

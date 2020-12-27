@@ -1,16 +1,16 @@
 import State  # provides: osg::State
 import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import StateAttribute  # provides: osg::StateAttribute::Type, osg::StateAttribute
 import CopyOp  # provides: osg::CopyOp
 import Texture  # provides: osg::Texture
 type
   Access* {.size:sizeof(cuint),header: "BindImageTexture", importcpp: "osg::BindImageTexture::Access".} = enum
     ## Type of access that will be performed on the texture image.
 
-    NOT_USED = 0,
-    READ_ONLY = 35000,
-    WRITE_ONLY = 35001,
-    READ_WRITE = 35002
+    ccssNOT_USED = 0,
+    ccssREAD_ONLY = 35000,
+    ccssWRITE_ONLY = 35001,
+    ccssREAD_WRITE = 35002
 
   BindImageTexture* {.header: "BindImageTexture", importcpp: "osg::BindImageTexture", byref.} = object #of osg::StateAttribute
     ## Bind texture to an image unit (available only if GL version is 4.2 or

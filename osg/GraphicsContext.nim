@@ -2,7 +2,7 @@ import State  # provides: osg::State
 import Vec4  # provides: osg::Vec4
 import Camera  # provides: osg::Camera
 import Object  # provides: osg::Object
-import OperationThread  # provides: osg::Operation, osg::RefBlock
+import OperationThread  # provides: osg::RefBlock, osg::Operation
 import CopyOp  # provides: osg::CopyOp
 import GraphicsThread  # provides: osg::GraphicsThread
 import DisplaySettings  # provides: osg::DisplaySettings

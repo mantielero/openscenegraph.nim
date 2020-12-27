@@ -1,16 +1,16 @@
 import ApplicationUsage  # provides: osg::ApplicationUsage
 type
   ParameterType* {.size:sizeof(cuint),header: "ArgumentParser", importcpp: "osg::ArgumentParser::Parameter::ParameterType".} = enum
-    BOOL_PARAMETER = 0,
-    FLOAT_PARAMETER = 1,
-    DOUBLE_PARAMETER = 2,
-    INT_PARAMETER = 3,
-    UNSIGNED_INT_PARAMETER = 4,
-    STRING_PARAMETER = 5
+    prmtrtypBOOL_PARAMETER = 0,
+    prmtrtypFLOAT_PARAMETER = 1,
+    prmtrtypDOUBLE_PARAMETER = 2,
+    prmtrtypINT_PARAMETER = 3,
+    prmtrtypUNSIGNED_INT_PARAMETER = 4,
+    prmtrtypSTRING_PARAMETER = 5
 
   ErrorSeverity* {.size:sizeof(cuint),header: "ArgumentParser", importcpp: "osg::ArgumentParser::ErrorSeverity".} = enum
-    BENIGN = 0,
-    CRITICAL = 1
+    rrrsvrtyBENIGN = 0,
+    rrrsvrtyCRITICAL = 1
 
   Parameter* {.header: "ArgumentParser", importcpp: "osg::ArgumentParser::Parameter", byref.} = object
 

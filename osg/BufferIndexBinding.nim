@@ -1,7 +1,7 @@
 import State  # provides: osg::State
 import Object  # provides: osg::Object
 import BufferObject  # provides: osg::BufferData
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import StateAttribute  # provides: osg::StateAttribute::Type, osg::StateAttribute
 import Array  # provides: osg::UIntArray
 import CopyOp  # provides: osg::CopyOp
 type

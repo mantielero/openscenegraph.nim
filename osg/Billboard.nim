@@ -7,16 +7,16 @@ import Matrix  # provides: osg::Matrix
 import NodeVisitor  # provides: osg::NodeVisitor
 type
   Mode* {.size:sizeof(cuint),header: "Billboard", importcpp: "osg::Billboard::Mode".} = enum
-    POINT_ROT_EYE = 0,
-    POINT_ROT_WORLD = 1,
-    AXIAL_ROT = 2
+    mdPOINT_ROT_EYE = 0,
+    mdPOINT_ROT_WORLD = 1,
+    mdAXIAL_ROT = 2
 
   AxisAligned* {.size:sizeof(cuint),header: "Billboard", importcpp: "osg::Billboard::AxisAligned".} = enum
-    AXIAL_ROT_X_AXIS = 3,
-    AXIAL_ROT_Y_AXIS = 4,
-    AXIAL_ROT_Z_AXIS = 5,
-    POINT_ROT_WORLD_Z_AXIS = 6,
-    CACHE_DIRTY = 7
+    xslgndAXIAL_ROT_X_AXIS = 3,
+    xslgndAXIAL_ROT_Y_AXIS = 4,
+    xslgndAXIAL_ROT_Z_AXIS = 5,
+    xslgndPOINT_ROT_WORLD_Z_AXIS = 6,
+    xslgndCACHE_DIRTY = 7
 
   PositionList* {.header: "Billboard", importcpp: "osg::Billboard::PositionList".} = cint
 

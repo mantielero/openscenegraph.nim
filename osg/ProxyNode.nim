@@ -10,16 +10,16 @@ type
     ## Modes which control how the center of object should be determined when
     ## computing which child is active.
 
-    USE_BOUNDING_SPHERE_CENTER = 0,
-    USER_DEFINED_CENTER = 1,
-    UNION_OF_BOUNDING_SPHERE_AND_USER_DEFINED = 2
+    cntrmdUSE_BOUNDING_SPHERE_CENTER = 0,
+    cntrmdUSER_DEFINED_CENTER = 1,
+    cntrmdUNION_OF_BOUNDING_SPHERE_AND_USER_DEFINED = 2
 
   LoadingExternalReferenceMode* {.size:sizeof(cuint),header: "ProxyNode", importcpp: "osg::ProxyNode::LoadingExternalReferenceMode".} = enum
     ## Modes which control how the proxynode external reference are loaded.
 
-    LOAD_IMMEDIATELY = 0,
-    DEFER_LOADING_TO_DATABASE_PAGER = 1,
-    NO_AUTOMATIC_LOADING = 2
+    ldngxtrnlrfrncmdLOAD_IMMEDIATELY = 0,
+    ldngxtrnlrfrncmdDEFER_LOADING_TO_DATABASE_PAGER = 1,
+    ldngxtrnlrfrncmdNO_AUTOMATIC_LOADING = 2
 
   Vec_type* {.header: "ProxyNode", importcpp: "osg::ProxyNode::vec_type".} = cint
   Value_type* {.header: "ProxyNode", importcpp: "osg::ProxyNode::value_type".} = cint

@@ -1,6 +1,6 @@
 import Vec3  # provides: osg::Vec3
 import Object  # provides: osg::Object
-import Array  # provides: osg::IndexArray, osg::FloatArray, osg::Vec3Array
+import Array  # provides: osg::FloatArray, osg::IndexArray, osg::Vec3Array
 import Vec3f  # provides: osg::Vec3f
 import Vec2  # provides: osg::Vec2
 import Vec2f  # provides: osg::Vec2f
@@ -10,12 +10,12 @@ import Matrixd  # provides: osg::Matrixd
 import Quat  # provides: osg::Quat
 type
   TessellationMode* {.size:sizeof(cuint),header: "Shape", importcpp: "osg::TessellationHints::TessellationMode".} = enum
-    USE_SHAPE_DEFAULTS = 0,
-    USE_TARGET_NUM_FACES = 1
+    tsslltnmdUSE_SHAPE_DEFAULTS = 0,
+    tsslltnmdUSE_TARGET_NUM_FACES = 1
 
   SphereHalf* {.size:sizeof(cuint),header: "Shape", importcpp: "osg::BuildShapeGeometryVisitor::SphereHalf".} = enum
-    SphereTopHalf = 0,
-    SphereBottomHalf = 1
+    sphrhlfSphereTopHalf = 0,
+    sphrhlfSphereBottomHalf = 1
 
   Sphere* {.header: "Shape", importcpp: "osg::Sphere", byref.} = object #of class osg::Shape
 

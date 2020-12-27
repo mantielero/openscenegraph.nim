@@ -1,12 +1,12 @@
 import State  # provides: osg::State
 import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import StateAttribute  # provides: osg::StateAttribute::Type, osg::StateAttribute
 import CopyOp  # provides: osg::CopyOp
 type
   Mode* {.size:sizeof(cuint),header: "CullFace", importcpp: "osg::CullFace::Mode".} = enum
-    FRONT = 1028,
-    BACK = 1029,
-    FRONT_AND_BACK = 1032
+    mdFRONT = 1028,
+    mdBACK = 1029,
+    mdFRONT_AND_BACK = 1032
 
   CullFace* {.header: "CullFace", importcpp: "osg::CullFace", byref.} = object #of class osg::StateAttribute
     ## Class to globally enable/disable OpenGL's polygon culling mode.

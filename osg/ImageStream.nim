@@ -4,14 +4,14 @@ import CopyOp  # provides: osg::CopyOp
 import Texture  # provides: osg::Texture
 type
   StreamStatus* {.size:sizeof(cuint),header: "ImageStream", importcpp: "osg::ImageStream::StreamStatus".} = enum
-    INVALID = 0,
-    PLAYING = 1,
-    PAUSED = 2,
-    REWINDING = 3
+    strmsttsINVALID = 0,
+    strmsttsPLAYING = 1,
+    strmsttsPAUSED = 2,
+    strmsttsREWINDING = 3
 
   LoopingMode* {.size:sizeof(cuint),header: "ImageStream", importcpp: "osg::ImageStream::LoopingMode".} = enum
-    NO_LOOPING = 0,
-    LOOPING = 1
+    lpngmdNO_LOOPING = 0,
+    lpngmdLOOPING = 1
 
   ImageStream* {.header: "ImageStream", importcpp: "osg::ImageStream", byref.} = object #of class osg::Image
     ## Image Stream class.

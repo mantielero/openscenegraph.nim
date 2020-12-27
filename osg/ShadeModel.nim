@@ -1,11 +1,11 @@
 import State  # provides: osg::State
 import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import StateAttribute  # provides: osg::StateAttribute::Type, osg::StateAttribute
 import CopyOp  # provides: osg::CopyOp
 type
   Mode* {.size:sizeof(cuint),header: "ShadeModel", importcpp: "osg::ShadeModel::Mode".} = enum
-    FLAT = 7424,
-    SMOOTH = 7425
+    mdFLAT = 7424,
+    mdSMOOTH = 7425
 
   ShadeModel* {.header: "ShadeModel", importcpp: "osg::ShadeModel", byref.} = object #of class osg::StateAttribute
     ## Class which encapsulates glShadeModel(..).

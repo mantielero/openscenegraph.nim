@@ -2,38 +2,38 @@ import Vec3  # provides: osg::Vec3
 import State  # provides: osg::State
 import Vec4  # provides: osg::Vec4
 import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import StateAttribute  # provides: osg::StateAttribute::Type, osg::StateAttribute
 import CopyOp  # provides: osg::CopyOp
 type
   CombineParam* {.size:sizeof(cuint),header: "TexEnvCombine", importcpp: "osg::TexEnvCombine::CombineParam".} = enum
-    ADD = 260,
-    REPLACE = 7681,
-    MODULATE = 8448,
-    SUBTRACT = 34023,
-    ADD_SIGNED = 34164,
-    INTERPOLATE = 34165,
-    DOT3_RGB = 34478,
-    DOT3_RGBA = 34479
+    cmbnprmADD = 260,
+    cmbnprmREPLACE = 7681,
+    cmbnprmMODULATE = 8448,
+    cmbnprmSUBTRACT = 34023,
+    cmbnprmADD_SIGNED = 34164,
+    cmbnprmINTERPOLATE = 34165,
+    cmbnprmDOT3_RGB = 34478,
+    cmbnprmDOT3_RGBA = 34479
 
   SourceParam* {.size:sizeof(cuint),header: "TexEnvCombine", importcpp: "osg::TexEnvCombine::SourceParam".} = enum
-    TEXTURE = 5890,
-    TEXTURE0 = 33984,
-    TEXTURE1 = 33985,
-    TEXTURE2 = 33986,
-    TEXTURE3 = 33987,
-    TEXTURE4 = 33988,
-    TEXTURE5 = 33989,
-    TEXTURE6 = 33990,
-    TEXTURE7 = 33991,
-    CONSTANT = 34166,
-    PRIMARY_COLOR = 34167,
-    PREVIOUS = 34168
+    srcprmTEXTURE = 5890,
+    srcprmTEXTURE0 = 33984,
+    srcprmTEXTURE1 = 33985,
+    srcprmTEXTURE2 = 33986,
+    srcprmTEXTURE3 = 33987,
+    srcprmTEXTURE4 = 33988,
+    srcprmTEXTURE5 = 33989,
+    srcprmTEXTURE6 = 33990,
+    srcprmTEXTURE7 = 33991,
+    srcprmCONSTANT = 34166,
+    srcprmPRIMARY_COLOR = 34167,
+    srcprmPREVIOUS = 34168
 
   OperandParam* {.size:sizeof(cuint),header: "TexEnvCombine", importcpp: "osg::TexEnvCombine::OperandParam".} = enum
-    SRC_COLOR = 768,
-    ONE_MINUS_SRC_COLOR = 769,
-    SRC_ALPHA = 770,
-    ONE_MINUS_SRC_ALPHA = 771
+    prndprmSRC_COLOR = 768,
+    prndprmONE_MINUS_SRC_COLOR = 769,
+    prndprmSRC_ALPHA = 770,
+    prndprmONE_MINUS_SRC_ALPHA = 771
 
   TexEnvCombine* {.header: "TexEnvCombine", importcpp: "osg::TexEnvCombine", byref.} = object #of class osg::StateAttribute
     ## TexEnvCombine encapsulates the OpenGL glTexEnvCombine (texture

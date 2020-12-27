@@ -1,24 +1,24 @@
 import State  # provides: osg::State
 import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import StateAttribute  # provides: osg::StateAttribute::Type, osg::StateAttribute
 import CopyOp  # provides: osg::CopyOp
 type
   BlendFuncMode* {.size:sizeof(cuint),header: "BlendFunc", importcpp: "osg::BlendFunc::BlendFuncMode".} = enum
-    ZERO = 0,
-    ONE = 1,
-    SRC_COLOR = 768,
-    ONE_MINUS_SRC_COLOR = 769,
-    SRC_ALPHA = 770,
-    ONE_MINUS_SRC_ALPHA = 771,
-    DST_ALPHA = 772,
-    ONE_MINUS_DST_ALPHA = 773,
-    DST_COLOR = 774,
-    ONE_MINUS_DST_COLOR = 775,
-    SRC_ALPHA_SATURATE = 776,
-    CONSTANT_COLOR = 32769,
-    ONE_MINUS_CONSTANT_COLOR = 32770,
-    CONSTANT_ALPHA = 32771,
-    ONE_MINUS_CONSTANT_ALPHA = 32772
+    blndfncmdZERO = 0,
+    blndfncmdONE = 1,
+    blndfncmdSRC_COLOR = 768,
+    blndfncmdONE_MINUS_SRC_COLOR = 769,
+    blndfncmdSRC_ALPHA = 770,
+    blndfncmdONE_MINUS_SRC_ALPHA = 771,
+    blndfncmdDST_ALPHA = 772,
+    blndfncmdONE_MINUS_DST_ALPHA = 773,
+    blndfncmdDST_COLOR = 774,
+    blndfncmdONE_MINUS_DST_COLOR = 775,
+    blndfncmdSRC_ALPHA_SATURATE = 776,
+    blndfncmdCONSTANT_COLOR = 32769,
+    blndfncmdONE_MINUS_CONSTANT_COLOR = 32770,
+    blndfncmdCONSTANT_ALPHA = 32771,
+    blndfncmdONE_MINUS_CONSTANT_ALPHA = 32772
 
   BlendFunc* {.header: "BlendFunc", importcpp: "osg::BlendFunc", byref.} = object #of class osg::StateAttribute
     ## Encapsulates OpenGL blend/transparency state.

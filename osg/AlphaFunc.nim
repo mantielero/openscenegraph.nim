@@ -1,17 +1,17 @@
 import State  # provides: osg::State
 import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import StateAttribute  # provides: osg::StateAttribute::Type, osg::StateAttribute
 import CopyOp  # provides: osg::CopyOp
 type
   ComparisonFunction* {.size:sizeof(cuint),header: "AlphaFunc", importcpp: "osg::AlphaFunc::ComparisonFunction".} = enum
-    NEVER = 512,
-    LESS = 513,
-    EQUAL = 514,
-    LEQUAL = 515,
-    GREATER = 516,
-    NOTEQUAL = 517,
-    GEQUAL = 518,
-    ALWAYS = 519
+    cmprsnfnctnNEVER = 512,
+    cmprsnfnctnLESS = 513,
+    cmprsnfnctnEQUAL = 514,
+    cmprsnfnctnLEQUAL = 515,
+    cmprsnfnctnGREATER = 516,
+    cmprsnfnctnNOTEQUAL = 517,
+    cmprsnfnctnGEQUAL = 518,
+    cmprsnfnctnALWAYS = 519
 
   AlphaFunc* {.header: "AlphaFunc", importcpp: "osg::AlphaFunc", byref.} = object #of class osg::StateAttribute
     ## Encapsulates OpenGL glAlphaFunc.

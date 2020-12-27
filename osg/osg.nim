@@ -10,146 +10,109 @@ type
     ## If your new subclass needs to override a standard StateAttribute then
     ## simply use that type's value.
 
-    TEXTURE = 0,
-    POLYGONMODE = 1,
-    POLYGONOFFSET = 2,
-    MATERIAL = 3,
-    ALPHAFUNC = 4,
-    ANTIALIAS = 5,
-    COLORTABLE = 6,
-    CULLFACE = 7,
-    FOG = 8,
-    FRONTFACE = 9,
-    LIGHT = 10,
-    POINT = 11,
-    LINEWIDTH = 12,
-    LINESTIPPLE = 13,
-    POLYGONSTIPPLE = 14,
-    SHADEMODEL = 15,
-    TEXENV = 16,
-    TEXENVFILTER = 17,
-    TEXGEN = 18,
-    TEXMAT = 19,
-    LIGHTMODEL = 20,
-    BLENDFUNC = 21,
-    BLENDEQUATION = 22,
-    LOGICOP = 23,
-    STENCIL = 24,
-    COLORMASK = 25,
-    DEPTH = 26,
-    VIEWPORT = 27,
-    SCISSOR = 28,
-    BLENDCOLOR = 29,
-    MULTISAMPLE = 30,
-    CLIPPLANE = 31,
-    COLORMATRIX = 32,
-    VERTEXPROGRAM = 33,
-    FRAGMENTPROGRAM = 34,
-    POINTSPRITE = 35,
-    PROGRAM = 36,
-    CLAMPCOLOR = 37,
-    HINT = 38,
-    SAMPLEMASKI = 39,
-    PRIMITIVERESTARTINDEX = 40,
-    CLIPCONTROL = 41,
-    VALIDATOR = 42,
+    typTEXTURE = 0,
+    typPOLYGONMODE = 1,
+    typPOLYGONOFFSET = 2,
+    typMATERIAL = 3,
+    typALPHAFUNC = 4,
+    typANTIALIAS = 5,
+    typCOLORTABLE = 6,
+    typCULLFACE = 7,
+    typFOG = 8,
+    typFRONTFACE = 9,
+    typLIGHT = 10,
+    typPOINT = 11,
+    typLINEWIDTH = 12,
+    typLINESTIPPLE = 13,
+    typPOLYGONSTIPPLE = 14,
+    typSHADEMODEL = 15,
+    typTEXENV = 16,
+    typTEXENVFILTER = 17,
+    typTEXGEN = 18,
+    typTEXMAT = 19,
+    typLIGHTMODEL = 20,
+    typBLENDFUNC = 21,
+    typBLENDEQUATION = 22,
+    typLOGICOP = 23,
+    typSTENCIL = 24,
+    typCOLORMASK = 25,
+    typDEPTH = 26,
+    typVIEWPORT = 27,
+    typSCISSOR = 28,
+    typBLENDCOLOR = 29,
+    typMULTISAMPLE = 30,
+    typCLIPPLANE = 31,
+    typCOLORMATRIX = 32,
+    typVERTEXPROGRAM = 33,
+    typFRAGMENTPROGRAM = 34,
+    typPOINTSPRITE = 35,
+    typPROGRAM = 36,
+    typCLAMPCOLOR = 37,
+    typHINT = 38,
+    typSAMPLEMASKI = 39,
+    typPRIMITIVERESTARTINDEX = 40,
+    typCLIPCONTROL = 41,
+    typVALIDATOR = 42,
       ## osgFX namespace
-    VIEWMATRIXEXTRACTOR = 43,
+    typVIEWMATRIXEXTRACTOR = 43,
       ## osgFX namespace
-    OSGNV_PARAMETER_BLOCK = 44,
+    typOSGNV_PARAMETER_BLOCK = 44,
       ## osgNV namespace
-    OSGNVEXT_TEXTURE_SHADER = 45,
+    typOSGNVEXT_TEXTURE_SHADER = 45,
       ## osgNV namespace
-    OSGNVEXT_VERTEX_PROGRAM = 46,
+    typOSGNVEXT_VERTEX_PROGRAM = 46,
       ## osgNV namespace
-    OSGNVEXT_REGISTER_COMBINERS = 47,
+    typOSGNVEXT_REGISTER_COMBINERS = 47,
       ## osgNV namespace
-    OSGNVCG_PROGRAM = 48,
+    typOSGNVCG_PROGRAM = 48,
       ## osgNVCg namespace
-    OSGNVSLANG_PROGRAM = 49,
+    typOSGNVSLANG_PROGRAM = 49,
       ## osgNVCg namespace
-    OSGNVPARSE_PROGRAM_PARSER = 50,
+    typOSGNVPARSE_PROGRAM_PARSER = 50,
       ## osgNVCg namespace
-    UNIFORMBUFFERBINDING = 51,
+    typUNIFORMBUFFERBINDING = 51,
       ## osgNVCg namespace
-    TRANSFORMFEEDBACKBUFFERBINDING = 52,
+    typTRANSFORMFEEDBACKBUFFERBINDING = 52,
       ## osgNVCg namespace
-    ATOMICCOUNTERBUFFERBINDING = 53,
+    typATOMICCOUNTERBUFFERBINDING = 53,
       ## osgNVCg namespace
-    PATCH_PARAMETER = 54,
+    typPATCH_PARAMETER = 54,
       ## osgNVCg namespace
-    FRAME_BUFFER_OBJECT = 55,
+    typFRAME_BUFFER_OBJECT = 55,
       ## osgNVCg namespace
-    VERTEX_ATTRIB_DIVISOR = 56,
+    typVERTEX_ATTRIB_DIVISOR = 56,
       ## osgNVCg namespace
-    SHADERSTORAGEBUFFERBINDING = 57,
+    typSHADERSTORAGEBUFFERBINDING = 57,
       ## osgNVCg namespace
-    INDIRECTDRAWBUFFERBINDING = 58,
+    typINDIRECTDRAWBUFFERBINDING = 58,
       ## osgNVCg namespace
-    VIEWPORTINDEXED = 59,
+    typVIEWPORTINDEXED = 59,
       ## osgNVCg namespace
-    DEPTHRANGEINDEXED = 60,
+    typDEPTHRANGEINDEXED = 60,
       ## osgNVCg namespace
-    SCISSORINDEXED = 61,
+    typSCISSORINDEXED = 61,
       ## osgNVCg namespace
-    BINDIMAGETEXTURE = 62,
+    typBINDIMAGETEXTURE = 62,
       ## osgNVCg namespace
-    SAMPLER = 63,
+    typSAMPLER = 63,
       ## osgNVCg namespace
-    CAPABILITY = 100
+    typCAPABILITY = 100
       ## osgNVCg namespace
 
   AllocationMode* {.size:sizeof(cuint),header: "Image", importcpp: "osg::Image::AllocationMode".} = enum
-    NO_DELETE = 0,
-    USE_NEW_DELETE = 1,
-    USE_MALLOC_FREE = 2
+    llctnmdNO_DELETE = 0,
+    llctnmdUSE_NEW_DELETE = 1,
+    llctnmdUSE_MALLOC_FREE = 2
 
   Binding* {.size:sizeof(cint),header: "Array", importcpp: "osg::Array::Binding".} = enum
     ## The scope of applicability of the values in this array
 
-    BIND_UNDEFINED = -1,
-    BIND_OFF = 0,
-    BIND_OVERALL = 1,
-    BIND_PER_PRIMITIVE_SET = 2,
-    BIND_PER_VERTEX = 4
+    bndngBIND_UNDEFINED = -1,
+    bndngBIND_OFF = 0,
+    bndngBIND_OVERALL = 1,
+    bndngBIND_PER_PRIMITIVE_SET = 2,
+    bndngBIND_PER_VERTEX = 4
 
-  Vec4* {.header: "Vec4", importcpp: "osg::Vec4".} = Vec4f
-  ByteArray* {.header: "Array", importcpp: "osg::ByteArray".} = Templateindexarray[GLbyte,Bytearraytype,1,5120]
-  ShortArray* {.header: "Array", importcpp: "osg::ShortArray".} = Templateindexarray[GLshort,Shortarraytype,1,5122]
-  IntArray* {.header: "Array", importcpp: "osg::IntArray".} = Templateindexarray[GLint,Intarraytype,1,5124]
-  UByteArray* {.header: "Array", importcpp: "osg::UByteArray".} = Templateindexarray[GLubyte,Ubytearraytype,1,5121]
-  UShortArray* {.header: "Array", importcpp: "osg::UShortArray".} = Templateindexarray[GLushort,Ushortarraytype,1,5123]
-  UIntArray* {.header: "Array", importcpp: "osg::UIntArray".} = Templateindexarray[GLuint,Uintarraytype,1,5125]
-  FloatArray* {.header: "Array", importcpp: "osg::FloatArray".} = Templatearray[GLfloat,Floatarraytype,1,5126]
-  DoubleArray* {.header: "Array", importcpp: "osg::DoubleArray".} = Templatearray[GLdouble,Doublearraytype,1,5130]
-  Vec4ubArray* {.header: "Array", importcpp: "osg::Vec4ubArray".} = Templatearray[Vec4ub,Vec4ubarraytype,4,5121]
-  Vec2Array* {.header: "Array", importcpp: "osg::Vec2Array".} = Templatearray[Vec2,Vec2arraytype,2,5126]
-  Vec3Array* {.header: "Array", importcpp: "osg::Vec3Array".} = Templatearray[Vec3,Vec3arraytype,3,5126]
-  Vec4Array* {.header: "Array", importcpp: "osg::Vec4Array".} = Templatearray[Vec4,Vec4arraytype,4,5126]
-  Vec2dArray* {.header: "Array", importcpp: "osg::Vec2dArray".} = Templatearray[Vec2d,Vec2darraytype,2,5130]
-  Vec3dArray* {.header: "Array", importcpp: "osg::Vec3dArray".} = Templatearray[Vec3d,Vec3darraytype,3,5130]
-  Vec4dArray* {.header: "Array", importcpp: "osg::Vec4dArray".} = Templatearray[Vec4d,Vec4darraytype,4,5130]
-  UInt64Array* {.header: "Array", importcpp: "osg::UInt64Array".} = Templateindexarray[GLuint64,Uint64arraytype,1,5135]
-  Int64Array* {.header: "Array", importcpp: "osg::Int64Array".} = Templateindexarray[GLint64,Int64arraytype,1,5134]
-  ShaderDefines* {.header: "Shader", importcpp: "osg::ShaderDefines".} = cint
-  Timer_t* {.header: "Timer", importcpp: "osg::Timer_t".} = culonglong
-  Matrix* {.header: "Matrix", importcpp: "osg::Matrix".} = Matrixd
-  RefMatrix* {.header: "Matrix", importcpp: "osg::RefMatrix".} = Refmatrixd
-  NodePath* {.header: "Node", importcpp: "osg::NodePath".} = cint
-  MatrixList* {.header: "Node", importcpp: "osg::MatrixList".} = cint
-  NodeMask* {.header: "Node", importcpp: "osg::Node::NodeMask".} = cuint
-  BoundingSpheref* {.header: "BoundingSphere", importcpp: "osg::BoundingSpheref".} = Boundingsphereimpl[Vec3f]
-  BoundingSphered* {.header: "BoundingSphere", importcpp: "osg::BoundingSphered".} = Boundingsphereimpl[Vec3d]
-  BoundingSphere* {.header: "BoundingSphere", importcpp: "osg::BoundingSphere".} = Boundingspheref
-  Vec3* {.header: "Vec3", importcpp: "osg::Vec3".} = Vec3f
-  Vec2* {.header: "Vec2", importcpp: "osg::Vec2".} = Vec2f
-  BoundingBoxf* {.header: "BoundingBox", importcpp: "osg::BoundingBoxf".} = Boundingboximpl[Vec3f]
-  BoundingBoxd* {.header: "BoundingBox", importcpp: "osg::BoundingBoxd".} = Boundingboximpl[Vec3d]
-  BoundingBox* {.header: "BoundingBox", importcpp: "osg::BoundingBox".} = Boundingboxf
-  Parameters* {.header: "Callback", importcpp: "osg::Parameters".} = cint
-  VectorGLuint* {.header: "PrimitiveSet", importcpp: "osg::VectorGLuint".} = MixinVector[GLuint]
-  ShadowVolumeOccluderList* {.header: "ShadowVolumeOccluder", importcpp: "osg::ShadowVolumeOccluderList".} = cint
-  NodeList* {.header: "Group", importcpp: "osg::NodeList".} = cint
   State* {.header: "State", importcpp: "osg::State", byref.} = object #of class osg::Referenced
     ## Encapsulates the current applied OpenGL modes, attributes and vertex
     ## arrays settings, implements lazy state updating and provides accessors
@@ -214,6 +177,49 @@ type
   ElementBufferObject* {.header: "BufferObject", importcpp: "osg::ElementBufferObject", byref.} = object #of class osg::BufferObject
 
   PixelBufferObject* {.header: "BufferObject", importcpp: "osg::PixelBufferObject", byref.} = object #of class osg::BufferObject
+
+  TemplateIndexArray* {.header: "Array", importcpp: "osg::TemplateIndexArray", byref.} [T, ARRAYTYPE:Type, DataSize:cint, DataType:cint]= object #of class osg::IndexArray
+
+  TemplateIndexArray* {.header: "Array", importcpp: "osg::TemplateIndexArray", byref.} [T, ARRAYTYPE:Type, DataSize:cint, DataType:cint]= object #of class osg::IndexArray
+
+  TemplateIndexArray* {.header: "Array", importcpp: "osg::TemplateIndexArray", byref.} [T, ARRAYTYPE:Type, DataSize:cint, DataType:cint]= object #of class osg::IndexArray
+
+  TemplateIndexArray* {.header: "Array", importcpp: "osg::TemplateIndexArray", byref.} [T, ARRAYTYPE:Type, DataSize:cint, DataType:cint]= object #of class osg::IndexArray
+
+  TemplateIndexArray* {.header: "Array", importcpp: "osg::TemplateIndexArray", byref.} [T, ARRAYTYPE:Type, DataSize:cint, DataType:cint]= object #of class osg::IndexArray
+
+  TemplateIndexArray* {.header: "Array", importcpp: "osg::TemplateIndexArray", byref.} [T, ARRAYTYPE:Type, DataSize:cint, DataType:cint]= object #of class osg::IndexArray
+
+  TemplateArray* {.header: "Array", importcpp: "osg::TemplateArray", byref.} [T, ARRAYTYPE:Type, DataSize:cint, DataType:cint]= object #of class osg::Array
+    ## A concrete array holding elements of type T.
+
+  TemplateArray* {.header: "Array", importcpp: "osg::TemplateArray", byref.} [T, ARRAYTYPE:Type, DataSize:cint, DataType:cint]= object #of class osg::Array
+    ## A concrete array holding elements of type T.
+
+  TemplateArray* {.header: "Array", importcpp: "osg::TemplateArray", byref.} [T, ARRAYTYPE:Type, DataSize:cint, DataType:cint]= object #of class osg::Array
+    ## A concrete array holding elements of type T.
+
+  TemplateArray* {.header: "Array", importcpp: "osg::TemplateArray", byref.} [T, ARRAYTYPE:Type, DataSize:cint, DataType:cint]= object #of class osg::Array
+    ## A concrete array holding elements of type T.
+
+  TemplateArray* {.header: "Array", importcpp: "osg::TemplateArray", byref.} [T, ARRAYTYPE:Type, DataSize:cint, DataType:cint]= object #of class osg::Array
+    ## A concrete array holding elements of type T.
+
+  TemplateArray* {.header: "Array", importcpp: "osg::TemplateArray", byref.} [T, ARRAYTYPE:Type, DataSize:cint, DataType:cint]= object #of class osg::Array
+    ## A concrete array holding elements of type T.
+
+  TemplateArray* {.header: "Array", importcpp: "osg::TemplateArray", byref.} [T, ARRAYTYPE:Type, DataSize:cint, DataType:cint]= object #of class osg::Array
+    ## A concrete array holding elements of type T.
+
+  TemplateArray* {.header: "Array", importcpp: "osg::TemplateArray", byref.} [T, ARRAYTYPE:Type, DataSize:cint, DataType:cint]= object #of class osg::Array
+    ## A concrete array holding elements of type T.
+
+  TemplateArray* {.header: "Array", importcpp: "osg::TemplateArray", byref.} [T, ARRAYTYPE:Type, DataSize:cint, DataType:cint]= object #of class osg::Array
+    ## A concrete array holding elements of type T.
+
+  TemplateIndexArray* {.header: "Array", importcpp: "osg::TemplateIndexArray", byref.} [T, ARRAYTYPE:Type, DataSize:cint, DataType:cint]= object #of class osg::IndexArray
+
+  TemplateIndexArray* {.header: "Array", importcpp: "osg::TemplateIndexArray", byref.} [T, ARRAYTYPE:Type, DataSize:cint, DataType:cint]= object #of class osg::IndexArray
 
   Array* {.header: "Array", importcpp: "osg::Array", byref.} = object #of class osg::BufferData
 
@@ -282,6 +288,20 @@ type
   Matrixd* {.header: "Matrixd", importcpp: "osg::Matrixd", byref.} = object
 
   RefMatrixd* {.header: "Matrixd", importcpp: "osg::RefMatrixd", byref.} = object #of class osg::Object
+
+  BoundingSphereImpl* {.header: "BoundingSphere", importcpp: "osg::BoundingSphereImpl", byref.} [VT]= object
+    ## General purpose bounding sphere class for enclosing
+    ## nodes/objects/vertices. Bounds internal osg::Nodes in the scene,
+    ## assists in view frustum culling, etc. Similar in function to
+    ## BoundingBox, it's quicker for evaluating culling but generally will
+    ## not cull as aggressively because it encloses a greater volume.
+
+  BoundingSphereImpl* {.header: "BoundingSphere", importcpp: "osg::BoundingSphereImpl", byref.} [VT]= object
+    ## General purpose bounding sphere class for enclosing
+    ## nodes/objects/vertices. Bounds internal osg::Nodes in the scene,
+    ## assists in view frustum culling, etc. Similar in function to
+    ## BoundingBox, it's quicker for evaluating culling but generally will
+    ## not cull as aggressively because it encloses a greater volume.
 
   Light* {.header: "Light", importcpp: "osg::Light", byref.} = object #of class osg::StateAttribute
     ## Light state class which encapsulates OpenGL glLight() functionality.
@@ -381,6 +401,16 @@ type
     ## expensive changes in the OpenGL state. Finally, Drawables can also be
     ## shared between different Geodes, so that the same geometry (loaded to
     ## memory just once) can be used in different parts of the scene graph.
+
+  BoundingBoxImpl* {.header: "BoundingBox", importcpp: "osg::BoundingBoxImpl", byref.} [VT]= object
+    ## General purpose axis-aligned bounding box class for enclosing
+    ## objects/vertices. Bounds leaf objects in a scene such as osg::Drawable
+    ## objects. Used for frustum culling etc.
+
+  BoundingBoxImpl* {.header: "BoundingBox", importcpp: "osg::BoundingBoxImpl", byref.} [VT]= object
+    ## General purpose axis-aligned bounding box class for enclosing
+    ## objects/vertices. Bounds leaf objects in a scene such as osg::Drawable
+    ## objects. Used for frustum culling etc.
 
   ApplicationUsage* {.header: "ApplicationUsage", importcpp: "osg::ApplicationUsage", byref.} = object #of osg::Referenced
 
@@ -700,6 +730,43 @@ type
 
   OcclusionQueryNode* {.header: "OcclusionQueryNode", importcpp: "osg::OcclusionQueryNode", byref.} = object #of osg::Group
 
+  Vec4* {.header: "Vec4", importcpp: "osg::Vec4".} = Vec4f
+  ByteArray* {.header: "Array", importcpp: "osg::ByteArray".} = Templateindexarray[GLbyte,Bytearraytype,1,5120]
+  ShortArray* {.header: "Array", importcpp: "osg::ShortArray".} = Templateindexarray[GLshort,Shortarraytype,1,5122]
+  IntArray* {.header: "Array", importcpp: "osg::IntArray".} = Templateindexarray[GLint,Intarraytype,1,5124]
+  UByteArray* {.header: "Array", importcpp: "osg::UByteArray".} = Templateindexarray[GLubyte,Ubytearraytype,1,5121]
+  UShortArray* {.header: "Array", importcpp: "osg::UShortArray".} = Templateindexarray[GLushort,Ushortarraytype,1,5123]
+  UIntArray* {.header: "Array", importcpp: "osg::UIntArray".} = Templateindexarray[GLuint,Uintarraytype,1,5125]
+  FloatArray* {.header: "Array", importcpp: "osg::FloatArray".} = Templatearray[GLfloat,Floatarraytype,1,5126]
+  DoubleArray* {.header: "Array", importcpp: "osg::DoubleArray".} = Templatearray[GLdouble,Doublearraytype,1,5130]
+  Vec4ubArray* {.header: "Array", importcpp: "osg::Vec4ubArray".} = Templatearray[Vec4ub,Vec4ubarraytype,4,5121]
+  Vec2Array* {.header: "Array", importcpp: "osg::Vec2Array".} = Templatearray[Vec2,Vec2arraytype,2,5126]
+  Vec3Array* {.header: "Array", importcpp: "osg::Vec3Array".} = Templatearray[Vec3,Vec3arraytype,3,5126]
+  Vec4Array* {.header: "Array", importcpp: "osg::Vec4Array".} = Templatearray[Vec4,Vec4arraytype,4,5126]
+  Vec2dArray* {.header: "Array", importcpp: "osg::Vec2dArray".} = Templatearray[Vec2d,Vec2darraytype,2,5130]
+  Vec3dArray* {.header: "Array", importcpp: "osg::Vec3dArray".} = Templatearray[Vec3d,Vec3darraytype,3,5130]
+  Vec4dArray* {.header: "Array", importcpp: "osg::Vec4dArray".} = Templatearray[Vec4d,Vec4darraytype,4,5130]
+  UInt64Array* {.header: "Array", importcpp: "osg::UInt64Array".} = Templateindexarray[GLuint64,Uint64arraytype,1,5135]
+  Int64Array* {.header: "Array", importcpp: "osg::Int64Array".} = Templateindexarray[GLint64,Int64arraytype,1,5134]
+  ShaderDefines* {.header: "Shader", importcpp: "osg::ShaderDefines".} = cint
+  Timer_t* {.header: "Timer", importcpp: "osg::Timer_t".} = culonglong
+  Matrix* {.header: "Matrix", importcpp: "osg::Matrix".} = Matrixd
+  RefMatrix* {.header: "Matrix", importcpp: "osg::RefMatrix".} = Refmatrixd
+  NodePath* {.header: "Node", importcpp: "osg::NodePath".} = cint
+  MatrixList* {.header: "Node", importcpp: "osg::MatrixList".} = cint
+  NodeMask* {.header: "Node", importcpp: "osg::Node::NodeMask".} = cuint
+  BoundingSpheref* {.header: "BoundingSphere", importcpp: "osg::BoundingSpheref".} = Boundingsphereimpl[Vec3f]
+  BoundingSphered* {.header: "BoundingSphere", importcpp: "osg::BoundingSphered".} = Boundingsphereimpl[Vec3d]
+  BoundingSphere* {.header: "BoundingSphere", importcpp: "osg::BoundingSphere".} = Boundingspheref
+  Vec3* {.header: "Vec3", importcpp: "osg::Vec3".} = Vec3f
+  Vec2* {.header: "Vec2", importcpp: "osg::Vec2".} = Vec2f
+  BoundingBoxf* {.header: "BoundingBox", importcpp: "osg::BoundingBoxf".} = Boundingboximpl[Vec3f]
+  BoundingBoxd* {.header: "BoundingBox", importcpp: "osg::BoundingBoxd".} = Boundingboximpl[Vec3d]
+  BoundingBox* {.header: "BoundingBox", importcpp: "osg::BoundingBox".} = Boundingboxf
+  Parameters* {.header: "Callback", importcpp: "osg::Parameters".} = cint
+  VectorGLuint* {.header: "PrimitiveSet", importcpp: "osg::VectorGLuint".} = MixinVector[GLuint]
+  ShadowVolumeOccluderList* {.header: "ShadowVolumeOccluder", importcpp: "osg::ShadowVolumeOccluderList".} = cint
+  NodeList* {.header: "Group", importcpp: "osg::NodeList".} = cint
 
 
 import Material

@@ -1,17 +1,17 @@
 import State  # provides: osg::State
 import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import StateAttribute  # provides: osg::StateAttribute::Type, osg::StateAttribute
 import CopyOp  # provides: osg::CopyOp
 type
   Mode* {.size:sizeof(cuint),header: "PolygonMode", importcpp: "osg::PolygonMode::Mode".} = enum
-    POINT = 6912,
-    LINE = 6913,
-    FILL = 6914
+    mdPOINT = 6912,
+    mdLINE = 6913,
+    mdFILL = 6914
 
   Face* {.size:sizeof(cuint),header: "PolygonMode", importcpp: "osg::PolygonMode::Face".} = enum
-    FRONT_AND_BACK = 0,
-    FRONT = 1,
-    BACK = 2
+    fcFRONT_AND_BACK = 0,
+    fcFRONT = 1,
+    fcBACK = 2
 
   PolygonMode* {.header: "PolygonMode", importcpp: "osg::PolygonMode", byref.} = object #of class osg::StateAttribute
     ## State Class for setting OpenGL's polygon culling mode.

@@ -7,8 +7,8 @@ import CopyOp  # provides: osg::CopyOp
 import NodeVisitor  # provides: osg::NodeVisitor
 type
   ReferenceFrame* {.size:sizeof(cuint),header: "ClipNode", importcpp: "osg::ClipNode::ReferenceFrame".} = enum
-    RELATIVE_RF = 0,
-    ABSOLUTE_RF = 1
+    rfrncfrmRELATIVE_RF = 0,
+    rfrncfrmABSOLUTE_RF = 1
 
   ClipPlaneList* {.header: "ClipNode", importcpp: "osg::ClipNode::ClipPlaneList".} = cint
 

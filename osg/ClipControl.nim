@@ -1,15 +1,15 @@
 import State  # provides: osg::State
 import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import StateAttribute  # provides: osg::StateAttribute::Type, osg::StateAttribute
 import CopyOp  # provides: osg::CopyOp
 type
   Origin* {.size:sizeof(cuint),header: "ClipControl", importcpp: "osg::ClipControl::Origin".} = enum
-    LOWER_LEFT = 36001,
-    UPPER_LEFT = 36002
+    rgnLOWER_LEFT = 36001,
+    rgnUPPER_LEFT = 36002
 
   DepthMode* {.size:sizeof(cuint),header: "ClipControl", importcpp: "osg::ClipControl::DepthMode".} = enum
-    NEGATIVE_ONE_TO_ONE = 37726,
-    ZERO_TO_ONE = 37727
+    dpthmdNEGATIVE_ONE_TO_ONE = 37726,
+    dpthmdZERO_TO_ONE = 37727
 
   ClipControl* {.header: "ClipControl", importcpp: "osg::ClipControl", byref.} = object #of class osg::StateAttribute
     ## Encapsulate OpenGL glClipControl functions.

@@ -1,10 +1,10 @@
 type
   ColorSpaceOperation* {.size:sizeof(cuint),header: "ImageUtils", importcpp: "osg::ColorSpaceOperation".} = enum
-    NO_COLOR_SPACE_OPERATION = 0,
-    MODULATE_ALPHA_BY_LUMINANCE = 1,
-    MODULATE_ALPHA_BY_COLOR = 2,
-    REPLACE_ALPHA_WITH_LUMINANCE = 3,
-    REPLACE_RGB_WITH_LUMINANCE = 4
+    clrspcprtnNO_COLOR_SPACE_OPERATION = 0,
+    clrspcprtnMODULATE_ALPHA_BY_LUMINANCE = 1,
+    clrspcprtnMODULATE_ALPHA_BY_COLOR = 2,
+    clrspcprtnREPLACE_ALPHA_WITH_LUMINANCE = 3,
+    clrspcprtnREPLACE_RGB_WITH_LUMINANCE = 4
 
   ImageList* {.header: "ImageUtils", importcpp: "osg::ImageList".} = cint
 

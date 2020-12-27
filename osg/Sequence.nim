@@ -7,16 +7,16 @@ type
     ## Interval modes. 'Loop' repeats frames 1-N; 'swing' repeats 1->N,
     ## (N-1)->1.
 
-    LOOP = 0,
-    SWING = 1
+    lpmdLOOP = 0,
+    lpmdSWING = 1
 
   SequenceMode* {.size:sizeof(cuint),header: "Sequence", importcpp: "osg::Sequence::SequenceMode".} = enum
     ## Sequence modes.
 
-    START = 0,
-    STOP = 1,
-    PAUSE = 2,
-    RESUME = 3
+    sqncmdSTART = 0,
+    sqncmdSTOP = 1,
+    sqncmdPAUSE = 2,
+    sqncmdRESUME = 3
 
 
 

@@ -1,7 +1,7 @@
 import State  # provides: osg::State
 import Vec4  # provides: osg::Vec4
 import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
+import StateAttribute  # provides: osg::StateAttribute::Type, osg::StateAttribute
 import CopyOp  # provides: osg::CopyOp
 import Matrix  # provides: osg::Matrix
 type
