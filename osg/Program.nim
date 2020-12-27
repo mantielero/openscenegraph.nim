@@ -1,7 +1,7 @@
 import State  # provides: osg::State
 import ref_ptr  # provides: osg::ref_ptr
 import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute::Type, osg::StateAttribute
+import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
 import Shader  # provides: osg::ShaderDefines, osg::Shader
 import CopyOp  # provides: osg::CopyOp
 import Uniform  # provides: osg::Uniform

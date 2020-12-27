@@ -11,7 +11,7 @@ type
 
   SyncSwapBuffersCallback* {.header: "GraphicsContext", importcpp: "osg::SyncSwapBuffersCallback", byref.} = object #of class GraphicsContext::SwapCallback
 
-  WindowingSystemInterfaceProxy* {.header: "GraphicsContext", importcpp: "osg::WindowingSystemInterfaceProxy", byref.} [T]= object
+  WindowingSystemInterfaceProxy*[T] {.header: "GraphicsContext", importcpp: "osg::WindowingSystemInterfaceProxy", byref.} = object
 
   ScreenSettingsList* {.header: "GraphicsContext", importcpp: "osg::GraphicsContext::ScreenSettingsList".} = cint
   Interfaces* {.header: "GraphicsContext", importcpp: "osg::GraphicsContext::WindowingSystemInterfaces::Interfaces".} = cint

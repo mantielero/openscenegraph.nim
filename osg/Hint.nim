@@ -1,6 +1,6 @@
 import State  # provides: osg::State
 import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute::Type, osg::StateAttribute
+import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
 import CopyOp  # provides: osg::CopyOp
 type
   Hint* {.header: "Hint", importcpp: "osg::Hint", byref.} = object #of class osg::StateAttribute

@@ -1,7 +1,7 @@
 import State  # provides: osg::State
 import GLExtensions  # provides: osg::GLExtensions
 import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute::Type, osg::StateAttribute
+import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
 import CopyOp  # provides: osg::CopyOp
 import Texture  # provides: osg::Texture
 type

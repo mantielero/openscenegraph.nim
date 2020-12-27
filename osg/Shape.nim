@@ -1,6 +1,6 @@
 import Vec3  # provides: osg::Vec3
 import Object  # provides: osg::Object
-import Array  # provides: osg::FloatArray, osg::IndexArray, osg::Vec3Array
+import Array  # provides: osg::Vec3Array, osg::IndexArray, osg::FloatArray
 import Vec3f  # provides: osg::Vec3f
 import Vec2  # provides: osg::Vec2
 import Vec2f  # provides: osg::Vec2f

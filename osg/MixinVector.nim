@@ -1,5 +1,5 @@
 type
-  MixinVector* {.header: "MixinVector", importcpp: "osg::MixinVector", byref.} [ValueT]= object
+  MixinVector*[ValueT] {.header: "MixinVector", importcpp: "osg::MixinVector", byref.} = object
     ## MixinVector is a base class that allows inheritance to be used to
     ## easily emulate derivation from std::vector but without introducing
     ## undefined behaviour through violation of virtual destructor rules.

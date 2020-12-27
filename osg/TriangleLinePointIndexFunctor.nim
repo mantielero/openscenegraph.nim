@@ -5,7 +5,7 @@ import Vec4d  # provides: osg::Vec4d
 import Vec3d  # provides: osg::Vec3d
 import Vec2d  # provides: osg::Vec2d
 type
-  TriangleLinePointIndexFunctor* {.header: "TriangleLinePointIndexFunctor", importcpp: "osg::TriangleLinePointIndexFunctor", byref.} [T]= object #of osg::PrimitiveIndexFunctor
+  TriangleLinePointIndexFunctor*[T] {.header: "TriangleLinePointIndexFunctor", importcpp: "osg::TriangleLinePointIndexFunctor", byref.} = object #of osg::PrimitiveIndexFunctor
 
   Index* {.header: "TriangleLinePointIndexFunctor", importcpp: "osg::TriangleLinePointIndexFunctor::drawElements::Index".} = I
   IndexPointer* {.header: "TriangleLinePointIndexFunctor", importcpp: "osg::TriangleLinePointIndexFunctor::drawElements::IndexPointer".} = ptr I

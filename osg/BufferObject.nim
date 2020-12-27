@@ -4,7 +4,7 @@ import Object  # provides: osg::Object
 import Array  # provides: osg::Array
 import PrimitiveSet  # provides: osg::PrimitiveSet, osg::DrawElements
 import Image  # provides: osg::Image
-import buffered_value  # provides: osg::buffered_object, osg::buffered_value
+import buffered_value  # provides: osg::buffered_value, osg::buffered_object
 import CopyOp  # provides: osg::CopyOp
 import FrameStamp  # provides: osg::FrameStamp
 type

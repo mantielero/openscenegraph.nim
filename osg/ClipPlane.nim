@@ -1,6 +1,6 @@
 import State  # provides: osg::State
 import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute::Type, osg::StateAttribute
+import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
 import Plane  # provides: osg::Plane
 import CopyOp  # provides: osg::CopyOp
 import Vec4d  # provides: osg::Vec4d

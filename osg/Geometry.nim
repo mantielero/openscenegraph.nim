@@ -2,7 +2,7 @@ import State  # provides: osg::State
 import Object  # provides: osg::Object
 import BufferObject  # provides: osg::VertexBufferObject, osg::ElementBufferObject
 import Array  # provides: osg::Array, osg::Array::Binding
-import PrimitiveSet  # provides: osg::PrimitiveIndexFunctor, osg::PrimitiveSet, osg::PrimitiveFunctor
+import PrimitiveSet  # provides: osg::PrimitiveSet, osg::PrimitiveFunctor, osg::PrimitiveIndexFunctor
 import CopyOp  # provides: osg::CopyOp
 import VertexArrayState  # provides: osg::VertexArrayState
 import RenderInfo  # provides: osg::RenderInfo

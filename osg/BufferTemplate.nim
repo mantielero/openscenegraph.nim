@@ -1,7 +1,7 @@
 import Object  # provides: osg::Object
 import CopyOp  # provides: osg::CopyOp
 type
-  BufferTemplate* {.header: "BufferTemplate", importcpp: "osg::BufferTemplate", byref.} [T]= object #of class osg::BufferData
+  BufferTemplate*[T] {.header: "BufferTemplate", importcpp: "osg::BufferTemplate", byref.} = object #of class osg::BufferData
     ## Template buffer class to be used with a struct as template parameter.
     ## This class is useful to send C++ structures on the GPU (e.g. for
     ## uniform blocks) but be careful to the alignments rules on the GPU side

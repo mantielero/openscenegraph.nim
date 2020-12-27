@@ -1,5 +1,5 @@
 type
-  fast_back_stack* {.header: "fast_back_stack", importcpp: "osg::fast_back_stack", byref.} [T]= object
+  fast_back_stack*[T] {.header: "fast_back_stack", importcpp: "osg::fast_back_stack", byref.} = object
     ## Simple stack implementation that keeps the back() cached locally for
     ## fast access rather than at the back of the vector which is the
     ## traditional stack implementation. A conventional std::vector<> stores

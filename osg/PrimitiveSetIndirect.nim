@@ -1,6 +1,6 @@
 import State  # provides: osg::State
 import Object  # provides: osg::Object
-import PrimitiveSet  # provides: osg::PrimitiveIndexFunctor, osg::VectorGLuint, osg::PrimitiveFunctor
+import PrimitiveSet  # provides: osg::VectorGLuint, osg::PrimitiveIndexFunctor, osg::PrimitiveFunctor
 import CopyOp  # provides: osg::CopyOp
 type
   IndirectCommandDrawArrays* {.header: "PrimitiveSetIndirect", importcpp: "osg::IndirectCommandDrawArrays", byref.} = object #of class osg::BufferData

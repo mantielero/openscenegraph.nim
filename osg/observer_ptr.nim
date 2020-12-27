@@ -1,5 +1,5 @@
 type
-  observer_ptr* {.header: "observer_ptr", importcpp: "osg::observer_ptr", byref.} [T]= object
+  observer_ptr*[T] {.header: "observer_ptr", importcpp: "osg::observer_ptr", byref.} = object
     ## Smart pointer for observed objects, that automatically set pointers to
     ## them to null when they are deleted. To use the observer_ptr<> robustly
     ## in multi-threaded applications it is recommend to access the pointer

@@ -1,6 +1,6 @@
 import State  # provides: osg::State
 import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute::Type, osg::StateAttribute
+import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
 import CopyOp  # provides: osg::CopyOp
 type
   SampleMaski* {.header: "SampleMaski", importcpp: "osg::SampleMaski", byref.} = object #of class osg::StateAttribute

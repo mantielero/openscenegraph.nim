@@ -1,10 +1,5 @@
 import Vec3f  # provides: osg::Vec3f
 import Vec3d  # provides: osg::Vec3d
-type
-  Vec_type* {.header: "BoundingBox", importcpp: "osg::BoundingBoxImpl::vec_type".} = VT
-  Value_type* {.header: "BoundingBox", importcpp: "osg::BoundingBoxImpl::value_type".} = Value_type
-
-
 {.push header: "BoundingBox".}
 
 proc constructBoundingBoxImpl*[VT](): BoundingBoxImpl {.constructor,importcpp: "osg::BoundingBoxImpl::BoundingBoxImpl<VT>".}

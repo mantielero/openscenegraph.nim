@@ -1,7 +1,7 @@
 import DeleteHandler  # provides: osg::DeleteHandler
-import Observer  # provides: osg::Observer, osg::ObserverSet
+import Observer  # provides: osg::ObserverSet, osg::Observer
 type
-  depends_on* {.header: "Referenced", importcpp: "osg::depends_on", byref.} [T, M:T ()]= object
+  depends_on*[T; M:T ()] {.header: "Referenced", importcpp: "osg::depends_on", byref.} = object
     ## template class to help enforce static initialization order.
 
 

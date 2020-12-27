@@ -37,11 +37,9 @@ type
 
   GetScalarValue* {.header: "ValueObject", importcpp: "osg::GetScalarValue", byref.} = object #of class ValueObject::GetValueVisitor
 
-  SetScalarValue* {.header: "ValueObject", importcpp: "osg::SetScalarValue", byref.} [T]= object #of class ValueObject::SetValueVisitor
+  SetScalarValue*[T] {.header: "ValueObject", importcpp: "osg::SetScalarValue", byref.} = object #of class ValueObject::SetValueVisitor
 
-  ValueObjectClassNameTrait* {.header: "ValueObject", importcpp: "osg::ValueObjectClassNameTrait", byref.} [T]= object
-
-  TemplateValueObject* {.header: "ValueObject", importcpp: "osg::TemplateValueObject", byref.} [T]= object #of class osg::ValueObject
+  ValueObjectClassNameTrait*[T] {.header: "ValueObject", importcpp: "osg::ValueObjectClassNameTrait", byref.} = object
 
   StringValueObject* {.header: "ValueObject", importcpp: "osg::StringValueObject".} = Templatevalueobject[String]
   BoolValueObject* {.header: "ValueObject", importcpp: "osg::BoolValueObject".} = TemplateValueObject[bool]

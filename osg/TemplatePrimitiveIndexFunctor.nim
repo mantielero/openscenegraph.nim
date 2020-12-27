@@ -5,7 +5,7 @@ import Vec4d  # provides: osg::Vec4d
 import Vec3d  # provides: osg::Vec3d
 import Vec2d  # provides: osg::Vec2d
 type
-  TemplatePrimitiveIndexFunctor* {.header: "TemplatePrimitiveIndexFunctor", importcpp: "osg::TemplatePrimitiveIndexFunctor", byref.} [T]= object #of class osg::PrimitiveIndexFunctor
+  TemplatePrimitiveIndexFunctor*[T] {.header: "TemplatePrimitiveIndexFunctor", importcpp: "osg::TemplatePrimitiveIndexFunctor", byref.} = object #of class osg::PrimitiveIndexFunctor
     ## Provides access to the primitives that compose an osg::Drawable.
     ## Notice that TemplatePrimitiveIndexFunctor is a class template, and
     ## that it inherits from its template parameter T. This template

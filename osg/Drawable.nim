@@ -3,12 +3,12 @@ import State  # provides: osg::State
 import BoundingSphere  # provides: osg::BoundingSphere
 import Vec4  # provides: osg::Vec4
 import Object  # provides: osg::Object
-import Array  # provides: osg::DoubleArray, osg::Vec4ubArray, osg::UIntArray, osg::ShortArray, osg::Vec3dArray, osg::Vec3Array, osg::Vec2dArray, osg::Vec2Array, osg::IntArray, osg::Array, osg::Vec4Array, osg::UByteArray, osg::ByteArray, osg::UShortArray, osg::FloatArray, osg::Vec4dArray
+import Array  # provides: osg::Vec3Array, osg::Array, osg::DoubleArray, osg::UIntArray, osg::UByteArray, osg::ByteArray, osg::ShortArray, osg::Vec4dArray, osg::Vec3dArray, osg::FloatArray, osg::Vec2Array, osg::IntArray, osg::Vec4ubArray, osg::UShortArray, osg::Vec2dArray, osg::Vec4Array
 import Shape  # provides: osg::Shape
-import PrimitiveSet  # provides: osg::PrimitiveIndexFunctor, osg::PrimitiveFunctor
-import Node  # provides: osg::MatrixList, osg::Node
+import PrimitiveSet  # provides: osg::PrimitiveFunctor, osg::PrimitiveIndexFunctor
+import Node  # provides: osg::Node, osg::MatrixList
 import buffered_value  # provides: osg::buffered_value
-import Callback  # provides: osg::DrawableEventCallback, osg::DrawableCullCallback, osg::DrawableUpdateCallback
+import Callback  # provides: osg::DrawableCullCallback, osg::DrawableUpdateCallback, osg::DrawableEventCallback
 import Vec2  # provides: osg::Vec2
 import BoundingBox  # provides: osg::BoundingBox
 import CopyOp  # provides: osg::CopyOp

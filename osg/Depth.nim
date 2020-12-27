@@ -1,6 +1,6 @@
 import State  # provides: osg::State
 import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute::Type, osg::StateAttribute
+import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
 import CopyOp  # provides: osg::CopyOp
 type
   Function* {.size:sizeof(cuint),header: "Depth", importcpp: "osg::Depth::Function".} = enum

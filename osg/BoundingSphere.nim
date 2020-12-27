@@ -1,10 +1,5 @@
 import Vec3f  # provides: osg::Vec3f
 import Vec3d  # provides: osg::Vec3d
-type
-  Vec_type* {.header: "BoundingSphere", importcpp: "osg::BoundingSphereImpl::vec_type".} = VT
-  Value_type* {.header: "BoundingSphere", importcpp: "osg::BoundingSphereImpl::value_type".} = Value_type
-
-
 {.push header: "BoundingSphere".}
 
 proc constructBoundingSphereImpl*[VT](): BoundingSphereImpl {.constructor,importcpp: "osg::BoundingSphereImpl::BoundingSphereImpl<VT>".}

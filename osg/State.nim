@@ -1,5 +1,5 @@
 import AttributeDispatchers  # provides: osg::AttributeDispatchers
-import GLExtensions  # provides: osg::GLExtensions, osg::VertexAttribAlias
+import GLExtensions  # provides: osg::VertexAttribAlias, osg::GLExtensions
 import ShaderComposer  # provides: osg::ShaderComposer
 import BufferObject  # provides: osg::GLBufferObject
 import StateAttribute  # provides: osg::StateAttribute

@@ -178,52 +178,14 @@ type
 
   PixelBufferObject* {.header: "BufferObject", importcpp: "osg::PixelBufferObject", byref.} = object #of class osg::BufferObject
 
-  TemplateIndexArray* {.header: "Array", importcpp: "osg::TemplateIndexArray", byref.} [T, ARRAYTYPE:Type, DataSize:cint, DataType:cint]= object #of class osg::IndexArray
-
-  TemplateIndexArray* {.header: "Array", importcpp: "osg::TemplateIndexArray", byref.} [T, ARRAYTYPE:Type, DataSize:cint, DataType:cint]= object #of class osg::IndexArray
-
-  TemplateIndexArray* {.header: "Array", importcpp: "osg::TemplateIndexArray", byref.} [T, ARRAYTYPE:Type, DataSize:cint, DataType:cint]= object #of class osg::IndexArray
-
-  TemplateIndexArray* {.header: "Array", importcpp: "osg::TemplateIndexArray", byref.} [T, ARRAYTYPE:Type, DataSize:cint, DataType:cint]= object #of class osg::IndexArray
-
-  TemplateIndexArray* {.header: "Array", importcpp: "osg::TemplateIndexArray", byref.} [T, ARRAYTYPE:Type, DataSize:cint, DataType:cint]= object #of class osg::IndexArray
-
-  TemplateIndexArray* {.header: "Array", importcpp: "osg::TemplateIndexArray", byref.} [T, ARRAYTYPE:Type, DataSize:cint, DataType:cint]= object #of class osg::IndexArray
-
-  TemplateArray* {.header: "Array", importcpp: "osg::TemplateArray", byref.} [T, ARRAYTYPE:Type, DataSize:cint, DataType:cint]= object #of class osg::Array
-    ## A concrete array holding elements of type T.
-
-  TemplateArray* {.header: "Array", importcpp: "osg::TemplateArray", byref.} [T, ARRAYTYPE:Type, DataSize:cint, DataType:cint]= object #of class osg::Array
-    ## A concrete array holding elements of type T.
-
-  TemplateArray* {.header: "Array", importcpp: "osg::TemplateArray", byref.} [T, ARRAYTYPE:Type, DataSize:cint, DataType:cint]= object #of class osg::Array
-    ## A concrete array holding elements of type T.
-
-  TemplateArray* {.header: "Array", importcpp: "osg::TemplateArray", byref.} [T, ARRAYTYPE:Type, DataSize:cint, DataType:cint]= object #of class osg::Array
-    ## A concrete array holding elements of type T.
-
-  TemplateArray* {.header: "Array", importcpp: "osg::TemplateArray", byref.} [T, ARRAYTYPE:Type, DataSize:cint, DataType:cint]= object #of class osg::Array
-    ## A concrete array holding elements of type T.
-
-  TemplateArray* {.header: "Array", importcpp: "osg::TemplateArray", byref.} [T, ARRAYTYPE:Type, DataSize:cint, DataType:cint]= object #of class osg::Array
-    ## A concrete array holding elements of type T.
-
-  TemplateArray* {.header: "Array", importcpp: "osg::TemplateArray", byref.} [T, ARRAYTYPE:Type, DataSize:cint, DataType:cint]= object #of class osg::Array
-    ## A concrete array holding elements of type T.
-
-  TemplateArray* {.header: "Array", importcpp: "osg::TemplateArray", byref.} [T, ARRAYTYPE:Type, DataSize:cint, DataType:cint]= object #of class osg::Array
-    ## A concrete array holding elements of type T.
-
-  TemplateArray* {.header: "Array", importcpp: "osg::TemplateArray", byref.} [T, ARRAYTYPE:Type, DataSize:cint, DataType:cint]= object #of class osg::Array
-    ## A concrete array holding elements of type T.
-
-  TemplateIndexArray* {.header: "Array", importcpp: "osg::TemplateIndexArray", byref.} [T, ARRAYTYPE:Type, DataSize:cint, DataType:cint]= object #of class osg::IndexArray
-
-  TemplateIndexArray* {.header: "Array", importcpp: "osg::TemplateIndexArray", byref.} [T, ARRAYTYPE:Type, DataSize:cint, DataType:cint]= object #of class osg::IndexArray
-
   Array* {.header: "Array", importcpp: "osg::Array", byref.} = object #of class osg::BufferData
 
+  TemplateArray*[T; ARRAYTYPE:Type; DataSize:cint; DataType:cint] {.header: "Array", importcpp: "osg::TemplateArray", byref.} = object #of class osg::Array
+    ## A concrete array holding elements of type T.
+
   IndexArray* {.header: "Array", importcpp: "osg::IndexArray", byref.} = object #of class osg::Array
+
+  TemplateIndexArray*[T; ARRAYTYPE:Type; DataSize:cint; DataType:cint] {.header: "Array", importcpp: "osg::TemplateIndexArray", byref.} = object #of class osg::IndexArray
 
   Polytope* {.header: "Polytope", importcpp: "osg::Polytope", byref.} = object
     ## A Polytope class for representing convex clipping volumes made up of a
@@ -263,6 +225,24 @@ type
     ## Base class for providing Windowing API agnostic access to creating and
     ## managing graphics context.
 
+  MatrixTemplate*[T; RowN:cuint; ColN:cuint] {.header: "Uniform", importcpp: "osg::MatrixTemplate", byref.} = object
+
+  Matrix2Template*[T] {.header: "Uniform", importcpp: "osg::Matrix2Template", byref.} = object #of MatrixTemplate<T, 2, 2>
+
+  Matrix2x3Template*[T] {.header: "Uniform", importcpp: "osg::Matrix2x3Template", byref.} = object #of MatrixTemplate<T, 2, 3>
+
+  Matrix2x4Template*[T] {.header: "Uniform", importcpp: "osg::Matrix2x4Template", byref.} = object #of MatrixTemplate<T, 2, 4>
+
+  Matrix3x2Template*[T] {.header: "Uniform", importcpp: "osg::Matrix3x2Template", byref.} = object #of MatrixTemplate<T, 3, 2>
+
+  Matrix3Template*[T] {.header: "Uniform", importcpp: "osg::Matrix3Template", byref.} = object #of MatrixTemplate<T, 3, 3>
+
+  Matrix3x4Template*[T] {.header: "Uniform", importcpp: "osg::Matrix3x4Template", byref.} = object #of MatrixTemplate<T, 3, 4>
+
+  Matrix4x2Template*[T] {.header: "Uniform", importcpp: "osg::Matrix4x2Template", byref.} = object #of MatrixTemplate<T, 4, 2>
+
+  Matrix4x3Template*[T] {.header: "Uniform", importcpp: "osg::Matrix4x3Template", byref.} = object #of MatrixTemplate<T, 4, 3>
+
   Uniform* {.header: "Uniform", importcpp: "osg::Uniform", byref.} = object #of class osg::Object
     ## Uniform encapsulates glUniform values
 
@@ -289,14 +269,7 @@ type
 
   RefMatrixd* {.header: "Matrixd", importcpp: "osg::RefMatrixd", byref.} = object #of class osg::Object
 
-  BoundingSphereImpl* {.header: "BoundingSphere", importcpp: "osg::BoundingSphereImpl", byref.} [VT]= object
-    ## General purpose bounding sphere class for enclosing
-    ## nodes/objects/vertices. Bounds internal osg::Nodes in the scene,
-    ## assists in view frustum culling, etc. Similar in function to
-    ## BoundingBox, it's quicker for evaluating culling but generally will
-    ## not cull as aggressively because it encloses a greater volume.
-
-  BoundingSphereImpl* {.header: "BoundingSphere", importcpp: "osg::BoundingSphereImpl", byref.} [VT]= object
+  BoundingSphereImpl*[VT] {.header: "BoundingSphere", importcpp: "osg::BoundingSphereImpl", byref.} = object
     ## General purpose bounding sphere class for enclosing
     ## nodes/objects/vertices. Bounds internal osg::Nodes in the scene,
     ## assists in view frustum culling, etc. Similar in function to
@@ -402,12 +375,7 @@ type
     ## shared between different Geodes, so that the same geometry (loaded to
     ## memory just once) can be used in different parts of the scene graph.
 
-  BoundingBoxImpl* {.header: "BoundingBox", importcpp: "osg::BoundingBoxImpl", byref.} [VT]= object
-    ## General purpose axis-aligned bounding box class for enclosing
-    ## objects/vertices. Bounds leaf objects in a scene such as osg::Drawable
-    ## objects. Used for frustum culling etc.
-
-  BoundingBoxImpl* {.header: "BoundingBox", importcpp: "osg::BoundingBoxImpl", byref.} [VT]= object
+  BoundingBoxImpl*[VT] {.header: "BoundingBox", importcpp: "osg::BoundingBoxImpl", byref.} = object
     ## General purpose axis-aligned bounding box class for enclosing
     ## objects/vertices. Bounds leaf objects in a scene such as osg::Drawable
     ## objects. Used for frustum culling etc.
@@ -423,6 +391,8 @@ type
     ## settings of a Camera.
 
   ValueObject* {.header: "ValueObject", importcpp: "osg::ValueObject", byref.} = object #of class osg::Object
+
+  TemplateValueObject*[T] {.header: "ValueObject", importcpp: "osg::TemplateValueObject", byref.} = object #of class osg::ValueObject
 
   Callback* {.header: "Callback", importcpp: "osg::Callback", byref.} = object #of class osg::Object
 
@@ -449,7 +419,7 @@ type
   UserDataContainer* {.header: "UserDataContainer", importcpp: "osg::UserDataContainer", byref.} = object #of osg::Object
     ## Internal structure for storing all user data.
 
-  ref_ptr* {.header: "ref_ptr", importcpp: "osg::ref_ptr", byref.} [T]= object
+  ref_ptr*[T] {.header: "ref_ptr", importcpp: "osg::ref_ptr", byref.} = object
     ## Smart pointer for handling referenced counted objects.
 
   PrimitiveFunctor* {.header: "PrimitiveSet", importcpp: "osg::PrimitiveFunctor", byref.} = object
@@ -468,11 +438,11 @@ type
 
   DrawElements* {.header: "PrimitiveSet", importcpp: "osg::DrawElements", byref.} = object #of class osg::PrimitiveSet
 
-  buffered_value* {.header: "buffered_value", importcpp: "osg::buffered_value", byref.} [T]= object
+  buffered_value*[T] {.header: "buffered_value", importcpp: "osg::buffered_value", byref.} = object
     ## Implements a simple buffered value for values that need to be buffered
     ## on a per graphics context basis.
 
-  buffered_object* {.header: "buffered_value", importcpp: "osg::buffered_object", byref.} [T]= object
+  buffered_object*[T] {.header: "buffered_value", importcpp: "osg::buffered_object", byref.} = object
 
   DeleteHandler* {.header: "DeleteHandler", importcpp: "osg::DeleteHandler", byref.} = object
     ## Class for overriding the default delete behaviour so that users can
