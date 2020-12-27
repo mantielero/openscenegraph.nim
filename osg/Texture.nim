@@ -84,16 +84,16 @@ type
     GENERATE_MIPMAP = 1,
     GENERATE_MIPMAP_TEX_PARAMETER = 2
 
-  TexParameterDirtyList* {.header: "Texture", importcpp: "osg::Texture::TexParameterDirtyList".} = buffered_value[unsigned int]
-  TextureObjectList* {.header: "Texture", importcpp: "osg::Texture::TextureObjectList".} = cint
-  TextureObjectBuffer* {.header: "Texture", importcpp: "osg::Texture::TextureObjectBuffer".} = Buffered_object[Ref_ptr[Textureobject]]
-  TextureSetMap* {.header: "Texture", importcpp: "osg::TextureObjectManager::TextureSetMap".} = cint
   TextureObject* {.header: "Texture", importcpp: "osg::Texture::TextureObject", byref.} = object #of class osg::GraphicsObject
 
   TextureObjectSet* {.header: "Texture", importcpp: "osg::TextureObjectSet", byref.} = object #of class osg::Referenced
 
   TextureObjectManager* {.header: "Texture", importcpp: "osg::TextureObjectManager", byref.} = object #of class osg::GraphicsObjectManager
 
+  TexParameterDirtyList* {.header: "Texture", importcpp: "osg::Texture::TexParameterDirtyList".} = buffered_value[unsigned int]
+  TextureObjectList* {.header: "Texture", importcpp: "osg::Texture::TextureObjectList".} = cint
+  TextureObjectBuffer* {.header: "Texture", importcpp: "osg::Texture::TextureObjectBuffer".} = Buffered_object[Ref_ptr[Textureobject]]
+  TextureSetMap* {.header: "Texture", importcpp: "osg::TextureObjectManager::TextureSetMap".} = cint
 
 
 {.push header: "Texture".}

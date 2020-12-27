@@ -7,9 +7,9 @@ import Transform  # provides: osg::Transform
 import Node  # provides: osg::Node
 import OccluderNode  # provides: osg::OccluderNode
 type
-  ShadowVolumeOccluderSet* {.header: "CollectOccludersVisitor", importcpp: "osg::CollectOccludersVisitor::ShadowVolumeOccluderSet".} = cint
   CollectOccludersVisitor* {.header: "CollectOccludersVisitor", importcpp: "osg::CollectOccludersVisitor", byref.} = object #of osg::NodeVisitor
 
+  ShadowVolumeOccluderSet* {.header: "CollectOccludersVisitor", importcpp: "osg::CollectOccludersVisitor::ShadowVolumeOccluderSet".} = cint
 
 
 {.push header: "CollectOccludersVisitor".}

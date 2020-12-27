@@ -4,13 +4,13 @@ import Matrixd  # provides: osg::Matrixd
 import Vec3d  # provides: osg::Vec3d
 import NodeVisitor  # provides: osg::NodeVisitor
 type
-  CoordinateFrame* {.header: "CoordinateSystemNode", importcpp: "osg::CoordinateFrame".} = Matrixd
   EllipsoidModel* {.header: "CoordinateSystemNode", importcpp: "osg::EllipsoidModel", byref.} = object #of class osg::Object
     ## EllipsoidModel encapsulates the ellipsoid used to model astronomical
     ## bodies, such as sun, planets, moon etc. All distance quantities (i.e.
     ## heights + radius) are in meters, and latitude and longitude are in
     ## radians.
 
+  CoordinateFrame* {.header: "CoordinateSystemNode", importcpp: "osg::CoordinateFrame".} = Matrixd
 
 
 {.push header: "CoordinateSystemNode".}

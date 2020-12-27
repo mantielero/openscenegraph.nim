@@ -12,9 +12,9 @@ type
     BENIGN = 0,
     CRITICAL = 1
 
-  ErrorMessageMap* {.header: "ArgumentParser", importcpp: "osg::ArgumentParser::ErrorMessageMap".} = cint
   Parameter* {.header: "ArgumentParser", importcpp: "osg::ArgumentParser::Parameter", byref.} = object
 
+  ErrorMessageMap* {.header: "ArgumentParser", importcpp: "osg::ArgumentParser::ErrorMessageMap".} = cint
 
 
 {.push header: "ArgumentParser".}

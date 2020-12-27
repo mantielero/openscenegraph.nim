@@ -5,12 +5,12 @@ import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Typ
 import CopyOp  # provides: osg::CopyOp
 import Matrix  # provides: osg::Matrix
 type
-  LocalParamList* {.header: "FragmentProgram", importcpp: "osg::FragmentProgram::LocalParamList".} = cint
-  MatrixList* {.header: "FragmentProgram", importcpp: "osg::FragmentProgram::MatrixList".} = cint
-  FragmentProgramIDList* {.header: "FragmentProgram", importcpp: "osg::FragmentProgram::FragmentProgramIDList".} = buffered_value[GLuint]
   FragmentProgram* {.header: "FragmentProgram", importcpp: "osg::FragmentProgram", byref.} = object #of class osg::StateAttribute
     ## FragmentProgram - encapsulates the OpenGL ARB fragment program state.
 
+  LocalParamList* {.header: "FragmentProgram", importcpp: "osg::FragmentProgram::LocalParamList".} = cint
+  MatrixList* {.header: "FragmentProgram", importcpp: "osg::FragmentProgram::MatrixList".} = cint
+  FragmentProgramIDList* {.header: "FragmentProgram", importcpp: "osg::FragmentProgram::FragmentProgramIDList".} = buffered_value[GLuint]
 
 
 {.push header: "FragmentProgram".}

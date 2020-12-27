@@ -4,11 +4,11 @@ import BoundingBox  # provides: osg::BoundingBox
 import Matrix  # provides: osg::Matrix
 import Vec3d  # provides: osg::Vec3d
 type
-  Vec_type* {.header: "LineSegment", importcpp: "osg::LineSegment::vec_type".} = Vec3d
-  Value_type* {.header: "LineSegment", importcpp: "osg::LineSegment::value_type".} = Value_type
   LineSegment* {.header: "LineSegment", importcpp: "osg::LineSegment", byref.} = object #of class osg::Referenced
     ## LineSegment class for representing a line segment.
 
+  Vec_type* {.header: "LineSegment", importcpp: "osg::LineSegment::vec_type".} = Vec3d
+  Value_type* {.header: "LineSegment", importcpp: "osg::LineSegment::value_type".} = Value_type
 
 
 {.push header: "LineSegment".}

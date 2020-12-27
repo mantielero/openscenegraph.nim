@@ -5,8 +5,7 @@ import Vec4d  # provides: osg::Vec4d
 import Vec3d  # provides: osg::Vec3d
 import Vec2d  # provides: osg::Vec2d
 type
-  IndexPointer* {.header: "TemplatePrimitiveFunctor", importcpp: "osg::TemplatePrimitiveFunctor::drawElementsTemplate::IndexPointer".} = ptr IndexType
-  TemplatePrimitiveFunctor* {.header: "TemplatePrimitiveFunctor", importcpp: "osg::TemplatePrimitiveFunctor", byref.} [T] = object #of class osg::PrimitiveFunctor
+  TemplatePrimitiveFunctor* {.header: "TemplatePrimitiveFunctor", importcpp: "osg::TemplatePrimitiveFunctor", byref.} [T]= object #of class osg::PrimitiveFunctor
     ## Provides access to the primitives that compose an osg::Drawable.
     ## Notice that TemplatePrimitiveFunctor is a class template, and that it
     ## inherits from its template parameter T. This template parameter must
@@ -24,6 +23,7 @@ type
     ## created by the TemplatePrimitiveFunctor from some other geometry
     ## representation.
 
+  IndexPointer* {.header: "TemplatePrimitiveFunctor", importcpp: "osg::TemplatePrimitiveFunctor::drawElementsTemplate::IndexPointer".} = ptr IndexType
 
 
 {.push header: "TemplatePrimitiveFunctor".}

@@ -1,12 +1,12 @@
 import Object  # provides: osg::Object
 type
-  OperationThreads* {.header: "OperationThread", importcpp: "osg::OperationQueue::OperationThreads".} = cint
-  Operations* {.header: "OperationThread", importcpp: "osg::OperationQueue::Operations".} = cint
-  OperationsThread* {.header: "OperationThread", importcpp: "osg::OperationsThread".} = Operationthread
   RefBlockCount* {.header: "OperationThread", importcpp: "osg::RefBlockCount", byref.} = object #of osg::Referenced
 
   OperationQueue* {.header: "OperationThread", importcpp: "osg::OperationQueue", byref.} = object #of class osg::Referenced
 
+  OperationThreads* {.header: "OperationThread", importcpp: "osg::OperationQueue::OperationThreads".} = cint
+  Operations* {.header: "OperationThread", importcpp: "osg::OperationQueue::Operations".} = cint
+  OperationsThread* {.header: "OperationThread", importcpp: "osg::OperationsThread".} = Operationthread
 
 
 {.push header: "OperationThread".}

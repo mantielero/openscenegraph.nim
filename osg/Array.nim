@@ -74,6 +74,19 @@ type
     Int64ArrayType = 37,
     LastArrayType = 37
 
+  TemplateArray* {.header: "Array", importcpp: "osg::TemplateArray", byref.} [T, ARRAYTYPE:Type, DataSize:cint, DataType:cint]= object #of class osg::Array
+    ## A concrete array holding elements of type T.
+
+  TemplateIndexArray* {.header: "Array", importcpp: "osg::TemplateIndexArray", byref.} [T, ARRAYTYPE:Type, DataSize:cint, DataType:cint]= object #of class osg::IndexArray
+
+  ArrayVisitor* {.header: "Array", importcpp: "osg::ArrayVisitor", byref.} = object
+
+  ConstArrayVisitor* {.header: "Array", importcpp: "osg::ConstArrayVisitor", byref.} = object
+
+  ValueVisitor* {.header: "Array", importcpp: "osg::ValueVisitor", byref.} = object
+
+  ConstValueVisitor* {.header: "Array", importcpp: "osg::ConstValueVisitor", byref.} = object
+
   ElementDataType* {.header: "Array", importcpp: "osg::TemplateIndexArray::ElementDataType".} = T
   Vec2bArray* {.header: "Array", importcpp: "osg::Vec2bArray".} = Templatearray[Vec2b,Vec2barraytype,2,5120]
   Vec3bArray* {.header: "Array", importcpp: "osg::Vec3bArray".} = Templatearray[Vec3b,Vec3barraytype,3,5120]
@@ -95,19 +108,6 @@ type
   MatrixfArray* {.header: "Array", importcpp: "osg::MatrixfArray".} = Templatearray[Matrixf,Matrixarraytype,16,5126]
   MatrixdArray* {.header: "Array", importcpp: "osg::MatrixdArray".} = Templatearray[Matrixd,Matrixdarraytype,16,5130]
   QuatArray* {.header: "Array", importcpp: "osg::QuatArray".} = Templatearray[Quat,Quatarraytype,4,5130]
-  TemplateArray* {.header: "Array", importcpp: "osg::TemplateArray", byref.} [T] = object #of class osg::Array
-    ## A concrete array holding elements of type T.
-
-  TemplateIndexArray* {.header: "Array", importcpp: "osg::TemplateIndexArray", byref.} [T] = object #of class osg::IndexArray
-
-  ArrayVisitor* {.header: "Array", importcpp: "osg::ArrayVisitor", byref.} = object
-
-  ConstArrayVisitor* {.header: "Array", importcpp: "osg::ConstArrayVisitor", byref.} = object
-
-  ValueVisitor* {.header: "Array", importcpp: "osg::ValueVisitor", byref.} = object
-
-  ConstValueVisitor* {.header: "Array", importcpp: "osg::ConstValueVisitor", byref.} = object
-
 
 
 {.push header: "Array".}

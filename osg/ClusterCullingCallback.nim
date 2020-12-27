@@ -3,7 +3,7 @@ import State  # provides: osg::State
 import Object  # provides: osg::Object
 import Node  # provides: osg::Node
 import Drawable  # provides: osg::Drawable
-import Callback  # provides: osg::NodeCallback, osg::DrawableCullCallback
+import Callback  # provides: osg::DrawableCullCallback, osg::NodeCallback
 import CopyOp  # provides: osg::CopyOp
 import Matrixd  # provides: osg::Matrixd
 import NodeVisitor  # provides: osg::NodeVisitor

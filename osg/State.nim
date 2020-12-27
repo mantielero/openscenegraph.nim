@@ -50,20 +50,20 @@ type
   TextureAttributeMapList* {.header: "State", importcpp: "osg::State::TextureAttributeMapList".} = cint
   UniformMap* {.header: "State", importcpp: "osg::State::UniformMap".} = cint
   MatrixStack* {.header: "State", importcpp: "osg::State::MatrixStack".} = cint
-  ActiveTextureProc* {.header: "State", importcpp: "osg::State::ActiveTextureProc".} = void (*)(GLenum)
-  FogCoordPointerProc* {.header: "State", importcpp: "osg::State::FogCoordPointerProc".} = void (*)(GLenum, GLsizei, const GLvoid *)
-  SecondaryColorPointerProc* {.header: "State", importcpp: "osg::State::SecondaryColorPointerProc".} = void (*)(GLint, GLenum, GLsizei, const GLvoid *)
-  MultiTexCoord4fProc* {.header: "State", importcpp: "osg::State::MultiTexCoord4fProc".} = void (*)(GLenum, GLfloat, GLfloat, GLfloat, GLfloat)
-  VertexAttrib4fProc* {.header: "State", importcpp: "osg::State::VertexAttrib4fProc".} = void (*)(GLuint, GLfloat, GLfloat, GLfloat, GLfloat)
-  VertexAttrib4fvProc* {.header: "State", importcpp: "osg::State::VertexAttrib4fvProc".} = void (*)(GLuint, const GLfloat *)
-  VertexAttribPointerProc* {.header: "State", importcpp: "osg::State::VertexAttribPointerProc".} = void (*)(unsigned int, GLint, GLenum, GLboolean, GLsizei, const GLvoid *)
-  VertexAttribIPointerProc* {.header: "State", importcpp: "osg::State::VertexAttribIPointerProc".} = void (*)(unsigned int, GLint, GLenum, GLsizei, const GLvoid *)
-  VertexAttribLPointerProc* {.header: "State", importcpp: "osg::State::VertexAttribLPointerProc".} = void (*)(unsigned int, GLint, GLenum, GLsizei, const GLvoid *)
-  EnableVertexAttribProc* {.header: "State", importcpp: "osg::State::EnableVertexAttribProc".} = void (*)(unsigned int)
-  DisableVertexAttribProc* {.header: "State", importcpp: "osg::State::DisableVertexAttribProc".} = void (*)(unsigned int)
-  BindBufferProc* {.header: "State", importcpp: "osg::State::BindBufferProc".} = void (*)(GLenum, GLuint)
-  DrawArraysInstancedProc* {.header: "State", importcpp: "osg::State::DrawArraysInstancedProc".} = void (*)(GLenum, GLint, GLsizei, GLsizei)
-  DrawElementsInstancedProc* {.header: "State", importcpp: "osg::State::DrawElementsInstancedProc".} = void (*)(GLenum, GLsizei, GLenum, const GLvoid *, GLsizei)
+  ActiveTextureProc* {.header: "State", importcpp: "osg::State::ActiveTextureProc".} = proc (texture: GLenum)
+  FogCoordPointerProc* {.header: "State", importcpp: "osg::State::FogCoordPointerProc".} = proc (`type`: GLenum, stride: GLsizei, pointer: ptr GLvoid)
+  SecondaryColorPointerProc* {.header: "State", importcpp: "osg::State::SecondaryColorPointerProc".} = proc (size: GLint, `type`: GLenum, stride: GLsizei, pointer: ptr GLvoid)
+  MultiTexCoord4fProc* {.header: "State", importcpp: "osg::State::MultiTexCoord4fProc".} = proc (target: GLenum, x: GLfloat, y: GLfloat, z: GLfloat, w: GLfloat)
+  VertexAttrib4fProc* {.header: "State", importcpp: "osg::State::VertexAttrib4fProc".} = proc (index: GLuint, x: GLfloat, y: GLfloat, z: GLfloat, w: GLfloat)
+  VertexAttrib4fvProc* {.header: "State", importcpp: "osg::State::VertexAttrib4fvProc".} = proc (index: GLuint, v: ptr GLfloat)
+  VertexAttribPointerProc* {.header: "State", importcpp: "osg::State::VertexAttribPointerProc".} = proc (cuint, GLint, GLenum, normalized: GLboolean, stride: GLsizei, pointer: ptr GLvoid)
+  VertexAttribIPointerProc* {.header: "State", importcpp: "osg::State::VertexAttribIPointerProc".} = proc (cuint, GLint, GLenum, stride: GLsizei, pointer: ptr GLvoid)
+  VertexAttribLPointerProc* {.header: "State", importcpp: "osg::State::VertexAttribLPointerProc".} = proc (cuint, GLint, GLenum, stride: GLsizei, pointer: ptr GLvoid)
+  EnableVertexAttribProc* {.header: "State", importcpp: "osg::State::EnableVertexAttribProc".} = proc (cuint)
+  DisableVertexAttribProc* {.header: "State", importcpp: "osg::State::DisableVertexAttribProc".} = proc (cuint)
+  BindBufferProc* {.header: "State", importcpp: "osg::State::BindBufferProc".} = proc (target: GLenum, buffer: GLuint)
+  DrawArraysInstancedProc* {.header: "State", importcpp: "osg::State::DrawArraysInstancedProc".} = proc (mode: GLenum, first: GLint, count: GLsizei, primcount: GLsizei)
+  DrawElementsInstancedProc* {.header: "State", importcpp: "osg::State::DrawElementsInstancedProc".} = proc (mode: GLenum, count: GLsizei, `type`: GLenum, indices: ptr GLvoid, primcount: GLsizei)
 
 
 {.push header: "State".}

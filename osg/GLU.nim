@@ -1,9 +1,9 @@
 type
-  GLTexImage3DProc* {.header: "GLU", importcpp: "osg::GLTexImage3DProc".} = void (*)(GLenum, GLint, GLenum, GLsizei, GLsizei, GLsizei, GLint, GLenum, GLenum, const GLvoid *)
+  GLTexImage3DProc* {.header: "GLU", importcpp: "osg::GLTexImage3DProc".} = proc (target: GLenum, level: GLint, internalFormat: GLenum, width: GLsizei, height: GLsizei, depth: GLsizei, border: GLint, format: GLenum, `type`: GLenum, pixels: ptr GLvoid)
   GLUtesselatorObj* {.header: "GLU", importcpp: "osg::GLUtesselatorObj".} = Glutesselator
   GLUtriangulatorObj* {.header: "GLU", importcpp: "osg::GLUtriangulatorObj".} = Glutesselator
-  PrefixGLUfuncptr* {.header: "GLU", importcpp: "osg::_GLUfuncptr".} = void (*)()
-  GLU_TESS_CALLBACK* {.header: "GLU", importcpp: "osg::GLU_TESS_CALLBACK".} = void (*)()
+  PrefixGLUfuncptr* {.header: "GLU", importcpp: "osg::_GLUfuncptr".} = proc ()
+  GLU_TESS_CALLBACK* {.header: "GLU", importcpp: "osg::GLU_TESS_CALLBACK".} = proc ()
 
 
 {.push header: "GLU".}

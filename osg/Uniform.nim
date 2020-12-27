@@ -3,7 +3,7 @@ import GLExtensions  # provides: osg::GLExtensions
 import Vec4  # provides: osg::Vec4
 import Object  # provides: osg::Object
 import Matrixf  # provides: osg::Matrixf
-import Array  # provides: osg::UInt64Array, osg::UIntArray, osg::IntArray, osg::Int64Array, osg::FloatArray, osg::DoubleArray
+import Array  # provides: osg::UIntArray, osg::Int64Array, osg::IntArray, osg::DoubleArray, osg::FloatArray, osg::UInt64Array
 import Callback  # provides: osg::UniformCallback
 import Vec2  # provides: osg::Vec2
 import StateSet  # provides: osg::StateSet
@@ -135,6 +135,24 @@ type
     INT_SAMPLER_2D_MULTISAMPLE_ARRAY = 37132,
     UNSIGNED_INT_SAMPLER_2D_MULTISAMPLE_ARRAY = 37133
 
+  MatrixTemplate* {.header: "Uniform", importcpp: "osg::MatrixTemplate", byref.} [T, RowN:cuint, ColN:cuint]= object
+
+  Matrix2Template* {.header: "Uniform", importcpp: "osg::Matrix2Template", byref.} [T]= object #of MatrixTemplate<T, 2, 2>
+
+  Matrix2x3Template* {.header: "Uniform", importcpp: "osg::Matrix2x3Template", byref.} [T]= object #of MatrixTemplate<T, 2, 3>
+
+  Matrix2x4Template* {.header: "Uniform", importcpp: "osg::Matrix2x4Template", byref.} [T]= object #of MatrixTemplate<T, 2, 4>
+
+  Matrix3x2Template* {.header: "Uniform", importcpp: "osg::Matrix3x2Template", byref.} [T]= object #of MatrixTemplate<T, 3, 2>
+
+  Matrix3Template* {.header: "Uniform", importcpp: "osg::Matrix3Template", byref.} [T]= object #of MatrixTemplate<T, 3, 3>
+
+  Matrix3x4Template* {.header: "Uniform", importcpp: "osg::Matrix3x4Template", byref.} [T]= object #of MatrixTemplate<T, 3, 4>
+
+  Matrix4x2Template* {.header: "Uniform", importcpp: "osg::Matrix4x2Template", byref.} [T]= object #of MatrixTemplate<T, 4, 2>
+
+  Matrix4x3Template* {.header: "Uniform", importcpp: "osg::Matrix4x3Template", byref.} [T]= object #of MatrixTemplate<T, 4, 3>
+
   Value_type* {.header: "Uniform", importcpp: "osg::Matrix4x3Template::value_type".} = Value_type
   Base_class* {.header: "Uniform", importcpp: "osg::Matrix4x3Template::base_class".} = MatrixTemplate[T, 4, 3]
   Matrix2* {.header: "Uniform", importcpp: "osg::Matrix2".} = Matrix2Template[float]
@@ -155,24 +173,6 @@ type
   Matrix4x3d* {.header: "Uniform", importcpp: "osg::Matrix4x3d".} = Matrix4x3Template[double]
   ParentList* {.header: "Uniform", importcpp: "osg::Uniform::ParentList".} = cint
   Callback* {.header: "Uniform", importcpp: "osg::Uniform::Callback".} = Uniformcallback
-  MatrixTemplate* {.header: "Uniform", importcpp: "osg::MatrixTemplate", byref.} [T] = object
-
-  Matrix2Template* {.header: "Uniform", importcpp: "osg::Matrix2Template", byref.} [T] = object #of MatrixTemplate<T, 2, 2>
-
-  Matrix2x3Template* {.header: "Uniform", importcpp: "osg::Matrix2x3Template", byref.} [T] = object #of MatrixTemplate<T, 2, 3>
-
-  Matrix2x4Template* {.header: "Uniform", importcpp: "osg::Matrix2x4Template", byref.} [T] = object #of MatrixTemplate<T, 2, 4>
-
-  Matrix3x2Template* {.header: "Uniform", importcpp: "osg::Matrix3x2Template", byref.} [T] = object #of MatrixTemplate<T, 3, 2>
-
-  Matrix3Template* {.header: "Uniform", importcpp: "osg::Matrix3Template", byref.} [T] = object #of MatrixTemplate<T, 3, 3>
-
-  Matrix3x4Template* {.header: "Uniform", importcpp: "osg::Matrix3x4Template", byref.} [T] = object #of MatrixTemplate<T, 3, 4>
-
-  Matrix4x2Template* {.header: "Uniform", importcpp: "osg::Matrix4x2Template", byref.} [T] = object #of MatrixTemplate<T, 4, 2>
-
-  Matrix4x3Template* {.header: "Uniform", importcpp: "osg::Matrix4x3Template", byref.} [T] = object #of MatrixTemplate<T, 4, 3>
-
 
 
 {.push header: "Uniform".}

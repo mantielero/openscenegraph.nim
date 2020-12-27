@@ -5,9 +5,7 @@ import Vec4d  # provides: osg::Vec4d
 import Vec3d  # provides: osg::Vec3d
 import Vec2d  # provides: osg::Vec2d
 type
-  Index* {.header: "TemplatePrimitiveIndexFunctor", importcpp: "osg::TemplatePrimitiveIndexFunctor::drawElements::Index".} = GLuint
-  IndexPointer* {.header: "TemplatePrimitiveIndexFunctor", importcpp: "osg::TemplatePrimitiveIndexFunctor::drawElements::IndexPointer".} = ptr Index
-  TemplatePrimitiveIndexFunctor* {.header: "TemplatePrimitiveIndexFunctor", importcpp: "osg::TemplatePrimitiveIndexFunctor", byref.} [T] = object #of class osg::PrimitiveIndexFunctor
+  TemplatePrimitiveIndexFunctor* {.header: "TemplatePrimitiveIndexFunctor", importcpp: "osg::TemplatePrimitiveIndexFunctor", byref.} [T]= object #of class osg::PrimitiveIndexFunctor
     ## Provides access to the primitives that compose an osg::Drawable.
     ## Notice that TemplatePrimitiveIndexFunctor is a class template, and
     ## that it inherits from its template parameter T. This template
@@ -25,6 +23,8 @@ type
     ## a temporary vertex array, created by the TemplatePrimitiveIndexFunctor
     ## from some other geometry representation.
 
+  Index* {.header: "TemplatePrimitiveIndexFunctor", importcpp: "osg::TemplatePrimitiveIndexFunctor::drawElements::Index".} = GLuint
+  IndexPointer* {.header: "TemplatePrimitiveIndexFunctor", importcpp: "osg::TemplatePrimitiveIndexFunctor::drawElements::IndexPointer".} = ptr Index
 
 
 {.push header: "TemplatePrimitiveIndexFunctor".}

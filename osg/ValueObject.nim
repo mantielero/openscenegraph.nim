@@ -31,6 +31,18 @@ import Vec4ub  # provides: osg::Vec4ub
 import Vec4i  # provides: osg::Vec4i
 import Vec4f  # provides: osg::Vec4f
 type
+  GetValueVisitor* {.header: "ValueObject", importcpp: "osg::ValueObject::GetValueVisitor", byref.} = object
+
+  SetValueVisitor* {.header: "ValueObject", importcpp: "osg::ValueObject::SetValueVisitor", byref.} = object
+
+  GetScalarValue* {.header: "ValueObject", importcpp: "osg::GetScalarValue", byref.} = object #of class ValueObject::GetValueVisitor
+
+  SetScalarValue* {.header: "ValueObject", importcpp: "osg::SetScalarValue", byref.} [T]= object #of class ValueObject::SetValueVisitor
+
+  ValueObjectClassNameTrait* {.header: "ValueObject", importcpp: "osg::ValueObjectClassNameTrait", byref.} [T]= object
+
+  TemplateValueObject* {.header: "ValueObject", importcpp: "osg::TemplateValueObject", byref.} [T]= object #of class osg::ValueObject
+
   StringValueObject* {.header: "ValueObject", importcpp: "osg::StringValueObject".} = Templatevalueobject[String]
   BoolValueObject* {.header: "ValueObject", importcpp: "osg::BoolValueObject".} = TemplateValueObject[bool]
   CharValueObject* {.header: "ValueObject", importcpp: "osg::CharValueObject".} = TemplateValueObject[char]
@@ -56,18 +68,6 @@ type
   BoundingSpherefValueObject* {.header: "ValueObject", importcpp: "osg::BoundingSpherefValueObject".} = Templatevalueobject[Boundingspheref]
   BoundingSpheredValueObject* {.header: "ValueObject", importcpp: "osg::BoundingSpheredValueObject".} = Templatevalueobject[Boundingsphered]
   UserValueObject* {.header: "ValueObject", importcpp: "osg::Object::setUserValue::UserValueObject".} = TemplateValueObject[T]
-  GetValueVisitor* {.header: "ValueObject", importcpp: "osg::ValueObject::GetValueVisitor", byref.} = object
-
-  SetValueVisitor* {.header: "ValueObject", importcpp: "osg::ValueObject::SetValueVisitor", byref.} = object
-
-  GetScalarValue* {.header: "ValueObject", importcpp: "osg::GetScalarValue", byref.} = object #of class ValueObject::GetValueVisitor
-
-  SetScalarValue* {.header: "ValueObject", importcpp: "osg::SetScalarValue", byref.} [T] = object #of class ValueObject::SetValueVisitor
-
-  ValueObjectClassNameTrait* {.header: "ValueObject", importcpp: "osg::ValueObjectClassNameTrait", byref.} [T] = object
-
-  TemplateValueObject* {.header: "ValueObject", importcpp: "osg::TemplateValueObject", byref.} [T] = object #of class osg::ValueObject
-
 
 
 {.push header: "ValueObject".}

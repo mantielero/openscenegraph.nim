@@ -10,9 +10,6 @@ type
     DRAW_FRAMEBUFFER = 36009,
     READ_DRAW_FRAMEBUFFER = 36160
 
-  AttachmentMap* {.header: "FrameBufferObject", importcpp: "osg::FrameBufferObject::AttachmentMap".} = cint
-  MultipleRenderingTargets* {.header: "FrameBufferObject", importcpp: "osg::FrameBufferObject::MultipleRenderingTargets".} = cint
-  BufferComponent* {.header: "FrameBufferObject", importcpp: "osg::FrameBufferObject::BufferComponent".} = Buffercomponent
   RenderBuffer* {.header: "FrameBufferObject", importcpp: "osg::RenderBuffer", byref.} = object #of class osg::Object
     ## **********************************************************************
     ## ** RenderBuffer ******************************************************
@@ -29,6 +26,9 @@ type
 
   GLFrameBufferObjectManager* {.header: "FrameBufferObject", importcpp: "osg::GLFrameBufferObjectManager", byref.} = object #of class osg::GLObjectManager
 
+  AttachmentMap* {.header: "FrameBufferObject", importcpp: "osg::FrameBufferObject::AttachmentMap".} = cint
+  MultipleRenderingTargets* {.header: "FrameBufferObject", importcpp: "osg::FrameBufferObject::MultipleRenderingTargets".} = cint
+  BufferComponent* {.header: "FrameBufferObject", importcpp: "osg::FrameBufferObject::BufferComponent".} = Buffercomponent
 
 
 {.push header: "FrameBufferObject".}

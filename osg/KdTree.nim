@@ -1,18 +1,18 @@
 import Object  # provides: osg::Object
 import Array  # provides: osg::Vec3Array
-import Shape  # provides: osg::ShapeVisitor, osg::ConstShapeVisitor
+import Shape  # provides: osg::ConstShapeVisitor, osg::ShapeVisitor
 import Geometry  # provides: osg::Geometry
 import CopyOp  # provides: osg::CopyOp
 type
-  Indices* {.header: "KdTree", importcpp: "osg::KdTree::Indices".} = cint
-  Value_type* {.header: "KdTree", importcpp: "osg::KdTree::value_type".} = cint
-  KdNodeList* {.header: "KdTree", importcpp: "osg::KdTree::KdNodeList".} = cint
   KdTree* {.header: "KdTree", importcpp: "osg::KdTree", byref.} = object #of osg::Shape
     ## Implementation of a kdtree for Geometry leaves, to enable fast
     ## intersection tests.
 
   KdTreeBuilder* {.header: "KdTree", importcpp: "osg::KdTreeBuilder", byref.} = object #of osg::NodeVisitor
 
+  Indices* {.header: "KdTree", importcpp: "osg::KdTree::Indices".} = cint
+  Value_type* {.header: "KdTree", importcpp: "osg::KdTree::value_type".} = cint
+  KdNodeList* {.header: "KdTree", importcpp: "osg::KdTree::KdNodeList".} = cint
 
 
 {.push header: "KdTree".}

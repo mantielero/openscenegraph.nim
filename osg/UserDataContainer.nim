@@ -2,11 +2,11 @@ import Object  # provides: osg::Object
 import Referenced  # provides: osg::Referenced
 import CopyOp  # provides: osg::CopyOp
 type
-  DescriptionList* {.header: "UserDataContainer", importcpp: "osg::UserDataContainer::DescriptionList".} = cint
-  ObjectList* {.header: "UserDataContainer", importcpp: "osg::DefaultUserDataContainer::ObjectList".} = cint
   DefaultUserDataContainer* {.header: "UserDataContainer", importcpp: "osg::DefaultUserDataContainer", byref.} = object #of osg::UserDataContainer
     ## Internal structure for storing all user data.
 
+  DescriptionList* {.header: "UserDataContainer", importcpp: "osg::UserDataContainer::DescriptionList".} = cint
+  ObjectList* {.header: "UserDataContainer", importcpp: "osg::DefaultUserDataContainer::ObjectList".} = cint
 
 
 {.push header: "UserDataContainer".}

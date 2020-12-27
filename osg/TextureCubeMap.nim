@@ -12,13 +12,13 @@ type
     POSITIVE_Z = 4,
     NEGATIVE_Z = 5
 
-  ImageModifiedCount* {.header: "TextureCubeMap", importcpp: "osg::TextureCubeMap::ImageModifiedCount".} = buffered_value[unsigned int]
   TextureCubeMap* {.header: "TextureCubeMap", importcpp: "osg::TextureCubeMap", byref.} = object #of class osg::Texture
     ## TextureCubeMap state class which encapsulates OpenGL texture cubemap
     ## functionality.
 
   SubloadCallback* {.header: "TextureCubeMap", importcpp: "osg::TextureCubeMap::SubloadCallback", byref.} = object #of class osg::Referenced
 
+  ImageModifiedCount* {.header: "TextureCubeMap", importcpp: "osg::TextureCubeMap::ImageModifiedCount".} = buffered_value[unsigned int]
 
 
 {.push header: "TextureCubeMap".}

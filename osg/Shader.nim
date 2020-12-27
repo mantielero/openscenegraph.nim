@@ -16,11 +16,6 @@ type
     USE_SHADER_PRAGMA = 0,
     USE_MANUAL_SETTINGS = 1
 
-  Data* {.header: "Shader", importcpp: "osg::ShaderBinary::Data".} = cint
-  CodeInjectionMap* {.header: "Shader", importcpp: "osg::Shader::CodeInjectionMap".} = cint
-  PerContextShaders* {.header: "Shader", importcpp: "osg::Shader::ShaderObjects::PerContextShaders".} = cint
-  ProgramSet* {.header: "Shader", importcpp: "osg::Shader::ProgramSet".} = cint
-  Shaders* {.header: "Shader", importcpp: "osg::ShaderComponent::Shaders".} = cint
   ShaderBinary* {.header: "Shader", importcpp: "osg::ShaderBinary", byref.} = object #of osg::Object
     ## Simple class for wrapping up the data used in OpenGL ES 2's
     ## glShaderBinary calls. ShaderBinary is set up with the binary data then
@@ -30,6 +25,11 @@ type
     ## PerContextShader (PCS) is an OSG-internal encapsulation of glShader
     ## per-GL context.
 
+  Data* {.header: "Shader", importcpp: "osg::ShaderBinary::Data".} = cint
+  CodeInjectionMap* {.header: "Shader", importcpp: "osg::Shader::CodeInjectionMap".} = cint
+  PerContextShaders* {.header: "Shader", importcpp: "osg::Shader::ShaderObjects::PerContextShaders".} = cint
+  ProgramSet* {.header: "Shader", importcpp: "osg::Shader::ProgramSet".} = cint
+  Shaders* {.header: "Shader", importcpp: "osg::ShaderComponent::Shaders".} = cint
 
 
 {.push header: "Shader".}

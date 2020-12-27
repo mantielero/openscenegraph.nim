@@ -1,8 +1,5 @@
 type
   Element_type* {.header: "ref_ptr", importcpp: "osg::ref_ptr::element_type".} = T
-  ref_ptr* {.header: "ref_ptr", importcpp: "osg::ref_ptr", byref.} [T] = object
-    ## Smart pointer for handling referenced counted objects.
-
 
 
 {.push header: "ref_ptr".}

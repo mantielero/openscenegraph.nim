@@ -18,14 +18,14 @@ type
     BOTTOM_LEFT = 0,
     TOP_LEFT = 1
 
-  MipmapDataType* {.header: "Image", importcpp: "osg::Image::MipmapDataType".} = cint
-  DimensionsChangedCallbackVector* {.header: "Image", importcpp: "osg::Image::DimensionsChangedCallbackVector".} = cint
   DataIterator* {.header: "Image", importcpp: "osg::Image::DataIterator", byref.} = object
     ## Convenience class for assisting the copying of image data when the
     ## image data isn't contiguous.
 
   DimensionsChangedCallback* {.header: "Image", importcpp: "osg::Image::DimensionsChangedCallback", byref.} = object #of osg::Referenced
 
+  MipmapDataType* {.header: "Image", importcpp: "osg::Image::MipmapDataType".} = cint
+  DimensionsChangedCallbackVector* {.header: "Image", importcpp: "osg::Image::DimensionsChangedCallbackVector".} = cint
 
 
 {.push header: "Image".}

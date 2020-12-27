@@ -5,9 +5,9 @@ import Shader  # provides: osg::Shader
 import CopyOp  # provides: osg::CopyOp
 import Uniform  # provides: osg::Uniform
 type
-  Uniforms* {.header: "ShaderAttribute", importcpp: "osg::ShaderAttribute::Uniforms".} = cint
   ShaderAttribute* {.header: "ShaderAttribute", importcpp: "osg::ShaderAttribute", byref.} = object #of class osg::StateAttribute
 
+  Uniforms* {.header: "ShaderAttribute", importcpp: "osg::ShaderAttribute::Uniforms".} = cint
 
 
 {.push header: "ShaderAttribute".}

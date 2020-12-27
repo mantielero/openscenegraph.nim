@@ -4,13 +4,13 @@ import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Typ
 import Image  # provides: osg::Image
 import CopyOp  # provides: osg::CopyOp
 type
-  ImageModifiedCount* {.header: "Texture1D", importcpp: "osg::Texture1D::ImageModifiedCount".} = buffered_value[unsigned int]
   Texture1D* {.header: "Texture1D", importcpp: "osg::Texture1D", byref.} = object #of class osg::Texture
     ## Encapsulates OpenGL 1D texture functionality. Doesn't support cube
     ## maps, so ignore face parameters.
 
   SubloadCallback* {.header: "Texture1D", importcpp: "osg::Texture1D::SubloadCallback", byref.} = object #of class osg::Referenced
 
+  ImageModifiedCount* {.header: "Texture1D", importcpp: "osg::Texture1D::ImageModifiedCount".} = buffered_value[unsigned int]
 
 
 {.push header: "Texture1D".}

@@ -5,8 +5,7 @@ import Vec4d  # provides: osg::Vec4d
 import Vec3d  # provides: osg::Vec3d
 import Vec2d  # provides: osg::Vec2d
 type
-  IndexPointer* {.header: "TriangleFunctor", importcpp: "osg::TriangleFunctor::drawElements::IndexPointer".} = ptr GLuint
-  TriangleFunctor* {.header: "TriangleFunctor", importcpp: "osg::TriangleFunctor", byref.} [T] = object #of class osg::PrimitiveFunctor
+  TriangleFunctor* {.header: "TriangleFunctor", importcpp: "osg::TriangleFunctor", byref.} [T]= object #of class osg::PrimitiveFunctor
     ## Provides access to the triangles that compose an osg::Drawable. If the
     ## Drawable is not composed of triangles, the TriangleFunctor will
     ## convert the primitives to triangles whenever possible. Notice that
@@ -21,6 +20,7 @@ type
     ## created by the TriangleFunctor from some other geometry
     ## representation.
 
+  IndexPointer* {.header: "TriangleFunctor", importcpp: "osg::TriangleFunctor::drawElements::IndexPointer".} = ptr GLuint
 
 
 {.push header: "TriangleFunctor".}

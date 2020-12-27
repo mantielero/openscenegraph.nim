@@ -1,6 +1,5 @@
 type
-  Element_type* {.header: "observer_ptr", importcpp: "osg::observer_ptr::element_type".} = T
-  observer_ptr* {.header: "observer_ptr", importcpp: "osg::observer_ptr", byref.} [T] = object
+  observer_ptr* {.header: "observer_ptr", importcpp: "osg::observer_ptr", byref.} [T]= object
     ## Smart pointer for observed objects, that automatically set pointers to
     ## them to null when they are deleted. To use the observer_ptr<> robustly
     ## in multi-threaded applications it is recommend to access the pointer
@@ -16,6 +15,7 @@ type
     ## in any doubt about whether it is safe to access the object safe then
     ## use the ref_ptr<> observer_ptr<>.lock() combination.
 
+  Element_type* {.header: "observer_ptr", importcpp: "osg::observer_ptr::element_type".} = T
 
 
 {.push header: "observer_ptr".}

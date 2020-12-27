@@ -1,6 +1,6 @@
 import Vec3  # provides: osg::Vec3
 import Object  # provides: osg::Object
-import Array  # provides: osg::Vec3Array, osg::FloatArray, osg::IndexArray
+import Array  # provides: osg::IndexArray, osg::FloatArray, osg::Vec3Array
 import Vec3f  # provides: osg::Vec3f
 import Vec2  # provides: osg::Vec2
 import Vec2f  # provides: osg::Vec2f
@@ -17,9 +17,6 @@ type
     SphereTopHalf = 0,
     SphereBottomHalf = 1
 
-  HeightList* {.header: "Shape", importcpp: "osg::HeightField::HeightList".} = cint
-  Grid* {.header: "Shape", importcpp: "osg::Grid".} = Heightfield
-  ChildList* {.header: "Shape", importcpp: "osg::CompositeShape::ChildList".} = cint
   Sphere* {.header: "Shape", importcpp: "osg::Sphere", byref.} = object #of class osg::Shape
 
   Box* {.header: "Shape", importcpp: "osg::Box", byref.} = object #of class osg::Shape
@@ -48,6 +45,9 @@ type
     ## Convenience class for populating an Geometry with vertex, normals,
     ## texture coords and primitives that can render a Shape.
 
+  HeightList* {.header: "Shape", importcpp: "osg::HeightField::HeightList".} = cint
+  Grid* {.header: "Shape", importcpp: "osg::Grid".} = Heightfield
+  ChildList* {.header: "Shape", importcpp: "osg::CompositeShape::ChildList".} = cint
 
 
 {.push header: "Shape".}

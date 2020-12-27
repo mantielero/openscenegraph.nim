@@ -6,9 +6,9 @@ type
     KEYBOARD_MOUSE_BINDING = 4,
     HELP_ALL = 7
 
-  UsageMap* {.header: "ApplicationUsage", importcpp: "osg::ApplicationUsage::UsageMap".} = cint
   ApplicationUsageProxy* {.header: "ApplicationUsage", importcpp: "osg::ApplicationUsageProxy", byref.} = object
 
+  UsageMap* {.header: "ApplicationUsage", importcpp: "osg::ApplicationUsage::UsageMap".} = cint
 
 
 {.push header: "ApplicationUsage".}

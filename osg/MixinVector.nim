@@ -1,4 +1,9 @@
 type
+  MixinVector* {.header: "MixinVector", importcpp: "osg::MixinVector", byref.} [ValueT]= object
+    ## MixinVector is a base class that allows inheritance to be used to
+    ## easily emulate derivation from std::vector but without introducing
+    ## undefined behaviour through violation of virtual destructor rules.
+
   Vector_type* {.header: "MixinVector", importcpp: "osg::MixinVector::vector_type".} = cint
   Allocator_type* {.header: "MixinVector", importcpp: "osg::MixinVector::allocator_type".} = cint
   Value_type* {.header: "MixinVector", importcpp: "osg::MixinVector::value_type".} = cint
@@ -12,11 +17,6 @@ type
   Reverse_iterator* {.header: "MixinVector", importcpp: "osg::MixinVector::reverse_iterator".} = cint
   Size_type* {.header: "MixinVector", importcpp: "osg::MixinVector::size_type".} = cint
   Difference_type* {.header: "MixinVector", importcpp: "osg::MixinVector::difference_type".} = cint
-  MixinVector* {.header: "MixinVector", importcpp: "osg::MixinVector", byref.} [ValueT] = object
-    ## MixinVector is a base class that allows inheritance to be used to
-    ## easily emulate derivation from std::vector but without introducing
-    ## undefined behaviour through violation of virtual destructor rules.
-
 
 
 {.push header: "MixinVector".}

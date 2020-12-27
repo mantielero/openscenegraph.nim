@@ -1,9 +1,8 @@
 import State  # provides: osg::State
 import Object  # provides: osg::Object
-import PrimitiveSet  # provides: osg::PrimitiveIndexFunctor, osg::PrimitiveFunctor, osg::VectorGLuint
+import PrimitiveSet  # provides: osg::PrimitiveFunctor, osg::VectorGLuint, osg::PrimitiveIndexFunctor
 import CopyOp  # provides: osg::CopyOp
 type
-  Vector_type* {.header: "PrimitiveSetIndirect", importcpp: "osg::DrawElementsIndirectUInt::vector_type".} = Vectorgluint
   IndirectCommandDrawArrays* {.header: "PrimitiveSetIndirect", importcpp: "osg::IndirectCommandDrawArrays", byref.} = object #of class osg::BufferData
     ## common interface for IndirectCommandDrawArrayss
 
@@ -41,6 +40,7 @@ type
   MultiDrawArraysIndirect* {.header: "PrimitiveSetIndirect", importcpp: "osg::MultiDrawArraysIndirect", byref.} = object #of class osg::DrawArraysIndirect
     ## The MultiDrawArraysIndirect PrimitiveSet
 
+  Vector_type* {.header: "PrimitiveSetIndirect", importcpp: "osg::DrawElementsIndirectUInt::vector_type".} = Vectorgluint
 
 
 {.push header: "PrimitiveSetIndirect".}

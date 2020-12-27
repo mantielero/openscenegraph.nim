@@ -1,6 +1,6 @@
 import Object  # provides: osg::Object
 import Referenced  # provides: osg::Referenced
-import Image  # provides: osg::Image, osg::Image::AllocationMode
+import Image  # provides: osg::Image::AllocationMode, osg::Image
 import CopyOp  # provides: osg::CopyOp
 import NodeVisitor  # provides: osg::NodeVisitor
 type
@@ -11,10 +11,10 @@ type
     LOAD_AND_RETAIN_IN_UPDATE_TRAVERSAL = 3,
     LOAD_AND_DISCARD_IN_UPDATE_TRAVERSAL = 4
 
-  ImageDataList* {.header: "ImageSequence", importcpp: "osg::ImageSequence::ImageDataList".} = cint
   ImageSequence* {.header: "ImageSequence", importcpp: "osg::ImageSequence", byref.} = object #of class osg::ImageStream
     ## Image Buffer class.
 
+  ImageDataList* {.header: "ImageSequence", importcpp: "osg::ImageSequence::ImageDataList".} = cint
 
 
 {.push header: "ImageSequence".}

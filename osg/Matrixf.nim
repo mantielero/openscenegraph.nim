@@ -7,10 +7,10 @@ import Vec3d  # provides: osg::Vec3d
 import Quat  # provides: osg::Quat
 import Vec4f  # provides: osg::Vec4f
 type
-  Value_type* {.header: "Matrixf", importcpp: "osg::Matrixf::value_type".} = cfloat
-  Other_value_type* {.header: "Matrixf", importcpp: "osg::Matrixf::other_value_type".} = cdouble
   RefMatrixf* {.header: "Matrixf", importcpp: "osg::RefMatrixf", byref.} = object #of class osg::Object
 
+  Value_type* {.header: "Matrixf", importcpp: "osg::Matrixf::value_type".} = cfloat
+  Other_value_type* {.header: "Matrixf", importcpp: "osg::Matrixf::other_value_type".} = cdouble
 
 
 {.push header: "Matrixf".}

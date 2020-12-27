@@ -1,4 +1,5 @@
 import BoundingSphere  # provides: osg::BoundingSphere
+import ref_ptr  # provides: osg::ref_ptr
 import Object  # provides: osg::Object
 import Referenced  # provides: osg::Referenced
 import Node  # provides: osg::Node

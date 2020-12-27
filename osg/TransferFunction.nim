@@ -3,7 +3,6 @@ import Object  # provides: osg::Object
 import Image  # provides: osg::Image
 import CopyOp  # provides: osg::CopyOp
 type
-  ColorMap* {.header: "TransferFunction", importcpp: "osg::TransferFunction1D::ColorMap".} = cint
   TransferFunction* {.header: "TransferFunction", importcpp: "osg::TransferFunction", byref.} = object #of osg::Object
     ## TransferFunction is a class that provide a 1D,2D or 3D colour look up
     ## table that can be used on the GPU as a 1D, 2D or 3D texture. Typically
@@ -13,6 +12,7 @@ type
   TransferFunction1D* {.header: "TransferFunction", importcpp: "osg::TransferFunction1D", byref.} = object #of osg::TransferFunction
     ## 1D variant of TransferFunction.
 
+  ColorMap* {.header: "TransferFunction", importcpp: "osg::TransferFunction1D::ColorMap".} = cint
 
 
 {.push header: "TransferFunction".}

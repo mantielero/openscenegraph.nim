@@ -13,10 +13,10 @@ type
     NO_LOOPING = 0,
     LOOPING = 1
 
-  AudioStreams* {.header: "ImageStream", importcpp: "osg::ImageStream::AudioStreams".} = cint
   ImageStream* {.header: "ImageStream", importcpp: "osg::ImageStream", byref.} = object #of class osg::Image
     ## Image Stream class.
 
+  AudioStreams* {.header: "ImageStream", importcpp: "osg::ImageStream::AudioStreams".} = cint
 
 
 {.push header: "ImageStream".}

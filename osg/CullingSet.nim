@@ -1,6 +1,7 @@
 import Vec3  # provides: osg::Vec3
 import BoundingSphere  # provides: osg::BoundingSphere
 import Vec4  # provides: osg::Vec4
+import ref_ptr  # provides: osg::ref_ptr
 import ShadowVolumeOccluder  # provides: osg::ShadowVolumeOccluder
 import Polytope  # provides: osg::Polytope
 import Node  # provides: osg::NodePath

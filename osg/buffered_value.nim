@@ -1,12 +1,3 @@
-type
-  buffered_value* {.header: "buffered_value", importcpp: "osg::buffered_value", byref.} [T] = object
-    ## Implements a simple buffered value for values that need to be buffered
-    ## on a per graphics context basis.
-
-  buffered_object* {.header: "buffered_value", importcpp: "osg::buffered_object", byref.} [T] = object
-
-
-
 {.push header: "buffered_value".}
 
 proc constructbuffered_value*[T](): buffered_value {.constructor,importcpp: "osg::buffered_value::buffered_value<T>".}

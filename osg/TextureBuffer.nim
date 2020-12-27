@@ -5,11 +5,11 @@ import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Typ
 import Image  # provides: osg::Image
 import CopyOp  # provides: osg::CopyOp
 type
-  BufferDataModifiedCount* {.header: "TextureBuffer", importcpp: "osg::TextureBuffer::BufferDataModifiedCount".} = buffered_value[unsigned int]
   TextureBuffer* {.header: "TextureBuffer", importcpp: "osg::TextureBuffer", byref.} = object #of class osg::Texture
     ## Encapsulates OpenGL texture buffer functionality in a Texture
     ## delegating its content to attached BufferObject
 
+  BufferDataModifiedCount* {.header: "TextureBuffer", importcpp: "osg::TextureBuffer::BufferDataModifiedCount".} = buffered_value[unsigned int]
 
 
 {.push header: "TextureBuffer".}

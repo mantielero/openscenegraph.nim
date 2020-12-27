@@ -7,7 +7,7 @@ import PrimitiveSet  # provides: osg::PrimitiveSet
 import Node  # provides: osg::Node
 import Image  # provides: osg::Image
 import Drawable  # provides: osg::Drawable
-import Callback  # provides: osg::Callback, osg::UniformCallback, osg::StateAttributeCallback
+import Callback  # provides: osg::StateAttributeCallback, osg::Callback, osg::UniformCallback
 import StateSet  # provides: osg::StateSet
 import Uniform  # provides: osg::Uniform
 import Texture  # provides: osg::Texture

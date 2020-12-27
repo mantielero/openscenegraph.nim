@@ -4,13 +4,13 @@ import RenderInfo  # provides: osg::RenderInfo
 import Program  # provides: osg::Program
 import Texture  # provides: osg::Texture
 type
-  CostPair* {.header: "GraphicsCostEstimator", importcpp: "osg::CostPair".} = Pair[cdouble,cdouble]
   GeometryCostEstimator* {.header: "GraphicsCostEstimator", importcpp: "osg::GeometryCostEstimator", byref.} = object #of osg::Referenced
 
   TextureCostEstimator* {.header: "GraphicsCostEstimator", importcpp: "osg::TextureCostEstimator", byref.} = object #of osg::Referenced
 
   ProgramCostEstimator* {.header: "GraphicsCostEstimator", importcpp: "osg::ProgramCostEstimator", byref.} = object #of osg::Referenced
 
+  CostPair* {.header: "GraphicsCostEstimator", importcpp: "osg::CostPair".} = Pair[cdouble,cdouble]
 
 
 {.push header: "GraphicsCostEstimator".}

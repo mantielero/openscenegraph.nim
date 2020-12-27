@@ -3,11 +3,12 @@ import State  # provides: osg::State
 import BoundingSphere  # provides: osg::BoundingSphere
 import Vec4  # provides: osg::Vec4
 import Object  # provides: osg::Object
-import Array  # provides: osg::Vec2Array, osg::UIntArray, osg::ShortArray, osg::Vec2dArray, osg::IntArray, osg::Array, osg::Vec3dArray, osg::ByteArray, osg::Vec4Array, osg::Vec3Array, osg::UByteArray, osg::FloatArray, osg::Vec4dArray, osg::DoubleArray, osg::Vec4ubArray, osg::UShortArray
+import Array  # provides: osg::UIntArray, osg::ShortArray, osg::UByteArray, osg::ByteArray, osg::Vec4ubArray, osg::Vec2dArray, osg::IntArray, osg::Vec2Array, osg::Vec3Array, osg::Vec4dArray, osg::DoubleArray, osg::Vec3dArray, osg::Array, osg::UShortArray, osg::Vec4Array, osg::FloatArray
 import Shape  # provides: osg::Shape
-import PrimitiveSet  # provides: osg::PrimitiveIndexFunctor, osg::PrimitiveFunctor
-import Node  # provides: osg::Node, osg::MatrixList
-import Callback  # provides: osg::DrawableCullCallback, osg::DrawableUpdateCallback, osg::DrawableEventCallback
+import PrimitiveSet  # provides: osg::PrimitiveFunctor, osg::PrimitiveIndexFunctor
+import Node  # provides: osg::MatrixList, osg::Node
+import buffered_value  # provides: osg::buffered_value
+import Callback  # provides: osg::DrawableUpdateCallback, osg::DrawableEventCallback, osg::DrawableCullCallback
 import Vec2  # provides: osg::Vec2
 import BoundingBox  # provides: osg::BoundingBox
 import CopyOp  # provides: osg::CopyOp
@@ -40,11 +41,6 @@ type
     TEXTURE_COORDS_6 = 14,
     TEXTURE_COORDS_7 = 15
 
-  UpdateCallback* {.header: "Drawable", importcpp: "osg::Drawable::UpdateCallback".} = Drawableupdatecallback
-  EventCallback* {.header: "Drawable", importcpp: "osg::Drawable::EventCallback".} = Drawableeventcallback
-  CullCallback* {.header: "Drawable", importcpp: "osg::Drawable::CullCallback".} = Drawablecullcallback
-  AttributeType* {.header: "Drawable", importcpp: "osg::Drawable::AttributeType".} = cuint
-  GLObjectList* {.header: "Drawable", importcpp: "osg::Drawable::GLObjectList".} = Buffered_value[GLuint]
   AttributeFunctor* {.header: "Drawable", importcpp: "osg::Drawable::AttributeFunctor", byref.} = object
 
   ConstAttributeFunctor* {.header: "Drawable", importcpp: "osg::Drawable::ConstAttributeFunctor", byref.} = object
@@ -53,6 +49,11 @@ type
 
   ConstAttributeFunctorArrayVisitor* {.header: "Drawable", importcpp: "osg::ConstAttributeFunctorArrayVisitor", byref.} = object #of class osg::ConstArrayVisitor
 
+  UpdateCallback* {.header: "Drawable", importcpp: "osg::Drawable::UpdateCallback".} = Drawableupdatecallback
+  EventCallback* {.header: "Drawable", importcpp: "osg::Drawable::EventCallback".} = Drawableeventcallback
+  CullCallback* {.header: "Drawable", importcpp: "osg::Drawable::CullCallback".} = Drawablecullcallback
+  AttributeType* {.header: "Drawable", importcpp: "osg::Drawable::AttributeType".} = cuint
+  GLObjectList* {.header: "Drawable", importcpp: "osg::Drawable::GLObjectList".} = Buffered_value[GLuint]
 
 
 {.push header: "Drawable".}

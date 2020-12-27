@@ -1,8 +1,10 @@
 import State  # provides: osg::State
+import ref_ptr  # provides: osg::ref_ptr
 import Object  # provides: osg::Object
 import Array  # provides: osg::Array
 import PrimitiveSet  # provides: osg::PrimitiveSet, osg::DrawElements
 import Image  # provides: osg::Image
+import buffered_value  # provides: osg::buffered_object, osg::buffered_value
 import CopyOp  # provides: osg::CopyOp
 import FrameStamp  # provides: osg::FrameStamp
 type
@@ -14,12 +16,6 @@ type
     WRITE = 2
       ## Buffer is in write mode (
 
-  BufferEntries* {.header: "BufferObject", importcpp: "osg::GLBufferObject::BufferEntries".} = cint
-  GLBufferObjectList* {.header: "BufferObject", importcpp: "osg::GLBufferObjectList".} = cint
-  GLBufferObjectSetMap* {.header: "BufferObject", importcpp: "osg::GLBufferObjectManager::GLBufferObjectSetMap".} = cint
-  BufferDataList* {.header: "BufferObject", importcpp: "osg::BufferObject::BufferDataList".} = cint
-  GLBufferObjects* {.header: "BufferObject", importcpp: "osg::BufferObject::GLBufferObjects".} = Buffered_object[Ref_ptr[GLBufferObject]]
-  ModeList* {.header: "BufferObject", importcpp: "osg::PixelDataBufferObject::ModeList".} = Buffered_value[cuint]
   BufferObjectProfile* {.header: "BufferObject", importcpp: "osg::BufferObjectProfile", byref.} = object
 
   GLBufferObjectSet* {.header: "BufferObject", importcpp: "osg::GLBufferObjectSet", byref.} = object #of class osg::Referenced
@@ -42,6 +38,12 @@ type
 
   ShaderStorageBufferObject* {.header: "BufferObject", importcpp: "osg::ShaderStorageBufferObject", byref.} = object #of class osg::BufferObject
 
+  BufferEntries* {.header: "BufferObject", importcpp: "osg::GLBufferObject::BufferEntries".} = cint
+  GLBufferObjectList* {.header: "BufferObject", importcpp: "osg::GLBufferObjectList".} = cint
+  GLBufferObjectSetMap* {.header: "BufferObject", importcpp: "osg::GLBufferObjectManager::GLBufferObjectSetMap".} = cint
+  BufferDataList* {.header: "BufferObject", importcpp: "osg::BufferObject::BufferDataList".} = cint
+  GLBufferObjects* {.header: "BufferObject", importcpp: "osg::BufferObject::GLBufferObjects".} = Buffered_object[Ref_ptr[GLBufferObject]]
+  ModeList* {.header: "BufferObject", importcpp: "osg::PixelDataBufferObject::ModeList".} = Buffered_value[cuint]
 
 
 {.push header: "BufferObject".}

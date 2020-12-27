@@ -1,8 +1,8 @@
 import State  # provides: osg::State
 import Object  # provides: osg::Object
-import BufferObject  # provides: osg::VertexBufferObject, osg::ElementBufferObject
+import BufferObject  # provides: osg::ElementBufferObject, osg::VertexBufferObject
 import Array  # provides: osg::Array, osg::Array::Binding
-import PrimitiveSet  # provides: osg::PrimitiveIndexFunctor, osg::PrimitiveSet, osg::PrimitiveFunctor
+import PrimitiveSet  # provides: osg::PrimitiveSet, osg::PrimitiveFunctor, osg::PrimitiveIndexFunctor
 import CopyOp  # provides: osg::CopyOp
 import VertexArrayState  # provides: osg::VertexArrayState
 import RenderInfo  # provides: osg::RenderInfo
@@ -16,13 +16,13 @@ type
     BIND_PER_PRIMITIVE_SET = 2,
     BIND_PER_VERTEX = 4
 
-  ArrayList* {.header: "Geometry", importcpp: "osg::Geometry::ArrayList".} = cint
-  PrimitiveSetList* {.header: "Geometry", importcpp: "osg::Geometry::PrimitiveSetList".} = cint
-  DrawElementsList* {.header: "Geometry", importcpp: "osg::Geometry::DrawElementsList".} = cint
   ConfigureBufferObjectsVisitor* {.header: "Geometry", importcpp: "osg::ConfigureBufferObjectsVisitor", byref.} = object #of osg::NodeVisitor
     ## Convenience visitor for making sure that any BufferObjects that might
     ## be required are set up in the scene graph.
 
+  ArrayList* {.header: "Geometry", importcpp: "osg::Geometry::ArrayList".} = cint
+  PrimitiveSetList* {.header: "Geometry", importcpp: "osg::Geometry::PrimitiveSetList".} = cint
+  DrawElementsList* {.header: "Geometry", importcpp: "osg::Geometry::DrawElementsList".} = cint
 
 
 {.push header: "Geometry".}

@@ -1,20 +1,11 @@
 import State  # provides: osg::State
+import ref_ptr  # provides: osg::ref_ptr
 import Object  # provides: osg::Object
 import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
-import Shader  # provides: osg::Shader, osg::ShaderDefines
+import Shader  # provides: osg::ShaderDefines, osg::Shader
 import CopyOp  # provides: osg::CopyOp
 import Uniform  # provides: osg::Uniform
 type
-  AttribBindingList* {.header: "Program", importcpp: "osg::Program::AttribBindingList".} = cint
-  FragDataBindingList* {.header: "Program", importcpp: "osg::Program::FragDataBindingList".} = cint
-  UniformBlockBindingList* {.header: "Program", importcpp: "osg::Program::UniformBlockBindingList".} = cint
-  ActiveUniformMap* {.header: "Program", importcpp: "osg::Program::ActiveUniformMap".} = cint
-  ActiveVarInfoMap* {.header: "Program", importcpp: "osg::Program::ActiveVarInfoMap".} = cint
-  UniformBlockMap* {.header: "Program", importcpp: "osg::Program::UniformBlockMap".} = cint
-  UniformModifiedCountPair* {.header: "Program", importcpp: "osg::Program::PerContextProgram::UniformModifiedCountPair".} = Pair[Ref_ptr[Uniform]]
-  LastAppliedUniformList* {.header: "Program", importcpp: "osg::Program::PerContextProgram::LastAppliedUniformList".} = cint
-  ShaderList* {.header: "Program", importcpp: "osg::Program::ShaderList".} = cint
-  PerContextPrograms* {.header: "Program", importcpp: "osg::Program::ProgramObjects::PerContextPrograms".} = cint
   ProgramBinary* {.header: "Program", importcpp: "osg::Program::ProgramBinary", byref.} = object #of osg::Object
     ## Simple class for wrapping up the data used in glProgramBinary and
     ## glGetProgramBinary. On the first run of your application Programs
@@ -30,6 +21,16 @@ type
     ## PerContextProgram (PCP) is an OSG-internal encapsulation of glPrograms
     ## per-GL context.
 
+  AttribBindingList* {.header: "Program", importcpp: "osg::Program::AttribBindingList".} = cint
+  FragDataBindingList* {.header: "Program", importcpp: "osg::Program::FragDataBindingList".} = cint
+  UniformBlockBindingList* {.header: "Program", importcpp: "osg::Program::UniformBlockBindingList".} = cint
+  ActiveUniformMap* {.header: "Program", importcpp: "osg::Program::ActiveUniformMap".} = cint
+  ActiveVarInfoMap* {.header: "Program", importcpp: "osg::Program::ActiveVarInfoMap".} = cint
+  UniformBlockMap* {.header: "Program", importcpp: "osg::Program::UniformBlockMap".} = cint
+  UniformModifiedCountPair* {.header: "Program", importcpp: "osg::Program::PerContextProgram::UniformModifiedCountPair".} = Pair[Ref_ptr[Uniform]]
+  LastAppliedUniformList* {.header: "Program", importcpp: "osg::Program::PerContextProgram::LastAppliedUniformList".} = cint
+  ShaderList* {.header: "Program", importcpp: "osg::Program::ShaderList".} = cint
+  PerContextPrograms* {.header: "Program", importcpp: "osg::Program::ProgramObjects::PerContextPrograms".} = cint
 
 
 {.push header: "Program".}

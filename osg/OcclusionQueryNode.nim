@@ -13,12 +13,12 @@ type
     VALID = 1,
     USER_DEFINED = 2
 
-  ResultMap* {.header: "OcclusionQueryNode", importcpp: "osg::QueryGeometry::ResultMap".} = cint
-  FrameCountMap* {.header: "OcclusionQueryNode", importcpp: "osg::OcclusionQueryNode::FrameCountMap".} = cint
   TestResult* {.header: "OcclusionQueryNode", importcpp: "osg::TestResult", byref.} = object #of osg::Referenced
 
   QueryGeometry* {.header: "OcclusionQueryNode", importcpp: "osg::QueryGeometry", byref.} = object #of osg::Geometry
 
+  ResultMap* {.header: "OcclusionQueryNode", importcpp: "osg::QueryGeometry::ResultMap".} = cint
+  FrameCountMap* {.header: "OcclusionQueryNode", importcpp: "osg::OcclusionQueryNode::FrameCountMap".} = cint
 
 
 {.push header: "OcclusionQueryNode".}

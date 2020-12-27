@@ -7,17 +7,17 @@ import CopyOp  # provides: osg::CopyOp
 import GraphicsThread  # provides: osg::GraphicsThread
 import DisplaySettings  # provides: osg::DisplaySettings
 type
+  WindowingSystemInterfaces* {.header: "GraphicsContext", importcpp: "osg::GraphicsContext::WindowingSystemInterfaces", byref.} = object #of osg::Referenced
+
+  SyncSwapBuffersCallback* {.header: "GraphicsContext", importcpp: "osg::SyncSwapBuffersCallback", byref.} = object #of class GraphicsContext::SwapCallback
+
+  WindowingSystemInterfaceProxy* {.header: "GraphicsContext", importcpp: "osg::WindowingSystemInterfaceProxy", byref.} [T]= object
+
   ScreenSettingsList* {.header: "GraphicsContext", importcpp: "osg::GraphicsContext::ScreenSettingsList".} = cint
   Interfaces* {.header: "GraphicsContext", importcpp: "osg::GraphicsContext::WindowingSystemInterfaces::Interfaces".} = cint
   GraphicsContexts* {.header: "GraphicsContext", importcpp: "osg::GraphicsContext::GraphicsContexts".} = cint
   GraphicsOperationQueue* {.header: "GraphicsContext", importcpp: "osg::GraphicsContext::GraphicsOperationQueue".} = cint
   Cameras* {.header: "GraphicsContext", importcpp: "osg::GraphicsContext::Cameras".} = cint
-  WindowingSystemInterfaces* {.header: "GraphicsContext", importcpp: "osg::GraphicsContext::WindowingSystemInterfaces", byref.} = object #of osg::Referenced
-
-  SyncSwapBuffersCallback* {.header: "GraphicsContext", importcpp: "osg::SyncSwapBuffersCallback", byref.} = object #of class GraphicsContext::SwapCallback
-
-  WindowingSystemInterfaceProxy* {.header: "GraphicsContext", importcpp: "osg::WindowingSystemInterfaceProxy", byref.} [T] = object
-
 
 
 {.push header: "GraphicsContext".}

@@ -5,12 +5,12 @@ import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Typ
 import CopyOp  # provides: osg::CopyOp
 import Matrix  # provides: osg::Matrix
 type
-  LocalParamList* {.header: "VertexProgram", importcpp: "osg::VertexProgram::LocalParamList".} = cint
-  MatrixList* {.header: "VertexProgram", importcpp: "osg::VertexProgram::MatrixList".} = cint
-  VertexProgramIDList* {.header: "VertexProgram", importcpp: "osg::VertexProgram::VertexProgramIDList".} = buffered_value[GLuint]
   VertexProgram* {.header: "VertexProgram", importcpp: "osg::VertexProgram", byref.} = object #of class osg::StateAttribute
     ## VertexProgram - encapsulates the OpenGL ARB vertex program state.
 
+  LocalParamList* {.header: "VertexProgram", importcpp: "osg::VertexProgram::LocalParamList".} = cint
+  MatrixList* {.header: "VertexProgram", importcpp: "osg::VertexProgram::MatrixList".} = cint
+  VertexProgramIDList* {.header: "VertexProgram", importcpp: "osg::VertexProgram::VertexProgramIDList".} = buffered_value[GLuint]
 
 
 {.push header: "VertexProgram".}

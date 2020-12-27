@@ -6,7 +6,7 @@ import ValueObject  # provides: osg::ValueObject
 import Node  # provides: osg::Node
 import Image  # provides: osg::Image
 import Drawable  # provides: osg::Drawable
-import Callback  # provides: osg::Callback, osg::CallbackObject
+import Callback  # provides: osg::CallbackObject, osg::Callback
 import StateSet  # provides: osg::StateSet
 import CopyOp  # provides: osg::CopyOp
 import UserDataContainer  # provides: osg::UserDataContainer

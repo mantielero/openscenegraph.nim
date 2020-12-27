@@ -300,6 +300,13 @@ type
     ## method will bypass the double dispatch and the appropriate
     ## NodeVisitor::apply(..) method will not be called.
 
+  Vec3d* {.header: "Vec3d", importcpp: "osg::Vec3d", byref.} = object
+    ## General purpose double triple for use as vertices, vectors and
+    ## normals. Provides general math operations from addition through to
+    ## cross products. No support yet added for double * Vec3d - is it
+    ## necessary? Need to define a non-member non-friend operator* etc. Vec3d
+    ## * double is okay
+
   Vec4f* {.header: "Vec4f", importcpp: "osg::Vec4f", byref.} = object
     ## General purpose float quad. Uses include representation of color
     ## coordinates. No support yet added for float * Vec4f - is it necessary?
@@ -331,13 +338,6 @@ type
     ## Encapsulates OpenGL glColorMaskFunc/Op/Mask functions.
 
   RenderInfo* {.header: "RenderInfo", importcpp: "osg::RenderInfo", byref.} = object
-
-  Vec3d* {.header: "Vec3d", importcpp: "osg::Vec3d", byref.} = object
-    ## General purpose double triple for use as vertices, vectors and
-    ## normals. Provides general math operations from addition through to
-    ## cross products. No support yet added for double * Vec3d - is it
-    ## necessary? Need to define a non-member non-friend operator* etc. Vec3d
-    ## * double is okay
 
   Texture* {.header: "Texture", importcpp: "osg::Texture", byref.} = object #of osg::StateAttribute
     ## Texture pure virtual base class that encapsulates OpenGL texture
@@ -419,6 +419,9 @@ type
   UserDataContainer* {.header: "UserDataContainer", importcpp: "osg::UserDataContainer", byref.} = object #of osg::Object
     ## Internal structure for storing all user data.
 
+  ref_ptr* {.header: "ref_ptr", importcpp: "osg::ref_ptr", byref.} [T]= object
+    ## Smart pointer for handling referenced counted objects.
+
   PrimitiveFunctor* {.header: "PrimitiveSet", importcpp: "osg::PrimitiveFunctor", byref.} = object
     ## A PrimitiveFunctor is used (in conjunction with osg::Drawable::accept
     ## (PrimitiveFunctor&)) to get access to the primitives that compose the
@@ -434,6 +437,12 @@ type
   PrimitiveSet* {.header: "PrimitiveSet", importcpp: "osg::PrimitiveSet", byref.} = object #of class osg::BufferData
 
   DrawElements* {.header: "PrimitiveSet", importcpp: "osg::DrawElements", byref.} = object #of class osg::PrimitiveSet
+
+  buffered_value* {.header: "buffered_value", importcpp: "osg::buffered_value", byref.} [T]= object
+    ## Implements a simple buffered value for values that need to be buffered
+    ## on a per graphics context basis.
+
+  buffered_object* {.header: "buffered_value", importcpp: "osg::buffered_object", byref.} [T]= object
 
   DeleteHandler* {.header: "DeleteHandler", importcpp: "osg::DeleteHandler", byref.} = object
     ## Class for overriding the default delete behaviour so that users can

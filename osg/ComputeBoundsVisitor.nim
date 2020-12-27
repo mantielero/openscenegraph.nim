@@ -4,9 +4,9 @@ import Drawable  # provides: osg::Drawable
 import BoundingBox  # provides: osg::BoundingBox
 import Matrix  # provides: osg::Matrix
 type
-  MatrixStack* {.header: "ComputeBoundsVisitor", importcpp: "osg::ComputeBoundsVisitor::MatrixStack".} = cint
   ComputeBoundsVisitor* {.header: "ComputeBoundsVisitor", importcpp: "osg::ComputeBoundsVisitor", byref.} = object #of osg::NodeVisitor
 
+  MatrixStack* {.header: "ComputeBoundsVisitor", importcpp: "osg::ComputeBoundsVisitor::MatrixStack".} = cint
 
 
 {.push header: "ComputeBoundsVisitor".}

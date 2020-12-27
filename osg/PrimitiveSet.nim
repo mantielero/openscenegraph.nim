@@ -43,12 +43,6 @@ type
     TRIANGLE_STRIP_ADJACENCY = 13,
     PATCHES = 14
 
-  VectorGLsizei* {.header: "PrimitiveSet", importcpp: "osg::VectorGLsizei".} = MixinVector[GLsizei]
-  VectorGLubyte* {.header: "PrimitiveSet", importcpp: "osg::VectorGLubyte".} = MixinVector[GLubyte]
-  VectorGLushort* {.header: "PrimitiveSet", importcpp: "osg::VectorGLushort".} = MixinVector[GLushort]
-  Vector_type* {.header: "PrimitiveSet", importcpp: "osg::DrawElementsUInt::vector_type".} = Vectorgluint
-  Firsts* {.header: "PrimitiveSet", importcpp: "osg::MultiDrawArrays::Firsts".} = cint
-  Counts* {.header: "PrimitiveSet", importcpp: "osg::MultiDrawArrays::Counts".} = cint
   DrawArrays* {.header: "PrimitiveSet", importcpp: "osg::DrawArrays", byref.} = object #of class osg::PrimitiveSet
 
   DrawArrayLengths* {.header: "PrimitiveSet", importcpp: "osg::DrawArrayLengths", byref.} = object #of class osg::PrimitiveSet
@@ -61,6 +55,12 @@ type
 
   MultiDrawArrays* {.header: "PrimitiveSet", importcpp: "osg::MultiDrawArrays", byref.} = object #of osg::PrimitiveSet
 
+  VectorGLsizei* {.header: "PrimitiveSet", importcpp: "osg::VectorGLsizei".} = MixinVector[GLsizei]
+  VectorGLubyte* {.header: "PrimitiveSet", importcpp: "osg::VectorGLubyte".} = MixinVector[GLubyte]
+  VectorGLushort* {.header: "PrimitiveSet", importcpp: "osg::VectorGLushort".} = MixinVector[GLushort]
+  Vector_type* {.header: "PrimitiveSet", importcpp: "osg::DrawElementsUInt::vector_type".} = Vectorgluint
+  Firsts* {.header: "PrimitiveSet", importcpp: "osg::MultiDrawArrays::Firsts".} = cint
+  Counts* {.header: "PrimitiveSet", importcpp: "osg::MultiDrawArrays::Counts".} = cint
 
 
 {.push header: "PrimitiveSet".}

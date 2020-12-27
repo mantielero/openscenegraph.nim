@@ -12,7 +12,6 @@ type
     LOOP = 1,
     NO_LOOPING = 2
 
-  TimeControlPointMap* {.header: "AnimationPath", importcpp: "osg::AnimationPath::TimeControlPointMap".} = cint
   AnimationPath* {.header: "AnimationPath", importcpp: "osg::AnimationPath", byref.} = object #of osg::Object
     ## AnimationPath encapsulates a time varying transformation pathway. Can
     ## be used for updating camera position and model object position.
@@ -23,6 +22,7 @@ type
 
   AnimationPathCallback* {.header: "AnimationPath", importcpp: "osg::AnimationPathCallback", byref.} = object #of class osg::NodeCallback
 
+  TimeControlPointMap* {.header: "AnimationPath", importcpp: "osg::AnimationPath::TimeControlPointMap".} = cint
 
 
 {.push header: "AnimationPath".}

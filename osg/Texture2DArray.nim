@@ -4,8 +4,6 @@ import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Typ
 import Image  # provides: osg::Image
 import CopyOp  # provides: osg::CopyOp
 type
-  Images* {.header: "Texture2DArray", importcpp: "osg::Texture2DArray::Images".} = cint
-  ImageModifiedCount* {.header: "Texture2DArray", importcpp: "osg::Texture2DArray::ImageModifiedCount".} = buffered_value[unsigned int]
   Texture2DArray* {.header: "Texture2DArray", importcpp: "osg::Texture2DArray", byref.} = object #of class osg::Texture
     ## Texture2DArray state class which encapsulates OpenGL 2D array texture
     ## functionality. Texture arrays were introduced with Shader Model 4.0
@@ -13,6 +11,8 @@ type
 
   SubloadCallback* {.header: "Texture2DArray", importcpp: "osg::Texture2DArray::SubloadCallback", byref.} = object #of class osg::Referenced
 
+  Images* {.header: "Texture2DArray", importcpp: "osg::Texture2DArray::Images".} = cint
+  ImageModifiedCount* {.header: "Texture2DArray", importcpp: "osg::Texture2DArray::ImageModifiedCount".} = buffered_value[unsigned int]
 
 
 {.push header: "Texture2DArray".}
