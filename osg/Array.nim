@@ -28,51 +28,7 @@ import Vec2d  # provides: osg::Vec2d
 import Quat  # provides: osg::Quat
 import Vec4ub  # provides: osg::Vec4ub
 import Vec4i  # provides: osg::Vec4i
-type
-  Type* {.size:sizeof(cuint),header: "Array", importcpp: "osg::Array::Type".} = enum
-    ## The type of data stored in this array.
 
-    typArrayType = 0,
-    typByteArrayType = 1,
-    typShortArrayType = 2,
-    typIntArrayType = 3,
-    typUByteArrayType = 4,
-    typUShortArrayType = 5,
-    typUIntArrayType = 6,
-    typFloatArrayType = 7,
-    typDoubleArrayType = 8,
-    typVec2bArrayType = 9,
-    typVec3bArrayType = 10,
-    typVec4bArrayType = 11,
-    typVec2sArrayType = 12,
-    typVec3sArrayType = 13,
-    typVec4sArrayType = 14,
-    typVec2iArrayType = 15,
-    typVec3iArrayType = 16,
-    typVec4iArrayType = 17,
-    typVec2ubArrayType = 18,
-    typVec3ubArrayType = 19,
-    typVec4ubArrayType = 20,
-    typVec2usArrayType = 21,
-    typVec3usArrayType = 22,
-    typVec4usArrayType = 23,
-    typVec2uiArrayType = 24,
-    typVec3uiArrayType = 25,
-    typVec4uiArrayType = 26,
-    typVec2ArrayType = 27,
-    typVec3ArrayType = 28,
-    typVec4ArrayType = 29,
-    typVec2dArrayType = 30,
-    typVec3dArrayType = 31,
-    typVec4dArrayType = 32,
-    typMatrixArrayType = 33,
-    typMatrixdArrayType = 34,
-    typQuatArrayType = 35,
-    typUInt64ArrayType = 36,
-    typInt64ArrayType = 37,
-    typLastArrayType = 37,
-    typInt64ArrayType = 37,
-    typLastArrayType = 37
 
   ArrayVisitor* {.header: "Array", importcpp: "osg::ArrayVisitor", byref.} = object
 
@@ -107,7 +63,7 @@ type
 
 {.push header: "Array".}
 
-proc constructArray*(arrayType: Type, dataSize: GLint, dataType: GLenum = 0, binding: Binding): Array {.constructor,importcpp: "osg::Array::Array(@)".}
+proc constructArray*(arrayType: ArrayType, dataSize: GLint, dataType: GLenum = 0, binding: Binding): Array {.constructor,importcpp: "osg::Array::Array(@)".}
 
 proc constructArray*(array: Array, copyop: Copyop = SHALLOW_COPY): Array {.constructor,importcpp: "osg::Array::Array(@)".}
 
@@ -123,7 +79,7 @@ proc constructTemplateArray*[T, ARRAYTYPE, DataSize, DataType](binding: Binding,
 
 proc constructTemplateArray*[T, ARRAYTYPE, DataSize, DataType](binding: Binding, no: cuint, `ptr`: ptr T): TemplateArray {.constructor,importcpp: "osg::TemplateArray::TemplateArray<T, ARRAYTYPE, DataSize, DataType>(@)".}
 
-proc constructIndexArray*(arrayType: Type, dataSize: GLint, dataType: GLenum = 0): IndexArray {.constructor,importcpp: "osg::IndexArray::IndexArray(@)".}
+proc constructIndexArray*(arrayType: ArrayType, dataSize: GLint, dataType: GLenum = 0): IndexArray {.constructor,importcpp: "osg::IndexArray::IndexArray(@)".}
 
 proc constructIndexArray*(array: Array, copyop: Copyop = SHALLOW_COPY): IndexArray {.constructor,importcpp: "osg::IndexArray::IndexArray(@)".}
 

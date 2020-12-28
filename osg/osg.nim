@@ -1,6 +1,50 @@
 {.passL: "-losg -losgSim -losgAnimation -losgTerrain -losgDB -losgText -losgFX -losgUI -losgGA -losgUtil -losgManipulator -losgViewer -losgParticle -losgVolume -losgPresentation -losgWidget -losgShadow", passC:"-I/usr/include/osg" .}
+import opengl
 
 type
+  ArrayType* {.size:sizeof(cuint),header: "Array", importcpp: "osg::Array::Type".} = enum
+    ## The type of data stored in this array.
+
+    atArrayType = 0,
+    ByteArrayType = 1,
+    ShortArrayType = 2,
+    IntArrayType = 3,
+    UByteArrayType = 4,
+    UShortArrayType = 5,
+    UIntArrayType = 6,
+    FloatArrayType = 7,
+    DoubleArrayType = 8,
+    Vec2bArrayType = 9,
+    Vec3bArrayType = 10,
+    Vec4bArrayType = 11,
+    Vec2sArrayType = 12,
+    Vec3sArrayType = 13,
+    Vec4sArrayType = 14,
+    Vec2iArrayType = 15,
+    Vec3iArrayType = 16,
+    Vec4iArrayType = 17,
+    Vec2ubArrayType = 18,
+    Vec3ubArrayType = 19,
+    Vec4ubArrayType = 20,
+    Vec2usArrayType = 21,
+    Vec3usArrayType = 22,
+    Vec4usArrayType = 23,
+    Vec2uiArrayType = 24,
+    Vec3uiArrayType = 25,
+    Vec4uiArrayType = 26,
+    Vec2ArrayType = 27,
+    Vec3ArrayType = 28,
+    Vec4ArrayType = 29,
+    Vec2dArrayType = 30,
+    Vec3dArrayType = 31,
+    Vec4dArrayType = 32,
+    MatrixArrayType = 33,
+    MatrixdArrayType = 34,
+    QuatArrayType = 35,
+    UInt64ArrayType = 36,
+    Int64ArrayType = 37
+    #LastArrayType = 37
+
   Type* {.size:sizeof(cuint),header: "StateAttribute", importcpp: "osg::StateAttribute::Type".} = enum
     ## Values of StateAttribute::Type used to aid identification of different
     ## StateAttribute subclasses. Each subclass defines its own value in the
@@ -734,6 +778,12 @@ type
   BoundingBoxd* {.header: "BoundingBox", importcpp: "osg::BoundingBoxd".} = Boundingboximpl[Vec3d]
   BoundingBox* {.header: "BoundingBox", importcpp: "osg::BoundingBox".} = Boundingboxf
   Parameters* {.header: "Callback", importcpp: "osg::Parameters".} = cint
+
+  MixinVector*[ValueT] {.header: "MixinVector", importcpp: "osg::MixinVector", byref.} = object
+    ## MixinVector is a base class that allows inheritance to be used to
+    ## easily emulate derivation from std::vector but without introducing
+    ## undefined behaviour through violation of virtual destructor rules.
+
   VectorGLuint* {.header: "PrimitiveSet", importcpp: "osg::VectorGLuint".} = MixinVector[GLuint]
   ShadowVolumeOccluderList* {.header: "ShadowVolumeOccluder", importcpp: "osg::ShadowVolumeOccluderList".} = cint
   NodeList* {.header: "Group", importcpp: "osg::NodeList".} = cint
