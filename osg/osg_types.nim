@@ -1,3 +1,5 @@
+import opengl
+
 type
   Type* {.size:sizeof(cuint),header: "StateAttribute", importcpp: "osg::StateAttribute::Type", pure.} = enum
     ## Values of StateAttribute::Type used to aid identification of different
