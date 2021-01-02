@@ -4,6 +4,9 @@ import osg_types
   # File: Object  was providing: osg::Object
   # File: StateAttribute  was providing: osg::StateAttribute::Type, osg::StateAttribute
   # File: CopyOp  was providing: osg::CopyOp::Options, osg::CopyOp
+
+import CopyOp
+
 type
   Face* {.size:sizeof(cuint),header: "Material", importcpp: "osg::Material::Face", pure.} = enum
     FRONT = 1028,
@@ -27,8 +30,8 @@ type
 
 proc constructMaterial*(): Material {.constructor,importcpp: "osg::Material::Material".}
 
-proc constructMaterial*(mat: Material, copyop: CopyOp = SHALLOW_COPY): Material {.constructor,importcpp: "osg::Material::Material(@)".}
-    ## Copy constructor using CopyOp to manage deep vs shallow copy.
+#proc constructMaterial*(mat: Material, copyop: CopyOp = SHALLOW_COPY): Material {.constructor,importcpp: "osg::Material::Material(@)".}
+proc constructMaterial*(mat: Material, copyop: CopyOp = constructCopyOp(CopyFlags(SHALLOW_COPY))): Material {.constructor,importcpp: "osg::Material::Material(@)".}    ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: Material): ptr Object   {.importcpp: "cloneType".}
 
@@ -45,7 +48,7 @@ proc getType*(this: Material): Type  {.importcpp: "getType".}
 proc compare*(this: Material, sa: StateAttribute): cint  {.importcpp: "compare".}
     ## return -1 if *this < *rhs, 0 if *this==*rhs, 1 if *this>*rhs.
 
-proc `=`*(this: var Material, rhs: Material): Material  {.importcpp: "# = #".}
+proc `=`*(this: var Material, rhs: Material) {.importcpp: "# = #".}
 
 proc getModeUsage*(this: Material, a00: ModeUsage): bool  {.importcpp: "getModeUsage".}
 

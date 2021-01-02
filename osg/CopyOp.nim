@@ -23,7 +23,7 @@ proc constructCopyOp*(flags: CopyFlags): CopyOp {.constructor,importcpp: "osg::C
 proc setCopyFlags*(this: var CopyOp, flags: CopyFlags)  {.importcpp: "setCopyFlags".}
 
 proc getCopyFlags*(this: CopyOp): CopyFlags  {.importcpp: "getCopyFlags".}
-
+#[
 proc `()`*(this: CopyOp, `ref`: ptr Referenced ): ptr Referenced   {.importcpp: "# () #".}
 
 proc `()`*(this: CopyOp, obj: ptr Object ): ptr Object   {.importcpp: "# () #".}
@@ -53,5 +53,5 @@ proc `()`*(this: CopyOp, nodecallback: ptr Callback ): ptr Callback   {.importcp
 proc `()`*(this: CopyOp, stateattributecallback: ptr StateAttributeCallback ): ptr StateAttributeCallback   {.importcpp: "# () #".}
 
 proc `()`*(this: CopyOp, uniformcallback: ptr UniformCallback ): ptr UniformCallback   {.importcpp: "# () #".}
-
+]#
 {.pop.}  # header: "CopyOp"
