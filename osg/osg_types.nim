@@ -1,5 +1,5 @@
 type
-  Type* {.size:sizeof(cuint),header: "StateAttribute", importcpp: "osg::StateAttribute::Type", pure.} = enum
+  StateAttributeType* {.size:sizeof(cuint),header: "StateAttribute", importcpp: "osg::StateAttribute::Type", pure.} = enum
     ## Values of StateAttribute::Type used to aid identification of different
     ## StateAttribute subclasses. Each subclass defines its own value in the
     ## virtual Type getType() method. When extending the osg's

@@ -81,7 +81,7 @@ proc asTexture*(this: StateAttribute): ptr Texture   {.importcpp: "asTexture".}
     ## Fast alternative to dynamic_cast<> for determining if state attribute
     ## is a Texture.
 
-proc getType*(this: StateAttribute): Type  {.importcpp: "getType".}
+proc getType*(this: StateAttribute): StateAttributeType  {.importcpp: "getType".}
     ## Return the Type identifier of the attribute's class type.
 
 proc getMember*(this: StateAttribute): cuint  {.importcpp: "getMember".}
