@@ -1,9 +1,10 @@
-import GraphicsContext  # provides: osg::GraphicsContext
-import FrameStamp  # provides: osg::FrameStamp
+import osg_types
+  # File: GraphicsContext  was providing: osg::GraphicsContext
+  # File: FrameStamp  was providing: osg::FrameStamp
 type
   ContextData* {.header: "ContextData", importcpp: "osg::ContextData", byref.} = object #of class osg::GraphicsObjectManager
 
-  GraphicsContexts* {.header: "ContextData", importcpp: "osg::ContextData::GraphicsContexts".} = Graphicscontexts
+  GraphicsContexts* {.header: "ContextData", importcpp: "osg::ContextData::GraphicsContexts".} = GraphicsContexts
   ManagerMap* {.header: "ContextData", importcpp: "osg::ContextData::ManagerMap".} = cint
 
 
@@ -19,18 +20,18 @@ proc setNumContexts*(this: var ContextData, numContexts: cuint)  {.importcpp: "s
 
 proc getNumContexts*(this: ContextData): cuint  {.importcpp: "getNumContexts".}
 
-proc setCompileContext*(this: var ContextData, gc: ptr Graphicscontext )  {.importcpp: "setCompileContext".}
+proc setCompileContext*(this: var ContextData, gc: ptr GraphicsContext )  {.importcpp: "setCompileContext".}
 
-proc getCompileContext*(this: var ContextData): ptr Graphicscontext   {.importcpp: "getCompileContext".}
+proc getCompileContext*(this: var ContextData): ptr GraphicsContext   {.importcpp: "getCompileContext".}
 
-proc newFrame*(this: var ContextData, ptr Framestamp )  {.importcpp: "newFrame".}
+proc newFrame*(this: var ContextData, a00: ptr FrameStamp )  {.importcpp: "newFrame".}
     ## Signal that a new frame has started.
 
 proc resetStats*(this: var ContextData)  {.importcpp: "resetStats".}
 
-proc reportStats*(this: var ContextData, `out`: Ostream)  {.importcpp: "reportStats".}
+proc reportStats*(this: var ContextData, `out`: ostream)  {.importcpp: "reportStats".}
 
-proc recomputeStats*(this: ContextData, `out`: Ostream)  {.importcpp: "recomputeStats".}
+proc recomputeStats*(this: ContextData, `out`: ostream)  {.importcpp: "recomputeStats".}
 
 proc flushDeletedGLObjects*(this: var ContextData, currentTime: cdouble, availableTime: cdouble)  {.importcpp: "flushDeletedGLObjects".}
     ## Flush all deleted OpenGL objects within the specified availableTime.
@@ -69,29 +70,29 @@ proc decrementContextIDUsageCount*(this: var ContextData, contextID: cuint)  {.i
     ## Decrement the usage count associate with a contextID. Once the
     ## contextID goes to 0 the contextID is then free to be reused.
 
-proc getAllRegisteredGraphicsContexts*(this: var ContextData): Graphicscontexts  {.importcpp: "getAllRegisteredGraphicsContexts".}
+proc getAllRegisteredGraphicsContexts*(this: var ContextData): GraphicsContexts  {.importcpp: "getAllRegisteredGraphicsContexts".}
     ## Get all the registered graphics contexts.
 
-proc getRegisteredGraphicsContexts*(this: var ContextData, contextID: cuint): Graphicscontexts  {.importcpp: "getRegisteredGraphicsContexts".}
+proc getRegisteredGraphicsContexts*(this: var ContextData, contextID: cuint): GraphicsContexts  {.importcpp: "getRegisteredGraphicsContexts".}
     ## Get all the registered graphics contexts associated with a specific
     ## contextID.
 
-proc setCompileContext*(this: var ContextData, contextID: cuint, gc: ptr Graphicscontext )  {.importcpp: "setCompileContext".}
+proc setCompileContext*(this: var ContextData, contextID: cuint, gc: ptr GraphicsContext )  {.importcpp: "setCompileContext".}
     ## Get the GraphicsContext for doing background compilation for
     ## GraphicsContexts associated with specified contextID.
 
-proc getOrCreateCompileContext*(this: var ContextData, contextID: cuint): ptr Graphicscontext   {.importcpp: "getOrCreateCompileContext".}
+proc getOrCreateCompileContext*(this: var ContextData, contextID: cuint): ptr GraphicsContext   {.importcpp: "getOrCreateCompileContext".}
     ## Get existing or create a new GraphicsContext to do background
     ## compilation for GraphicsContexts associated with specified contextID.
 
-proc getCompileContext*(this: var ContextData, contextID: cuint): ptr Graphicscontext   {.importcpp: "getCompileContext".}
+proc getCompileContext*(this: var ContextData, contextID: cuint): ptr GraphicsContext   {.importcpp: "getCompileContext".}
     ## Get the GraphicsContext for doing background compilation for
     ## GraphicsContexts associated with specified contextID.
 
-proc registerGraphicsContext*(this: var ContextData, gc: ptr Graphicscontext )  {.importcpp: "registerGraphicsContext".}
+proc registerGraphicsContext*(this: var ContextData, gc: ptr GraphicsContext )  {.importcpp: "registerGraphicsContext".}
     ## Register a GraphicsContext.
 
-proc unregisterGraphicsContext*(this: var ContextData, gc: ptr Graphicscontext )  {.importcpp: "unregisterGraphicsContext".}
+proc unregisterGraphicsContext*(this: var ContextData, gc: ptr GraphicsContext )  {.importcpp: "unregisterGraphicsContext".}
     ## Unregister a GraphicsContext.
 
 {.pop.}  # header: "ContextData"

@@ -1,16 +1,17 @@
-import Object  # provides: osg::Object
-import Matrixf  # provides: osg::Matrixf
-import Node  # provides: osg::Node
-import CopyOp  # provides: osg::CopyOp
-import Matrixd  # provides: osg::Matrixd
-import Vec3d  # provides: osg::Vec3d
-import Quat  # provides: osg::Quat
-import NodeVisitor  # provides: osg::NodeVisitor
+import osg_types
+  # File: Object  was providing: osg::Object
+  # File: Matrixf  was providing: osg::Matrixf
+  # File: Node  was providing: osg::Node
+  # File: CopyOp  was providing: osg::CopyOp
+  # File: Matrixd  was providing: osg::Matrixd
+  # File: Vec3d  was providing: osg::Vec3d
+  # File: Quat  was providing: osg::Quat
+  # File: NodeVisitor  was providing: osg::NodeVisitor
 type
-  LoopMode* {.size:sizeof(cuint),header: "AnimationPath", importcpp: "osg::AnimationPath::LoopMode".} = enum
-    lpmdSWING = 0,
-    lpmdLOOP = 1,
-    lpmdNO_LOOPING = 2
+  LoopMode* {.size:sizeof(cuint),header: "AnimationPath", importcpp: "osg::AnimationPath::LoopMode", pure.} = enum
+    SWING = 0,
+    LOOP = 1,
+    NO_LOOPING = 2
 
   AnimationPath* {.header: "AnimationPath", importcpp: "osg::AnimationPath", byref.} = object #of osg::Object
     ## AnimationPath encapsulates a time varying transformation pathway. Can
@@ -29,7 +30,7 @@ type
 
 proc constructAnimationPath*(): AnimationPath {.constructor,importcpp: "osg::AnimationPath::AnimationPath".}
 
-proc constructAnimationPath*(ap: Animationpath, copyop: Copyop = SHALLOW_COPY): AnimationPath {.constructor,importcpp: "osg::AnimationPath::AnimationPath(@)".}
+proc constructAnimationPath*(ap: AnimationPath, copyop: CopyOp = SHALLOW_COPY): AnimationPath {.constructor,importcpp: "osg::AnimationPath::AnimationPath(@)".}
 
 proc constructControlPoint*(): ControlPoint {.constructor,importcpp: "osg::AnimationPath::ControlPoint::ControlPoint".}
 
@@ -41,9 +42,9 @@ proc constructControlPoint*(position: Vec3d, rotation: Quat, scale: Vec3d): Cont
 
 proc constructAnimationPathCallback*(): AnimationPathCallback {.constructor,importcpp: "osg::AnimationPathCallback::AnimationPathCallback".}
 
-proc constructAnimationPathCallback*(apc: Animationpathcallback, copyop: Copyop): AnimationPathCallback {.constructor,importcpp: "osg::AnimationPathCallback::AnimationPathCallback(@)".}
+proc constructAnimationPathCallback*(apc: AnimationPathCallback, copyop: CopyOp): AnimationPathCallback {.constructor,importcpp: "osg::AnimationPathCallback::AnimationPathCallback(@)".}
 
-proc constructAnimationPathCallback*(ap: ptr Animationpath , timeOffset: cdouble, timeMultiplier: cdouble): AnimationPathCallback {.constructor,importcpp: "osg::AnimationPathCallback::AnimationPathCallback(@)".}
+proc constructAnimationPathCallback*(ap: ptr AnimationPath , timeOffset: cdouble, timeMultiplier: cdouble): AnimationPathCallback {.constructor,importcpp: "osg::AnimationPathCallback::AnimationPathCallback(@)".}
     ## Construct an AnimationPathCallback with a specified animation path.
 
 proc constructAnimationPathCallback*(pivot: Vec3d, axis: Vec3d, angularVelocity: cfloat): AnimationPathCallback {.constructor,importcpp: "osg::AnimationPathCallback::AnimationPathCallback(@)".}
@@ -52,7 +53,7 @@ proc constructAnimationPathCallback*(pivot: Vec3d, axis: Vec3d, angularVelocity:
 
 proc cloneType*(this: AnimationPath): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: AnimationPath, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: AnimationPath, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: AnimationPath, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -72,9 +73,9 @@ proc setScale*(this: var ControlPoint, scale: Vec3d)  {.importcpp: "setScale".}
 
 proc getScale*(this: ControlPoint): Vec3d  {.importcpp: "getScale".}
 
-proc interpolate*(this: var ControlPoint, ratio: cfloat, first: Controlpoint, second: Controlpoint)  {.importcpp: "interpolate".}
+proc interpolate*(this: var ControlPoint, ratio: cfloat, first: ControlPoint, second: ControlPoint)  {.importcpp: "interpolate".}
 
-proc interpolate*(this: var ControlPoint, ratio: cdouble, first: Controlpoint, second: Controlpoint)  {.importcpp: "interpolate".}
+proc interpolate*(this: var ControlPoint, ratio: cdouble, first: ControlPoint, second: ControlPoint)  {.importcpp: "interpolate".}
 
 proc getMatrix*(this: ControlPoint, matrix: Matrixf)  {.importcpp: "getMatrix".}
 
@@ -96,11 +97,11 @@ proc getInverse*(this: AnimationPath, time: cdouble, matrix: Matrixf): bool  {.i
 
 proc getInverse*(this: AnimationPath, time: cdouble, matrix: Matrixd): bool  {.importcpp: "getInverse".}
 
-proc getInterpolatedControlPoint*(this: AnimationPath, time: cdouble, controlPoint: Controlpoint): bool  {.importcpp: "getInterpolatedControlPoint".}
+proc getInterpolatedControlPoint*(this: AnimationPath, time: cdouble, controlPoint: ControlPoint): bool  {.importcpp: "getInterpolatedControlPoint".}
     ## Given a specific time, return the local ControlPoint frame for a
     ## point.
 
-proc insert*(this: var AnimationPath, time: cdouble, controlPoint: Controlpoint)  {.importcpp: "insert".}
+proc insert*(this: var AnimationPath, time: cdouble, controlPoint: ControlPoint)  {.importcpp: "insert".}
     ## Insert a control point into the AnimationPath.
 
 proc getFirstTime*(this: AnimationPath): cdouble  {.importcpp: "getFirstTime".}
@@ -109,32 +110,32 @@ proc getLastTime*(this: AnimationPath): cdouble  {.importcpp: "getLastTime".}
 
 proc getPeriod*(this: AnimationPath): cdouble  {.importcpp: "getPeriod".}
 
-proc setLoopMode*(this: var AnimationPath, lm: Loopmode)  {.importcpp: "setLoopMode".}
+proc setLoopMode*(this: var AnimationPath, lm: LoopMode)  {.importcpp: "setLoopMode".}
 
-proc getLoopMode*(this: AnimationPath): Loopmode  {.importcpp: "getLoopMode".}
+proc getLoopMode*(this: AnimationPath): LoopMode  {.importcpp: "getLoopMode".}
 
-proc setTimeControlPointMap*(this: var AnimationPath, tcpm: Timecontrolpointmap)  {.importcpp: "setTimeControlPointMap".}
+proc setTimeControlPointMap*(this: var AnimationPath, tcpm: TimeControlPointMap)  {.importcpp: "setTimeControlPointMap".}
 
-proc getTimeControlPointMap*(this: var AnimationPath): Timecontrolpointmap  {.importcpp: "getTimeControlPointMap".}
+proc getTimeControlPointMap*(this: var AnimationPath): TimeControlPointMap  {.importcpp: "getTimeControlPointMap".}
 
-proc getTimeControlPointMap*(this: AnimationPath): Timecontrolpointmap  {.importcpp: "getTimeControlPointMap".}
+proc getTimeControlPointMap*(this: AnimationPath): TimeControlPointMap  {.importcpp: "getTimeControlPointMap".}
 
 proc empty*(this: AnimationPath): bool  {.importcpp: "empty".}
 
 proc clear*(this: var AnimationPath)  {.importcpp: "clear".}
 
-proc read*(this: var AnimationPath, `in`: Istream)  {.importcpp: "read".}
+proc read*(this: var AnimationPath, `in`: istream)  {.importcpp: "read".}
     ## Read the animation path from a flat ASCII file stream.
 
-proc write*(this: AnimationPath, `out`: Ostream)  {.importcpp: "write".}
+proc write*(this: AnimationPath, `out`: ostream)  {.importcpp: "write".}
     ## Write the animation path to a flat ASCII file stream.
 
-proc write*(this: AnimationPath, itr: cint, `out`: Ostream)  {.importcpp: "write".}
+proc write*(this: AnimationPath, itr: cint, `out`: ostream)  {.importcpp: "write".}
     ## Write the control point to a flat ASCII file stream.
 
 proc cloneType*(this: AnimationPathCallback): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: AnimationPathCallback, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: AnimationPathCallback, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: AnimationPathCallback, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -142,11 +143,11 @@ proc libraryName*(this: AnimationPathCallback): cstring  {.importcpp: "libraryNa
 
 proc className*(this: AnimationPathCallback): cstring  {.importcpp: "className".}
 
-proc setAnimationPath*(this: var AnimationPathCallback, path: ptr Animationpath )  {.importcpp: "setAnimationPath".}
+proc setAnimationPath*(this: var AnimationPathCallback, path: ptr AnimationPath )  {.importcpp: "setAnimationPath".}
 
-proc getAnimationPath*(this: var AnimationPathCallback): ptr Animationpath   {.importcpp: "getAnimationPath".}
+proc getAnimationPath*(this: var AnimationPathCallback): ptr AnimationPath   {.importcpp: "getAnimationPath".}
 
-proc getAnimationPath*(this: AnimationPathCallback): ptr Animationpath   {.importcpp: "getAnimationPath".}
+proc getAnimationPath*(this: AnimationPathCallback): ptr AnimationPath   {.importcpp: "getAnimationPath".}
 
 proc setPivotPoint*(this: var AnimationPathCallback, pivot: Vec3d)  {.importcpp: "setPivotPoint".}
 
@@ -175,7 +176,7 @@ proc getAnimationTime*(this: AnimationPathCallback): cdouble  {.importcpp: "getA
     ## AnimationPath. Animation time is computed from the formula:
     ## ((_latestTime-_firstTime)-_timeOffset)*_timeMultiplier.
 
-proc `()`*(this: var AnimationPathCallback, node: ptr Node , nv: ptr Nodevisitor )  {.importcpp: "# () #".}
+proc `()`*(this: var AnimationPathCallback, node: ptr Node , nv: ptr NodeVisitor )  {.importcpp: "# () #".}
     ## Implements the callback.
 
 proc update*(this: var AnimationPathCallback, node: Node)  {.importcpp: "update".}

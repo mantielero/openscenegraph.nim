@@ -1,8 +1,9 @@
-import State  # provides: osg::State
-import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
-import Image  # provides: osg::Image
-import CopyOp  # provides: osg::CopyOp
+import osg_types
+  # File: State  was providing: osg::State
+  # File: Object  was providing: osg::Object
+  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
+  # File: Image  was providing: osg::Image
+  # File: CopyOp  was providing: osg::CopyOp
 type
   Texture2DMultisample* {.header: "Texture2DMultisample", importcpp: "osg::Texture2DMultisample", byref.} = object #of class osg::Texture
     ## Texture2DMultisample state class which encapsulates OpenGL 2D
@@ -19,12 +20,12 @@ proc constructTexture2DMultisample*(): Texture2DMultisample {.constructor,import
 
 proc constructTexture2DMultisample*(numSamples: GLsizei, fixedsamplelocations: GLboolean): Texture2DMultisample {.constructor,importcpp: "osg::Texture2DMultisample::Texture2DMultisample(@)".}
 
-proc constructTexture2DMultisample*(text: Texture2dmultisample, copyop: Copyop = SHALLOW_COPY): Texture2DMultisample {.constructor,importcpp: "osg::Texture2DMultisample::Texture2DMultisample(@)".}
+proc constructTexture2DMultisample*(text: Texture2DMultisample, copyop: CopyOp = SHALLOW_COPY): Texture2DMultisample {.constructor,importcpp: "osg::Texture2DMultisample::Texture2DMultisample(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: Texture2DMultisample): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: Texture2DMultisample, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: Texture2DMultisample, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: Texture2DMultisample, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -34,12 +35,12 @@ proc className*(this: Texture2DMultisample): cstring  {.importcpp: "className".}
 
 proc getType*(this: Texture2DMultisample): Type  {.importcpp: "getType".}
 
-proc compare*(this: Texture2DMultisample, rhs: Stateattribute): cint  {.importcpp: "compare".}
+proc compare*(this: Texture2DMultisample, rhs: StateAttribute): cint  {.importcpp: "compare".}
     ## Return -1 if *this < *rhs, 0 if *this==*rhs, 1 if *this>*rhs.
 
 proc getTextureTarget*(this: Texture2DMultisample): GLenum  {.importcpp: "getTextureTarget".}
 
-proc getModeUsage*(this: Texture2DMultisample, Modeusage): bool  {.importcpp: "getModeUsage".}
+proc getModeUsage*(this: Texture2DMultisample, a00: ModeUsage): bool  {.importcpp: "getModeUsage".}
     ## Texture2DMultisample is related to non fixed pipeline usage only so
     ## isn't appropriate to enable/disable.
 
@@ -55,15 +56,15 @@ proc setFixedSampleLocations*(this: var Texture2DMultisample, fixedSampleLocatio
 
 proc getFixedSampleLocations*(this: Texture2DMultisample): GLboolean  {.importcpp: "getFixedSampleLocations".}
 
-proc setImage*(this: var Texture2DMultisample, cuint, ptr Image )  {.importcpp: "setImage".}
+proc setImage*(this: var Texture2DMultisample, a00: cuint, a01: ptr Image )  {.importcpp: "setImage".}
 
-proc getImage*(this: var Texture2DMultisample, cuint): ptr Image   {.importcpp: "getImage".}
+proc getImage*(this: var Texture2DMultisample, a00: cuint): ptr Image   {.importcpp: "getImage".}
 
-proc getImage*(this: Texture2DMultisample, cuint): ptr Image   {.importcpp: "getImage".}
+proc getImage*(this: Texture2DMultisample, a00: cuint): ptr Image   {.importcpp: "getImage".}
 
 proc getNumImages*(this: Texture2DMultisample): cuint  {.importcpp: "getNumImages".}
 
-proc allocateMipmap*(this: Texture2DMultisample, State)  {.importcpp: "allocateMipmap".}
+proc allocateMipmap*(this: Texture2DMultisample, a00: State)  {.importcpp: "allocateMipmap".}
 
 proc setTextureWidth*(this: var Texture2DMultisample, width: cint)  {.importcpp: "setTextureWidth".}
 

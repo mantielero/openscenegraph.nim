@@ -1,14 +1,15 @@
-import State  # provides: osg::State
-import GLExtensions  # provides: osg::GLExtensions
-import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
-import CopyOp  # provides: osg::CopyOp
-import Texture  # provides: osg::Texture
+import osg_types
+  # File: State  was providing: osg::State
+  # File: GLExtensions  was providing: osg::GLExtensions
+  # File: Object  was providing: osg::Object
+  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
+  # File: CopyOp  was providing: osg::CopyOp
+  # File: Texture  was providing: osg::Texture
 type
-  BindTarget* {.size:sizeof(cuint),header: "FrameBufferObject", importcpp: "osg::FrameBufferObject::BindTarget".} = enum
-    bndtrgtREAD_FRAMEBUFFER = 36008,
-    bndtrgtDRAW_FRAMEBUFFER = 36009,
-    bndtrgtREAD_DRAW_FRAMEBUFFER = 36160
+  BindTarget* {.size:sizeof(cuint),header: "FrameBufferObject", importcpp: "osg::FrameBufferObject::BindTarget", pure.} = enum
+    READ_FRAMEBUFFER = 36008,
+    DRAW_FRAMEBUFFER = 36009,
+    READ_DRAW_FRAMEBUFFER = 36160
 
   RenderBuffer* {.header: "FrameBufferObject", importcpp: "osg::RenderBuffer", byref.} = object #of class osg::Object
     ## **********************************************************************
@@ -28,7 +29,7 @@ type
 
   AttachmentMap* {.header: "FrameBufferObject", importcpp: "osg::FrameBufferObject::AttachmentMap".} = cint
   MultipleRenderingTargets* {.header: "FrameBufferObject", importcpp: "osg::FrameBufferObject::MultipleRenderingTargets".} = cint
-  BufferComponent* {.header: "FrameBufferObject", importcpp: "osg::FrameBufferObject::BufferComponent".} = Buffercomponent
+  BufferComponent* {.header: "FrameBufferObject", importcpp: "osg::FrameBufferObject::BufferComponent".} = BufferComponent
 
 
 {.push header: "FrameBufferObject".}
@@ -37,33 +38,33 @@ proc constructRenderBuffer*(): RenderBuffer {.constructor,importcpp: "osg::Rende
 
 proc constructRenderBuffer*(width: cint, height: cint, internalFormat: GLenum, samples: cint, colorSamples: cint): RenderBuffer {.constructor,importcpp: "osg::RenderBuffer::RenderBuffer(@)".}
 
-proc constructRenderBuffer*(copy: Renderbuffer, copyop: Copyop = SHALLOW_COPY): RenderBuffer {.constructor,importcpp: "osg::RenderBuffer::RenderBuffer(@)".}
+proc constructRenderBuffer*(copy: RenderBuffer, copyop: CopyOp = SHALLOW_COPY): RenderBuffer {.constructor,importcpp: "osg::RenderBuffer::RenderBuffer(@)".}
 
 proc constructFrameBufferAttachment*(): FrameBufferAttachment {.constructor,importcpp: "osg::FrameBufferAttachment::FrameBufferAttachment".}
 
-proc constructFrameBufferAttachment*(copy: Framebufferattachment): FrameBufferAttachment {.constructor,importcpp: "osg::FrameBufferAttachment::FrameBufferAttachment(@)".}
+proc constructFrameBufferAttachment*(copy: FrameBufferAttachment): FrameBufferAttachment {.constructor,importcpp: "osg::FrameBufferAttachment::FrameBufferAttachment(@)".}
 
-proc constructFrameBufferAttachment*(target: ptr Renderbuffer ): FrameBufferAttachment {.constructor,importcpp: "osg::FrameBufferAttachment::FrameBufferAttachment(@)".}
+proc constructFrameBufferAttachment*(target: ptr RenderBuffer ): FrameBufferAttachment {.constructor,importcpp: "osg::FrameBufferAttachment::FrameBufferAttachment(@)".}
 
-proc constructFrameBufferAttachment*(target: ptr Texture1d , level: cuint = 0): FrameBufferAttachment {.constructor,importcpp: "osg::FrameBufferAttachment::FrameBufferAttachment(@)".}
+proc constructFrameBufferAttachment*(target: ptr Texture1D , level: cuint = 0): FrameBufferAttachment {.constructor,importcpp: "osg::FrameBufferAttachment::FrameBufferAttachment(@)".}
 
-proc constructFrameBufferAttachment*(target: ptr Texture2d , level: cuint = 0): FrameBufferAttachment {.constructor,importcpp: "osg::FrameBufferAttachment::FrameBufferAttachment(@)".}
+proc constructFrameBufferAttachment*(target: ptr Texture2D , level: cuint = 0): FrameBufferAttachment {.constructor,importcpp: "osg::FrameBufferAttachment::FrameBufferAttachment(@)".}
 
-proc constructFrameBufferAttachment*(target: ptr Texture2dmultisample , level: cuint = 0): FrameBufferAttachment {.constructor,importcpp: "osg::FrameBufferAttachment::FrameBufferAttachment(@)".}
+proc constructFrameBufferAttachment*(target: ptr Texture2DMultisample , level: cuint = 0): FrameBufferAttachment {.constructor,importcpp: "osg::FrameBufferAttachment::FrameBufferAttachment(@)".}
 
-proc constructFrameBufferAttachment*(target: ptr Texture3d , zoffset: cuint, level: cuint = 0): FrameBufferAttachment {.constructor,importcpp: "osg::FrameBufferAttachment::FrameBufferAttachment(@)".}
+proc constructFrameBufferAttachment*(target: ptr Texture3D , zoffset: cuint, level: cuint = 0): FrameBufferAttachment {.constructor,importcpp: "osg::FrameBufferAttachment::FrameBufferAttachment(@)".}
 
-proc constructFrameBufferAttachment*(target: ptr Texture2darray , layer: cuint, level: cuint = 0): FrameBufferAttachment {.constructor,importcpp: "osg::FrameBufferAttachment::FrameBufferAttachment(@)".}
+proc constructFrameBufferAttachment*(target: ptr Texture2DArray , layer: cuint, level: cuint = 0): FrameBufferAttachment {.constructor,importcpp: "osg::FrameBufferAttachment::FrameBufferAttachment(@)".}
 
-proc constructFrameBufferAttachment*(target: ptr Texturecubemap , face: cuint, level: cuint = 0): FrameBufferAttachment {.constructor,importcpp: "osg::FrameBufferAttachment::FrameBufferAttachment(@)".}
+proc constructFrameBufferAttachment*(target: ptr TextureCubeMap , face: cuint, level: cuint = 0): FrameBufferAttachment {.constructor,importcpp: "osg::FrameBufferAttachment::FrameBufferAttachment(@)".}
 
-proc constructFrameBufferAttachment*(target: ptr Texturerectangle ): FrameBufferAttachment {.constructor,importcpp: "osg::FrameBufferAttachment::FrameBufferAttachment(@)".}
+proc constructFrameBufferAttachment*(target: ptr TextureRectangle ): FrameBufferAttachment {.constructor,importcpp: "osg::FrameBufferAttachment::FrameBufferAttachment(@)".}
 
 proc constructFrameBufferAttachment*(attachment: Attachment): FrameBufferAttachment {.constructor,importcpp: "osg::FrameBufferAttachment::FrameBufferAttachment(@)".}
 
 proc constructFrameBufferObject*(): FrameBufferObject {.constructor,importcpp: "osg::FrameBufferObject::FrameBufferObject".}
 
-proc constructFrameBufferObject*(copy: Framebufferobject, copyop: Copyop = SHALLOW_COPY): FrameBufferObject {.constructor,importcpp: "osg::FrameBufferObject::FrameBufferObject(@)".}
+proc constructFrameBufferObject*(copy: FrameBufferObject, copyop: CopyOp = SHALLOW_COPY): FrameBufferObject {.constructor,importcpp: "osg::FrameBufferObject::FrameBufferObject(@)".}
 
 proc constructGLRenderBufferManager*(contextID: cuint): GLRenderBufferManager {.constructor,importcpp: "osg::GLRenderBufferManager::GLRenderBufferManager(@)".}
 
@@ -71,7 +72,7 @@ proc constructGLFrameBufferObjectManager*(contextID: cuint): GLFrameBufferObject
 
 proc cloneType*(this: RenderBuffer): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: RenderBuffer, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: RenderBuffer, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: RenderBuffer, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -101,21 +102,21 @@ proc setSamples*(this: var RenderBuffer, samples: cint)  {.importcpp: "setSample
 
 proc setColorSamples*(this: var RenderBuffer, colorSamples: cint)  {.importcpp: "setColorSamples".}
 
-proc getObjectID*(this: RenderBuffer, contextID: cuint, ext: ptr Glextensions ): GLuint  {.importcpp: "getObjectID".}
+proc getObjectID*(this: RenderBuffer, contextID: cuint, ext: ptr GLExtensions ): GLuint  {.importcpp: "getObjectID".}
 
-proc compare*(this: RenderBuffer, rb: Renderbuffer): cint  {.importcpp: "compare".}
+proc compare*(this: RenderBuffer, rb: RenderBuffer): cint  {.importcpp: "compare".}
 
-proc getMaxSamples*(this: var RenderBuffer, contextID: cuint, ext: ptr Glextensions ): cint  {.importcpp: "getMaxSamples".}
+proc getMaxSamples*(this: var RenderBuffer, contextID: cuint, ext: ptr GLExtensions ): cint  {.importcpp: "getMaxSamples".}
 
 proc resizeGLObjectBuffers*(this: var RenderBuffer, maxSize: cuint)  {.importcpp: "resizeGLObjectBuffers".}
     ## Resize any per context GLObject buffers to specified size.
 
-proc releaseGLObjects*(this: RenderBuffer, ptr State  = 0)  {.importcpp: "releaseGLObjects".}
+proc releaseGLObjects*(this: RenderBuffer, a00: ptr State  = 0)  {.importcpp: "releaseGLObjects".}
     ## If State is non-zero, this function releases any associated OpenGL
     ## objects for the specified graphics context. Otherwise, releases OpenGL
     ## objexts for all graphics contexts.
 
-proc `=`*(this: var RenderBuffer, Renderbuffer): Renderbuffer  {.importcpp: "# = #".}
+proc `=`*(this: var RenderBuffer, a00: RenderBuffer): RenderBuffer  {.importcpp: "# = #".}
 
 proc dirtyAll*(this: RenderBuffer)  {.importcpp: "dirtyAll".}
 
@@ -143,21 +144,21 @@ proc setColorSamples*(this: var RenderBuffer, colorSamples: cint)  {.importcpp: 
 
 proc dirtyAll*(this: RenderBuffer)  {.importcpp: "dirtyAll".}
 
-proc compare*(this: RenderBuffer, rb: Renderbuffer): cint  {.importcpp: "compare".}
+proc compare*(this: RenderBuffer, rb: RenderBuffer): cint  {.importcpp: "compare".}
 
-proc `=`*(this: var FrameBufferAttachment, copy: Framebufferattachment): Framebufferattachment  {.importcpp: "# = #".}
+proc `=`*(this: var FrameBufferAttachment, copy: FrameBufferAttachment): FrameBufferAttachment  {.importcpp: "# = #".}
 
 proc isMultisample*(this: FrameBufferAttachment): bool  {.importcpp: "isMultisample".}
 
-proc createRequiredTexturesAndApplyGenerateMipMap*(this: FrameBufferAttachment, state: State, ext: ptr Glextensions )  {.importcpp: "createRequiredTexturesAndApplyGenerateMipMap".}
+proc createRequiredTexturesAndApplyGenerateMipMap*(this: FrameBufferAttachment, state: State, ext: ptr GLExtensions )  {.importcpp: "createRequiredTexturesAndApplyGenerateMipMap".}
 
-proc attach*(this: FrameBufferAttachment, state: State, target: GLenum, attachment_point: GLenum, ext: ptr Glextensions )  {.importcpp: "attach".}
+proc attach*(this: FrameBufferAttachment, state: State, target: GLenum, attachment_point: GLenum, ext: ptr GLExtensions )  {.importcpp: "attach".}
 
-proc compare*(this: FrameBufferAttachment, fa: Framebufferattachment): cint  {.importcpp: "compare".}
+proc compare*(this: FrameBufferAttachment, fa: FrameBufferAttachment): cint  {.importcpp: "compare".}
 
-proc getRenderBuffer*(this: var FrameBufferAttachment): ptr Renderbuffer   {.importcpp: "getRenderBuffer".}
+proc getRenderBuffer*(this: var FrameBufferAttachment): ptr RenderBuffer   {.importcpp: "getRenderBuffer".}
 
-proc getRenderBuffer*(this: FrameBufferAttachment): ptr Renderbuffer   {.importcpp: "getRenderBuffer".}
+proc getRenderBuffer*(this: FrameBufferAttachment): ptr RenderBuffer   {.importcpp: "getRenderBuffer".}
 
 proc getTexture*(this: var FrameBufferAttachment): ptr Texture   {.importcpp: "getTexture".}
 
@@ -173,11 +174,11 @@ proc getTextureArrayLayer*(this: FrameBufferAttachment): cuint  {.importcpp: "ge
 
 proc resizeGLObjectBuffers*(this: var FrameBufferAttachment, maxSize: cuint)  {.importcpp: "resizeGLObjectBuffers".}
 
-proc releaseGLObjects*(this: FrameBufferAttachment, ptr State  = 0)  {.importcpp: "releaseGLObjects".}
+proc releaseGLObjects*(this: FrameBufferAttachment, a00: ptr State  = 0)  {.importcpp: "releaseGLObjects".}
 
 proc cloneType*(this: FrameBufferObject): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: FrameBufferObject, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: FrameBufferObject, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: FrameBufferObject, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -187,50 +188,50 @@ proc className*(this: FrameBufferObject): cstring  {.importcpp: "className".}
 
 proc getType*(this: FrameBufferObject): Type  {.importcpp: "getType".}
 
-proc getAttachmentMap*(this: FrameBufferObject): Attachmentmap  {.importcpp: "getAttachmentMap".}
+proc getAttachmentMap*(this: FrameBufferObject): AttachmentMap  {.importcpp: "getAttachmentMap".}
 
-proc setAttachment*(this: var FrameBufferObject, attachment_point: Buffercomponent, attachment: Framebufferattachment)  {.importcpp: "setAttachment".}
+proc setAttachment*(this: var FrameBufferObject, attachment_point: BufferComponent, attachment: FrameBufferAttachment)  {.importcpp: "setAttachment".}
 
-proc getAttachment*(this: FrameBufferObject, attachment_point: Buffercomponent): Framebufferattachment  {.importcpp: "getAttachment".}
+proc getAttachment*(this: FrameBufferObject, attachment_point: BufferComponent): FrameBufferAttachment  {.importcpp: "getAttachment".}
 
-proc hasAttachment*(this: FrameBufferObject, attachment_point: Buffercomponent): bool  {.importcpp: "hasAttachment".}
+proc hasAttachment*(this: FrameBufferObject, attachment_point: BufferComponent): bool  {.importcpp: "hasAttachment".}
 
 proc hasMultipleRenderingTargets*(this: FrameBufferObject): bool  {.importcpp: "hasMultipleRenderingTargets".}
 
-proc getMultipleRenderingTargets*(this: FrameBufferObject): Multiplerenderingtargets  {.importcpp: "getMultipleRenderingTargets".}
+proc getMultipleRenderingTargets*(this: FrameBufferObject): MultipleRenderingTargets  {.importcpp: "getMultipleRenderingTargets".}
 
 proc isMultisample*(this: FrameBufferObject): bool  {.importcpp: "isMultisample".}
 
-proc compare*(this: FrameBufferObject, sa: Stateattribute): cint  {.importcpp: "compare".}
+proc compare*(this: FrameBufferObject, sa: StateAttribute): cint  {.importcpp: "compare".}
 
 proc apply*(this: FrameBufferObject, state: State)  {.importcpp: "apply".}
 
 proc getHandle*(this: FrameBufferObject, contextID: cuint): GLuint  {.importcpp: "getHandle".}
 
-proc apply*(this: FrameBufferObject, state: State, target: Bindtarget)  {.importcpp: "apply".}
+proc apply*(this: FrameBufferObject, state: State, target: BindTarget)  {.importcpp: "apply".}
     ## Bind the FBO as either the read or draw target, or both.
 
 proc resizeGLObjectBuffers*(this: var FrameBufferObject, maxSize: cuint)  {.importcpp: "resizeGLObjectBuffers".}
     ## Resize any per context GLObject buffers to specified size.
 
-proc releaseGLObjects*(this: FrameBufferObject, ptr State  = 0)  {.importcpp: "releaseGLObjects".}
+proc releaseGLObjects*(this: FrameBufferObject, a00: ptr State  = 0)  {.importcpp: "releaseGLObjects".}
     ## If State is non-zero, this function releases any associated OpenGL
     ## objects for the specified graphics context. Otherwise, releases OpenGL
     ## objexts for all graphics contexts.
 
-proc `=`*(this: var FrameBufferObject, Framebufferobject): Framebufferobject  {.importcpp: "# = #".}
+proc `=`*(this: var FrameBufferObject, a00: FrameBufferObject): FrameBufferObject  {.importcpp: "# = #".}
 
 proc updateDrawBuffers*(this: var FrameBufferObject)  {.importcpp: "updateDrawBuffers".}
 
 proc dirtyAll*(this: var FrameBufferObject)  {.importcpp: "dirtyAll".}
 
-proc convertBufferComponentToGLenum*(this: FrameBufferObject, attachment_point: Buffercomponent): GLenum  {.importcpp: "convertBufferComponentToGLenum".}
+proc convertBufferComponentToGLenum*(this: FrameBufferObject, attachment_point: BufferComponent): GLenum  {.importcpp: "convertBufferComponentToGLenum".}
 
-proc getAttachmentMap*(this: FrameBufferObject): Attachmentmap  {.importcpp: "getAttachmentMap".}
+proc getAttachmentMap*(this: FrameBufferObject): AttachmentMap  {.importcpp: "getAttachmentMap".}
 
-proc hasAttachment*(this: FrameBufferObject, attachment_point: Buffercomponent): bool  {.importcpp: "hasAttachment".}
+proc hasAttachment*(this: FrameBufferObject, attachment_point: BufferComponent): bool  {.importcpp: "hasAttachment".}
 
-proc getAttachment*(this: FrameBufferObject, attachment_point: Buffercomponent): Framebufferattachment  {.importcpp: "getAttachment".}
+proc getAttachment*(this: FrameBufferObject, attachment_point: BufferComponent): FrameBufferAttachment  {.importcpp: "getAttachment".}
 
 proc dirtyAll*(this: var FrameBufferObject)  {.importcpp: "dirtyAll".}
 

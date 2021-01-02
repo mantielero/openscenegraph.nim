@@ -1,4 +1,5 @@
-import Referenced  # provides: osg::Referenced
+import osg_types
+  # File: Referenced  was providing: osg::Referenced
 type
   Observers* {.header: "Observer", importcpp: "osg::ObserverSet::Observers".} = cint
 
@@ -9,9 +10,9 @@ proc constructObserver*(): Observer {.constructor,importcpp: "osg::Observer::Obs
 
 proc constructObserverSet*(observedObject: ptr Referenced ): ObserverSet {.constructor,importcpp: "osg::ObserverSet::ObserverSet(@)".}
 
-proc constructObserverSet*(rhs: Observerset): ObserverSet {.constructor,importcpp: "osg::ObserverSet::ObserverSet(@)".}
+proc constructObserverSet*(rhs: ObserverSet): ObserverSet {.constructor,importcpp: "osg::ObserverSet::ObserverSet(@)".}
 
-proc objectDeleted*(this: var Observer, pointer)  {.importcpp: "objectDeleted".}
+proc objectDeleted*(this: var Observer, a00: pointer)  {.importcpp: "objectDeleted".}
     ## objectDeleted is called when the observed object is about to be
     ## deleted. The observer will be automatically removed from the observed
     ## object's observer set so there is no need for the objectDeleted
@@ -37,6 +38,6 @@ proc getObservers*(this: var ObserverSet): Observers  {.importcpp: "getObservers
 
 proc getObservers*(this: ObserverSet): Observers  {.importcpp: "getObservers".}
 
-proc `=`*(this: var ObserverSet, Observerset): Observerset  {.importcpp: "# = #".}
+proc `=`*(this: var ObserverSet, a00: ObserverSet): ObserverSet  {.importcpp: "# = #".}
 
 {.pop.}  # header: "Observer"

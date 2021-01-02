@@ -1,25 +1,26 @@
-import State  # provides: osg::State
-import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
-import CopyOp  # provides: osg::CopyOp
+import osg_types
+  # File: State  was providing: osg::State
+  # File: Object  was providing: osg::Object
+  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
+  # File: CopyOp  was providing: osg::CopyOp
 type
-  Opcode* {.size:sizeof(cuint),header: "LogicOp", importcpp: "osg::LogicOp::Opcode".} = enum
-    pcdCLEAR = 5376,
-    pcdAND = 5377,
-    pcdAND_REVERSE = 5378,
-    pcdCOPY = 5379,
-    pcdAND_INVERTED = 5380,
-    pcdNOOP = 5381,
-    pcdXOR = 5382,
-    pcdOR = 5383,
-    pcdNOR = 5384,
-    pcdEQUIV = 5385,
-    pcdINVERT = 5386,
-    pcdOR_REVERSE = 5387,
-    pcdCOPY_INVERTED = 5388,
-    pcdOR_INVERTED = 5389,
-    pcdNAND = 5390,
-    pcdSET = 5391
+  Opcode* {.size:sizeof(cuint),header: "LogicOp", importcpp: "osg::LogicOp::Opcode", pure.} = enum
+    CLEAR = 5376,
+    AND = 5377,
+    AND_REVERSE = 5378,
+    COPY = 5379,
+    AND_INVERTED = 5380,
+    NOOP = 5381,
+    XOR = 5382,
+    OR = 5383,
+    NOR = 5384,
+    EQUIV = 5385,
+    INVERT = 5386,
+    OR_REVERSE = 5387,
+    COPY_INVERTED = 5388,
+    OR_INVERTED = 5389,
+    NAND = 5390,
+    SET = 5391
 
   LogicOp* {.header: "LogicOp", importcpp: "osg::LogicOp", byref.} = object #of class osg::StateAttribute
     ## Encapsulates OpenGL LogicOp state.
@@ -32,12 +33,12 @@ proc constructLogicOp*(): LogicOp {.constructor,importcpp: "osg::LogicOp::LogicO
 
 proc constructLogicOp*(opcode: Opcode): LogicOp {.constructor,importcpp: "osg::LogicOp::LogicOp(@)".}
 
-proc constructLogicOp*(trans: Logicop, copyop: Copyop = SHALLOW_COPY): LogicOp {.constructor,importcpp: "osg::LogicOp::LogicOp(@)".}
+proc constructLogicOp*(trans: LogicOp, copyop: CopyOp = SHALLOW_COPY): LogicOp {.constructor,importcpp: "osg::LogicOp::LogicOp(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: LogicOp): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: LogicOp, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: LogicOp, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: LogicOp, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -47,10 +48,10 @@ proc className*(this: LogicOp): cstring  {.importcpp: "className".}
 
 proc getType*(this: LogicOp): Type  {.importcpp: "getType".}
 
-proc compare*(this: LogicOp, sa: Stateattribute): cint  {.importcpp: "compare".}
+proc compare*(this: LogicOp, sa: StateAttribute): cint  {.importcpp: "compare".}
     ## Return -1 if *this < *rhs, 0 if *this==*rhs, 1 if *this>*rhs.
 
-proc getModeUsage*(this: LogicOp, usage: Modeusage): bool  {.importcpp: "getModeUsage".}
+proc getModeUsage*(this: LogicOp, usage: ModeUsage): bool  {.importcpp: "getModeUsage".}
 
 proc setOpcode*(this: var LogicOp, opcode: Opcode)  {.importcpp: "setOpcode".}
 

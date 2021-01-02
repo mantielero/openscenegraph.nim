@@ -1,7 +1,8 @@
-import State  # provides: osg::State
-import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
-import CopyOp  # provides: osg::CopyOp
+import osg_types
+  # File: State  was providing: osg::State
+  # File: Object  was providing: osg::Object
+  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
+  # File: CopyOp  was providing: osg::CopyOp
 type
   Capability* {.header: "Capability", importcpp: "osg::Capability", byref.} = object #of osg::StateAttribute
 
@@ -20,33 +21,33 @@ proc constructCapability*(): Capability {.constructor,importcpp: "osg::Capabilit
 
 proc constructCapability*(capability: GLenum): Capability {.constructor,importcpp: "osg::Capability::Capability(@)".}
 
-proc constructCapability*(cap: Capability, copyop: Copyop = SHALLOW_COPY): Capability {.constructor,importcpp: "osg::Capability::Capability(@)".}
+proc constructCapability*(cap: Capability, copyop: CopyOp = SHALLOW_COPY): Capability {.constructor,importcpp: "osg::Capability::Capability(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc constructCapabilityi*(): Capabilityi {.constructor,importcpp: "osg::Capabilityi::Capabilityi".}
 
 proc constructCapabilityi*(capability: GLenum, buf: cuint): Capabilityi {.constructor,importcpp: "osg::Capabilityi::Capabilityi(@)".}
 
-proc constructCapabilityi*(cap: Capabilityi, copyop: Copyop = SHALLOW_COPY): Capabilityi {.constructor,importcpp: "osg::Capabilityi::Capabilityi(@)".}
+proc constructCapabilityi*(cap: Capabilityi, copyop: CopyOp = SHALLOW_COPY): Capabilityi {.constructor,importcpp: "osg::Capabilityi::Capabilityi(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc constructEnablei*(): Enablei {.constructor,importcpp: "osg::Enablei::Enablei".}
 
 proc constructEnablei*(buf: cuint, capability: GLenum): Enablei {.constructor,importcpp: "osg::Enablei::Enablei(@)".}
 
-proc constructEnablei*(ei: Enablei, copyop: Copyop = SHALLOW_COPY): Enablei {.constructor,importcpp: "osg::Enablei::Enablei(@)".}
+proc constructEnablei*(ei: Enablei, copyop: CopyOp = SHALLOW_COPY): Enablei {.constructor,importcpp: "osg::Enablei::Enablei(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc constructDisablei*(): Disablei {.constructor,importcpp: "osg::Disablei::Disablei".}
 
 proc constructDisablei*(buf: cuint, capability: GLenum): Disablei {.constructor,importcpp: "osg::Disablei::Disablei(@)".}
 
-proc constructDisablei*(ei: Disablei, copyop: Copyop = SHALLOW_COPY): Disablei {.constructor,importcpp: "osg::Disablei::Disablei(@)".}
+proc constructDisablei*(ei: Disablei, copyop: CopyOp = SHALLOW_COPY): Disablei {.constructor,importcpp: "osg::Disablei::Disablei(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: Capability): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: Capability, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: Capability, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: Capability, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -54,7 +55,7 @@ proc libraryName*(this: Capability): cstring  {.importcpp: "libraryName".}
 
 proc className*(this: Capability): cstring  {.importcpp: "className".}
 
-proc compare*(this: Capability, sa: Stateattribute): cint  {.importcpp: "compare".}
+proc compare*(this: Capability, sa: StateAttribute): cint  {.importcpp: "compare".}
     ## Return -1 if *this < *rhs, 0 if *this==*rhs, 1 if *this>*rhs.
 
 proc getType*(this: Capability): Type  {.importcpp: "getType".}
@@ -66,7 +67,7 @@ proc getCapability*(this: Capability): GLenum  {.importcpp: "getCapability".}
 
 proc cloneType*(this: Capabilityi): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: Capabilityi, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: Capabilityi, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: Capabilityi, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -74,7 +75,7 @@ proc libraryName*(this: Capabilityi): cstring  {.importcpp: "libraryName".}
 
 proc className*(this: Capabilityi): cstring  {.importcpp: "className".}
 
-proc compare*(this: Capabilityi, sa: Stateattribute): cint  {.importcpp: "compare".}
+proc compare*(this: Capabilityi, sa: StateAttribute): cint  {.importcpp: "compare".}
     ## Return -1 if *this < *rhs, 0 if *this==*rhs, 1 if *this>*rhs.
 
 proc getMember*(this: Capabilityi): cuint  {.importcpp: "getMember".}
@@ -89,7 +90,7 @@ proc getIndex*(this: Capabilityi): cuint  {.importcpp: "getIndex".}
 
 proc cloneType*(this: Enablei): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: Enablei, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: Enablei, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: Enablei, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -97,11 +98,11 @@ proc libraryName*(this: Enablei): cstring  {.importcpp: "libraryName".}
 
 proc className*(this: Enablei): cstring  {.importcpp: "className".}
 
-proc apply*(this: Enablei, State)  {.importcpp: "apply".}
+proc apply*(this: Enablei, a00: State)  {.importcpp: "apply".}
 
 proc cloneType*(this: Disablei): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: Disablei, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: Disablei, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: Disablei, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -109,6 +110,6 @@ proc libraryName*(this: Disablei): cstring  {.importcpp: "libraryName".}
 
 proc className*(this: Disablei): cstring  {.importcpp: "className".}
 
-proc apply*(this: Disablei, State)  {.importcpp: "apply".}
+proc apply*(this: Disablei, a00: State)  {.importcpp: "apply".}
 
 {.pop.}  # header: "Capability"

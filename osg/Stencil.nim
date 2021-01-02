@@ -1,27 +1,28 @@
-import State  # provides: osg::State
-import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
-import CopyOp  # provides: osg::CopyOp
+import osg_types
+  # File: State  was providing: osg::State
+  # File: Object  was providing: osg::Object
+  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
+  # File: CopyOp  was providing: osg::CopyOp
 type
-  Function* {.size:sizeof(cuint),header: "Stencil", importcpp: "osg::Stencil::Function".} = enum
-    fnctnNEVER = 512,
-    fnctnLESS = 513,
-    fnctnEQUAL = 514,
-    fnctnLEQUAL = 515,
-    fnctnGREATER = 516,
-    fnctnNOTEQUAL = 517,
-    fnctnGEQUAL = 518,
-    fnctnALWAYS = 519
+  Function* {.size:sizeof(cuint),header: "Stencil", importcpp: "osg::Stencil::Function", pure.} = enum
+    NEVER = 512,
+    LESS = 513,
+    EQUAL = 514,
+    LEQUAL = 515,
+    GREATER = 516,
+    NOTEQUAL = 517,
+    GEQUAL = 518,
+    ALWAYS = 519
 
-  Operation* {.size:sizeof(cuint),header: "Stencil", importcpp: "osg::Stencil::Operation".} = enum
-    prtnZERO = 0,
-    prtnINVERT = 5386,
-    prtnKEEP = 7680,
-    prtnREPLACE = 7681,
-    prtnINCR = 7682,
-    prtnDECR = 7683,
-    prtnINCR_WRAP = 34055,
-    prtnDECR_WRAP = 34056
+  Operation* {.size:sizeof(cuint),header: "Stencil", importcpp: "osg::Stencil::Operation", pure.} = enum
+    ZERO = 0,
+    INVERT = 5386,
+    KEEP = 7680,
+    REPLACE = 7681,
+    INCR = 7682,
+    DECR = 7683,
+    INCR_WRAP = 34055,
+    DECR_WRAP = 34056
 
   Stencil* {.header: "Stencil", importcpp: "osg::Stencil", byref.} = object #of class osg::StateAttribute
     ## Encapsulate OpenGL glStencilFunc/Op/Mask functions.
@@ -32,12 +33,12 @@ type
 
 proc constructStencil*(): Stencil {.constructor,importcpp: "osg::Stencil::Stencil".}
 
-proc constructStencil*(stencil: Stencil, copyop: Copyop = SHALLOW_COPY): Stencil {.constructor,importcpp: "osg::Stencil::Stencil(@)".}
+proc constructStencil*(stencil: Stencil, copyop: CopyOp = SHALLOW_COPY): Stencil {.constructor,importcpp: "osg::Stencil::Stencil(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: Stencil): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: Stencil, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: Stencil, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: Stencil, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -47,10 +48,10 @@ proc className*(this: Stencil): cstring  {.importcpp: "className".}
 
 proc getType*(this: Stencil): Type  {.importcpp: "getType".}
 
-proc compare*(this: Stencil, sa: Stateattribute): cint  {.importcpp: "compare".}
+proc compare*(this: Stencil, sa: StateAttribute): cint  {.importcpp: "compare".}
     ## return -1 if *this < *rhs, 0 if *this==*rhs, 1 if *this>*rhs.
 
-proc getModeUsage*(this: Stencil, usage: Modeusage): bool  {.importcpp: "getModeUsage".}
+proc getModeUsage*(this: Stencil, usage: ModeUsage): bool  {.importcpp: "getModeUsage".}
 
 proc setFunction*(this: var Stencil, `func`: Function, `ref`: cint, mask: cuint)  {.importcpp: "setFunction".}
 

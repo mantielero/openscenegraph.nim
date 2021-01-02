@@ -1,20 +1,20 @@
-import Object  # provides: osg::Object
-import Referenced  # provides: osg::Referenced
-import CopyOp  # provides: osg::CopyOp
+import osg_types
+  # File: Object  was providing: osg::Object
+  # File: Referenced  was providing: osg::Referenced
+  # File: CopyOp  was providing: osg::CopyOp
 type
   KeyValueMap* {.header: "ValueMap", importcpp: "osg::ValueMap::KeyValueMap".} = cint
-  UserValueObject* {.header: "ValueMap", importcpp: "osg::ValueMap::getValue::UserValueObject".} = TemplateValueObject[T]
 
 
 {.push header: "ValueMap".}
 
 proc constructValueMap*(): ValueMap {.constructor,importcpp: "osg::ValueMap::ValueMap".}
 
-proc constructValueMap*(vm: Valuemap, copyop: Copyop = SHALLOW_COPY): ValueMap {.constructor,importcpp: "osg::ValueMap::ValueMap(@)".}
+proc constructValueMap*(vm: ValueMap, copyop: CopyOp = SHALLOW_COPY): ValueMap {.constructor,importcpp: "osg::ValueMap::ValueMap(@)".}
 
 proc cloneType*(this: ValueMap): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: ValueMap, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: ValueMap, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: ValueMap, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -22,11 +22,11 @@ proc libraryName*(this: ValueMap): cstring  {.importcpp: "libraryName".}
 
 proc className*(this: ValueMap): cstring  {.importcpp: "className".}
 
-proc setKeyValueMap*(this: var ValueMap, properties: Keyvaluemap)  {.importcpp: "setKeyValueMap".}
+proc setKeyValueMap*(this: var ValueMap, properties: KeyValueMap)  {.importcpp: "setKeyValueMap".}
 
-proc getKeyValueMap*(this: var ValueMap): Keyvaluemap  {.importcpp: "getKeyValueMap".}
+proc getKeyValueMap*(this: var ValueMap): KeyValueMap  {.importcpp: "getKeyValueMap".}
 
-proc getKeyValueMap*(this: ValueMap): Keyvaluemap  {.importcpp: "getKeyValueMap".}
+proc getKeyValueMap*(this: ValueMap): KeyValueMap  {.importcpp: "getKeyValueMap".}
 
 proc setValue*(this: var ValueMap, key: ptr Referenced , `object`: ptr Object ): ptr Object   {.importcpp: "setValue".}
 

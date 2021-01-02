@@ -1,5 +1,6 @@
-import State  # provides: osg::State
-import Array  # provides: osg::Array
+import osg_types
+  # File: State  was providing: osg::State
+  # File: Array  was providing: osg::Array
 type
   AttributeDispatchMapList* {.header: "AttributeDispatchers", importcpp: "osg::AttributeDispatchers::AttributeDispatchMapList".} = cint
   AttributeDispatchList* {.header: "AttributeDispatchers", importcpp: "osg::AttributeDispatchers::AttributeDispatchList".} = cint
@@ -9,9 +10,9 @@ type
 
 proc constructAttributeDispatchers*(): AttributeDispatchers {.constructor,importcpp: "osg::AttributeDispatchers::AttributeDispatchers".}
 
-proc assign*(this: var AttributeDispatch, ptr GLvoid)  {.importcpp: "assign".}
+proc assign*(this: var AttributeDispatch, a00: ptr GLvoid)  {.importcpp: "assign".}
 
-proc `()`*(this: var AttributeDispatch, cuint)  {.importcpp: "# () #".}
+proc `()`*(this: var AttributeDispatch, a00: cuint)  {.importcpp: "# () #".}
 
 proc setState*(this: var AttributeDispatchers, state: ptr State )  {.importcpp: "setState".}
 
@@ -31,15 +32,15 @@ proc activateFogCoordArray*(this: var AttributeDispatchers, array: ptr Array )  
 
 proc activateVertexAttribArray*(this: var AttributeDispatchers, unit: cuint, array: ptr Array )  {.importcpp: "activateVertexAttribArray".}
 
-proc normalDispatcher*(this: var AttributeDispatchers, array: ptr Array ): ptr Attributedispatch   {.importcpp: "normalDispatcher".}
+proc normalDispatcher*(this: var AttributeDispatchers, array: ptr Array ): ptr AttributeDispatch   {.importcpp: "normalDispatcher".}
 
-proc colorDispatcher*(this: var AttributeDispatchers, array: ptr Array ): ptr Attributedispatch   {.importcpp: "colorDispatcher".}
+proc colorDispatcher*(this: var AttributeDispatchers, array: ptr Array ): ptr AttributeDispatch   {.importcpp: "colorDispatcher".}
 
-proc secondaryColorDispatcher*(this: var AttributeDispatchers, array: ptr Array ): ptr Attributedispatch   {.importcpp: "secondaryColorDispatcher".}
+proc secondaryColorDispatcher*(this: var AttributeDispatchers, array: ptr Array ): ptr AttributeDispatch   {.importcpp: "secondaryColorDispatcher".}
 
-proc fogCoordDispatcher*(this: var AttributeDispatchers, array: ptr Array ): ptr Attributedispatch   {.importcpp: "fogCoordDispatcher".}
+proc fogCoordDispatcher*(this: var AttributeDispatchers, array: ptr Array ): ptr AttributeDispatch   {.importcpp: "fogCoordDispatcher".}
 
-proc vertexAttribDispatcher*(this: var AttributeDispatchers, unit: cuint, array: ptr Array ): ptr Attributedispatch   {.importcpp: "vertexAttribDispatcher".}
+proc vertexAttribDispatcher*(this: var AttributeDispatchers, unit: cuint, array: ptr Array ): ptr AttributeDispatch   {.importcpp: "vertexAttribDispatcher".}
 
 proc dispatch*(this: var AttributeDispatchers, index: cuint)  {.importcpp: "dispatch".}
 

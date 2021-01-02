@@ -1,52 +1,53 @@
-import ArgumentParser  # provides: osg::ArgumentParser
-import Matrixf  # provides: osg::Matrixf
-import Node  # provides: osg::Node::NodeMask
-import Matrixd  # provides: osg::Matrixd
+import osg_types
+  # File: ArgumentParser  was providing: osg::ArgumentParser
+  # File: Matrixf  was providing: osg::Matrixf
+  # File: Node  was providing: osg::Node::NodeMask
+  # File: Matrixd  was providing: osg::Matrixd
 type
-  VariablesMask* {.size:sizeof(cuint),header: "CullSettings", importcpp: "osg::CullSettings::VariablesMask".} = enum
-    vrblsmskNO_VARIABLES = 0,
-    vrblsmskCOMPUTE_NEAR_FAR_MODE = 1,
-    vrblsmskCULLING_MODE = 2,
-    vrblsmskLOD_SCALE = 4,
-    vrblsmskSMALL_FEATURE_CULLING_PIXEL_SIZE = 8,
-    vrblsmskCLAMP_PROJECTION_MATRIX_CALLBACK = 16,
-    vrblsmskNEAR_FAR_RATIO = 32,
-    vrblsmskIMPOSTOR_ACTIVE = 64,
-    vrblsmskDEPTH_SORT_IMPOSTOR_SPRITES = 128,
-    vrblsmskIMPOSTOR_PIXEL_ERROR_THRESHOLD = 256,
-    vrblsmskNUM_FRAMES_TO_KEEP_IMPOSTORS_SPRITES = 512,
-    vrblsmskCULL_MASK = 1024,
-    vrblsmskCULL_MASK_LEFT = 2048,
-    vrblsmskCULL_MASK_RIGHT = 4096,
-    vrblsmskCLEAR_COLOR = 8192,
-    vrblsmskCLEAR_MASK = 16384,
-    vrblsmskLIGHTING_MODE = 32768,
-    vrblsmskLIGHT = 65536,
-    vrblsmskDRAW_BUFFER = 131072,
-    vrblsmskREAD_BUFFER = 262144,
-    vrblsmskALL_VARIABLES = 2147483647
+  VariablesMask* {.size:sizeof(cuint),header: "CullSettings", importcpp: "osg::CullSettings::VariablesMask", pure.} = enum
+    NO_VARIABLES = 0,
+    COMPUTE_NEAR_FAR_MODE = 1,
+    CULLING_MODE = 2,
+    LOD_SCALE = 4,
+    SMALL_FEATURE_CULLING_PIXEL_SIZE = 8,
+    CLAMP_PROJECTION_MATRIX_CALLBACK = 16,
+    NEAR_FAR_RATIO = 32,
+    IMPOSTOR_ACTIVE = 64,
+    DEPTH_SORT_IMPOSTOR_SPRITES = 128,
+    IMPOSTOR_PIXEL_ERROR_THRESHOLD = 256,
+    NUM_FRAMES_TO_KEEP_IMPOSTORS_SPRITES = 512,
+    CULL_MASK = 1024,
+    CULL_MASK_LEFT = 2048,
+    CULL_MASK_RIGHT = 4096,
+    CLEAR_COLOR = 8192,
+    CLEAR_MASK = 16384,
+    LIGHTING_MODE = 32768,
+    LIGHT = 65536,
+    DRAW_BUFFER = 131072,
+    READ_BUFFER = 262144,
+    ALL_VARIABLES = 2147483647
 
-  InheritanceMaskActionOnAttributeSetting* {.size:sizeof(cuint),header: "CullSettings", importcpp: "osg::CullSettings::InheritanceMaskActionOnAttributeSetting".} = enum
-    nhrtncmskctnnttrbtsttngDISABLE_ASSOCIATED_INHERITANCE_MASK_BIT = 0,
-    nhrtncmskctnnttrbtsttngDO_NOT_MODIFY_INHERITANCE_MASK = 1
+  InheritanceMaskActionOnAttributeSetting* {.size:sizeof(cuint),header: "CullSettings", importcpp: "osg::CullSettings::InheritanceMaskActionOnAttributeSetting", pure.} = enum
+    DISABLE_ASSOCIATED_INHERITANCE_MASK_BIT = 0,
+    DO_NOT_MODIFY_INHERITANCE_MASK = 1
 
-  ComputeNearFarMode* {.size:sizeof(cuint),header: "CullSettings", importcpp: "osg::CullSettings::ComputeNearFarMode".} = enum
-    cmptnrfrmdDO_NOT_COMPUTE_NEAR_FAR = 0,
-    cmptnrfrmdCOMPUTE_NEAR_FAR_USING_BOUNDING_VOLUMES = 1,
-    cmptnrfrmdCOMPUTE_NEAR_FAR_USING_PRIMITIVES = 2,
-    cmptnrfrmdCOMPUTE_NEAR_USING_PRIMITIVES = 3
+  ComputeNearFarMode* {.size:sizeof(cuint),header: "CullSettings", importcpp: "osg::CullSettings::ComputeNearFarMode", pure.} = enum
+    DO_NOT_COMPUTE_NEAR_FAR = 0,
+    COMPUTE_NEAR_FAR_USING_BOUNDING_VOLUMES = 1,
+    COMPUTE_NEAR_FAR_USING_PRIMITIVES = 2,
+    COMPUTE_NEAR_USING_PRIMITIVES = 3
 
-  CullingModeValues* {.size:sizeof(cuint),header: "CullSettings", importcpp: "osg::CullSettings::CullingModeValues".} = enum
-    cllngmdvlsNO_CULLING = 0,
-    cllngmdvlsVIEW_FRUSTUM_SIDES_CULLING = 1,
-    cllngmdvlsNEAR_PLANE_CULLING = 2,
-    cllngmdvlsFAR_PLANE_CULLING = 4,
-    cllngmdvlsVIEW_FRUSTUM_CULLING = 7,
-    cllngmdvlsSMALL_FEATURE_CULLING = 8,
-    cllngmdvlsSHADOW_OCCLUSION_CULLING = 16,
-    cllngmdvlsCLUSTER_CULLING = 32,
-    cllngmdvlsDEFAULT_CULLING = 57,
-    cllngmdvlsENABLE_ALL_CULLING = 63
+  CullingModeValues* {.size:sizeof(cuint),header: "CullSettings", importcpp: "osg::CullSettings::CullingModeValues", pure.} = enum
+    NO_CULLING = 0,
+    VIEW_FRUSTUM_SIDES_CULLING = 1,
+    NEAR_PLANE_CULLING = 2,
+    FAR_PLANE_CULLING = 4,
+    VIEW_FRUSTUM_CULLING = 7,
+    SMALL_FEATURE_CULLING = 8,
+    SHADOW_OCCLUSION_CULLING = 16,
+    CLUSTER_CULLING = 32,
+    DEFAULT_CULLING = 57,
+    ENABLE_ALL_CULLING = 63
 
   InheritanceMask* {.header: "CullSettings", importcpp: "osg::CullSettings::InheritanceMask".} = cint
   CullingMode* {.header: "CullSettings", importcpp: "osg::CullSettings::CullingMode".} = cint
@@ -56,42 +57,42 @@ type
 
 proc constructCullSettings*(): CullSettings {.constructor,importcpp: "osg::CullSettings::CullSettings".}
 
-proc constructCullSettings*(arguments: Argumentparser): CullSettings {.constructor,importcpp: "osg::CullSettings::CullSettings(@)".}
+proc constructCullSettings*(arguments: ArgumentParser): CullSettings {.constructor,importcpp: "osg::CullSettings::CullSettings(@)".}
 
-proc constructCullSettings*(cs: Cullsettings): CullSettings {.constructor,importcpp: "osg::CullSettings::CullSettings(@)".}
+proc constructCullSettings*(cs: CullSettings): CullSettings {.constructor,importcpp: "osg::CullSettings::CullSettings(@)".}
 
-proc `=`*(this: var CullSettings, settings: Cullsettings): Cullsettings  {.importcpp: "# = #".}
+proc `=`*(this: var CullSettings, settings: CullSettings): CullSettings  {.importcpp: "# = #".}
 
 proc setDefaults*(this: var CullSettings)  {.importcpp: "setDefaults".}
 
-proc setInheritanceMask*(this: var CullSettings, mask: Inheritancemask)  {.importcpp: "setInheritanceMask".}
+proc setInheritanceMask*(this: var CullSettings, mask: InheritanceMask)  {.importcpp: "setInheritanceMask".}
     ## Set the inheritance mask used in inheritCullSettings to control which
     ## variables get overwritten by the passed in CullSettings object.
 
-proc getInheritanceMask*(this: CullSettings): Inheritancemask  {.importcpp: "getInheritanceMask".}
+proc getInheritanceMask*(this: CullSettings): InheritanceMask  {.importcpp: "getInheritanceMask".}
     ## Get the inheritance mask used in inheritCullSettings to control which
     ## variables get overwritten by the passed in CullSettings object.
 
-proc setCullSettings*(this: var CullSettings, settings: Cullsettings)  {.importcpp: "setCullSettings".}
+proc setCullSettings*(this: var CullSettings, settings: CullSettings)  {.importcpp: "setCullSettings".}
     ## Set the local cull settings values from specified CullSettings object.
 
-proc inheritCullSettings*(this: var CullSettings, settings: Cullsettings)  {.importcpp: "inheritCullSettings".}
+proc inheritCullSettings*(this: var CullSettings, settings: CullSettings)  {.importcpp: "inheritCullSettings".}
     ## Inherit the local cull settings variable from specified CullSettings
     ## object, according to the inheritance mask.
 
-proc inheritCullSettings*(this: var CullSettings, settings: Cullsettings, inheritanceMask: cuint)  {.importcpp: "inheritCullSettings".}
+proc inheritCullSettings*(this: var CullSettings, settings: CullSettings, inheritanceMask: cuint)  {.importcpp: "inheritCullSettings".}
     ## Inherit the local cull settings variable from specified CullSettings
     ## object, according to the inheritance mask.
 
 proc readEnvironmentalVariables*(this: var CullSettings)  {.importcpp: "readEnvironmentalVariables".}
     ## read the environmental variables.
 
-proc readCommandLine*(this: var CullSettings, arguments: Argumentparser)  {.importcpp: "readCommandLine".}
+proc readCommandLine*(this: var CullSettings, arguments: ArgumentParser)  {.importcpp: "readCommandLine".}
     ## read the commandline arguments.
 
-proc setInheritanceMaskActionOnAttributeSetting*(this: var CullSettings, action: Inheritancemaskactiononattributesetting)  {.importcpp: "setInheritanceMaskActionOnAttributeSetting".}
+proc setInheritanceMaskActionOnAttributeSetting*(this: var CullSettings, action: InheritanceMaskActionOnAttributeSetting)  {.importcpp: "setInheritanceMaskActionOnAttributeSetting".}
 
-proc getInheritanceMaskActionOnAttributeSetting*(this: CullSettings): Inheritancemaskactiononattributesetting  {.importcpp: "getInheritanceMaskActionOnAttributeSetting".}
+proc getInheritanceMaskActionOnAttributeSetting*(this: CullSettings): InheritanceMaskActionOnAttributeSetting  {.importcpp: "getInheritanceMaskActionOnAttributeSetting".}
 
 proc applyMaskAction*(this: var CullSettings, maskBit: cuint)  {.importcpp: "applyMaskAction".}
     ## Apply the action, specified by the
@@ -132,31 +133,31 @@ proc getNumberOfFrameToKeepImpostorSprites*(this: CullSettings): cint  {.importc
     ## Get the number of frames that an ImpostorSprite is kept whilst not
     ## being beyond, before being recycled.
 
-proc setComputeNearFarMode*(this: var CullSettings, cnfm: Computenearfarmode)  {.importcpp: "setComputeNearFarMode".}
+proc setComputeNearFarMode*(this: var CullSettings, cnfm: ComputeNearFarMode)  {.importcpp: "setComputeNearFarMode".}
 
-proc getComputeNearFarMode*(this: CullSettings): Computenearfarmode  {.importcpp: "getComputeNearFarMode".}
+proc getComputeNearFarMode*(this: CullSettings): ComputeNearFarMode  {.importcpp: "getComputeNearFarMode".}
 
 proc setNearFarRatio*(this: var CullSettings, ratio: cdouble)  {.importcpp: "setNearFarRatio".}
 
 proc getNearFarRatio*(this: CullSettings): cdouble  {.importcpp: "getNearFarRatio".}
 
-proc setCullingMode*(this: var CullSettings, mode: Cullingmode)  {.importcpp: "setCullingMode".}
+proc setCullingMode*(this: var CullSettings, mode: CullingMode)  {.importcpp: "setCullingMode".}
     ## Set the culling mode for the CullVisitor to use.
 
-proc getCullingMode*(this: CullSettings): Cullingmode  {.importcpp: "getCullingMode".}
+proc getCullingMode*(this: CullSettings): CullingMode  {.importcpp: "getCullingMode".}
     ## Returns the current CullingMode.
 
-proc setCullMask*(this: var CullSettings, nm: Nodemask)  {.importcpp: "setCullMask".}
+proc setCullMask*(this: var CullSettings, nm: NodeMask)  {.importcpp: "setCullMask".}
 
-proc getCullMask*(this: CullSettings): Nodemask  {.importcpp: "getCullMask".}
+proc getCullMask*(this: CullSettings): NodeMask  {.importcpp: "getCullMask".}
 
-proc setCullMaskLeft*(this: var CullSettings, nm: Nodemask)  {.importcpp: "setCullMaskLeft".}
+proc setCullMaskLeft*(this: var CullSettings, nm: NodeMask)  {.importcpp: "setCullMaskLeft".}
 
-proc getCullMaskLeft*(this: CullSettings): Nodemask  {.importcpp: "getCullMaskLeft".}
+proc getCullMaskLeft*(this: CullSettings): NodeMask  {.importcpp: "getCullMaskLeft".}
 
-proc setCullMaskRight*(this: var CullSettings, nm: Nodemask)  {.importcpp: "setCullMaskRight".}
+proc setCullMaskRight*(this: var CullSettings, nm: NodeMask)  {.importcpp: "setCullMaskRight".}
 
-proc getCullMaskRight*(this: CullSettings): Nodemask  {.importcpp: "getCullMaskRight".}
+proc getCullMaskRight*(this: CullSettings): NodeMask  {.importcpp: "getCullMaskRight".}
 
 proc setLODScale*(this: var CullSettings, scale: cfloat)  {.importcpp: "setLODScale".}
     ## Set the LOD bias for the CullVisitor to use.
@@ -174,16 +175,16 @@ proc clampProjectionMatrixImplementation*(this: ClampProjectionMatrixCallback, p
 
 proc clampProjectionMatrixImplementation*(this: ClampProjectionMatrixCallback, projection: Matrixd, znear: cdouble, zfar: cdouble): bool  {.importcpp: "clampProjectionMatrixImplementation".}
 
-proc setClampProjectionMatrixCallback*(this: var CullSettings, cpmc: ptr Clampprojectionmatrixcallback )  {.importcpp: "setClampProjectionMatrixCallback".}
+proc setClampProjectionMatrixCallback*(this: var CullSettings, cpmc: ptr ClampProjectionMatrixCallback )  {.importcpp: "setClampProjectionMatrixCallback".}
     ## set the ClampProjectionMatrixCallback.
 
-proc getClampProjectionMatrixCallback*(this: var CullSettings): ptr Clampprojectionmatrixcallback   {.importcpp: "getClampProjectionMatrixCallback".}
+proc getClampProjectionMatrixCallback*(this: var CullSettings): ptr ClampProjectionMatrixCallback   {.importcpp: "getClampProjectionMatrixCallback".}
     ## get the non const ClampProjectionMatrixCallback.
 
-proc getClampProjectionMatrixCallback*(this: CullSettings): ptr Clampprojectionmatrixcallback   {.importcpp: "getClampProjectionMatrixCallback".}
+proc getClampProjectionMatrixCallback*(this: CullSettings): ptr ClampProjectionMatrixCallback   {.importcpp: "getClampProjectionMatrixCallback".}
     ## get the const ClampProjectionMatrixCallback.
 
-proc write*(this: var CullSettings, `out`: Ostream)  {.importcpp: "write".}
+proc write*(this: var CullSettings, `out`: ostream)  {.importcpp: "write".}
     ## Write out internal settings of CullSettings.
 
 {.pop.}  # header: "CullSettings"

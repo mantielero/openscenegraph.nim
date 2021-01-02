@@ -1,24 +1,25 @@
-import State  # provides: osg::State
-import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
-import CopyOp  # provides: osg::CopyOp
+import osg_types
+  # File: State  was providing: osg::State
+  # File: Object  was providing: osg::Object
+  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
+  # File: CopyOp  was providing: osg::CopyOp
 type
-  BlendFuncMode* {.size:sizeof(cuint),header: "BlendFunc", importcpp: "osg::BlendFunc::BlendFuncMode".} = enum
-    blndfncmdZERO = 0,
-    blndfncmdONE = 1,
-    blndfncmdSRC_COLOR = 768,
-    blndfncmdONE_MINUS_SRC_COLOR = 769,
-    blndfncmdSRC_ALPHA = 770,
-    blndfncmdONE_MINUS_SRC_ALPHA = 771,
-    blndfncmdDST_ALPHA = 772,
-    blndfncmdONE_MINUS_DST_ALPHA = 773,
-    blndfncmdDST_COLOR = 774,
-    blndfncmdONE_MINUS_DST_COLOR = 775,
-    blndfncmdSRC_ALPHA_SATURATE = 776,
-    blndfncmdCONSTANT_COLOR = 32769,
-    blndfncmdONE_MINUS_CONSTANT_COLOR = 32770,
-    blndfncmdCONSTANT_ALPHA = 32771,
-    blndfncmdONE_MINUS_CONSTANT_ALPHA = 32772
+  BlendFuncMode* {.size:sizeof(cuint),header: "BlendFunc", importcpp: "osg::BlendFunc::BlendFuncMode", pure.} = enum
+    ZERO = 0,
+    ONE = 1,
+    SRC_COLOR = 768,
+    ONE_MINUS_SRC_COLOR = 769,
+    SRC_ALPHA = 770,
+    ONE_MINUS_SRC_ALPHA = 771,
+    DST_ALPHA = 772,
+    ONE_MINUS_DST_ALPHA = 773,
+    DST_COLOR = 774,
+    ONE_MINUS_DST_COLOR = 775,
+    SRC_ALPHA_SATURATE = 776,
+    CONSTANT_COLOR = 32769,
+    ONE_MINUS_CONSTANT_COLOR = 32770,
+    CONSTANT_ALPHA = 32771,
+    ONE_MINUS_CONSTANT_ALPHA = 32772
 
   BlendFunc* {.header: "BlendFunc", importcpp: "osg::BlendFunc", byref.} = object #of class osg::StateAttribute
     ## Encapsulates OpenGL blend/transparency state.
@@ -33,12 +34,12 @@ proc constructBlendFunc*(source: GLenum, destination: GLenum): BlendFunc {.const
 
 proc constructBlendFunc*(source: GLenum, destination: GLenum, source_alpha: GLenum, destination_alpha: GLenum): BlendFunc {.constructor,importcpp: "osg::BlendFunc::BlendFunc(@)".}
 
-proc constructBlendFunc*(trans: Blendfunc, copyop: Copyop = SHALLOW_COPY): BlendFunc {.constructor,importcpp: "osg::BlendFunc::BlendFunc(@)".}
+proc constructBlendFunc*(trans: BlendFunc, copyop: CopyOp = SHALLOW_COPY): BlendFunc {.constructor,importcpp: "osg::BlendFunc::BlendFunc(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: BlendFunc): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: BlendFunc, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: BlendFunc, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: BlendFunc, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -48,10 +49,10 @@ proc className*(this: BlendFunc): cstring  {.importcpp: "className".}
 
 proc getType*(this: BlendFunc): Type  {.importcpp: "getType".}
 
-proc compare*(this: BlendFunc, sa: Stateattribute): cint  {.importcpp: "compare".}
+proc compare*(this: BlendFunc, sa: StateAttribute): cint  {.importcpp: "compare".}
     ## Return -1 if *this < *rhs, 0 if *this==*rhs, 1 if *this>*rhs.
 
-proc getModeUsage*(this: BlendFunc, usage: Modeusage): bool  {.importcpp: "getModeUsage".}
+proc getModeUsage*(this: BlendFunc, usage: ModeUsage): bool  {.importcpp: "getModeUsage".}
 
 proc setFunction*(this: var BlendFunc, source: GLenum, destination: GLenum)  {.importcpp: "setFunction".}
 

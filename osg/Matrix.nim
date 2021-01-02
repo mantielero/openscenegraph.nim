@@ -1,1 +1,2 @@
-import Matrixd  # provides: osg::Matrixd, osg::RefMatrixd
+import osg_types
+  # File: Matrixd  was providing: osg::Matrixd, osg::RefMatrixd

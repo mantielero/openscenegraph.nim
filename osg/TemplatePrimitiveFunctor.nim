@@ -1,9 +1,10 @@
-import Vec3  # provides: osg::Vec3
-import Vec4  # provides: osg::Vec4
-import Vec2  # provides: osg::Vec2
-import Vec4d  # provides: osg::Vec4d
-import Vec3d  # provides: osg::Vec3d
-import Vec2d  # provides: osg::Vec2d
+import osg_types
+  # File: Vec3  was providing: osg::Vec3
+  # File: Vec4  was providing: osg::Vec4
+  # File: Vec2  was providing: osg::Vec2
+  # File: Vec4d  was providing: osg::Vec4d
+  # File: Vec3d  was providing: osg::Vec3d
+  # File: Vec2d  was providing: osg::Vec2d
 type
   TemplatePrimitiveFunctor*[T] {.header: "TemplatePrimitiveFunctor", importcpp: "osg::TemplatePrimitiveFunctor", byref.} = object #of class osg::PrimitiveFunctor
     ## Provides access to the primitives that compose an osg::Drawable.
@@ -23,24 +24,23 @@ type
     ## created by the TemplatePrimitiveFunctor from some other geometry
     ## representation.
 
-  IndexPointer* {.header: "TemplatePrimitiveFunctor", importcpp: "osg::TemplatePrimitiveFunctor::drawElementsTemplate::IndexPointer".} = ptr IndexType
 
 
 {.push header: "TemplatePrimitiveFunctor".}
 
 proc constructTemplatePrimitiveFunctor*[T](): TemplatePrimitiveFunctor {.constructor,importcpp: "osg::TemplatePrimitiveFunctor::TemplatePrimitiveFunctor<T>".}
 
-proc setVertexArray*(this: var TemplatePrimitiveFunctor, cuint, ptr Vec2 )  {.importcpp: "setVertexArray".}
+proc setVertexArray*(this: var TemplatePrimitiveFunctor, a00: cuint, a01: ptr Vec2 )  {.importcpp: "setVertexArray".}
 
 proc setVertexArray*(this: var TemplatePrimitiveFunctor, count: cuint, vertices: ptr Vec3 )  {.importcpp: "setVertexArray".}
 
-proc setVertexArray*(this: var TemplatePrimitiveFunctor, cuint, ptr Vec4 )  {.importcpp: "setVertexArray".}
+proc setVertexArray*(this: var TemplatePrimitiveFunctor, a00: cuint, a01: ptr Vec4 )  {.importcpp: "setVertexArray".}
 
-proc setVertexArray*(this: var TemplatePrimitiveFunctor, cuint, ptr Vec2d )  {.importcpp: "setVertexArray".}
+proc setVertexArray*(this: var TemplatePrimitiveFunctor, a00: cuint, a01: ptr Vec2d )  {.importcpp: "setVertexArray".}
 
-proc setVertexArray*(this: var TemplatePrimitiveFunctor, cuint, ptr Vec3d )  {.importcpp: "setVertexArray".}
+proc setVertexArray*(this: var TemplatePrimitiveFunctor, a00: cuint, a01: ptr Vec3d )  {.importcpp: "setVertexArray".}
 
-proc setVertexArray*(this: var TemplatePrimitiveFunctor, cuint, ptr Vec4d )  {.importcpp: "setVertexArray".}
+proc setVertexArray*(this: var TemplatePrimitiveFunctor, a00: cuint, a01: ptr Vec4d )  {.importcpp: "setVertexArray".}
 
 proc drawArrays*(this: var TemplatePrimitiveFunctor, mode: GLenum, first: GLint, count: GLsizei)  {.importcpp: "drawArrays".}
 

@@ -1,11 +1,13 @@
-import State  # provides: osg::State
-import Vec4  # provides: osg::Vec4
-import Camera  # provides: osg::Camera
-import Object  # provides: osg::Object
-import OperationThread  # provides: osg::RefBlock, osg::Operation
-import CopyOp  # provides: osg::CopyOp
-import GraphicsThread  # provides: osg::GraphicsThread
-import DisplaySettings  # provides: osg::DisplaySettings
+import osg_types
+  # File: State  was providing: osg::State
+  # File: Vec4  was providing: osg::Vec4
+  # File: Camera  was providing: osg::Camera
+  # File: ref_ptr  was providing: osg::ref_ptr
+  # File: Object  was providing: osg::Object
+  # File: OperationThread  was providing: osg::Operation, osg::RefBlock
+  # File: CopyOp  was providing: osg::CopyOp
+  # File: GraphicsThread  was providing: osg::GraphicsThread
+  # File: DisplaySettings  was providing: osg::DisplaySettings
 type
   WindowingSystemInterfaces* {.header: "GraphicsContext", importcpp: "osg::GraphicsContext::WindowingSystemInterfaces", byref.} = object #of osg::Referenced
 
@@ -26,9 +28,9 @@ proc constructScreenIdentifier*(): ScreenIdentifier {.constructor,importcpp: "os
 
 proc constructScreenIdentifier*(in_screenNum: cint): ScreenIdentifier {.constructor,importcpp: "osg::GraphicsContext::ScreenIdentifier::ScreenIdentifier(@)".}
 
-proc constructScreenIdentifier*(in_hostName: String, in_displayNum: cint, in_screenNum: cint): ScreenIdentifier {.constructor,importcpp: "osg::GraphicsContext::ScreenIdentifier::ScreenIdentifier(@)".}
+proc constructScreenIdentifier*(in_hostName: string, in_displayNum: cint, in_screenNum: cint): ScreenIdentifier {.constructor,importcpp: "osg::GraphicsContext::ScreenIdentifier::ScreenIdentifier(@)".}
 
-proc constructTraits*(ds: ptr Displaysettings  = 0): Traits {.constructor,importcpp: "osg::GraphicsContext::Traits::Traits(@)".}
+proc constructTraits*(ds: ptr DisplaySettings  = 0): Traits {.constructor,importcpp: "osg::GraphicsContext::Traits::Traits(@)".}
 
 proc constructScreenSettings*(): ScreenSettings {.constructor,importcpp: "osg::GraphicsContext::ScreenSettings::ScreenSettings".}
 
@@ -40,13 +42,13 @@ proc constructWindowingSystemInterfaces*(): WindowingSystemInterfaces {.construc
 
 proc constructGraphicsContext*(): GraphicsContext {.constructor,importcpp: "osg::GraphicsContext::GraphicsContext".}
 
-proc constructGraphicsContext*(Graphicscontext, Copyop): GraphicsContext {.constructor,importcpp: "osg::GraphicsContext::GraphicsContext(@)".}
+proc constructGraphicsContext*(a00: GraphicsContext, a01: CopyOp): GraphicsContext {.constructor,importcpp: "osg::GraphicsContext::GraphicsContext(@)".}
 
 proc constructSyncSwapBuffersCallback*(): SyncSwapBuffersCallback {.constructor,importcpp: "osg::SyncSwapBuffersCallback::SyncSwapBuffersCallback".}
 
-proc constructWindowingSystemInterfaceProxy*[T](name: String): WindowingSystemInterfaceProxy {.constructor,importcpp: "osg::WindowingSystemInterfaceProxy::WindowingSystemInterfaceProxy<T>(@)".}
+proc constructWindowingSystemInterfaceProxy*[T](name: string): WindowingSystemInterfaceProxy {.constructor,importcpp: "osg::WindowingSystemInterfaceProxy::WindowingSystemInterfaceProxy<T>(@)".}
 
-proc displayName*(this: ScreenIdentifier): String  {.importcpp: "displayName".}
+proc displayName*(this: ScreenIdentifier): string  {.importcpp: "displayName".}
     ## Return the display name in the form hostName::displayNum:screenNum.
 
 proc readDISPLAY*(this: var ScreenIdentifier)  {.importcpp: "readDISPLAY".}
@@ -57,7 +59,7 @@ proc readDISPLAY*(this: var ScreenIdentifier)  {.importcpp: "readDISPLAY".}
     ## setUndefinedScreenDetailsToDefaultScreen() after readDISPLAY() to
     ## ensure valid values.
 
-proc setScreenIdentifier*(this: var ScreenIdentifier, displayName: String)  {.importcpp: "setScreenIdentifier".}
+proc setScreenIdentifier*(this: var ScreenIdentifier, displayName: string)  {.importcpp: "setScreenIdentifier".}
     ## Set the screenIndentifier from the displayName string. Note, if either
     ## of displayNum or screenNum are not defined then -1 is set to signify
     ## that this parameter has not been set. When parameters are undefined
@@ -73,49 +75,49 @@ proc getContextVersion*(this: Traits, major: cuint, minor: cuint): bool  {.impor
     ## assign the appropriate major and minor values to the associated
     ## parameters.
 
-proc setName*(this: var WindowingSystemInterface, name: String)  {.importcpp: "setName".}
+proc setName*(this: var WindowingSystemInterface, name: string)  {.importcpp: "setName".}
 
-proc getName*(this: WindowingSystemInterface): String  {.importcpp: "getName".}
+proc getName*(this: WindowingSystemInterface): string  {.importcpp: "getName".}
 
-proc getNumScreens*(this: var WindowingSystemInterface, screenIdentifier: Screenidentifier = )): cuint  {.importcpp: "getNumScreens".}
+proc getNumScreens*(this: var WindowingSystemInterface, screenIdentifier: ScreenIdentifier = )): cuint  {.importcpp: "getNumScreens".}
 
-proc getScreenSettings*(this: var WindowingSystemInterface, screenIdentifier: Screenidentifier, resolution: Screensettings)  {.importcpp: "getScreenSettings".}
+proc getScreenSettings*(this: var WindowingSystemInterface, screenIdentifier: ScreenIdentifier, resolution: ScreenSettings)  {.importcpp: "getScreenSettings".}
 
-proc setScreenSettings*(this: var WindowingSystemInterface, Screenidentifier, Screensettings): bool  {.importcpp: "setScreenSettings".}
+proc setScreenSettings*(this: var WindowingSystemInterface, a00: ScreenIdentifier, a01: ScreenSettings): bool  {.importcpp: "setScreenSettings".}
 
-proc enumerateScreenSettings*(this: var WindowingSystemInterface, screenIdentifier: Screenidentifier, resolutionList: Screensettingslist)  {.importcpp: "enumerateScreenSettings".}
+proc enumerateScreenSettings*(this: var WindowingSystemInterface, screenIdentifier: ScreenIdentifier, resolutionList: ScreenSettingsList)  {.importcpp: "enumerateScreenSettings".}
 
-proc setDisplaySettings*(this: var WindowingSystemInterface, ptr Displaysettings )  {.importcpp: "setDisplaySettings".}
+proc setDisplaySettings*(this: var WindowingSystemInterface, a00: ptr DisplaySettings )  {.importcpp: "setDisplaySettings".}
 
-proc getDisplaySettings*(this: WindowingSystemInterface): ptr Displaysettings   {.importcpp: "getDisplaySettings".}
+proc getDisplaySettings*(this: WindowingSystemInterface): ptr DisplaySettings   {.importcpp: "getDisplaySettings".}
 
-proc createGraphicsContext*(this: var WindowingSystemInterface, traits: ptr Traits ): ptr Graphicscontext   {.importcpp: "createGraphicsContext".}
+proc createGraphicsContext*(this: var WindowingSystemInterface, traits: ptr Traits ): ptr GraphicsContext   {.importcpp: "createGraphicsContext".}
 
-proc getScreenResolution*(this: var WindowingSystemInterface, screenIdentifier: Screenidentifier, width: cuint, height: cuint)  {.importcpp: "getScreenResolution".}
+proc getScreenResolution*(this: var WindowingSystemInterface, screenIdentifier: ScreenIdentifier, width: cuint, height: cuint)  {.importcpp: "getScreenResolution".}
     ## Gets screen resolution without using the ScreenResolution structure.
 
-proc setScreenResolution*(this: var WindowingSystemInterface, screenIdentifier: Screenidentifier, width: cuint, height: cuint): bool  {.importcpp: "setScreenResolution".}
+proc setScreenResolution*(this: var WindowingSystemInterface, screenIdentifier: ScreenIdentifier, width: cuint, height: cuint): bool  {.importcpp: "setScreenResolution".}
     ## Sets screen resolution without using the ScreenSettings structure.
 
-proc setScreenRefreshRate*(this: var WindowingSystemInterface, screenIdentifier: Screenidentifier, refreshRate: cdouble): bool  {.importcpp: "setScreenRefreshRate".}
+proc setScreenRefreshRate*(this: var WindowingSystemInterface, screenIdentifier: ScreenIdentifier, refreshRate: cdouble): bool  {.importcpp: "setScreenRefreshRate".}
     ## 
 
 proc getInterfaces*(this: var WindowingSystemInterfaces): Interfaces  {.importcpp: "getInterfaces".}
 
-proc addWindowingSystemInterface*(this: var WindowingSystemInterfaces, wsInterface: ptr Windowingsysteminterface )  {.importcpp: "addWindowingSystemInterface".}
+proc addWindowingSystemInterface*(this: var WindowingSystemInterfaces, wsInterface: ptr WindowingSystemInterface )  {.importcpp: "addWindowingSystemInterface".}
 
-proc removeWindowingSystemInterface*(this: var WindowingSystemInterfaces, wsInterface: ptr Windowingsysteminterface )  {.importcpp: "removeWindowingSystemInterface".}
+proc removeWindowingSystemInterface*(this: var WindowingSystemInterfaces, wsInterface: ptr WindowingSystemInterface )  {.importcpp: "removeWindowingSystemInterface".}
 
-proc getWindowingSystemInterface*(this: var WindowingSystemInterfaces, name: String): ptr Windowingsysteminterface   {.importcpp: "getWindowingSystemInterface".}
+proc getWindowingSystemInterface*(this: var WindowingSystemInterfaces, name: string): ptr WindowingSystemInterface   {.importcpp: "getWindowingSystemInterface".}
     ## get named WindowingSystemInterface if one is available, otherwise
     ## return 0;
 
-proc getWindowingSystemInterfaces*(this: var GraphicsContext): Ref_ptr[WindowingSystemInterfaces]  {.importcpp: "getWindowingSystemInterfaces".}
+proc getWindowingSystemInterfaces*(this: var GraphicsContext): ref_ptr[WindowingSystemInterfaces]  {.importcpp: "getWindowingSystemInterfaces".}
 
-proc getWindowingSystemInterface*(this: var GraphicsContext, name: String): ptr Windowingsysteminterface   {.importcpp: "getWindowingSystemInterface".}
+proc getWindowingSystemInterface*(this: var GraphicsContext, name: string): ptr WindowingSystemInterface   {.importcpp: "getWindowingSystemInterface".}
     ## Get the default WindowingSystemInterface for this OS
 
-proc createGraphicsContext*(this: var GraphicsContext, traits: ptr Traits ): ptr Graphicscontext   {.importcpp: "createGraphicsContext".}
+proc createGraphicsContext*(this: var GraphicsContext, traits: ptr Traits ): ptr GraphicsContext   {.importcpp: "createGraphicsContext".}
     ## Create a graphics context for a specified set of traits.
 
 proc createNewContextID*(this: var GraphicsContext): cuint  {.importcpp: "createNewContextID".}
@@ -135,22 +137,22 @@ proc decrementContextIDUsageCount*(this: var GraphicsContext, contextID: cuint) 
     ## Decrement the usage count associate with a contextID. Once the
     ## contextID goes to 0 the contextID is then free to be reused.
 
-proc getAllRegisteredGraphicsContexts*(this: var GraphicsContext): Graphicscontexts  {.importcpp: "getAllRegisteredGraphicsContexts".}
+proc getAllRegisteredGraphicsContexts*(this: var GraphicsContext): GraphicsContexts  {.importcpp: "getAllRegisteredGraphicsContexts".}
     ## Get all the registered graphics contexts.
 
-proc getRegisteredGraphicsContexts*(this: var GraphicsContext, contextID: cuint): Graphicscontexts  {.importcpp: "getRegisteredGraphicsContexts".}
+proc getRegisteredGraphicsContexts*(this: var GraphicsContext, contextID: cuint): GraphicsContexts  {.importcpp: "getRegisteredGraphicsContexts".}
     ## Get all the registered graphics contexts associated with a specific
     ## contextID.
 
-proc setCompileContext*(this: var GraphicsContext, contextID: cuint, gc: ptr Graphicscontext )  {.importcpp: "setCompileContext".}
+proc setCompileContext*(this: var GraphicsContext, contextID: cuint, gc: ptr GraphicsContext )  {.importcpp: "setCompileContext".}
     ## Get the GraphicsContext for doing background compilation for
     ## GraphicsContexts associated with specified contextID.
 
-proc getOrCreateCompileContext*(this: var GraphicsContext, contextID: cuint): ptr Graphicscontext   {.importcpp: "getOrCreateCompileContext".}
+proc getOrCreateCompileContext*(this: var GraphicsContext, contextID: cuint): ptr GraphicsContext   {.importcpp: "getOrCreateCompileContext".}
     ## Get existing or create a new GraphicsContext to do background
     ## compilation for GraphicsContexts associated with specified contextID.
 
-proc getCompileContext*(this: var GraphicsContext, contextID: cuint): ptr Graphicscontext   {.importcpp: "getCompileContext".}
+proc getCompileContext*(this: var GraphicsContext, contextID: cuint): ptr GraphicsContext   {.importcpp: "getCompileContext".}
     ## Get the GraphicsContext for doing background compilation for
     ## GraphicsContexts associated with specified contextID.
 
@@ -160,7 +162,7 @@ proc add*(this: var GraphicsContext, operation: ptr Operation )  {.importcpp: "a
 proc remove*(this: var GraphicsContext, operation: ptr Operation )  {.importcpp: "remove".}
     ## Remove operation from OperationQueue.
 
-proc remove*(this: var GraphicsContext, name: String)  {.importcpp: "remove".}
+proc remove*(this: var GraphicsContext, name: string)  {.importcpp: "remove".}
     ## Remove named operation from OperationQueue.
 
 proc removeAllOperations*(this: var GraphicsContext)  {.importcpp: "removeAllOperations".}
@@ -169,14 +171,14 @@ proc removeAllOperations*(this: var GraphicsContext)  {.importcpp: "removeAllOpe
 proc runOperations*(this: var GraphicsContext)  {.importcpp: "runOperations".}
     ## Run the operations.
 
-proc getOperationsQueue*(this: var GraphicsContext): Graphicsoperationqueue  {.importcpp: "getOperationsQueue".}
+proc getOperationsQueue*(this: var GraphicsContext): GraphicsOperationQueue  {.importcpp: "getOperationsQueue".}
     ## Get the operations queue, note you must use the OperationsMutex when
     ## accessing the queue.
 
 proc getOperationsMutex*(this: var GraphicsContext): ptr Mutex   {.importcpp: "getOperationsMutex".}
     ## Get the operations queue mutex.
 
-proc getOperationsBlock*(this: var GraphicsContext): ptr Refblock   {.importcpp: "getOperationsBlock".}
+proc getOperationsBlock*(this: var GraphicsContext): ptr RefBlock   {.importcpp: "getOperationsBlock".}
     ## Get the operations queue block used to mark an empty queue, if you end
     ## items into the empty queue you must release this block.
 
@@ -246,7 +248,7 @@ proc makeCurrent*(this: var GraphicsContext): bool  {.importcpp: "makeCurrent".}
     ## Make this graphics context current. Implemented by calling
     ## makeCurrentImplementation(). Returns true on success.
 
-proc makeContextCurrent*(this: var GraphicsContext, readContext: ptr Graphicscontext ): bool  {.importcpp: "makeContextCurrent".}
+proc makeContextCurrent*(this: var GraphicsContext, readContext: ptr GraphicsContext ): bool  {.importcpp: "makeContextCurrent".}
     ## Make this graphics context current with specified read context.
     ## Implemented by calling makeContextCurrentImplementation(). Returns
     ## true on success.
@@ -264,14 +266,14 @@ proc createGraphicsThread*(this: var GraphicsContext)  {.importcpp: "createGraph
     ## Create a graphics thread to the graphics context, so that the thread
     ## handles all OpenGL operations.
 
-proc setGraphicsThread*(this: var GraphicsContext, gt: ptr Graphicsthread )  {.importcpp: "setGraphicsThread".}
+proc setGraphicsThread*(this: var GraphicsContext, gt: ptr GraphicsThread )  {.importcpp: "setGraphicsThread".}
     ## Assign a graphics thread to the graphics context, so that the thread
     ## handles all OpenGL operations.
 
-proc getGraphicsThread*(this: var GraphicsContext): ptr Graphicsthread   {.importcpp: "getGraphicsThread".}
+proc getGraphicsThread*(this: var GraphicsContext): ptr GraphicsThread   {.importcpp: "getGraphicsThread".}
     ## Get the graphics thread assigned the graphics context.
 
-proc getGraphicsThread*(this: GraphicsContext): ptr Graphicsthread   {.importcpp: "getGraphicsThread".}
+proc getGraphicsThread*(this: GraphicsContext): ptr GraphicsThread   {.importcpp: "getGraphicsThread".}
     ## Get the const graphics thread assigned the graphics context.
 
 proc realizeImplementation*(this: var GraphicsContext): bool  {.importcpp: "realizeImplementation".}
@@ -291,7 +293,7 @@ proc makeCurrentImplementation*(this: var GraphicsContext): bool  {.importcpp: "
     ## Make this graphics context current implementation. Pure virtual - must
     ## be implemented by concrete implementations of GraphicsContext.
 
-proc makeContextCurrentImplementation*(this: var GraphicsContext, readContext: ptr Graphicscontext ): bool  {.importcpp: "makeContextCurrentImplementation".}
+proc makeContextCurrentImplementation*(this: var GraphicsContext, readContext: ptr GraphicsContext ): bool  {.importcpp: "makeContextCurrentImplementation".}
     ## Make this graphics context current with specified read context
     ## implementation. Pure virtual - must be implemented by concrete
     ## implementations of GraphicsContext.
@@ -304,19 +306,19 @@ proc bindPBufferToTextureImplementation*(this: var GraphicsContext, buffer: GLen
     ## implementation. Pure virtual - must be implemented by concrete
     ## implementations of GraphicsContext.
 
-proc swapBuffersImplementation*(this: var SwapCallback, gc: ptr Graphicscontext )  {.importcpp: "swapBuffersImplementation".}
+proc swapBuffersImplementation*(this: var SwapCallback, gc: ptr GraphicsContext )  {.importcpp: "swapBuffersImplementation".}
 
-proc setSwapCallback*(this: var GraphicsContext, rc: ptr Swapcallback )  {.importcpp: "setSwapCallback".}
+proc setSwapCallback*(this: var GraphicsContext, rc: ptr SwapCallback )  {.importcpp: "setSwapCallback".}
     ## Set the swap callback which overrides the
     ## GraphicsContext::swapBuffersImplementation(), allowing developers to
     ## provide custom behavior for swap. The callback must call
     ## GraphicsContext::swapBuffersImplementation()
 
-proc getSwapCallback*(this: var GraphicsContext): ptr Swapcallback   {.importcpp: "getSwapCallback".}
+proc getSwapCallback*(this: var GraphicsContext): ptr SwapCallback   {.importcpp: "getSwapCallback".}
     ## Get the swap callback which overrides the
     ## GraphicsContext::swapBuffersImplementation().
 
-proc getSwapCallback*(this: GraphicsContext): ptr Swapcallback   {.importcpp: "getSwapCallback".}
+proc getSwapCallback*(this: GraphicsContext): ptr SwapCallback   {.importcpp: "getSwapCallback".}
     ## Get the const swap callback which overrides the
     ## GraphicsContext::swapBuffersImplementation().
 
@@ -336,18 +338,18 @@ proc resized*(this: var GraphicsContext, x: cint, y: cint, width: cint, height: 
     ## resized and the GraphicsWindow and associated Cameras must be updated
     ## to keep in sync with the new size.
 
-proc resizedImplementation*(this: var ResizedCallback, gc: ptr Graphicscontext , x: cint, y: cint, width: cint, height: cint)  {.importcpp: "resizedImplementation".}
+proc resizedImplementation*(this: var ResizedCallback, gc: ptr GraphicsContext , x: cint, y: cint, width: cint, height: cint)  {.importcpp: "resizedImplementation".}
 
-proc setResizedCallback*(this: var GraphicsContext, rc: ptr Resizedcallback )  {.importcpp: "setResizedCallback".}
+proc setResizedCallback*(this: var GraphicsContext, rc: ptr ResizedCallback )  {.importcpp: "setResizedCallback".}
     ## Set the resized callback which overrides the
     ## GraphicsConext::realizedImplementation(), allow developers to provide
     ## custom behavior in response to a window being resized.
 
-proc getResizedCallback*(this: var GraphicsContext): ptr Resizedcallback   {.importcpp: "getResizedCallback".}
+proc getResizedCallback*(this: var GraphicsContext): ptr ResizedCallback   {.importcpp: "getResizedCallback".}
     ## Get the resized callback which overrides the
     ## GraphicsConext::realizedImplementation().
 
-proc getResizedCallback*(this: GraphicsContext): ptr Resizedcallback   {.importcpp: "getResizedCallback".}
+proc getResizedCallback*(this: GraphicsContext): ptr ResizedCallback   {.importcpp: "getResizedCallback".}
     ## Get the const resized callback which overrides the
     ## GraphicsConext::realizedImplementation().
 
@@ -375,18 +377,18 @@ proc className*(this: GraphicsContext): cstring  {.importcpp: "className".}
 
 proc cloneType*(this: GraphicsContext): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: GraphicsContext, Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: GraphicsContext, a00: CopyOp): ptr Object   {.importcpp: "clone".}
 
-proc registerGraphicsContext*(this: var GraphicsContext, gc: ptr Graphicscontext )  {.importcpp: "registerGraphicsContext".}
+proc registerGraphicsContext*(this: var GraphicsContext, gc: ptr GraphicsContext )  {.importcpp: "registerGraphicsContext".}
     ## Register a GraphicsContext.
 
-proc unregisterGraphicsContext*(this: var GraphicsContext, gc: ptr Graphicscontext )  {.importcpp: "unregisterGraphicsContext".}
+proc unregisterGraphicsContext*(this: var GraphicsContext, gc: ptr GraphicsContext )  {.importcpp: "unregisterGraphicsContext".}
     ## Unregister a GraphicsContext.
 
 proc addCamera*(this: var GraphicsContext, camera: ptr Camera )  {.importcpp: "addCamera".}
 
 proc removeCamera*(this: var GraphicsContext, camera: ptr Camera )  {.importcpp: "removeCamera".}
 
-proc swapBuffersImplementation*(this: var SyncSwapBuffersCallback, gc: ptr Graphicscontext )  {.importcpp: "swapBuffersImplementation".}
+proc swapBuffersImplementation*(this: var SyncSwapBuffersCallback, gc: ptr GraphicsContext )  {.importcpp: "swapBuffersImplementation".}
 
 {.pop.}  # header: "GraphicsContext"

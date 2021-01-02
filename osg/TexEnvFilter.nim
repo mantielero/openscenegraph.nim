@@ -1,7 +1,8 @@
-import State  # provides: osg::State
-import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
-import CopyOp  # provides: osg::CopyOp
+import osg_types
+  # File: State  was providing: osg::State
+  # File: Object  was providing: osg::Object
+  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
+  # File: CopyOp  was providing: osg::CopyOp
 type
   TexEnvFilter* {.header: "TexEnvFilter", importcpp: "osg::TexEnvFilter", byref.} = object #of class osg::StateAttribute
     ## TexEnvFilter - encapsulates the OpenGL glTexEnv
@@ -13,12 +14,12 @@ type
 
 proc constructTexEnvFilter*(lodBias: cfloat): TexEnvFilter {.constructor,importcpp: "osg::TexEnvFilter::TexEnvFilter(@)".}
 
-proc constructTexEnvFilter*(texenv: Texenvfilter, copyop: Copyop = SHALLOW_COPY): TexEnvFilter {.constructor,importcpp: "osg::TexEnvFilter::TexEnvFilter(@)".}
+proc constructTexEnvFilter*(texenv: TexEnvFilter, copyop: CopyOp = SHALLOW_COPY): TexEnvFilter {.constructor,importcpp: "osg::TexEnvFilter::TexEnvFilter(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: TexEnvFilter): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: TexEnvFilter, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: TexEnvFilter, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: TexEnvFilter, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -30,7 +31,7 @@ proc getType*(this: TexEnvFilter): Type  {.importcpp: "getType".}
 
 proc isTextureAttribute*(this: TexEnvFilter): bool  {.importcpp: "isTextureAttribute".}
 
-proc compare*(this: TexEnvFilter, sa: Stateattribute): cint  {.importcpp: "compare".}
+proc compare*(this: TexEnvFilter, sa: StateAttribute): cint  {.importcpp: "compare".}
     ## return -1 if *this < *rhs, 0 if *this==*rhs, 1 if *this>*rhs.
 
 proc setLodBias*(this: var TexEnvFilter, lodBias: cfloat)  {.importcpp: "setLodBias".}

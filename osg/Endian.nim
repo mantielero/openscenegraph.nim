@@ -1,7 +1,7 @@
 type
-  Endian* {.size:sizeof(cuint),header: "Endian", importcpp: "osg::Endian".} = enum
-    ndnBigEndian = 0,
-    ndnLittleEndian = 1
+  Endian* {.size:sizeof(cuint),header: "Endian", importcpp: "osg::Endian", pure.} = enum
+    BigEndian = 0,
+    LittleEndian = 1
 
 
 

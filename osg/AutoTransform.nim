@@ -1,23 +1,24 @@
-import Vec3  # provides: osg::Vec3
-import Object  # provides: osg::Object
-import CopyOp  # provides: osg::CopyOp
-import Matrix  # provides: osg::Matrix
-import Matrixd  # provides: osg::Matrixd
-import Vec3d  # provides: osg::Vec3d
-import Quat  # provides: osg::Quat
-import NodeVisitor  # provides: osg::NodeVisitor
+import osg_types
+  # File: Vec3  was providing: osg::Vec3
+  # File: Object  was providing: osg::Object
+  # File: CopyOp  was providing: osg::CopyOp
+  # File: Matrix  was providing: osg::Matrix
+  # File: Matrixd  was providing: osg::Matrixd
+  # File: Vec3d  was providing: osg::Vec3d
+  # File: Quat  was providing: osg::Quat
+  # File: NodeVisitor  was providing: osg::NodeVisitor
 type
-  AutoRotateMode* {.size:sizeof(cuint),header: "AutoTransform", importcpp: "osg::AutoTransform::AutoRotateMode".} = enum
-    trttmdNO_ROTATION = 0,
-    trttmdROTATE_TO_SCREEN = 1,
-    trttmdROTATE_TO_CAMERA = 2,
-    trttmdROTATE_TO_AXIS = 3
+  AutoRotateMode* {.size:sizeof(cuint),header: "AutoTransform", importcpp: "osg::AutoTransform::AutoRotateMode", pure.} = enum
+    NO_ROTATION = 0,
+    ROTATE_TO_SCREEN = 1,
+    ROTATE_TO_CAMERA = 2,
+    ROTATE_TO_AXIS = 3
 
-  AxisAligned* {.size:sizeof(cuint),header: "AutoTransform", importcpp: "osg::AutoTransform::AxisAligned".} = enum
-    xslgndAXIAL_ROT_X_AXIS = 4,
-    xslgndAXIAL_ROT_Y_AXIS = 5,
-    xslgndAXIAL_ROT_Z_AXIS = 6,
-    xslgndCACHE_DIRTY = 7
+  AxisAligned* {.size:sizeof(cuint),header: "AutoTransform", importcpp: "osg::AutoTransform::AxisAligned", pure.} = enum
+    AXIAL_ROT_X_AXIS = 4,
+    AXIAL_ROT_Y_AXIS = 5,
+    AXIAL_ROT_Z_AXIS = 6,
+    CACHE_DIRTY = 7
 
 
 
@@ -25,11 +26,11 @@ type
 
 proc constructAutoTransform*(): AutoTransform {.constructor,importcpp: "osg::AutoTransform::AutoTransform".}
 
-proc constructAutoTransform*(pat: Autotransform, copyop: Copyop = SHALLOW_COPY): AutoTransform {.constructor,importcpp: "osg::AutoTransform::AutoTransform(@)".}
+proc constructAutoTransform*(pat: AutoTransform, copyop: CopyOp = SHALLOW_COPY): AutoTransform {.constructor,importcpp: "osg::AutoTransform::AutoTransform(@)".}
 
 proc cloneType*(this: AutoTransform): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: AutoTransform, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: AutoTransform, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: AutoTransform, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -37,9 +38,9 @@ proc className*(this: AutoTransform): cstring  {.importcpp: "className".}
 
 proc libraryName*(this: AutoTransform): cstring  {.importcpp: "libraryName".}
 
-proc asAutoTransform*(this: var AutoTransform): ptr Autotransform   {.importcpp: "asAutoTransform".}
+proc asAutoTransform*(this: var AutoTransform): ptr AutoTransform   {.importcpp: "asAutoTransform".}
 
-proc asAutoTransform*(this: AutoTransform): ptr Autotransform   {.importcpp: "asAutoTransform".}
+proc asAutoTransform*(this: AutoTransform): ptr AutoTransform   {.importcpp: "asAutoTransform".}
 
 proc setPosition*(this: var AutoTransform, pos: Vec3d)  {.importcpp: "setPosition".}
 
@@ -71,9 +72,9 @@ proc setAutoUpdateEyeMovementTolerance*(this: var AutoTransform, tolerance: cflo
 
 proc getAutoUpdateEyeMovementTolerance*(this: AutoTransform): cfloat  {.importcpp: "getAutoUpdateEyeMovementTolerance".}
 
-proc setAutoRotateMode*(this: var AutoTransform, mode: Autorotatemode)  {.importcpp: "setAutoRotateMode".}
+proc setAutoRotateMode*(this: var AutoTransform, mode: AutoRotateMode)  {.importcpp: "setAutoRotateMode".}
 
-proc getAutoRotateMode*(this: AutoTransform): Autorotatemode  {.importcpp: "getAutoRotateMode".}
+proc getAutoRotateMode*(this: AutoTransform): AutoRotateMode  {.importcpp: "getAutoRotateMode".}
 
 proc setAxis*(this: var AutoTransform, axis: Vec3)  {.importcpp: "setAxis".}
     ## Set the rotation axis for the AutoTransform's child nodes. Only
@@ -96,11 +97,11 @@ proc setAutoScaleTransitionWidthRatio*(this: var AutoTransform, ratio: cfloat)  
 
 proc getAutoScaleTransitionWidthRatio*(this: AutoTransform): cfloat  {.importcpp: "getAutoScaleTransitionWidthRatio".}
 
-proc computeLocalToWorldMatrix*(this: AutoTransform, matrix: Matrix, nv: ptr Nodevisitor ): bool  {.importcpp: "computeLocalToWorldMatrix".}
+proc computeLocalToWorldMatrix*(this: AutoTransform, matrix: Matrix, nv: ptr NodeVisitor ): bool  {.importcpp: "computeLocalToWorldMatrix".}
 
-proc computeWorldToLocalMatrix*(this: AutoTransform, matrix: Matrix, nv: ptr Nodevisitor ): bool  {.importcpp: "computeWorldToLocalMatrix".}
+proc computeWorldToLocalMatrix*(this: AutoTransform, matrix: Matrix, nv: ptr NodeVisitor ): bool  {.importcpp: "computeWorldToLocalMatrix".}
 
-proc computeMatrix*(this: AutoTransform, nv: ptr Nodevisitor ): Matrixd  {.importcpp: "computeMatrix".}
+proc computeMatrix*(this: AutoTransform, nv: ptr NodeVisitor ): Matrixd  {.importcpp: "computeMatrix".}
 
 proc updateCache*(this: var AutoTransform)  {.importcpp: "updateCache".}
 

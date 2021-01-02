@@ -1,8 +1,9 @@
-import Object  # provides: osg::Object
-import CopyOp  # provides: osg::CopyOp
-import Matrixd  # provides: osg::Matrixd
-import Vec3d  # provides: osg::Vec3d
-import NodeVisitor  # provides: osg::NodeVisitor
+import osg_types
+  # File: Object  was providing: osg::Object
+  # File: CopyOp  was providing: osg::CopyOp
+  # File: Matrixd  was providing: osg::Matrixd
+  # File: Vec3d  was providing: osg::Vec3d
+  # File: NodeVisitor  was providing: osg::NodeVisitor
 type
   EllipsoidModel* {.header: "CoordinateSystemNode", importcpp: "osg::EllipsoidModel", byref.} = object #of class osg::Object
     ## EllipsoidModel encapsulates the ellipsoid used to model astronomical
@@ -18,18 +19,18 @@ type
 proc constructEllipsoidModel*(radiusEquator: cdouble, radiusPolar: cdouble): EllipsoidModel {.constructor,importcpp: "osg::EllipsoidModel::EllipsoidModel(@)".}
     ## WGS_84 is a common representation of the earth's spheroid
 
-proc constructEllipsoidModel*(et: Ellipsoidmodel, copyop: Copyop = SHALLOW_COPY): EllipsoidModel {.constructor,importcpp: "osg::EllipsoidModel::EllipsoidModel(@)".}
+proc constructEllipsoidModel*(et: EllipsoidModel, copyop: CopyOp = SHALLOW_COPY): EllipsoidModel {.constructor,importcpp: "osg::EllipsoidModel::EllipsoidModel(@)".}
 
 proc constructCoordinateSystemNode*(): CoordinateSystemNode {.constructor,importcpp: "osg::CoordinateSystemNode::CoordinateSystemNode".}
 
-proc constructCoordinateSystemNode*(format: String, cs: String): CoordinateSystemNode {.constructor,importcpp: "osg::CoordinateSystemNode::CoordinateSystemNode(@)".}
+proc constructCoordinateSystemNode*(format: string, cs: string): CoordinateSystemNode {.constructor,importcpp: "osg::CoordinateSystemNode::CoordinateSystemNode(@)".}
 
-proc constructCoordinateSystemNode*(Coordinatesystemnode, copyop: Copyop = SHALLOW_COPY): CoordinateSystemNode {.constructor,importcpp: "osg::CoordinateSystemNode::CoordinateSystemNode(@)".}
+proc constructCoordinateSystemNode*(a00: CoordinateSystemNode, copyop: CopyOp = SHALLOW_COPY): CoordinateSystemNode {.constructor,importcpp: "osg::CoordinateSystemNode::CoordinateSystemNode(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: EllipsoidModel): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: EllipsoidModel, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: EllipsoidModel, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: EllipsoidModel, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -65,7 +66,7 @@ proc computeCoefficients*(this: var EllipsoidModel)  {.importcpp: "computeCoeffi
 
 proc cloneType*(this: CoordinateSystemNode): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: CoordinateSystemNode, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: CoordinateSystemNode, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: CoordinateSystemNode, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -73,37 +74,37 @@ proc className*(this: CoordinateSystemNode): cstring  {.importcpp: "className".}
 
 proc libraryName*(this: CoordinateSystemNode): cstring  {.importcpp: "libraryName".}
 
-proc accept*(this: var CoordinateSystemNode, nv: Nodevisitor)  {.importcpp: "accept".}
+proc accept*(this: var CoordinateSystemNode, nv: NodeVisitor)  {.importcpp: "accept".}
 
-proc set*(this: var CoordinateSystemNode, csn: Coordinatesystemnode)  {.importcpp: "set".}
+proc set*(this: var CoordinateSystemNode, csn: CoordinateSystemNode)  {.importcpp: "set".}
     ## Set the coordinate system node up by copying the format, coordinate
     ## system string, and ellipsoid model of another coordinate system node.
 
-proc setFormat*(this: var CoordinateSystemNode, format: String)  {.importcpp: "setFormat".}
+proc setFormat*(this: var CoordinateSystemNode, format: string)  {.importcpp: "setFormat".}
     ## Set the coordinate system format string. Typical values would be WKT,
     ## PROJ4, USGS etc.
 
-proc getFormat*(this: CoordinateSystemNode): String  {.importcpp: "getFormat".}
+proc getFormat*(this: CoordinateSystemNode): string  {.importcpp: "getFormat".}
     ## Get the coordinate system format string.
 
-proc setCoordinateSystem*(this: var CoordinateSystemNode, cs: String)  {.importcpp: "setCoordinateSystem".}
+proc setCoordinateSystem*(this: var CoordinateSystemNode, cs: string)  {.importcpp: "setCoordinateSystem".}
     ## Set the CoordinateSystem reference string, should be stored in a form
     ## consistent with the Format.
 
-proc getCoordinateSystem*(this: CoordinateSystemNode): String  {.importcpp: "getCoordinateSystem".}
+proc getCoordinateSystem*(this: CoordinateSystemNode): string  {.importcpp: "getCoordinateSystem".}
     ## Get the CoordinateSystem reference string.
 
-proc setEllipsoidModel*(this: var CoordinateSystemNode, ellipsode: ptr Ellipsoidmodel )  {.importcpp: "setEllipsoidModel".}
+proc setEllipsoidModel*(this: var CoordinateSystemNode, ellipsode: ptr EllipsoidModel )  {.importcpp: "setEllipsoidModel".}
     ## Set EllipsoidModel to describe the model used to map lat, long and
     ## height into geocentric XYZ and back.
 
-proc getEllipsoidModel*(this: var CoordinateSystemNode): ptr Ellipsoidmodel   {.importcpp: "getEllipsoidModel".}
+proc getEllipsoidModel*(this: var CoordinateSystemNode): ptr EllipsoidModel   {.importcpp: "getEllipsoidModel".}
     ## Get the EllipsoidModel.
 
-proc getEllipsoidModel*(this: CoordinateSystemNode): ptr Ellipsoidmodel   {.importcpp: "getEllipsoidModel".}
+proc getEllipsoidModel*(this: CoordinateSystemNode): ptr EllipsoidModel   {.importcpp: "getEllipsoidModel".}
     ## Get the const EllipsoidModel.
 
-proc computeLocalCoordinateFrame*(this: CoordinateSystemNode, position: Vec3d): Coordinateframe  {.importcpp: "computeLocalCoordinateFrame".}
+proc computeLocalCoordinateFrame*(this: CoordinateSystemNode, position: Vec3d): CoordinateFrame  {.importcpp: "computeLocalCoordinateFrame".}
     ## Compute the local coordinate frame for specified point.
 
 proc computeLocalUpVector*(this: CoordinateSystemNode, position: Vec3d): Vec3d  {.importcpp: "computeLocalUpVector".}

@@ -1,8 +1,9 @@
-import State  # provides: osg::State
-import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
-import Image  # provides: osg::Image
-import CopyOp  # provides: osg::CopyOp
+import osg_types
+  # File: State  was providing: osg::State
+  # File: Object  was providing: osg::Object
+  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
+  # File: Image  was providing: osg::Image
+  # File: CopyOp  was providing: osg::CopyOp
 type
   Texture2DArray* {.header: "Texture2DArray", importcpp: "osg::Texture2DArray", byref.} = object #of class osg::Texture
     ## Texture2DArray state class which encapsulates OpenGL 2D array texture
@@ -19,12 +20,12 @@ type
 
 proc constructTexture2DArray*(): Texture2DArray {.constructor,importcpp: "osg::Texture2DArray::Texture2DArray".}
 
-proc constructTexture2DArray*(cm: Texture2darray, copyop: Copyop = SHALLOW_COPY): Texture2DArray {.constructor,importcpp: "osg::Texture2DArray::Texture2DArray(@)".}
+proc constructTexture2DArray*(cm: Texture2DArray, copyop: CopyOp = SHALLOW_COPY): Texture2DArray {.constructor,importcpp: "osg::Texture2DArray::Texture2DArray(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: Texture2DArray): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: Texture2DArray, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: Texture2DArray, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: Texture2DArray, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -34,12 +35,12 @@ proc className*(this: Texture2DArray): cstring  {.importcpp: "className".}
 
 proc getType*(this: Texture2DArray): Type  {.importcpp: "getType".}
 
-proc compare*(this: Texture2DArray, rhs: Stateattribute): cint  {.importcpp: "compare".}
+proc compare*(this: Texture2DArray, rhs: StateAttribute): cint  {.importcpp: "compare".}
     ## Return -1 if *this < *rhs, 0 if *this==*rhs, 1 if *this>*rhs.
 
 proc getTextureTarget*(this: Texture2DArray): GLenum  {.importcpp: "getTextureTarget".}
 
-proc getModeUsage*(this: Texture2DArray, Modeusage): bool  {.importcpp: "getModeUsage".}
+proc getModeUsage*(this: Texture2DArray, a00: ModeUsage): bool  {.importcpp: "getModeUsage".}
     ## Texture2DArray is related to non fixed pipeline usage only so isn't
     ## appropriate to enable/disable.
 
@@ -82,15 +83,15 @@ proc getTextureHeight*(this: Texture2DArray): cint  {.importcpp: "getTextureHeig
 
 proc getTextureDepth*(this: Texture2DArray): cint  {.importcpp: "getTextureDepth".}
 
-proc load*(this: SubloadCallback, texture: Texture2darray, state: State)  {.importcpp: "load".}
+proc load*(this: SubloadCallback, texture: Texture2DArray, state: State)  {.importcpp: "load".}
 
-proc subload*(this: SubloadCallback, texture: Texture2darray, state: State)  {.importcpp: "subload".}
+proc subload*(this: SubloadCallback, texture: Texture2DArray, state: State)  {.importcpp: "subload".}
 
-proc setSubloadCallback*(this: var Texture2DArray, cb: ptr Subloadcallback )  {.importcpp: "setSubloadCallback".}
+proc setSubloadCallback*(this: var Texture2DArray, cb: ptr SubloadCallback )  {.importcpp: "setSubloadCallback".}
 
-proc getSubloadCallback*(this: var Texture2DArray): ptr Subloadcallback   {.importcpp: "getSubloadCallback".}
+proc getSubloadCallback*(this: var Texture2DArray): ptr SubloadCallback   {.importcpp: "getSubloadCallback".}
 
-proc getSubloadCallback*(this: Texture2DArray): ptr Subloadcallback   {.importcpp: "getSubloadCallback".}
+proc getSubloadCallback*(this: Texture2DArray): ptr SubloadCallback   {.importcpp: "getSubloadCallback".}
 
 proc setNumMipmapLevels*(this: Texture2DArray, num: cuint)  {.importcpp: "setNumMipmapLevels".}
     ## Set the number of mip map levels the texture has been created with.

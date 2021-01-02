@@ -1,33 +1,34 @@
-import AttributeDispatchers  # provides: osg::AttributeDispatchers
-import GLExtensions  # provides: osg::VertexAttribAlias, osg::GLExtensions
-import ShaderComposer  # provides: osg::ShaderComposer
-import BufferObject  # provides: osg::GLBufferObject
-import StateAttribute  # provides: osg::StateAttribute
-import Array  # provides: osg::Array
-import Polytope  # provides: osg::Polytope
-import Shader  # provides: osg::ShaderDefines
-import Viewport  # provides: osg::Viewport
-import Timer  # provides: osg::Timer_t
-import StateSet  # provides: osg::StateSet
-import Matrix  # provides: osg::RefMatrix, osg::Matrix
-import GraphicsCostEstimator  # provides: osg::GraphicsCostEstimator
-import VertexArrayState  # provides: osg::VertexArrayState
-import GraphicsContext  # provides: osg::GraphicsContext
-import Uniform  # provides: osg::Uniform
-import FrameStamp  # provides: osg::FrameStamp
-import DisplaySettings  # provides: osg::DisplaySettings
+import osg_types
+  # File: AttributeDispatchers  was providing: osg::AttributeDispatchers
+  # File: GLExtensions  was providing: osg::VertexAttribAlias, osg::GLExtensions
+  # File: ShaderComposer  was providing: osg::ShaderComposer
+  # File: BufferObject  was providing: osg::GLBufferObject
+  # File: StateAttribute  was providing: osg::StateAttribute
+  # File: Array  was providing: osg::Array
+  # File: Polytope  was providing: osg::Polytope
+  # File: Shader  was providing: osg::ShaderDefines
+  # File: Viewport  was providing: osg::Viewport
+  # File: Timer  was providing: osg::Timer_t
+  # File: StateSet  was providing: osg::StateSet
+  # File: Matrix  was providing: osg::RefMatrix, osg::Matrix
+  # File: GraphicsCostEstimator  was providing: osg::GraphicsCostEstimator
+  # File: VertexArrayState  was providing: osg::VertexArrayState
+  # File: GraphicsContext  was providing: osg::GraphicsContext
+  # File: Uniform  was providing: osg::Uniform
+  # File: FrameStamp  was providing: osg::FrameStamp
+  # File: DisplaySettings  was providing: osg::DisplaySettings
 type
-  CheckForGLErrors* {.size:sizeof(cuint),header: "State", importcpp: "osg::State::CheckForGLErrors".} = enum
-    chckfrglrrrsNEVER_CHECK_GL_ERRORS = 0,
+  CheckForGLErrors* {.size:sizeof(cuint),header: "State", importcpp: "osg::State::CheckForGLErrors", pure.} = enum
+    NEVER_CHECK_GL_ERRORS = 0,
       ## NEVER_CHECK_GL_ERRORS hints that OpenGL need not be checked for, this
       ## is the fastest option since checking for errors does incur a small
       ## overhead.
-    chckfrglrrrsONCE_PER_FRAME = 1,
+    ONCE_PER_FRAME = 1,
       ## ONCE_PER_FRAME means that OpenGL errors will be checked for once per
       ## frame, the overhead is still small, but at least OpenGL errors that
       ## are occurring will be caught, the reporting isn't fine grained enough
       ## for debugging purposes.
-    chckfrglrrrsONCE_PER_ATTRIBUTE = 2
+    ONCE_PER_ATTRIBUTE = 2
       ## ONCE_PER_ATTRIBUTE means that OpenGL errors will be checked for after
       ## every attribute is applied, allow errors to be directly associated
       ## with particular operations which makes debugging much easier.
@@ -37,10 +38,10 @@ type
   VertexAttribAliasList* {.header: "State", importcpp: "osg::State::VertexAttribAliasList".} = cint
   IndicesGLushort* {.header: "State", importcpp: "osg::State::IndicesGLushort".} = cint
   IndicesGLuint* {.header: "State", importcpp: "osg::State::IndicesGLuint".} = cint
-  AttributePair* {.header: "State", importcpp: "osg::State::AttributePair".} = Pair[ptr StateAttribute,Overridevalue]
+  AttributePair* {.header: "State", importcpp: "osg::State::AttributePair".} = pair[ptr StateAttribute,OverrideValue]
   AttributeVec* {.header: "State", importcpp: "osg::State::AttributeVec".} = cint
   ValueVec* {.header: "State", importcpp: "osg::State::ModeStack::ValueVec".} = cint
-  UniformPair* {.header: "State", importcpp: "osg::State::UniformStack::UniformPair".} = Pair[ptr Uniform,Overridevalue]
+  UniformPair* {.header: "State", importcpp: "osg::State::UniformStack::UniformPair".} = pair[ptr Uniform,OverrideValue]
   UniformVec* {.header: "State", importcpp: "osg::State::UniformStack::UniformVec".} = cint
   DefineVec* {.header: "State", importcpp: "osg::State::DefineStack::DefineVec".} = cint
   DefineStackMap* {.header: "State", importcpp: "osg::State::DefineMap::DefineStackMap".} = cint
@@ -56,11 +57,11 @@ type
   MultiTexCoord4fProc* {.header: "State", importcpp: "osg::State::MultiTexCoord4fProc".} = proc (target: GLenum, x: GLfloat, y: GLfloat, z: GLfloat, w: GLfloat)
   VertexAttrib4fProc* {.header: "State", importcpp: "osg::State::VertexAttrib4fProc".} = proc (index: GLuint, x: GLfloat, y: GLfloat, z: GLfloat, w: GLfloat)
   VertexAttrib4fvProc* {.header: "State", importcpp: "osg::State::VertexAttrib4fvProc".} = proc (index: GLuint, v: ptr GLfloat)
-  VertexAttribPointerProc* {.header: "State", importcpp: "osg::State::VertexAttribPointerProc".} = proc (cuint, GLint, GLenum, normalized: GLboolean, stride: GLsizei, pointer: ptr GLvoid)
-  VertexAttribIPointerProc* {.header: "State", importcpp: "osg::State::VertexAttribIPointerProc".} = proc (cuint, GLint, GLenum, stride: GLsizei, pointer: ptr GLvoid)
-  VertexAttribLPointerProc* {.header: "State", importcpp: "osg::State::VertexAttribLPointerProc".} = proc (cuint, GLint, GLenum, stride: GLsizei, pointer: ptr GLvoid)
-  EnableVertexAttribProc* {.header: "State", importcpp: "osg::State::EnableVertexAttribProc".} = proc (cuint)
-  DisableVertexAttribProc* {.header: "State", importcpp: "osg::State::DisableVertexAttribProc".} = proc (cuint)
+  VertexAttribPointerProc* {.header: "State", importcpp: "osg::State::VertexAttribPointerProc".} = proc (a00: cuint, a01: GLint, a02: GLenum, normalized: GLboolean, stride: GLsizei, pointer: ptr GLvoid)
+  VertexAttribIPointerProc* {.header: "State", importcpp: "osg::State::VertexAttribIPointerProc".} = proc (a00: cuint, a01: GLint, a02: GLenum, stride: GLsizei, pointer: ptr GLvoid)
+  VertexAttribLPointerProc* {.header: "State", importcpp: "osg::State::VertexAttribLPointerProc".} = proc (a00: cuint, a01: GLint, a02: GLenum, stride: GLsizei, pointer: ptr GLvoid)
+  EnableVertexAttribProc* {.header: "State", importcpp: "osg::State::EnableVertexAttribProc".} = proc (a00: cuint)
+  DisableVertexAttribProc* {.header: "State", importcpp: "osg::State::DisableVertexAttribProc".} = proc (a00: cuint)
   BindBufferProc* {.header: "State", importcpp: "osg::State::BindBufferProc".} = proc (target: GLenum, buffer: GLuint)
   DrawArraysInstancedProc* {.header: "State", importcpp: "osg::State::DrawArraysInstancedProc".} = proc (mode: GLenum, first: GLint, count: GLsizei, primcount: GLsizei)
   DrawElementsInstancedProc* {.header: "State", importcpp: "osg::State::DrawElementsInstancedProc".} = proc (mode: GLenum, count: GLsizei, `type`: GLenum, indices: ptr GLvoid, primcount: GLsizei)
@@ -74,7 +75,7 @@ proc constructApplyModeProxy*(state: State, mode: GLenum, value: bool): ApplyMod
 
 proc constructApplyTextureModeProxy*(state: State, unit: cuint, mode: GLenum, value: bool): ApplyTextureModeProxy {.constructor,importcpp: "osg::State::ApplyTextureModeProxy::ApplyTextureModeProxy(@)".}
 
-proc constructSetCurrentVertexArrayStateProxy*(state: State, vas: ptr Vertexarraystate ): SetCurrentVertexArrayStateProxy {.constructor,importcpp: "osg::State::SetCurrentVertexArrayStateProxy::SetCurrentVertexArrayStateProxy(@)".}
+proc constructSetCurrentVertexArrayStateProxy*(state: State, vas: ptr VertexArrayState ): SetCurrentVertexArrayStateProxy {.constructor,importcpp: "osg::State::SetCurrentVertexArrayStateProxy::SetCurrentVertexArrayStateProxy(@)".}
 
 proc constructModeStack*(): ModeStack {.constructor,importcpp: "osg::State::ModeStack::ModeStack".}
 
@@ -86,13 +87,13 @@ proc constructDefineStack*(): DefineStack {.constructor,importcpp: "osg::State::
 
 proc constructDefineMap*(): DefineMap {.constructor,importcpp: "osg::State::DefineMap::DefineMap".}
 
-proc setGraphicsContext*(this: var State, context: ptr Graphicscontext )  {.importcpp: "setGraphicsContext".}
+proc setGraphicsContext*(this: var State, context: ptr GraphicsContext )  {.importcpp: "setGraphicsContext".}
     ## Set the graphics context associated with that owns this State object.
 
-proc getGraphicsContext*(this: var State): ptr Graphicscontext   {.importcpp: "getGraphicsContext".}
+proc getGraphicsContext*(this: var State): ptr GraphicsContext   {.importcpp: "getGraphicsContext".}
     ## Get the graphics context associated with that owns this State object.
 
-proc getGraphicsContext*(this: State): ptr Graphicscontext   {.importcpp: "getGraphicsContext".}
+proc getGraphicsContext*(this: State): ptr GraphicsContext   {.importcpp: "getGraphicsContext".}
     ## Get the const graphics context associated with that owns this State
     ## object.
 
@@ -111,25 +112,25 @@ proc setShaderCompositionEnabled*(this: var State, flag: bool)  {.importcpp: "se
 
 proc getShaderCompositionEnabled*(this: State): bool  {.importcpp: "getShaderCompositionEnabled".}
 
-proc setShaderComposer*(this: var State, sc: ptr Shadercomposer )  {.importcpp: "setShaderComposer".}
+proc setShaderComposer*(this: var State, sc: ptr ShaderComposer )  {.importcpp: "setShaderComposer".}
     ## deprecated.
 
-proc getShaderComposer*(this: var State): ptr Shadercomposer   {.importcpp: "getShaderComposer".}
+proc getShaderComposer*(this: var State): ptr ShaderComposer   {.importcpp: "getShaderComposer".}
     ## deprecated.
 
-proc getShaderComposer*(this: State): ptr Shadercomposer   {.importcpp: "getShaderComposer".}
+proc getShaderComposer*(this: State): ptr ShaderComposer   {.importcpp: "getShaderComposer".}
     ## deprecated.
 
-proc getCurrentShaderCompositionUniformList*(this: var State): Uniformlist  {.importcpp: "getCurrentShaderCompositionUniformList".}
+proc getCurrentShaderCompositionUniformList*(this: var State): UniformList  {.importcpp: "getCurrentShaderCompositionUniformList".}
     ## Get the unform list in which to inject any uniforms that
     ## StateAttribute::apply(State&) methods provide.
 
-proc applyShaderCompositionUniform*(this: var State, uniform: ptr Uniform , value: Overridevalue)  {.importcpp: "applyShaderCompositionUniform".}
+proc applyShaderCompositionUniform*(this: var State, uniform: ptr Uniform , value: OverrideValue)  {.importcpp: "applyShaderCompositionUniform".}
     ## Convenience method for StateAttribute::apply(State&) methods to pass
     ## on their uniforms to osg::State so it can apply them at the
     ## appropriate point.
 
-proc pushStateSet*(this: var State, dstate: ptr Stateset )  {.importcpp: "pushStateSet".}
+proc pushStateSet*(this: var State, dstate: ptr StateSet )  {.importcpp: "pushStateSet".}
     ## Push stateset onto state stack.
 
 proc popStateSet*(this: var State)  {.importcpp: "popStateSet".}
@@ -140,7 +141,7 @@ proc popAllStateSets*(this: var State)  {.importcpp: "popAllStateSets".}
     ## next frame. Note, to return OpenGL to default state, one should do any
     ## state.popAllStatSets(); state.apply().
 
-proc insertStateSet*(this: var State, pos: cuint, dstate: ptr Stateset )  {.importcpp: "insertStateSet".}
+proc insertStateSet*(this: var State, pos: cuint, dstate: ptr StateSet )  {.importcpp: "insertStateSet".}
     ## Insert stateset onto state stack.
 
 proc removeStateSet*(this: var State, pos: cuint)  {.importcpp: "removeStateSet".}
@@ -153,10 +154,10 @@ proc popStateSetStackToSize*(this: var State, size: cuint)  {.importcpp: "popSta
     ## Pop StateSet's for the StateSet stack till its size equals the
     ## specified size.
 
-proc getStateSetStack*(this: var State): Statesetstack  {.importcpp: "getStateSetStack".}
+proc getStateSetStack*(this: var State): StateSetStack  {.importcpp: "getStateSetStack".}
     ## Get the StateSet stack.
 
-proc captureCurrentState*(this: State, stateset: Stateset)  {.importcpp: "captureCurrentState".}
+proc captureCurrentState*(this: State, stateset: StateSet)  {.importcpp: "captureCurrentState".}
     ## Copy the modes and attributes which capture the current state.
 
 proc releaseGLObjects*(this: var State)  {.importcpp: "releaseGLObjects".}
@@ -168,19 +169,19 @@ proc reset*(this: var State)  {.importcpp: "reset".}
 
 proc getCurrentViewport*(this: State): ptr Viewport   {.importcpp: "getCurrentViewport".}
 
-proc setInitialViewMatrix*(this: var State, matrix: ptr Refmatrix )  {.importcpp: "setInitialViewMatrix".}
+proc setInitialViewMatrix*(this: var State, matrix: ptr RefMatrix )  {.importcpp: "setInitialViewMatrix".}
 
 proc getInitialViewMatrix*(this: State): Matrix  {.importcpp: "getInitialViewMatrix".}
 
 proc getInitialInverseViewMatrix*(this: State): Matrix  {.importcpp: "getInitialInverseViewMatrix".}
 
-proc applyProjectionMatrix*(this: var State, matrix: ptr Refmatrix )  {.importcpp: "applyProjectionMatrix".}
+proc applyProjectionMatrix*(this: var State, matrix: ptr RefMatrix )  {.importcpp: "applyProjectionMatrix".}
 
 proc getProjectionMatrix*(this: State): Matrix  {.importcpp: "getProjectionMatrix".}
 
-proc applyModelViewMatrix*(this: var State, matrix: ptr Refmatrix )  {.importcpp: "applyModelViewMatrix".}
+proc applyModelViewMatrix*(this: var State, matrix: ptr RefMatrix )  {.importcpp: "applyModelViewMatrix".}
 
-proc applyModelViewMatrix*(this: var State, Matrix)  {.importcpp: "applyModelViewMatrix".}
+proc applyModelViewMatrix*(this: var State, a00: Matrix)  {.importcpp: "applyModelViewMatrix".}
 
 proc getModelViewMatrix*(this: State): Matrix  {.importcpp: "getModelViewMatrix".}
 
@@ -211,57 +212,57 @@ proc resetVertexAttributeAlias*(this: var State, compactAliasing: bool, numTextu
     ## needs to be called before render anything unless you really know what
     ## you're doing !
 
-proc setVertexAlias*(this: var State, alias: Vertexattribalias)  {.importcpp: "setVertexAlias".}
+proc setVertexAlias*(this: var State, alias: VertexAttribAlias)  {.importcpp: "setVertexAlias".}
     ## Set the vertex attribute aliasing for "vertex". This method needs to
     ## be called before render anything unless you really know what you're
     ## doing !
 
-proc getVertexAlias*(this: var State): Vertexattribalias  {.importcpp: "getVertexAlias".}
+proc getVertexAlias*(this: var State): VertexAttribAlias  {.importcpp: "getVertexAlias".}
 
-proc setNormalAlias*(this: var State, alias: Vertexattribalias)  {.importcpp: "setNormalAlias".}
+proc setNormalAlias*(this: var State, alias: VertexAttribAlias)  {.importcpp: "setNormalAlias".}
     ## Set the vertex attribute aliasing for "normal". This method needs to
     ## be called before render anything unless you really know what you're
     ## doing !
 
-proc getNormalAlias*(this: var State): Vertexattribalias  {.importcpp: "getNormalAlias".}
+proc getNormalAlias*(this: var State): VertexAttribAlias  {.importcpp: "getNormalAlias".}
 
-proc setColorAlias*(this: var State, alias: Vertexattribalias)  {.importcpp: "setColorAlias".}
+proc setColorAlias*(this: var State, alias: VertexAttribAlias)  {.importcpp: "setColorAlias".}
     ## Set the vertex attribute aliasing for "color". This method needs to be
     ## called before render anything unless you really know what you're doing
     ## !
 
-proc getColorAlias*(this: var State): Vertexattribalias  {.importcpp: "getColorAlias".}
+proc getColorAlias*(this: var State): VertexAttribAlias  {.importcpp: "getColorAlias".}
 
-proc setSecondaryColorAlias*(this: var State, alias: Vertexattribalias)  {.importcpp: "setSecondaryColorAlias".}
+proc setSecondaryColorAlias*(this: var State, alias: VertexAttribAlias)  {.importcpp: "setSecondaryColorAlias".}
     ## Set the vertex attribute aliasing for "secondary color". This method
     ## needs to be called before render anything unless you really know what
     ## you're doing !
 
-proc getSecondaryColorAlias*(this: var State): Vertexattribalias  {.importcpp: "getSecondaryColorAlias".}
+proc getSecondaryColorAlias*(this: var State): VertexAttribAlias  {.importcpp: "getSecondaryColorAlias".}
 
-proc setFogCoordAlias*(this: var State, alias: Vertexattribalias)  {.importcpp: "setFogCoordAlias".}
+proc setFogCoordAlias*(this: var State, alias: VertexAttribAlias)  {.importcpp: "setFogCoordAlias".}
     ## Set the vertex attribute aliasing for "fog coord". This method needs
     ## to be called before render anything unless you really know what you're
     ## doing !
 
-proc getFogCoordAlias*(this: var State): Vertexattribalias  {.importcpp: "getFogCoordAlias".}
+proc getFogCoordAlias*(this: var State): VertexAttribAlias  {.importcpp: "getFogCoordAlias".}
 
-proc setTexCoordAliasList*(this: var State, aliasList: Vertexattribaliaslist)  {.importcpp: "setTexCoordAliasList".}
+proc setTexCoordAliasList*(this: var State, aliasList: VertexAttribAliasList)  {.importcpp: "setTexCoordAliasList".}
     ## Set the vertex attribute aliasing list for texture coordinates. This
     ## method needs to be called before render anything unless you really
     ## know what you're doing !
 
-proc getTexCoordAliasList*(this: var State): Vertexattribaliaslist  {.importcpp: "getTexCoordAliasList".}
+proc getTexCoordAliasList*(this: var State): VertexAttribAliasList  {.importcpp: "getTexCoordAliasList".}
 
-proc setAttributeBindingList*(this: var State, attribBindingList: Attribbindinglist)  {.importcpp: "setAttributeBindingList".}
+proc setAttributeBindingList*(this: var State, attribBindingList: AttribBindingList)  {.importcpp: "setAttributeBindingList".}
     ## Set the vertex attribute binding list. This method needs to be called
     ## before render anything unless you really know what you're doing !
 
-proc getAttributeBindingList*(this: var State): Attribbindinglist  {.importcpp: "getAttributeBindingList".}
+proc getAttributeBindingList*(this: var State): AttribBindingList  {.importcpp: "getAttributeBindingList".}
 
-proc convertVertexShaderSourceToOsgBuiltIns*(this: State, source: String): bool  {.importcpp: "convertVertexShaderSourceToOsgBuiltIns".}
+proc convertVertexShaderSourceToOsgBuiltIns*(this: State, source: string): bool  {.importcpp: "convertVertexShaderSourceToOsgBuiltIns".}
 
-proc apply*(this: var State, dstate: ptr Stateset )  {.importcpp: "apply".}
+proc apply*(this: var State, dstate: ptr StateSet )  {.importcpp: "apply".}
     ## Apply stateset.
 
 proc apply*(this: var State)  {.importcpp: "apply".}
@@ -279,56 +280,56 @@ proc glReadBuffer*(this: var State, buffer: GLenum)  {.importcpp: "glReadBuffer"
 
 proc getReadBuffer*(this: State): GLenum  {.importcpp: "getReadBuffer".}
 
-proc setModeValidity*(this: var State, mode: Glmode, valid: bool)  {.importcpp: "setModeValidity".}
+proc setModeValidity*(this: var State, mode: GLMode, valid: bool)  {.importcpp: "setModeValidity".}
     ## Set whether a particular OpenGL mode is valid in the current graphics
     ## context. Use to disable OpenGL modes that are not supported by current
     ## graphics drivers/context.
 
-proc getModeValidity*(this: var State, mode: Glmode): bool  {.importcpp: "getModeValidity".}
+proc getModeValidity*(this: var State, mode: GLMode): bool  {.importcpp: "getModeValidity".}
     ## Get whether a particular OpenGL mode is valid in the current graphics
     ## context. Use to disable OpenGL modes that are not supported by current
     ## graphics drivers/context.
 
-proc setGlobalDefaultModeValue*(this: var State, mode: Glmode, enabled: bool)  {.importcpp: "setGlobalDefaultModeValue".}
+proc setGlobalDefaultModeValue*(this: var State, mode: GLMode, enabled: bool)  {.importcpp: "setGlobalDefaultModeValue".}
 
-proc getGlobalDefaultModeValue*(this: var State, mode: Glmode): bool  {.importcpp: "getGlobalDefaultModeValue".}
+proc getGlobalDefaultModeValue*(this: var State, mode: GLMode): bool  {.importcpp: "getGlobalDefaultModeValue".}
 
-proc getLastAppliedModeValue*(this: var State, mode: Glmode): bool  {.importcpp: "getLastAppliedModeValue".}
+proc getLastAppliedModeValue*(this: var State, mode: GLMode): bool  {.importcpp: "getLastAppliedModeValue".}
 
-proc applyMode*(this: var State, mode: Glmode, enabled: bool): bool  {.importcpp: "applyMode".}
+proc applyMode*(this: var State, mode: GLMode, enabled: bool): bool  {.importcpp: "applyMode".}
     ## Apply an OpenGL mode if required. This is a wrapper around glEnable()
     ## and glDisable(), that just actually calls these functions if the
     ## enabled flag is different than the current state.
 
-proc setGlobalDefaultTextureModeValue*(this: var State, unit: cuint, mode: Glmode, enabled: bool)  {.importcpp: "setGlobalDefaultTextureModeValue".}
+proc setGlobalDefaultTextureModeValue*(this: var State, unit: cuint, mode: GLMode, enabled: bool)  {.importcpp: "setGlobalDefaultTextureModeValue".}
 
-proc getGlobalDefaultTextureModeValue*(this: var State, unit: cuint, mode: Glmode): bool  {.importcpp: "getGlobalDefaultTextureModeValue".}
+proc getGlobalDefaultTextureModeValue*(this: var State, unit: cuint, mode: GLMode): bool  {.importcpp: "getGlobalDefaultTextureModeValue".}
 
-proc applyTextureMode*(this: var State, unit: cuint, mode: Glmode, enabled: bool): bool  {.importcpp: "applyTextureMode".}
+proc applyTextureMode*(this: var State, unit: cuint, mode: GLMode, enabled: bool): bool  {.importcpp: "applyTextureMode".}
 
-proc getLastAppliedTextureModeValue*(this: var State, unit: cuint, mode: Glmode): bool  {.importcpp: "getLastAppliedTextureModeValue".}
+proc getLastAppliedTextureModeValue*(this: var State, unit: cuint, mode: GLMode): bool  {.importcpp: "getLastAppliedTextureModeValue".}
 
-proc setGlobalDefaultAttribute*(this: var State, attribute: ptr Stateattribute )  {.importcpp: "setGlobalDefaultAttribute".}
+proc setGlobalDefaultAttribute*(this: var State, attribute: ptr StateAttribute )  {.importcpp: "setGlobalDefaultAttribute".}
 
-proc getGlobalDefaultAttribute*(this: var State, `type`: Type, member: cuint = 0): ptr Stateattribute   {.importcpp: "getGlobalDefaultAttribute".}
+proc getGlobalDefaultAttribute*(this: var State, `type`: Type, member: cuint = 0): ptr StateAttribute   {.importcpp: "getGlobalDefaultAttribute".}
 
-proc applyAttribute*(this: var State, attribute: ptr Stateattribute ): bool  {.importcpp: "applyAttribute".}
+proc applyAttribute*(this: var State, attribute: ptr StateAttribute ): bool  {.importcpp: "applyAttribute".}
     ## Apply an attribute if required.
 
-proc setGlobalDefaultTextureAttribute*(this: var State, unit: cuint, attribute: ptr Stateattribute )  {.importcpp: "setGlobalDefaultTextureAttribute".}
+proc setGlobalDefaultTextureAttribute*(this: var State, unit: cuint, attribute: ptr StateAttribute )  {.importcpp: "setGlobalDefaultTextureAttribute".}
 
-proc getGlobalDefaultTextureAttribute*(this: var State, unit: cuint, `type`: Type, member: cuint = 0): ptr Stateattribute   {.importcpp: "getGlobalDefaultTextureAttribute".}
+proc getGlobalDefaultTextureAttribute*(this: var State, unit: cuint, `type`: Type, member: cuint = 0): ptr StateAttribute   {.importcpp: "getGlobalDefaultTextureAttribute".}
 
-proc applyTextureAttribute*(this: var State, unit: cuint, attribute: ptr Stateattribute ): bool  {.importcpp: "applyTextureAttribute".}
+proc applyTextureAttribute*(this: var State, unit: cuint, attribute: ptr StateAttribute ): bool  {.importcpp: "applyTextureAttribute".}
 
-proc haveAppliedMode*(this: var State, mode: Glmode, value: Glmodevalue)  {.importcpp: "haveAppliedMode".}
+proc haveAppliedMode*(this: var State, mode: GLMode, value: GLModeValue)  {.importcpp: "haveAppliedMode".}
     ## Mode has been set externally, update state to reflect this setting.
 
-proc haveAppliedMode*(this: var State, mode: Glmode)  {.importcpp: "haveAppliedMode".}
+proc haveAppliedMode*(this: var State, mode: GLMode)  {.importcpp: "haveAppliedMode".}
     ## Mode has been set externally, therefore dirty the associated mode in
     ## osg::State so it is applied on next call to osg::State::apply(..)
 
-proc haveAppliedAttribute*(this: var State, attribute: ptr Stateattribute )  {.importcpp: "haveAppliedAttribute".}
+proc haveAppliedAttribute*(this: var State, attribute: ptr StateAttribute )  {.importcpp: "haveAppliedAttribute".}
     ## Attribute has been applied externally, update state to reflect this
     ## setting.
 
@@ -341,24 +342,24 @@ proc haveAppliedAttribute*(this: var State, `type`: Type, member: cuint = 0)  {.
     ## more accurately and enable lazy state updating such that only changed
     ## state will be applied.
 
-proc getLastAppliedMode*(this: State, mode: Glmode): bool  {.importcpp: "getLastAppliedMode".}
+proc getLastAppliedMode*(this: State, mode: GLMode): bool  {.importcpp: "getLastAppliedMode".}
     ## Get whether the current specified mode is enabled (true) or disabled
     ## (false).
 
-proc getLastAppliedAttribute*(this: State, `type`: Type, member: cuint = 0): ptr Stateattribute   {.importcpp: "getLastAppliedAttribute".}
+proc getLastAppliedAttribute*(this: State, `type`: Type, member: cuint = 0): ptr StateAttribute   {.importcpp: "getLastAppliedAttribute".}
     ## Get the current specified attribute, return NULL if one has not yet
     ## been applied.
 
-proc haveAppliedTextureMode*(this: var State, unit: cuint, mode: Glmode, value: Glmodevalue)  {.importcpp: "haveAppliedTextureMode".}
+proc haveAppliedTextureMode*(this: var State, unit: cuint, mode: GLMode, value: GLModeValue)  {.importcpp: "haveAppliedTextureMode".}
     ## texture Mode has been set externally, update state to reflect this
     ## setting.
 
-proc haveAppliedTextureMode*(this: var State, unit: cuint, mode: Glmode)  {.importcpp: "haveAppliedTextureMode".}
+proc haveAppliedTextureMode*(this: var State, unit: cuint, mode: GLMode)  {.importcpp: "haveAppliedTextureMode".}
     ## texture Mode has been set externally, therefore dirty the associated
     ## mode in osg::State so it is applied on next call to
     ## osg::State::apply(..)
 
-proc haveAppliedTextureAttribute*(this: var State, unit: cuint, attribute: ptr Stateattribute )  {.importcpp: "haveAppliedTextureAttribute".}
+proc haveAppliedTextureAttribute*(this: var State, unit: cuint, attribute: ptr StateAttribute )  {.importcpp: "haveAppliedTextureAttribute".}
     ## texture Attribute has been applied externally, update state to reflect
     ## this setting.
 
@@ -371,11 +372,11 @@ proc haveAppliedTextureAttribute*(this: var State, unit: cuint, `type`: Type, me
     ## accurately and enable lazy state updating such that only changed state
     ## will be applied.
 
-proc getLastAppliedTextureMode*(this: State, unit: cuint, mode: Glmode): bool  {.importcpp: "getLastAppliedTextureMode".}
+proc getLastAppliedTextureMode*(this: State, unit: cuint, mode: GLMode): bool  {.importcpp: "getLastAppliedTextureMode".}
     ## Get whether the current specified texture mode is enabled (true) or
     ## disabled (false).
 
-proc getLastAppliedTextureAttribute*(this: State, unit: cuint, `type`: Type, member: cuint = 0): ptr Stateattribute   {.importcpp: "getLastAppliedTextureAttribute".}
+proc getLastAppliedTextureAttribute*(this: State, unit: cuint, `type`: Type, member: cuint = 0): ptr StateAttribute   {.importcpp: "getLastAppliedTextureAttribute".}
     ## Get the current specified texture attribute, return NULL if one has
     ## not yet been applied.
 
@@ -385,18 +386,18 @@ proc dirtyAllModes*(this: var State)  {.importcpp: "dirtyAllModes".}
 proc dirtyAllAttributes*(this: var State)  {.importcpp: "dirtyAllAttributes".}
     ## Dirty the modes attributes previously applied in osg::State.
 
-proc setCurrentVertexArrayState*(this: var State, vas: ptr Vertexarraystate )  {.importcpp: "setCurrentVertexArrayState".}
+proc setCurrentVertexArrayState*(this: var State, vas: ptr VertexArrayState )  {.importcpp: "setCurrentVertexArrayState".}
     ## Set the CurrentVetexArrayState object that take which vertex arrays
     ## are bound.
 
-proc getCurrentVertexArrayState*(this: State): ptr Vertexarraystate   {.importcpp: "getCurrentVertexArrayState".}
+proc getCurrentVertexArrayState*(this: State): ptr VertexArrayState   {.importcpp: "getCurrentVertexArrayState".}
     ## Get the CurrentVetexArrayState object that take which vertex arrays
     ## are bound.
 
 proc setCurrentToGlobalVertexArrayState*(this: var State)  {.importcpp: "setCurrentToGlobalVertexArrayState".}
     ## Set the getCurrentVertexArrayState to the GlobalVertexArrayState.
 
-proc resetCurrentVertexArrayStateOnMatch*(this: var State, vas: ptr Vertexarraystate )  {.importcpp: "resetCurrentVertexArrayStateOnMatch".}
+proc resetCurrentVertexArrayStateOnMatch*(this: var State, vas: ptr VertexArrayState )  {.importcpp: "resetCurrentVertexArrayStateOnMatch".}
     ## Reset the CurrentVertexArrayState/VertexArrayObject if it's value
     ## matches the specificied vas - use when deleting a vas.
 
@@ -408,31 +409,31 @@ proc lazyDisablingOfVertexAttributes*(this: var State)  {.importcpp: "lazyDisabl
 
 proc applyDisablingOfVertexAttributes*(this: var State)  {.importcpp: "applyDisablingOfVertexAttributes".}
 
-proc setCurrentVertexBufferObject*(this: var State, vbo: ptr Glbufferobject )  {.importcpp: "setCurrentVertexBufferObject".}
+proc setCurrentVertexBufferObject*(this: var State, vbo: ptr GLBufferObject )  {.importcpp: "setCurrentVertexBufferObject".}
 
-proc getCurrentVertexBufferObject*(this: var State): ptr Glbufferobject   {.importcpp: "getCurrentVertexBufferObject".}
+proc getCurrentVertexBufferObject*(this: var State): ptr GLBufferObject   {.importcpp: "getCurrentVertexBufferObject".}
 
-proc bindVertexBufferObject*(this: var State, vbo: ptr Glbufferobject )  {.importcpp: "bindVertexBufferObject".}
+proc bindVertexBufferObject*(this: var State, vbo: ptr GLBufferObject )  {.importcpp: "bindVertexBufferObject".}
 
 proc unbindVertexBufferObject*(this: var State)  {.importcpp: "unbindVertexBufferObject".}
 
-proc setCurrentElementBufferObject*(this: var State, ebo: ptr Glbufferobject )  {.importcpp: "setCurrentElementBufferObject".}
+proc setCurrentElementBufferObject*(this: var State, ebo: ptr GLBufferObject )  {.importcpp: "setCurrentElementBufferObject".}
 
-proc getCurrentElementBufferObject*(this: var State): ptr Glbufferobject   {.importcpp: "getCurrentElementBufferObject".}
+proc getCurrentElementBufferObject*(this: var State): ptr GLBufferObject   {.importcpp: "getCurrentElementBufferObject".}
 
-proc bindElementBufferObject*(this: var State, ebo: ptr Glbufferobject )  {.importcpp: "bindElementBufferObject".}
+proc bindElementBufferObject*(this: var State, ebo: ptr GLBufferObject )  {.importcpp: "bindElementBufferObject".}
 
 proc unbindElementBufferObject*(this: var State)  {.importcpp: "unbindElementBufferObject".}
 
-proc setCurrentPixelBufferObject*(this: var State, pbo: ptr Glbufferobject )  {.importcpp: "setCurrentPixelBufferObject".}
+proc setCurrentPixelBufferObject*(this: var State, pbo: ptr GLBufferObject )  {.importcpp: "setCurrentPixelBufferObject".}
 
-proc getCurrentPixelBufferObject*(this: State): ptr Glbufferobject   {.importcpp: "getCurrentPixelBufferObject".}
+proc getCurrentPixelBufferObject*(this: State): ptr GLBufferObject   {.importcpp: "getCurrentPixelBufferObject".}
 
-proc bindPixelBufferObject*(this: var State, pbo: ptr Glbufferobject )  {.importcpp: "bindPixelBufferObject".}
+proc bindPixelBufferObject*(this: var State, pbo: ptr GLBufferObject )  {.importcpp: "bindPixelBufferObject".}
 
 proc unbindPixelBufferObject*(this: var State)  {.importcpp: "unbindPixelBufferObject".}
 
-proc bindDrawIndirectBufferObject*(this: var State, ibo: ptr Glbufferobject )  {.importcpp: "bindDrawIndirectBufferObject".}
+proc bindDrawIndirectBufferObject*(this: var State, ibo: ptr GLBufferObject )  {.importcpp: "bindDrawIndirectBufferObject".}
 
 proc unbindDrawIndirectBufferObject*(this: var State)  {.importcpp: "unbindDrawIndirectBufferObject".}
 
@@ -440,7 +441,7 @@ proc setCurrentVertexArrayObject*(this: var State, vao: GLuint)  {.importcpp: "s
 
 proc getCurrentVertexArrayObject*(this: State): GLuint  {.importcpp: "getCurrentVertexArrayObject".}
 
-proc bindVertexArrayObject*(this: var State, vas: ptr Vertexarraystate )  {.importcpp: "bindVertexArrayObject".}
+proc bindVertexArrayObject*(this: var State, vas: ptr VertexArrayState )  {.importcpp: "bindVertexArrayObject".}
 
 proc bindVertexArrayObject*(this: var State, vao: GLuint)  {.importcpp: "bindVertexArrayObject".}
 
@@ -555,45 +556,45 @@ proc isVertexArrayObjectSupported*(this: State): bool  {.importcpp: "isVertexArr
 
 proc useVertexArrayObject*(this: State, useVAO: bool): bool  {.importcpp: "useVertexArrayObject".}
 
-proc setLastAppliedProgramObject*(this: var State, program: ptr Percontextprogram )  {.importcpp: "setLastAppliedProgramObject".}
+proc setLastAppliedProgramObject*(this: var State, program: ptr PerContextProgram )  {.importcpp: "setLastAppliedProgramObject".}
 
-proc getLastAppliedProgramObject*(this: State): ptr Percontextprogram   {.importcpp: "getLastAppliedProgramObject".}
+proc getLastAppliedProgramObject*(this: State): ptr PerContextProgram   {.importcpp: "getLastAppliedProgramObject".}
 
 proc getUniformLocation*(this: State, uniformNameID: cuint): GLint  {.importcpp: "getUniformLocation".}
 
-proc getUniformLocation*(this: State, uniformName: String): GLint  {.importcpp: "getUniformLocation".}
+proc getUniformLocation*(this: State, uniformName: string): GLint  {.importcpp: "getUniformLocation".}
     ## Alternative version of getUniformLocation( unsigned int uniformNameID
     ## ) retrofited into OSG for backward compatibility with osgCal, after
     ## uniform ids were refactored from std::strings to GLints in OSG version
     ## 2.9.10.
 
-proc getAttribLocation*(this: State, name: String): GLint  {.importcpp: "getAttribLocation".}
+proc getAttribLocation*(this: State, name: string): GLint  {.importcpp: "getAttribLocation".}
 
-proc getAttributeVec*(this: var State, attribute: ptr Stateattribute ): Attributevec  {.importcpp: "getAttributeVec".}
+proc getAttributeVec*(this: var State, attribute: ptr StateAttribute ): AttributeVec  {.importcpp: "getAttributeVec".}
 
-proc setFrameStamp*(this: var State, fs: ptr Framestamp )  {.importcpp: "setFrameStamp".}
+proc setFrameStamp*(this: var State, fs: ptr FrameStamp )  {.importcpp: "setFrameStamp".}
     ## Set the frame stamp for the current frame.
 
-proc getFrameStamp*(this: var State): ptr Framestamp   {.importcpp: "getFrameStamp".}
+proc getFrameStamp*(this: var State): ptr FrameStamp   {.importcpp: "getFrameStamp".}
     ## Get the frame stamp for the current frame.
 
-proc getFrameStamp*(this: State): ptr Framestamp   {.importcpp: "getFrameStamp".}
+proc getFrameStamp*(this: State): ptr FrameStamp   {.importcpp: "getFrameStamp".}
     ## Get the const frame stamp for the current frame.
 
-proc setDisplaySettings*(this: var State, vs: ptr Displaysettings )  {.importcpp: "setDisplaySettings".}
+proc setDisplaySettings*(this: var State, vs: ptr DisplaySettings )  {.importcpp: "setDisplaySettings".}
     ## Set the DisplaySettings. Note, nothing is applied, the visual settings
     ## are just used in the State object to pass the current visual settings
     ## to Drawables during rendering.
 
-proc getDisplaySettings*(this: State): ptr Displaysettings   {.importcpp: "getDisplaySettings".}
+proc getDisplaySettings*(this: State): ptr DisplaySettings   {.importcpp: "getDisplaySettings".}
     ## Get the const DisplaySettings
 
-proc getActiveDisplaySettings*(this: var State): ptr Displaysettings   {.importcpp: "getActiveDisplaySettings".}
+proc getActiveDisplaySettings*(this: var State): ptr DisplaySettings   {.importcpp: "getActiveDisplaySettings".}
     ## Get the DisplaySettings that is current active DisplaySettings to be
     ## used by osg::State, - if DisplaySettings is not directly assigned then
     ## fallback to DisplaySettings::instance().
 
-proc getActiveDisplaySettings*(this: State): ptr Displaysettings   {.importcpp: "getActiveDisplaySettings".}
+proc getActiveDisplaySettings*(this: State): ptr DisplaySettings   {.importcpp: "getActiveDisplaySettings".}
     ## Get the const DisplaySettings that is current active DisplaySettings
     ## to be used by osg::State, - if DisplaySettings is not directly
     ## assigned then fallback to DisplaySettings::instance().
@@ -605,12 +606,12 @@ proc getAbortRendering*(this: State): bool  {.importcpp: "getAbortRendering".}
     ## Get flag for early termination of the draw traversal, if true steps
     ## should be taken to complete rendering early.
 
-proc completed*(this: var DynamicObjectRenderingCompletedCallback, ptr State )  {.importcpp: "completed".}
+proc completed*(this: var DynamicObjectRenderingCompletedCallback, a00: ptr State )  {.importcpp: "completed".}
 
-proc setDynamicObjectRenderingCompletedCallback*(this: var State, cb: ptr Dynamicobjectrenderingcompletedcallback )  {.importcpp: "setDynamicObjectRenderingCompletedCallback".}
+proc setDynamicObjectRenderingCompletedCallback*(this: var State, cb: ptr DynamicObjectRenderingCompletedCallback )  {.importcpp: "setDynamicObjectRenderingCompletedCallback".}
     ## Set the callback to be called when the dynamic object count hits 0.
 
-proc getDynamicObjectRenderingCompletedCallback*(this: var State): ptr Dynamicobjectrenderingcompletedcallback   {.importcpp: "getDynamicObjectRenderingCompletedCallback".}
+proc getDynamicObjectRenderingCompletedCallback*(this: var State): ptr DynamicObjectRenderingCompletedCallback   {.importcpp: "getDynamicObjectRenderingCompletedCallback".}
     ## Get the callback to be called when the dynamic object count hits 0.
 
 proc setDynamicObjectCount*(this: var State, count: cuint, callCallbackOnZero: bool)  {.importcpp: "setDynamicObjectCount".}
@@ -634,37 +635,37 @@ proc setMaxBufferObjectPoolSize*(this: var State, size: cuint)  {.importcpp: "se
 
 proc getMaxBufferObjectPoolSize*(this: State): cuint  {.importcpp: "getMaxBufferObjectPoolSize".}
 
-proc setCheckForGLErrors*(this: var State, check: Checkforglerrors)  {.importcpp: "setCheckForGLErrors".}
+proc setCheckForGLErrors*(this: var State, check: CheckForGLErrors)  {.importcpp: "setCheckForGLErrors".}
     ## Set whether and how often OpenGL errors should be checked for.
 
-proc getCheckForGLErrors*(this: State): Checkforglerrors  {.importcpp: "getCheckForGLErrors".}
+proc getCheckForGLErrors*(this: State): CheckForGLErrors  {.importcpp: "getCheckForGLErrors".}
     ## Get whether and how often OpenGL errors should be checked for.
 
 proc checkGLErrors*(this: State, str1: cstring = 0, str2: cstring = 0): bool  {.importcpp: "checkGLErrors".}
 
-proc checkGLErrors*(this: State, mode: Glmode): bool  {.importcpp: "checkGLErrors".}
+proc checkGLErrors*(this: State, mode: GLMode): bool  {.importcpp: "checkGLErrors".}
 
-proc checkGLErrors*(this: State, attribute: ptr Stateattribute ): bool  {.importcpp: "checkGLErrors".}
+proc checkGLErrors*(this: State, attribute: ptr StateAttribute ): bool  {.importcpp: "checkGLErrors".}
 
-proc print*(this: State, fout: Ostream)  {.importcpp: "print".}
+proc print*(this: State, fout: ostream)  {.importcpp: "print".}
     ## print out the internal details of osg::State - useful for debugging.
 
 proc initializeExtensionProcs*(this: var State)  {.importcpp: "initializeExtensionProcs".}
     ## Initialize extension used by osg::State.
 
-proc getAttributeDispatchers*(this: var State): Attributedispatchers  {.importcpp: "getAttributeDispatchers".}
+proc getAttributeDispatchers*(this: var State): AttributeDispatchers  {.importcpp: "getAttributeDispatchers".}
     ## Get the helper class for dispatching osg::Arrays as OpenGL attribute
     ## data.
 
-proc setGraphicsCostEstimator*(this: var State, gce: ptr Graphicscostestimator )  {.importcpp: "setGraphicsCostEstimator".}
+proc setGraphicsCostEstimator*(this: var State, gce: ptr GraphicsCostEstimator )  {.importcpp: "setGraphicsCostEstimator".}
     ## Set the helper class that provides applications with estimate on how
     ## much different graphics operations will cost.
 
-proc getGraphicsCostEstimator*(this: var State): ptr Graphicscostestimator   {.importcpp: "getGraphicsCostEstimator".}
+proc getGraphicsCostEstimator*(this: var State): ptr GraphicsCostEstimator   {.importcpp: "getGraphicsCostEstimator".}
     ## Get the helper class that provides applications with estimate on how
     ## much different graphics operations will cost.
 
-proc getGraphicsCostEstimator*(this: State): ptr Graphicscostestimator   {.importcpp: "getGraphicsCostEstimator".}
+proc getGraphicsCostEstimator*(this: State): ptr GraphicsCostEstimator   {.importcpp: "getGraphicsCostEstimator".}
     ## Get the cont helper class that provides applications with estimate on
     ## how much different graphics operations will cost.
 
@@ -691,159 +692,159 @@ proc frameCompleted*(this: var State)  {.importcpp: "frameCompleted".}
     ## called by the GraphicsContext just before
     ## GraphicsContext::swapBuffersImplementation().
 
-proc print*(this: ModeStack, fout: Ostream)  {.importcpp: "print".}
+proc print*(this: ModeStack, fout: ostream)  {.importcpp: "print".}
 
-proc print*(this: AttributeStack, fout: Ostream)  {.importcpp: "print".}
+proc print*(this: AttributeStack, fout: ostream)  {.importcpp: "print".}
 
-proc print*(this: UniformStack, fout: Ostream)  {.importcpp: "print".}
+proc print*(this: UniformStack, fout: ostream)  {.importcpp: "print".}
 
-proc print*(this: DefineStack, fout: Ostream)  {.importcpp: "print".}
+proc print*(this: DefineStack, fout: ostream)  {.importcpp: "print".}
 
 proc updateCurrentDefines*(this: var DefineMap): bool  {.importcpp: "updateCurrentDefines".}
 
-proc getModeMap*(this: State): Modemap  {.importcpp: "getModeMap".}
+proc getModeMap*(this: State): ModeMap  {.importcpp: "getModeMap".}
 
-proc getAttributeMap*(this: State): Attributemap  {.importcpp: "getAttributeMap".}
+proc getAttributeMap*(this: State): AttributeMap  {.importcpp: "getAttributeMap".}
 
-proc getUniformMap*(this: State): Uniformmap  {.importcpp: "getUniformMap".}
+proc getUniformMap*(this: State): UniformMap  {.importcpp: "getUniformMap".}
 
-proc getDefineMap*(this: var State): Definemap  {.importcpp: "getDefineMap".}
+proc getDefineMap*(this: var State): DefineMap  {.importcpp: "getDefineMap".}
 
-proc getDefineMap*(this: State): Definemap  {.importcpp: "getDefineMap".}
+proc getDefineMap*(this: State): DefineMap  {.importcpp: "getDefineMap".}
 
-proc getTextureModeMapList*(this: State): Texturemodemaplist  {.importcpp: "getTextureModeMapList".}
+proc getTextureModeMapList*(this: State): TextureModeMapList  {.importcpp: "getTextureModeMapList".}
 
-proc getTextureAttributeMapList*(this: State): Textureattributemaplist  {.importcpp: "getTextureAttributeMapList".}
+proc getTextureAttributeMapList*(this: State): TextureAttributeMapList  {.importcpp: "getTextureAttributeMapList".}
 
-proc getDefineString*(this: var State, shaderDefines: Shaderdefines): String  {.importcpp: "getDefineString".}
+proc getDefineString*(this: var State, shaderDefines: ShaderDefines): string  {.importcpp: "getDefineString".}
 
-proc supportsShaderRequirements*(this: var State, shaderRequirements: Shaderdefines): bool  {.importcpp: "supportsShaderRequirements".}
+proc supportsShaderRequirements*(this: var State, shaderRequirements: ShaderDefines): bool  {.importcpp: "supportsShaderRequirements".}
 
-proc supportsShaderRequirement*(this: var State, shaderRequirement: String): bool  {.importcpp: "supportsShaderRequirement".}
+proc supportsShaderRequirement*(this: var State, shaderRequirement: string): bool  {.importcpp: "supportsShaderRequirement".}
 
-proc setUpVertexAttribAlias*(this: var State, alias: Vertexattribalias, location: GLuint, glName: String, osgName: String, declaration: String)  {.importcpp: "setUpVertexAttribAlias".}
+proc setUpVertexAttribAlias*(this: var State, alias: VertexAttribAlias, location: GLuint, glName: string, osgName: string, declaration: string)  {.importcpp: "setUpVertexAttribAlias".}
 
-proc applyMode*(this: var State, mode: Glmode, enabled: bool, ms: Modestack): bool  {.importcpp: "applyMode".}
+proc applyMode*(this: var State, mode: GLMode, enabled: bool, ms: ModeStack): bool  {.importcpp: "applyMode".}
     ## Apply an OpenGL mode if required, passing in mode, enable flag and
     ## appropriate mode stack. This is a wrapper around glEnable() and
     ## glDisable(), that just actually calls these functions if the enabled
     ## flag is different than the current state.
 
-proc applyModeOnTexUnit*(this: var State, unit: cuint, mode: Glmode, enabled: bool, ms: Modestack): bool  {.importcpp: "applyModeOnTexUnit".}
+proc applyModeOnTexUnit*(this: var State, unit: cuint, mode: GLMode, enabled: bool, ms: ModeStack): bool  {.importcpp: "applyModeOnTexUnit".}
 
-proc applyAttribute*(this: var State, attribute: ptr Stateattribute , `as`: Attributestack): bool  {.importcpp: "applyAttribute".}
+proc applyAttribute*(this: var State, attribute: ptr StateAttribute , `as`: AttributeStack): bool  {.importcpp: "applyAttribute".}
     ## apply an attribute if required, passing in attribute and appropriate
     ## attribute stack
 
-proc applyAttributeOnTexUnit*(this: var State, unit: cuint, attribute: ptr Stateattribute , `as`: Attributestack): bool  {.importcpp: "applyAttributeOnTexUnit".}
+proc applyAttributeOnTexUnit*(this: var State, unit: cuint, attribute: ptr StateAttribute , `as`: AttributeStack): bool  {.importcpp: "applyAttributeOnTexUnit".}
 
-proc applyGlobalDefaultAttribute*(this: var State, `as`: Attributestack): bool  {.importcpp: "applyGlobalDefaultAttribute".}
+proc applyGlobalDefaultAttribute*(this: var State, `as`: AttributeStack): bool  {.importcpp: "applyGlobalDefaultAttribute".}
 
-proc applyGlobalDefaultAttributeOnTexUnit*(this: var State, unit: cuint, `as`: Attributestack): bool  {.importcpp: "applyGlobalDefaultAttributeOnTexUnit".}
+proc applyGlobalDefaultAttributeOnTexUnit*(this: var State, unit: cuint, `as`: AttributeStack): bool  {.importcpp: "applyGlobalDefaultAttributeOnTexUnit".}
 
-proc getOrCreateTextureModeMap*(this: var State, unit: cuint): Modemap  {.importcpp: "getOrCreateTextureModeMap".}
+proc getOrCreateTextureModeMap*(this: var State, unit: cuint): ModeMap  {.importcpp: "getOrCreateTextureModeMap".}
 
-proc getOrCreateTextureAttributeMap*(this: var State, unit: cuint): Attributemap  {.importcpp: "getOrCreateTextureAttributeMap".}
+proc getOrCreateTextureAttributeMap*(this: var State, unit: cuint): AttributeMap  {.importcpp: "getOrCreateTextureAttributeMap".}
 
-proc pushModeList*(this: var State, modeMap: Modemap, modeList: Modelist)  {.importcpp: "pushModeList".}
+proc pushModeList*(this: var State, modeMap: ModeMap, modeList: ModeList)  {.importcpp: "pushModeList".}
 
-proc pushAttributeList*(this: var State, attributeMap: Attributemap, attributeList: Attributelist)  {.importcpp: "pushAttributeList".}
+proc pushAttributeList*(this: var State, attributeMap: AttributeMap, attributeList: AttributeList)  {.importcpp: "pushAttributeList".}
 
-proc pushUniformList*(this: var State, uniformMap: Uniformmap, uniformList: Uniformlist)  {.importcpp: "pushUniformList".}
+proc pushUniformList*(this: var State, uniformMap: UniformMap, uniformList: UniformList)  {.importcpp: "pushUniformList".}
 
-proc pushDefineList*(this: var State, defineMap: Definemap, defineList: Definelist)  {.importcpp: "pushDefineList".}
+proc pushDefineList*(this: var State, defineMap: DefineMap, defineList: DefineList)  {.importcpp: "pushDefineList".}
 
-proc popModeList*(this: var State, modeMap: Modemap, modeList: Modelist)  {.importcpp: "popModeList".}
+proc popModeList*(this: var State, modeMap: ModeMap, modeList: ModeList)  {.importcpp: "popModeList".}
 
-proc popAttributeList*(this: var State, attributeMap: Attributemap, attributeList: Attributelist)  {.importcpp: "popAttributeList".}
+proc popAttributeList*(this: var State, attributeMap: AttributeMap, attributeList: AttributeList)  {.importcpp: "popAttributeList".}
 
-proc popUniformList*(this: var State, uniformMap: Uniformmap, uniformList: Uniformlist)  {.importcpp: "popUniformList".}
+proc popUniformList*(this: var State, uniformMap: UniformMap, uniformList: UniformList)  {.importcpp: "popUniformList".}
 
-proc popDefineList*(this: var State, uniformMap: Definemap, defineList: Definelist)  {.importcpp: "popDefineList".}
+proc popDefineList*(this: var State, uniformMap: DefineMap, defineList: DefineList)  {.importcpp: "popDefineList".}
 
-proc applyModeList*(this: var State, modeMap: Modemap, modeList: Modelist)  {.importcpp: "applyModeList".}
+proc applyModeList*(this: var State, modeMap: ModeMap, modeList: ModeList)  {.importcpp: "applyModeList".}
 
-proc applyAttributeList*(this: var State, attributeMap: Attributemap, attributeList: Attributelist)  {.importcpp: "applyAttributeList".}
+proc applyAttributeList*(this: var State, attributeMap: AttributeMap, attributeList: AttributeList)  {.importcpp: "applyAttributeList".}
 
-proc applyUniformList*(this: var State, uniformMap: Uniformmap, uniformList: Uniformlist)  {.importcpp: "applyUniformList".}
+proc applyUniformList*(this: var State, uniformMap: UniformMap, uniformList: UniformList)  {.importcpp: "applyUniformList".}
 
-proc applyDefineList*(this: var State, uniformMap: Definemap, defineList: Definelist)  {.importcpp: "applyDefineList".}
+proc applyDefineList*(this: var State, uniformMap: DefineMap, defineList: DefineList)  {.importcpp: "applyDefineList".}
 
-proc applyModeMap*(this: var State, modeMap: Modemap)  {.importcpp: "applyModeMap".}
+proc applyModeMap*(this: var State, modeMap: ModeMap)  {.importcpp: "applyModeMap".}
 
-proc applyAttributeMap*(this: var State, attributeMap: Attributemap)  {.importcpp: "applyAttributeMap".}
+proc applyAttributeMap*(this: var State, attributeMap: AttributeMap)  {.importcpp: "applyAttributeMap".}
 
-proc applyUniformMap*(this: var State, uniformMap: Uniformmap)  {.importcpp: "applyUniformMap".}
+proc applyUniformMap*(this: var State, uniformMap: UniformMap)  {.importcpp: "applyUniformMap".}
 
-proc applyModeListOnTexUnit*(this: var State, unit: cuint, modeMap: Modemap, modeList: Modelist)  {.importcpp: "applyModeListOnTexUnit".}
+proc applyModeListOnTexUnit*(this: var State, unit: cuint, modeMap: ModeMap, modeList: ModeList)  {.importcpp: "applyModeListOnTexUnit".}
 
-proc applyAttributeListOnTexUnit*(this: var State, unit: cuint, attributeMap: Attributemap, attributeList: Attributelist)  {.importcpp: "applyAttributeListOnTexUnit".}
+proc applyAttributeListOnTexUnit*(this: var State, unit: cuint, attributeMap: AttributeMap, attributeList: AttributeList)  {.importcpp: "applyAttributeListOnTexUnit".}
 
-proc applyModeMapOnTexUnit*(this: var State, unit: cuint, modeMap: Modemap)  {.importcpp: "applyModeMapOnTexUnit".}
+proc applyModeMapOnTexUnit*(this: var State, unit: cuint, modeMap: ModeMap)  {.importcpp: "applyModeMapOnTexUnit".}
 
-proc applyAttributeMapOnTexUnit*(this: var State, unit: cuint, attributeMap: Attributemap)  {.importcpp: "applyAttributeMapOnTexUnit".}
+proc applyAttributeMapOnTexUnit*(this: var State, unit: cuint, attributeMap: AttributeMap)  {.importcpp: "applyAttributeMapOnTexUnit".}
 
-proc haveAppliedMode*(this: var State, modeMap: Modemap, mode: Glmode, value: Glmodevalue)  {.importcpp: "haveAppliedMode".}
+proc haveAppliedMode*(this: var State, modeMap: ModeMap, mode: GLMode, value: GLModeValue)  {.importcpp: "haveAppliedMode".}
 
-proc haveAppliedMode*(this: var State, modeMap: Modemap, mode: Glmode)  {.importcpp: "haveAppliedMode".}
+proc haveAppliedMode*(this: var State, modeMap: ModeMap, mode: GLMode)  {.importcpp: "haveAppliedMode".}
 
-proc haveAppliedAttribute*(this: var State, attributeMap: Attributemap, attribute: ptr Stateattribute )  {.importcpp: "haveAppliedAttribute".}
+proc haveAppliedAttribute*(this: var State, attributeMap: AttributeMap, attribute: ptr StateAttribute )  {.importcpp: "haveAppliedAttribute".}
 
-proc haveAppliedAttribute*(this: var State, attributeMap: Attributemap, `type`: Type, member: cuint)  {.importcpp: "haveAppliedAttribute".}
+proc haveAppliedAttribute*(this: var State, attributeMap: AttributeMap, `type`: Type, member: cuint)  {.importcpp: "haveAppliedAttribute".}
 
-proc getLastAppliedMode*(this: State, modeMap: Modemap, mode: Glmode): bool  {.importcpp: "getLastAppliedMode".}
+proc getLastAppliedMode*(this: State, modeMap: ModeMap, mode: GLMode): bool  {.importcpp: "getLastAppliedMode".}
 
-proc getLastAppliedAttribute*(this: State, attributeMap: Attributemap, `type`: Type, member: cuint): ptr Stateattribute   {.importcpp: "getLastAppliedAttribute".}
+proc getLastAppliedAttribute*(this: State, attributeMap: AttributeMap, `type`: Type, member: cuint): ptr StateAttribute   {.importcpp: "getLastAppliedAttribute".}
 
 proc loadModelViewMatrix*(this: var State)  {.importcpp: "loadModelViewMatrix".}
 
-proc pushModeList*(this: var State, modeMap: Modemap, modeList: Modelist)  {.importcpp: "pushModeList".}
+proc pushModeList*(this: var State, modeMap: ModeMap, modeList: ModeList)  {.importcpp: "pushModeList".}
 
-proc pushAttributeList*(this: var State, attributeMap: Attributemap, attributeList: Attributelist)  {.importcpp: "pushAttributeList".}
+proc pushAttributeList*(this: var State, attributeMap: AttributeMap, attributeList: AttributeList)  {.importcpp: "pushAttributeList".}
 
-proc pushUniformList*(this: var State, uniformMap: Uniformmap, uniformList: Uniformlist)  {.importcpp: "pushUniformList".}
+proc pushUniformList*(this: var State, uniformMap: UniformMap, uniformList: UniformList)  {.importcpp: "pushUniformList".}
 
-proc pushDefineList*(this: var State, defineMap: Definemap, defineList: Definelist)  {.importcpp: "pushDefineList".}
+proc pushDefineList*(this: var State, defineMap: DefineMap, defineList: DefineList)  {.importcpp: "pushDefineList".}
 
-proc popModeList*(this: var State, modeMap: Modemap, modeList: Modelist)  {.importcpp: "popModeList".}
+proc popModeList*(this: var State, modeMap: ModeMap, modeList: ModeList)  {.importcpp: "popModeList".}
 
-proc popAttributeList*(this: var State, attributeMap: Attributemap, attributeList: Attributelist)  {.importcpp: "popAttributeList".}
+proc popAttributeList*(this: var State, attributeMap: AttributeMap, attributeList: AttributeList)  {.importcpp: "popAttributeList".}
 
-proc popUniformList*(this: var State, uniformMap: Uniformmap, uniformList: Uniformlist)  {.importcpp: "popUniformList".}
+proc popUniformList*(this: var State, uniformMap: UniformMap, uniformList: UniformList)  {.importcpp: "popUniformList".}
 
-proc popDefineList*(this: var State, defineMap: Definemap, defineList: Definelist)  {.importcpp: "popDefineList".}
+proc popDefineList*(this: var State, defineMap: DefineMap, defineList: DefineList)  {.importcpp: "popDefineList".}
 
-proc applyModeList*(this: var State, modeMap: Modemap, modeList: Modelist)  {.importcpp: "applyModeList".}
+proc applyModeList*(this: var State, modeMap: ModeMap, modeList: ModeList)  {.importcpp: "applyModeList".}
 
-proc applyModeListOnTexUnit*(this: var State, unit: cuint, modeMap: Modemap, modeList: Modelist)  {.importcpp: "applyModeListOnTexUnit".}
+proc applyModeListOnTexUnit*(this: var State, unit: cuint, modeMap: ModeMap, modeList: ModeList)  {.importcpp: "applyModeListOnTexUnit".}
 
-proc applyAttributeList*(this: var State, attributeMap: Attributemap, attributeList: Attributelist)  {.importcpp: "applyAttributeList".}
+proc applyAttributeList*(this: var State, attributeMap: AttributeMap, attributeList: AttributeList)  {.importcpp: "applyAttributeList".}
 
-proc applyAttributeListOnTexUnit*(this: var State, unit: cuint, attributeMap: Attributemap, attributeList: Attributelist)  {.importcpp: "applyAttributeListOnTexUnit".}
+proc applyAttributeListOnTexUnit*(this: var State, unit: cuint, attributeMap: AttributeMap, attributeList: AttributeList)  {.importcpp: "applyAttributeListOnTexUnit".}
 
-proc applyUniformList*(this: var State, uniformMap: Uniformmap, uniformList: Uniformlist)  {.importcpp: "applyUniformList".}
+proc applyUniformList*(this: var State, uniformMap: UniformMap, uniformList: UniformList)  {.importcpp: "applyUniformList".}
 
-proc applyDefineList*(this: var State, defineMap: Definemap, defineList: Definelist)  {.importcpp: "applyDefineList".}
+proc applyDefineList*(this: var State, defineMap: DefineMap, defineList: DefineList)  {.importcpp: "applyDefineList".}
 
-proc applyModeMap*(this: var State, modeMap: Modemap)  {.importcpp: "applyModeMap".}
+proc applyModeMap*(this: var State, modeMap: ModeMap)  {.importcpp: "applyModeMap".}
 
-proc applyModeMapOnTexUnit*(this: var State, unit: cuint, modeMap: Modemap)  {.importcpp: "applyModeMapOnTexUnit".}
+proc applyModeMapOnTexUnit*(this: var State, unit: cuint, modeMap: ModeMap)  {.importcpp: "applyModeMapOnTexUnit".}
 
-proc applyAttributeMap*(this: var State, attributeMap: Attributemap)  {.importcpp: "applyAttributeMap".}
+proc applyAttributeMap*(this: var State, attributeMap: AttributeMap)  {.importcpp: "applyAttributeMap".}
 
-proc applyAttributeMapOnTexUnit*(this: var State, unit: cuint, attributeMap: Attributemap)  {.importcpp: "applyAttributeMapOnTexUnit".}
+proc applyAttributeMapOnTexUnit*(this: var State, unit: cuint, attributeMap: AttributeMap)  {.importcpp: "applyAttributeMapOnTexUnit".}
 
-proc applyUniformMap*(this: var State, uniformMap: Uniformmap)  {.importcpp: "applyUniformMap".}
+proc applyUniformMap*(this: var State, uniformMap: UniformMap)  {.importcpp: "applyUniformMap".}
 
 proc setActiveTextureUnit*(this: var State, unit: cuint): bool  {.importcpp: "setActiveTextureUnit".}
     ## Set the current texture unit, return true if selected, false if
     ## selection failed such as when multi texturing is not supported. note,
     ## only updates values that change.
 
-proc get*(this: var State): ptr Glextensions   {.importcpp: "get".}
+proc get*(this: var State): ptr GLExtensions   {.importcpp: "get".}
 
-proc get*(this: State): ptr Glextensions   {.importcpp: "get".}
+proc get*(this: State): ptr GLExtensions   {.importcpp: "get".}
 
-proc set*(this: var State, `ptr`: ptr Glextensions )  {.importcpp: "set".}
+proc set*(this: var State, `ptr`: ptr GLExtensions )  {.importcpp: "set".}
 
 {.pop.}  # header: "State"

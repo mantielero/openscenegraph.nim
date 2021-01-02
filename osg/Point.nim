@@ -1,8 +1,9 @@
-import Vec3  # provides: osg::Vec3
-import State  # provides: osg::State
-import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
-import CopyOp  # provides: osg::CopyOp
+import osg_types
+  # File: Vec3  was providing: osg::Vec3
+  # File: State  was providing: osg::State
+  # File: Object  was providing: osg::Object
+  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
+  # File: CopyOp  was providing: osg::CopyOp
 type
   Point* {.header: "Point", importcpp: "osg::Point", byref.} = object #of class osg::StateAttribute
     ## Point - encapsulates the OpenGL point smoothing and size state.
@@ -15,12 +16,12 @@ proc constructPoint*(): Point {.constructor,importcpp: "osg::Point::Point".}
 
 proc constructPoint*(size: cfloat): Point {.constructor,importcpp: "osg::Point::Point(@)".}
 
-proc constructPoint*(point: Point, copyop: Copyop = SHALLOW_COPY): Point {.constructor,importcpp: "osg::Point::Point(@)".}
+proc constructPoint*(point: Point, copyop: CopyOp = SHALLOW_COPY): Point {.constructor,importcpp: "osg::Point::Point(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: Point): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: Point, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: Point, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: Point, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -30,10 +31,10 @@ proc className*(this: Point): cstring  {.importcpp: "className".}
 
 proc getType*(this: Point): Type  {.importcpp: "getType".}
 
-proc compare*(this: Point, sa: Stateattribute): cint  {.importcpp: "compare".}
+proc compare*(this: Point, sa: StateAttribute): cint  {.importcpp: "compare".}
     ## return -1 if *this < *rhs, 0 if *this==*rhs, 1 if *this>*rhs.
 
-proc getModeUsage*(this: Point, usage: Modeusage): bool  {.importcpp: "getModeUsage".}
+proc getModeUsage*(this: Point, usage: ModeUsage): bool  {.importcpp: "getModeUsage".}
 
 proc setSize*(this: var Point, size: cfloat)  {.importcpp: "setSize".}
 

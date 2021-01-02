@@ -1,7 +1,8 @@
-import State  # provides: osg::State
-import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
-import CopyOp  # provides: osg::CopyOp
+import osg_types
+  # File: State  was providing: osg::State
+  # File: Object  was providing: osg::Object
+  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
+  # File: CopyOp  was providing: osg::CopyOp
 type
   BlendFunci* {.header: "BlendFunci", importcpp: "osg::BlendFunci", byref.} = object #of class osg::BlendFunc
     ## Encapsulates glBlendFunci function : the index version of
@@ -17,12 +18,12 @@ proc constructBlendFunci*(buf: cuint, source: GLenum, destination: GLenum): Blen
 
 proc constructBlendFunci*(buf: cuint, source: GLenum, destination: GLenum, source_alpha: GLenum, destination_alpha: GLenum): BlendFunci {.constructor,importcpp: "osg::BlendFunci::BlendFunci(@)".}
 
-proc constructBlendFunci*(cm: Blendfunci, copyop: Copyop = SHALLOW_COPY): BlendFunci {.constructor,importcpp: "osg::BlendFunci::BlendFunci(@)".}
+proc constructBlendFunci*(cm: BlendFunci, copyop: CopyOp = SHALLOW_COPY): BlendFunci {.constructor,importcpp: "osg::BlendFunci::BlendFunci(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: BlendFunci): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: BlendFunci, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: BlendFunci, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: BlendFunci, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -32,7 +33,7 @@ proc className*(this: BlendFunci): cstring  {.importcpp: "className".}
 
 proc getType*(this: BlendFunci): Type  {.importcpp: "getType".}
 
-proc compare*(this: BlendFunci, sa: Stateattribute): cint  {.importcpp: "compare".}
+proc compare*(this: BlendFunci, sa: StateAttribute): cint  {.importcpp: "compare".}
     ## Return -1 if *this < *rhs, 0 if *this==*rhs, 1 if *this>*rhs.
 
 proc getMember*(this: BlendFunci): cuint  {.importcpp: "getMember".}

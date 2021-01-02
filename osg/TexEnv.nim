@@ -1,15 +1,16 @@
-import State  # provides: osg::State
-import Vec4  # provides: osg::Vec4
-import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
-import CopyOp  # provides: osg::CopyOp
+import osg_types
+  # File: State  was providing: osg::State
+  # File: Vec4  was providing: osg::Vec4
+  # File: Object  was providing: osg::Object
+  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
+  # File: CopyOp  was providing: osg::CopyOp
 type
-  Mode* {.size:sizeof(cuint),header: "TexEnv", importcpp: "osg::TexEnv::Mode".} = enum
-    mdADD = 260,
-    mdBLEND = 3042,
-    mdREPLACE = 7681,
-    mdMODULATE = 8448,
-    mdDECAL = 8449
+  Mode* {.size:sizeof(cuint),header: "TexEnv", importcpp: "osg::TexEnv::Mode", pure.} = enum
+    ADD = 260,
+    BLEND = 3042,
+    REPLACE = 7681,
+    MODULATE = 8448,
+    DECAL = 8449
 
   TexEnv* {.header: "TexEnv", importcpp: "osg::TexEnv", byref.} = object #of class osg::StateAttribute
     ## TexEnv encapsulates the OpenGL glTexEnv (texture environment) state.
@@ -20,12 +21,12 @@ type
 
 proc constructTexEnv*(mode: Mode): TexEnv {.constructor,importcpp: "osg::TexEnv::TexEnv(@)".}
 
-proc constructTexEnv*(texenv: Texenv, copyop: Copyop = SHALLOW_COPY): TexEnv {.constructor,importcpp: "osg::TexEnv::TexEnv(@)".}
+proc constructTexEnv*(texenv: TexEnv, copyop: CopyOp = SHALLOW_COPY): TexEnv {.constructor,importcpp: "osg::TexEnv::TexEnv(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: TexEnv): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: TexEnv, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: TexEnv, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: TexEnv, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -37,7 +38,7 @@ proc getType*(this: TexEnv): Type  {.importcpp: "getType".}
 
 proc isTextureAttribute*(this: TexEnv): bool  {.importcpp: "isTextureAttribute".}
 
-proc compare*(this: TexEnv, sa: Stateattribute): cint  {.importcpp: "compare".}
+proc compare*(this: TexEnv, sa: StateAttribute): cint  {.importcpp: "compare".}
     ## Return -1 if *this < *rhs, 0 if *this==*rhs, 1 if *this>*rhs.
 
 proc setMode*(this: var TexEnv, mode: Mode)  {.importcpp: "setMode".}

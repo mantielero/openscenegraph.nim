@@ -1,9 +1,10 @@
-import State  # provides: osg::State
-import Object  # provides: osg::Object
-import BufferObject  # provides: osg::BufferData
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
-import Image  # provides: osg::Image
-import CopyOp  # provides: osg::CopyOp
+import osg_types
+  # File: State  was providing: osg::State
+  # File: Object  was providing: osg::Object
+  # File: BufferObject  was providing: osg::BufferData
+  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
+  # File: Image  was providing: osg::Image
+  # File: CopyOp  was providing: osg::CopyOp
 type
   TextureBuffer* {.header: "TextureBuffer", importcpp: "osg::TextureBuffer", byref.} = object #of class osg::Texture
     ## Encapsulates OpenGL texture buffer functionality in a Texture
@@ -16,14 +17,14 @@ type
 
 proc constructTextureBuffer*(): TextureBuffer {.constructor,importcpp: "osg::TextureBuffer::TextureBuffer".}
 
-proc constructTextureBuffer*(image: ptr Bufferdata ): TextureBuffer {.constructor,importcpp: "osg::TextureBuffer::TextureBuffer(@)".}
+proc constructTextureBuffer*(image: ptr BufferData ): TextureBuffer {.constructor,importcpp: "osg::TextureBuffer::TextureBuffer(@)".}
 
-proc constructTextureBuffer*(text: Texturebuffer, copyop: Copyop = SHALLOW_COPY): TextureBuffer {.constructor,importcpp: "osg::TextureBuffer::TextureBuffer(@)".}
+proc constructTextureBuffer*(text: TextureBuffer, copyop: CopyOp = SHALLOW_COPY): TextureBuffer {.constructor,importcpp: "osg::TextureBuffer::TextureBuffer(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: TextureBuffer): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: TextureBuffer, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: TextureBuffer, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: TextureBuffer, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -33,7 +34,7 @@ proc className*(this: TextureBuffer): cstring  {.importcpp: "className".}
 
 proc getType*(this: TextureBuffer): Type  {.importcpp: "getType".}
 
-proc compare*(this: TextureBuffer, rhs: Stateattribute): cint  {.importcpp: "compare".}
+proc compare*(this: TextureBuffer, rhs: StateAttribute): cint  {.importcpp: "compare".}
     ## Return -1 if *this < *rhs, 0 if *this==*rhs, 1 if *this>*rhs.
 
 proc getTextureTarget*(this: TextureBuffer): GLenum  {.importcpp: "getTextureTarget".}
@@ -53,13 +54,13 @@ proc isDirty*(this: TextureBuffer, contextID: cuint): bool  {.importcpp: "isDirt
 
 proc getModifiedCount*(this: TextureBuffer, contextID: cuint): cuint  {.importcpp: "getModifiedCount".}
 
-proc setImage*(this: var TextureBuffer, cuint, image: ptr Image )  {.importcpp: "setImage".}
+proc setImage*(this: var TextureBuffer, a00: cuint, image: ptr Image )  {.importcpp: "setImage".}
     ## Sets the texture image, ignoring face.
 
-proc getImage*(this: var TextureBuffer, cuint): ptr Image   {.importcpp: "getImage".}
+proc getImage*(this: var TextureBuffer, a00: cuint): ptr Image   {.importcpp: "getImage".}
     ## Gets the texture image, ignoring face.
 
-proc getImage*(this: TextureBuffer, cuint): ptr Image   {.importcpp: "getImage".}
+proc getImage*(this: TextureBuffer, a00: cuint): ptr Image   {.importcpp: "getImage".}
     ## Gets the const texture image, ignoring face.
 
 proc getNumImages*(this: TextureBuffer): cuint  {.importcpp: "getNumImages".}
@@ -76,15 +77,15 @@ proc getTextureHeight*(this: TextureBuffer): cint  {.importcpp: "getTextureHeigh
 
 proc getTextureDepth*(this: TextureBuffer): cint  {.importcpp: "getTextureDepth".}
 
-proc allocateMipmap*(this: TextureBuffer, State)  {.importcpp: "allocateMipmap".}
+proc allocateMipmap*(this: TextureBuffer, a00: State)  {.importcpp: "allocateMipmap".}
 
 proc apply*(this: TextureBuffer, state: State)  {.importcpp: "apply".}
     ## Bind the texture buffer.
 
-proc setBufferData*(this: var TextureBuffer, bo: ptr Bufferdata )  {.importcpp: "setBufferData".}
+proc setBufferData*(this: var TextureBuffer, bo: ptr BufferData )  {.importcpp: "setBufferData".}
     ## Set setBufferData attached
 
-proc getBufferData*(this: TextureBuffer): ptr Bufferdata   {.importcpp: "getBufferData".}
+proc getBufferData*(this: TextureBuffer): ptr BufferData   {.importcpp: "getBufferData".}
     ## Set setBufferData attached
 
 proc computeInternalFormat*(this: TextureBuffer)  {.importcpp: "computeInternalFormat".}

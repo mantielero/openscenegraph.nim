@@ -2,9 +2,9 @@
 
 proc constructFrameStamp*(): FrameStamp {.constructor,importcpp: "osg::FrameStamp::FrameStamp".}
 
-proc constructFrameStamp*(fs: Framestamp): FrameStamp {.constructor,importcpp: "osg::FrameStamp::FrameStamp(@)".}
+proc constructFrameStamp*(fs: FrameStamp): FrameStamp {.constructor,importcpp: "osg::FrameStamp::FrameStamp(@)".}
 
-proc `=`*(this: var FrameStamp, fs: Framestamp): Framestamp  {.importcpp: "# = #".}
+proc `=`*(this: var FrameStamp, fs: FrameStamp): FrameStamp  {.importcpp: "# = #".}
 
 proc setFrameNumber*(this: var FrameStamp, fnum: cuint)  {.importcpp: "setFrameNumber".}
 

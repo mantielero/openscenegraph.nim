@@ -1,22 +1,23 @@
-import Object  # provides: osg::Object
-import Node  # provides: osg::Node
-import CopyOp  # provides: osg::CopyOp
-import NodeVisitor  # provides: osg::NodeVisitor
+import osg_types
+  # File: Object  was providing: osg::Object
+  # File: Node  was providing: osg::Node
+  # File: CopyOp  was providing: osg::CopyOp
+  # File: NodeVisitor  was providing: osg::NodeVisitor
 type
-  LoopMode* {.size:sizeof(cuint),header: "Sequence", importcpp: "osg::Sequence::LoopMode".} = enum
+  LoopMode* {.size:sizeof(cuint),header: "Sequence", importcpp: "osg::Sequence::LoopMode", pure.} = enum
     ## Interval modes. 'Loop' repeats frames 1-N; 'swing' repeats 1->N,
     ## (N-1)->1.
 
-    lpmdLOOP = 0,
-    lpmdSWING = 1
+    LOOP = 0,
+    SWING = 1
 
-  SequenceMode* {.size:sizeof(cuint),header: "Sequence", importcpp: "osg::Sequence::SequenceMode".} = enum
+  SequenceMode* {.size:sizeof(cuint),header: "Sequence", importcpp: "osg::Sequence::SequenceMode", pure.} = enum
     ## Sequence modes.
 
-    sqncmdSTART = 0,
-    sqncmdSTOP = 1,
-    sqncmdPAUSE = 2,
-    sqncmdRESUME = 3
+    START = 0,
+    STOP = 1,
+    PAUSE = 2,
+    RESUME = 3
 
 
 
@@ -24,12 +25,12 @@ type
 
 proc constructSequence*(): Sequence {.constructor,importcpp: "osg::Sequence::Sequence".}
 
-proc constructSequence*(Sequence, copyop: Copyop = SHALLOW_COPY): Sequence {.constructor,importcpp: "osg::Sequence::Sequence(@)".}
+proc constructSequence*(a00: Sequence, copyop: CopyOp = SHALLOW_COPY): Sequence {.constructor,importcpp: "osg::Sequence::Sequence(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: Sequence): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: Sequence, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: Sequence, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: Sequence, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -37,9 +38,9 @@ proc className*(this: Sequence): cstring  {.importcpp: "className".}
 
 proc libraryName*(this: Sequence): cstring  {.importcpp: "libraryName".}
 
-proc accept*(this: var Sequence, nv: Nodevisitor)  {.importcpp: "accept".}
+proc accept*(this: var Sequence, nv: NodeVisitor)  {.importcpp: "accept".}
 
-proc traverse*(this: var Sequence, nv: Nodevisitor)  {.importcpp: "traverse".}
+proc traverse*(this: var Sequence, nv: NodeVisitor)  {.importcpp: "traverse".}
 
 proc addChild*(this: var Sequence, child: ptr Node ): bool  {.importcpp: "addChild".}
 
@@ -86,10 +87,10 @@ proc getLastFrameTime*(this: Sequence): cdouble  {.importcpp: "getLastFrameTime"
 proc getNumFrames*(this: Sequence): cuint  {.importcpp: "getNumFrames".}
     ## Get number of frames
 
-proc setLoopMode*(this: var Sequence, mode: Loopmode)  {.importcpp: "setLoopMode".}
+proc setLoopMode*(this: var Sequence, mode: LoopMode)  {.importcpp: "setLoopMode".}
     ## Set sequence mode.
 
-proc getLoopMode*(this: Sequence): Loopmode  {.importcpp: "getLoopMode".}
+proc getLoopMode*(this: Sequence): LoopMode  {.importcpp: "getLoopMode".}
     ## Get sequence mode.
 
 proc setBegin*(this: var Sequence, begin: cint)  {.importcpp: "setBegin".}
@@ -104,10 +105,10 @@ proc setEnd*(this: var Sequence, `end`: cint)  {.importcpp: "setEnd".}
 proc getEnd*(this: Sequence): cint  {.importcpp: "getEnd".}
     ## Get interval ending.
 
-proc setInterval*(this: var Sequence, mode: Loopmode, begin: cint, `end`: cint)  {.importcpp: "setInterval".}
+proc setInterval*(this: var Sequence, mode: LoopMode, begin: cint, `end`: cint)  {.importcpp: "setInterval".}
     ## Set sequence mode & interval (range of children to be displayed).
 
-proc getInterval*(this: Sequence, mode: Loopmode, begin: cint, `end`: cint)  {.importcpp: "getInterval".}
+proc getInterval*(this: Sequence, mode: LoopMode, begin: cint, `end`: cint)  {.importcpp: "getInterval".}
     ## Get sequence mode & interval.
 
 proc setSpeed*(this: var Sequence, speed: cfloat)  {.importcpp: "setSpeed".}
@@ -128,10 +129,10 @@ proc setDuration*(this: var Sequence, speed: cfloat, nreps: cint = 1)  {.importc
 proc getDuration*(this: Sequence, speed: cfloat, nreps: cint)  {.importcpp: "getDuration".}
     ## Get duration & number of repeats.
 
-proc setMode*(this: var Sequence, mode: Sequencemode)  {.importcpp: "setMode".}
+proc setMode*(this: var Sequence, mode: SequenceMode)  {.importcpp: "setMode".}
     ## Set sequence mode. Start/stop & pause/resume.
 
-proc getMode*(this: Sequence): Sequencemode  {.importcpp: "getMode".}
+proc getMode*(this: Sequence): SequenceMode  {.importcpp: "getMode".}
     ## Get sequence mode.
 
 proc setSync*(this: var Sequence, sync: bool)  {.importcpp: "setSync".}

@@ -1,10 +1,11 @@
-import State  # provides: osg::State
-import ref_ptr  # provides: osg::ref_ptr
-import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
-import Shader  # provides: osg::ShaderDefines, osg::Shader
-import CopyOp  # provides: osg::CopyOp
-import Uniform  # provides: osg::Uniform
+import osg_types
+  # File: State  was providing: osg::State
+  # File: ref_ptr  was providing: osg::ref_ptr
+  # File: Object  was providing: osg::Object
+  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
+  # File: Shader  was providing: osg::Shader, osg::ShaderDefines
+  # File: CopyOp  was providing: osg::CopyOp
+  # File: Uniform  was providing: osg::Uniform
 type
   ProgramBinary* {.header: "Program", importcpp: "osg::Program::ProgramBinary", byref.} = object #of osg::Object
     ## Simple class for wrapping up the data used in glProgramBinary and
@@ -27,7 +28,7 @@ type
   ActiveUniformMap* {.header: "Program", importcpp: "osg::Program::ActiveUniformMap".} = cint
   ActiveVarInfoMap* {.header: "Program", importcpp: "osg::Program::ActiveVarInfoMap".} = cint
   UniformBlockMap* {.header: "Program", importcpp: "osg::Program::UniformBlockMap".} = cint
-  UniformModifiedCountPair* {.header: "Program", importcpp: "osg::Program::PerContextProgram::UniformModifiedCountPair".} = Pair[Ref_ptr[Uniform]]
+  UniformModifiedCountPair* {.header: "Program", importcpp: "osg::Program::PerContextProgram::UniformModifiedCountPair".} = pair[ref_ptr[Uniform]]
   LastAppliedUniformList* {.header: "Program", importcpp: "osg::Program::PerContextProgram::LastAppliedUniformList".} = cint
   ShaderList* {.header: "Program", importcpp: "osg::Program::ShaderList".} = cint
   PerContextPrograms* {.header: "Program", importcpp: "osg::Program::ProgramObjects::PerContextPrograms".} = cint
@@ -37,12 +38,12 @@ type
 
 proc constructProgram*(): Program {.constructor,importcpp: "osg::Program::Program".}
 
-proc constructProgram*(rhs: Program, copyop: Copyop = SHALLOW_COPY): Program {.constructor,importcpp: "osg::Program::Program(@)".}
+proc constructProgram*(rhs: Program, copyop: CopyOp = SHALLOW_COPY): Program {.constructor,importcpp: "osg::Program::Program(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc constructProgramBinary*(): ProgramBinary {.constructor,importcpp: "osg::Program::ProgramBinary::ProgramBinary".}
 
-proc constructProgramBinary*(rhs: Programbinary, copyop: Copyop = SHALLOW_COPY): ProgramBinary {.constructor,importcpp: "osg::Program::ProgramBinary::ProgramBinary(@)".}
+proc constructProgramBinary*(rhs: ProgramBinary, copyop: CopyOp = SHALLOW_COPY): ProgramBinary {.constructor,importcpp: "osg::Program::ProgramBinary::ProgramBinary(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc constructActiveVarInfo*(): ActiveVarInfo {.constructor,importcpp: "osg::Program::ActiveVarInfo::ActiveVarInfo".}
@@ -59,13 +60,13 @@ proc constructPerContextProgram*(program: ptr Program , contextID: cuint, progra
 
 proc constructPerContextProgram*(): PerContextProgram {.constructor,importcpp: "osg::Program::PerContextProgram::PerContextProgram".}
 
-proc constructPerContextProgram*(Percontextprogram): PerContextProgram {.constructor,importcpp: "osg::Program::PerContextProgram::PerContextProgram(@)".}
+proc constructPerContextProgram*(a00: PerContextProgram): PerContextProgram {.constructor,importcpp: "osg::Program::PerContextProgram::PerContextProgram(@)".}
 
 proc constructProgramObjects*(program: ptr Program , contextID: cuint): ProgramObjects {.constructor,importcpp: "osg::Program::ProgramObjects::ProgramObjects(@)".}
 
 proc cloneType*(this: Program): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: Program, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: Program, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: Program, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -75,7 +76,7 @@ proc className*(this: Program): cstring  {.importcpp: "className".}
 
 proc getType*(this: Program): Type  {.importcpp: "getType".}
 
-proc compare*(this: Program, sa: Stateattribute): cint  {.importcpp: "compare".}
+proc compare*(this: Program, sa: StateAttribute): cint  {.importcpp: "compare".}
     ## return -1 if *this < *rhs, 0 if *this==*rhs, 1 if *this>*rhs.
 
 proc apply*(this: Program, state: State)  {.importcpp: "apply".}
@@ -119,37 +120,37 @@ proc setParameter*(this: var Program, pname: GLenum, value: GLint)  {.importcpp:
 
 proc getParameter*(this: Program, pname: GLenum): GLint  {.importcpp: "getParameter".}
 
-proc addBindAttribLocation*(this: var Program, name: String, index: GLuint)  {.importcpp: "addBindAttribLocation".}
+proc addBindAttribLocation*(this: var Program, name: string, index: GLuint)  {.importcpp: "addBindAttribLocation".}
     ## Add an attribute location binding.
 
-proc removeBindAttribLocation*(this: var Program, name: String)  {.importcpp: "removeBindAttribLocation".}
+proc removeBindAttribLocation*(this: var Program, name: string)  {.importcpp: "removeBindAttribLocation".}
     ## Remove an attribute location binding.
 
-proc addBindFragDataLocation*(this: var Program, name: String, index: GLuint)  {.importcpp: "addBindFragDataLocation".}
+proc addBindFragDataLocation*(this: var Program, name: string, index: GLuint)  {.importcpp: "addBindFragDataLocation".}
     ## Add an frag data location binding. See EXT_gpu_shader4 for
     ## BindFragDataLocationEXT
 
-proc removeBindFragDataLocation*(this: var Program, name: String)  {.importcpp: "removeBindFragDataLocation".}
+proc removeBindFragDataLocation*(this: var Program, name: string)  {.importcpp: "removeBindFragDataLocation".}
     ## Remove an frag data location binding.
 
-proc addBindUniformBlock*(this: var Program, name: String, index: GLuint)  {.importcpp: "addBindUniformBlock".}
+proc addBindUniformBlock*(this: var Program, name: string, index: GLuint)  {.importcpp: "addBindUniformBlock".}
     ## Add a uniform block binding to an index target. XXX This should not be
     ## an attribute of the program. It should be a pseudo-uniform that can
     ## live in StateSet objects because it is cheap to set.
 
-proc removeBindUniformBlock*(this: var Program, name: String)  {.importcpp: "removeBindUniformBlock".}
+proc removeBindUniformBlock*(this: var Program, name: string)  {.importcpp: "removeBindUniformBlock".}
     ## Remove a uniform block binding.
 
-proc removeTransformFeedBackVarying*(this: var Program, name: String)  {.importcpp: "removeTransformFeedBackVarying".}
+proc removeTransformFeedBackVarying*(this: var Program, name: string)  {.importcpp: "removeTransformFeedBackVarying".}
     ## Remove a TransformFeedBackVarying.
 
-proc addTransformFeedBackVarying*(this: var Program, outname: String)  {.importcpp: "addTransformFeedBackVarying".}
+proc addTransformFeedBackVarying*(this: var Program, outname: string)  {.importcpp: "addTransformFeedBackVarying".}
     ## Add a TransformFeedBack Varying Name.
 
 proc getNumTransformFeedBackVaryings*(this: Program): cuint  {.importcpp: "getNumTransformFeedBackVaryings".}
     ## Get number of TransformFeedBack Varyings.
 
-proc getTransformFeedBackVarying*(this: Program, i: cuint): String  {.importcpp: "getTransformFeedBackVarying".}
+proc getTransformFeedBackVarying*(this: Program, i: cuint): string  {.importcpp: "getTransformFeedBackVarying".}
     ## Get const TransformFeedBack Varying at index i.
 
 proc setTransformFeedBackMode*(this: var Program, e: GLenum)  {.importcpp: "setTransformFeedBackMode".}
@@ -158,16 +159,16 @@ proc setTransformFeedBackMode*(this: var Program, e: GLenum)  {.importcpp: "setT
 proc getTransformFeedBackMode*(this: Program): GLenum  {.importcpp: "getTransformFeedBackMode".}
     ## Get TransformFeedBack Mode.
 
-proc setShaderDefines*(this: var Program, shaderDefs: Shaderdefines)  {.importcpp: "setShaderDefines".}
+proc setShaderDefines*(this: var Program, shaderDefs: ShaderDefines)  {.importcpp: "setShaderDefines".}
     ## Experimental.
 
-proc getShaderDefines*(this: var Program): Shaderdefines  {.importcpp: "getShaderDefines".}
+proc getShaderDefines*(this: var Program): ShaderDefines  {.importcpp: "getShaderDefines".}
 
-proc getShaderDefines*(this: Program): Shaderdefines  {.importcpp: "getShaderDefines".}
+proc getShaderDefines*(this: Program): ShaderDefines  {.importcpp: "getShaderDefines".}
 
 proc cloneType*(this: ProgramBinary): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: ProgramBinary, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: ProgramBinary, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: ProgramBinary, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -197,37 +198,37 @@ proc getData*(this: var ProgramBinary): ptr unsigned char  {.importcpp: "getData
 proc getData*(this: ProgramBinary): ptr unsigned char  {.importcpp: "getData".}
     ## Get a const ptr to the program binary data.
 
-proc setProgramBinary*(this: var Program, programBinary: ptr Programbinary )  {.importcpp: "setProgramBinary".}
+proc setProgramBinary*(this: var Program, programBinary: ptr ProgramBinary )  {.importcpp: "setProgramBinary".}
     ## Set the Program using a ProgramBinary. If a ProgramBinary is not yet
     ## available then setting an empty one signals that compileProgramBinary
     ## will be called later.
 
-proc getProgramBinary*(this: var Program): ptr Programbinary   {.importcpp: "getProgramBinary".}
+proc getProgramBinary*(this: var Program): ptr ProgramBinary   {.importcpp: "getProgramBinary".}
     ## Get the Program's ProgramBinary, return NULL if none is assigned.
 
-proc getProgramBinary*(this: Program): ptr Programbinary   {.importcpp: "getProgramBinary".}
+proc getProgramBinary*(this: Program): ptr ProgramBinary   {.importcpp: "getProgramBinary".}
     ## Get the const Program's ProgramBinary, return NULL if none is
     ## assigned.
 
-proc getAttribBindingList*(this: Program): Attribbindinglist  {.importcpp: "getAttribBindingList".}
+proc getAttribBindingList*(this: Program): AttribBindingList  {.importcpp: "getAttribBindingList".}
 
-proc getFragDataBindingList*(this: Program): Fragdatabindinglist  {.importcpp: "getFragDataBindingList".}
+proc getFragDataBindingList*(this: Program): FragDataBindingList  {.importcpp: "getFragDataBindingList".}
 
-proc getUniformBlockBindingList*(this: Program): Uniformblockbindinglist  {.importcpp: "getUniformBlockBindingList".}
+proc getUniformBlockBindingList*(this: Program): UniformBlockBindingList  {.importcpp: "getUniformBlockBindingList".}
 
 proc isFixedFunction*(this: Program): bool  {.importcpp: "isFixedFunction".}
     ## Return true if this Program represents "fixed-functionality" rendering
 
-proc getGlProgramInfoLog*(this: Program, contextID: cuint, log: String): bool  {.importcpp: "getGlProgramInfoLog".}
+proc getGlProgramInfoLog*(this: Program, contextID: cuint, log: string): bool  {.importcpp: "getGlProgramInfoLog".}
     ## Query InfoLog from a glProgram
 
 proc getHandle*(this: PerContextProgram): GLuint  {.importcpp: "getHandle".}
 
 proc getProgram*(this: PerContextProgram): ptr Program   {.importcpp: "getProgram".}
 
-proc setDefineString*(this: var PerContextProgram, defStr: String)  {.importcpp: "setDefineString".}
+proc setDefineString*(this: var PerContextProgram, defStr: string)  {.importcpp: "setDefineString".}
 
-proc getDefineString*(this: PerContextProgram): String  {.importcpp: "getDefineString".}
+proc getDefineString*(this: PerContextProgram): string  {.importcpp: "getDefineString".}
 
 proc requestLink*(this: var PerContextProgram)  {.importcpp: "requestLink".}
 
@@ -239,12 +240,12 @@ proc needsLink*(this: PerContextProgram): bool  {.importcpp: "needsLink".}
 
 proc isLinked*(this: PerContextProgram): bool  {.importcpp: "isLinked".}
 
-proc getInfoLog*(this: PerContextProgram, infoLog: String): bool  {.importcpp: "getInfoLog".}
+proc getInfoLog*(this: PerContextProgram, infoLog: string): bool  {.importcpp: "getInfoLog".}
 
 proc loadedBinary*(this: PerContextProgram): bool  {.importcpp: "loadedBinary".}
     ## Was glProgramBinary called successfully?
 
-proc compileProgramBinary*(this: var PerContextProgram, state: State): ptr Programbinary   {.importcpp: "compileProgramBinary".}
+proc compileProgramBinary*(this: var PerContextProgram, state: State): ptr ProgramBinary   {.importcpp: "compileProgramBinary".}
     ## Compile a program binary. For this to work setProgramBinary must have
     ## been called on the osg::Program with an empty ProgramBinary prior to
     ## compileGLObjects being called. compileProgramBinary should be called
@@ -258,31 +259,31 @@ proc resetAppliedUniforms*(this: PerContextProgram)  {.importcpp: "resetAppliedU
 
 proc apply*(this: PerContextProgram, uniform: Uniform)  {.importcpp: "apply".}
 
-proc getActiveUniforms*(this: PerContextProgram): Activeuniformmap  {.importcpp: "getActiveUniforms".}
+proc getActiveUniforms*(this: PerContextProgram): ActiveUniformMap  {.importcpp: "getActiveUniforms".}
 
-proc getActiveAttribs*(this: PerContextProgram): Activevarinfomap  {.importcpp: "getActiveAttribs".}
+proc getActiveAttribs*(this: PerContextProgram): ActiveVarInfoMap  {.importcpp: "getActiveAttribs".}
 
-proc getUniformBlocks*(this: PerContextProgram): Uniformblockmap  {.importcpp: "getUniformBlocks".}
+proc getUniformBlocks*(this: PerContextProgram): UniformBlockMap  {.importcpp: "getUniformBlocks".}
 
 proc getUniformLocation*(this: PerContextProgram, uniformNameID: cuint): GLint  {.importcpp: "getUniformLocation".}
 
-proc getUniformLocation*(this: PerContextProgram, uniformName: String): GLint  {.importcpp: "getUniformLocation".}
+proc getUniformLocation*(this: PerContextProgram, uniformName: string): GLint  {.importcpp: "getUniformLocation".}
     ## Alternative version of getUniformLocation( unsigned int uniformNameID
     ## ) retrofited into OSG for backward compatibility with osgCal, after
     ## uniform ids were refactored from std::strings to GLints in OSG version
     ## 2.9.10.
 
-proc getAttribLocation*(this: PerContextProgram, name: String): GLint  {.importcpp: "getAttribLocation".}
+proc getAttribLocation*(this: PerContextProgram, name: string): GLint  {.importcpp: "getAttribLocation".}
 
 proc addShaderToAttach*(this: var PerContextProgram, shader: ptr Shader )  {.importcpp: "addShaderToAttach".}
 
 proc addShaderToDetach*(this: var PerContextProgram, shader: ptr Shader )  {.importcpp: "addShaderToDetach".}
 
-proc `=`*(this: var PerContextProgram, Percontextprogram): Percontextprogram  {.importcpp: "# = #".}
+proc `=`*(this: var PerContextProgram, a00: PerContextProgram): PerContextProgram  {.importcpp: "# = #".}
 
-proc getPCP*(this: ProgramObjects, defineStr: String): ptr Percontextprogram   {.importcpp: "getPCP".}
+proc getPCP*(this: ProgramObjects, defineStr: string): ptr PerContextProgram   {.importcpp: "getPCP".}
 
-proc createPerContextProgram*(this: var ProgramObjects, defineStr: String): ptr Percontextprogram   {.importcpp: "createPerContextProgram".}
+proc createPerContextProgram*(this: var ProgramObjects, defineStr: string): ptr PerContextProgram   {.importcpp: "createPerContextProgram".}
 
 proc requestLink*(this: var ProgramObjects)  {.importcpp: "requestLink".}
 
@@ -290,11 +291,11 @@ proc addShaderToAttach*(this: var ProgramObjects, shader: ptr Shader )  {.import
 
 proc addShaderToDetach*(this: var ProgramObjects, shader: ptr Shader )  {.importcpp: "addShaderToDetach".}
 
-proc getGlProgramInfoLog*(this: ProgramObjects, log: String): bool  {.importcpp: "getGlProgramInfoLog".}
+proc getGlProgramInfoLog*(this: ProgramObjects, log: string): bool  {.importcpp: "getGlProgramInfoLog".}
 
-proc getPCP*(this: Program, state: State): ptr Percontextprogram   {.importcpp: "getPCP".}
+proc getPCP*(this: Program, state: State): ptr PerContextProgram   {.importcpp: "getPCP".}
     ## Get the PCP for a particular GL context
 
-proc `=`*(this: var Program, Program): Program  {.importcpp: "# = #".}
+proc `=`*(this: var Program, a00: Program): Program  {.importcpp: "# = #".}
 
 {.pop.}  # header: "Program"

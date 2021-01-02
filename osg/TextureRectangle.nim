@@ -1,8 +1,9 @@
-import State  # provides: osg::State
-import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
-import Image  # provides: osg::Image
-import CopyOp  # provides: osg::CopyOp
+import osg_types
+  # File: State  was providing: osg::State
+  # File: Object  was providing: osg::Object
+  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
+  # File: Image  was providing: osg::Image
+  # File: CopyOp  was providing: osg::CopyOp
 type
   TextureRectangle* {.header: "TextureRectangle", importcpp: "osg::TextureRectangle", byref.} = object #of class osg::Texture
     ## Texture state class which encapsulates OpenGL texture functionality.
@@ -18,12 +19,12 @@ proc constructTextureRectangle*(): TextureRectangle {.constructor,importcpp: "os
 
 proc constructTextureRectangle*(image: ptr Image ): TextureRectangle {.constructor,importcpp: "osg::TextureRectangle::TextureRectangle(@)".}
 
-proc constructTextureRectangle*(text: Texturerectangle, copyop: Copyop = SHALLOW_COPY): TextureRectangle {.constructor,importcpp: "osg::TextureRectangle::TextureRectangle(@)".}
+proc constructTextureRectangle*(text: TextureRectangle, copyop: CopyOp = SHALLOW_COPY): TextureRectangle {.constructor,importcpp: "osg::TextureRectangle::TextureRectangle(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: TextureRectangle): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: TextureRectangle, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: TextureRectangle, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: TextureRectangle, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -33,7 +34,7 @@ proc className*(this: TextureRectangle): cstring  {.importcpp: "className".}
 
 proc getType*(this: TextureRectangle): Type  {.importcpp: "getType".}
 
-proc compare*(this: TextureRectangle, rhs: Stateattribute): cint  {.importcpp: "compare".}
+proc compare*(this: TextureRectangle, rhs: StateAttribute): cint  {.importcpp: "compare".}
     ## Return -1 if *this < *rhs, 0 if *this==*rhs, 1 if *this>*rhs.
 
 proc getTextureTarget*(this: TextureRectangle): GLenum  {.importcpp: "getTextureTarget".}
@@ -53,13 +54,13 @@ proc isDirty*(this: TextureRectangle, contextID: cuint): bool  {.importcpp: "isD
 
 proc getModifiedCount*(this: TextureRectangle, contextID: cuint): cuint  {.importcpp: "getModifiedCount".}
 
-proc setImage*(this: var TextureRectangle, cuint, image: ptr Image )  {.importcpp: "setImage".}
+proc setImage*(this: var TextureRectangle, a00: cuint, image: ptr Image )  {.importcpp: "setImage".}
     ## Set the texture image, ignoring face value as there is only one image.
 
-proc getImage*(this: var TextureRectangle, cuint): ptr Image   {.importcpp: "getImage".}
+proc getImage*(this: var TextureRectangle, a00: cuint): ptr Image   {.importcpp: "getImage".}
     ## Get the texture image, ignoring face value as there is only one image.
 
-proc getImage*(this: TextureRectangle, cuint): ptr Image   {.importcpp: "getImage".}
+proc getImage*(this: TextureRectangle, a00: cuint): ptr Image   {.importcpp: "getImage".}
     ## Get the const texture image, ignoring face value as there is only one
     ## image.
 
@@ -80,15 +81,15 @@ proc getTextureHeight*(this: TextureRectangle): cint  {.importcpp: "getTextureHe
 
 proc getTextureDepth*(this: TextureRectangle): cint  {.importcpp: "getTextureDepth".}
 
-proc load*(this: SubloadCallback, Texturerectangle, State)  {.importcpp: "load".}
+proc load*(this: SubloadCallback, a00: TextureRectangle, a01: State)  {.importcpp: "load".}
 
-proc subload*(this: SubloadCallback, Texturerectangle, State)  {.importcpp: "subload".}
+proc subload*(this: SubloadCallback, a00: TextureRectangle, a01: State)  {.importcpp: "subload".}
 
-proc setSubloadCallback*(this: var TextureRectangle, cb: ptr Subloadcallback )  {.importcpp: "setSubloadCallback".}
+proc setSubloadCallback*(this: var TextureRectangle, cb: ptr SubloadCallback )  {.importcpp: "setSubloadCallback".}
 
-proc getSubloadCallback*(this: var TextureRectangle): ptr Subloadcallback   {.importcpp: "getSubloadCallback".}
+proc getSubloadCallback*(this: var TextureRectangle): ptr SubloadCallback   {.importcpp: "getSubloadCallback".}
 
-proc getSubloadCallback*(this: TextureRectangle): ptr Subloadcallback   {.importcpp: "getSubloadCallback".}
+proc getSubloadCallback*(this: TextureRectangle): ptr SubloadCallback   {.importcpp: "getSubloadCallback".}
 
 proc copyTexImage2D*(this: var TextureRectangle, state: State, x: cint, y: cint, width: cint, height: cint)  {.importcpp: "copyTexImage2D".}
     ## Copies pixels into a 2D texture image, as per glCopyTexImage2D.

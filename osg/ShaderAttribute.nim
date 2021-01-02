@@ -1,9 +1,10 @@
-import State  # provides: osg::State
-import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
-import Shader  # provides: osg::Shader
-import CopyOp  # provides: osg::CopyOp
-import Uniform  # provides: osg::Uniform
+import osg_types
+  # File: State  was providing: osg::State
+  # File: Object  was providing: osg::Object
+  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
+  # File: Shader  was providing: osg::Shader
+  # File: CopyOp  was providing: osg::CopyOp
+  # File: Uniform  was providing: osg::Uniform
 type
   ShaderAttribute* {.header: "ShaderAttribute", importcpp: "osg::ShaderAttribute", byref.} = object #of class osg::StateAttribute
 
@@ -14,12 +15,12 @@ type
 
 proc constructShaderAttribute*(): ShaderAttribute {.constructor,importcpp: "osg::ShaderAttribute::ShaderAttribute".}
 
-proc constructShaderAttribute*(sa: Shaderattribute, copyop: Copyop = SHALLOW_COPY): ShaderAttribute {.constructor,importcpp: "osg::ShaderAttribute::ShaderAttribute(@)".}
+proc constructShaderAttribute*(sa: ShaderAttribute, copyop: CopyOp = SHALLOW_COPY): ShaderAttribute {.constructor,importcpp: "osg::ShaderAttribute::ShaderAttribute(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: ShaderAttribute): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: ShaderAttribute, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: ShaderAttribute, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: ShaderAttribute, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -27,7 +28,7 @@ proc libraryName*(this: ShaderAttribute): cstring  {.importcpp: "libraryName".}
 
 proc className*(this: ShaderAttribute): cstring  {.importcpp: "className".}
 
-proc compare*(this: ShaderAttribute, sa: Stateattribute): cint  {.importcpp: "compare".}
+proc compare*(this: ShaderAttribute, sa: StateAttribute): cint  {.importcpp: "compare".}
     ## return -1 if *this < *rhs, 0 if *this==*rhs, 1 if *this>*rhs.
 
 proc setType*(this: var ShaderAttribute, `type`: Type)  {.importcpp: "setType".}
@@ -54,7 +55,7 @@ proc getUniform*(this: var ShaderAttribute, i: cuint): ptr Uniform   {.importcpp
 
 proc getUniform*(this: ShaderAttribute, i: cuint): ptr Uniform   {.importcpp: "getUniform".}
 
-proc getModeUsage*(this: ShaderAttribute, usage: Modeusage): bool  {.importcpp: "getModeUsage".}
+proc getModeUsage*(this: ShaderAttribute, usage: ModeUsage): bool  {.importcpp: "getModeUsage".}
 
 proc apply*(this: ShaderAttribute, state: State)  {.importcpp: "apply".}
 

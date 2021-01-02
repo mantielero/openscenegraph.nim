@@ -1,6 +1,7 @@
-import State  # provides: osg::State
-import BufferObject  # provides: osg::GLBufferObject
-import Array  # provides: osg::Array
+import osg_types
+  # File: State  was providing: osg::State
+  # File: BufferObject  was providing: osg::GLBufferObject
+  # File: Array  was providing: osg::Array
 type
   ArrayDispatchList* {.header: "VertexArrayState", importcpp: "osg::VertexArrayState::ArrayDispatchList".} = cint
   ActiveDispatchers* {.header: "VertexArrayState", importcpp: "osg::VertexArrayState::ActiveDispatchers".} = cint
@@ -19,39 +20,39 @@ proc isVertexAttribDispatch*(this: ArrayDispatch): bool  {.importcpp: "isVertexA
 
 proc className*(this: ArrayDispatch): cstring  {.importcpp: "className".}
 
-proc enable_and_dispatch*(this: var ArrayDispatch, State, ptr Array )  {.importcpp: "enable_and_dispatch".}
+proc enable_and_dispatch*(this: var ArrayDispatch, a00: State, a01: ptr Array )  {.importcpp: "enable_and_dispatch".}
 
-proc enable_and_dispatch*(this: var ArrayDispatch, State, ptr Array , ptr Glbufferobject )  {.importcpp: "enable_and_dispatch".}
+proc enable_and_dispatch*(this: var ArrayDispatch, a00: State, a01: ptr Array , a02: ptr GLBufferObject )  {.importcpp: "enable_and_dispatch".}
 
-proc enable_and_dispatch*(this: var ArrayDispatch, State, GLint, GLenum, GLsizei, ptr GLvoid, GLboolean)  {.importcpp: "enable_and_dispatch".}
+proc enable_and_dispatch*(this: var ArrayDispatch, a00: State, a01: GLint, a02: GLenum, a03: GLsizei, a04: ptr GLvoid, a05: GLboolean)  {.importcpp: "enable_and_dispatch".}
 
-proc dispatch*(this: var ArrayDispatch, State, ptr Array )  {.importcpp: "dispatch".}
+proc dispatch*(this: var ArrayDispatch, a00: State, a01: ptr Array )  {.importcpp: "dispatch".}
 
-proc dispatch*(this: var ArrayDispatch, State, ptr Array , ptr Glbufferobject )  {.importcpp: "dispatch".}
+proc dispatch*(this: var ArrayDispatch, a00: State, a01: ptr Array , a02: ptr GLBufferObject )  {.importcpp: "dispatch".}
 
-proc dispatch*(this: var ArrayDispatch, State, GLint, GLenum, GLsizei, ptr GLvoid, GLboolean)  {.importcpp: "dispatch".}
+proc dispatch*(this: var ArrayDispatch, a00: State, a01: GLint, a02: GLenum, a03: GLsizei, a04: ptr GLvoid, a05: GLboolean)  {.importcpp: "dispatch".}
 
-proc disable*(this: var ArrayDispatch, State)  {.importcpp: "disable".}
+proc disable*(this: var ArrayDispatch, a00: State)  {.importcpp: "disable".}
 
-proc setCurrentVertexBufferObject*(this: var VertexArrayState, vbo: ptr Glbufferobject )  {.importcpp: "setCurrentVertexBufferObject".}
+proc setCurrentVertexBufferObject*(this: var VertexArrayState, vbo: ptr GLBufferObject )  {.importcpp: "setCurrentVertexBufferObject".}
 
-proc getCurrentVertexBufferObject*(this: var VertexArrayState): ptr Glbufferobject   {.importcpp: "getCurrentVertexBufferObject".}
+proc getCurrentVertexBufferObject*(this: var VertexArrayState): ptr GLBufferObject   {.importcpp: "getCurrentVertexBufferObject".}
 
-proc bindVertexBufferObject*(this: var VertexArrayState, vbo: ptr Glbufferobject )  {.importcpp: "bindVertexBufferObject".}
+proc bindVertexBufferObject*(this: var VertexArrayState, vbo: ptr GLBufferObject )  {.importcpp: "bindVertexBufferObject".}
 
 proc unbindVertexBufferObject*(this: var VertexArrayState)  {.importcpp: "unbindVertexBufferObject".}
 
-proc setCurrentElementBufferObject*(this: var VertexArrayState, ebo: ptr Glbufferobject )  {.importcpp: "setCurrentElementBufferObject".}
+proc setCurrentElementBufferObject*(this: var VertexArrayState, ebo: ptr GLBufferObject )  {.importcpp: "setCurrentElementBufferObject".}
 
-proc getCurrentElementBufferObject*(this: var VertexArrayState): ptr Glbufferobject   {.importcpp: "getCurrentElementBufferObject".}
+proc getCurrentElementBufferObject*(this: var VertexArrayState): ptr GLBufferObject   {.importcpp: "getCurrentElementBufferObject".}
 
-proc bindElementBufferObject*(this: var VertexArrayState, ebo: ptr Glbufferobject )  {.importcpp: "bindElementBufferObject".}
+proc bindElementBufferObject*(this: var VertexArrayState, ebo: ptr GLBufferObject )  {.importcpp: "bindElementBufferObject".}
 
 proc unbindElementBufferObject*(this: var VertexArrayState)  {.importcpp: "unbindElementBufferObject".}
 
 proc resetBufferObjectPointers*(this: var VertexArrayState)  {.importcpp: "resetBufferObjectPointers".}
 
-proc correctArrayDispatchAssigned*(this: var VertexArrayState, ad: ptr Arraydispatch ): bool  {.importcpp: "correctArrayDispatchAssigned".}
+proc correctArrayDispatchAssigned*(this: var VertexArrayState, ad: ptr ArrayDispatch ): bool  {.importcpp: "correctArrayDispatchAssigned".}
 
 proc assignAllDispatchers*(this: var VertexArrayState)  {.importcpp: "assignAllDispatchers".}
 
@@ -73,11 +74,11 @@ proc setVertexBufferObjectSupported*(this: var VertexArrayState, flag: bool)  {.
 
 proc isVertexBufferObjectSupported*(this: VertexArrayState): bool  {.importcpp: "isVertexBufferObjectSupported".}
 
-proc setArray*(this: var VertexArrayState, vad: ptr Arraydispatch , state: State, new_array: ptr Array )  {.importcpp: "setArray".}
+proc setArray*(this: var VertexArrayState, vad: ptr ArrayDispatch , state: State, new_array: ptr Array )  {.importcpp: "setArray".}
 
-proc setArray*(this: var VertexArrayState, vad: ptr Arraydispatch , state: State, size: GLint, `type`: GLenum, stride: GLsizei, `ptr`: ptr GLvoid, normalized: GLboolean)  {.importcpp: "setArray".}
+proc setArray*(this: var VertexArrayState, vad: ptr ArrayDispatch , state: State, size: GLint, `type`: GLenum, stride: GLsizei, `ptr`: ptr GLvoid, normalized: GLboolean)  {.importcpp: "setArray".}
 
-proc disable*(this: var VertexArrayState, vad: ptr Arraydispatch , state: State)  {.importcpp: "disable".}
+proc disable*(this: var VertexArrayState, vad: ptr ArrayDispatch , state: State)  {.importcpp: "disable".}
 
 proc setInterleavedArrays*(this: var VertexArrayState, state: State, format: GLenum, stride: GLsizei, pointer: ptr GLvoid)  {.importcpp: "setInterleavedArrays".}
 
@@ -143,7 +144,7 @@ proc dirty*(this: var VertexArrayState)  {.importcpp: "dirty".}
 
 proc release*(this: var VertexArrayState)  {.importcpp: "release".}
 
-proc `=`*(this: var VertexArrayStateList, rhs: Vertexarraystatelist): Vertexarraystatelist  {.importcpp: "# = #".}
+proc `=`*(this: var VertexArrayStateList, rhs: VertexArrayStateList): VertexArrayStateList  {.importcpp: "# = #".}
 
 proc clear*(this: var VertexArrayStateList)  {.importcpp: "clear".}
 
@@ -153,9 +154,9 @@ proc size*(this: VertexArrayStateList): cuint  {.importcpp: "size".}
 
 proc resize*(this: var VertexArrayStateList, newSize: cuint)  {.importcpp: "resize".}
 
-proc `[]`*(this: var VertexArrayStateList, pos: cuint): Ref_ptr[Vertexarraystate]  {.importcpp: "# [] #".}
+proc `[]`*(this: var VertexArrayStateList, pos: cuint): ref_ptr[VertexArrayState]  {.importcpp: "# [] #".}
 
-proc `[]`*(this: VertexArrayStateList, pos: cuint): Ref_ptr[Vertexarraystate]  {.importcpp: "# [] #".}
+proc `[]`*(this: VertexArrayStateList, pos: cuint): ref_ptr[VertexArrayState]  {.importcpp: "# [] #".}
 
 proc assignAllDispatchers*(this: var VertexArrayStateList)  {.importcpp: "assignAllDispatchers".}
 

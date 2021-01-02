@@ -1,9 +1,10 @@
-import State  # provides: osg::State
-import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
-import Plane  # provides: osg::Plane
-import CopyOp  # provides: osg::CopyOp
-import Vec4d  # provides: osg::Vec4d
+import osg_types
+  # File: State  was providing: osg::State
+  # File: Object  was providing: osg::Object
+  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
+  # File: Plane  was providing: osg::Plane
+  # File: CopyOp  was providing: osg::CopyOp
+  # File: Vec4d  was providing: osg::Vec4d
 {.push header: "ClipPlane".}
 
 proc constructClipPlane*(): ClipPlane {.constructor,importcpp: "osg::ClipPlane::ClipPlane".}
@@ -16,12 +17,12 @@ proc constructClipPlane*(no: cuint, plane: Plane): ClipPlane {.constructor,impor
 
 proc constructClipPlane*(no: cuint, a: cdouble, b: cdouble, c: cdouble, d: cdouble): ClipPlane {.constructor,importcpp: "osg::ClipPlane::ClipPlane(@)".}
 
-proc constructClipPlane*(cp: Clipplane, copyop: Copyop = SHALLOW_COPY): ClipPlane {.constructor,importcpp: "osg::ClipPlane::ClipPlane(@)".}
+proc constructClipPlane*(cp: ClipPlane, copyop: CopyOp = SHALLOW_COPY): ClipPlane {.constructor,importcpp: "osg::ClipPlane::ClipPlane(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: ClipPlane): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: ClipPlane, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: ClipPlane, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: ClipPlane, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -31,12 +32,12 @@ proc className*(this: ClipPlane): cstring  {.importcpp: "className".}
 
 proc getType*(this: ClipPlane): Type  {.importcpp: "getType".}
 
-proc compare*(this: ClipPlane, sa: Stateattribute): cint  {.importcpp: "compare".}
+proc compare*(this: ClipPlane, sa: StateAttribute): cint  {.importcpp: "compare".}
     ## Return -1 if *this < *rhs, 0 if *this==*rhs, 1 if *this>*rhs.
 
 proc getMember*(this: ClipPlane): cuint  {.importcpp: "getMember".}
 
-proc getModeUsage*(this: ClipPlane, usage: Modeusage): bool  {.importcpp: "getModeUsage".}
+proc getModeUsage*(this: ClipPlane, usage: ModeUsage): bool  {.importcpp: "getModeUsage".}
 
 proc setClipPlane*(this: var ClipPlane, plane: Plane)  {.importcpp: "setClipPlane".}
     ## Set the clip plane with the given Plane.

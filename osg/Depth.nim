@@ -1,17 +1,18 @@
-import State  # provides: osg::State
-import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
-import CopyOp  # provides: osg::CopyOp
+import osg_types
+  # File: State  was providing: osg::State
+  # File: Object  was providing: osg::Object
+  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
+  # File: CopyOp  was providing: osg::CopyOp
 type
-  Function* {.size:sizeof(cuint),header: "Depth", importcpp: "osg::Depth::Function".} = enum
-    fnctnNEVER = 512,
-    fnctnLESS = 513,
-    fnctnEQUAL = 514,
-    fnctnLEQUAL = 515,
-    fnctnGREATER = 516,
-    fnctnNOTEQUAL = 517,
-    fnctnGEQUAL = 518,
-    fnctnALWAYS = 519
+  Function* {.size:sizeof(cuint),header: "Depth", importcpp: "osg::Depth::Function", pure.} = enum
+    NEVER = 512,
+    LESS = 513,
+    EQUAL = 514,
+    LEQUAL = 515,
+    GREATER = 516,
+    NOTEQUAL = 517,
+    GEQUAL = 518,
+    ALWAYS = 519
 
   Depth* {.header: "Depth", importcpp: "osg::Depth", byref.} = object #of class osg::StateAttribute
     ## Encapsulate OpenGL glDepthFunc/Mask/Range functions.
@@ -22,12 +23,12 @@ type
 
 proc constructDepth*(`func`: Function, zNear: cdouble, zFar: cdouble, writeMask: bool): Depth {.constructor,importcpp: "osg::Depth::Depth(@)".}
 
-proc constructDepth*(dp: Depth, copyop: Copyop = SHALLOW_COPY): Depth {.constructor,importcpp: "osg::Depth::Depth(@)".}
+proc constructDepth*(dp: Depth, copyop: CopyOp = SHALLOW_COPY): Depth {.constructor,importcpp: "osg::Depth::Depth(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: Depth): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: Depth, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: Depth, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: Depth, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -37,10 +38,10 @@ proc className*(this: Depth): cstring  {.importcpp: "className".}
 
 proc getType*(this: Depth): Type  {.importcpp: "getType".}
 
-proc compare*(this: Depth, sa: Stateattribute): cint  {.importcpp: "compare".}
+proc compare*(this: Depth, sa: StateAttribute): cint  {.importcpp: "compare".}
     ## return -1 if *this < *rhs, 0 if *this==*rhs, 1 if *this>*rhs.
 
-proc getModeUsage*(this: Depth, usage: Modeusage): bool  {.importcpp: "getModeUsage".}
+proc getModeUsage*(this: Depth, usage: ModeUsage): bool  {.importcpp: "getModeUsage".}
 
 proc setFunction*(this: var Depth, `func`: Function)  {.importcpp: "setFunction".}
 

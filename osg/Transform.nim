@@ -1,16 +1,17 @@
-import BoundingSphere  # provides: osg::BoundingSphere
-import AutoTransform  # provides: osg::AutoTransform
-import Object  # provides: osg::Object
-import PositionAttitudeTransform  # provides: osg::PositionAttitudeTransform
-import MatrixTransform  # provides: osg::MatrixTransform
-import CopyOp  # provides: osg::CopyOp
-import Matrix  # provides: osg::Matrix
-import NodeVisitor  # provides: osg::NodeVisitor
+import osg_types
+  # File: BoundingSphere  was providing: osg::BoundingSphere
+  # File: AutoTransform  was providing: osg::AutoTransform
+  # File: Object  was providing: osg::Object
+  # File: PositionAttitudeTransform  was providing: osg::PositionAttitudeTransform
+  # File: MatrixTransform  was providing: osg::MatrixTransform
+  # File: CopyOp  was providing: osg::CopyOp
+  # File: Matrix  was providing: osg::Matrix
+  # File: NodeVisitor  was providing: osg::NodeVisitor
 type
-  ReferenceFrame* {.size:sizeof(cuint),header: "Transform", importcpp: "osg::Transform::ReferenceFrame".} = enum
-    rfrncfrmRELATIVE_RF = 0,
-    rfrncfrmABSOLUTE_RF = 1,
-    rfrncfrmABSOLUTE_RF_INHERIT_VIEWPOINT = 2
+  ReferenceFrame* {.size:sizeof(cuint),header: "Transform", importcpp: "osg::Transform::ReferenceFrame", pure.} = enum
+    RELATIVE_RF = 0,
+    ABSOLUTE_RF = 1,
+    ABSOLUTE_RF_INHERIT_VIEWPOINT = 2
 
 
 
@@ -18,12 +19,12 @@ type
 
 proc constructTransform*(): Transform {.constructor,importcpp: "osg::Transform::Transform".}
 
-proc constructTransform*(Transform, copyop: Copyop = SHALLOW_COPY): Transform {.constructor,importcpp: "osg::Transform::Transform(@)".}
+proc constructTransform*(a00: Transform, copyop: CopyOp = SHALLOW_COPY): Transform {.constructor,importcpp: "osg::Transform::Transform(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: Transform): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: Transform, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: Transform, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: Transform, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -31,25 +32,25 @@ proc className*(this: Transform): cstring  {.importcpp: "className".}
 
 proc libraryName*(this: Transform): cstring  {.importcpp: "libraryName".}
 
-proc accept*(this: var Transform, nv: Nodevisitor)  {.importcpp: "accept".}
+proc accept*(this: var Transform, nv: NodeVisitor)  {.importcpp: "accept".}
 
 proc asTransform*(this: var Transform): ptr Transform   {.importcpp: "asTransform".}
 
 proc asTransform*(this: Transform): ptr Transform   {.importcpp: "asTransform".}
 
-proc asMatrixTransform*(this: var Transform): ptr Matrixtransform   {.importcpp: "asMatrixTransform".}
+proc asMatrixTransform*(this: var Transform): ptr MatrixTransform   {.importcpp: "asMatrixTransform".}
 
-proc asMatrixTransform*(this: Transform): ptr Matrixtransform   {.importcpp: "asMatrixTransform".}
+proc asMatrixTransform*(this: Transform): ptr MatrixTransform   {.importcpp: "asMatrixTransform".}
 
-proc asPositionAttitudeTransform*(this: var Transform): ptr Positionattitudetransform   {.importcpp: "asPositionAttitudeTransform".}
+proc asPositionAttitudeTransform*(this: var Transform): ptr PositionAttitudeTransform   {.importcpp: "asPositionAttitudeTransform".}
 
-proc asPositionAttitudeTransform*(this: Transform): ptr Positionattitudetransform   {.importcpp: "asPositionAttitudeTransform".}
+proc asPositionAttitudeTransform*(this: Transform): ptr PositionAttitudeTransform   {.importcpp: "asPositionAttitudeTransform".}
 
-proc asAutoTransform*(this: var Transform): ptr Autotransform   {.importcpp: "asAutoTransform".}
+proc asAutoTransform*(this: var Transform): ptr AutoTransform   {.importcpp: "asAutoTransform".}
 
-proc asAutoTransform*(this: Transform): ptr Autotransform   {.importcpp: "asAutoTransform".}
+proc asAutoTransform*(this: Transform): ptr AutoTransform   {.importcpp: "asAutoTransform".}
 
-proc setReferenceFrame*(this: var Transform, rf: Referenceframe)  {.importcpp: "setReferenceFrame".}
+proc setReferenceFrame*(this: var Transform, rf: ReferenceFrame)  {.importcpp: "setReferenceFrame".}
     ## Set the transform's ReferenceFrame, either to be relative to its
     ## parent reference frame, or relative to an absolute coordinate frame.
     ## RELATIVE_RF is the default. Note: Setting the ReferenceFrame to be
@@ -67,13 +68,13 @@ proc setReferenceFrame*(this: var Transform, rf: Referenceframe)  {.importcpp: "
     ## eye point) rather than use the local eye point defined by the this
     ## Transforms' absolute view matrix.
 
-proc getReferenceFrame*(this: Transform): Referenceframe  {.importcpp: "getReferenceFrame".}
+proc getReferenceFrame*(this: Transform): ReferenceFrame  {.importcpp: "getReferenceFrame".}
 
-proc computeLocalToWorldMatrix*(this: Transform, matrix: Matrix, ptr Nodevisitor ): bool  {.importcpp: "computeLocalToWorldMatrix".}
+proc computeLocalToWorldMatrix*(this: Transform, matrix: Matrix, a01: ptr NodeVisitor ): bool  {.importcpp: "computeLocalToWorldMatrix".}
 
-proc computeWorldToLocalMatrix*(this: Transform, matrix: Matrix, ptr Nodevisitor ): bool  {.importcpp: "computeWorldToLocalMatrix".}
+proc computeWorldToLocalMatrix*(this: Transform, matrix: Matrix, a01: ptr NodeVisitor ): bool  {.importcpp: "computeWorldToLocalMatrix".}
 
-proc computeBound*(this: Transform): Boundingsphere  {.importcpp: "computeBound".}
+proc computeBound*(this: Transform): BoundingSphere  {.importcpp: "computeBound".}
     ## Overrides Group's computeBound. There is no need to override in
     ## subclasses from osg::Transform since this computeBound() uses the
     ## underlying matrix (calling computeMatrix if required).

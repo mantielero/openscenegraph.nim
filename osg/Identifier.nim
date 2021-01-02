@@ -1,4 +1,5 @@
-import Referenced  # provides: osg::Referenced
+import osg_types
+  # File: Referenced  was providing: osg::Referenced
 type
   Identifier* {.header: "Identifier", importcpp: "osg::Identifier", byref.} = object #of osg::Referenced
     ## Unique Identifier class to help with efficiently comparing road
@@ -8,15 +9,15 @@ type
 
 {.push header: "Identifier".}
 
-proc constructIdentifier*(name: String, number: cint, f: ptr Referenced , s: ptr Referenced ): Identifier {.constructor,importcpp: "osg::Identifier::Identifier(@)".}
+proc constructIdentifier*(name: string, number: cint, f: ptr Referenced , s: ptr Referenced ): Identifier {.constructor,importcpp: "osg::Identifier::Identifier(@)".}
 
-proc get*(this: var Identifier, name: String, number: cint, first: ptr Referenced  = 0, second: ptr Referenced  = 0): ptr Identifier   {.importcpp: "get".}
+proc get*(this: var Identifier, name: string, number: cint, first: ptr Referenced  = 0, second: ptr Referenced  = 0): ptr Identifier   {.importcpp: "get".}
 
 proc get*(this: var Identifier, number: cint, first: ptr Referenced  = 0, second: ptr Referenced  = 0): ptr Identifier   {.importcpp: "get".}
 
 proc get*(this: var Identifier, first: ptr Referenced , second: ptr Referenced  = 0): ptr Identifier   {.importcpp: "get".}
 
-proc name*(this: Identifier): String  {.importcpp: "name".}
+proc name*(this: Identifier): string  {.importcpp: "name".}
 
 proc number*(this: Identifier): cint  {.importcpp: "number".}
 

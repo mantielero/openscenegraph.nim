@@ -1,51 +1,52 @@
-import State  # provides: osg::State
-import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute
-import Node  # provides: osg::Node
-import Drawable  # provides: osg::Drawable
-import CopyOp  # provides: osg::CopyOp
-import Uniform  # provides: osg::Uniform
-import RenderInfo  # provides: osg::RenderInfo
-import NodeVisitor  # provides: osg::NodeVisitor
+import osg_types
+  # File: State  was providing: osg::State
+  # File: Object  was providing: osg::Object
+  # File: StateAttribute  was providing: osg::StateAttribute
+  # File: Node  was providing: osg::Node
+  # File: Drawable  was providing: osg::Drawable
+  # File: CopyOp  was providing: osg::CopyOp
+  # File: Uniform  was providing: osg::Uniform
+  # File: RenderInfo  was providing: osg::RenderInfo
+  # File: NodeVisitor  was providing: osg::NodeVisitor
 {.push header: "Callback".}
 
 proc constructCallback*(): Callback {.constructor,importcpp: "osg::Callback::Callback".}
 
-proc constructCallback*(cb: Callback, copyop: Copyop): Callback {.constructor,importcpp: "osg::Callback::Callback(@)".}
+proc constructCallback*(cb: Callback, copyop: CopyOp): Callback {.constructor,importcpp: "osg::Callback::Callback(@)".}
 
 proc constructCallbackObject*(): CallbackObject {.constructor,importcpp: "osg::CallbackObject::CallbackObject".}
 
-proc constructCallbackObject*(name: String): CallbackObject {.constructor,importcpp: "osg::CallbackObject::CallbackObject(@)".}
+proc constructCallbackObject*(name: string): CallbackObject {.constructor,importcpp: "osg::CallbackObject::CallbackObject(@)".}
 
-proc constructCallbackObject*(co: Callbackobject, copyop: Copyop = SHALLOW_COPY): CallbackObject {.constructor,importcpp: "osg::CallbackObject::CallbackObject(@)".}
+proc constructCallbackObject*(co: CallbackObject, copyop: CopyOp = SHALLOW_COPY): CallbackObject {.constructor,importcpp: "osg::CallbackObject::CallbackObject(@)".}
 
 proc constructNodeCallback*(): NodeCallback {.constructor,importcpp: "osg::NodeCallback::NodeCallback".}
 
-proc constructNodeCallback*(nc: Nodecallback, copyop: Copyop): NodeCallback {.constructor,importcpp: "osg::NodeCallback::NodeCallback(@)".}
+proc constructNodeCallback*(nc: NodeCallback, copyop: CopyOp): NodeCallback {.constructor,importcpp: "osg::NodeCallback::NodeCallback(@)".}
 
 proc constructStateAttributeCallback*(): StateAttributeCallback {.constructor,importcpp: "osg::StateAttributeCallback::StateAttributeCallback".}
 
-proc constructStateAttributeCallback*(org: Stateattributecallback, copyop: Copyop): StateAttributeCallback {.constructor,importcpp: "osg::StateAttributeCallback::StateAttributeCallback(@)".}
+proc constructStateAttributeCallback*(org: StateAttributeCallback, copyop: CopyOp): StateAttributeCallback {.constructor,importcpp: "osg::StateAttributeCallback::StateAttributeCallback(@)".}
 
 proc constructUniformCallback*(): UniformCallback {.constructor,importcpp: "osg::UniformCallback::UniformCallback".}
 
-proc constructUniformCallback*(org: Uniformcallback, copyop: Copyop): UniformCallback {.constructor,importcpp: "osg::UniformCallback::UniformCallback(@)".}
+proc constructUniformCallback*(org: UniformCallback, copyop: CopyOp): UniformCallback {.constructor,importcpp: "osg::UniformCallback::UniformCallback(@)".}
 
 proc constructDrawableUpdateCallback*(): DrawableUpdateCallback {.constructor,importcpp: "osg::DrawableUpdateCallback::DrawableUpdateCallback".}
 
-proc constructDrawableUpdateCallback*(org: Drawableupdatecallback, copyop: Copyop): DrawableUpdateCallback {.constructor,importcpp: "osg::DrawableUpdateCallback::DrawableUpdateCallback(@)".}
+proc constructDrawableUpdateCallback*(org: DrawableUpdateCallback, copyop: CopyOp): DrawableUpdateCallback {.constructor,importcpp: "osg::DrawableUpdateCallback::DrawableUpdateCallback(@)".}
 
 proc constructDrawableEventCallback*(): DrawableEventCallback {.constructor,importcpp: "osg::DrawableEventCallback::DrawableEventCallback".}
 
-proc constructDrawableEventCallback*(org: Drawableeventcallback, copyop: Copyop): DrawableEventCallback {.constructor,importcpp: "osg::DrawableEventCallback::DrawableEventCallback(@)".}
+proc constructDrawableEventCallback*(org: DrawableEventCallback, copyop: CopyOp): DrawableEventCallback {.constructor,importcpp: "osg::DrawableEventCallback::DrawableEventCallback(@)".}
 
 proc constructDrawableCullCallback*(): DrawableCullCallback {.constructor,importcpp: "osg::DrawableCullCallback::DrawableCullCallback".}
 
-proc constructDrawableCullCallback*(org: Drawablecullcallback, copyop: Copyop): DrawableCullCallback {.constructor,importcpp: "osg::DrawableCullCallback::DrawableCullCallback(@)".}
+proc constructDrawableCullCallback*(org: DrawableCullCallback, copyop: CopyOp): DrawableCullCallback {.constructor,importcpp: "osg::DrawableCullCallback::DrawableCullCallback(@)".}
 
 proc cloneType*(this: Callback): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: Callback, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: Callback, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: Callback, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -57,37 +58,37 @@ proc asCallback*(this: var Callback): ptr Callback   {.importcpp: "asCallback".}
 
 proc asCallback*(this: Callback): ptr Callback   {.importcpp: "asCallback".}
 
-proc asCallbackObject*(this: var Callback): ptr Callbackobject   {.importcpp: "asCallbackObject".}
+proc asCallbackObject*(this: var Callback): ptr CallbackObject   {.importcpp: "asCallbackObject".}
 
-proc asCallbackObject*(this: Callback): ptr Callbackobject   {.importcpp: "asCallbackObject".}
+proc asCallbackObject*(this: Callback): ptr CallbackObject   {.importcpp: "asCallbackObject".}
 
-proc asNodeCallback*(this: var Callback): ptr Nodecallback   {.importcpp: "asNodeCallback".}
+proc asNodeCallback*(this: var Callback): ptr NodeCallback   {.importcpp: "asNodeCallback".}
 
-proc asNodeCallback*(this: Callback): ptr Nodecallback   {.importcpp: "asNodeCallback".}
+proc asNodeCallback*(this: Callback): ptr NodeCallback   {.importcpp: "asNodeCallback".}
 
-proc asStateAttributeCallback*(this: var Callback): ptr Stateattributecallback   {.importcpp: "asStateAttributeCallback".}
+proc asStateAttributeCallback*(this: var Callback): ptr StateAttributeCallback   {.importcpp: "asStateAttributeCallback".}
 
-proc asStateAttributeCallback*(this: Callback): ptr Stateattributecallback   {.importcpp: "asStateAttributeCallback".}
+proc asStateAttributeCallback*(this: Callback): ptr StateAttributeCallback   {.importcpp: "asStateAttributeCallback".}
 
-proc asUniformCallback*(this: var Callback): ptr Uniformcallback   {.importcpp: "asUniformCallback".}
+proc asUniformCallback*(this: var Callback): ptr UniformCallback   {.importcpp: "asUniformCallback".}
 
-proc asUniformCallback*(this: Callback): ptr Uniformcallback   {.importcpp: "asUniformCallback".}
+proc asUniformCallback*(this: Callback): ptr UniformCallback   {.importcpp: "asUniformCallback".}
 
-proc asDrawableUpdateCallback*(this: var Callback): ptr Drawableupdatecallback   {.importcpp: "asDrawableUpdateCallback".}
+proc asDrawableUpdateCallback*(this: var Callback): ptr DrawableUpdateCallback   {.importcpp: "asDrawableUpdateCallback".}
 
-proc asDrawableUpdateCallback*(this: Callback): ptr Drawableupdatecallback   {.importcpp: "asDrawableUpdateCallback".}
+proc asDrawableUpdateCallback*(this: Callback): ptr DrawableUpdateCallback   {.importcpp: "asDrawableUpdateCallback".}
 
-proc asDrawableEventCallback*(this: var Callback): ptr Drawableeventcallback   {.importcpp: "asDrawableEventCallback".}
+proc asDrawableEventCallback*(this: var Callback): ptr DrawableEventCallback   {.importcpp: "asDrawableEventCallback".}
 
-proc asDrawableEventCallback*(this: Callback): ptr Drawableeventcallback   {.importcpp: "asDrawableEventCallback".}
+proc asDrawableEventCallback*(this: Callback): ptr DrawableEventCallback   {.importcpp: "asDrawableEventCallback".}
 
-proc asDrawableCullCallback*(this: var Callback): ptr Drawablecullcallback   {.importcpp: "asDrawableCullCallback".}
+proc asDrawableCullCallback*(this: var Callback): ptr DrawableCullCallback   {.importcpp: "asDrawableCullCallback".}
 
-proc asDrawableCullCallback*(this: Callback): ptr Drawablecullcallback   {.importcpp: "asDrawableCullCallback".}
+proc asDrawableCullCallback*(this: Callback): ptr DrawableCullCallback   {.importcpp: "asDrawableCullCallback".}
 
-proc asEventHandler*(this: var Callback): ptr Eventhandler   {.importcpp: "asEventHandler".}
+proc asEventHandler*(this: var Callback): ptr EventHandler   {.importcpp: "asEventHandler".}
 
-proc asEventHandler*(this: Callback): ptr Eventhandler   {.importcpp: "asEventHandler".}
+proc asEventHandler*(this: Callback): ptr EventHandler   {.importcpp: "asEventHandler".}
 
 proc run*(this: var Callback, `object`: ptr Object , data: ptr Object ): bool  {.importcpp: "run".}
     ## Invoke the callback, first parameter is the Object that the callback
@@ -116,7 +117,7 @@ proc removeNestedCallback*(this: var Callback, nc: ptr Callback )  {.importcpp: 
 
 proc cloneType*(this: CallbackObject): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: CallbackObject, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: CallbackObject, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: CallbackObject, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -124,9 +125,9 @@ proc libraryName*(this: CallbackObject): cstring  {.importcpp: "libraryName".}
 
 proc className*(this: CallbackObject): cstring  {.importcpp: "className".}
 
-proc asCallbackObject*(this: var CallbackObject): ptr Callbackobject   {.importcpp: "asCallbackObject".}
+proc asCallbackObject*(this: var CallbackObject): ptr CallbackObject   {.importcpp: "asCallbackObject".}
 
-proc asCallbackObject*(this: CallbackObject): ptr Callbackobject   {.importcpp: "asCallbackObject".}
+proc asCallbackObject*(this: CallbackObject): ptr CallbackObject   {.importcpp: "asCallbackObject".}
 
 proc run*(this: var CallbackObject, `object`: ptr Object , data: ptr Object ): bool  {.importcpp: "run".}
     ## override Callback::run() entry point to adapt to
@@ -138,7 +139,7 @@ proc run*(this: CallbackObject, `object`: ptr Object , inputParameters: Paramete
 
 proc cloneType*(this: NodeCallback): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: NodeCallback, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: NodeCallback, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: NodeCallback, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -146,20 +147,20 @@ proc libraryName*(this: NodeCallback): cstring  {.importcpp: "libraryName".}
 
 proc className*(this: NodeCallback): cstring  {.importcpp: "className".}
 
-proc asNodeCallback*(this: var NodeCallback): ptr Nodecallback   {.importcpp: "asNodeCallback".}
+proc asNodeCallback*(this: var NodeCallback): ptr NodeCallback   {.importcpp: "asNodeCallback".}
 
-proc asNodeCallback*(this: NodeCallback): ptr Nodecallback   {.importcpp: "asNodeCallback".}
+proc asNodeCallback*(this: NodeCallback): ptr NodeCallback   {.importcpp: "asNodeCallback".}
 
 proc run*(this: var NodeCallback, `object`: ptr Object , data: ptr Object ): bool  {.importcpp: "run".}
     ## NodeCallback overrides the Callback::run() method to adapt it the old
     ## style NodeCallback::operator()(Node* node, NodeVisitor* nv) method.
 
-proc `()`*(this: var NodeCallback, node: ptr Node , nv: ptr Nodevisitor )  {.importcpp: "# () #".}
+proc `()`*(this: var NodeCallback, node: ptr Node , nv: ptr NodeVisitor )  {.importcpp: "# () #".}
     ## Callback method called by the NodeVisitor when visiting a node.
 
 proc cloneType*(this: StateAttributeCallback): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: StateAttributeCallback, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: StateAttributeCallback, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: StateAttributeCallback, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -167,20 +168,20 @@ proc libraryName*(this: StateAttributeCallback): cstring  {.importcpp: "libraryN
 
 proc className*(this: StateAttributeCallback): cstring  {.importcpp: "className".}
 
-proc asStateAttributeCallback*(this: var StateAttributeCallback): ptr Stateattributecallback   {.importcpp: "asStateAttributeCallback".}
+proc asStateAttributeCallback*(this: var StateAttributeCallback): ptr StateAttributeCallback   {.importcpp: "asStateAttributeCallback".}
 
-proc asStateAttributeCallback*(this: StateAttributeCallback): ptr Stateattributecallback   {.importcpp: "asStateAttributeCallback".}
+proc asStateAttributeCallback*(this: StateAttributeCallback): ptr StateAttributeCallback   {.importcpp: "asStateAttributeCallback".}
 
 proc run*(this: var StateAttributeCallback, `object`: ptr Object , data: ptr Object ): bool  {.importcpp: "run".}
     ## override Callback::run() entry point to adapt to
     ## StateAttributeCallback::run(..) method.
 
-proc `()`*(this: var StateAttributeCallback, ptr Stateattribute , ptr Nodevisitor )  {.importcpp: "# () #".}
+proc `()`*(this: var StateAttributeCallback, a00: ptr StateAttribute , a01: ptr NodeVisitor )  {.importcpp: "# () #".}
     ## do customized update code.
 
 proc cloneType*(this: UniformCallback): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: UniformCallback, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: UniformCallback, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: UniformCallback, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -188,20 +189,20 @@ proc libraryName*(this: UniformCallback): cstring  {.importcpp: "libraryName".}
 
 proc className*(this: UniformCallback): cstring  {.importcpp: "className".}
 
-proc asUniformCallback*(this: var UniformCallback): ptr Uniformcallback   {.importcpp: "asUniformCallback".}
+proc asUniformCallback*(this: var UniformCallback): ptr UniformCallback   {.importcpp: "asUniformCallback".}
 
-proc asUniformCallback*(this: UniformCallback): ptr Uniformcallback   {.importcpp: "asUniformCallback".}
+proc asUniformCallback*(this: UniformCallback): ptr UniformCallback   {.importcpp: "asUniformCallback".}
 
 proc run*(this: var UniformCallback, `object`: ptr Object , data: ptr Object ): bool  {.importcpp: "run".}
     ## override Callback::run() entry point to adapt to
     ## UniformCallback::run(..) method.
 
-proc `()`*(this: var UniformCallback, ptr Uniform , ptr Nodevisitor )  {.importcpp: "# () #".}
+proc `()`*(this: var UniformCallback, a00: ptr Uniform , a01: ptr NodeVisitor )  {.importcpp: "# () #".}
     ## do customized update code.
 
 proc cloneType*(this: DrawableUpdateCallback): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: DrawableUpdateCallback, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: DrawableUpdateCallback, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: DrawableUpdateCallback, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -209,20 +210,20 @@ proc libraryName*(this: DrawableUpdateCallback): cstring  {.importcpp: "libraryN
 
 proc className*(this: DrawableUpdateCallback): cstring  {.importcpp: "className".}
 
-proc asDrawableUpdateCallback*(this: var DrawableUpdateCallback): ptr Drawableupdatecallback   {.importcpp: "asDrawableUpdateCallback".}
+proc asDrawableUpdateCallback*(this: var DrawableUpdateCallback): ptr DrawableUpdateCallback   {.importcpp: "asDrawableUpdateCallback".}
 
-proc asDrawableUpdateCallback*(this: DrawableUpdateCallback): ptr Drawableupdatecallback   {.importcpp: "asDrawableUpdateCallback".}
+proc asDrawableUpdateCallback*(this: DrawableUpdateCallback): ptr DrawableUpdateCallback   {.importcpp: "asDrawableUpdateCallback".}
 
 proc run*(this: var DrawableUpdateCallback, `object`: ptr Object , data: ptr Object ): bool  {.importcpp: "run".}
     ## override Callback::run() entry point to adapt to
     ## StateAttributeCallback::run(..) method.
 
-proc update*(this: var DrawableUpdateCallback, ptr Nodevisitor , ptr Drawable )  {.importcpp: "update".}
+proc update*(this: var DrawableUpdateCallback, a00: ptr NodeVisitor , a01: ptr Drawable )  {.importcpp: "update".}
     ## do customized update code.
 
 proc cloneType*(this: DrawableEventCallback): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: DrawableEventCallback, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: DrawableEventCallback, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: DrawableEventCallback, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -230,20 +231,20 @@ proc libraryName*(this: DrawableEventCallback): cstring  {.importcpp: "libraryNa
 
 proc className*(this: DrawableEventCallback): cstring  {.importcpp: "className".}
 
-proc asDrawableEventCallback*(this: var DrawableEventCallback): ptr Drawableeventcallback   {.importcpp: "asDrawableEventCallback".}
+proc asDrawableEventCallback*(this: var DrawableEventCallback): ptr DrawableEventCallback   {.importcpp: "asDrawableEventCallback".}
 
-proc asDrawableEventCallback*(this: DrawableEventCallback): ptr Drawableeventcallback   {.importcpp: "asDrawableEventCallback".}
+proc asDrawableEventCallback*(this: DrawableEventCallback): ptr DrawableEventCallback   {.importcpp: "asDrawableEventCallback".}
 
 proc run*(this: var DrawableEventCallback, `object`: ptr Object , data: ptr Object ): bool  {.importcpp: "run".}
     ## override Callback::run() entry point to adapt to
     ## StateAttributeCallback::run(..) method.
 
-proc event*(this: var DrawableEventCallback, ptr Nodevisitor , ptr Drawable )  {.importcpp: "event".}
+proc event*(this: var DrawableEventCallback, a00: ptr NodeVisitor , a01: ptr Drawable )  {.importcpp: "event".}
     ## do customized Event code.
 
 proc cloneType*(this: DrawableCullCallback): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: DrawableCullCallback, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: DrawableCullCallback, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: DrawableCullCallback, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -251,14 +252,14 @@ proc libraryName*(this: DrawableCullCallback): cstring  {.importcpp: "libraryNam
 
 proc className*(this: DrawableCullCallback): cstring  {.importcpp: "className".}
 
-proc asDrawableCullCallback*(this: var DrawableCullCallback): ptr Drawablecullcallback   {.importcpp: "asDrawableCullCallback".}
+proc asDrawableCullCallback*(this: var DrawableCullCallback): ptr DrawableCullCallback   {.importcpp: "asDrawableCullCallback".}
 
-proc asDrawableCullCallback*(this: DrawableCullCallback): ptr Drawablecullcallback   {.importcpp: "asDrawableCullCallback".}
+proc asDrawableCullCallback*(this: DrawableCullCallback): ptr DrawableCullCallback   {.importcpp: "asDrawableCullCallback".}
 
-proc cull*(this: DrawableCullCallback, ptr Nodevisitor , ptr Drawable , ptr State ): bool  {.importcpp: "cull".}
+proc cull*(this: DrawableCullCallback, a00: ptr NodeVisitor , a01: ptr Drawable , a02: ptr State ): bool  {.importcpp: "cull".}
     ## deprecated.
 
-proc cull*(this: DrawableCullCallback, nv: ptr Nodevisitor , drawable: ptr Drawable , renderInfo: ptr Renderinfo ): bool  {.importcpp: "cull".}
+proc cull*(this: DrawableCullCallback, nv: ptr NodeVisitor , drawable: ptr Drawable , renderInfo: ptr RenderInfo ): bool  {.importcpp: "cull".}
     ## do customized cull code, return true if drawable should be culled.
 
 {.pop.}  # header: "Callback"

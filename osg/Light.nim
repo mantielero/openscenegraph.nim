@@ -1,21 +1,22 @@
-import Vec3  # provides: osg::Vec3
-import State  # provides: osg::State
-import Vec4  # provides: osg::Vec4
-import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
-import CopyOp  # provides: osg::CopyOp
+import osg_types
+  # File: Vec3  was providing: osg::Vec3
+  # File: State  was providing: osg::State
+  # File: Vec4  was providing: osg::Vec4
+  # File: Object  was providing: osg::Object
+  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
+  # File: CopyOp  was providing: osg::CopyOp
 {.push header: "Light".}
 
 proc constructLight*(): Light {.constructor,importcpp: "osg::Light::Light".}
 
 proc constructLight*(lightnum: cuint): Light {.constructor,importcpp: "osg::Light::Light(@)".}
 
-proc constructLight*(light: Light, copyop: Copyop = SHALLOW_COPY): Light {.constructor,importcpp: "osg::Light::Light(@)".}
+proc constructLight*(light: Light, copyop: CopyOp = SHALLOW_COPY): Light {.constructor,importcpp: "osg::Light::Light(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: Light): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: Light, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: Light, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: Light, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -25,12 +26,12 @@ proc className*(this: Light): cstring  {.importcpp: "className".}
 
 proc getType*(this: Light): Type  {.importcpp: "getType".}
 
-proc compare*(this: Light, sa: Stateattribute): cint  {.importcpp: "compare".}
+proc compare*(this: Light, sa: StateAttribute): cint  {.importcpp: "compare".}
     ## Return -1 if *this < *rhs, 0 if *this==*rhs, 1 if *this>*rhs.
 
 proc getMember*(this: Light): cuint  {.importcpp: "getMember".}
 
-proc getModeUsage*(this: Light, usage: Modeusage): bool  {.importcpp: "getModeUsage".}
+proc getModeUsage*(this: Light, usage: ModeUsage): bool  {.importcpp: "getModeUsage".}
 
 proc setLightNum*(this: var Light, num: cint)  {.importcpp: "setLightNum".}
     ## Set which OpenGL light to operate on.

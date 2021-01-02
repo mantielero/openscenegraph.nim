@@ -1,7 +1,8 @@
-import State  # provides: osg::State
-import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
-import CopyOp  # provides: osg::CopyOp
+import osg_types
+  # File: State  was providing: osg::State
+  # File: Object  was providing: osg::Object
+  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
+  # File: CopyOp  was providing: osg::CopyOp
 type
   VertexAttribDivisor* {.header: "VertexAttribDivisor", importcpp: "osg::VertexAttribDivisor", byref.} = object #of class osg::StateAttribute
     ## VertexAttribDivisor state class which encapsulates OpenGL
@@ -15,12 +16,12 @@ proc constructVertexAttribDivisor*(): VertexAttribDivisor {.constructor,importcp
 
 proc constructVertexAttribDivisor*(index: cuint, divisor: cuint): VertexAttribDivisor {.constructor,importcpp: "osg::VertexAttribDivisor::VertexAttribDivisor(@)".}
 
-proc constructVertexAttribDivisor*(vad: Vertexattribdivisor, copyop: Copyop = SHALLOW_COPY): VertexAttribDivisor {.constructor,importcpp: "osg::VertexAttribDivisor::VertexAttribDivisor(@)".}
+proc constructVertexAttribDivisor*(vad: VertexAttribDivisor, copyop: CopyOp = SHALLOW_COPY): VertexAttribDivisor {.constructor,importcpp: "osg::VertexAttribDivisor::VertexAttribDivisor(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: VertexAttribDivisor): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: VertexAttribDivisor, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: VertexAttribDivisor, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: VertexAttribDivisor, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -30,7 +31,7 @@ proc className*(this: VertexAttribDivisor): cstring  {.importcpp: "className".}
 
 proc getType*(this: VertexAttribDivisor): Type  {.importcpp: "getType".}
 
-proc compare*(this: VertexAttribDivisor, sa: Stateattribute): cint  {.importcpp: "compare".}
+proc compare*(this: VertexAttribDivisor, sa: StateAttribute): cint  {.importcpp: "compare".}
     ## Return -1 if *this < *rhs, 0 if *this==*rhs, 1 if *this>*rhs.
 
 proc getMember*(this: VertexAttribDivisor): cuint  {.importcpp: "getMember".}

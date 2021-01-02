@@ -1,22 +1,23 @@
-import State  # provides: osg::State
-import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
-import Plane  # provides: osg::Plane
-import CopyOp  # provides: osg::CopyOp
-import Matrixd  # provides: osg::Matrixd
+import osg_types
+  # File: State  was providing: osg::State
+  # File: Object  was providing: osg::Object
+  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
+  # File: Plane  was providing: osg::Plane
+  # File: CopyOp  was providing: osg::CopyOp
+  # File: Matrixd  was providing: osg::Matrixd
 type
-  Mode* {.size:sizeof(cuint),header: "TexGen", importcpp: "osg::TexGen::Mode".} = enum
-    mdEYE_LINEAR = 9216,
-    mdOBJECT_LINEAR = 9217,
-    mdSPHERE_MAP = 9218,
-    mdNORMAL_MAP = 34065,
-    mdREFLECTION_MAP = 34066
+  Mode* {.size:sizeof(cuint),header: "TexGen", importcpp: "osg::TexGen::Mode", pure.} = enum
+    EYE_LINEAR = 9216,
+    OBJECT_LINEAR = 9217,
+    SPHERE_MAP = 9218,
+    NORMAL_MAP = 34065,
+    REFLECTION_MAP = 34066
 
-  Coord* {.size:sizeof(cuint),header: "TexGen", importcpp: "osg::TexGen::Coord".} = enum
-    crdS = 0,
-    crdT = 1,
-    crdR = 2,
-    crdQ = 3
+  Coord* {.size:sizeof(cuint),header: "TexGen", importcpp: "osg::TexGen::Coord", pure.} = enum
+    S = 0,
+    T = 1,
+    R = 2,
+    Q = 3
 
 
 
@@ -24,12 +25,12 @@ type
 
 proc constructTexGen*(): TexGen {.constructor,importcpp: "osg::TexGen::TexGen".}
 
-proc constructTexGen*(texgen: Texgen, copyop: Copyop = SHALLOW_COPY): TexGen {.constructor,importcpp: "osg::TexGen::TexGen(@)".}
+proc constructTexGen*(texgen: TexGen, copyop: CopyOp = SHALLOW_COPY): TexGen {.constructor,importcpp: "osg::TexGen::TexGen(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: TexGen): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: TexGen, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: TexGen, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: TexGen, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -41,10 +42,10 @@ proc getType*(this: TexGen): Type  {.importcpp: "getType".}
 
 proc isTextureAttribute*(this: TexGen): bool  {.importcpp: "isTextureAttribute".}
 
-proc compare*(this: TexGen, sa: Stateattribute): cint  {.importcpp: "compare".}
+proc compare*(this: TexGen, sa: StateAttribute): cint  {.importcpp: "compare".}
     ## Return -1 if *this < *rhs, 0 if *this==*rhs, 1 if *this>*rhs.
 
-proc getModeUsage*(this: TexGen, usage: Modeusage): bool  {.importcpp: "getModeUsage".}
+proc getModeUsage*(this: TexGen, usage: ModeUsage): bool  {.importcpp: "getModeUsage".}
 
 proc apply*(this: TexGen, state: State)  {.importcpp: "apply".}
 

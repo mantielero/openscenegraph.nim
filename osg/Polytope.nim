@@ -1,14 +1,15 @@
-import Vec3  # provides: osg::Vec3
-import BoundingSphere  # provides: osg::BoundingSphere
-import Plane  # provides: osg::Plane
-import Vec3f  # provides: osg::Vec3f
-import BoundingBox  # provides: osg::BoundingBox
-import Matrix  # provides: osg::Matrix
+import osg_types
+  # File: Vec3  was providing: osg::Vec3
+  # File: BoundingSphere  was providing: osg::BoundingSphere
+  # File: Plane  was providing: osg::Plane
+  # File: Vec3f  was providing: osg::Vec3f
+  # File: BoundingBox  was providing: osg::BoundingBox
+  # File: Matrix  was providing: osg::Matrix
 type
   ClippingMask* {.header: "Polytope", importcpp: "osg::Polytope::ClippingMask".} = cuint
   PlaneList* {.header: "Polytope", importcpp: "osg::Polytope::PlaneList".} = cint
   VertexList* {.header: "Polytope", importcpp: "osg::Polytope::VertexList".} = cint
-  MaskStack* {.header: "Polytope", importcpp: "osg::Polytope::MaskStack".} = Fast_back_stack[Clippingmask]
+  MaskStack* {.header: "Polytope", importcpp: "osg::Polytope::MaskStack".} = fast_back_stack[ClippingMask]
 
 
 {.push header: "Polytope".}
@@ -17,7 +18,7 @@ proc constructPolytope*(): Polytope {.constructor,importcpp: "osg::Polytope::Pol
 
 proc constructPolytope*(cv: Polytope): Polytope {.constructor,importcpp: "osg::Polytope::Polytope(@)".}
 
-proc constructPolytope*(pl: Planelist): Polytope {.constructor,importcpp: "osg::Polytope::Polytope(@)".}
+proc constructPolytope*(pl: PlaneList): Polytope {.constructor,importcpp: "osg::Polytope::Polytope(@)".}
 
 proc clear*(this: var Polytope)  {.importcpp: "clear".}
 
@@ -27,12 +28,12 @@ proc setToUnitFrustum*(this: var Polytope, withNear: bool, withFar: bool)  {.imp
     ## Create a Polytope which is a cube, centered at 0,0,0, with sides of 2
     ## units.
 
-proc setToBoundingBox*(this: var Polytope, bb: Boundingbox)  {.importcpp: "setToBoundingBox".}
+proc setToBoundingBox*(this: var Polytope, bb: BoundingBox)  {.importcpp: "setToBoundingBox".}
     ## Create a Polytope which is a equivalent to BoundingBox.
 
 proc setAndTransformProvidingInverse*(this: var Polytope, pt: Polytope, matrix: Matrix)  {.importcpp: "setAndTransformProvidingInverse".}
 
-proc set*(this: var Polytope, pl: Planelist)  {.importcpp: "set".}
+proc set*(this: var Polytope, pl: PlaneList)  {.importcpp: "set".}
 
 proc add*(this: var Polytope, pl: Plane)  {.importcpp: "add".}
 
@@ -41,29 +42,29 @@ proc flip*(this: var Polytope)  {.importcpp: "flip".}
 
 proc empty*(this: Polytope): bool  {.importcpp: "empty".}
 
-proc getPlaneList*(this: var Polytope): Planelist  {.importcpp: "getPlaneList".}
+proc getPlaneList*(this: var Polytope): PlaneList  {.importcpp: "getPlaneList".}
 
-proc getPlaneList*(this: Polytope): Planelist  {.importcpp: "getPlaneList".}
+proc getPlaneList*(this: Polytope): PlaneList  {.importcpp: "getPlaneList".}
 
-proc setReferenceVertexList*(this: var Polytope, vertices: Vertexlist)  {.importcpp: "setReferenceVertexList".}
+proc setReferenceVertexList*(this: var Polytope, vertices: VertexList)  {.importcpp: "setReferenceVertexList".}
 
-proc getReferenceVertexList*(this: var Polytope): Vertexlist  {.importcpp: "getReferenceVertexList".}
+proc getReferenceVertexList*(this: var Polytope): VertexList  {.importcpp: "getReferenceVertexList".}
 
-proc getReferenceVertexList*(this: Polytope): Vertexlist  {.importcpp: "getReferenceVertexList".}
+proc getReferenceVertexList*(this: Polytope): VertexList  {.importcpp: "getReferenceVertexList".}
 
 proc setupMask*(this: var Polytope)  {.importcpp: "setupMask".}
 
-proc getCurrentMask*(this: var Polytope): Clippingmask  {.importcpp: "getCurrentMask".}
+proc getCurrentMask*(this: var Polytope): ClippingMask  {.importcpp: "getCurrentMask".}
 
-proc getCurrentMask*(this: Polytope): Clippingmask  {.importcpp: "getCurrentMask".}
+proc getCurrentMask*(this: Polytope): ClippingMask  {.importcpp: "getCurrentMask".}
 
-proc setResultMask*(this: var Polytope, mask: Clippingmask)  {.importcpp: "setResultMask".}
+proc setResultMask*(this: var Polytope, mask: ClippingMask)  {.importcpp: "setResultMask".}
 
-proc getResultMask*(this: Polytope): Clippingmask  {.importcpp: "getResultMask".}
+proc getResultMask*(this: Polytope): ClippingMask  {.importcpp: "getResultMask".}
 
-proc getMaskStack*(this: var Polytope): Maskstack  {.importcpp: "getMaskStack".}
+proc getMaskStack*(this: var Polytope): MaskStack  {.importcpp: "getMaskStack".}
 
-proc getMaskStack*(this: Polytope): Maskstack  {.importcpp: "getMaskStack".}
+proc getMaskStack*(this: Polytope): MaskStack  {.importcpp: "getMaskStack".}
 
 proc pushCurrentMask*(this: var Polytope)  {.importcpp: "pushCurrentMask".}
 
@@ -76,14 +77,14 @@ proc contains*(this: var Polytope, vertices: cint): bool  {.importcpp: "contains
     ## Check whether any part of vertex list is contained within clipping
     ## set.
 
-proc contains*(this: var Polytope, bs: Boundingsphere): bool  {.importcpp: "contains".}
+proc contains*(this: var Polytope, bs: BoundingSphere): bool  {.importcpp: "contains".}
     ## Check whether any part of a bounding sphere is contained within
     ## clipping set. Using a mask to determine which planes should be used
     ## for the check, and modifying the mask to turn off planes which
     ## wouldn't contribute to clipping of any internal objects. This feature
     ## is used in osgUtil::CullVisitor to prevent redundant plane checking.
 
-proc contains*(this: var Polytope, bb: Boundingbox): bool  {.importcpp: "contains".}
+proc contains*(this: var Polytope, bb: BoundingBox): bool  {.importcpp: "contains".}
     ## Check whether any part of a bounding box is contained within clipping
     ## set. Using a mask to determine which planes should be used for the
     ## check, and modifying the mask to turn off planes which wouldn't
@@ -93,11 +94,11 @@ proc contains*(this: var Polytope, bb: Boundingbox): bool  {.importcpp: "contain
 proc containsAllOf*(this: var Polytope, vertices: cint): bool  {.importcpp: "containsAllOf".}
     ## Check whether all of vertex list is contained with clipping set.
 
-proc containsAllOf*(this: var Polytope, bs: Boundingsphere): bool  {.importcpp: "containsAllOf".}
+proc containsAllOf*(this: var Polytope, bs: BoundingSphere): bool  {.importcpp: "containsAllOf".}
     ## Check whether the entire bounding sphere is contained within clipping
     ## set.
 
-proc containsAllOf*(this: var Polytope, bb: Boundingbox): bool  {.importcpp: "containsAllOf".}
+proc containsAllOf*(this: var Polytope, bb: BoundingBox): bool  {.importcpp: "containsAllOf".}
     ## Check whether the entire bounding box is contained within clipping
     ## set.
 

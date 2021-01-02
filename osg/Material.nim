@@ -1,21 +1,22 @@
-import State  # provides: osg::State
-import Vec4  # provides: osg::Vec4
-import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
-import CopyOp  # provides: osg::CopyOp
+import osg_types
+  # File: State  was providing: osg::State
+  # File: Vec4  was providing: osg::Vec4
+  # File: Object  was providing: osg::Object
+  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
+  # File: CopyOp  was providing: osg::CopyOp
 type
-  Face* {.size:sizeof(cuint),header: "Material", importcpp: "osg::Material::Face".} = enum
-    fcFRONT = 1028,
-    fcBACK = 1029,
-    fcFRONT_AND_BACK = 1032
+  Face* {.size:sizeof(cuint),header: "Material", importcpp: "osg::Material::Face", pure.} = enum
+    FRONT = 1028,
+    BACK = 1029,
+    FRONT_AND_BACK = 1032
 
-  ColorMode* {.size:sizeof(cuint),header: "Material", importcpp: "osg::Material::ColorMode".} = enum
-    clrmdAMBIENT = 4608,
-    clrmdDIFFUSE = 4609,
-    clrmdSPECULAR = 4610,
-    clrmdEMISSION = 5632,
-    clrmdAMBIENT_AND_DIFFUSE = 5634,
-    clrmdOFF = 5635
+  ColorMode* {.size:sizeof(cuint),header: "Material", importcpp: "osg::Material::ColorMode", pure.} = enum
+    AMBIENT = 4608,
+    DIFFUSE = 4609,
+    SPECULAR = 4610,
+    EMISSION = 5632,
+    AMBIENT_AND_DIFFUSE = 5634,
+    OFF = 5635
 
   Material* {.header: "Material", importcpp: "osg::Material", byref.} = object #of class osg::StateAttribute
     ## Material - encapsulates OpenGL glMaterial state.
@@ -26,12 +27,12 @@ type
 
 proc constructMaterial*(): Material {.constructor,importcpp: "osg::Material::Material".}
 
-proc constructMaterial*(mat: Material, copyop: Copyop = SHALLOW_COPY): Material {.constructor,importcpp: "osg::Material::Material(@)".}
+proc constructMaterial*(mat: Material, copyop: CopyOp = SHALLOW_COPY): Material {.constructor,importcpp: "osg::Material::Material(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: Material): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: Material, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: Material, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: Material, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -41,18 +42,18 @@ proc className*(this: Material): cstring  {.importcpp: "className".}
 
 proc getType*(this: Material): Type  {.importcpp: "getType".}
 
-proc compare*(this: Material, sa: Stateattribute): cint  {.importcpp: "compare".}
+proc compare*(this: Material, sa: StateAttribute): cint  {.importcpp: "compare".}
     ## return -1 if *this < *rhs, 0 if *this==*rhs, 1 if *this>*rhs.
 
 proc `=`*(this: var Material, rhs: Material): Material  {.importcpp: "# = #".}
 
-proc getModeUsage*(this: Material, Modeusage): bool  {.importcpp: "getModeUsage".}
+proc getModeUsage*(this: Material, a00: ModeUsage): bool  {.importcpp: "getModeUsage".}
 
 proc apply*(this: Material, state: State)  {.importcpp: "apply".}
 
-proc setColorMode*(this: var Material, mode: Colormode)  {.importcpp: "setColorMode".}
+proc setColorMode*(this: var Material, mode: ColorMode)  {.importcpp: "setColorMode".}
 
-proc getColorMode*(this: Material): Colormode  {.importcpp: "getColorMode".}
+proc getColorMode*(this: Material): ColorMode  {.importcpp: "getColorMode".}
 
 proc setAmbient*(this: var Material, face: Face, ambient: Vec4)  {.importcpp: "setAmbient".}
 

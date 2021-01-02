@@ -1,9 +1,10 @@
-import Vec3  # provides: osg::Vec3
-import Object  # provides: osg::Object
-import Image  # provides: osg::Image
-import BoundingBox  # provides: osg::BoundingBox
-import CopyOp  # provides: osg::CopyOp
-import RenderInfo  # provides: osg::RenderInfo
+import osg_types
+  # File: Vec3  was providing: osg::Vec3
+  # File: Object  was providing: osg::Object
+  # File: Image  was providing: osg::Image
+  # File: BoundingBox  was providing: osg::BoundingBox
+  # File: CopyOp  was providing: osg::CopyOp
+  # File: RenderInfo  was providing: osg::RenderInfo
 type
   DrawPixels* {.header: "DrawPixels", importcpp: "osg::DrawPixels", byref.} = object #of class osg::Drawable
     ## DrawPixels is an osg::Drawable subclass which encapsulates the drawing
@@ -15,12 +16,12 @@ type
 
 proc constructDrawPixels*(): DrawPixels {.constructor,importcpp: "osg::DrawPixels::DrawPixels".}
 
-proc constructDrawPixels*(drawimage: Drawpixels, copyop: Copyop = SHALLOW_COPY): DrawPixels {.constructor,importcpp: "osg::DrawPixels::DrawPixels(@)".}
+proc constructDrawPixels*(drawimage: DrawPixels, copyop: CopyOp = SHALLOW_COPY): DrawPixels {.constructor,importcpp: "osg::DrawPixels::DrawPixels(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: DrawPixels): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: DrawPixels, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: DrawPixels, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: DrawPixels, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -48,10 +49,10 @@ proc setSubImageDimensions*(this: var DrawPixels, offsetX: cuint, offsetY: cuint
 
 proc getSubImageDimensions*(this: DrawPixels, offsetX: cuint, offsetY: cuint, width: cuint, height: cuint)  {.importcpp: "getSubImageDimensions".}
 
-proc drawImplementation*(this: DrawPixels, renderInfo: Renderinfo)  {.importcpp: "drawImplementation".}
+proc drawImplementation*(this: DrawPixels, renderInfo: RenderInfo)  {.importcpp: "drawImplementation".}
 
-proc computeBoundingBox*(this: DrawPixels): Boundingbox  {.importcpp: "computeBoundingBox".}
+proc computeBoundingBox*(this: DrawPixels): BoundingBox  {.importcpp: "computeBoundingBox".}
 
-proc `=`*(this: var DrawPixels, Drawpixels): Drawpixels  {.importcpp: "# = #".}
+proc `=`*(this: var DrawPixels, a00: DrawPixels): DrawPixels  {.importcpp: "# = #".}
 
 {.pop.}  # header: "DrawPixels"

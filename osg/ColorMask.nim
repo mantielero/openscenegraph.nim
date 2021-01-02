@@ -1,19 +1,20 @@
-import State  # provides: osg::State
-import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
-import CopyOp  # provides: osg::CopyOp
+import osg_types
+  # File: State  was providing: osg::State
+  # File: Object  was providing: osg::Object
+  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
+  # File: CopyOp  was providing: osg::CopyOp
 {.push header: "ColorMask".}
 
 proc constructColorMask*(): ColorMask {.constructor,importcpp: "osg::ColorMask::ColorMask".}
 
 proc constructColorMask*(red: bool, green: bool, blue: bool, alpha: bool): ColorMask {.constructor,importcpp: "osg::ColorMask::ColorMask(@)".}
 
-proc constructColorMask*(cm: Colormask, copyop: Copyop = SHALLOW_COPY): ColorMask {.constructor,importcpp: "osg::ColorMask::ColorMask(@)".}
+proc constructColorMask*(cm: ColorMask, copyop: CopyOp = SHALLOW_COPY): ColorMask {.constructor,importcpp: "osg::ColorMask::ColorMask(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: ColorMask): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: ColorMask, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: ColorMask, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: ColorMask, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -23,7 +24,7 @@ proc className*(this: ColorMask): cstring  {.importcpp: "className".}
 
 proc getType*(this: ColorMask): Type  {.importcpp: "getType".}
 
-proc compare*(this: ColorMask, sa: Stateattribute): cint  {.importcpp: "compare".}
+proc compare*(this: ColorMask, sa: StateAttribute): cint  {.importcpp: "compare".}
     ## Return -1 if *this < *rhs, 0 if *this==*rhs, 1 if *this>*rhs.
 
 proc setMask*(this: var ColorMask, red: bool, green: bool, blue: bool, alpha: bool)  {.importcpp: "setMask".}

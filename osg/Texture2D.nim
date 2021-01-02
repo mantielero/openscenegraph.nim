@@ -1,8 +1,10 @@
-import State  # provides: osg::State
-import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
-import Image  # provides: osg::Image
-import CopyOp  # provides: osg::CopyOp
+import osg_types
+  # File: State  was providing: osg::State
+  # File: ref_ptr  was providing: osg::ref_ptr
+  # File: Object  was providing: osg::Object
+  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
+  # File: Image  was providing: osg::Image
+  # File: CopyOp  was providing: osg::CopyOp
 type
   Texture2D* {.header: "Texture2D", importcpp: "osg::Texture2D", byref.} = object #of class osg::Texture
     ## Encapsulates OpenGL 2D texture functionality. Doesn't support cube
@@ -19,12 +21,12 @@ proc constructTexture2D*(): Texture2D {.constructor,importcpp: "osg::Texture2D::
 
 proc constructTexture2D*(image: ptr Image ): Texture2D {.constructor,importcpp: "osg::Texture2D::Texture2D(@)".}
 
-proc constructTexture2D*(text: Texture2d, copyop: Copyop = SHALLOW_COPY): Texture2D {.constructor,importcpp: "osg::Texture2D::Texture2D(@)".}
+proc constructTexture2D*(text: Texture2D, copyop: CopyOp = SHALLOW_COPY): Texture2D {.constructor,importcpp: "osg::Texture2D::Texture2D(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: Texture2D): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: Texture2D, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: Texture2D, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: Texture2D, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -34,7 +36,7 @@ proc className*(this: Texture2D): cstring  {.importcpp: "className".}
 
 proc getType*(this: Texture2D): Type  {.importcpp: "getType".}
 
-proc compare*(this: Texture2D, rhs: Stateattribute): cint  {.importcpp: "compare".}
+proc compare*(this: Texture2D, rhs: StateAttribute): cint  {.importcpp: "compare".}
     ## Return -1 if *this < *rhs, 0 if *this==*rhs, 1 if *this>*rhs.
 
 proc getTextureTarget*(this: Texture2D): GLenum  {.importcpp: "getTextureTarget".}
@@ -54,13 +56,13 @@ proc isDirty*(this: Texture2D, contextID: cuint): bool  {.importcpp: "isDirty".}
 
 proc getModifiedCount*(this: Texture2D, contextID: cuint): cuint  {.importcpp: "getModifiedCount".}
 
-proc setImage*(this: var Texture2D, cuint, image: ptr Image )  {.importcpp: "setImage".}
+proc setImage*(this: var Texture2D, a00: cuint, image: ptr Image )  {.importcpp: "setImage".}
     ## Sets the texture image, ignoring face.
 
-proc getImage*(this: var Texture2D, cuint): ptr Image   {.importcpp: "getImage".}
+proc getImage*(this: var Texture2D, a00: cuint): ptr Image   {.importcpp: "getImage".}
     ## Gets the texture image, ignoring face.
 
-proc getImage*(this: Texture2D, cuint): ptr Image   {.importcpp: "getImage".}
+proc getImage*(this: Texture2D, a00: cuint): ptr Image   {.importcpp: "getImage".}
     ## Gets the const texture image, ignoring face.
 
 proc getNumImages*(this: Texture2D): cuint  {.importcpp: "getNumImages".}
@@ -80,19 +82,19 @@ proc getTextureHeight*(this: Texture2D): cint  {.importcpp: "getTextureHeight".}
 
 proc getTextureDepth*(this: Texture2D): cint  {.importcpp: "getTextureDepth".}
 
-proc textureObjectValid*(this: SubloadCallback, texture: Texture2d, state: State): bool  {.importcpp: "textureObjectValid".}
+proc textureObjectValid*(this: SubloadCallback, texture: Texture2D, state: State): bool  {.importcpp: "textureObjectValid".}
 
-proc generateTextureObject*(this: SubloadCallback, texture: Texture2d, state: State): Ref_ptr[TextureObject]  {.importcpp: "generateTextureObject".}
+proc generateTextureObject*(this: SubloadCallback, texture: Texture2D, state: State): ref_ptr[TextureObject]  {.importcpp: "generateTextureObject".}
 
-proc load*(this: SubloadCallback, texture: Texture2d, state: State)  {.importcpp: "load".}
+proc load*(this: SubloadCallback, texture: Texture2D, state: State)  {.importcpp: "load".}
 
-proc subload*(this: SubloadCallback, texture: Texture2d, state: State)  {.importcpp: "subload".}
+proc subload*(this: SubloadCallback, texture: Texture2D, state: State)  {.importcpp: "subload".}
 
-proc setSubloadCallback*(this: var Texture2D, cb: ptr Subloadcallback )  {.importcpp: "setSubloadCallback".}
+proc setSubloadCallback*(this: var Texture2D, cb: ptr SubloadCallback )  {.importcpp: "setSubloadCallback".}
 
-proc getSubloadCallback*(this: var Texture2D): ptr Subloadcallback   {.importcpp: "getSubloadCallback".}
+proc getSubloadCallback*(this: var Texture2D): ptr SubloadCallback   {.importcpp: "getSubloadCallback".}
 
-proc getSubloadCallback*(this: Texture2D): ptr Subloadcallback   {.importcpp: "getSubloadCallback".}
+proc getSubloadCallback*(this: Texture2D): ptr SubloadCallback   {.importcpp: "getSubloadCallback".}
 
 proc setNumMipmapLevels*(this: Texture2D, num: cuint)  {.importcpp: "setNumMipmapLevels".}
     ## Helper function. Sets the number of mipmap levels created for this

@@ -1,20 +1,21 @@
-import State  # provides: osg::State
-import Object  # provides: osg::Object
-import CopyOp  # provides: osg::CopyOp
-import Program  # provides: osg::Program
+import osg_types
+  # File: State  was providing: osg::State
+  # File: Object  was providing: osg::Object
+  # File: CopyOp  was providing: osg::CopyOp
+  # File: Program  was providing: osg::Program
 type
-  Type* {.size:sizeof(cint),header: "Shader", importcpp: "osg::Shader::Type".} = enum
-    typUNDEFINED = -1,
-    typFRAGMENT = 35632,
-    typVERTEX = 35633,
-    typGEOMETRY = 36313,
-    typTESSEVALUATION = 36487,
-    typTESSCONTROL = 36488,
-    typCOMPUTE = 37305
+  Type* {.size:sizeof(cint),header: "Shader", importcpp: "osg::Shader::Type", pure.} = enum
+    UNDEFINED = -1,
+    FRAGMENT = 35632,
+    VERTEX = 35633,
+    GEOMETRY = 36313,
+    TESSEVALUATION = 36487,
+    TESSCONTROL = 36488,
+    COMPUTE = 37305
 
-  ShaderDefinesMode* {.size:sizeof(cuint),header: "Shader", importcpp: "osg::Shader::ShaderDefinesMode".} = enum
-    shdrdfnsmdUSE_SHADER_PRAGMA = 0,
-    shdrdfnsmdUSE_MANUAL_SETTINGS = 1
+  ShaderDefinesMode* {.size:sizeof(cuint),header: "Shader", importcpp: "osg::Shader::ShaderDefinesMode", pure.} = enum
+    USE_SHADER_PRAGMA = 0,
+    USE_MANUAL_SETTINGS = 1
 
   ShaderBinary* {.header: "Shader", importcpp: "osg::ShaderBinary", byref.} = object #of osg::Object
     ## Simple class for wrapping up the data used in OpenGL ES 2's
@@ -36,33 +37,33 @@ type
 
 proc constructShaderBinary*(): ShaderBinary {.constructor,importcpp: "osg::ShaderBinary::ShaderBinary".}
 
-proc constructShaderBinary*(rhs: Shaderbinary, copyop: Copyop = SHALLOW_COPY): ShaderBinary {.constructor,importcpp: "osg::ShaderBinary::ShaderBinary(@)".}
+proc constructShaderBinary*(rhs: ShaderBinary, copyop: CopyOp = SHALLOW_COPY): ShaderBinary {.constructor,importcpp: "osg::ShaderBinary::ShaderBinary(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc constructShader*(`type`: Type): Shader {.constructor,importcpp: "osg::Shader::Shader(@)".}
 
-proc constructShader*(`type`: Type, source: String): Shader {.constructor,importcpp: "osg::Shader::Shader(@)".}
+proc constructShader*(`type`: Type, source: string): Shader {.constructor,importcpp: "osg::Shader::Shader(@)".}
 
-proc constructShader*(`type`: Type, shaderBinary: ptr Shaderbinary ): Shader {.constructor,importcpp: "osg::Shader::Shader(@)".}
+proc constructShader*(`type`: Type, shaderBinary: ptr ShaderBinary ): Shader {.constructor,importcpp: "osg::Shader::Shader(@)".}
 
-proc constructShader*(rhs: Shader, copyop: Copyop = SHALLOW_COPY): Shader {.constructor,importcpp: "osg::Shader::Shader(@)".}
+proc constructShader*(rhs: Shader, copyop: CopyOp = SHALLOW_COPY): Shader {.constructor,importcpp: "osg::Shader::Shader(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc constructPerContextShader*(shader: ptr Shader , contextID: cuint): PerContextShader {.constructor,importcpp: "osg::Shader::PerContextShader::PerContextShader(@)".}
 
 proc constructPerContextShader*(): PerContextShader {.constructor,importcpp: "osg::Shader::PerContextShader::PerContextShader".}
 
-proc constructPerContextShader*(Percontextshader): PerContextShader {.constructor,importcpp: "osg::Shader::PerContextShader::PerContextShader(@)".}
+proc constructPerContextShader*(a00: PerContextShader): PerContextShader {.constructor,importcpp: "osg::Shader::PerContextShader::PerContextShader(@)".}
 
 proc constructShaderObjects*(shader: ptr Shader , contextID: cuint): ShaderObjects {.constructor,importcpp: "osg::Shader::ShaderObjects::ShaderObjects(@)".}
 
 proc constructShaderComponent*(): ShaderComponent {.constructor,importcpp: "osg::ShaderComponent::ShaderComponent".}
 
-proc constructShaderComponent*(sc: Shadercomponent, copyop: Copyop = SHALLOW_COPY): ShaderComponent {.constructor,importcpp: "osg::ShaderComponent::ShaderComponent(@)".}
+proc constructShaderComponent*(sc: ShaderComponent, copyop: CopyOp = SHALLOW_COPY): ShaderComponent {.constructor,importcpp: "osg::ShaderComponent::ShaderComponent(@)".}
 
 proc cloneType*(this: ShaderBinary): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: ShaderBinary, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: ShaderBinary, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: ShaderBinary, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -86,13 +87,13 @@ proc getData*(this: var ShaderBinary): ptr unsigned char  {.importcpp: "getData"
 proc getData*(this: ShaderBinary): ptr unsigned char  {.importcpp: "getData".}
     ## Get a const ptr to the shader binary data.
 
-proc readShaderBinaryFile*(this: var ShaderBinary, fileName: String): ptr Shaderbinary   {.importcpp: "readShaderBinaryFile".}
+proc readShaderBinaryFile*(this: var ShaderBinary, fileName: string): ptr ShaderBinary   {.importcpp: "readShaderBinaryFile".}
     ## Read shader binary from file. Return the resulting Shader or 0 if no
     ## valid shader binary could be read.
 
 proc cloneType*(this: Shader): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: Shader, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: Shader, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: Shader, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -111,50 +112,50 @@ proc getType*(this: Shader): Type  {.importcpp: "getType".}
 proc getTypename*(this: Shader): cstring  {.importcpp: "getTypename".}
     ## Get the Shader type as a descriptive string.
 
-proc setFileName*(this: var Shader, fileName: String)  {.importcpp: "setFileName".}
+proc setFileName*(this: var Shader, fileName: string)  {.importcpp: "setFileName".}
     ## Set file name for the shader source code.
 
-proc getFileName*(this: Shader): String  {.importcpp: "getFileName".}
+proc getFileName*(this: Shader): string  {.importcpp: "getFileName".}
     ## Get filename to which the shader source code belongs.
 
-proc setShaderSource*(this: var Shader, sourceText: String)  {.importcpp: "setShaderSource".}
+proc setShaderSource*(this: var Shader, sourceText: string)  {.importcpp: "setShaderSource".}
     ## Set the Shader's source code text from a string.
 
-proc getShaderSource*(this: Shader): String  {.importcpp: "getShaderSource".}
+proc getShaderSource*(this: Shader): string  {.importcpp: "getShaderSource".}
     ## Query the shader's source code text
 
-proc setShaderDefinesMode*(this: var Shader, sdm: Shaderdefinesmode)  {.importcpp: "setShaderDefinesMode".}
+proc setShaderDefinesMode*(this: var Shader, sdm: ShaderDefinesMode)  {.importcpp: "setShaderDefinesMode".}
 
-proc getShaderDefinesMode*(this: Shader): Shaderdefinesmode  {.importcpp: "getShaderDefinesMode".}
+proc getShaderDefinesMode*(this: Shader): ShaderDefinesMode  {.importcpp: "getShaderDefinesMode".}
 
-proc setShaderDefines*(this: var Shader, shaderDefs: Shaderdefines)  {.importcpp: "setShaderDefines".}
+proc setShaderDefines*(this: var Shader, shaderDefs: ShaderDefines)  {.importcpp: "setShaderDefines".}
 
-proc getShaderDefines*(this: var Shader): Shaderdefines  {.importcpp: "getShaderDefines".}
+proc getShaderDefines*(this: var Shader): ShaderDefines  {.importcpp: "getShaderDefines".}
 
-proc getShaderDefines*(this: Shader): Shaderdefines  {.importcpp: "getShaderDefines".}
+proc getShaderDefines*(this: Shader): ShaderDefines  {.importcpp: "getShaderDefines".}
 
-proc setShaderRequirements*(this: var Shader, shaderDefs: Shaderdefines)  {.importcpp: "setShaderRequirements".}
+proc setShaderRequirements*(this: var Shader, shaderDefs: ShaderDefines)  {.importcpp: "setShaderRequirements".}
 
-proc getShaderRequirements*(this: var Shader): Shaderdefines  {.importcpp: "getShaderRequirements".}
+proc getShaderRequirements*(this: var Shader): ShaderDefines  {.importcpp: "getShaderRequirements".}
 
-proc getShaderRequirements*(this: Shader): Shaderdefines  {.importcpp: "getShaderRequirements".}
+proc getShaderRequirements*(this: Shader): ShaderDefines  {.importcpp: "getShaderRequirements".}
 
-proc setShaderBinary*(this: var Shader, shaderBinary: ptr Shaderbinary )  {.importcpp: "setShaderBinary".}
+proc setShaderBinary*(this: var Shader, shaderBinary: ptr ShaderBinary )  {.importcpp: "setShaderBinary".}
     ## Set the Shader using a ShaderBinary.
 
-proc getShaderBinary*(this: var Shader): ptr Shaderbinary   {.importcpp: "getShaderBinary".}
+proc getShaderBinary*(this: var Shader): ptr ShaderBinary   {.importcpp: "getShaderBinary".}
     ## Get the Shader's ShaderBinary, return NULL if none is assigned.
 
-proc getShaderBinary*(this: Shader): ptr Shaderbinary   {.importcpp: "getShaderBinary".}
+proc getShaderBinary*(this: Shader): ptr ShaderBinary   {.importcpp: "getShaderBinary".}
     ## Get the const Shader's ShaderBinary, return NULL if none is assigned.
 
-proc readShaderFile*(this: var Shader, `type`: Type, fileName: String): ptr Shader   {.importcpp: "readShaderFile".}
+proc readShaderFile*(this: var Shader, `type`: Type, fileName: string): ptr Shader   {.importcpp: "readShaderFile".}
     ## Deorecated use osgDB::readRefShaderFile().
 
-proc loadShaderSourceFromFile*(this: var Shader, fileName: String): bool  {.importcpp: "loadShaderSourceFromFile".}
+proc loadShaderSourceFromFile*(this: var Shader, fileName: string): bool  {.importcpp: "loadShaderSourceFromFile".}
     ## Deorecated use osgDB::readRefShaderFile().
 
-proc addCodeInjection*(this: var Shader, position: cfloat, code: String)  {.importcpp: "addCodeInjection".}
+proc addCodeInjection*(this: var Shader, position: cfloat, code: string)  {.importcpp: "addCodeInjection".}
     ## Add code injection that will be placed in the main shader to enable
     ## support for this shader. The position is set up so that code to be
     ## inserted before the main() will have a negative value, a position
@@ -163,10 +164,10 @@ proc addCodeInjection*(this: var Shader, position: cfloat, code: String)  {.impo
     ## all the code injections are sorted in ascending order and then placed
     ## in the appropriate section of the main shader.
 
-proc getCodeInjectionMap*(this: var Shader): Codeinjectionmap  {.importcpp: "getCodeInjectionMap".}
+proc getCodeInjectionMap*(this: var Shader): CodeInjectionMap  {.importcpp: "getCodeInjectionMap".}
     ## Get the code injection map.
 
-proc getCodeInjectionMap*(this: Shader): Codeinjectionmap  {.importcpp: "getCodeInjectionMap".}
+proc getCodeInjectionMap*(this: Shader): CodeInjectionMap  {.importcpp: "getCodeInjectionMap".}
     ## Get the const code injection map.
 
 proc resizeGLObjectBuffers*(this: var Shader, maxSize: cuint)  {.importcpp: "resizeGLObjectBuffers".}
@@ -184,11 +185,11 @@ proc dirtyShader*(this: var Shader)  {.importcpp: "dirtyShader".}
 proc compileShader*(this: Shader, state: State)  {.importcpp: "compileShader".}
     ## If needed, compile the PCS's glShader
 
-proc getTypeId*(this: var Shader, tname: String): Type  {.importcpp: "getTypeId".}
+proc getTypeId*(this: var Shader, tname: string): Type  {.importcpp: "getTypeId".}
 
-proc setDefineString*(this: var PerContextShader, defStr: String)  {.importcpp: "setDefineString".}
+proc setDefineString*(this: var PerContextShader, defStr: string)  {.importcpp: "setDefineString".}
 
-proc getDefineString*(this: PerContextShader): String  {.importcpp: "getDefineString".}
+proc getDefineString*(this: PerContextShader): string  {.importcpp: "getDefineString".}
 
 proc getHandle*(this: PerContextShader): GLuint  {.importcpp: "getHandle".}
 
@@ -200,7 +201,7 @@ proc needsCompile*(this: PerContextShader): bool  {.importcpp: "needsCompile".}
 
 proc isCompiled*(this: PerContextShader): bool  {.importcpp: "isCompiled".}
 
-proc getInfoLog*(this: PerContextShader, infoLog: String): bool  {.importcpp: "getInfoLog".}
+proc getInfoLog*(this: PerContextShader, infoLog: string): bool  {.importcpp: "getInfoLog".}
 
 proc attachShader*(this: PerContextShader, program: GLuint)  {.importcpp: "attachShader".}
     ## Attach our glShader to a glProgram
@@ -208,15 +209,15 @@ proc attachShader*(this: PerContextShader, program: GLuint)  {.importcpp: "attac
 proc detachShader*(this: PerContextShader, program: GLuint)  {.importcpp: "detachShader".}
     ## Detach our glShader from a glProgram
 
-proc `=`*(this: var PerContextShader, Percontextshader): Percontextshader  {.importcpp: "# = #".}
+proc `=`*(this: var PerContextShader, a00: PerContextShader): PerContextShader  {.importcpp: "# = #".}
 
-proc getPCS*(this: ShaderObjects, defineStr: String): ptr Percontextshader   {.importcpp: "getPCS".}
+proc getPCS*(this: ShaderObjects, defineStr: string): ptr PerContextShader   {.importcpp: "getPCS".}
 
-proc createPerContextShader*(this: var ShaderObjects, defineStr: String): ptr Percontextshader   {.importcpp: "createPerContextShader".}
+proc createPerContextShader*(this: var ShaderObjects, defineStr: string): ptr PerContextShader   {.importcpp: "createPerContextShader".}
 
 proc requestCompile*(this: var ShaderObjects)  {.importcpp: "requestCompile".}
 
-proc getPCS*(this: Shader, state: State): ptr Percontextshader   {.importcpp: "getPCS".}
+proc getPCS*(this: Shader, state: State): ptr PerContextShader   {.importcpp: "getPCS".}
 
 proc addProgramRef*(this: var Shader, program: ptr Program ): bool  {.importcpp: "addProgramRef".}
 
@@ -224,13 +225,13 @@ proc removeProgramRef*(this: var Shader, program: ptr Program ): bool  {.importc
 
 proc prefixcomputeShaderDefines*(this: var Shader)  {.importcpp: "_computeShaderDefines".}
 
-proc prefixparseShaderDefines*(this: var Shader, str: String, defines: Shaderdefines)  {.importcpp: "_parseShaderDefines".}
+proc prefixparseShaderDefines*(this: var Shader, str: string, defines: ShaderDefines)  {.importcpp: "_parseShaderDefines".}
 
-proc `=`*(this: var Shader, Shader): Shader  {.importcpp: "# = #".}
+proc `=`*(this: var Shader, a00: Shader): Shader  {.importcpp: "# = #".}
 
 proc cloneType*(this: ShaderComponent): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: ShaderComponent, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: ShaderComponent, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: ShaderComponent, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 

@@ -1,12 +1,13 @@
-import State  # provides: osg::State
-import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
-import CopyOp  # provides: osg::CopyOp
+import osg_types
+  # File: State  was providing: osg::State
+  # File: Object  was providing: osg::Object
+  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
+  # File: CopyOp  was providing: osg::CopyOp
 type
-  Mode* {.size:sizeof(cuint),header: "CullFace", importcpp: "osg::CullFace::Mode".} = enum
-    mdFRONT = 1028,
-    mdBACK = 1029,
-    mdFRONT_AND_BACK = 1032
+  Mode* {.size:sizeof(cuint),header: "CullFace", importcpp: "osg::CullFace::Mode", pure.} = enum
+    FRONT = 1028,
+    BACK = 1029,
+    FRONT_AND_BACK = 1032
 
   CullFace* {.header: "CullFace", importcpp: "osg::CullFace", byref.} = object #of class osg::StateAttribute
     ## Class to globally enable/disable OpenGL's polygon culling mode.
@@ -17,12 +18,12 @@ type
 
 proc constructCullFace*(mode: Mode): CullFace {.constructor,importcpp: "osg::CullFace::CullFace(@)".}
 
-proc constructCullFace*(cf: Cullface, copyop: Copyop = SHALLOW_COPY): CullFace {.constructor,importcpp: "osg::CullFace::CullFace(@)".}
+proc constructCullFace*(cf: CullFace, copyop: CopyOp = SHALLOW_COPY): CullFace {.constructor,importcpp: "osg::CullFace::CullFace(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: CullFace): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: CullFace, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: CullFace, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: CullFace, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -32,10 +33,10 @@ proc className*(this: CullFace): cstring  {.importcpp: "className".}
 
 proc getType*(this: CullFace): Type  {.importcpp: "getType".}
 
-proc compare*(this: CullFace, sa: Stateattribute): cint  {.importcpp: "compare".}
+proc compare*(this: CullFace, sa: StateAttribute): cint  {.importcpp: "compare".}
     ## return -1 if *this < *rhs, 0 if *this==*rhs, 1 if *this>*rhs.
 
-proc getModeUsage*(this: CullFace, usage: Modeusage): bool  {.importcpp: "getModeUsage".}
+proc getModeUsage*(this: CullFace, usage: ModeUsage): bool  {.importcpp: "getModeUsage".}
 
 proc setMode*(this: var CullFace, mode: Mode)  {.importcpp: "setMode".}
 

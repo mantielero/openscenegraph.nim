@@ -11,10 +11,10 @@ type
 
 proc constructMakeString*(): MakeString {.constructor,importcpp: "osg::MakeString::MakeString".}
 
-proc `<<`*(this: var MakeString, fun: Ostream &)): Makestring  {.importcpp: "# << #".}
+proc `<<`*(this: var MakeString, fun: ostream &)): MakeString  {.importcpp: "# << #".}
 
-proc clear*(this: var MakeString): Makestring  {.importcpp: "clear".}
+proc clear*(this: var MakeString): MakeString  {.importcpp: "clear".}
 
-proc str*(this: MakeString): String  {.importcpp: "str".}
+proc str*(this: MakeString): string  {.importcpp: "str".}
 
 {.pop.}  # header: "io_utils"

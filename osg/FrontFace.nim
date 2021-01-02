@@ -1,11 +1,12 @@
-import State  # provides: osg::State
-import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
-import CopyOp  # provides: osg::CopyOp
+import osg_types
+  # File: State  was providing: osg::State
+  # File: Object  was providing: osg::Object
+  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
+  # File: CopyOp  was providing: osg::CopyOp
 type
-  Mode* {.size:sizeof(cuint),header: "FrontFace", importcpp: "osg::FrontFace::Mode".} = enum
-    mdCLOCKWISE = 2304,
-    mdCOUNTER_CLOCKWISE = 2305
+  Mode* {.size:sizeof(cuint),header: "FrontFace", importcpp: "osg::FrontFace::Mode", pure.} = enum
+    CLOCKWISE = 2304,
+    COUNTER_CLOCKWISE = 2305
 
   FrontFace* {.header: "FrontFace", importcpp: "osg::FrontFace", byref.} = object #of class osg::StateAttribute
     ## Class to specify the orientation of front-facing polygons.
@@ -16,12 +17,12 @@ type
 
 proc constructFrontFace*(face: Mode): FrontFace {.constructor,importcpp: "osg::FrontFace::FrontFace(@)".}
 
-proc constructFrontFace*(ff: Frontface, copyop: Copyop = SHALLOW_COPY): FrontFace {.constructor,importcpp: "osg::FrontFace::FrontFace(@)".}
+proc constructFrontFace*(ff: FrontFace, copyop: CopyOp = SHALLOW_COPY): FrontFace {.constructor,importcpp: "osg::FrontFace::FrontFace(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: FrontFace): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: FrontFace, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: FrontFace, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: FrontFace, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -31,7 +32,7 @@ proc className*(this: FrontFace): cstring  {.importcpp: "className".}
 
 proc getType*(this: FrontFace): Type  {.importcpp: "getType".}
 
-proc compare*(this: FrontFace, sa: Stateattribute): cint  {.importcpp: "compare".}
+proc compare*(this: FrontFace, sa: StateAttribute): cint  {.importcpp: "compare".}
     ## return -1 if *this < *rhs, 0 if *this==*rhs, 1 if *this>*rhs.
 
 proc setMode*(this: var FrontFace, mode: Mode)  {.importcpp: "setMode".}

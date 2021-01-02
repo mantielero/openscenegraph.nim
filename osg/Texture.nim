@@ -1,88 +1,90 @@
-import State  # provides: osg::State
-import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute::Type
-import Image  # provides: osg::Image
-import CopyOp  # provides: osg::CopyOp
-import GraphicsContext  # provides: osg::GraphicsContext
-import Vec4d  # provides: osg::Vec4d
-import FrameStamp  # provides: osg::FrameStamp
-import Vec4i  # provides: osg::Vec4i
+import osg_types
+  # File: State  was providing: osg::State
+  # File: ref_ptr  was providing: osg::ref_ptr
+  # File: Object  was providing: osg::Object
+  # File: StateAttribute  was providing: osg::StateAttribute::Type
+  # File: Image  was providing: osg::Image
+  # File: CopyOp  was providing: osg::CopyOp
+  # File: GraphicsContext  was providing: osg::GraphicsContext
+  # File: Vec4d  was providing: osg::Vec4d
+  # File: FrameStamp  was providing: osg::FrameStamp
+  # File: Vec4i  was providing: osg::Vec4i
 type
-  WrapParameter* {.size:sizeof(cuint),header: "Texture", importcpp: "osg::Texture::WrapParameter".} = enum
-    wrpprmtrWRAP_S = 0,
-    wrpprmtrWRAP_T = 1,
-    wrpprmtrWRAP_R = 2
+  WrapParameter* {.size:sizeof(cuint),header: "Texture", importcpp: "osg::Texture::WrapParameter", pure.} = enum
+    WRAP_S = 0,
+    WRAP_T = 1,
+    WRAP_R = 2
 
-  WrapMode* {.size:sizeof(cuint),header: "Texture", importcpp: "osg::Texture::WrapMode".} = enum
-    wrpmdCLAMP = 10496,
-    wrpmdREPEAT = 10497,
-    wrpmdCLAMP_TO_BORDER = 33069,
-    wrpmdCLAMP_TO_EDGE = 33071,
-    wrpmdMIRROR = 33648
+  WrapMode* {.size:sizeof(cuint),header: "Texture", importcpp: "osg::Texture::WrapMode", pure.} = enum
+    CLAMP = 10496,
+    REPEAT = 10497,
+    CLAMP_TO_BORDER = 33069,
+    CLAMP_TO_EDGE = 33071,
+    MIRROR = 33648
 
-  FilterParameter* {.size:sizeof(cuint),header: "Texture", importcpp: "osg::Texture::FilterParameter".} = enum
-    fltrprmtrMIN_FILTER = 0,
-    fltrprmtrMAG_FILTER = 1
+  FilterParameter* {.size:sizeof(cuint),header: "Texture", importcpp: "osg::Texture::FilterParameter", pure.} = enum
+    MIN_FILTER = 0,
+    MAG_FILTER = 1
 
-  FilterMode* {.size:sizeof(cuint),header: "Texture", importcpp: "osg::Texture::FilterMode".} = enum
-    fltrmdNEAREST = 9728,
-    fltrmdLINEAR = 9729,
-    fltrmdNEAREST_MIPMAP_NEAREST = 9984,
-    fltrmdLINEAR_MIPMAP_NEAREST = 9985,
-    fltrmdNEAREST_MIPMAP_LINEAR = 9986,
-    fltrmdLINEAR_MIPMAP_LINEAR = 9987
+  FilterMode* {.size:sizeof(cuint),header: "Texture", importcpp: "osg::Texture::FilterMode", pure.} = enum
+    NEAREST = 9728,
+    LINEAR = 9729,
+    NEAREST_MIPMAP_NEAREST = 9984,
+    LINEAR_MIPMAP_NEAREST = 9985,
+    NEAREST_MIPMAP_LINEAR = 9986,
+    LINEAR_MIPMAP_LINEAR = 9987
 
-  InternalFormatMode* {.size:sizeof(cuint),header: "Texture", importcpp: "osg::Texture::InternalFormatMode".} = enum
-    ntrnlfrmtmdUSE_IMAGE_DATA_FORMAT = 0,
-    ntrnlfrmtmdUSE_USER_DEFINED_FORMAT = 1,
-    ntrnlfrmtmdUSE_ARB_COMPRESSION = 2,
-    ntrnlfrmtmdUSE_S3TC_DXT1_COMPRESSION = 3,
-    ntrnlfrmtmdUSE_S3TC_DXT3_COMPRESSION = 4,
-    ntrnlfrmtmdUSE_S3TC_DXT5_COMPRESSION = 5,
-    ntrnlfrmtmdUSE_PVRTC_2BPP_COMPRESSION = 6,
-    ntrnlfrmtmdUSE_PVRTC_4BPP_COMPRESSION = 7,
-    ntrnlfrmtmdUSE_ETC_COMPRESSION = 8,
-    ntrnlfrmtmdUSE_ETC2_COMPRESSION = 9,
-    ntrnlfrmtmdUSE_RGTC1_COMPRESSION = 10,
-    ntrnlfrmtmdUSE_RGTC2_COMPRESSION = 11,
-    ntrnlfrmtmdUSE_S3TC_DXT1c_COMPRESSION = 12,
-    ntrnlfrmtmdUSE_S3TC_DXT1a_COMPRESSION = 13
+  InternalFormatMode* {.size:sizeof(cuint),header: "Texture", importcpp: "osg::Texture::InternalFormatMode", pure.} = enum
+    USE_IMAGE_DATA_FORMAT = 0,
+    USE_USER_DEFINED_FORMAT = 1,
+    USE_ARB_COMPRESSION = 2,
+    USE_S3TC_DXT1_COMPRESSION = 3,
+    USE_S3TC_DXT3_COMPRESSION = 4,
+    USE_S3TC_DXT5_COMPRESSION = 5,
+    USE_PVRTC_2BPP_COMPRESSION = 6,
+    USE_PVRTC_4BPP_COMPRESSION = 7,
+    USE_ETC_COMPRESSION = 8,
+    USE_ETC2_COMPRESSION = 9,
+    USE_RGTC1_COMPRESSION = 10,
+    USE_RGTC2_COMPRESSION = 11,
+    USE_S3TC_DXT1c_COMPRESSION = 12,
+    USE_S3TC_DXT1a_COMPRESSION = 13
 
-  InternalFormatType* {.size:sizeof(cuint),header: "Texture", importcpp: "osg::Texture::InternalFormatType".} = enum
+  InternalFormatType* {.size:sizeof(cuint),header: "Texture", importcpp: "osg::Texture::InternalFormatType", pure.} = enum
     ## Texture type determined by the internal texture format
 
-    ntrnlfrmttypNORMALIZED = 0,
+    NORMALIZED = 0,
       ## default OpenGL format (clamped values to [0,1) or [0,255])
-    ntrnlfrmttypFLOAT = 1,
+    FLOAT = 1,
       ## float values, Shader Model 3.0 (see ARB_texture_float)
-    ntrnlfrmttypSIGNED_INTEGER = 2,
+    SIGNED_INTEGER = 2,
       ## Signed integer values (see EXT_texture_integer)
-    ntrnlfrmttypUNSIGNED_INTEGER = 4
+    UNSIGNED_INTEGER = 4
       ## Unsigned integer value (see EXT_texture_integer)
 
-  ShadowCompareFunc* {.size:sizeof(cuint),header: "Texture", importcpp: "osg::Texture::ShadowCompareFunc".} = enum
-    shdwcmprfncNEVER = 512,
-    shdwcmprfncLESS = 513,
-    shdwcmprfncEQUAL = 514,
-    shdwcmprfncLEQUAL = 515,
-    shdwcmprfncGREATER = 516,
-    shdwcmprfncNOTEQUAL = 517,
-    shdwcmprfncGEQUAL = 518,
-    shdwcmprfncALWAYS = 519
+  ShadowCompareFunc* {.size:sizeof(cuint),header: "Texture", importcpp: "osg::Texture::ShadowCompareFunc", pure.} = enum
+    NEVER = 512,
+    LESS = 513,
+    EQUAL = 514,
+    LEQUAL = 515,
+    GREATER = 516,
+    NOTEQUAL = 517,
+    GEQUAL = 518,
+    ALWAYS = 519
 
-  ShadowTextureMode* {.size:sizeof(cuint),header: "Texture", importcpp: "osg::Texture::ShadowTextureMode".} = enum
-    shdwtxtrmdNONE = 0,
-    shdwtxtrmdALPHA = 6406,
-    shdwtxtrmdLUMINANCE = 6409,
-    shdwtxtrmdINTENSITY = 32841
+  ShadowTextureMode* {.size:sizeof(cuint),header: "Texture", importcpp: "osg::Texture::ShadowTextureMode", pure.} = enum
+    NONE = 0,
+    ALPHA = 6406,
+    LUMINANCE = 6409,
+    INTENSITY = 32841
 
-  GenerateMipmapMode* {.size:sizeof(cuint),header: "Texture", importcpp: "osg::Texture::GenerateMipmapMode".} = enum
+  GenerateMipmapMode* {.size:sizeof(cuint),header: "Texture", importcpp: "osg::Texture::GenerateMipmapMode", pure.} = enum
     ## Returned by mipmapBeforeTexImage() to indicate what
     ## mipmapAfterTexImage() should do
 
-    gnrtmpmpmdGENERATE_MIPMAP_NONE = 0,
-    gnrtmpmpmdGENERATE_MIPMAP = 1,
-    gnrtmpmpmdGENERATE_MIPMAP_TEX_PARAMETER = 2
+    GENERATE_MIPMAP_NONE = 0,
+    GENERATE_MIPMAP = 1,
+    GENERATE_MIPMAP_TEX_PARAMETER = 2
 
   TextureObject* {.header: "Texture", importcpp: "osg::Texture::TextureObject", byref.} = object #of class osg::GraphicsObject
 
@@ -92,7 +94,7 @@ type
 
   TexParameterDirtyList* {.header: "Texture", importcpp: "osg::Texture::TexParameterDirtyList".} = buffered_value[unsigned int]
   TextureObjectList* {.header: "Texture", importcpp: "osg::Texture::TextureObjectList".} = cint
-  TextureObjectBuffer* {.header: "Texture", importcpp: "osg::Texture::TextureObjectBuffer".} = Buffered_object[Ref_ptr[Textureobject]]
+  TextureObjectBuffer* {.header: "Texture", importcpp: "osg::Texture::TextureObjectBuffer".} = buffered_object[ref_ptr[TextureObject]]
   TextureSetMap* {.header: "Texture", importcpp: "osg::TextureObjectManager::TextureSetMap".} = cint
 
 
@@ -100,7 +102,7 @@ type
 
 proc constructTexture*(): Texture {.constructor,importcpp: "osg::Texture::Texture".}
 
-proc constructTexture*(text: Texture, copyop: Copyop = SHALLOW_COPY): Texture {.constructor,importcpp: "osg::Texture::Texture(@)".}
+proc constructTexture*(text: Texture, copyop: CopyOp = SHALLOW_COPY): Texture {.constructor,importcpp: "osg::Texture::Texture(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc constructTextureProfile*(target: GLenum): TextureProfile {.constructor,importcpp: "osg::Texture::TextureProfile::TextureProfile(@)".}
@@ -109,17 +111,17 @@ proc constructTextureProfile*(target: GLenum, numMipmapLevels: GLint, internalFo
 
 proc constructTextureObject*(texture: ptr Texture , id: GLuint, target: GLenum): TextureObject {.constructor,importcpp: "osg::Texture::TextureObject::TextureObject(@)".}
 
-proc constructTextureObject*(texture: ptr Texture , id: GLuint, profile: Textureprofile): TextureObject {.constructor,importcpp: "osg::Texture::TextureObject::TextureObject(@)".}
+proc constructTextureObject*(texture: ptr Texture , id: GLuint, profile: TextureProfile): TextureObject {.constructor,importcpp: "osg::Texture::TextureObject::TextureObject(@)".}
 
 proc constructTextureObject*(texture: ptr Texture , id: GLuint, target: GLenum, numMipmapLevels: GLint, internalFormat: GLenum, width: GLsizei, height: GLsizei, depth: GLsizei, border: GLint): TextureObject {.constructor,importcpp: "osg::Texture::TextureObject::TextureObject(@)".}
 
-proc constructTextureObjectSet*(parent: ptr Textureobjectmanager , profile: Textureprofile): TextureObjectSet {.constructor,importcpp: "osg::TextureObjectSet::TextureObjectSet(@)".}
+proc constructTextureObjectSet*(parent: ptr TextureObjectManager , profile: TextureProfile): TextureObjectSet {.constructor,importcpp: "osg::TextureObjectSet::TextureObjectSet(@)".}
 
 proc constructTextureObjectManager*(contextID: cuint): TextureObjectManager {.constructor,importcpp: "osg::TextureObjectManager::TextureObjectManager(@)".}
 
 proc cloneType*(this: Texture): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: Texture, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: Texture, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: Texture, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -141,7 +143,7 @@ proc isTextureAttribute*(this: Texture): bool  {.importcpp: "isTextureAttribute"
 
 proc getTextureTarget*(this: Texture): GLenum  {.importcpp: "getTextureTarget".}
 
-proc getModeUsage*(this: Texture, usage: Modeusage): bool  {.importcpp: "getModeUsage".}
+proc getModeUsage*(this: Texture, usage: ModeUsage): bool  {.importcpp: "getModeUsage".}
 
 proc getTextureWidth*(this: Texture): cint  {.importcpp: "getTextureWidth".}
 
@@ -149,10 +151,10 @@ proc getTextureHeight*(this: Texture): cint  {.importcpp: "getTextureHeight".}
 
 proc getTextureDepth*(this: Texture): cint  {.importcpp: "getTextureDepth".}
 
-proc setWrap*(this: var Texture, which: Wrapparameter, wrap: Wrapmode)  {.importcpp: "setWrap".}
+proc setWrap*(this: var Texture, which: WrapParameter, wrap: WrapMode)  {.importcpp: "setWrap".}
     ## Sets the texture wrap mode.
 
-proc getWrap*(this: Texture, which: Wrapparameter): Wrapmode  {.importcpp: "getWrap".}
+proc getWrap*(this: Texture, which: WrapParameter): WrapMode  {.importcpp: "getWrap".}
     ## Gets the texture wrap mode.
 
 proc setBorderColor*(this: var Texture, color: Vec4d)  {.importcpp: "setBorderColor".}
@@ -168,10 +170,10 @@ proc setBorderWidth*(this: var Texture, width: GLint)  {.importcpp: "setBorderWi
 
 proc getBorderWidth*(this: Texture): GLint  {.importcpp: "getBorderWidth".}
 
-proc setFilter*(this: var Texture, which: Filterparameter, filter: Filtermode)  {.importcpp: "setFilter".}
+proc setFilter*(this: var Texture, which: FilterParameter, filter: FilterMode)  {.importcpp: "setFilter".}
     ## Sets the texture filter mode.
 
-proc getFilter*(this: Texture, which: Filterparameter): Filtermode  {.importcpp: "getFilter".}
+proc getFilter*(this: Texture, which: FilterParameter): FilterMode  {.importcpp: "getFilter".}
     ## Gets the texture filter mode.
 
 proc setMaxAnisotropy*(this: var Texture, anis: cfloat)  {.importcpp: "setMaxAnisotropy".}
@@ -242,13 +244,13 @@ proc setResizeNonPowerOfTwoHint*(this: var Texture, flag: bool)  {.importcpp: "s
 proc getResizeNonPowerOfTwoHint*(this: Texture): bool  {.importcpp: "getResizeNonPowerOfTwoHint".}
     ## Gets whether texture will force non power to two images to be resized.
 
-proc setInternalFormatMode*(this: var Texture, mode: Internalformatmode)  {.importcpp: "setInternalFormatMode".}
+proc setInternalFormatMode*(this: var Texture, mode: InternalFormatMode)  {.importcpp: "setInternalFormatMode".}
     ## Sets the internal texture format mode. Note: If the texture format is
     ## USE_IMAGE_DATA_FORMAT, USE_ARB_COMPRESSION, or USE_S3TC_COMPRESSION,
     ## the internal format mode is set automatically and will overwrite the
     ## previous _internalFormat.
 
-proc getInternalFormatMode*(this: Texture): Internalformatmode  {.importcpp: "getInternalFormatMode".}
+proc getInternalFormatMode*(this: Texture): InternalFormatMode  {.importcpp: "getInternalFormatMode".}
     ## Gets the internal texture format mode.
 
 proc setInternalFormat*(this: var Texture, internalFormat: GLint)  {.importcpp: "setInternalFormat".}
@@ -276,19 +278,19 @@ proc setSourceType*(this: var Texture, sourceType: GLenum)  {.importcpp: "setSou
 proc getSourceType*(this: Texture): GLenum  {.importcpp: "getSourceType".}
     ## Gets the external source data type.
 
-proc getInternalFormatType*(this: Texture): Internalformattype  {.importcpp: "getInternalFormatType".}
+proc getInternalFormatType*(this: Texture): InternalFormatType  {.importcpp: "getInternalFormatType".}
     ## Get the internal texture format type.
 
 proc selectSizedInternalFormat*(this: Texture, image: ptr Image  = 0): GLenum  {.importcpp: "selectSizedInternalFormat".}
 
-proc isDirty*(this: Texture, cuint): bool  {.importcpp: "isDirty".}
+proc isDirty*(this: Texture, a00: cuint): bool  {.importcpp: "isDirty".}
     ## return true if the texture image data has been modified and the
     ## associated GL texture object needs to be updated.
 
-proc getTextureObject*(this: Texture, contextID: cuint): ptr Textureobject   {.importcpp: "getTextureObject".}
+proc getTextureObject*(this: Texture, contextID: cuint): ptr TextureObject   {.importcpp: "getTextureObject".}
     ## Returns a pointer to the TextureObject for the current context.
 
-proc setTextureObject*(this: var Texture, contextID: cuint, to: ptr Textureobject )  {.importcpp: "setTextureObject".}
+proc setTextureObject*(this: var Texture, contextID: cuint, to: ptr TextureObject )  {.importcpp: "setTextureObject".}
 
 proc dirtyTextureObject*(this: var Texture)  {.importcpp: "dirtyTextureObject".}
     ## Forces a recompile on next apply() of associated OpenGL texture
@@ -319,15 +321,15 @@ proc setShadowComparison*(this: var Texture, flag: bool)  {.importcpp: "setShado
 
 proc getShadowComparison*(this: Texture): bool  {.importcpp: "getShadowComparison".}
 
-proc setShadowCompareFunc*(this: var Texture, `func`: Shadowcomparefunc)  {.importcpp: "setShadowCompareFunc".}
+proc setShadowCompareFunc*(this: var Texture, `func`: ShadowCompareFunc)  {.importcpp: "setShadowCompareFunc".}
     ## Sets shadow texture comparison function.
 
-proc getShadowCompareFunc*(this: Texture): Shadowcomparefunc  {.importcpp: "getShadowCompareFunc".}
+proc getShadowCompareFunc*(this: Texture): ShadowCompareFunc  {.importcpp: "getShadowCompareFunc".}
 
-proc setShadowTextureMode*(this: var Texture, mode: Shadowtexturemode)  {.importcpp: "setShadowTextureMode".}
+proc setShadowTextureMode*(this: var Texture, mode: ShadowTextureMode)  {.importcpp: "setShadowTextureMode".}
     ## Sets shadow texture mode after comparison.
 
-proc getShadowTextureMode*(this: Texture): Shadowtexturemode  {.importcpp: "getShadowTextureMode".}
+proc getShadowTextureMode*(this: Texture): ShadowTextureMode  {.importcpp: "getShadowTextureMode".}
 
 proc setShadowAmbient*(this: var Texture, shadow_ambient: cfloat)  {.importcpp: "setShadowAmbient".}
     ## Sets the TEXTURE_COMPARE_FAIL_VALUE_ARB texture parameter. See
@@ -348,15 +350,15 @@ proc getImage*(this: Texture, face: cuint): ptr Image   {.importcpp: "getImage".
 proc getNumImages*(this: Texture): cuint  {.importcpp: "getNumImages".}
     ## Gets the number of images that can be assigned to this Texture.
 
-proc setReadPBuffer*(this: var Texture, context: ptr Graphicscontext )  {.importcpp: "setReadPBuffer".}
+proc setReadPBuffer*(this: var Texture, context: ptr GraphicsContext )  {.importcpp: "setReadPBuffer".}
     ## Set the PBuffer graphics context to read from when using PBuffers for
     ## RenderToTexture.
 
-proc getReadPBuffer*(this: var Texture): ptr Graphicscontext   {.importcpp: "getReadPBuffer".}
+proc getReadPBuffer*(this: var Texture): ptr GraphicsContext   {.importcpp: "getReadPBuffer".}
     ## Get the PBuffer graphics context to read from when using PBuffers for
     ## RenderToTexture.
 
-proc getReadPBuffer*(this: Texture): ptr Graphicscontext   {.importcpp: "getReadPBuffer".}
+proc getReadPBuffer*(this: Texture): ptr GraphicsContext   {.importcpp: "getReadPBuffer".}
     ## Get the const PBuffer graphics context to read from when using
     ## PBuffers for RenderToTexture.
 
@@ -415,11 +417,11 @@ proc isSafeToUnrefImageData*(this: Texture, state: State): bool  {.importcpp: "i
     ## Returns true if the associated Image should be released and it's safe
     ## to do so.
 
-proc mipmapBeforeTexImage*(this: Texture, state: State, hardwareMipmapOn: bool): Generatemipmapmode  {.importcpp: "mipmapBeforeTexImage".}
+proc mipmapBeforeTexImage*(this: Texture, state: State, hardwareMipmapOn: bool): GenerateMipmapMode  {.importcpp: "mipmapBeforeTexImage".}
     ## Helper methods to be called before and after calling
     ## gl[Compressed][Copy]Tex[Sub]Image2D to handle generating mipmaps.
 
-proc mipmapAfterTexImage*(this: Texture, state: State, beforeResult: Generatemipmapmode)  {.importcpp: "mipmapAfterTexImage".}
+proc mipmapAfterTexImage*(this: Texture, state: State, beforeResult: GenerateMipmapMode)  {.importcpp: "mipmapAfterTexImage".}
 
 proc generateMipmap*(this: Texture, state: State)  {.importcpp: "generateMipmap".}
     ## Helper method to generate mipmap levels by calling of
@@ -436,9 +438,9 @@ proc compareTexture*(this: Texture, rhs: Texture): cint  {.importcpp: "compareTe
 proc compareTextureObjects*(this: Texture, rhs: Texture): cint  {.importcpp: "compareTextureObjects".}
     ## Returns -1 if *this < *rhs, 0 if *this==*rhs, 1 if *this>*rhs.
 
-proc `<`*(this: TextureProfile, rhs: Textureprofile): bool  {.importcpp: "# < #".}
+proc `<`*(this: TextureProfile, rhs: TextureProfile): bool  {.importcpp: "# < #".}
 
-proc `==`*(this: TextureProfile, rhs: Textureprofile): bool  {.importcpp: "# == #".}
+proc `==`*(this: TextureProfile, rhs: TextureProfile): bool  {.importcpp: "# == #".}
 
 proc set*(this: var TextureProfile, numMipmapLevels: GLint, internalFormat: GLenum, width: GLsizei, height: GLsizei, depth: GLsizei, border: GLint)  {.importcpp: "set".}
 
@@ -475,15 +477,15 @@ proc isReusable*(this: TextureObject): bool  {.importcpp: "isReusable".}
 proc release*(this: var TextureObject)  {.importcpp: "release".}
     ## release TextureObject to the orphan list to be reused or deleted.
 
-proc generateTextureObject*(this: var Texture, texture: ptr Texture , contextID: cuint, target: GLenum): Ref_ptr[TextureObject]  {.importcpp: "generateTextureObject".}
+proc generateTextureObject*(this: var Texture, texture: ptr Texture , contextID: cuint, target: GLenum): ref_ptr[TextureObject]  {.importcpp: "generateTextureObject".}
 
-proc generateTextureObject*(this: var Texture, texture: ptr Texture , contextID: cuint, target: GLenum, numMipmapLevels: GLint, internalFormat: GLenum, width: GLsizei, height: GLsizei, depth: GLsizei, border: GLint): Ref_ptr[TextureObject]  {.importcpp: "generateTextureObject".}
+proc generateTextureObject*(this: var Texture, texture: ptr Texture , contextID: cuint, target: GLenum, numMipmapLevels: GLint, internalFormat: GLenum, width: GLsizei, height: GLsizei, depth: GLsizei, border: GLint): ref_ptr[TextureObject]  {.importcpp: "generateTextureObject".}
 
-proc generateAndAssignTextureObject*(this: Texture, contextID: cuint, target: GLenum): ptr Textureobject   {.importcpp: "generateAndAssignTextureObject".}
+proc generateAndAssignTextureObject*(this: Texture, contextID: cuint, target: GLenum): ptr TextureObject   {.importcpp: "generateAndAssignTextureObject".}
 
-proc generateAndAssignTextureObject*(this: Texture, contextID: cuint, target: GLenum, numMipmapLevels: GLint, internalFormat: GLenum, width: GLsizei, height: GLsizei, depth: GLsizei, border: GLint): ptr Textureobject   {.importcpp: "generateAndAssignTextureObject".}
+proc generateAndAssignTextureObject*(this: Texture, contextID: cuint, target: GLenum, numMipmapLevels: GLint, internalFormat: GLenum, width: GLsizei, height: GLsizei, depth: GLsizei, border: GLint): ptr TextureObject   {.importcpp: "generateAndAssignTextureObject".}
 
-proc getProfile*(this: TextureObjectSet): Textureprofile  {.importcpp: "getProfile".}
+proc getProfile*(this: TextureObjectSet): TextureProfile  {.importcpp: "getProfile".}
 
 proc handlePendingOrphandedTextureObjects*(this: var TextureObjectSet)  {.importcpp: "handlePendingOrphandedTextureObjects".}
 
@@ -497,19 +499,19 @@ proc discardAllDeletedTextureObjects*(this: var TextureObjectSet)  {.importcpp: 
 
 proc flushDeletedTextureObjects*(this: var TextureObjectSet, currentTime: cdouble, availableTime: cdouble)  {.importcpp: "flushDeletedTextureObjects".}
 
-proc takeFromOrphans*(this: var TextureObjectSet, texture: ptr Texture ): Ref_ptr[Textureobject]  {.importcpp: "takeFromOrphans".}
+proc takeFromOrphans*(this: var TextureObjectSet, texture: ptr Texture ): ref_ptr[TextureObject]  {.importcpp: "takeFromOrphans".}
 
-proc takeOrGenerate*(this: var TextureObjectSet, texture: ptr Texture ): Ref_ptr[Textureobject]  {.importcpp: "takeOrGenerate".}
+proc takeOrGenerate*(this: var TextureObjectSet, texture: ptr Texture ): ref_ptr[TextureObject]  {.importcpp: "takeOrGenerate".}
 
-proc moveToBack*(this: var TextureObjectSet, to: ptr Textureobject )  {.importcpp: "moveToBack".}
+proc moveToBack*(this: var TextureObjectSet, to: ptr TextureObject )  {.importcpp: "moveToBack".}
 
-proc addToBack*(this: var TextureObjectSet, to: ptr Textureobject )  {.importcpp: "addToBack".}
+proc addToBack*(this: var TextureObjectSet, to: ptr TextureObject )  {.importcpp: "addToBack".}
 
-proc orphan*(this: var TextureObjectSet, to: ptr Textureobject )  {.importcpp: "orphan".}
+proc orphan*(this: var TextureObjectSet, to: ptr TextureObject )  {.importcpp: "orphan".}
 
-proc remove*(this: var TextureObjectSet, to: ptr Textureobject )  {.importcpp: "remove".}
+proc remove*(this: var TextureObjectSet, to: ptr TextureObject )  {.importcpp: "remove".}
 
-proc moveToSet*(this: var TextureObjectSet, to: ptr Textureobject , set: ptr Textureobjectset )  {.importcpp: "moveToSet".}
+proc moveToSet*(this: var TextureObjectSet, to: ptr TextureObject , set: ptr TextureObjectSet )  {.importcpp: "moveToSet".}
 
 proc size*(this: TextureObjectSet): cuint  {.importcpp: "size".}
 
@@ -517,7 +519,7 @@ proc makeSpace*(this: var TextureObjectSet, size: cuint): bool  {.importcpp: "ma
 
 proc checkConsistency*(this: TextureObjectSet): bool  {.importcpp: "checkConsistency".}
 
-proc getParent*(this: var TextureObjectSet): ptr Textureobjectmanager   {.importcpp: "getParent".}
+proc getParent*(this: var TextureObjectSet): ptr TextureObjectManager   {.importcpp: "getParent".}
 
 proc computeNumTextureObjectsInList*(this: TextureObjectSet): cuint  {.importcpp: "computeNumTextureObjectsInList".}
 
@@ -553,9 +555,9 @@ proc hasSpace*(this: TextureObjectManager, size: cuint): bool  {.importcpp: "has
 
 proc makeSpace*(this: var TextureObjectManager, size: cuint): bool  {.importcpp: "makeSpace".}
 
-proc generateTextureObject*(this: var TextureObjectManager, texture: ptr Texture , target: GLenum): Ref_ptr[Textureobject]  {.importcpp: "generateTextureObject".}
+proc generateTextureObject*(this: var TextureObjectManager, texture: ptr Texture , target: GLenum): ref_ptr[TextureObject]  {.importcpp: "generateTextureObject".}
 
-proc generateTextureObject*(this: var TextureObjectManager, texture: ptr Texture , target: GLenum, numMipmapLevels: GLint, internalFormat: GLenum, width: GLsizei, height: GLsizei, depth: GLsizei, border: GLint): Ref_ptr[Textureobject]  {.importcpp: "generateTextureObject".}
+proc generateTextureObject*(this: var TextureObjectManager, texture: ptr Texture , target: GLenum, numMipmapLevels: GLint, internalFormat: GLenum, width: GLsizei, height: GLsizei, depth: GLsizei, border: GLint): ref_ptr[TextureObject]  {.importcpp: "generateTextureObject".}
 
 proc handlePendingOrphandedTextureObjects*(this: var TextureObjectManager)  {.importcpp: "handlePendingOrphandedTextureObjects".}
 
@@ -569,15 +571,15 @@ proc discardAllDeletedGLObjects*(this: var TextureObjectManager)  {.importcpp: "
 
 proc flushDeletedGLObjects*(this: var TextureObjectManager, currentTime: cdouble, availableTime: cdouble)  {.importcpp: "flushDeletedGLObjects".}
 
-proc getTextureObjectSet*(this: var TextureObjectManager, profile: Textureprofile): ptr Textureobjectset   {.importcpp: "getTextureObjectSet".}
+proc getTextureObjectSet*(this: var TextureObjectManager, profile: TextureProfile): ptr TextureObjectSet   {.importcpp: "getTextureObjectSet".}
 
-proc newFrame*(this: var TextureObjectManager, fs: ptr Framestamp )  {.importcpp: "newFrame".}
+proc newFrame*(this: var TextureObjectManager, fs: ptr FrameStamp )  {.importcpp: "newFrame".}
 
 proc resetStats*(this: var TextureObjectManager)  {.importcpp: "resetStats".}
 
-proc reportStats*(this: var TextureObjectManager, `out`: Ostream)  {.importcpp: "reportStats".}
+proc reportStats*(this: var TextureObjectManager, `out`: ostream)  {.importcpp: "reportStats".}
 
-proc recomputeStats*(this: TextureObjectManager, `out`: Ostream)  {.importcpp: "recomputeStats".}
+proc recomputeStats*(this: TextureObjectManager, `out`: ostream)  {.importcpp: "recomputeStats".}
 
 proc checkConsistency*(this: TextureObjectManager): bool  {.importcpp: "checkConsistency".}
 

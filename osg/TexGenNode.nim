@@ -1,11 +1,12 @@
-import Object  # provides: osg::Object
-import TexGen  # provides: osg::TexGen
-import CopyOp  # provides: osg::CopyOp
-import NodeVisitor  # provides: osg::NodeVisitor
+import osg_types
+  # File: Object  was providing: osg::Object
+  # File: TexGen  was providing: osg::TexGen
+  # File: CopyOp  was providing: osg::CopyOp
+  # File: NodeVisitor  was providing: osg::NodeVisitor
 type
-  ReferenceFrame* {.size:sizeof(cuint),header: "TexGenNode", importcpp: "osg::TexGenNode::ReferenceFrame".} = enum
-    rfrncfrmRELATIVE_RF = 0,
-    rfrncfrmABSOLUTE_RF = 1
+  ReferenceFrame* {.size:sizeof(cuint),header: "TexGenNode", importcpp: "osg::TexGenNode::ReferenceFrame", pure.} = enum
+    RELATIVE_RF = 0,
+    ABSOLUTE_RF = 1
 
 
 
@@ -13,13 +14,13 @@ type
 
 proc constructTexGenNode*(): TexGenNode {.constructor,importcpp: "osg::TexGenNode::TexGenNode".}
 
-proc constructTexGenNode*(texgen: ptr Texgen ): TexGenNode {.constructor,importcpp: "osg::TexGenNode::TexGenNode(@)".}
+proc constructTexGenNode*(texgen: ptr TexGen ): TexGenNode {.constructor,importcpp: "osg::TexGenNode::TexGenNode(@)".}
 
-proc constructTexGenNode*(tgb: Texgennode, copyop: Copyop = SHALLOW_COPY): TexGenNode {.constructor,importcpp: "osg::TexGenNode::TexGenNode(@)".}
+proc constructTexGenNode*(tgb: TexGenNode, copyop: CopyOp = SHALLOW_COPY): TexGenNode {.constructor,importcpp: "osg::TexGenNode::TexGenNode(@)".}
 
 proc cloneType*(this: TexGenNode): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: TexGenNode, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: TexGenNode, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: TexGenNode, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -27,13 +28,13 @@ proc className*(this: TexGenNode): cstring  {.importcpp: "className".}
 
 proc libraryName*(this: TexGenNode): cstring  {.importcpp: "libraryName".}
 
-proc accept*(this: var TexGenNode, nv: Nodevisitor)  {.importcpp: "accept".}
+proc accept*(this: var TexGenNode, nv: NodeVisitor)  {.importcpp: "accept".}
 
-proc setReferenceFrame*(this: var TexGenNode, rf: Referenceframe)  {.importcpp: "setReferenceFrame".}
+proc setReferenceFrame*(this: var TexGenNode, rf: ReferenceFrame)  {.importcpp: "setReferenceFrame".}
     ## Set the TexGenNode's ReferenceFrame, either to be relative to its
     ## parent reference frame.
 
-proc getReferenceFrame*(this: TexGenNode): Referenceframe  {.importcpp: "getReferenceFrame".}
+proc getReferenceFrame*(this: TexGenNode): ReferenceFrame  {.importcpp: "getReferenceFrame".}
     ## Get the TexGenNode's ReferenceFrame.
 
 proc setTextureUnit*(this: var TexGenNode, textureUnit: cuint)  {.importcpp: "setTextureUnit".}
@@ -41,13 +42,13 @@ proc setTextureUnit*(this: var TexGenNode, textureUnit: cuint)  {.importcpp: "se
 
 proc getTextureUnit*(this: TexGenNode): cuint  {.importcpp: "getTextureUnit".}
 
-proc setTexGen*(this: var TexGenNode, texgen: ptr Texgen )  {.importcpp: "setTexGen".}
+proc setTexGen*(this: var TexGenNode, texgen: ptr TexGen )  {.importcpp: "setTexGen".}
     ## Set the TexGen.
 
-proc getTexGen*(this: var TexGenNode): ptr Texgen   {.importcpp: "getTexGen".}
+proc getTexGen*(this: var TexGenNode): ptr TexGen   {.importcpp: "getTexGen".}
     ## Get the TexGen.
 
-proc getTexGen*(this: TexGenNode): ptr Texgen   {.importcpp: "getTexGen".}
+proc getTexGen*(this: TexGenNode): ptr TexGen   {.importcpp: "getTexGen".}
     ## Get the const TexGen.
 
 proc setThreadSafeRefUnref*(this: var TexGenNode, threadSafe: bool)  {.importcpp: "setThreadSafeRefUnref".}

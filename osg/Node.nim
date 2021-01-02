@@ -1,16 +1,17 @@
-import State  # provides: osg::State
-import BoundingSphere  # provides: osg::BoundingSphere
-import Switch  # provides: osg::Switch
-import Geode  # provides: osg::Geode
-import Object  # provides: osg::Object
-import Transform  # provides: osg::Transform
-import Geometry  # provides: osg::Geometry
-import Drawable  # provides: osg::Drawable
-import Callback  # provides: osg::Callback
-import Group  # provides: osg::Group
-import StateSet  # provides: osg::StateSet
-import CopyOp  # provides: osg::CopyOp
-import NodeVisitor  # provides: osg::NodeVisitor
+import osg_types
+  # File: State  was providing: osg::State
+  # File: BoundingSphere  was providing: osg::BoundingSphere
+  # File: Switch  was providing: osg::Switch
+  # File: Geode  was providing: osg::Geode
+  # File: Object  was providing: osg::Object
+  # File: Transform  was providing: osg::Transform
+  # File: Geometry  was providing: osg::Geometry
+  # File: Drawable  was providing: osg::Drawable
+  # File: Callback  was providing: osg::Callback
+  # File: Group  was providing: osg::Group
+  # File: StateSet  was providing: osg::StateSet
+  # File: CopyOp  was providing: osg::CopyOp
+  # File: NodeVisitor  was providing: osg::NodeVisitor
 type
   NodePathList* {.header: "Node", importcpp: "osg::NodePathList".} = cint
   ParentList* {.header: "Node", importcpp: "osg::Node::ParentList".} = cint
@@ -23,17 +24,17 @@ proc constructNode*(): Node {.constructor,importcpp: "osg::Node::Node".}
     ## Construct a node. Initialize the parent list to empty, node name to ""
     ## and bounding sphere dirty flag to true.
 
-proc constructNode*(Node, copyop: Copyop = SHALLOW_COPY): Node {.constructor,importcpp: "osg::Node::Node(@)".}
+proc constructNode*(a00: Node, copyop: CopyOp = SHALLOW_COPY): Node {.constructor,importcpp: "osg::Node::Node(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc constructComputeBoundingSphereCallback*(): ComputeBoundingSphereCallback {.constructor,importcpp: "osg::Node::ComputeBoundingSphereCallback::ComputeBoundingSphereCallback".}
 
-proc constructComputeBoundingSphereCallback*(org: Computeboundingspherecallback, copyop: Copyop): ComputeBoundingSphereCallback {.constructor,importcpp: "osg::Node::ComputeBoundingSphereCallback::ComputeBoundingSphereCallback(@)".}
+proc constructComputeBoundingSphereCallback*(org: ComputeBoundingSphereCallback, copyop: CopyOp): ComputeBoundingSphereCallback {.constructor,importcpp: "osg::Node::ComputeBoundingSphereCallback::ComputeBoundingSphereCallback(@)".}
 
 proc cloneType*(this: Node): ptr Object   {.importcpp: "cloneType".}
     ## clone an object of the same type as the node.
 
-proc clone*(this: Node, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: Node, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
     ## return a clone of a node, with Object* return type.
 
 proc isSameKindAs*(this: Node, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
@@ -113,20 +114,20 @@ proc asTerrain*(this: Node): ptr Terrain   {.importcpp: "asTerrain".}
     ## Terrain, otherwise return 0. Equivalent to dynamic_cast<const
     ## Terrain*>(this).
 
-proc accept*(this: var Node, nv: Nodevisitor)  {.importcpp: "accept".}
+proc accept*(this: var Node, nv: NodeVisitor)  {.importcpp: "accept".}
     ## Visitor Pattern : calls the apply method of a NodeVisitor with this
     ## node's type.
 
-proc ascend*(this: var Node, nv: Nodevisitor)  {.importcpp: "ascend".}
+proc ascend*(this: var Node, nv: NodeVisitor)  {.importcpp: "ascend".}
     ## Traverse upwards : calls parents' accept method with NodeVisitor.
 
-proc traverse*(this: var Node, Nodevisitor)  {.importcpp: "traverse".}
+proc traverse*(this: var Node, a00: NodeVisitor)  {.importcpp: "traverse".}
     ## Traverse downwards : calls children's accept method with NodeVisitor.
 
-proc getParents*(this: Node): Parentlist  {.importcpp: "getParents".}
+proc getParents*(this: Node): ParentList  {.importcpp: "getParents".}
     ## Get the parent list of node.
 
-proc getParents*(this: var Node): Parentlist  {.importcpp: "getParents".}
+proc getParents*(this: var Node): ParentList  {.importcpp: "getParents".}
     ## Get the a copy of parent list of node. A copy is returned to prevent
     ## modification of the parent list.
 
@@ -138,12 +139,12 @@ proc getParent*(this: Node, i: cuint): ptr Group   {.importcpp: "getParent".}
 proc getNumParents*(this: Node): cuint  {.importcpp: "getNumParents".}
     ## Get the number of parents of node.
 
-proc getParentalNodePaths*(this: Node, haltTraversalAtNode: ptr Node  = 0): Nodepathlist  {.importcpp: "getParentalNodePaths".}
+proc getParentalNodePaths*(this: Node, haltTraversalAtNode: ptr Node  = 0): NodePathList  {.importcpp: "getParentalNodePaths".}
     ## Get the list of node paths parent paths. The optional Node*
     ## haltTraversalAtNode allows the user to prevent traversal beyond a
     ## specified node.
 
-proc getWorldMatrices*(this: Node, haltTraversalAtNode: ptr Node  = 0): Matrixlist  {.importcpp: "getWorldMatrices".}
+proc getWorldMatrices*(this: Node, haltTraversalAtNode: ptr Node  = 0): MatrixList  {.importcpp: "getWorldMatrices".}
     ## Get the list of matrices that transform this node from local
     ## coordinates to world coordinates. The optional Node*
     ## haltTraversalAtNode allows the user to prevent traversal beyond a
@@ -238,54 +239,54 @@ proc containsOccluderNodes*(this: Node): bool  {.importcpp: "containsOccluderNod
     ## return true if this node is an OccluderNode or the subgraph below this
     ## node are OccluderNodes.
 
-proc setNodeMask*(this: var Node, nm: Nodemask)  {.importcpp: "setNodeMask".}
+proc setNodeMask*(this: var Node, nm: NodeMask)  {.importcpp: "setNodeMask".}
     ## Set the node mask.
 
-proc getNodeMask*(this: Node): Nodemask  {.importcpp: "getNodeMask".}
+proc getNodeMask*(this: Node): NodeMask  {.importcpp: "getNodeMask".}
     ## Get the node Mask.
 
-proc setStateSet*(this: var Node, stateset: ptr Stateset )  {.importcpp: "setStateSet".}
+proc setStateSet*(this: var Node, stateset: ptr StateSet )  {.importcpp: "setStateSet".}
     ## Set the node's StateSet.
 
-proc getOrCreateStateSet*(this: var Node): ptr Stateset   {.importcpp: "getOrCreateStateSet".}
+proc getOrCreateStateSet*(this: var Node): ptr StateSet   {.importcpp: "getOrCreateStateSet".}
     ## return the node's StateSet, if one does not already exist create it
     ## set the node and return the newly created StateSet. This ensures that
     ## a valid StateSet is always returned and can be used directly.
 
-proc getStateSet*(this: var Node): ptr Stateset   {.importcpp: "getStateSet".}
+proc getStateSet*(this: var Node): ptr StateSet   {.importcpp: "getStateSet".}
     ## Return the node's StateSet. returns NULL if a stateset is not
     ## attached.
 
-proc getStateSet*(this: Node): ptr Stateset   {.importcpp: "getStateSet".}
+proc getStateSet*(this: Node): ptr StateSet   {.importcpp: "getStateSet".}
     ## Return the node's const StateSet. Returns NULL if a stateset is not
     ## attached.
 
-proc setDescriptions*(this: var Node, descriptions: Descriptionlist)  {.importcpp: "setDescriptions".}
+proc setDescriptions*(this: var Node, descriptions: DescriptionList)  {.importcpp: "setDescriptions".}
     ## Set the list of string descriptions.
 
-proc getDescriptions*(this: var Node): Descriptionlist  {.importcpp: "getDescriptions".}
+proc getDescriptions*(this: var Node): DescriptionList  {.importcpp: "getDescriptions".}
     ## Get the description list of the node.
 
-proc getDescriptions*(this: Node): Descriptionlist  {.importcpp: "getDescriptions".}
+proc getDescriptions*(this: Node): DescriptionList  {.importcpp: "getDescriptions".}
     ## Get the const description list of the const node.
 
-proc getDescription*(this: Node, i: cuint): String  {.importcpp: "getDescription".}
+proc getDescription*(this: Node, i: cuint): string  {.importcpp: "getDescription".}
     ## Get a single const description of the const node.
 
-proc getDescription*(this: var Node, i: cuint): String  {.importcpp: "getDescription".}
+proc getDescription*(this: var Node, i: cuint): string  {.importcpp: "getDescription".}
     ## Get a single description of the node.
 
 proc getNumDescriptions*(this: Node): cuint  {.importcpp: "getNumDescriptions".}
     ## Get the number of descriptions of the node.
 
-proc addDescription*(this: var Node, desc: String)  {.importcpp: "addDescription".}
+proc addDescription*(this: var Node, desc: string)  {.importcpp: "addDescription".}
     ## Add a description string to the node.
 
-proc setInitialBound*(this: var Node, bsphere: Boundingsphere)  {.importcpp: "setInitialBound".}
+proc setInitialBound*(this: var Node, bsphere: BoundingSphere)  {.importcpp: "setInitialBound".}
     ## Set the initial bounding volume to use when computing the overall
     ## bounding volume.
 
-proc getInitialBound*(this: Node): Boundingsphere  {.importcpp: "getInitialBound".}
+proc getInitialBound*(this: Node): BoundingSphere  {.importcpp: "getInitialBound".}
     ## Set the initial bounding volume to use when computing the overall
     ## bounding volume.
 
@@ -293,16 +294,16 @@ proc dirtyBound*(this: var Node)  {.importcpp: "dirtyBound".}
     ## Mark this node's bounding sphere dirty. Forcing it to be computed on
     ## the next call to getBound().
 
-proc getBound*(this: Node): Boundingsphere  {.importcpp: "getBound".}
+proc getBound*(this: Node): BoundingSphere  {.importcpp: "getBound".}
 
-proc computeBound*(this: Node): Boundingsphere  {.importcpp: "computeBound".}
+proc computeBound*(this: Node): BoundingSphere  {.importcpp: "computeBound".}
     ## Compute the bounding sphere around Node's geometry or children. This
     ## method is automatically called by getBound() when the bounding sphere
     ## has been marked dirty via dirtyBound().
 
 proc cloneType*(this: ComputeBoundingSphereCallback): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: ComputeBoundingSphereCallback, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: ComputeBoundingSphereCallback, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: ComputeBoundingSphereCallback, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -310,25 +311,25 @@ proc libraryName*(this: ComputeBoundingSphereCallback): cstring  {.importcpp: "l
 
 proc className*(this: ComputeBoundingSphereCallback): cstring  {.importcpp: "className".}
 
-proc computeBound*(this: ComputeBoundingSphereCallback, Node): Boundingsphere  {.importcpp: "computeBound".}
+proc computeBound*(this: ComputeBoundingSphereCallback, a00: Node): BoundingSphere  {.importcpp: "computeBound".}
 
-proc setComputeBoundingSphereCallback*(this: var Node, callback: ptr Computeboundingspherecallback )  {.importcpp: "setComputeBoundingSphereCallback".}
+proc setComputeBoundingSphereCallback*(this: var Node, callback: ptr ComputeBoundingSphereCallback )  {.importcpp: "setComputeBoundingSphereCallback".}
     ## Set the compute bound callback to override the default computeBound.
 
-proc getComputeBoundingSphereCallback*(this: var Node): ptr Computeboundingspherecallback   {.importcpp: "getComputeBoundingSphereCallback".}
+proc getComputeBoundingSphereCallback*(this: var Node): ptr ComputeBoundingSphereCallback   {.importcpp: "getComputeBoundingSphereCallback".}
     ## Get the compute bound callback.
 
-proc getComputeBoundingSphereCallback*(this: Node): ptr Computeboundingspherecallback   {.importcpp: "getComputeBoundingSphereCallback".}
+proc getComputeBoundingSphereCallback*(this: Node): ptr ComputeBoundingSphereCallback   {.importcpp: "getComputeBoundingSphereCallback".}
     ## Get the const compute bound callback.
 
 proc setThreadSafeRefUnref*(this: var Node, threadSafe: bool)  {.importcpp: "setThreadSafeRefUnref".}
     ## Set whether to use a mutex to ensure ref() and unref() are thread
     ## safe.
 
-proc resizeGLObjectBuffers*(this: var Node, cuint)  {.importcpp: "resizeGLObjectBuffers".}
+proc resizeGLObjectBuffers*(this: var Node, a00: cuint)  {.importcpp: "resizeGLObjectBuffers".}
     ## Resize any per context GLObject buffers to specified size.
 
-proc releaseGLObjects*(this: Node, ptr State  = 0)  {.importcpp: "releaseGLObjects".}
+proc releaseGLObjects*(this: Node, a00: ptr State  = 0)  {.importcpp: "releaseGLObjects".}
     ## If State is non-zero, this function releases any associated OpenGL
     ## objects for the specified graphics context. Otherwise, releases OpenGL
     ## objects for all graphics contexts.

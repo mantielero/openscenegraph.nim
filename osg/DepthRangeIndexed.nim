@@ -1,7 +1,8 @@
-import State  # provides: osg::State
-import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
-import CopyOp  # provides: osg::CopyOp
+import osg_types
+  # File: State  was providing: osg::State
+  # File: Object  was providing: osg::Object
+  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
+  # File: CopyOp  was providing: osg::CopyOp
 type
   DepthRangeIndexed* {.header: "DepthRangeIndexed", importcpp: "osg::DepthRangeIndexed", byref.} = object #of osg::StateAttribute
     ## Encapsulates glDepthRangeIndexed function : the index version of
@@ -15,12 +16,12 @@ proc constructDepthRangeIndexed*(): DepthRangeIndexed {.constructor,importcpp: "
 
 proc constructDepthRangeIndexed*(index: cuint, zNear: cdouble, zFar: cdouble): DepthRangeIndexed {.constructor,importcpp: "osg::DepthRangeIndexed::DepthRangeIndexed(@)".}
 
-proc constructDepthRangeIndexed*(dp: Depthrangeindexed, copyop: Copyop = SHALLOW_COPY): DepthRangeIndexed {.constructor,importcpp: "osg::DepthRangeIndexed::DepthRangeIndexed(@)".}
+proc constructDepthRangeIndexed*(dp: DepthRangeIndexed, copyop: CopyOp = SHALLOW_COPY): DepthRangeIndexed {.constructor,importcpp: "osg::DepthRangeIndexed::DepthRangeIndexed(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: DepthRangeIndexed): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: DepthRangeIndexed, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: DepthRangeIndexed, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: DepthRangeIndexed, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -30,7 +31,7 @@ proc className*(this: DepthRangeIndexed): cstring  {.importcpp: "className".}
 
 proc getType*(this: DepthRangeIndexed): Type  {.importcpp: "getType".}
 
-proc compare*(this: DepthRangeIndexed, sa: Stateattribute): cint  {.importcpp: "compare".}
+proc compare*(this: DepthRangeIndexed, sa: StateAttribute): cint  {.importcpp: "compare".}
     ## Return -1 if *this < *rhs, 0 if *this==*rhs, 1 if *this>*rhs.
 
 proc getMember*(this: DepthRangeIndexed): cuint  {.importcpp: "getMember".}

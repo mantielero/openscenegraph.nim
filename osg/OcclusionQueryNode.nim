@@ -1,17 +1,18 @@
-import State  # provides: osg::State
-import BoundingSphere  # provides: osg::BoundingSphere
-import Camera  # provides: osg::Camera
-import Object  # provides: osg::Object
-import Geometry  # provides: osg::Geometry
-import StateSet  # provides: osg::StateSet
-import CopyOp  # provides: osg::CopyOp
-import RenderInfo  # provides: osg::RenderInfo
-import NodeVisitor  # provides: osg::NodeVisitor
+import osg_types
+  # File: State  was providing: osg::State
+  # File: BoundingSphere  was providing: osg::BoundingSphere
+  # File: Camera  was providing: osg::Camera
+  # File: Object  was providing: osg::Object
+  # File: Geometry  was providing: osg::Geometry
+  # File: StateSet  was providing: osg::StateSet
+  # File: CopyOp  was providing: osg::CopyOp
+  # File: RenderInfo  was providing: osg::RenderInfo
+  # File: NodeVisitor  was providing: osg::NodeVisitor
 type
-  QueryGeometryState* {.size:sizeof(cuint),header: "OcclusionQueryNode", importcpp: "osg::OcclusionQueryNode::QueryGeometryState".} = enum
-    qrygmtrysttINVALID = 0,
-    qrygmtrysttVALID = 1,
-    qrygmtrysttUSER_DEFINED = 2
+  QueryGeometryState* {.size:sizeof(cuint),header: "OcclusionQueryNode", importcpp: "osg::OcclusionQueryNode::QueryGeometryState", pure.} = enum
+    INVALID = 0,
+    VALID = 1,
+    USER_DEFINED = 2
 
   TestResult* {.header: "OcclusionQueryNode", importcpp: "osg::TestResult", byref.} = object #of osg::Referenced
 
@@ -25,7 +26,7 @@ type
 
 proc constructTestResult*(): TestResult {.constructor,importcpp: "osg::TestResult::TestResult".}
 
-proc constructQueryGeometry*(oqnName: String): QueryGeometry {.constructor,importcpp: "osg::QueryGeometry::QueryGeometry(@)".}
+proc constructQueryGeometry*(oqnName: string): QueryGeometry {.constructor,importcpp: "osg::QueryGeometry::QueryGeometry(@)".}
 
 proc constructQueryResult*(): QueryResult {.constructor,importcpp: "osg::QueryGeometry::QueryResult::QueryResult".}
 
@@ -33,13 +34,13 @@ proc constructQueryResult*(v: bool, p: cuint): QueryResult {.constructor,importc
 
 proc constructOcclusionQueryNode*(): OcclusionQueryNode {.constructor,importcpp: "osg::OcclusionQueryNode::OcclusionQueryNode".}
 
-proc constructOcclusionQueryNode*(oqn: Occlusionquerynode, copyop: Copyop = SHALLOW_COPY): OcclusionQueryNode {.constructor,importcpp: "osg::OcclusionQueryNode::OcclusionQueryNode(@)".}
+proc constructOcclusionQueryNode*(oqn: OcclusionQueryNode, copyop: CopyOp = SHALLOW_COPY): OcclusionQueryNode {.constructor,importcpp: "osg::OcclusionQueryNode::OcclusionQueryNode(@)".}
 
 proc reset*(this: var QueryGeometry)  {.importcpp: "reset".}
 
-proc drawImplementation*(this: QueryGeometry, renderInfo: Renderinfo)  {.importcpp: "drawImplementation".}
+proc drawImplementation*(this: QueryGeometry, renderInfo: RenderInfo)  {.importcpp: "drawImplementation".}
 
-proc getQueryResult*(this: QueryGeometry, cam: ptr Camera ): Queryresult  {.importcpp: "getQueryResult".}
+proc getQueryResult*(this: QueryGeometry, cam: ptr Camera ): QueryResult  {.importcpp: "getQueryResult".}
     ## return a QueryResult for specified Camera, where the QueryResult.valid
     ## is true when query results are available, and in which case the
     ## QueryResult.numPixels provides the num of pixels in the query result.
@@ -56,7 +57,7 @@ proc discardDeletedQueryObjects*(this: var QueryGeometry, contextID: cuint)  {.i
 
 proc cloneType*(this: OcclusionQueryNode): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: OcclusionQueryNode, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: OcclusionQueryNode, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: OcclusionQueryNode, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -64,9 +65,9 @@ proc className*(this: OcclusionQueryNode): cstring  {.importcpp: "className".}
 
 proc libraryName*(this: OcclusionQueryNode): cstring  {.importcpp: "libraryName".}
 
-proc accept*(this: var OcclusionQueryNode, nv: Nodevisitor)  {.importcpp: "accept".}
+proc accept*(this: var OcclusionQueryNode, nv: NodeVisitor)  {.importcpp: "accept".}
 
-proc computeBound*(this: OcclusionQueryNode): Boundingsphere  {.importcpp: "computeBound".}
+proc computeBound*(this: OcclusionQueryNode): BoundingSphere  {.importcpp: "computeBound".}
 
 proc releaseGLObjects*(this: OcclusionQueryNode, state: ptr State  = 0)  {.importcpp: "releaseGLObjects".}
 
@@ -88,29 +89,29 @@ proc setDebugDisplay*(this: var OcclusionQueryNode, enable: bool)  {.importcpp: 
 
 proc getDebugDisplay*(this: OcclusionQueryNode): bool  {.importcpp: "getDebugDisplay".}
 
-proc setQueryStateSet*(this: var OcclusionQueryNode, ss: ptr Stateset )  {.importcpp: "setQueryStateSet".}
+proc setQueryStateSet*(this: var OcclusionQueryNode, ss: ptr StateSet )  {.importcpp: "setQueryStateSet".}
 
-proc getQueryStateSet*(this: var OcclusionQueryNode): ptr Stateset   {.importcpp: "getQueryStateSet".}
+proc getQueryStateSet*(this: var OcclusionQueryNode): ptr StateSet   {.importcpp: "getQueryStateSet".}
 
-proc getQueryStateSet*(this: OcclusionQueryNode): ptr Stateset   {.importcpp: "getQueryStateSet".}
+proc getQueryStateSet*(this: OcclusionQueryNode): ptr StateSet   {.importcpp: "getQueryStateSet".}
 
-proc setQueryGeometry*(this: var OcclusionQueryNode, geom: ptr Querygeometry )  {.importcpp: "setQueryGeometry".}
+proc setQueryGeometry*(this: var OcclusionQueryNode, geom: ptr QueryGeometry )  {.importcpp: "setQueryGeometry".}
 
-proc getQueryGeometry*(this: OcclusionQueryNode): ptr Querygeometry   {.importcpp: "getQueryGeometry".}
+proc getQueryGeometry*(this: OcclusionQueryNode): ptr QueryGeometry   {.importcpp: "getQueryGeometry".}
 
-proc setDebugStateSet*(this: var OcclusionQueryNode, ss: ptr Stateset )  {.importcpp: "setDebugStateSet".}
+proc setDebugStateSet*(this: var OcclusionQueryNode, ss: ptr StateSet )  {.importcpp: "setDebugStateSet".}
 
-proc getDebugStateSet*(this: var OcclusionQueryNode): ptr Stateset   {.importcpp: "getDebugStateSet".}
+proc getDebugStateSet*(this: var OcclusionQueryNode): ptr StateSet   {.importcpp: "getDebugStateSet".}
 
-proc getDebugStateSet*(this: OcclusionQueryNode): ptr Stateset   {.importcpp: "getDebugStateSet".}
+proc getDebugStateSet*(this: OcclusionQueryNode): ptr StateSet   {.importcpp: "getDebugStateSet".}
 
 proc getPassed*(this: OcclusionQueryNode): bool  {.importcpp: "getPassed".}
 
-proc getPassed*(this: var OcclusionQueryNode, camera: ptr Camera , nv: Nodevisitor): bool  {.importcpp: "getPassed".}
+proc getPassed*(this: var OcclusionQueryNode, camera: ptr Camera , nv: NodeVisitor): bool  {.importcpp: "getPassed".}
 
-proc traverseQuery*(this: var OcclusionQueryNode, camera: ptr Camera , nv: Nodevisitor)  {.importcpp: "traverseQuery".}
+proc traverseQuery*(this: var OcclusionQueryNode, camera: ptr Camera , nv: NodeVisitor)  {.importcpp: "traverseQuery".}
 
-proc traverseDebug*(this: var OcclusionQueryNode, nv: Nodevisitor)  {.importcpp: "traverseDebug".}
+proc traverseDebug*(this: var OcclusionQueryNode, nv: NodeVisitor)  {.importcpp: "traverseDebug".}
 
 proc flushDeletedQueryObjects*(this: var OcclusionQueryNode, contextID: cuint, currentTime: cdouble, availableTime: cdouble)  {.importcpp: "flushDeletedQueryObjects".}
 
@@ -120,7 +121,7 @@ proc createSupportNodes*(this: var OcclusionQueryNode)  {.importcpp: "createSupp
 
 proc isQueryGeometryValid*(this: OcclusionQueryNode): bool  {.importcpp: "isQueryGeometryValid".}
 
-proc setQueryGeometryInternal*(this: var OcclusionQueryNode, queryGeom: ptr Querygeometry , debugQueryGeom: ptr Geometry , state: Querygeometrystate)  {.importcpp: "setQueryGeometryInternal".}
+proc setQueryGeometryInternal*(this: var OcclusionQueryNode, queryGeom: ptr QueryGeometry , debugQueryGeom: ptr Geometry , state: QueryGeometryState)  {.importcpp: "setQueryGeometryInternal".}
 
 proc updateDefaultQueryGeometry*(this: var OcclusionQueryNode)  {.importcpp: "updateDefaultQueryGeometry".}
 

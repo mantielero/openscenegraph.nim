@@ -1,12 +1,13 @@
-import Vec3f  # provides: osg::Vec3f
-import Vec3d  # provides: osg::Vec3d
+import osg_types
+  # File: Vec3f  was providing: osg::Vec3f
+  # File: Vec3d  was providing: osg::Vec3d
 {.push header: "BoundingSphere".}
 
 proc constructBoundingSphereImpl*[VT](): BoundingSphereImpl {.constructor,importcpp: "osg::BoundingSphereImpl::BoundingSphereImpl<VT>".}
     ## Construct a default bounding sphere with radius to -1.0f, representing
     ## an invalid/unset bounding sphere.
 
-proc constructBoundingSphereImpl*[VT](cntr: Vec_type, rad: Value_type): BoundingSphereImpl {.constructor,importcpp: "osg::BoundingSphereImpl::BoundingSphereImpl<VT>(@)".}
+proc constructBoundingSphereImpl*[VT](cntr: vec_type, rad: value_type): BoundingSphereImpl {.constructor,importcpp: "osg::BoundingSphereImpl::BoundingSphereImpl<VT>(@)".}
     ## Creates a bounding sphere initialized to the given extents.
 
 proc constructBoundingSphereImpl*[VT](bs: BoundingSphereImpl[VT]): BoundingSphereImpl {.constructor,importcpp: "osg::BoundingSphereImpl::BoundingSphereImpl<VT>(@)".}
@@ -26,22 +27,22 @@ proc `==`*(this: BoundingSphereImpl, rhs: BoundingSphereImpl[VT]): bool  {.impor
 
 proc `!=`*(this: BoundingSphereImpl, rhs: BoundingSphereImpl[VT]): bool  {.importcpp: "# != #".}
 
-proc set*(this: var BoundingSphereImpl, center: Vec_type, radius: Value_type)  {.importcpp: "set".}
+proc set*(this: var BoundingSphereImpl, center: vec_type, radius: value_type)  {.importcpp: "set".}
     ## Set the bounding sphere to the given center/radius using floats.
 
-proc center*(this: var BoundingSphereImpl): Vec_type  {.importcpp: "center".}
+proc center*(this: var BoundingSphereImpl): vec_type  {.importcpp: "center".}
     ## Returns the center of the bounding sphere.
 
-proc center*(this: BoundingSphereImpl): Vec_type  {.importcpp: "center".}
+proc center*(this: BoundingSphereImpl): vec_type  {.importcpp: "center".}
     ## Returns the const center of the bounding sphere.
 
-proc radius*(this: var BoundingSphereImpl): Value_type  {.importcpp: "radius".}
+proc radius*(this: var BoundingSphereImpl): value_type  {.importcpp: "radius".}
     ## Returns the radius of the bounding sphere.
 
-proc radius*(this: BoundingSphereImpl): Value_type  {.importcpp: "radius".}
+proc radius*(this: BoundingSphereImpl): value_type  {.importcpp: "radius".}
     ## Returns the const radius of the bounding sphere.
 
-proc radius2*(this: BoundingSphereImpl): Value_type  {.importcpp: "radius2".}
+proc radius2*(this: BoundingSphereImpl): value_type  {.importcpp: "radius2".}
     ## Returns the squared length of the radius. Note, For performance
     ## reasons, the calling method is responsible for checking to make sure
     ## the sphere is valid.
@@ -56,7 +57,7 @@ proc expandRadiusBy*(this: var BoundingSphereImpl, sh: BoundingSphereImpl[VT])  
     ## the sphere center. If the sphere is uninitialized, set its center and
     ## radius to match sh.
 
-proc contains*(this: BoundingSphereImpl, v: Vec_type): bool  {.importcpp: "contains".}
+proc contains*(this: BoundingSphereImpl, v: vec_type): bool  {.importcpp: "contains".}
     ## Returns true if v is within the sphere.
 
 proc intersects*(this: BoundingSphereImpl, bs: BoundingSphereImpl[VT]): bool  {.importcpp: "intersects".}

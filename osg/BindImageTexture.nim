@@ -1,16 +1,17 @@
-import State  # provides: osg::State
-import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
-import CopyOp  # provides: osg::CopyOp
-import Texture  # provides: osg::Texture
+import osg_types
+  # File: State  was providing: osg::State
+  # File: Object  was providing: osg::Object
+  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
+  # File: CopyOp  was providing: osg::CopyOp
+  # File: Texture  was providing: osg::Texture
 type
-  Access* {.size:sizeof(cuint),header: "BindImageTexture", importcpp: "osg::BindImageTexture::Access".} = enum
+  Access* {.size:sizeof(cuint),header: "BindImageTexture", importcpp: "osg::BindImageTexture::Access", pure.} = enum
     ## Type of access that will be performed on the texture image.
 
-    ccssNOT_USED = 0,
-    ccssREAD_ONLY = 35000,
-    ccssWRITE_ONLY = 35001,
-    ccssREAD_WRITE = 35002
+    NOT_USED = 0,
+    READ_ONLY = 35000,
+    WRITE_ONLY = 35001,
+    READ_WRITE = 35002
 
   BindImageTexture* {.header: "BindImageTexture", importcpp: "osg::BindImageTexture", byref.} = object #of osg::StateAttribute
     ## Bind texture to an image unit (available only if GL version is 4.2 or
@@ -27,11 +28,11 @@ type
 
 proc constructBindImageTexture*(imageunit: GLuint = 0, target: ptr Texture  = 0, access: Access, format: GLenum, level: cint, layered: bool, layer: cint): BindImageTexture {.constructor,importcpp: "osg::BindImageTexture::BindImageTexture(@)".}
 
-proc constructBindImageTexture*(o: Bindimagetexture, op: Copyop = SHALLOW_COPY): BindImageTexture {.constructor,importcpp: "osg::BindImageTexture::BindImageTexture(@)".}
+proc constructBindImageTexture*(o: BindImageTexture, op: CopyOp = SHALLOW_COPY): BindImageTexture {.constructor,importcpp: "osg::BindImageTexture::BindImageTexture(@)".}
 
 proc cloneType*(this: BindImageTexture): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: BindImageTexture, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: BindImageTexture, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: BindImageTexture, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -73,7 +74,7 @@ proc getTexture*(this: BindImageTexture): ptr Texture   {.importcpp: "getTexture
 
 proc apply*(this: BindImageTexture, state: State)  {.importcpp: "apply".}
 
-proc compare*(this: BindImageTexture, sa: Stateattribute): cint  {.importcpp: "compare".}
+proc compare*(this: BindImageTexture, sa: StateAttribute): cint  {.importcpp: "compare".}
 
 proc getMember*(this: BindImageTexture): cuint  {.importcpp: "getMember".}
 

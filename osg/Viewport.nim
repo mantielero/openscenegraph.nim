@@ -1,8 +1,9 @@
-import State  # provides: osg::State
-import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
-import CopyOp  # provides: osg::CopyOp
-import Matrix  # provides: osg::Matrix
+import osg_types
+  # File: State  was providing: osg::State
+  # File: Object  was providing: osg::Object
+  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
+  # File: CopyOp  was providing: osg::CopyOp
+  # File: Matrix  was providing: osg::Matrix
 type
   Value_type* {.header: "Viewport", importcpp: "osg::Viewport::value_type".} = cdouble
 
@@ -11,14 +12,14 @@ type
 
 proc constructViewport*(): Viewport {.constructor,importcpp: "osg::Viewport::Viewport".}
 
-proc constructViewport*(x: Value_type, y: Value_type, width: Value_type, height: Value_type): Viewport {.constructor,importcpp: "osg::Viewport::Viewport(@)".}
+proc constructViewport*(x: value_type, y: value_type, width: value_type, height: value_type): Viewport {.constructor,importcpp: "osg::Viewport::Viewport(@)".}
 
-proc constructViewport*(vp: Viewport, copyop: Copyop = SHALLOW_COPY): Viewport {.constructor,importcpp: "osg::Viewport::Viewport(@)".}
+proc constructViewport*(vp: Viewport, copyop: CopyOp = SHALLOW_COPY): Viewport {.constructor,importcpp: "osg::Viewport::Viewport(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: Viewport): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: Viewport, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: Viewport, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: Viewport, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -28,28 +29,28 @@ proc className*(this: Viewport): cstring  {.importcpp: "className".}
 
 proc getType*(this: Viewport): Type  {.importcpp: "getType".}
 
-proc compare*(this: Viewport, sa: Stateattribute): cint  {.importcpp: "compare".}
+proc compare*(this: Viewport, sa: StateAttribute): cint  {.importcpp: "compare".}
     ## Return -1 if *this < *rhs, 0 if *this==*rhs, 1 if *this>*rhs.
 
 proc `=`*(this: var Viewport, rhs: Viewport): Viewport  {.importcpp: "# = #".}
 
-proc setViewport*(this: var Viewport, x: Value_type, y: Value_type, width: Value_type, height: Value_type)  {.importcpp: "setViewport".}
+proc setViewport*(this: var Viewport, x: value_type, y: value_type, width: value_type, height: value_type)  {.importcpp: "setViewport".}
 
-proc x*(this: var Viewport): Value_type  {.importcpp: "x".}
+proc x*(this: var Viewport): value_type  {.importcpp: "x".}
 
-proc x*(this: Viewport): Value_type  {.importcpp: "x".}
+proc x*(this: Viewport): value_type  {.importcpp: "x".}
 
-proc y*(this: var Viewport): Value_type  {.importcpp: "y".}
+proc y*(this: var Viewport): value_type  {.importcpp: "y".}
 
-proc y*(this: Viewport): Value_type  {.importcpp: "y".}
+proc y*(this: Viewport): value_type  {.importcpp: "y".}
 
-proc width*(this: var Viewport): Value_type  {.importcpp: "width".}
+proc width*(this: var Viewport): value_type  {.importcpp: "width".}
 
-proc width*(this: Viewport): Value_type  {.importcpp: "width".}
+proc width*(this: Viewport): value_type  {.importcpp: "width".}
 
-proc height*(this: var Viewport): Value_type  {.importcpp: "height".}
+proc height*(this: var Viewport): value_type  {.importcpp: "height".}
 
-proc height*(this: Viewport): Value_type  {.importcpp: "height".}
+proc height*(this: Viewport): value_type  {.importcpp: "height".}
 
 proc valid*(this: Viewport): bool  {.importcpp: "valid".}
 

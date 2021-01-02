@@ -1,8 +1,9 @@
-import BoundingSphere  # provides: osg::BoundingSphere
-import Object  # provides: osg::Object
-import Node  # provides: osg::Node
-import CopyOp  # provides: osg::CopyOp
-import NodeVisitor  # provides: osg::NodeVisitor
+import osg_types
+  # File: BoundingSphere  was providing: osg::BoundingSphere
+  # File: Object  was providing: osg::Object
+  # File: Node  was providing: osg::Node
+  # File: CopyOp  was providing: osg::CopyOp
+  # File: NodeVisitor  was providing: osg::NodeVisitor
 type
   ValueList* {.header: "Switch", importcpp: "osg::Switch::ValueList".} = cint
 
@@ -11,7 +12,7 @@ type
 
 proc constructSwitch*(): Switch {.constructor,importcpp: "osg::Switch::Switch".}
 
-proc constructSwitch*(Switch, copyop: Copyop = SHALLOW_COPY): Switch {.constructor,importcpp: "osg::Switch::Switch(@)".}
+proc constructSwitch*(a00: Switch, copyop: CopyOp = SHALLOW_COPY): Switch {.constructor,importcpp: "osg::Switch::Switch(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc asSwitch*(this: var Switch): ptr Switch   {.importcpp: "asSwitch".}
@@ -20,7 +21,7 @@ proc asSwitch*(this: Switch): ptr Switch   {.importcpp: "asSwitch".}
 
 proc cloneType*(this: Switch): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: Switch, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: Switch, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: Switch, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -28,9 +29,9 @@ proc className*(this: Switch): cstring  {.importcpp: "className".}
 
 proc libraryName*(this: Switch): cstring  {.importcpp: "libraryName".}
 
-proc accept*(this: var Switch, nv: Nodevisitor)  {.importcpp: "accept".}
+proc accept*(this: var Switch, nv: NodeVisitor)  {.importcpp: "accept".}
 
-proc traverse*(this: var Switch, nv: Nodevisitor)  {.importcpp: "traverse".}
+proc traverse*(this: var Switch, nv: NodeVisitor)  {.importcpp: "traverse".}
 
 proc setNewChildDefaultValue*(this: var Switch, value: bool)  {.importcpp: "setNewChildDefaultValue".}
 
@@ -65,10 +66,10 @@ proc setAllChildrenOn*(this: var Switch): bool  {.importcpp: "setAllChildrenOn".
 proc setSingleChildOn*(this: var Switch, pos: cuint): bool  {.importcpp: "setSingleChildOn".}
     ## Set a single child on, switch off all other children.
 
-proc setValueList*(this: var Switch, values: Valuelist)  {.importcpp: "setValueList".}
+proc setValueList*(this: var Switch, values: ValueList)  {.importcpp: "setValueList".}
 
-proc getValueList*(this: Switch): Valuelist  {.importcpp: "getValueList".}
+proc getValueList*(this: Switch): ValueList  {.importcpp: "getValueList".}
 
-proc computeBound*(this: Switch): Boundingsphere  {.importcpp: "computeBound".}
+proc computeBound*(this: Switch): BoundingSphere  {.importcpp: "computeBound".}
 
 {.pop.}  # header: "Switch"

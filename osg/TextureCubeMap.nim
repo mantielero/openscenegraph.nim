@@ -1,16 +1,17 @@
-import State  # provides: osg::State
-import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
-import Image  # provides: osg::Image
-import CopyOp  # provides: osg::CopyOp
+import osg_types
+  # File: State  was providing: osg::State
+  # File: Object  was providing: osg::Object
+  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
+  # File: Image  was providing: osg::Image
+  # File: CopyOp  was providing: osg::CopyOp
 type
-  Face* {.size:sizeof(cuint),header: "TextureCubeMap", importcpp: "osg::TextureCubeMap::Face".} = enum
-    fcPOSITIVE_X = 0,
-    fcNEGATIVE_X = 1,
-    fcPOSITIVE_Y = 2,
-    fcNEGATIVE_Y = 3,
-    fcPOSITIVE_Z = 4,
-    fcNEGATIVE_Z = 5
+  Face* {.size:sizeof(cuint),header: "TextureCubeMap", importcpp: "osg::TextureCubeMap::Face", pure.} = enum
+    POSITIVE_X = 0,
+    NEGATIVE_X = 1,
+    POSITIVE_Y = 2,
+    NEGATIVE_Y = 3,
+    POSITIVE_Z = 4,
+    NEGATIVE_Z = 5
 
   TextureCubeMap* {.header: "TextureCubeMap", importcpp: "osg::TextureCubeMap", byref.} = object #of class osg::Texture
     ## TextureCubeMap state class which encapsulates OpenGL texture cubemap
@@ -25,12 +26,12 @@ type
 
 proc constructTextureCubeMap*(): TextureCubeMap {.constructor,importcpp: "osg::TextureCubeMap::TextureCubeMap".}
 
-proc constructTextureCubeMap*(cm: Texturecubemap, copyop: Copyop = SHALLOW_COPY): TextureCubeMap {.constructor,importcpp: "osg::TextureCubeMap::TextureCubeMap(@)".}
+proc constructTextureCubeMap*(cm: TextureCubeMap, copyop: CopyOp = SHALLOW_COPY): TextureCubeMap {.constructor,importcpp: "osg::TextureCubeMap::TextureCubeMap(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: TextureCubeMap): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: TextureCubeMap, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: TextureCubeMap, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: TextureCubeMap, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -40,7 +41,7 @@ proc className*(this: TextureCubeMap): cstring  {.importcpp: "className".}
 
 proc getType*(this: TextureCubeMap): Type  {.importcpp: "getType".}
 
-proc compare*(this: TextureCubeMap, rhs: Stateattribute): cint  {.importcpp: "compare".}
+proc compare*(this: TextureCubeMap, rhs: StateAttribute): cint  {.importcpp: "compare".}
     ## Return -1 if *this < *rhs, 0 if *this==*rhs, 1 if *this>*rhs.
 
 proc getTextureTarget*(this: TextureCubeMap): GLenum  {.importcpp: "getTextureTarget".}
@@ -77,15 +78,15 @@ proc getTextureHeight*(this: TextureCubeMap): cint  {.importcpp: "getTextureHeig
 
 proc getTextureDepth*(this: TextureCubeMap): cint  {.importcpp: "getTextureDepth".}
 
-proc load*(this: SubloadCallback, texture: Texturecubemap, state: State)  {.importcpp: "load".}
+proc load*(this: SubloadCallback, texture: TextureCubeMap, state: State)  {.importcpp: "load".}
 
-proc subload*(this: SubloadCallback, texture: Texturecubemap, state: State)  {.importcpp: "subload".}
+proc subload*(this: SubloadCallback, texture: TextureCubeMap, state: State)  {.importcpp: "subload".}
 
-proc setSubloadCallback*(this: var TextureCubeMap, cb: ptr Subloadcallback )  {.importcpp: "setSubloadCallback".}
+proc setSubloadCallback*(this: var TextureCubeMap, cb: ptr SubloadCallback )  {.importcpp: "setSubloadCallback".}
 
-proc getSubloadCallback*(this: var TextureCubeMap): ptr Subloadcallback   {.importcpp: "getSubloadCallback".}
+proc getSubloadCallback*(this: var TextureCubeMap): ptr SubloadCallback   {.importcpp: "getSubloadCallback".}
 
-proc getSubloadCallback*(this: TextureCubeMap): ptr Subloadcallback   {.importcpp: "getSubloadCallback".}
+proc getSubloadCallback*(this: TextureCubeMap): ptr SubloadCallback   {.importcpp: "getSubloadCallback".}
 
 proc setNumMipmapLevels*(this: TextureCubeMap, num: cuint)  {.importcpp: "setNumMipmapLevels".}
     ## Set the number of mip map levels the texture has been created with.

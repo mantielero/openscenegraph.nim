@@ -1,9 +1,10 @@
-import State  # provides: osg::State
-import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
-import StateSet  # provides: osg::StateSet
-import CopyOp  # provides: osg::CopyOp
-import Vec4d  # provides: osg::Vec4d
+import osg_types
+  # File: State  was providing: osg::State
+  # File: Object  was providing: osg::Object
+  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
+  # File: StateSet  was providing: osg::StateSet
+  # File: CopyOp  was providing: osg::CopyOp
+  # File: Vec4d  was providing: osg::Vec4d
 type
   Sampler* {.header: "Sampler", importcpp: "osg::Sampler", byref.} = object #of osg::StateAttribute
     ## OpenGL Sampler OpenGL 3.3 required https://www.khronos.org/registry/Op
@@ -17,12 +18,12 @@ type
 
 proc constructSampler*(): Sampler {.constructor,importcpp: "osg::Sampler::Sampler".}
 
-proc constructSampler*(text: Sampler, copyop: Copyop = SHALLOW_COPY): Sampler {.constructor,importcpp: "osg::Sampler::Sampler(@)".}
+proc constructSampler*(text: Sampler, copyop: CopyOp = SHALLOW_COPY): Sampler {.constructor,importcpp: "osg::Sampler::Sampler(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: Sampler): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: Sampler, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: Sampler, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: Sampler, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -34,27 +35,27 @@ proc getType*(this: Sampler): Type  {.importcpp: "getType".}
 
 proc isTextureAttribute*(this: Sampler): bool  {.importcpp: "isTextureAttribute".}
 
-proc setWrap*(this: var Sampler, which: Wrapparameter, wrap: Wrapmode)  {.importcpp: "setWrap".}
+proc setWrap*(this: var Sampler, which: WrapParameter, wrap: WrapMode)  {.importcpp: "setWrap".}
     ## Sets the texture wrap mode.
 
-proc getWrap*(this: Sampler, which: Wrapparameter): Wrapmode  {.importcpp: "getWrap".}
+proc getWrap*(this: Sampler, which: WrapParameter): WrapMode  {.importcpp: "getWrap".}
     ## Gets the texture wrap mode.
 
-proc setFilter*(this: var Sampler, which: Filterparameter, filter: Filtermode)  {.importcpp: "setFilter".}
+proc setFilter*(this: var Sampler, which: FilterParameter, filter: FilterMode)  {.importcpp: "setFilter".}
     ## Sets the texture filter mode.
 
-proc getFilter*(this: Sampler, which: Filterparameter): Filtermode  {.importcpp: "getFilter".}
+proc getFilter*(this: Sampler, which: FilterParameter): FilterMode  {.importcpp: "getFilter".}
     ## Gets the texture filter mode.
 
-proc setShadowCompareFunc*(this: var Sampler, `func`: Shadowcomparefunc)  {.importcpp: "setShadowCompareFunc".}
+proc setShadowCompareFunc*(this: var Sampler, `func`: ShadowCompareFunc)  {.importcpp: "setShadowCompareFunc".}
     ## Sets shadow texture comparison function.
 
-proc getShadowCompareFunc*(this: Sampler): Shadowcomparefunc  {.importcpp: "getShadowCompareFunc".}
+proc getShadowCompareFunc*(this: Sampler): ShadowCompareFunc  {.importcpp: "getShadowCompareFunc".}
 
-proc setShadowTextureMode*(this: var Sampler, mode: Shadowtexturemode)  {.importcpp: "setShadowTextureMode".}
+proc setShadowTextureMode*(this: var Sampler, mode: ShadowTextureMode)  {.importcpp: "setShadowTextureMode".}
     ## Sets shadow texture mode after comparison.
 
-proc getShadowTextureMode*(this: Sampler): Shadowtexturemode  {.importcpp: "getShadowTextureMode".}
+proc getShadowTextureMode*(this: Sampler): ShadowTextureMode  {.importcpp: "getShadowTextureMode".}
 
 proc setBorderColor*(this: var Sampler, color: Vec4d)  {.importcpp: "setBorderColor".}
     ## Sets the border color. Only used when wrap mode is CLAMP_TO_BORDER.
@@ -89,17 +90,17 @@ proc setLODBias*(this: var Sampler, anis: cfloat)  {.importcpp: "setLODBias".}
 proc getLODBias*(this: Sampler): cfloat  {.importcpp: "getLODBias".}
     ## Gets the maximum anisotropy value.
 
-proc generateSamplerObjects*(this: var Sampler, Stateset)  {.importcpp: "generateSamplerObjects".}
+proc generateSamplerObjects*(this: var Sampler, a00: StateSet)  {.importcpp: "generateSamplerObjects".}
     ## helper method to generate Sampler from Texture's sampling parameters
     ## (except shadow_texture_mode left to NONE)
 
 proc apply*(this: Sampler, state: State)  {.importcpp: "apply".}
 
-proc compileGLObjects*(this: Sampler, State)  {.importcpp: "compileGLObjects".}
+proc compileGLObjects*(this: Sampler, a00: State)  {.importcpp: "compileGLObjects".}
 
 proc releaseGLObjects*(this: Sampler, state: ptr State  = 0)  {.importcpp: "releaseGLObjects".}
     ## release state's SamplerObject *
 
-proc compare*(this: Sampler, sa: Stateattribute): cint  {.importcpp: "compare".}
+proc compare*(this: Sampler, sa: StateAttribute): cint  {.importcpp: "compare".}
 
 {.pop.}  # header: "Sampler"

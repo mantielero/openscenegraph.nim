@@ -1,16 +1,17 @@
-import Vec4  # provides: osg::Vec4
-import Object  # provides: osg::Object
-import CopyOp  # provides: osg::CopyOp
-import NodeVisitor  # provides: osg::NodeVisitor
+import osg_types
+  # File: Vec4  was providing: osg::Vec4
+  # File: Object  was providing: osg::Object
+  # File: CopyOp  was providing: osg::CopyOp
+  # File: NodeVisitor  was providing: osg::NodeVisitor
 {.push header: "ClearNode".}
 
 proc constructClearNode*(): ClearNode {.constructor,importcpp: "osg::ClearNode::ClearNode".}
 
-proc constructClearNode*(cs: Clearnode, copyop: Copyop = SHALLOW_COPY): ClearNode {.constructor,importcpp: "osg::ClearNode::ClearNode(@)".}
+proc constructClearNode*(cs: ClearNode, copyop: CopyOp = SHALLOW_COPY): ClearNode {.constructor,importcpp: "osg::ClearNode::ClearNode(@)".}
 
 proc cloneType*(this: ClearNode): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: ClearNode, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: ClearNode, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: ClearNode, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -18,7 +19,7 @@ proc className*(this: ClearNode): cstring  {.importcpp: "className".}
 
 proc libraryName*(this: ClearNode): cstring  {.importcpp: "libraryName".}
 
-proc accept*(this: var ClearNode, nv: Nodevisitor)  {.importcpp: "accept".}
+proc accept*(this: var ClearNode, nv: NodeVisitor)  {.importcpp: "accept".}
 
 proc setRequiresClear*(this: var ClearNode, requiresClear: bool)  {.importcpp: "setRequiresClear".}
     ## Enable/disable clearing via glClear.

@@ -1,8 +1,9 @@
-import State  # provides: osg::State
-import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
-import CopyOp  # provides: osg::CopyOp
-import Matrix  # provides: osg::Matrix
+import osg_types
+  # File: State  was providing: osg::State
+  # File: Object  was providing: osg::Object
+  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
+  # File: CopyOp  was providing: osg::CopyOp
+  # File: Matrix  was providing: osg::Matrix
 type
   TexMat* {.header: "TexMat", importcpp: "osg::TexMat", byref.} = object #of class osg::StateAttribute
     ## A texture matrix state class that encapsulates OpenGL texture matrix
@@ -16,12 +17,12 @@ proc constructTexMat*(): TexMat {.constructor,importcpp: "osg::TexMat::TexMat".}
 
 proc constructTexMat*(matrix: Matrix): TexMat {.constructor,importcpp: "osg::TexMat::TexMat(@)".}
 
-proc constructTexMat*(texmat: Texmat, copyop: Copyop = SHALLOW_COPY): TexMat {.constructor,importcpp: "osg::TexMat::TexMat(@)".}
+proc constructTexMat*(texmat: TexMat, copyop: CopyOp = SHALLOW_COPY): TexMat {.constructor,importcpp: "osg::TexMat::TexMat(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: TexMat): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: TexMat, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: TexMat, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: TexMat, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -33,7 +34,7 @@ proc getType*(this: TexMat): Type  {.importcpp: "getType".}
 
 proc isTextureAttribute*(this: TexMat): bool  {.importcpp: "isTextureAttribute".}
 
-proc compare*(this: TexMat, sa: Stateattribute): cint  {.importcpp: "compare".}
+proc compare*(this: TexMat, sa: StateAttribute): cint  {.importcpp: "compare".}
     ## Return -1 if *this < *rhs, 0 if *this==*rhs, 1 if *this>*rhs.
 
 proc setMatrix*(this: var TexMat, matrix: Matrix)  {.importcpp: "setMatrix".}

@@ -1,63 +1,64 @@
-import ArgumentParser  # provides: osg::ArgumentParser
-import Matrixd  # provides: osg::Matrixd
+import osg_types
+  # File: ArgumentParser  was providing: osg::ArgumentParser
+  # File: Matrixd  was providing: osg::Matrixd
 type
-  DisplayType* {.size:sizeof(cuint),header: "DisplaySettings", importcpp: "osg::DisplaySettings::DisplayType".} = enum
-    dsplytypMONITOR = 0,
-    dsplytypPOWERWALL = 1,
-    dsplytypREALITY_CENTER = 2,
-    dsplytypHEAD_MOUNTED_DISPLAY = 3
+  DisplayType* {.size:sizeof(cuint),header: "DisplaySettings", importcpp: "osg::DisplaySettings::DisplayType", pure.} = enum
+    MONITOR = 0,
+    POWERWALL = 1,
+    REALITY_CENTER = 2,
+    HEAD_MOUNTED_DISPLAY = 3
 
-  StereoMode* {.size:sizeof(cuint),header: "DisplaySettings", importcpp: "osg::DisplaySettings::StereoMode".} = enum
-    strmdQUAD_BUFFER = 0,
-    strmdANAGLYPHIC = 1,
-    strmdHORIZONTAL_SPLIT = 2,
-    strmdVERTICAL_SPLIT = 3,
-    strmdLEFT_EYE = 4,
-    strmdRIGHT_EYE = 5,
-    strmdHORIZONTAL_INTERLACE = 6,
-    strmdVERTICAL_INTERLACE = 7,
-    strmdCHECKERBOARD = 8
+  StereoMode* {.size:sizeof(cuint),header: "DisplaySettings", importcpp: "osg::DisplaySettings::StereoMode", pure.} = enum
+    QUAD_BUFFER = 0,
+    ANAGLYPHIC = 1,
+    HORIZONTAL_SPLIT = 2,
+    VERTICAL_SPLIT = 3,
+    LEFT_EYE = 4,
+    RIGHT_EYE = 5,
+    HORIZONTAL_INTERLACE = 6,
+    VERTICAL_INTERLACE = 7,
+    CHECKERBOARD = 8
 
-  SplitStereoHorizontalEyeMapping* {.size:sizeof(cuint),header: "DisplaySettings", importcpp: "osg::DisplaySettings::SplitStereoHorizontalEyeMapping".} = enum
-    spltstrhrzntlymppngLEFT_EYE_LEFT_VIEWPORT = 0,
-    spltstrhrzntlymppngLEFT_EYE_RIGHT_VIEWPORT = 1
+  SplitStereoHorizontalEyeMapping* {.size:sizeof(cuint),header: "DisplaySettings", importcpp: "osg::DisplaySettings::SplitStereoHorizontalEyeMapping", pure.} = enum
+    LEFT_EYE_LEFT_VIEWPORT = 0,
+    LEFT_EYE_RIGHT_VIEWPORT = 1
 
-  SplitStereoVerticalEyeMapping* {.size:sizeof(cuint),header: "DisplaySettings", importcpp: "osg::DisplaySettings::SplitStereoVerticalEyeMapping".} = enum
-    spltstrvrtclymppngLEFT_EYE_TOP_VIEWPORT = 0,
-    spltstrvrtclymppngLEFT_EYE_BOTTOM_VIEWPORT = 1
+  SplitStereoVerticalEyeMapping* {.size:sizeof(cuint),header: "DisplaySettings", importcpp: "osg::DisplaySettings::SplitStereoVerticalEyeMapping", pure.} = enum
+    LEFT_EYE_TOP_VIEWPORT = 0,
+    LEFT_EYE_BOTTOM_VIEWPORT = 1
 
-  ImplicitBufferAttachment* {.size:sizeof(cuint),header: "DisplaySettings", importcpp: "osg::DisplaySettings::ImplicitBufferAttachment".} = enum
+  ImplicitBufferAttachment* {.size:sizeof(cuint),header: "DisplaySettings", importcpp: "osg::DisplaySettings::ImplicitBufferAttachment", pure.} = enum
     ## Methods used to set and get defaults for Cameras implicit buffer
     ## attachments. For more info: See description of
     ## Camera::setImplicitBufferAttachment method
 
-    mplctbffrttchmntIMPLICIT_DEPTH_BUFFER_ATTACHMENT = 1,
-    mplctbffrttchmntIMPLICIT_STENCIL_BUFFER_ATTACHMENT = 2,
-    mplctbffrttchmntIMPLICIT_COLOR_BUFFER_ATTACHMENT = 4,
-    mplctbffrttchmntDEFAULT_IMPLICIT_BUFFER_ATTACHMENT = 5
+    IMPLICIT_DEPTH_BUFFER_ATTACHMENT = 1,
+    IMPLICIT_STENCIL_BUFFER_ATTACHMENT = 2,
+    IMPLICIT_COLOR_BUFFER_ATTACHMENT = 4,
+    DEFAULT_IMPLICIT_BUFFER_ATTACHMENT = 5
 
-  SwapMethod* {.size:sizeof(cuint),header: "DisplaySettings", importcpp: "osg::DisplaySettings::SwapMethod".} = enum
-    swpmthdSWAP_DEFAULT = 0,
-    swpmthdSWAP_EXCHANGE = 1,
-    swpmthdSWAP_COPY = 2,
-    swpmthdSWAP_UNDEFINED = 3
+  SwapMethod* {.size:sizeof(cuint),header: "DisplaySettings", importcpp: "osg::DisplaySettings::SwapMethod", pure.} = enum
+    SWAP_DEFAULT = 0,
+    SWAP_EXCHANGE = 1,
+    SWAP_COPY = 2,
+    SWAP_UNDEFINED = 3
 
-  VertexBufferHint* {.size:sizeof(cuint),header: "DisplaySettings", importcpp: "osg::DisplaySettings::VertexBufferHint".} = enum
-    vrtxbffrhntNO_PREFERENCE = 0,
-    vrtxbffrhntVERTEX_BUFFER_OBJECT = 1,
-    vrtxbffrhntVERTEX_ARRAY_OBJECT = 2
+  VertexBufferHint* {.size:sizeof(cuint),header: "DisplaySettings", importcpp: "osg::DisplaySettings::VertexBufferHint", pure.} = enum
+    NO_PREFERENCE = 0,
+    VERTEX_BUFFER_OBJECT = 1,
+    VERTEX_ARRAY_OBJECT = 2
 
-  ShaderHint* {.size:sizeof(cuint),header: "DisplaySettings", importcpp: "osg::DisplaySettings::ShaderHint".} = enum
-    shdrhntSHADER_NONE = 0,
-    shdrhntSHADER_GL2 = 1,
-    shdrhntSHADER_GLES2 = 2,
-    shdrhntSHADER_GL3 = 3,
-    shdrhntSHADER_GLES3 = 4
+  ShaderHint* {.size:sizeof(cuint),header: "DisplaySettings", importcpp: "osg::DisplaySettings::ShaderHint", pure.} = enum
+    SHADER_NONE = 0,
+    SHADER_GL2 = 1,
+    SHADER_GLES2 = 2,
+    SHADER_GL3 = 3,
+    SHADER_GLES3 = 4
 
-  OSXMenubarBehavior* {.size:sizeof(cuint),header: "DisplaySettings", importcpp: "osg::DisplaySettings::OSXMenubarBehavior".} = enum
-    sxmnbrbhvrMENUBAR_AUTO_HIDE = 0,
-    sxmnbrbhvrMENUBAR_FORCE_HIDE = 1,
-    sxmnbrbhvrMENUBAR_FORCE_SHOW = 2
+  OSXMenubarBehavior* {.size:sizeof(cuint),header: "DisplaySettings", importcpp: "osg::DisplaySettings::OSXMenubarBehavior", pure.} = enum
+    MENUBAR_AUTO_HIDE = 0,
+    MENUBAR_FORCE_HIDE = 1,
+    MENUBAR_FORCE_SHOW = 2
 
   ImplicitBufferAttachmentMask* {.header: "DisplaySettings", importcpp: "osg::DisplaySettings::ImplicitBufferAttachmentMask".} = cint
   FileNames* {.header: "DisplaySettings", importcpp: "osg::DisplaySettings::FileNames".} = cint
@@ -69,54 +70,54 @@ type
 
 proc constructDisplaySettings*(): DisplaySettings {.constructor,importcpp: "osg::DisplaySettings::DisplaySettings".}
 
-proc constructDisplaySettings*(arguments: Argumentparser): DisplaySettings {.constructor,importcpp: "osg::DisplaySettings::DisplaySettings(@)".}
+proc constructDisplaySettings*(arguments: ArgumentParser): DisplaySettings {.constructor,importcpp: "osg::DisplaySettings::DisplaySettings(@)".}
 
-proc constructDisplaySettings*(vs: Displaysettings): DisplaySettings {.constructor,importcpp: "osg::DisplaySettings::DisplaySettings(@)".}
+proc constructDisplaySettings*(vs: DisplaySettings): DisplaySettings {.constructor,importcpp: "osg::DisplaySettings::DisplaySettings(@)".}
 
-proc instance*(this: var DisplaySettings): Ref_ptr[Displaysettings]  {.importcpp: "instance".}
+proc instance*(this: var DisplaySettings): ref_ptr[DisplaySettings]  {.importcpp: "instance".}
     ## Maintain a DisplaySettings singleton for objects to query at runtime.
 
-proc `=`*(this: var DisplaySettings, vs: Displaysettings): Displaysettings  {.importcpp: "# = #".}
+proc `=`*(this: var DisplaySettings, vs: DisplaySettings): DisplaySettings  {.importcpp: "# = #".}
 
-proc setDisplaySettings*(this: var DisplaySettings, vs: Displaysettings)  {.importcpp: "setDisplaySettings".}
+proc setDisplaySettings*(this: var DisplaySettings, vs: DisplaySettings)  {.importcpp: "setDisplaySettings".}
 
-proc merge*(this: var DisplaySettings, vs: Displaysettings)  {.importcpp: "merge".}
+proc merge*(this: var DisplaySettings, vs: DisplaySettings)  {.importcpp: "merge".}
 
 proc setDefaults*(this: var DisplaySettings)  {.importcpp: "setDefaults".}
 
 proc readEnvironmentalVariables*(this: var DisplaySettings)  {.importcpp: "readEnvironmentalVariables".}
     ## read the environmental variables.
 
-proc readCommandLine*(this: var DisplaySettings, arguments: Argumentparser)  {.importcpp: "readCommandLine".}
+proc readCommandLine*(this: var DisplaySettings, arguments: ArgumentParser)  {.importcpp: "readCommandLine".}
     ## read the commandline arguments.
 
-proc setDisplayType*(this: var DisplaySettings, `type`: Displaytype)  {.importcpp: "setDisplayType".}
+proc setDisplayType*(this: var DisplaySettings, `type`: DisplayType)  {.importcpp: "setDisplayType".}
 
-proc getDisplayType*(this: DisplaySettings): Displaytype  {.importcpp: "getDisplayType".}
+proc getDisplayType*(this: DisplaySettings): DisplayType  {.importcpp: "getDisplayType".}
 
 proc setStereo*(this: var DisplaySettings, on: bool)  {.importcpp: "setStereo".}
 
 proc getStereo*(this: DisplaySettings): bool  {.importcpp: "getStereo".}
 
-proc setStereoMode*(this: var DisplaySettings, mode: Stereomode)  {.importcpp: "setStereoMode".}
+proc setStereoMode*(this: var DisplaySettings, mode: StereoMode)  {.importcpp: "setStereoMode".}
 
-proc getStereoMode*(this: DisplaySettings): Stereomode  {.importcpp: "getStereoMode".}
+proc getStereoMode*(this: DisplaySettings): StereoMode  {.importcpp: "getStereoMode".}
 
 proc setEyeSeparation*(this: var DisplaySettings, eyeSeparation: cfloat)  {.importcpp: "setEyeSeparation".}
 
 proc getEyeSeparation*(this: DisplaySettings): cfloat  {.importcpp: "getEyeSeparation".}
 
-proc setSplitStereoHorizontalEyeMapping*(this: var DisplaySettings, m: Splitstereohorizontaleyemapping)  {.importcpp: "setSplitStereoHorizontalEyeMapping".}
+proc setSplitStereoHorizontalEyeMapping*(this: var DisplaySettings, m: SplitStereoHorizontalEyeMapping)  {.importcpp: "setSplitStereoHorizontalEyeMapping".}
 
-proc getSplitStereoHorizontalEyeMapping*(this: DisplaySettings): Splitstereohorizontaleyemapping  {.importcpp: "getSplitStereoHorizontalEyeMapping".}
+proc getSplitStereoHorizontalEyeMapping*(this: DisplaySettings): SplitStereoHorizontalEyeMapping  {.importcpp: "getSplitStereoHorizontalEyeMapping".}
 
 proc setSplitStereoHorizontalSeparation*(this: var DisplaySettings, s: cint)  {.importcpp: "setSplitStereoHorizontalSeparation".}
 
 proc getSplitStereoHorizontalSeparation*(this: DisplaySettings): cint  {.importcpp: "getSplitStereoHorizontalSeparation".}
 
-proc setSplitStereoVerticalEyeMapping*(this: var DisplaySettings, m: Splitstereoverticaleyemapping)  {.importcpp: "setSplitStereoVerticalEyeMapping".}
+proc setSplitStereoVerticalEyeMapping*(this: var DisplaySettings, m: SplitStereoVerticalEyeMapping)  {.importcpp: "setSplitStereoVerticalEyeMapping".}
 
-proc getSplitStereoVerticalEyeMapping*(this: DisplaySettings): Splitstereoverticaleyemapping  {.importcpp: "getSplitStereoVerticalEyeMapping".}
+proc getSplitStereoVerticalEyeMapping*(this: DisplaySettings): SplitStereoVerticalEyeMapping  {.importcpp: "getSplitStereoVerticalEyeMapping".}
 
 proc setSplitStereoVerticalSeparation*(this: var DisplaySettings, s: cint)  {.importcpp: "setSplitStereoVerticalSeparation".}
 
@@ -212,9 +213,9 @@ proc getNumOfHttpDatabaseThreadsHint*(this: DisplaySettings): cuint  {.importcpp
     ## Get the hint for number of threads in the DatbasePager dedicated to
     ## reading http requests.
 
-proc setApplication*(this: var DisplaySettings, application: String)  {.importcpp: "setApplication".}
+proc setApplication*(this: var DisplaySettings, application: string)  {.importcpp: "setApplication".}
 
-proc getApplication*(this: var DisplaySettings): String  {.importcpp: "getApplication".}
+proc getApplication*(this: var DisplaySettings): string  {.importcpp: "getApplication".}
 
 proc setMaxTexturePoolSize*(this: var DisplaySettings, size: cuint)  {.importcpp: "setMaxTexturePoolSize".}
 
@@ -224,24 +225,24 @@ proc setMaxBufferObjectPoolSize*(this: var DisplaySettings, size: cuint)  {.impo
 
 proc getMaxBufferObjectPoolSize*(this: DisplaySettings): cuint  {.importcpp: "getMaxBufferObjectPoolSize".}
 
-proc setImplicitBufferAttachmentMask*(this: var DisplaySettings, renderMask: Implicitbufferattachmentmask, resolveMask: Implicitbufferattachmentmask)  {.importcpp: "setImplicitBufferAttachmentMask".}
+proc setImplicitBufferAttachmentMask*(this: var DisplaySettings, renderMask: ImplicitBufferAttachmentMask, resolveMask: ImplicitBufferAttachmentMask)  {.importcpp: "setImplicitBufferAttachmentMask".}
 
-proc setImplicitBufferAttachmentRenderMask*(this: var DisplaySettings, implicitBufferAttachmentRenderMask: Implicitbufferattachmentmask)  {.importcpp: "setImplicitBufferAttachmentRenderMask".}
+proc setImplicitBufferAttachmentRenderMask*(this: var DisplaySettings, implicitBufferAttachmentRenderMask: ImplicitBufferAttachmentMask)  {.importcpp: "setImplicitBufferAttachmentRenderMask".}
 
-proc setImplicitBufferAttachmentResolveMask*(this: var DisplaySettings, implicitBufferAttachmentResolveMask: Implicitbufferattachmentmask)  {.importcpp: "setImplicitBufferAttachmentResolveMask".}
+proc setImplicitBufferAttachmentResolveMask*(this: var DisplaySettings, implicitBufferAttachmentResolveMask: ImplicitBufferAttachmentMask)  {.importcpp: "setImplicitBufferAttachmentResolveMask".}
 
-proc getImplicitBufferAttachmentRenderMask*(this: DisplaySettings): Implicitbufferattachmentmask  {.importcpp: "getImplicitBufferAttachmentRenderMask".}
+proc getImplicitBufferAttachmentRenderMask*(this: DisplaySettings): ImplicitBufferAttachmentMask  {.importcpp: "getImplicitBufferAttachmentRenderMask".}
     ## Get mask selecting default implicit buffer attachments for Cameras
     ## primary FBOs.
 
-proc getImplicitBufferAttachmentResolveMask*(this: DisplaySettings): Implicitbufferattachmentmask  {.importcpp: "getImplicitBufferAttachmentResolveMask".}
+proc getImplicitBufferAttachmentResolveMask*(this: DisplaySettings): ImplicitBufferAttachmentMask  {.importcpp: "getImplicitBufferAttachmentResolveMask".}
     ## Get mask selecting default implicit buffer attachments for Cameras
     ## secondary MULTISAMPLE FBOs.
 
-proc setSwapMethod*(this: var DisplaySettings, swapMethod: Swapmethod)  {.importcpp: "setSwapMethod".}
+proc setSwapMethod*(this: var DisplaySettings, swapMethod: SwapMethod)  {.importcpp: "setSwapMethod".}
     ## Select preferred swap method
 
-proc getSwapMethod*(this: var DisplaySettings): Swapmethod  {.importcpp: "getSwapMethod".}
+proc getSwapMethod*(this: var DisplaySettings): SwapMethod  {.importcpp: "getSwapMethod".}
     ## Get preferred swap method
 
 proc setSyncSwapBuffers*(this: var DisplaySettings, numFrames: cuint = 0)  {.importcpp: "setSyncSwapBuffers".}
@@ -252,11 +253,11 @@ proc setSyncSwapBuffers*(this: var DisplaySettings, numFrames: cuint = 0)  {.imp
 proc getSyncSwapBuffers*(this: DisplaySettings): cuint  {.importcpp: "getSyncSwapBuffers".}
     ## Set whether Arb Sync should be used to manage the swaps buffers.
 
-proc setGLContextVersion*(this: var DisplaySettings, version: String)  {.importcpp: "setGLContextVersion".}
+proc setGLContextVersion*(this: var DisplaySettings, version: string)  {.importcpp: "setGLContextVersion".}
     ## Set the hint of which OpenGL version to attempt to create a graphics
     ## context for.
 
-proc getGLContextVersion*(this: DisplaySettings): String  {.importcpp: "getGLContextVersion".}
+proc getGLContextVersion*(this: DisplaySettings): string  {.importcpp: "getGLContextVersion".}
     ## Get the hint of which OpenGL version to attempt to create a graphics
     ## context for.
 
@@ -281,33 +282,33 @@ proc setNvOptimusEnablement*(this: var DisplaySettings, value: cint)  {.importcp
 proc getNvOptimusEnablement*(this: DisplaySettings): cint  {.importcpp: "getNvOptimusEnablement".}
     ## Get the NvOptimusEnablement value.
 
-proc setVertexBufferHint*(this: var DisplaySettings, gi: Vertexbufferhint)  {.importcpp: "setVertexBufferHint".}
+proc setVertexBufferHint*(this: var DisplaySettings, gi: VertexBufferHint)  {.importcpp: "setVertexBufferHint".}
 
-proc getVertexBufferHint*(this: DisplaySettings): Vertexbufferhint  {.importcpp: "getVertexBufferHint".}
+proc getVertexBufferHint*(this: DisplaySettings): VertexBufferHint  {.importcpp: "getVertexBufferHint".}
 
-proc setShaderHint*(this: var DisplaySettings, hint: Shaderhint, setShaderValues: bool)  {.importcpp: "setShaderHint".}
+proc setShaderHint*(this: var DisplaySettings, hint: ShaderHint, setShaderValues: bool)  {.importcpp: "setShaderHint".}
     ## set the ShaderHint to tells shader generating cdoes version to create.
     ## By default also OSG_GLSL_VERSION and OSG_PRECISION_FLOAT values that
     ## can get use directly in shaders using $OSG_GLSL_VERSION and
     ## $OSG_PRECISION_FLOAT respectively.
 
-proc getShaderHint*(this: DisplaySettings): Shaderhint  {.importcpp: "getShaderHint".}
+proc getShaderHint*(this: DisplaySettings): ShaderHint  {.importcpp: "getShaderHint".}
 
-proc setTextShaderTechnique*(this: var DisplaySettings, str: String)  {.importcpp: "setTextShaderTechnique".}
+proc setTextShaderTechnique*(this: var DisplaySettings, str: string)  {.importcpp: "setTextShaderTechnique".}
     ## Set the TextShaderTechnique that is used in the Text default
     ## constructor to choose which osgText::ShaderTechnique to use.
 
-proc getTextShaderTechnique*(this: DisplaySettings): String  {.importcpp: "getTextShaderTechnique".}
+proc getTextShaderTechnique*(this: DisplaySettings): string  {.importcpp: "getTextShaderTechnique".}
 
 proc setKeystoneHint*(this: var DisplaySettings, enabled: bool)  {.importcpp: "setKeystoneHint".}
 
 proc getKeystoneHint*(this: DisplaySettings): bool  {.importcpp: "getKeystoneHint".}
 
-proc setKeystoneFileNames*(this: var DisplaySettings, filenames: Filenames)  {.importcpp: "setKeystoneFileNames".}
+proc setKeystoneFileNames*(this: var DisplaySettings, filenames: FileNames)  {.importcpp: "setKeystoneFileNames".}
 
-proc getKeystoneFileNames*(this: var DisplaySettings): Filenames  {.importcpp: "getKeystoneFileNames".}
+proc getKeystoneFileNames*(this: var DisplaySettings): FileNames  {.importcpp: "getKeystoneFileNames".}
 
-proc getKeystoneFileNames*(this: DisplaySettings): Filenames  {.importcpp: "getKeystoneFileNames".}
+proc getKeystoneFileNames*(this: DisplaySettings): FileNames  {.importcpp: "getKeystoneFileNames".}
 
 proc setKeystones*(this: var DisplaySettings, objects: Objects)  {.importcpp: "setKeystones".}
 
@@ -315,9 +316,9 @@ proc getKeystones*(this: var DisplaySettings): Objects  {.importcpp: "getKeyston
 
 proc getKeystones*(this: DisplaySettings): Objects  {.importcpp: "getKeystones".}
 
-proc getOSXMenubarBehavior*(this: DisplaySettings): Osxmenubarbehavior  {.importcpp: "getOSXMenubarBehavior".}
+proc getOSXMenubarBehavior*(this: DisplaySettings): OSXMenubarBehavior  {.importcpp: "getOSXMenubarBehavior".}
 
-proc setOSXMenubarBehavior*(this: var DisplaySettings, hint: Osxmenubarbehavior)  {.importcpp: "setOSXMenubarBehavior".}
+proc setOSXMenubarBehavior*(this: var DisplaySettings, hint: OSXMenubarBehavior)  {.importcpp: "setOSXMenubarBehavior".}
 
 proc computeLeftEyeProjectionImplementation*(this: DisplaySettings, projection: Matrixd): Matrixd  {.importcpp: "computeLeftEyeProjectionImplementation".}
     ## helper function for computing the left eye projection matrix.
@@ -331,8 +332,8 @@ proc computeRightEyeProjectionImplementation*(this: DisplaySettings, projection:
 proc computeRightEyeViewImplementation*(this: DisplaySettings, view: Matrixd, eyeSeperationScale: cdouble): Matrixd  {.importcpp: "computeRightEyeViewImplementation".}
     ## helper function for computing the right eye view matrix.
 
-proc setValue*(this: var DisplaySettings, name: String, value: String)  {.importcpp: "setValue".}
+proc setValue*(this: var DisplaySettings, name: string, value: string)  {.importcpp: "setValue".}
 
-proc getValue*(this: DisplaySettings, name: String, value: String, use_getenv_fallback: bool): bool  {.importcpp: "getValue".}
+proc getValue*(this: DisplaySettings, name: string, value: string, use_getenv_fallback: bool): bool  {.importcpp: "getValue".}
 
 {.pop.}  # header: "DisplaySettings"

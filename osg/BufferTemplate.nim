@@ -1,5 +1,6 @@
-import Object  # provides: osg::Object
-import CopyOp  # provides: osg::CopyOp
+import osg_types
+  # File: Object  was providing: osg::Object
+  # File: CopyOp  was providing: osg::CopyOp
 type
   BufferTemplate*[T] {.header: "BufferTemplate", importcpp: "osg::BufferTemplate", byref.} = object #of class osg::BufferData
     ## Template buffer class to be used with a struct as template parameter.
@@ -13,7 +14,7 @@ type
 
 proc constructBufferTemplate*[T](): BufferTemplate {.constructor,importcpp: "osg::BufferTemplate::BufferTemplate<T>".}
 
-proc constructBufferTemplate*[T](bt: BufferTemplate[T], copyop: Copyop = SHALLOW_COPY): BufferTemplate {.constructor,importcpp: "osg::BufferTemplate::BufferTemplate<T>(@)".}
+proc constructBufferTemplate*[T](bt: BufferTemplate[T], copyop: CopyOp = SHALLOW_COPY): BufferTemplate {.constructor,importcpp: "osg::BufferTemplate::BufferTemplate<T>(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc isSameKindAs*(this: BufferTemplate, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
@@ -24,7 +25,7 @@ proc className*(this: BufferTemplate): cstring  {.importcpp: "className".}
 
 proc cloneType*(this: BufferTemplate): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: BufferTemplate, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: BufferTemplate, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc getDataPointer*(this: BufferTemplate): ptr GLvoid  {.importcpp: "getDataPointer".}
 

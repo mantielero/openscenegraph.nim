@@ -1,18 +1,19 @@
-import State  # provides: osg::State
-import Camera  # provides: osg::Camera
-import Object  # provides: osg::Object
-import Stats  # provides: osg::Stats
-import CopyOp  # provides: osg::CopyOp
-import Matrix  # provides: osg::Matrix
-import Light  # provides: osg::Light
-import FrameStamp  # provides: osg::FrameStamp
+import osg_types
+  # File: State  was providing: osg::State
+  # File: Camera  was providing: osg::Camera
+  # File: Object  was providing: osg::Object
+  # File: Stats  was providing: osg::Stats
+  # File: CopyOp  was providing: osg::CopyOp
+  # File: Matrix  was providing: osg::Matrix
+  # File: Light  was providing: osg::Light
+  # File: FrameStamp  was providing: osg::FrameStamp
 type
-  LightingMode* {.size:sizeof(cuint),header: "View", importcpp: "osg::View::LightingMode".} = enum
+  LightingMode* {.size:sizeof(cuint),header: "View", importcpp: "osg::View::LightingMode", pure.} = enum
     ## Options for controlling the global lighting used for the view.
 
-    lghtngmdNO_LIGHT = 0,
-    lghtngmdHEADLIGHT = 1,
-    lghtngmdSKY_LIGHT = 2
+    NO_LIGHT = 0,
+    HEADLIGHT = 1,
+    SKY_LIGHT = 2
 
   Slaves* {.header: "View", importcpp: "osg::View::Slaves".} = cint
 
@@ -21,7 +22,7 @@ type
 
 proc constructView*(): View {.constructor,importcpp: "osg::View::View".}
 
-proc constructView*(view: View, copyop: Copyop = SHALLOW_COPY): View {.constructor,importcpp: "osg::View::View(@)".}
+proc constructView*(view: View, copyop: CopyOp = SHALLOW_COPY): View {.constructor,importcpp: "osg::View::View(@)".}
 
 proc constructSlave*(useMastersSceneData: bool): Slave {.constructor,importcpp: "osg::View::Slave::Slave(@)".}
 
@@ -31,7 +32,7 @@ proc constructSlave*(rhs: Slave): Slave {.constructor,importcpp: "osg::View::Sla
 
 proc cloneType*(this: View): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: View, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: View, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: View, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -53,10 +54,10 @@ proc getStats*(this: var View): ptr Stats   {.importcpp: "getStats".}
 proc getStats*(this: View): ptr Stats   {.importcpp: "getStats".}
     ## Get the Viewers Stats object.
 
-proc setLightingMode*(this: var View, lightingMode: Lightingmode)  {.importcpp: "setLightingMode".}
+proc setLightingMode*(this: var View, lightingMode: LightingMode)  {.importcpp: "setLightingMode".}
     ## Set the global lighting to use for this view. Defaults to headlight.
 
-proc getLightingMode*(this: View): Lightingmode  {.importcpp: "getLightingMode".}
+proc getLightingMode*(this: View): LightingMode  {.importcpp: "getLightingMode".}
     ## Get the global lighting used for this view.
 
 proc setLight*(this: var View, light: ptr Light )  {.importcpp: "setLight".}
@@ -77,13 +78,13 @@ proc getCamera*(this: var View): ptr Camera   {.importcpp: "getCamera".}
 proc getCamera*(this: View): ptr Camera   {.importcpp: "getCamera".}
     ## Get the const master camera of the view.
 
-proc setFrameStamp*(this: var View, fs: ptr Framestamp )  {.importcpp: "setFrameStamp".}
+proc setFrameStamp*(this: var View, fs: ptr FrameStamp )  {.importcpp: "setFrameStamp".}
     ## Set the frame stamp of the view.
 
-proc getFrameStamp*(this: var View): ptr Framestamp   {.importcpp: "getFrameStamp".}
+proc getFrameStamp*(this: var View): ptr FrameStamp   {.importcpp: "getFrameStamp".}
     ## Get the frame stamp of the view.
 
-proc getFrameStamp*(this: View): ptr Framestamp   {.importcpp: "getFrameStamp".}
+proc getFrameStamp*(this: View): ptr FrameStamp   {.importcpp: "getFrameStamp".}
     ## Get the frame stamp of the view.
 
 proc `=`*(this: var Slave, rhs: Slave): Slave  {.importcpp: "# = #".}
@@ -114,8 +115,8 @@ proc updateSlaves*(this: var View)  {.importcpp: "updateSlaves".}
 
 proc resizeGLObjectBuffers*(this: var View, maxSize: cuint)  {.importcpp: "resizeGLObjectBuffers".}
 
-proc releaseGLObjects*(this: View, ptr State  = 0)  {.importcpp: "releaseGLObjects".}
+proc releaseGLObjects*(this: View, a00: ptr State  = 0)  {.importcpp: "releaseGLObjects".}
 
-proc createRenderer*(this: var View, ptr Camera ): ptr Graphicsoperation   {.importcpp: "createRenderer".}
+proc createRenderer*(this: var View, a00: ptr Camera ): ptr GraphicsOperation   {.importcpp: "createRenderer".}
 
 {.pop.}  # header: "View"

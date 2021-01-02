@@ -1,11 +1,12 @@
-import Object  # provides: osg::Object
-import Vec3f  # provides: osg::Vec3f
-import CopyOp  # provides: osg::CopyOp
-import Matrixd  # provides: osg::Matrixd
-import Vec4d  # provides: osg::Vec4d
-import Vec3d  # provides: osg::Vec3d
-import Quat  # provides: osg::Quat
-import Vec4f  # provides: osg::Vec4f
+import osg_types
+  # File: Object  was providing: osg::Object
+  # File: Vec3f  was providing: osg::Vec3f
+  # File: CopyOp  was providing: osg::CopyOp
+  # File: Matrixd  was providing: osg::Matrixd
+  # File: Vec4d  was providing: osg::Vec4d
+  # File: Vec3d  was providing: osg::Vec3d
+  # File: Quat  was providing: osg::Quat
+  # File: Vec4f  was providing: osg::Vec4f
 type
   RefMatrixf* {.header: "Matrixf", importcpp: "osg::RefMatrixf", byref.} = object #of class osg::Object
 
@@ -27,7 +28,7 @@ proc constructMatrixf*(`ptr`: double *const): Matrixf {.constructor,importcpp: "
 
 proc constructMatrixf*(quat: Quat): Matrixf {.constructor,importcpp: "osg::Matrixf::Matrixf(@)".}
 
-proc constructMatrixf*(a00: Value_type, a01: Value_type, a02: Value_type, a03: Value_type, a10: Value_type, a11: Value_type, a12: Value_type, a13: Value_type, a20: Value_type, a21: Value_type, a22: Value_type, a23: Value_type, a30: Value_type, a31: Value_type, a32: Value_type, a33: Value_type): Matrixf {.constructor,importcpp: "osg::Matrixf::Matrixf(@)".}
+proc constructMatrixf*(a00: value_type, a01: value_type, a02: value_type, a03: value_type, a10: value_type, a11: value_type, a12: value_type, a13: value_type, a20: value_type, a21: value_type, a22: value_type, a23: value_type, a30: value_type, a31: value_type, a32: value_type, a33: value_type): Matrixf {.constructor,importcpp: "osg::Matrixf::Matrixf(@)".}
 
 proc constructRefMatrixf*(): RefMatrixf {.constructor,importcpp: "osg::RefMatrixf::RefMatrixf".}
 
@@ -35,11 +36,11 @@ proc constructRefMatrixf*(other: Matrixf): RefMatrixf {.constructor,importcpp: "
 
 proc constructRefMatrixf*(other: Matrixd): RefMatrixf {.constructor,importcpp: "osg::RefMatrixf::RefMatrixf(@)".}
 
-proc constructRefMatrixf*(other: Refmatrixf): RefMatrixf {.constructor,importcpp: "osg::RefMatrixf::RefMatrixf(@)".}
+proc constructRefMatrixf*(other: RefMatrixf): RefMatrixf {.constructor,importcpp: "osg::RefMatrixf::RefMatrixf(@)".}
 
-proc constructRefMatrixf*(def: Value_type *const): RefMatrixf {.constructor,importcpp: "osg::RefMatrixf::RefMatrixf(@)".}
+proc constructRefMatrixf*(def: value_type *const): RefMatrixf {.constructor,importcpp: "osg::RefMatrixf::RefMatrixf(@)".}
 
-proc constructRefMatrixf*(a00: Value_type, a01: Value_type, a02: Value_type, a03: Value_type, a10: Value_type, a11: Value_type, a12: Value_type, a13: Value_type, a20: Value_type, a21: Value_type, a22: Value_type, a23: Value_type, a30: Value_type, a31: Value_type, a32: Value_type, a33: Value_type): RefMatrixf {.constructor,importcpp: "osg::RefMatrixf::RefMatrixf(@)".}
+proc constructRefMatrixf*(a00: value_type, a01: value_type, a02: value_type, a03: value_type, a10: value_type, a11: value_type, a12: value_type, a13: value_type, a20: value_type, a21: value_type, a22: value_type, a23: value_type, a30: value_type, a31: value_type, a32: value_type, a33: value_type): RefMatrixf {.constructor,importcpp: "osg::RefMatrixf::RefMatrixf(@)".}
 
 proc compare*(this: Matrixf, m: Matrixf): cint  {.importcpp: "compare".}
 
@@ -49,9 +50,9 @@ proc `==`*(this: Matrixf, m: Matrixf): bool  {.importcpp: "# == #".}
 
 proc `!=`*(this: Matrixf, m: Matrixf): bool  {.importcpp: "# != #".}
 
-proc `()`*(this: var Matrixf, row: cint, col: cint): Value_type  {.importcpp: "# () #".}
+proc `()`*(this: var Matrixf, row: cint, col: cint): value_type  {.importcpp: "# () #".}
 
-proc `()`*(this: Matrixf, row: cint, col: cint): Value_type  {.importcpp: "# () #".}
+proc `()`*(this: Matrixf, row: cint, col: cint): value_type  {.importcpp: "# () #".}
 
 proc valid*(this: Matrixf): bool  {.importcpp: "valid".}
 
@@ -69,43 +70,43 @@ proc set*(this: var Matrixf, `ptr`: float *const)  {.importcpp: "set".}
 
 proc set*(this: var Matrixf, `ptr`: double *const)  {.importcpp: "set".}
 
-proc set*(this: var Matrixf, a00: Value_type, a01: Value_type, a02: Value_type, a03: Value_type, a10: Value_type, a11: Value_type, a12: Value_type, a13: Value_type, a20: Value_type, a21: Value_type, a22: Value_type, a23: Value_type, a30: Value_type, a31: Value_type, a32: Value_type, a33: Value_type)  {.importcpp: "set".}
+proc set*(this: var Matrixf, a00: value_type, a01: value_type, a02: value_type, a03: value_type, a10: value_type, a11: value_type, a12: value_type, a13: value_type, a20: value_type, a21: value_type, a22: value_type, a23: value_type, a30: value_type, a31: value_type, a32: value_type, a33: value_type)  {.importcpp: "set".}
 
-proc `ptr`*(this: var Matrixf): ptr Value_type   {.importcpp: "ptr".}
+proc `ptr`*(this: var Matrixf): ptr value_type   {.importcpp: "ptr".}
 
-proc `ptr`*(this: Matrixf): ptr Value_type   {.importcpp: "ptr".}
+proc `ptr`*(this: Matrixf): ptr value_type   {.importcpp: "ptr".}
 
 proc isIdentity*(this: Matrixf): bool  {.importcpp: "isIdentity".}
 
 proc makeIdentity*(this: var Matrixf)  {.importcpp: "makeIdentity".}
 
-proc makeScale*(this: var Matrixf, Vec3f)  {.importcpp: "makeScale".}
+proc makeScale*(this: var Matrixf, a00: Vec3f)  {.importcpp: "makeScale".}
 
-proc makeScale*(this: var Matrixf, Vec3d)  {.importcpp: "makeScale".}
+proc makeScale*(this: var Matrixf, a00: Vec3d)  {.importcpp: "makeScale".}
 
-proc makeScale*(this: var Matrixf, Value_type, Value_type, Value_type)  {.importcpp: "makeScale".}
+proc makeScale*(this: var Matrixf, a00: value_type, a01: value_type, a02: value_type)  {.importcpp: "makeScale".}
 
-proc makeTranslate*(this: var Matrixf, Vec3f)  {.importcpp: "makeTranslate".}
+proc makeTranslate*(this: var Matrixf, a00: Vec3f)  {.importcpp: "makeTranslate".}
 
-proc makeTranslate*(this: var Matrixf, Vec3d)  {.importcpp: "makeTranslate".}
+proc makeTranslate*(this: var Matrixf, a00: Vec3d)  {.importcpp: "makeTranslate".}
 
-proc makeTranslate*(this: var Matrixf, Value_type, Value_type, Value_type)  {.importcpp: "makeTranslate".}
+proc makeTranslate*(this: var Matrixf, a00: value_type, a01: value_type, a02: value_type)  {.importcpp: "makeTranslate".}
 
 proc makeRotate*(this: var Matrixf, `from`: Vec3f, to: Vec3f)  {.importcpp: "makeRotate".}
 
 proc makeRotate*(this: var Matrixf, `from`: Vec3d, to: Vec3d)  {.importcpp: "makeRotate".}
 
-proc makeRotate*(this: var Matrixf, angle: Value_type, axis: Vec3f)  {.importcpp: "makeRotate".}
+proc makeRotate*(this: var Matrixf, angle: value_type, axis: Vec3f)  {.importcpp: "makeRotate".}
 
-proc makeRotate*(this: var Matrixf, angle: Value_type, axis: Vec3d)  {.importcpp: "makeRotate".}
+proc makeRotate*(this: var Matrixf, angle: value_type, axis: Vec3d)  {.importcpp: "makeRotate".}
 
-proc makeRotate*(this: var Matrixf, angle: Value_type, x: Value_type, y: Value_type, z: Value_type)  {.importcpp: "makeRotate".}
+proc makeRotate*(this: var Matrixf, angle: value_type, x: value_type, y: value_type, z: value_type)  {.importcpp: "makeRotate".}
 
-proc makeRotate*(this: var Matrixf, Quat)  {.importcpp: "makeRotate".}
+proc makeRotate*(this: var Matrixf, a00: Quat)  {.importcpp: "makeRotate".}
 
-proc makeRotate*(this: var Matrixf, angle1: Value_type, axis1: Vec3f, angle2: Value_type, axis2: Vec3f, angle3: Value_type, axis3: Vec3f)  {.importcpp: "makeRotate".}
+proc makeRotate*(this: var Matrixf, angle1: value_type, axis1: Vec3f, angle2: value_type, axis2: Vec3f, angle3: value_type, axis3: Vec3f)  {.importcpp: "makeRotate".}
 
-proc makeRotate*(this: var Matrixf, angle1: Value_type, axis1: Vec3d, angle2: Value_type, axis2: Vec3d, angle3: Value_type, axis3: Vec3d)  {.importcpp: "makeRotate".}
+proc makeRotate*(this: var Matrixf, angle1: value_type, axis1: Vec3d, angle2: value_type, axis2: Vec3d, angle3: value_type, axis3: Vec3d)  {.importcpp: "makeRotate".}
 
 proc decompose*(this: Matrixf, translation: Vec3f, rotation: Quat, scale: Vec3f, so: Quat)  {.importcpp: "decompose".}
     ## decompose the matrix into translation, rotation, scale and scale
@@ -160,11 +161,11 @@ proc makeLookAt*(this: var Matrixf, eye: Vec3d, center: Vec3d, up: Vec3d)  {.imp
     ## Set the position and orientation to be a view matrix, using the same
     ## convention as gluLookAt.
 
-proc getLookAt*(this: Matrixf, eye: Vec3f, center: Vec3f, up: Vec3f, lookDistance: Value_type)  {.importcpp: "getLookAt".}
+proc getLookAt*(this: Matrixf, eye: Vec3f, center: Vec3f, up: Vec3f, lookDistance: value_type)  {.importcpp: "getLookAt".}
     ## Get to the position and orientation of a modelview matrix, using the
     ## same convention as gluLookAt.
 
-proc getLookAt*(this: Matrixf, eye: Vec3d, center: Vec3d, up: Vec3d, lookDistance: Value_type)  {.importcpp: "getLookAt".}
+proc getLookAt*(this: Matrixf, eye: Vec3d, center: Vec3d, up: Vec3d, lookDistance: value_type)  {.importcpp: "getLookAt".}
     ## Get to the position and orientation of a modelview matrix, using the
     ## same convention as gluLookAt.
 
@@ -192,27 +193,27 @@ proc scale*(this: var Matrixf, sv: Vec3f): Matrixf  {.importcpp: "scale".}
 
 proc scale*(this: var Matrixf, sv: Vec3d): Matrixf  {.importcpp: "scale".}
 
-proc scale*(this: var Matrixf, sx: Value_type, sy: Value_type, sz: Value_type): Matrixf  {.importcpp: "scale".}
+proc scale*(this: var Matrixf, sx: value_type, sy: value_type, sz: value_type): Matrixf  {.importcpp: "scale".}
 
 proc translate*(this: var Matrixf, dv: Vec3f): Matrixf  {.importcpp: "translate".}
 
 proc translate*(this: var Matrixf, dv: Vec3d): Matrixf  {.importcpp: "translate".}
 
-proc translate*(this: var Matrixf, x: Value_type, y: Value_type, z: Value_type): Matrixf  {.importcpp: "translate".}
+proc translate*(this: var Matrixf, x: value_type, y: value_type, z: value_type): Matrixf  {.importcpp: "translate".}
 
 proc rotate*(this: var Matrixf, `from`: Vec3f, to: Vec3f): Matrixf  {.importcpp: "rotate".}
 
 proc rotate*(this: var Matrixf, `from`: Vec3d, to: Vec3d): Matrixf  {.importcpp: "rotate".}
 
-proc rotate*(this: var Matrixf, angle: Value_type, x: Value_type, y: Value_type, z: Value_type): Matrixf  {.importcpp: "rotate".}
+proc rotate*(this: var Matrixf, angle: value_type, x: value_type, y: value_type, z: value_type): Matrixf  {.importcpp: "rotate".}
 
-proc rotate*(this: var Matrixf, angle: Value_type, axis: Vec3f): Matrixf  {.importcpp: "rotate".}
+proc rotate*(this: var Matrixf, angle: value_type, axis: Vec3f): Matrixf  {.importcpp: "rotate".}
 
-proc rotate*(this: var Matrixf, angle: Value_type, axis: Vec3d): Matrixf  {.importcpp: "rotate".}
+proc rotate*(this: var Matrixf, angle: value_type, axis: Vec3d): Matrixf  {.importcpp: "rotate".}
 
-proc rotate*(this: var Matrixf, angle1: Value_type, axis1: Vec3f, angle2: Value_type, axis2: Vec3f, angle3: Value_type, axis3: Vec3f): Matrixf  {.importcpp: "rotate".}
+proc rotate*(this: var Matrixf, angle1: value_type, axis1: Vec3f, angle2: value_type, axis2: Vec3f, angle3: value_type, axis3: Vec3f): Matrixf  {.importcpp: "rotate".}
 
-proc rotate*(this: var Matrixf, angle1: Value_type, axis1: Vec3d, angle2: Value_type, axis2: Vec3d, angle3: Value_type, axis3: Vec3d): Matrixf  {.importcpp: "rotate".}
+proc rotate*(this: var Matrixf, angle1: value_type, axis1: Vec3d, angle2: value_type, axis2: Vec3d, angle3: value_type, axis3: Vec3d): Matrixf  {.importcpp: "rotate".}
 
 proc rotate*(this: var Matrixf, quat: Quat): Matrixf  {.importcpp: "rotate".}
 
@@ -277,7 +278,7 @@ proc getRotate*(this: Matrixf): Quat  {.importcpp: "getRotate".}
     ## non-scaled matrix and will return incorrect results for scaled
     ## matrixces. Consider decompose() instead.
 
-proc setTrans*(this: var Matrixf, tx: Value_type, ty: Value_type, tz: Value_type)  {.importcpp: "setTrans".}
+proc setTrans*(this: var Matrixf, tx: value_type, ty: value_type, tz: value_type)  {.importcpp: "setTrans".}
 
 proc setTrans*(this: var Matrixf, v: Vec3f)  {.importcpp: "setTrans".}
 
@@ -299,11 +300,11 @@ proc transform3x3*(this: var Matrixf, m: Matrixf, v: Vec3f): Vec3f  {.importcpp:
 proc transform3x3*(this: var Matrixf, m: Matrixf, v: Vec3d): Vec3d  {.importcpp: "transform3x3".}
     ## apply a 3x3 transform of M[0..2,0..2]*v.
 
-proc mult*(this: var Matrixf, Matrixf, Matrixf)  {.importcpp: "mult".}
+proc mult*(this: var Matrixf, a00: Matrixf, a01: Matrixf)  {.importcpp: "mult".}
 
-proc preMult*(this: var Matrixf, Matrixf)  {.importcpp: "preMult".}
+proc preMult*(this: var Matrixf, a00: Matrixf)  {.importcpp: "preMult".}
 
-proc postMult*(this: var Matrixf, Matrixf)  {.importcpp: "postMult".}
+proc postMult*(this: var Matrixf, a00: Matrixf)  {.importcpp: "postMult".}
 
 proc preMultTranslate*(this: var Matrixf, v: Vec3d)  {.importcpp: "preMultTranslate".}
     ## Optimized version of preMult(translate(v));
@@ -335,16 +336,16 @@ proc `*=`*(this: var Matrixf, other: Matrixf)  {.importcpp: "# *= #".}
 
 proc `*`*(this: Matrixf, m: Matrixf): Matrixf  {.importcpp: "# * #".}
 
-proc `*`*(this: Matrixf, rhs: Value_type): Matrixf  {.importcpp: "# * #".}
+proc `*`*(this: Matrixf, rhs: value_type): Matrixf  {.importcpp: "# * #".}
     ## Multiply by scalar.
 
-proc `*=`*(this: var Matrixf, rhs: Value_type): Matrixf  {.importcpp: "# *= #".}
+proc `*=`*(this: var Matrixf, rhs: value_type): Matrixf  {.importcpp: "# *= #".}
     ## Unary multiply by scalar.
 
-proc `/`*(this: Matrixf, rhs: Value_type): Matrixf  {.importcpp: "# / #".}
+proc `/`*(this: Matrixf, rhs: value_type): Matrixf  {.importcpp: "# / #".}
     ## Divide by scalar.
 
-proc `/=`*(this: var Matrixf, rhs: Value_type): Matrixf  {.importcpp: "# /= #".}
+proc `/=`*(this: var Matrixf, rhs: value_type): Matrixf  {.importcpp: "# /= #".}
     ## Unary divide by scalar.
 
 proc `+`*(this: Matrixf, rhs: Matrixf): Matrixf  {.importcpp: "# + #".}
@@ -356,7 +357,7 @@ proc `+=`*(this: var Matrixf, rhs: Matrixf): Matrixf  {.importcpp: "# += #".}
 
 proc cloneType*(this: RefMatrixf): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: RefMatrixf, Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: RefMatrixf, a00: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: RefMatrixf, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -366,13 +367,13 @@ proc className*(this: RefMatrixf): cstring  {.importcpp: "className".}
 
 proc identity*(this: var Matrixf): Matrixf  {.importcpp: "identity".}
 
-proc scale*(this: var Matrixf, sx: Value_type, sy: Value_type, sz: Value_type): Matrixf  {.importcpp: "scale".}
+proc scale*(this: var Matrixf, sx: value_type, sy: value_type, sz: value_type): Matrixf  {.importcpp: "scale".}
 
 proc scale*(this: var Matrixf, v: Vec3f): Matrixf  {.importcpp: "scale".}
 
 proc scale*(this: var Matrixf, v: Vec3d): Matrixf  {.importcpp: "scale".}
 
-proc translate*(this: var Matrixf, tx: Value_type, ty: Value_type, tz: Value_type): Matrixf  {.importcpp: "translate".}
+proc translate*(this: var Matrixf, tx: value_type, ty: value_type, tz: value_type): Matrixf  {.importcpp: "translate".}
 
 proc translate*(this: var Matrixf, v: Vec3f): Matrixf  {.importcpp: "translate".}
 
@@ -380,15 +381,15 @@ proc translate*(this: var Matrixf, v: Vec3d): Matrixf  {.importcpp: "translate".
 
 proc rotate*(this: var Matrixf, q: Quat): Matrixf  {.importcpp: "rotate".}
 
-proc rotate*(this: var Matrixf, angle: Value_type, x: Value_type, y: Value_type, z: Value_type): Matrixf  {.importcpp: "rotate".}
+proc rotate*(this: var Matrixf, angle: value_type, x: value_type, y: value_type, z: value_type): Matrixf  {.importcpp: "rotate".}
 
-proc rotate*(this: var Matrixf, angle: Value_type, axis: Vec3f): Matrixf  {.importcpp: "rotate".}
+proc rotate*(this: var Matrixf, angle: value_type, axis: Vec3f): Matrixf  {.importcpp: "rotate".}
 
-proc rotate*(this: var Matrixf, angle: Value_type, axis: Vec3d): Matrixf  {.importcpp: "rotate".}
+proc rotate*(this: var Matrixf, angle: value_type, axis: Vec3d): Matrixf  {.importcpp: "rotate".}
 
-proc rotate*(this: var Matrixf, angle1: Value_type, axis1: Vec3f, angle2: Value_type, axis2: Vec3f, angle3: Value_type, axis3: Vec3f): Matrixf  {.importcpp: "rotate".}
+proc rotate*(this: var Matrixf, angle1: value_type, axis1: Vec3f, angle2: value_type, axis2: Vec3f, angle3: value_type, axis3: Vec3f): Matrixf  {.importcpp: "rotate".}
 
-proc rotate*(this: var Matrixf, angle1: Value_type, axis1: Vec3d, angle2: Value_type, axis2: Vec3d, angle3: Value_type, axis3: Vec3d): Matrixf  {.importcpp: "rotate".}
+proc rotate*(this: var Matrixf, angle1: value_type, axis1: Vec3d, angle2: value_type, axis2: Vec3d, angle3: value_type, axis3: Vec3d): Matrixf  {.importcpp: "rotate".}
 
 proc rotate*(this: var Matrixf, `from`: Vec3f, to: Vec3f): Matrixf  {.importcpp: "rotate".}
 

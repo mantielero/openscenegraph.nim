@@ -1,7 +1,8 @@
-import Vec4  # provides: osg::Vec4
-import Object  # provides: osg::Object
-import Image  # provides: osg::Image
-import CopyOp  # provides: osg::CopyOp
+import osg_types
+  # File: Vec4  was providing: osg::Vec4
+  # File: Object  was providing: osg::Object
+  # File: Image  was providing: osg::Image
+  # File: CopyOp  was providing: osg::CopyOp
 type
   TransferFunction* {.header: "TransferFunction", importcpp: "osg::TransferFunction", byref.} = object #of osg::Object
     ## TransferFunction is a class that provide a 1D,2D or 3D colour look up
@@ -19,17 +20,17 @@ type
 
 proc constructTransferFunction*(): TransferFunction {.constructor,importcpp: "osg::TransferFunction::TransferFunction".}
 
-proc constructTransferFunction*(tf: Transferfunction, copyop: Copyop = SHALLOW_COPY): TransferFunction {.constructor,importcpp: "osg::TransferFunction::TransferFunction(@)".}
+proc constructTransferFunction*(tf: TransferFunction, copyop: CopyOp = SHALLOW_COPY): TransferFunction {.constructor,importcpp: "osg::TransferFunction::TransferFunction(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc constructTransferFunction1D*(): TransferFunction1D {.constructor,importcpp: "osg::TransferFunction1D::TransferFunction1D".}
 
-proc constructTransferFunction1D*(tf: Transferfunction1d, copyop: Copyop = SHALLOW_COPY): TransferFunction1D {.constructor,importcpp: "osg::TransferFunction1D::TransferFunction1D(@)".}
+proc constructTransferFunction1D*(tf: TransferFunction1D, copyop: CopyOp = SHALLOW_COPY): TransferFunction1D {.constructor,importcpp: "osg::TransferFunction1D::TransferFunction1D(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: TransferFunction): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: TransferFunction, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: TransferFunction, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: TransferFunction, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -47,7 +48,7 @@ proc getImage*(this: TransferFunction): ptr Image   {.importcpp: "getImage".}
 
 proc cloneType*(this: TransferFunction1D): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: TransferFunction1D, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: TransferFunction1D, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: TransferFunction1D, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -89,19 +90,19 @@ proc getColor*(this: TransferFunction1D, v: cfloat): Vec4  {.importcpp: "getColo
     ## Get the color for a specified transfer function value, interpolating
     ## the value if no exact match is found.
 
-proc setColorMap*(this: var TransferFunction1D, vcm: Colormap)  {.importcpp: "setColorMap".}
+proc setColorMap*(this: var TransferFunction1D, vcm: ColorMap)  {.importcpp: "setColorMap".}
     ## set the color map and automatically update the image to make sure they
     ## are in sync.
 
-proc getColorMap*(this: var TransferFunction1D): Colormap  {.importcpp: "getColorMap".}
+proc getColorMap*(this: var TransferFunction1D): ColorMap  {.importcpp: "getColorMap".}
     ## Get the color map that stores the mapping between the transfer
     ## function value and the colour it maps to.
 
-proc getColorMap*(this: TransferFunction1D): Colormap  {.importcpp: "getColorMap".}
+proc getColorMap*(this: TransferFunction1D): ColorMap  {.importcpp: "getColorMap".}
     ## Get the const color map that stores the mapping between the transfer
     ## function value and the colour it maps to.
 
-proc assign*(this: var TransferFunction1D, vcm: Colormap)  {.importcpp: "assign".}
+proc assign*(this: var TransferFunction1D, vcm: ColorMap)  {.importcpp: "assign".}
     ## Assign a color map and automatically update the image to make sure
     ## they are in sync.
 

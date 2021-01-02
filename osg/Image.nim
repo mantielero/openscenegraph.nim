@@ -1,22 +1,23 @@
-import Vec3  # provides: osg::Vec3
-import Vec3i  # provides: osg::Vec3i
-import Vec4  # provides: osg::Vec4
-import Object  # provides: osg::Object
-import BufferObject  # provides: osg::PixelBufferObject
-import StateAttribute  # provides: osg::StateAttribute
-import Vec2  # provides: osg::Vec2
-import CopyOp  # provides: osg::CopyOp
-import FrameStamp  # provides: osg::FrameStamp
-import NodeVisitor  # provides: osg::NodeVisitor
+import osg_types
+  # File: Vec3  was providing: osg::Vec3
+  # File: Vec3i  was providing: osg::Vec3i
+  # File: Vec4  was providing: osg::Vec4
+  # File: Object  was providing: osg::Object
+  # File: BufferObject  was providing: osg::PixelBufferObject
+  # File: StateAttribute  was providing: osg::StateAttribute
+  # File: Vec2  was providing: osg::Vec2
+  # File: CopyOp  was providing: osg::CopyOp
+  # File: FrameStamp  was providing: osg::FrameStamp
+  # File: NodeVisitor  was providing: osg::NodeVisitor
 type
-  WriteHint* {.size:sizeof(cuint),header: "Image", importcpp: "osg::Image::WriteHint".} = enum
-    wrthntNO_PREFERENCE = 0,
-    wrthntSTORE_INLINE = 1,
-    wrthntEXTERNAL_FILE = 2
+  WriteHint* {.size:sizeof(cuint),header: "Image", importcpp: "osg::Image::WriteHint", pure.} = enum
+    NO_PREFERENCE = 0,
+    STORE_INLINE = 1,
+    EXTERNAL_FILE = 2
 
-  Origin* {.size:sizeof(cuint),header: "Image", importcpp: "osg::Image::Origin".} = enum
-    rgnBOTTOM_LEFT = 0,
-    rgnTOP_LEFT = 1
+  Origin* {.size:sizeof(cuint),header: "Image", importcpp: "osg::Image::Origin", pure.} = enum
+    BOTTOM_LEFT = 0,
+    TOP_LEFT = 1
 
   DataIterator* {.header: "Image", importcpp: "osg::Image::DataIterator", byref.} = object
     ## Convenience class for assisting the copying of image data when the
@@ -32,18 +33,18 @@ type
 
 proc constructImage*(): Image {.constructor,importcpp: "osg::Image::Image".}
 
-proc constructImage*(image: Image, copyop: Copyop = SHALLOW_COPY): Image {.constructor,importcpp: "osg::Image::Image(@)".}
+proc constructImage*(image: Image, copyop: CopyOp = SHALLOW_COPY): Image {.constructor,importcpp: "osg::Image::Image(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc constructDataIterator*(image: ptr Image ): DataIterator {.constructor,importcpp: "osg::Image::DataIterator::DataIterator(@)".}
 
-proc constructDataIterator*(ri: Dataiterator): DataIterator {.constructor,importcpp: "osg::Image::DataIterator::DataIterator(@)".}
+proc constructDataIterator*(ri: DataIterator): DataIterator {.constructor,importcpp: "osg::Image::DataIterator::DataIterator(@)".}
 
 proc constructDimensionsChangedCallback*(): DimensionsChangedCallback {.constructor,importcpp: "osg::Image::DimensionsChangedCallback::DimensionsChangedCallback".}
 
 proc cloneType*(this: Image): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: Image, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: Image, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: Image, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -62,24 +63,24 @@ proc getTotalDataSize*(this: Image): cuint  {.importcpp: "getTotalDataSize".}
 proc compare*(this: Image, rhs: Image): cint  {.importcpp: "compare".}
     ## Return -1 if *this < *rhs, 0 if *this==*rhs, 1 if *this>*rhs.
 
-proc setFileName*(this: var Image, fileName: String)  {.importcpp: "setFileName".}
+proc setFileName*(this: var Image, fileName: string)  {.importcpp: "setFileName".}
 
-proc getFileName*(this: Image): String  {.importcpp: "getFileName".}
+proc getFileName*(this: Image): string  {.importcpp: "getFileName".}
 
-proc setWriteHint*(this: var Image, writeHint: Writehint)  {.importcpp: "setWriteHint".}
+proc setWriteHint*(this: var Image, writeHint: WriteHint)  {.importcpp: "setWriteHint".}
 
-proc getWriteHint*(this: Image): Writehint  {.importcpp: "getWriteHint".}
+proc getWriteHint*(this: Image): WriteHint  {.importcpp: "getWriteHint".}
 
-proc setAllocationMode*(this: var Image, mode: Allocationmode)  {.importcpp: "setAllocationMode".}
+proc setAllocationMode*(this: var Image, mode: AllocationMode)  {.importcpp: "setAllocationMode".}
     ## Set the method used for deleting data once it goes out of scope.
 
-proc getAllocationMode*(this: Image): Allocationmode  {.importcpp: "getAllocationMode".}
+proc getAllocationMode*(this: Image): AllocationMode  {.importcpp: "getAllocationMode".}
     ## Get the method used for deleting data once it goes out of scope.
 
 proc allocateImage*(this: var Image, s: cint, t: cint, r: cint, pixelFormat: GLenum, `type`: GLenum, packing: cint)  {.importcpp: "allocateImage".}
     ## Allocate a pixel block of specified size and type.
 
-proc setImage*(this: var Image, s: cint, t: cint, r: cint, internalTextureformat: GLint, pixelFormat: GLenum, `type`: GLenum, data: ptr unsigned char, mode: Allocationmode, packing: cint, rowLength: cint)  {.importcpp: "setImage".}
+proc setImage*(this: var Image, s: cint, t: cint, r: cint, internalTextureformat: GLint, pixelFormat: GLenum, `type`: GLenum, data: ptr unsigned char, mode: AllocationMode, packing: cint, rowLength: cint)  {.importcpp: "setImage".}
     ## Set the image dimensions, format and data.
 
 proc readPixels*(this: var Image, x: cint, y: cint, width: cint, height: cint, pixelFormat: GLenum, `type`: GLenum, packing: cint)  {.importcpp: "readPixels".}
@@ -287,11 +288,11 @@ proc isMipmap*(this: Image): bool  {.importcpp: "isMipmap".}
 
 proc getNumMipmapLevels*(this: Image): cuint  {.importcpp: "getNumMipmapLevels".}
 
-proc setMipmapLevels*(this: var Image, mipmapDataVector: Mipmapdatatype)  {.importcpp: "setMipmapLevels".}
+proc setMipmapLevels*(this: var Image, mipmapDataVector: MipmapDataType)  {.importcpp: "setMipmapLevels".}
     ## Send offsets into data. It is assumed that first mipmap offset (index
     ## 0) is 0.
 
-proc getMipmapLevels*(this: Image): Mipmapdatatype  {.importcpp: "getMipmapLevels".}
+proc getMipmapLevels*(this: Image): MipmapDataType  {.importcpp: "getMipmapLevels".}
 
 proc getMipmapOffset*(this: Image, mipmapLevel: cuint): cuint  {.importcpp: "getMipmapOffset".}
 
@@ -307,56 +308,56 @@ proc isImageTranslucent*(this: Image): bool  {.importcpp: "isImageTranslucent".}
     ## Return true if this image is translucent - i.e. it has alpha values
     ## that are less 1.0 (when normalized).
 
-proc setPixelBufferObject*(this: var Image, buffer: ptr Pixelbufferobject )  {.importcpp: "setPixelBufferObject".}
+proc setPixelBufferObject*(this: var Image, buffer: ptr PixelBufferObject )  {.importcpp: "setPixelBufferObject".}
     ## Set the optional PixelBufferObject used to map the image memory
     ## efficiently to graphics memory.
 
-proc getPixelBufferObject*(this: var Image): ptr Pixelbufferobject   {.importcpp: "getPixelBufferObject".}
+proc getPixelBufferObject*(this: var Image): ptr PixelBufferObject   {.importcpp: "getPixelBufferObject".}
     ## Get the PixelBufferObject.
 
-proc getPixelBufferObject*(this: Image): ptr Pixelbufferobject   {.importcpp: "getPixelBufferObject".}
+proc getPixelBufferObject*(this: Image): ptr PixelBufferObject   {.importcpp: "getPixelBufferObject".}
     ## Get the const PixelBufferObject.
 
 proc requiresUpdateCall*(this: Image): bool  {.importcpp: "requiresUpdateCall".}
     ## Return whether the update(NodeVisitor* nv) should be required on each
     ## frame to enable proper working of osg::Image.
 
-proc update*(this: var Image, ptr Nodevisitor )  {.importcpp: "update".}
+proc update*(this: var Image, a00: ptr NodeVisitor )  {.importcpp: "update".}
     ## update method for osg::Image subclasses that update themselves during
     ## the update traversal.
 
-proc `()`*(this: var UpdateCallback, attr: ptr Stateattribute , nv: ptr Nodevisitor )  {.importcpp: "# () #".}
+proc `()`*(this: var UpdateCallback, attr: ptr StateAttribute , nv: ptr NodeVisitor )  {.importcpp: "# () #".}
 
-proc sendFocusHint*(this: var Image, bool): bool  {.importcpp: "sendFocusHint".}
+proc sendFocusHint*(this: var Image, a00: bool): bool  {.importcpp: "sendFocusHint".}
     ## Hint whether to enable or disable focus to images acting as front ends
     ## to interactive surfaces such as a vnc or browser window. Return true
     ## if handled.
 
-proc sendPointerEvent*(this: var Image, cint, cint, cint): bool  {.importcpp: "sendPointerEvent".}
+proc sendPointerEvent*(this: var Image, a00: cint, a01: cint, a02: cint): bool  {.importcpp: "sendPointerEvent".}
     ## Send pointer events to images that are acting as front ends to
     ## interactive surfaces such as a vnc or browser window. Return true if
     ## handled.
 
-proc sendKeyEvent*(this: var Image, cint, bool): bool  {.importcpp: "sendKeyEvent".}
+proc sendKeyEvent*(this: var Image, a00: cint, a01: bool): bool  {.importcpp: "sendKeyEvent".}
     ## Send key events to images that are acting as front ends to interactive
     ## surfaces such as a vnc or browser window. Return true if handled.
 
-proc setFrameLastRendered*(this: var Image, ptr Framestamp )  {.importcpp: "setFrameLastRendered".}
+proc setFrameLastRendered*(this: var Image, a00: ptr FrameStamp )  {.importcpp: "setFrameLastRendered".}
     ## Pass frame information to the custom Image classes, to be called only
     ## when objects associated with imagery are not culled.
 
 proc `()`*(this: var DimensionsChangedCallback, image: ptr Image )  {.importcpp: "# () #".}
 
-proc addDimensionsChangedCallback*(this: var Image, cb: ptr Dimensionschangedcallback )  {.importcpp: "addDimensionsChangedCallback".}
+proc addDimensionsChangedCallback*(this: var Image, cb: ptr DimensionsChangedCallback )  {.importcpp: "addDimensionsChangedCallback".}
 
-proc removeDimensionsChangedCallback*(this: var Image, cb: ptr Dimensionschangedcallback )  {.importcpp: "removeDimensionsChangedCallback".}
+proc removeDimensionsChangedCallback*(this: var Image, cb: ptr DimensionsChangedCallback )  {.importcpp: "removeDimensionsChangedCallback".}
 
-proc `=`*(this: var Image, Image): Image  {.importcpp: "# = #".}
+proc `=`*(this: var Image, a00: Image): Image  {.importcpp: "# = #".}
 
 proc handleDimensionsChangedCallbacks*(this: var Image)  {.importcpp: "handleDimensionsChangedCallbacks".}
 
 proc deallocateData*(this: var Image)  {.importcpp: "deallocateData".}
 
-proc setData*(this: var Image, data: ptr unsigned char, allocationMode: Allocationmode)  {.importcpp: "setData".}
+proc setData*(this: var Image, data: ptr unsigned char, allocationMode: AllocationMode)  {.importcpp: "setData".}
 
 {.pop.}  # header: "Image"

@@ -1,31 +1,32 @@
-import State  # provides: osg::State
-import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
-import CopyOp  # provides: osg::CopyOp
+import osg_types
+  # File: State  was providing: osg::State
+  # File: Object  was providing: osg::Object
+  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
+  # File: CopyOp  was providing: osg::CopyOp
 type
-  Face* {.size:sizeof(cuint),header: "StencilTwoSided", importcpp: "osg::StencilTwoSided::Face".} = enum
-    fcFRONT = 0,
-    fcBACK = 1
+  Face* {.size:sizeof(cuint),header: "StencilTwoSided", importcpp: "osg::StencilTwoSided::Face", pure.} = enum
+    FRONT = 0,
+    BACK = 1
 
-  Function* {.size:sizeof(cuint),header: "StencilTwoSided", importcpp: "osg::StencilTwoSided::Function".} = enum
-    fnctnNEVER = 512,
-    fnctnLESS = 513,
-    fnctnEQUAL = 514,
-    fnctnLEQUAL = 515,
-    fnctnGREATER = 516,
-    fnctnNOTEQUAL = 517,
-    fnctnGEQUAL = 518,
-    fnctnALWAYS = 519
+  Function* {.size:sizeof(cuint),header: "StencilTwoSided", importcpp: "osg::StencilTwoSided::Function", pure.} = enum
+    NEVER = 512,
+    LESS = 513,
+    EQUAL = 514,
+    LEQUAL = 515,
+    GREATER = 516,
+    NOTEQUAL = 517,
+    GEQUAL = 518,
+    ALWAYS = 519
 
-  Operation* {.size:sizeof(cuint),header: "StencilTwoSided", importcpp: "osg::StencilTwoSided::Operation".} = enum
-    prtnZERO = 0,
-    prtnINVERT = 5386,
-    prtnKEEP = 7680,
-    prtnREPLACE = 7681,
-    prtnINCR = 7682,
-    prtnDECR = 7683,
-    prtnINCR_WRAP = 34055,
-    prtnDECR_WRAP = 34056
+  Operation* {.size:sizeof(cuint),header: "StencilTwoSided", importcpp: "osg::StencilTwoSided::Operation", pure.} = enum
+    ZERO = 0,
+    INVERT = 5386,
+    KEEP = 7680,
+    REPLACE = 7681,
+    INCR = 7682,
+    DECR = 7683,
+    INCR_WRAP = 34055,
+    DECR_WRAP = 34056
 
   StencilTwoSided* {.header: "StencilTwoSided", importcpp: "osg::StencilTwoSided", byref.} = object #of class osg::StateAttribute
     ## Provides OpenGL two sided stencil functionality, also known as
@@ -40,12 +41,12 @@ type
 
 proc constructStencilTwoSided*(): StencilTwoSided {.constructor,importcpp: "osg::StencilTwoSided::StencilTwoSided".}
 
-proc constructStencilTwoSided*(stencil: Stenciltwosided, copyop: Copyop = SHALLOW_COPY): StencilTwoSided {.constructor,importcpp: "osg::StencilTwoSided::StencilTwoSided(@)".}
+proc constructStencilTwoSided*(stencil: StencilTwoSided, copyop: CopyOp = SHALLOW_COPY): StencilTwoSided {.constructor,importcpp: "osg::StencilTwoSided::StencilTwoSided(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: StencilTwoSided): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: StencilTwoSided, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: StencilTwoSided, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: StencilTwoSided, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -55,10 +56,10 @@ proc className*(this: StencilTwoSided): cstring  {.importcpp: "className".}
 
 proc getType*(this: StencilTwoSided): Type  {.importcpp: "getType".}
 
-proc compare*(this: StencilTwoSided, sa: Stateattribute): cint  {.importcpp: "compare".}
+proc compare*(this: StencilTwoSided, sa: StateAttribute): cint  {.importcpp: "compare".}
     ## return -1 if *this < *rhs, 0 if *this==*rhs, 1 if *this>*rhs.
 
-proc getModeUsage*(this: StencilTwoSided, usage: Modeusage): bool  {.importcpp: "getModeUsage".}
+proc getModeUsage*(this: StencilTwoSided, usage: ModeUsage): bool  {.importcpp: "getModeUsage".}
 
 proc setFunction*(this: var StencilTwoSided, face: Face, `func`: Function, `ref`: cint, mask: cuint)  {.importcpp: "setFunction".}
 

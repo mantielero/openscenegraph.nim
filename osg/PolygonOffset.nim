@@ -1,7 +1,8 @@
-import State  # provides: osg::State
-import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
-import CopyOp  # provides: osg::CopyOp
+import osg_types
+  # File: State  was providing: osg::State
+  # File: Object  was providing: osg::Object
+  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
+  # File: CopyOp  was providing: osg::CopyOp
 type
   PolygonOffset* {.header: "PolygonOffset", importcpp: "osg::PolygonOffset", byref.} = object #of class osg::StateAttribute
     ## PolygonOffset - encapsulates the OpenGL glPolygonOffset state.
@@ -14,12 +15,12 @@ proc constructPolygonOffset*(): PolygonOffset {.constructor,importcpp: "osg::Pol
 
 proc constructPolygonOffset*(factor: cfloat, units: cfloat): PolygonOffset {.constructor,importcpp: "osg::PolygonOffset::PolygonOffset(@)".}
 
-proc constructPolygonOffset*(po: Polygonoffset, copyop: Copyop = SHALLOW_COPY): PolygonOffset {.constructor,importcpp: "osg::PolygonOffset::PolygonOffset(@)".}
+proc constructPolygonOffset*(po: PolygonOffset, copyop: CopyOp = SHALLOW_COPY): PolygonOffset {.constructor,importcpp: "osg::PolygonOffset::PolygonOffset(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: PolygonOffset): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: PolygonOffset, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: PolygonOffset, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: PolygonOffset, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -29,10 +30,10 @@ proc className*(this: PolygonOffset): cstring  {.importcpp: "className".}
 
 proc getType*(this: PolygonOffset): Type  {.importcpp: "getType".}
 
-proc compare*(this: PolygonOffset, sa: Stateattribute): cint  {.importcpp: "compare".}
+proc compare*(this: PolygonOffset, sa: StateAttribute): cint  {.importcpp: "compare".}
     ## return -1 if *this < *rhs, 0 if *this==*rhs, 1 if *this>*rhs.
 
-proc getModeUsage*(this: PolygonOffset, usage: Modeusage): bool  {.importcpp: "getModeUsage".}
+proc getModeUsage*(this: PolygonOffset, usage: ModeUsage): bool  {.importcpp: "getModeUsage".}
 
 proc setFactor*(this: var PolygonOffset, factor: cfloat)  {.importcpp: "setFactor".}
 

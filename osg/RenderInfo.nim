@@ -1,7 +1,8 @@
-import State  # provides: osg::State
-import Camera  # provides: osg::Camera
-import Referenced  # provides: osg::Referenced
-import View  # provides: osg::View
+import osg_types
+  # File: State  was providing: osg::State
+  # File: Camera  was providing: osg::Camera
+  # File: Referenced  was providing: osg::Referenced
+  # File: View  was providing: osg::View
 type
   CameraStack* {.header: "RenderInfo", importcpp: "osg::RenderInfo::CameraStack".} = cint
   RenderBinStack* {.header: "RenderInfo", importcpp: "osg::RenderInfo::RenderBinStack".} = cint
@@ -11,11 +12,11 @@ type
 
 proc constructRenderInfo*(): RenderInfo {.constructor,importcpp: "osg::RenderInfo::RenderInfo".}
 
-proc constructRenderInfo*(rhs: Renderinfo): RenderInfo {.constructor,importcpp: "osg::RenderInfo::RenderInfo(@)".}
+proc constructRenderInfo*(rhs: RenderInfo): RenderInfo {.constructor,importcpp: "osg::RenderInfo::RenderInfo(@)".}
 
 proc constructRenderInfo*(state: ptr State , view: ptr View ): RenderInfo {.constructor,importcpp: "osg::RenderInfo::RenderInfo(@)".}
 
-proc `=`*(this: var RenderInfo, rhs: Renderinfo): Renderinfo  {.importcpp: "# = #".}
+proc `=`*(this: var RenderInfo, rhs: RenderInfo): RenderInfo  {.importcpp: "# = #".}
 
 proc getContextID*(this: RenderInfo): cuint  {.importcpp: "getContextID".}
 
@@ -35,15 +36,15 @@ proc pushCamera*(this: var RenderInfo, camera: ptr Camera )  {.importcpp: "pushC
 
 proc popCamera*(this: var RenderInfo)  {.importcpp: "popCamera".}
 
-proc getCameraStack*(this: var RenderInfo): Camerastack  {.importcpp: "getCameraStack".}
+proc getCameraStack*(this: var RenderInfo): CameraStack  {.importcpp: "getCameraStack".}
 
 proc getCurrentCamera*(this: var RenderInfo): ptr Camera   {.importcpp: "getCurrentCamera".}
 
-proc pushRenderBin*(this: var RenderInfo, bin: ptr Renderbin )  {.importcpp: "pushRenderBin".}
+proc pushRenderBin*(this: var RenderInfo, bin: ptr RenderBin )  {.importcpp: "pushRenderBin".}
 
 proc popRenderBin*(this: var RenderInfo)  {.importcpp: "popRenderBin".}
 
-proc getRenderBinStack*(this: var RenderInfo): Renderbinstack  {.importcpp: "getRenderBinStack".}
+proc getRenderBinStack*(this: var RenderInfo): RenderBinStack  {.importcpp: "getRenderBinStack".}
 
 proc setUserData*(this: var RenderInfo, userData: ptr Referenced )  {.importcpp: "setUserData".}
 

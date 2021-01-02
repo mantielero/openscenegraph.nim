@@ -1,8 +1,9 @@
-import Polytope  # provides: osg::Polytope
-import Transform  # provides: osg::Transform
-import Drawable  # provides: osg::Drawable
-import BoundingBox  # provides: osg::BoundingBox
-import Matrix  # provides: osg::Matrix
+import osg_types
+  # File: Polytope  was providing: osg::Polytope
+  # File: Transform  was providing: osg::Transform
+  # File: Drawable  was providing: osg::Drawable
+  # File: BoundingBox  was providing: osg::BoundingBox
+  # File: Matrix  was providing: osg::Matrix
 type
   ComputeBoundsVisitor* {.header: "ComputeBoundsVisitor", importcpp: "osg::ComputeBoundsVisitor", byref.} = object #of osg::NodeVisitor
 
@@ -11,7 +12,7 @@ type
 
 {.push header: "ComputeBoundsVisitor".}
 
-proc constructComputeBoundsVisitor*(traversalMode: Traversalmode): ComputeBoundsVisitor {.constructor,importcpp: "osg::ComputeBoundsVisitor::ComputeBoundsVisitor(@)".}
+proc constructComputeBoundsVisitor*(traversalMode: TraversalMode): ComputeBoundsVisitor {.constructor,importcpp: "osg::ComputeBoundsVisitor::ComputeBoundsVisitor(@)".}
 
 proc libraryName*(this: ComputeBoundsVisitor): cstring  {.importcpp: "libraryName".}
 
@@ -19,7 +20,7 @@ proc className*(this: ComputeBoundsVisitor): cstring  {.importcpp: "className".}
 
 proc reset*(this: var ComputeBoundsVisitor)  {.importcpp: "reset".}
 
-proc getBoundingBox*(this: var ComputeBoundsVisitor): Boundingbox  {.importcpp: "getBoundingBox".}
+proc getBoundingBox*(this: var ComputeBoundsVisitor): BoundingBox  {.importcpp: "getBoundingBox".}
 
 proc getPolytope*(this: ComputeBoundsVisitor, polytope: Polytope, margin: cfloat)  {.importcpp: "getPolytope".}
 
@@ -33,8 +34,8 @@ proc pushMatrix*(this: var ComputeBoundsVisitor, matrix: Matrix)  {.importcpp: "
 
 proc popMatrix*(this: var ComputeBoundsVisitor)  {.importcpp: "popMatrix".}
 
-proc applyBoundingBox*(this: var ComputeBoundsVisitor, Boundingbox)  {.importcpp: "applyBoundingBox".}
+proc applyBoundingBox*(this: var ComputeBoundsVisitor, a00: BoundingBox)  {.importcpp: "applyBoundingBox".}
 
-proc getMatrixStack*(this: ComputeBoundsVisitor): Matrixstack  {.importcpp: "getMatrixStack".}
+proc getMatrixStack*(this: ComputeBoundsVisitor): MatrixStack  {.importcpp: "getMatrixStack".}
 
 {.pop.}  # header: "ComputeBoundsVisitor"

@@ -11,7 +11,7 @@ type
 proc constructVec3ub*(): Vec3ub {.constructor,importcpp: "osg::Vec3ub::Vec3ub".}
     ## Constructor that sets all components of the vector to zero
 
-proc constructVec3ub*(r: Value_type, g: Value_type, b: Value_type): Vec3ub {.constructor,importcpp: "osg::Vec3ub::Vec3ub(@)".}
+proc constructVec3ub*(r: value_type, g: value_type, b: value_type): Vec3ub {.constructor,importcpp: "osg::Vec3ub::Vec3ub(@)".}
 
 proc `==`*(this: Vec3ub, v: Vec3ub): bool  {.importcpp: "# == #".}
 
@@ -19,41 +19,41 @@ proc `!=`*(this: Vec3ub, v: Vec3ub): bool  {.importcpp: "# != #".}
 
 proc `<`*(this: Vec3ub, v: Vec3ub): bool  {.importcpp: "# < #".}
 
-proc `ptr`*(this: var Vec3ub): ptr Value_type   {.importcpp: "ptr".}
+proc `ptr`*(this: var Vec3ub): ptr value_type   {.importcpp: "ptr".}
 
-proc `ptr`*(this: Vec3ub): ptr Value_type   {.importcpp: "ptr".}
+proc `ptr`*(this: Vec3ub): ptr value_type   {.importcpp: "ptr".}
 
-proc set*(this: var Vec3ub, r: Value_type, g: Value_type, b: Value_type)  {.importcpp: "set".}
+proc set*(this: var Vec3ub, r: value_type, g: value_type, b: value_type)  {.importcpp: "set".}
 
 proc set*(this: var Vec3ub, rhs: Vec3ub)  {.importcpp: "set".}
 
-proc `[]`*(this: var Vec3ub, i: cuint): Value_type  {.importcpp: "# [] #".}
+proc `[]`*(this: var Vec3ub, i: cuint): value_type  {.importcpp: "# [] #".}
 
-proc `[]`*(this: Vec3ub, i: cuint): Value_type  {.importcpp: "# [] #".}
+proc `[]`*(this: Vec3ub, i: cuint): value_type  {.importcpp: "# [] #".}
 
-proc x*(this: var Vec3ub): Value_type  {.importcpp: "x".}
+proc x*(this: var Vec3ub): value_type  {.importcpp: "x".}
 
-proc y*(this: var Vec3ub): Value_type  {.importcpp: "y".}
+proc y*(this: var Vec3ub): value_type  {.importcpp: "y".}
 
-proc z*(this: var Vec3ub): Value_type  {.importcpp: "z".}
+proc z*(this: var Vec3ub): value_type  {.importcpp: "z".}
 
-proc x*(this: Vec3ub): Value_type  {.importcpp: "x".}
+proc x*(this: Vec3ub): value_type  {.importcpp: "x".}
 
-proc y*(this: Vec3ub): Value_type  {.importcpp: "y".}
+proc y*(this: Vec3ub): value_type  {.importcpp: "y".}
 
-proc z*(this: Vec3ub): Value_type  {.importcpp: "z".}
+proc z*(this: Vec3ub): value_type  {.importcpp: "z".}
 
-proc r*(this: var Vec3ub): Value_type  {.importcpp: "r".}
+proc r*(this: var Vec3ub): value_type  {.importcpp: "r".}
 
-proc g*(this: var Vec3ub): Value_type  {.importcpp: "g".}
+proc g*(this: var Vec3ub): value_type  {.importcpp: "g".}
 
-proc b*(this: var Vec3ub): Value_type  {.importcpp: "b".}
+proc b*(this: var Vec3ub): value_type  {.importcpp: "b".}
 
-proc r*(this: Vec3ub): Value_type  {.importcpp: "r".}
+proc r*(this: Vec3ub): value_type  {.importcpp: "r".}
 
-proc g*(this: Vec3ub): Value_type  {.importcpp: "g".}
+proc g*(this: Vec3ub): value_type  {.importcpp: "g".}
 
-proc b*(this: Vec3ub): Value_type  {.importcpp: "b".}
+proc b*(this: Vec3ub): value_type  {.importcpp: "b".}
 
 proc `*`*(this: Vec3ub, rhs: cfloat): Vec3ub  {.importcpp: "# * #".}
     ## Multiply by scalar.

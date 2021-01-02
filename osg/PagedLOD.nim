@@ -1,9 +1,11 @@
-import Object  # provides: osg::Object
-import Referenced  # provides: osg::Referenced
-import Node  # provides: osg::Node
-import Group  # provides: osg::NodeList
-import CopyOp  # provides: osg::CopyOp
-import NodeVisitor  # provides: osg::NodeVisitor
+import osg_types
+  # File: ref_ptr  was providing: osg::ref_ptr
+  # File: Object  was providing: osg::Object
+  # File: Referenced  was providing: osg::Referenced
+  # File: Node  was providing: osg::Node
+  # File: Group  was providing: osg::NodeList
+  # File: CopyOp  was providing: osg::CopyOp
+  # File: NodeVisitor  was providing: osg::NodeVisitor
 type
   PerRangeDataList* {.header: "PagedLOD", importcpp: "osg::PagedLOD::PerRangeDataList".} = cint
 
@@ -14,16 +16,16 @@ proc constructPagedLOD*(): PagedLOD {.constructor,importcpp: "osg::PagedLOD::Pag
     ## Default constructor The default constructor sets - the center mode to
     ## USER_DEFINED_CENTER and - enables the paging of external children.
 
-proc constructPagedLOD*(Pagedlod, copyop: Copyop = SHALLOW_COPY): PagedLOD {.constructor,importcpp: "osg::PagedLOD::PagedLOD(@)".}
+proc constructPagedLOD*(a00: PagedLOD, copyop: CopyOp = SHALLOW_COPY): PagedLOD {.constructor,importcpp: "osg::PagedLOD::PagedLOD(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc constructPerRangeData*(): PerRangeData {.constructor,importcpp: "osg::PagedLOD::PerRangeData::PerRangeData".}
 
-proc constructPerRangeData*(prd: Perrangedata): PerRangeData {.constructor,importcpp: "osg::PagedLOD::PerRangeData::PerRangeData(@)".}
+proc constructPerRangeData*(prd: PerRangeData): PerRangeData {.constructor,importcpp: "osg::PagedLOD::PerRangeData::PerRangeData(@)".}
 
 proc cloneType*(this: PagedLOD): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: PagedLOD, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: PagedLOD, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: PagedLOD, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -31,15 +33,15 @@ proc className*(this: PagedLOD): cstring  {.importcpp: "className".}
 
 proc libraryName*(this: PagedLOD): cstring  {.importcpp: "libraryName".}
 
-proc accept*(this: var PagedLOD, nv: Nodevisitor)  {.importcpp: "accept".}
+proc accept*(this: var PagedLOD, nv: NodeVisitor)  {.importcpp: "accept".}
 
-proc traverse*(this: var PagedLOD, nv: Nodevisitor)  {.importcpp: "traverse".}
+proc traverse*(this: var PagedLOD, nv: NodeVisitor)  {.importcpp: "traverse".}
 
 proc addChild*(this: var PagedLOD, child: ptr Node ): bool  {.importcpp: "addChild".}
 
 proc addChild*(this: var PagedLOD, child: ptr Node , rmin: cfloat, rmax: cfloat): bool  {.importcpp: "addChild".}
 
-proc addChild*(this: var PagedLOD, child: ptr Node , rmin: cfloat, rmax: cfloat, filename: String, priorityOffset: cfloat, priorityScale: cfloat): bool  {.importcpp: "addChild".}
+proc addChild*(this: var PagedLOD, child: ptr Node , rmin: cfloat, rmax: cfloat, filename: string, priorityOffset: cfloat, priorityScale: cfloat): bool  {.importcpp: "addChild".}
 
 proc removeChildren*(this: var PagedLOD, pos: cuint, numChildrenToRemove: cuint = 1): bool  {.importcpp: "removeChildren".}
 
@@ -55,17 +57,17 @@ proc getDatabaseOptions*(this: PagedLOD): ptr Referenced   {.importcpp: "getData
     ## Get the optional database osgDB::Options object used when reading
     ## children.
 
-proc setDatabasePath*(this: var PagedLOD, path: String)  {.importcpp: "setDatabasePath".}
+proc setDatabasePath*(this: var PagedLOD, path: string)  {.importcpp: "setDatabasePath".}
     ## Set the database path to prepend to children's filenames.
 
-proc getDatabasePath*(this: PagedLOD): String  {.importcpp: "getDatabasePath".}
+proc getDatabasePath*(this: PagedLOD): string  {.importcpp: "getDatabasePath".}
     ## Get the database path used to prepend to children's filenames.
 
-proc `=`*(this: var PerRangeData, prd: Perrangedata): Perrangedata  {.importcpp: "# = #".}
+proc `=`*(this: var PerRangeData, prd: PerRangeData): PerRangeData  {.importcpp: "# = #".}
 
-proc setFileName*(this: var PagedLOD, childNo: cuint, filename: String)  {.importcpp: "setFileName".}
+proc setFileName*(this: var PagedLOD, childNo: cuint, filename: string)  {.importcpp: "setFileName".}
 
-proc getFileName*(this: PagedLOD, childNo: cuint): String  {.importcpp: "getFileName".}
+proc getFileName*(this: PagedLOD, childNo: cuint): string  {.importcpp: "getFileName".}
 
 proc getNumFileNames*(this: PagedLOD): cuint  {.importcpp: "getNumFileNames".}
 
@@ -109,13 +111,13 @@ proc getFrameNumber*(this: PagedLOD, childNo: cuint): cuint  {.importcpp: "getFr
 
 proc getNumFrameNumbers*(this: PagedLOD): cuint  {.importcpp: "getNumFrameNumbers".}
 
-proc getDatabaseRequest*(this: var PagedLOD, childNo: cuint): Ref_ptr[Referenced]  {.importcpp: "getDatabaseRequest".}
+proc getDatabaseRequest*(this: var PagedLOD, childNo: cuint): ref_ptr[Referenced]  {.importcpp: "getDatabaseRequest".}
     ## Return the DatabaseRequest object used by the DatabasePager to keep
     ## track of file load requests being carried on behalf of the
     ## DatabasePager. Note, in normal OSG usage you should not set this value
     ## yourself, as this will be managed by the osgDB::DatabasePager.
 
-proc getDatabaseRequest*(this: PagedLOD, childNo: cuint): Ref_ptr[Referenced]  {.importcpp: "getDatabaseRequest".}
+proc getDatabaseRequest*(this: PagedLOD, childNo: cuint): ref_ptr[Referenced]  {.importcpp: "getDatabaseRequest".}
     ## Return the const DatabaseRequest object.
 
 proc setFrameNumberOfLastTraversal*(this: var PagedLOD, frameNumber: cuint)  {.importcpp: "setFrameNumberOfLastTraversal".}
@@ -140,7 +142,7 @@ proc setDisableExternalChildrenPaging*(this: var PagedLOD, flag: bool)  {.import
 
 proc getDisableExternalChildrenPaging*(this: PagedLOD): bool  {.importcpp: "getDisableExternalChildrenPaging".}
 
-proc removeExpiredChildren*(this: var PagedLOD, expiryTime: cdouble, expiryFrame: cuint, removedChildren: Nodelist): bool  {.importcpp: "removeExpiredChildren".}
+proc removeExpiredChildren*(this: var PagedLOD, expiryTime: cdouble, expiryFrame: cuint, removedChildren: NodeList): bool  {.importcpp: "removeExpiredChildren".}
     ## Remove the children from the PagedLOD which haven't been visited since
     ## specified expiry time and expiry frame number. The removed children
     ## are added to the removeChildren list passed into the method, this

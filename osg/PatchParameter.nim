@@ -1,9 +1,10 @@
-import State  # provides: osg::State
-import Vec4  # provides: osg::Vec4
-import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
-import Vec2  # provides: osg::Vec2
-import CopyOp  # provides: osg::CopyOp
+import osg_types
+  # File: State  was providing: osg::State
+  # File: Vec4  was providing: osg::Vec4
+  # File: Object  was providing: osg::Object
+  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
+  # File: Vec2  was providing: osg::Vec2
+  # File: CopyOp  was providing: osg::CopyOp
 type
   PatchParameter* {.header: "PatchParameter", importcpp: "osg::PatchParameter", byref.} = object #of class osg::StateAttribute
     ## Class which encapsulates glPatchParameter(..).
@@ -14,12 +15,12 @@ type
 
 proc constructPatchParameter*(vertices: GLint): PatchParameter {.constructor,importcpp: "osg::PatchParameter::PatchParameter(@)".}
 
-proc constructPatchParameter*(rhs: Patchparameter, copyop: Copyop = SHALLOW_COPY): PatchParameter {.constructor,importcpp: "osg::PatchParameter::PatchParameter(@)".}
+proc constructPatchParameter*(rhs: PatchParameter, copyop: CopyOp = SHALLOW_COPY): PatchParameter {.constructor,importcpp: "osg::PatchParameter::PatchParameter(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: PatchParameter): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: PatchParameter, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: PatchParameter, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: PatchParameter, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -29,7 +30,7 @@ proc className*(this: PatchParameter): cstring  {.importcpp: "className".}
 
 proc getType*(this: PatchParameter): Type  {.importcpp: "getType".}
 
-proc compare*(this: PatchParameter, sa: Stateattribute): cint  {.importcpp: "compare".}
+proc compare*(this: PatchParameter, sa: StateAttribute): cint  {.importcpp: "compare".}
     ## return -1 if *this < *rhs, 0 if *this==*rhs, 1 if *this>*rhs.
 
 proc setVertices*(this: var PatchParameter, vertices: GLint)  {.importcpp: "setVertices".}

@@ -1,12 +1,13 @@
-import Vec3  # provides: osg::Vec3
-import State  # provides: osg::State
-import Object  # provides: osg::Object
-import Node  # provides: osg::Node
-import Drawable  # provides: osg::Drawable
-import Callback  # provides: osg::DrawableCullCallback, osg::NodeCallback
-import CopyOp  # provides: osg::CopyOp
-import Matrixd  # provides: osg::Matrixd
-import NodeVisitor  # provides: osg::NodeVisitor
+import osg_types
+  # File: Vec3  was providing: osg::Vec3
+  # File: State  was providing: osg::State
+  # File: Object  was providing: osg::Object
+  # File: Node  was providing: osg::Node
+  # File: Drawable  was providing: osg::Drawable
+  # File: Callback  was providing: osg::NodeCallback, osg::DrawableCullCallback
+  # File: CopyOp  was providing: osg::CopyOp
+  # File: Matrixd  was providing: osg::Matrixd
+  # File: NodeVisitor  was providing: osg::NodeVisitor
 type
   ClusterCullingCallback* {.header: "ClusterCullingCallback", importcpp: "osg::ClusterCullingCallback", byref.} = object #of class osg::DrawableCullCallback
     ## Implements cluster culling to cull back facing subgraphs and
@@ -18,7 +19,7 @@ type
 
 proc constructClusterCullingCallback*(): ClusterCullingCallback {.constructor,importcpp: "osg::ClusterCullingCallback::ClusterCullingCallback".}
 
-proc constructClusterCullingCallback*(ccc: Clustercullingcallback, copyop: Copyop): ClusterCullingCallback {.constructor,importcpp: "osg::ClusterCullingCallback::ClusterCullingCallback(@)".}
+proc constructClusterCullingCallback*(ccc: ClusterCullingCallback, copyop: CopyOp): ClusterCullingCallback {.constructor,importcpp: "osg::ClusterCullingCallback::ClusterCullingCallback(@)".}
 
 proc constructClusterCullingCallback*(controlPoint: Vec3, normal: Vec3, deviation: cfloat, radius: cfloat): ClusterCullingCallback {.constructor,importcpp: "osg::ClusterCullingCallback::ClusterCullingCallback(@)".}
 
@@ -26,7 +27,7 @@ proc constructClusterCullingCallback*(drawable: ptr Drawable ): ClusterCullingCa
 
 proc cloneType*(this: ClusterCullingCallback): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: ClusterCullingCallback, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: ClusterCullingCallback, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: ClusterCullingCallback, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -34,13 +35,13 @@ proc libraryName*(this: ClusterCullingCallback): cstring  {.importcpp: "libraryN
 
 proc className*(this: ClusterCullingCallback): cstring  {.importcpp: "className".}
 
-proc asNodeCallback*(this: var ClusterCullingCallback): ptr Nodecallback   {.importcpp: "asNodeCallback".}
+proc asNodeCallback*(this: var ClusterCullingCallback): ptr NodeCallback   {.importcpp: "asNodeCallback".}
 
-proc asNodeCallback*(this: ClusterCullingCallback): ptr Nodecallback   {.importcpp: "asNodeCallback".}
+proc asNodeCallback*(this: ClusterCullingCallback): ptr NodeCallback   {.importcpp: "asNodeCallback".}
 
-proc asDrawableCullCallback*(this: var ClusterCullingCallback): ptr Drawablecullcallback   {.importcpp: "asDrawableCullCallback".}
+proc asDrawableCullCallback*(this: var ClusterCullingCallback): ptr DrawableCullCallback   {.importcpp: "asDrawableCullCallback".}
 
-proc asDrawableCullCallback*(this: ClusterCullingCallback): ptr Drawablecullcallback   {.importcpp: "asDrawableCullCallback".}
+proc asDrawableCullCallback*(this: ClusterCullingCallback): ptr DrawableCullCallback   {.importcpp: "asDrawableCullCallback".}
 
 proc run*(this: var ClusterCullingCallback, `object`: ptr Object , data: ptr Object ): bool  {.importcpp: "run".}
 
@@ -70,9 +71,9 @@ proc setDeviation*(this: var ClusterCullingCallback, deviation: cfloat)  {.impor
 
 proc getDeviation*(this: ClusterCullingCallback): cfloat  {.importcpp: "getDeviation".}
 
-proc cull*(this: ClusterCullingCallback, ptr Nodevisitor , ptr Drawable , ptr State ): bool  {.importcpp: "cull".}
+proc cull*(this: ClusterCullingCallback, a00: ptr NodeVisitor , a01: ptr Drawable , a02: ptr State ): bool  {.importcpp: "cull".}
 
-proc `()`*(this: var ClusterCullingCallback, node: ptr Node , nv: ptr Nodevisitor )  {.importcpp: "# () #".}
+proc `()`*(this: var ClusterCullingCallback, node: ptr Node , nv: ptr NodeVisitor )  {.importcpp: "# () #".}
     ## Callback method called by the NodeVisitor when visiting a node.
 
 {.pop.}  # header: "ClusterCullingCallback"

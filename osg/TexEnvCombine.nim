@@ -1,39 +1,40 @@
-import Vec3  # provides: osg::Vec3
-import State  # provides: osg::State
-import Vec4  # provides: osg::Vec4
-import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
-import CopyOp  # provides: osg::CopyOp
+import osg_types
+  # File: Vec3  was providing: osg::Vec3
+  # File: State  was providing: osg::State
+  # File: Vec4  was providing: osg::Vec4
+  # File: Object  was providing: osg::Object
+  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
+  # File: CopyOp  was providing: osg::CopyOp
 type
-  CombineParam* {.size:sizeof(cuint),header: "TexEnvCombine", importcpp: "osg::TexEnvCombine::CombineParam".} = enum
-    cmbnprmADD = 260,
-    cmbnprmREPLACE = 7681,
-    cmbnprmMODULATE = 8448,
-    cmbnprmSUBTRACT = 34023,
-    cmbnprmADD_SIGNED = 34164,
-    cmbnprmINTERPOLATE = 34165,
-    cmbnprmDOT3_RGB = 34478,
-    cmbnprmDOT3_RGBA = 34479
+  CombineParam* {.size:sizeof(cuint),header: "TexEnvCombine", importcpp: "osg::TexEnvCombine::CombineParam", pure.} = enum
+    ADD = 260,
+    REPLACE = 7681,
+    MODULATE = 8448,
+    SUBTRACT = 34023,
+    ADD_SIGNED = 34164,
+    INTERPOLATE = 34165,
+    DOT3_RGB = 34478,
+    DOT3_RGBA = 34479
 
-  SourceParam* {.size:sizeof(cuint),header: "TexEnvCombine", importcpp: "osg::TexEnvCombine::SourceParam".} = enum
-    srcprmTEXTURE = 5890,
-    srcprmTEXTURE0 = 33984,
-    srcprmTEXTURE1 = 33985,
-    srcprmTEXTURE2 = 33986,
-    srcprmTEXTURE3 = 33987,
-    srcprmTEXTURE4 = 33988,
-    srcprmTEXTURE5 = 33989,
-    srcprmTEXTURE6 = 33990,
-    srcprmTEXTURE7 = 33991,
-    srcprmCONSTANT = 34166,
-    srcprmPRIMARY_COLOR = 34167,
-    srcprmPREVIOUS = 34168
+  SourceParam* {.size:sizeof(cuint),header: "TexEnvCombine", importcpp: "osg::TexEnvCombine::SourceParam", pure.} = enum
+    TEXTURE = 5890,
+    TEXTURE0 = 33984,
+    TEXTURE1 = 33985,
+    TEXTURE2 = 33986,
+    TEXTURE3 = 33987,
+    TEXTURE4 = 33988,
+    TEXTURE5 = 33989,
+    TEXTURE6 = 33990,
+    TEXTURE7 = 33991,
+    CONSTANT = 34166,
+    PRIMARY_COLOR = 34167,
+    PREVIOUS = 34168
 
-  OperandParam* {.size:sizeof(cuint),header: "TexEnvCombine", importcpp: "osg::TexEnvCombine::OperandParam".} = enum
-    prndprmSRC_COLOR = 768,
-    prndprmONE_MINUS_SRC_COLOR = 769,
-    prndprmSRC_ALPHA = 770,
-    prndprmONE_MINUS_SRC_ALPHA = 771
+  OperandParam* {.size:sizeof(cuint),header: "TexEnvCombine", importcpp: "osg::TexEnvCombine::OperandParam", pure.} = enum
+    SRC_COLOR = 768,
+    ONE_MINUS_SRC_COLOR = 769,
+    SRC_ALPHA = 770,
+    ONE_MINUS_SRC_ALPHA = 771
 
   TexEnvCombine* {.header: "TexEnvCombine", importcpp: "osg::TexEnvCombine", byref.} = object #of class osg::StateAttribute
     ## TexEnvCombine encapsulates the OpenGL glTexEnvCombine (texture
@@ -45,12 +46,12 @@ type
 
 proc constructTexEnvCombine*(): TexEnvCombine {.constructor,importcpp: "osg::TexEnvCombine::TexEnvCombine".}
 
-proc constructTexEnvCombine*(texenv: Texenvcombine, copyop: Copyop = SHALLOW_COPY): TexEnvCombine {.constructor,importcpp: "osg::TexEnvCombine::TexEnvCombine(@)".}
+proc constructTexEnvCombine*(texenv: TexEnvCombine, copyop: CopyOp = SHALLOW_COPY): TexEnvCombine {.constructor,importcpp: "osg::TexEnvCombine::TexEnvCombine(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: TexEnvCombine): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: TexEnvCombine, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: TexEnvCombine, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: TexEnvCombine, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -62,7 +63,7 @@ proc getType*(this: TexEnvCombine): Type  {.importcpp: "getType".}
 
 proc isTextureAttribute*(this: TexEnvCombine): bool  {.importcpp: "isTextureAttribute".}
 
-proc compare*(this: TexEnvCombine, sa: Stateattribute): cint  {.importcpp: "compare".}
+proc compare*(this: TexEnvCombine, sa: StateAttribute): cint  {.importcpp: "compare".}
     ## Return -1 if *this < *rhs, 0 if *this==*rhs, 1 if *this>*rhs.
 
 proc setCombine_RGB*(this: var TexEnvCombine, cm: GLint)  {.importcpp: "setCombine_RGB".}

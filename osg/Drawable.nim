@@ -1,45 +1,43 @@
-import Vec3  # provides: osg::Vec3
-import State  # provides: osg::State
-import BoundingSphere  # provides: osg::BoundingSphere
-import Vec4  # provides: osg::Vec4
-import Object  # provides: osg::Object
-import Array  # provides: osg::Vec3Array, osg::Array, osg::DoubleArray, osg::UIntArray, osg::UByteArray, osg::ByteArray, osg::ShortArray, osg::Vec4dArray, osg::Vec3dArray, osg::FloatArray, osg::Vec2Array, osg::IntArray, osg::Vec4ubArray, osg::UShortArray, osg::Vec2dArray, osg::Vec4Array
-import Shape  # provides: osg::Shape
-import PrimitiveSet  # provides: osg::PrimitiveFunctor, osg::PrimitiveIndexFunctor
-import Node  # provides: osg::Node, osg::MatrixList
-import buffered_value  # provides: osg::buffered_value
-import Callback  # provides: osg::DrawableCullCallback, osg::DrawableUpdateCallback, osg::DrawableEventCallback
-import Vec2  # provides: osg::Vec2
-import BoundingBox  # provides: osg::BoundingBox
-import CopyOp  # provides: osg::CopyOp
-import VertexArrayState  # provides: osg::VertexArrayState, osg::VertexArrayStateList
-import RenderInfo  # provides: osg::RenderInfo
-import Vec4d  # provides: osg::Vec4d
-import Vec3d  # provides: osg::Vec3d
-import Vec2d  # provides: osg::Vec2d
-import Vec4ub  # provides: osg::Vec4ub
-import NodeVisitor  # provides: osg::NodeVisitor
+import osg_types
+  # File: Vec3  was providing: osg::Vec3
+  # File: State  was providing: osg::State
+  # File: BoundingSphere  was providing: osg::BoundingSphere
+  # File: Vec4  was providing: osg::Vec4
+  # File: Object  was providing: osg::Object
+  # File: Array  was providing: osg::Vec4dArray, osg::Vec2Array, osg::IntArray, osg::Array, osg::Vec2dArray, osg::UIntArray, osg::Vec3Array, osg::UShortArray, osg::Vec4ubArray, osg::ByteArray, osg::ShortArray, osg::UByteArray, osg::Vec4Array, osg::FloatArray, osg::DoubleArray, osg::Vec3dArray
+  # File: Shape  was providing: osg::Shape
+  # File: PrimitiveSet  was providing: osg::PrimitiveFunctor, osg::PrimitiveIndexFunctor
+  # File: Node  was providing: osg::MatrixList, osg::Node
+  # File: buffered_value  was providing: osg::buffered_value
+  # File: Callback  was providing: osg::DrawableEventCallback, osg::DrawableUpdateCallback, osg::DrawableCullCallback
+  # File: Vec2  was providing: osg::Vec2
+  # File: BoundingBox  was providing: osg::BoundingBox
+  # File: CopyOp  was providing: osg::CopyOp
+  # File: VertexArrayState  was providing: osg::VertexArrayStateList, osg::VertexArrayState
+  # File: RenderInfo  was providing: osg::RenderInfo
+  # File: Vec4d  was providing: osg::Vec4d
+  # File: Vec3d  was providing: osg::Vec3d
+  # File: Vec2d  was providing: osg::Vec2d
+  # File: Vec4ub  was providing: osg::Vec4ub
+  # File: NodeVisitor  was providing: osg::NodeVisitor
 type
-  AttributeTypes* {.size:sizeof(cuint),header: "Drawable", importcpp: "osg::Drawable::AttributeTypes".} = enum
-    ttrbttypsVERTICES = 0,
-    ttrbttypsWEIGHTS = 1,
-    ttrbttypsNORMALS = 2,
-    ttrbttypsCOLORS = 3,
-    ttrbttypsSECONDARY_COLORS = 4,
-    ttrbttypsFOG_COORDS = 5,
-    ttrbttypsATTRIBUTE_6 = 6,
-    ttrbttypsATTRIBUTE_7 = 7,
-    ttrbttypsTEXTURE_COORDS = 8,
-    ttrbttypsTEXTURE_COORDS_0 = 8,
-    ttrbttypsTEXTURE_COORDS = 8,
-    ttrbttypsTEXTURE_COORDS_0 = 8,
-    ttrbttypsTEXTURE_COORDS_1 = 9,
-    ttrbttypsTEXTURE_COORDS_2 = 10,
-    ttrbttypsTEXTURE_COORDS_3 = 11,
-    ttrbttypsTEXTURE_COORDS_4 = 12,
-    ttrbttypsTEXTURE_COORDS_5 = 13,
-    ttrbttypsTEXTURE_COORDS_6 = 14,
-    ttrbttypsTEXTURE_COORDS_7 = 15
+  AttributeTypes* {.size:sizeof(cuint),header: "Drawable", importcpp: "osg::Drawable::AttributeTypes", pure.} = enum
+    VERTICES = 0,
+    WEIGHTS = 1,
+    NORMALS = 2,
+    COLORS = 3,
+    SECONDARY_COLORS = 4,
+    FOG_COORDS = 5,
+    ATTRIBUTE_6 = 6,
+    ATTRIBUTE_7 = 7,
+    TEXTURE_COORDS = 8,
+    TEXTURE_COORDS_1 = 9,
+    TEXTURE_COORDS_2 = 10,
+    TEXTURE_COORDS_3 = 11,
+    TEXTURE_COORDS_4 = 12,
+    TEXTURE_COORDS_5 = 13,
+    TEXTURE_COORDS_6 = 14,
+    TEXTURE_COORDS_7 = 15
 
   AttributeFunctor* {.header: "Drawable", importcpp: "osg::Drawable::AttributeFunctor", byref.} = object
 
@@ -49,39 +47,39 @@ type
 
   ConstAttributeFunctorArrayVisitor* {.header: "Drawable", importcpp: "osg::ConstAttributeFunctorArrayVisitor", byref.} = object #of class osg::ConstArrayVisitor
 
-  UpdateCallback* {.header: "Drawable", importcpp: "osg::Drawable::UpdateCallback".} = Drawableupdatecallback
-  EventCallback* {.header: "Drawable", importcpp: "osg::Drawable::EventCallback".} = Drawableeventcallback
-  CullCallback* {.header: "Drawable", importcpp: "osg::Drawable::CullCallback".} = Drawablecullcallback
+  UpdateCallback* {.header: "Drawable", importcpp: "osg::Drawable::UpdateCallback".} = DrawableUpdateCallback
+  EventCallback* {.header: "Drawable", importcpp: "osg::Drawable::EventCallback".} = DrawableEventCallback
+  CullCallback* {.header: "Drawable", importcpp: "osg::Drawable::CullCallback".} = DrawableCullCallback
   AttributeType* {.header: "Drawable", importcpp: "osg::Drawable::AttributeType".} = cuint
-  GLObjectList* {.header: "Drawable", importcpp: "osg::Drawable::GLObjectList".} = Buffered_value[GLuint]
+  GLObjectList* {.header: "Drawable", importcpp: "osg::Drawable::GLObjectList".} = buffered_value[GLuint]
 
 
 {.push header: "Drawable".}
 
 proc constructDrawable*(): Drawable {.constructor,importcpp: "osg::Drawable::Drawable".}
 
-proc constructDrawable*(drawable: Drawable, copyop: Copyop = SHALLOW_COPY): Drawable {.constructor,importcpp: "osg::Drawable::Drawable(@)".}
+proc constructDrawable*(drawable: Drawable, copyop: CopyOp = SHALLOW_COPY): Drawable {.constructor,importcpp: "osg::Drawable::Drawable(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc constructComputeBoundingBoxCallback*(): ComputeBoundingBoxCallback {.constructor,importcpp: "osg::Drawable::ComputeBoundingBoxCallback::ComputeBoundingBoxCallback".}
 
-proc constructComputeBoundingBoxCallback*(org: Computeboundingboxcallback, copyop: Copyop): ComputeBoundingBoxCallback {.constructor,importcpp: "osg::Drawable::ComputeBoundingBoxCallback::ComputeBoundingBoxCallback(@)".}
+proc constructComputeBoundingBoxCallback*(org: ComputeBoundingBoxCallback, copyop: CopyOp): ComputeBoundingBoxCallback {.constructor,importcpp: "osg::Drawable::ComputeBoundingBoxCallback::ComputeBoundingBoxCallback(@)".}
 
 proc constructCreateVertexArrayStateCallback*(): CreateVertexArrayStateCallback {.constructor,importcpp: "osg::Drawable::CreateVertexArrayStateCallback::CreateVertexArrayStateCallback".}
 
-proc constructCreateVertexArrayStateCallback*(rhs: Createvertexarraystatecallback, copyop: Copyop): CreateVertexArrayStateCallback {.constructor,importcpp: "osg::Drawable::CreateVertexArrayStateCallback::CreateVertexArrayStateCallback(@)".}
+proc constructCreateVertexArrayStateCallback*(rhs: CreateVertexArrayStateCallback, copyop: CopyOp): CreateVertexArrayStateCallback {.constructor,importcpp: "osg::Drawable::CreateVertexArrayStateCallback::CreateVertexArrayStateCallback(@)".}
 
 proc constructDrawCallback*(): DrawCallback {.constructor,importcpp: "osg::Drawable::DrawCallback::DrawCallback".}
 
-proc constructDrawCallback*(org: Drawcallback, copyop: Copyop): DrawCallback {.constructor,importcpp: "osg::Drawable::DrawCallback::DrawCallback(@)".}
+proc constructDrawCallback*(org: DrawCallback, copyop: CopyOp): DrawCallback {.constructor,importcpp: "osg::Drawable::DrawCallback::DrawCallback(@)".}
 
-proc constructAttributeFunctorArrayVisitor*(af: Attributefunctor): AttributeFunctorArrayVisitor {.constructor,importcpp: "osg::AttributeFunctorArrayVisitor::AttributeFunctorArrayVisitor(@)".}
+proc constructAttributeFunctorArrayVisitor*(af: AttributeFunctor): AttributeFunctorArrayVisitor {.constructor,importcpp: "osg::AttributeFunctorArrayVisitor::AttributeFunctorArrayVisitor(@)".}
 
-proc constructConstAttributeFunctorArrayVisitor*(af: Constattributefunctor): ConstAttributeFunctorArrayVisitor {.constructor,importcpp: "osg::ConstAttributeFunctorArrayVisitor::ConstAttributeFunctorArrayVisitor(@)".}
+proc constructConstAttributeFunctorArrayVisitor*(af: ConstAttributeFunctor): ConstAttributeFunctorArrayVisitor {.constructor,importcpp: "osg::ConstAttributeFunctorArrayVisitor::ConstAttributeFunctorArrayVisitor(@)".}
 
 proc cloneType*(this: Drawable): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: Drawable, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: Drawable, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: Drawable, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -89,7 +87,7 @@ proc className*(this: Drawable): cstring  {.importcpp: "className".}
 
 proc libraryName*(this: Drawable): cstring  {.importcpp: "libraryName".}
 
-proc accept*(this: var Drawable, nv: Nodevisitor)  {.importcpp: "accept".}
+proc accept*(this: var Drawable, nv: NodeVisitor)  {.importcpp: "accept".}
 
 proc asDrawable*(this: var Drawable): ptr Drawable   {.importcpp: "asDrawable".}
     ## Convert 'this' into a Drawable pointer if Object is a Drawable,
@@ -103,35 +101,35 @@ proc asDrawable*(this: Drawable): ptr Drawable   {.importcpp: "asDrawable".}
 proc computeDataVariance*(this: var Drawable)  {.importcpp: "computeDataVariance".}
     ## Compute the DataVariance based on an assessment of callback etc.
 
-proc getWorldMatrices*(this: Drawable, haltTraversalAtNode: ptr Node  = 0): Matrixlist  {.importcpp: "getWorldMatrices".}
+proc getWorldMatrices*(this: Drawable, haltTraversalAtNode: ptr Node  = 0): MatrixList  {.importcpp: "getWorldMatrices".}
     ## Get the list of matrices that transform this node from local
     ## coordinates to world coordinates. The optional Node*
     ## haltTraversalAtNode allows the user to prevent traversal beyond a
     ## specified node.
 
-proc setInitialBound*(this: var Drawable, bbox: Boundingbox)  {.importcpp: "setInitialBound".}
+proc setInitialBound*(this: var Drawable, bbox: BoundingBox)  {.importcpp: "setInitialBound".}
     ## Set the initial bounding volume to use when computing the overall
     ## bounding volume.
 
-proc getInitialBound*(this: Drawable): Boundingbox  {.importcpp: "getInitialBound".}
+proc getInitialBound*(this: Drawable): BoundingBox  {.importcpp: "getInitialBound".}
     ## Set the initial bounding volume to use when computing the overall
     ## bounding volume.
 
-proc getBound*(this: Drawable): Boundingsphere  {.importcpp: "getBound".}
+proc getBound*(this: Drawable): BoundingSphere  {.importcpp: "getBound".}
 
-proc getBoundingBox*(this: Drawable): Boundingbox  {.importcpp: "getBoundingBox".}
+proc getBoundingBox*(this: Drawable): BoundingBox  {.importcpp: "getBoundingBox".}
     ## Get BoundingBox of Drawable. If the BoundingBox is not up to date then
     ## its updated via an internal call to computeBond().
 
-proc computeBound*(this: Drawable): Boundingsphere  {.importcpp: "computeBound".}
+proc computeBound*(this: Drawable): BoundingSphere  {.importcpp: "computeBound".}
     ## Compute the bounding sphere around Drawables's geometry.
 
-proc computeBoundingBox*(this: Drawable): Boundingbox  {.importcpp: "computeBoundingBox".}
+proc computeBoundingBox*(this: Drawable): BoundingBox  {.importcpp: "computeBoundingBox".}
     ## Compute the bounding box around Drawables's geometry.
 
 proc cloneType*(this: ComputeBoundingBoxCallback): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: ComputeBoundingBoxCallback, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: ComputeBoundingBoxCallback, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: ComputeBoundingBoxCallback, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -139,15 +137,15 @@ proc libraryName*(this: ComputeBoundingBoxCallback): cstring  {.importcpp: "libr
 
 proc className*(this: ComputeBoundingBoxCallback): cstring  {.importcpp: "className".}
 
-proc computeBound*(this: ComputeBoundingBoxCallback, Drawable): Boundingbox  {.importcpp: "computeBound".}
+proc computeBound*(this: ComputeBoundingBoxCallback, a00: Drawable): BoundingBox  {.importcpp: "computeBound".}
 
-proc setComputeBoundingBoxCallback*(this: var Drawable, callback: ptr Computeboundingboxcallback )  {.importcpp: "setComputeBoundingBoxCallback".}
+proc setComputeBoundingBoxCallback*(this: var Drawable, callback: ptr ComputeBoundingBoxCallback )  {.importcpp: "setComputeBoundingBoxCallback".}
     ## Set the compute bound callback to override the default computeBound.
 
-proc getComputeBoundingBoxCallback*(this: var Drawable): ptr Computeboundingboxcallback   {.importcpp: "getComputeBoundingBoxCallback".}
+proc getComputeBoundingBoxCallback*(this: var Drawable): ptr ComputeBoundingBoxCallback   {.importcpp: "getComputeBoundingBoxCallback".}
     ## Get the compute bound callback.
 
-proc getComputeBoundingBoxCallback*(this: Drawable): ptr Computeboundingboxcallback   {.importcpp: "getComputeBoundingBoxCallback".}
+proc getComputeBoundingBoxCallback*(this: Drawable): ptr ComputeBoundingBoxCallback   {.importcpp: "getComputeBoundingBoxCallback".}
     ## Get the const compute bound callback.
 
 proc setShape*(this: var Drawable, shape: ptr Shape )  {.importcpp: "setShape".}
@@ -211,17 +209,17 @@ proc getGLObjectSizeHint*(this: Drawable): cuint  {.importcpp: "getGLObjectSizeH
     ## objects) that are associated with this drawable. This size is used a
     ## hint for reuse of deleted display lists/vertex buffer objects.
 
-proc draw*(this: Drawable, renderInfo: Renderinfo)  {.importcpp: "draw".}
+proc draw*(this: Drawable, renderInfo: RenderInfo)  {.importcpp: "draw".}
 
-proc drawInner*(this: Drawable, renderInfo: Renderinfo)  {.importcpp: "drawInner".}
+proc drawInner*(this: Drawable, renderInfo: RenderInfo)  {.importcpp: "drawInner".}
 
-proc compileGLObjects*(this: Drawable, renderInfo: Renderinfo)  {.importcpp: "compileGLObjects".}
+proc compileGLObjects*(this: Drawable, renderInfo: RenderInfo)  {.importcpp: "compileGLObjects".}
     ## Immediately compile this Drawable into an OpenGL Display
     ## List/VertexBufferObjects.
 
 proc cloneType*(this: CreateVertexArrayStateCallback): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: CreateVertexArrayStateCallback, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: CreateVertexArrayStateCallback, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: CreateVertexArrayStateCallback, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -229,34 +227,34 @@ proc libraryName*(this: CreateVertexArrayStateCallback): cstring  {.importcpp: "
 
 proc className*(this: CreateVertexArrayStateCallback): cstring  {.importcpp: "className".}
 
-proc createVertexArrayStateImplementation*(this: CreateVertexArrayStateCallback, renderInfo: Renderinfo, drawable: ptr Drawable ): ptr Vertexarraystate   {.importcpp: "createVertexArrayStateImplementation".}
+proc createVertexArrayStateImplementation*(this: CreateVertexArrayStateCallback, renderInfo: RenderInfo, drawable: ptr Drawable ): ptr VertexArrayState   {.importcpp: "createVertexArrayStateImplementation".}
     ## do customized createVertexArrayState .
 
-proc setCreateVertexArrayStateCallback*(this: var Drawable, cb: ptr Createvertexarraystatecallback )  {.importcpp: "setCreateVertexArrayStateCallback".}
+proc setCreateVertexArrayStateCallback*(this: var Drawable, cb: ptr CreateVertexArrayStateCallback )  {.importcpp: "setCreateVertexArrayStateCallback".}
     ## Set the callback to override the default
     ## Drawable::createCreateVertexArrayStateImplementation().
 
-proc getCreateVertexArrayStateCallback*(this: var Drawable): ptr Createvertexarraystatecallback   {.importcpp: "getCreateVertexArrayStateCallback".}
+proc getCreateVertexArrayStateCallback*(this: var Drawable): ptr CreateVertexArrayStateCallback   {.importcpp: "getCreateVertexArrayStateCallback".}
     ## Get the callback that overrides the default
     ## Drawable::createCreateVertexArrayStateImplementation().
 
-proc getCreateVertexArrayStateCallback*(this: Drawable): ptr Createvertexarraystatecallback   {.importcpp: "getCreateVertexArrayStateCallback".}
+proc getCreateVertexArrayStateCallback*(this: Drawable): ptr CreateVertexArrayStateCallback   {.importcpp: "getCreateVertexArrayStateCallback".}
     ## Get the const callback that overrides the default
     ## Drawable::createCreateVertexArrayStateImplementation().
 
-proc createVertexArrayState*(this: Drawable, renderInfo: Renderinfo): ptr Vertexarraystate   {.importcpp: "createVertexArrayState".}
+proc createVertexArrayState*(this: Drawable, renderInfo: RenderInfo): ptr VertexArrayState   {.importcpp: "createVertexArrayState".}
     ## Create the VertexArrayState object used to track vertex array and
     ## vertex array object state. This method will be called automatically
     ## during rendering setup so users should not call this themselves.
 
-proc createVertexArrayStateImplementation*(this: Drawable, renderInfo: Renderinfo): ptr Vertexarraystate   {.importcpp: "createVertexArrayStateImplementation".}
+proc createVertexArrayStateImplementation*(this: Drawable, renderInfo: RenderInfo): ptr VertexArrayState   {.importcpp: "createVertexArrayStateImplementation".}
     ## Implementation of Create the VertexArrayState object.
 
-proc setVertexArrayStateList*(this: var Drawable, vasl: Vertexarraystatelist)  {.importcpp: "setVertexArrayStateList".}
+proc setVertexArrayStateList*(this: var Drawable, vasl: VertexArrayStateList)  {.importcpp: "setVertexArrayStateList".}
 
-proc getVertexArrayStateList*(this: var Drawable): Vertexarraystatelist  {.importcpp: "getVertexArrayStateList".}
+proc getVertexArrayStateList*(this: var Drawable): VertexArrayStateList  {.importcpp: "getVertexArrayStateList".}
 
-proc getVertexArrayStateList*(this: Drawable): Vertexarraystatelist  {.importcpp: "getVertexArrayStateList".}
+proc getVertexArrayStateList*(this: Drawable): VertexArrayStateList  {.importcpp: "getVertexArrayStateList".}
 
 proc setThreadSafeRefUnref*(this: var Drawable, threadSafe: bool)  {.importcpp: "setThreadSafeRefUnref".}
     ## Set whether to use a mutex to ensure ref() and unref() are thread
@@ -272,7 +270,7 @@ proc releaseGLObjects*(this: Drawable, state: ptr State  = 0)  {.importcpp: "rel
 
 proc cloneType*(this: DrawCallback): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: DrawCallback, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: DrawCallback, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: DrawCallback, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -280,20 +278,20 @@ proc libraryName*(this: DrawCallback): cstring  {.importcpp: "libraryName".}
 
 proc className*(this: DrawCallback): cstring  {.importcpp: "className".}
 
-proc drawImplementation*(this: DrawCallback, Renderinfo, ptr Drawable )  {.importcpp: "drawImplementation".}
+proc drawImplementation*(this: DrawCallback, a00: RenderInfo, a01: ptr Drawable )  {.importcpp: "drawImplementation".}
     ## do customized draw code.
 
-proc setDrawCallback*(this: var Drawable, dc: ptr Drawcallback )  {.importcpp: "setDrawCallback".}
+proc setDrawCallback*(this: var Drawable, dc: ptr DrawCallback )  {.importcpp: "setDrawCallback".}
     ## Set the DrawCallback which allows users to attach customize the
     ## drawing of existing Drawable object.
 
-proc getDrawCallback*(this: var Drawable): ptr Drawcallback   {.importcpp: "getDrawCallback".}
+proc getDrawCallback*(this: var Drawable): ptr DrawCallback   {.importcpp: "getDrawCallback".}
     ## Get the non const DrawCallback.
 
-proc getDrawCallback*(this: Drawable): ptr Drawcallback   {.importcpp: "getDrawCallback".}
+proc getDrawCallback*(this: Drawable): ptr DrawCallback   {.importcpp: "getDrawCallback".}
     ## Get the const DrawCallback.
 
-proc drawImplementation*(this: Drawable, Renderinfo)  {.importcpp: "drawImplementation".}
+proc drawImplementation*(this: Drawable, a00: RenderInfo)  {.importcpp: "drawImplementation".}
     ## drawImplementation(RenderInfo&) is a pure virtual method for the
     ## actual implementation of OpenGL drawing calls, such as vertex arrays
     ## and primitives, that must be implemented in concrete subclasses of the
@@ -322,91 +320,91 @@ proc getMinimumNumberOfDisplayListsToRetainInCache*(this: var Drawable): cuint  
     ## Get the minimum number of display lists to retain in the deleted
     ## display list cache.
 
-proc apply*(this: var AttributeFunctor, Attributetype, cuint, ptr GLbyte)  {.importcpp: "apply".}
+proc apply*(this: var AttributeFunctor, a00: AttributeType, a01: cuint, a02: ptr GLbyte)  {.importcpp: "apply".}
 
-proc apply*(this: var AttributeFunctor, Attributetype, cuint, ptr GLshort)  {.importcpp: "apply".}
+proc apply*(this: var AttributeFunctor, a00: AttributeType, a01: cuint, a02: ptr GLshort)  {.importcpp: "apply".}
 
-proc apply*(this: var AttributeFunctor, Attributetype, cuint, ptr GLint)  {.importcpp: "apply".}
+proc apply*(this: var AttributeFunctor, a00: AttributeType, a01: cuint, a02: ptr GLint)  {.importcpp: "apply".}
 
-proc apply*(this: var AttributeFunctor, Attributetype, cuint, ptr GLubyte)  {.importcpp: "apply".}
+proc apply*(this: var AttributeFunctor, a00: AttributeType, a01: cuint, a02: ptr GLubyte)  {.importcpp: "apply".}
 
-proc apply*(this: var AttributeFunctor, Attributetype, cuint, ptr GLushort)  {.importcpp: "apply".}
+proc apply*(this: var AttributeFunctor, a00: AttributeType, a01: cuint, a02: ptr GLushort)  {.importcpp: "apply".}
 
-proc apply*(this: var AttributeFunctor, Attributetype, cuint, ptr GLuint)  {.importcpp: "apply".}
+proc apply*(this: var AttributeFunctor, a00: AttributeType, a01: cuint, a02: ptr GLuint)  {.importcpp: "apply".}
 
-proc apply*(this: var AttributeFunctor, Attributetype, cuint, ptr float)  {.importcpp: "apply".}
+proc apply*(this: var AttributeFunctor, a00: AttributeType, a01: cuint, a02: ptr float)  {.importcpp: "apply".}
 
-proc apply*(this: var AttributeFunctor, Attributetype, cuint, ptr Vec2 )  {.importcpp: "apply".}
+proc apply*(this: var AttributeFunctor, a00: AttributeType, a01: cuint, a02: ptr Vec2 )  {.importcpp: "apply".}
 
-proc apply*(this: var AttributeFunctor, Attributetype, cuint, ptr Vec3 )  {.importcpp: "apply".}
+proc apply*(this: var AttributeFunctor, a00: AttributeType, a01: cuint, a02: ptr Vec3 )  {.importcpp: "apply".}
 
-proc apply*(this: var AttributeFunctor, Attributetype, cuint, ptr Vec4 )  {.importcpp: "apply".}
+proc apply*(this: var AttributeFunctor, a00: AttributeType, a01: cuint, a02: ptr Vec4 )  {.importcpp: "apply".}
 
-proc apply*(this: var AttributeFunctor, Attributetype, cuint, ptr Vec4ub )  {.importcpp: "apply".}
+proc apply*(this: var AttributeFunctor, a00: AttributeType, a01: cuint, a02: ptr Vec4ub )  {.importcpp: "apply".}
 
-proc apply*(this: var AttributeFunctor, Attributetype, cuint, ptr double)  {.importcpp: "apply".}
+proc apply*(this: var AttributeFunctor, a00: AttributeType, a01: cuint, a02: ptr double)  {.importcpp: "apply".}
 
-proc apply*(this: var AttributeFunctor, Attributetype, cuint, ptr Vec2d )  {.importcpp: "apply".}
+proc apply*(this: var AttributeFunctor, a00: AttributeType, a01: cuint, a02: ptr Vec2d )  {.importcpp: "apply".}
 
-proc apply*(this: var AttributeFunctor, Attributetype, cuint, ptr Vec3d )  {.importcpp: "apply".}
+proc apply*(this: var AttributeFunctor, a00: AttributeType, a01: cuint, a02: ptr Vec3d )  {.importcpp: "apply".}
 
-proc apply*(this: var AttributeFunctor, Attributetype, cuint, ptr Vec4d )  {.importcpp: "apply".}
+proc apply*(this: var AttributeFunctor, a00: AttributeType, a01: cuint, a02: ptr Vec4d )  {.importcpp: "apply".}
 
-proc supports*(this: Drawable, Attributefunctor): bool  {.importcpp: "supports".}
+proc supports*(this: Drawable, a00: AttributeFunctor): bool  {.importcpp: "supports".}
     ## Return true if the Drawable subclass supports
     ## accept(AttributeFunctor&).
 
-proc accept*(this: var Drawable, Attributefunctor)  {.importcpp: "accept".}
+proc accept*(this: var Drawable, a00: AttributeFunctor)  {.importcpp: "accept".}
     ## accept an AttributeFunctor and call its methods to tell it about the
     ## internal attributes that this Drawable has. return true if functor
     ## handled by drawable, return false on failure of drawable to generate
     ## functor calls.
 
-proc apply*(this: var ConstAttributeFunctor, Attributetype, cuint, ptr GLbyte)  {.importcpp: "apply".}
+proc apply*(this: var ConstAttributeFunctor, a00: AttributeType, a01: cuint, a02: ptr GLbyte)  {.importcpp: "apply".}
 
-proc apply*(this: var ConstAttributeFunctor, Attributetype, cuint, ptr GLshort)  {.importcpp: "apply".}
+proc apply*(this: var ConstAttributeFunctor, a00: AttributeType, a01: cuint, a02: ptr GLshort)  {.importcpp: "apply".}
 
-proc apply*(this: var ConstAttributeFunctor, Attributetype, cuint, ptr GLint)  {.importcpp: "apply".}
+proc apply*(this: var ConstAttributeFunctor, a00: AttributeType, a01: cuint, a02: ptr GLint)  {.importcpp: "apply".}
 
-proc apply*(this: var ConstAttributeFunctor, Attributetype, cuint, ptr GLubyte)  {.importcpp: "apply".}
+proc apply*(this: var ConstAttributeFunctor, a00: AttributeType, a01: cuint, a02: ptr GLubyte)  {.importcpp: "apply".}
 
-proc apply*(this: var ConstAttributeFunctor, Attributetype, cuint, ptr GLushort)  {.importcpp: "apply".}
+proc apply*(this: var ConstAttributeFunctor, a00: AttributeType, a01: cuint, a02: ptr GLushort)  {.importcpp: "apply".}
 
-proc apply*(this: var ConstAttributeFunctor, Attributetype, cuint, ptr GLuint)  {.importcpp: "apply".}
+proc apply*(this: var ConstAttributeFunctor, a00: AttributeType, a01: cuint, a02: ptr GLuint)  {.importcpp: "apply".}
 
-proc apply*(this: var ConstAttributeFunctor, Attributetype, cuint, ptr float)  {.importcpp: "apply".}
+proc apply*(this: var ConstAttributeFunctor, a00: AttributeType, a01: cuint, a02: ptr float)  {.importcpp: "apply".}
 
-proc apply*(this: var ConstAttributeFunctor, Attributetype, cuint, ptr Vec2 )  {.importcpp: "apply".}
+proc apply*(this: var ConstAttributeFunctor, a00: AttributeType, a01: cuint, a02: ptr Vec2 )  {.importcpp: "apply".}
 
-proc apply*(this: var ConstAttributeFunctor, Attributetype, cuint, ptr Vec3 )  {.importcpp: "apply".}
+proc apply*(this: var ConstAttributeFunctor, a00: AttributeType, a01: cuint, a02: ptr Vec3 )  {.importcpp: "apply".}
 
-proc apply*(this: var ConstAttributeFunctor, Attributetype, cuint, ptr Vec4 )  {.importcpp: "apply".}
+proc apply*(this: var ConstAttributeFunctor, a00: AttributeType, a01: cuint, a02: ptr Vec4 )  {.importcpp: "apply".}
 
-proc apply*(this: var ConstAttributeFunctor, Attributetype, cuint, ptr Vec4ub )  {.importcpp: "apply".}
+proc apply*(this: var ConstAttributeFunctor, a00: AttributeType, a01: cuint, a02: ptr Vec4ub )  {.importcpp: "apply".}
 
-proc apply*(this: var ConstAttributeFunctor, Attributetype, cuint, ptr double)  {.importcpp: "apply".}
+proc apply*(this: var ConstAttributeFunctor, a00: AttributeType, a01: cuint, a02: ptr double)  {.importcpp: "apply".}
 
-proc apply*(this: var ConstAttributeFunctor, Attributetype, cuint, ptr Vec2d )  {.importcpp: "apply".}
+proc apply*(this: var ConstAttributeFunctor, a00: AttributeType, a01: cuint, a02: ptr Vec2d )  {.importcpp: "apply".}
 
-proc apply*(this: var ConstAttributeFunctor, Attributetype, cuint, ptr Vec3d )  {.importcpp: "apply".}
+proc apply*(this: var ConstAttributeFunctor, a00: AttributeType, a01: cuint, a02: ptr Vec3d )  {.importcpp: "apply".}
 
-proc apply*(this: var ConstAttributeFunctor, Attributetype, cuint, ptr Vec4d )  {.importcpp: "apply".}
+proc apply*(this: var ConstAttributeFunctor, a00: AttributeType, a01: cuint, a02: ptr Vec4d )  {.importcpp: "apply".}
 
-proc supports*(this: Drawable, Constattributefunctor): bool  {.importcpp: "supports".}
+proc supports*(this: Drawable, a00: ConstAttributeFunctor): bool  {.importcpp: "supports".}
     ## Return true if the Drawable subclass supports
     ## accept(ConstAttributeFunctor&).
 
-proc accept*(this: Drawable, Constattributefunctor)  {.importcpp: "accept".}
+proc accept*(this: Drawable, a00: ConstAttributeFunctor)  {.importcpp: "accept".}
     ## Accept an AttributeFunctor and call its methods to tell it about the
     ## internal attributes that this Drawable has. return true if functor
     ## handled by drawable, return false on failure of drawable to generate
     ## functor calls.
 
-proc supports*(this: Drawable, Primitivefunctor): bool  {.importcpp: "supports".}
+proc supports*(this: Drawable, a00: PrimitiveFunctor): bool  {.importcpp: "supports".}
     ## Return true if the Drawable subclass supports
     ## accept(PrimitiveFunctor&).
 
-proc accept*(this: Drawable, Primitivefunctor)  {.importcpp: "accept".}
+proc accept*(this: Drawable, a00: PrimitiveFunctor)  {.importcpp: "accept".}
     ## Accept a PrimitiveFunctor and call its methods to tell it about the
     ## internal primitives that this Drawable has. return true if functor
     ## handled by drawable, return false on failure of drawable to generate
@@ -414,11 +412,11 @@ proc accept*(this: Drawable, Primitivefunctor)  {.importcpp: "accept".}
     ## the primitives, as primitives may be procedurally generated so one
     ## cannot modify it.
 
-proc supports*(this: Drawable, Primitiveindexfunctor): bool  {.importcpp: "supports".}
+proc supports*(this: Drawable, a00: PrimitiveIndexFunctor): bool  {.importcpp: "supports".}
     ## Return true if the Drawable subclass supports
     ## accept(PrimitiveIndexFunctor&).
 
-proc accept*(this: Drawable, Primitiveindexfunctor)  {.importcpp: "accept".}
+proc accept*(this: Drawable, a00: PrimitiveIndexFunctor)  {.importcpp: "accept".}
     ## Accept a PrimitiveIndexFunctor and call its methods to tell it about
     ## the internal primitives that this Drawable has. return true if functor
     ## handled by drawable, return false on failure of drawable to generate
@@ -426,79 +424,79 @@ proc accept*(this: Drawable, Primitiveindexfunctor)  {.importcpp: "accept".}
     ## of the primitives, as primitives may be procedurally generated so one
     ## cannot modify it.
 
-proc `=`*(this: var Drawable, Drawable): Drawable  {.importcpp: "# = #".}
+proc `=`*(this: var Drawable, a00: Drawable): Drawable  {.importcpp: "# = #".}
 
-proc setBound*(this: Drawable, bb: Boundingbox)  {.importcpp: "setBound".}
+proc setBound*(this: Drawable, bb: BoundingBox)  {.importcpp: "setBound".}
     ## set the bounding box .
 
-proc draw*(this: Drawable, renderInfo: Renderinfo)  {.importcpp: "draw".}
+proc draw*(this: Drawable, renderInfo: RenderInfo)  {.importcpp: "draw".}
 
-proc apply*(this: var AttributeFunctorArrayVisitor, array: Bytearray)  {.importcpp: "apply".}
+proc apply*(this: var AttributeFunctorArrayVisitor, array: ByteArray)  {.importcpp: "apply".}
 
-proc apply*(this: var AttributeFunctorArrayVisitor, array: Shortarray)  {.importcpp: "apply".}
+proc apply*(this: var AttributeFunctorArrayVisitor, array: ShortArray)  {.importcpp: "apply".}
 
-proc apply*(this: var AttributeFunctorArrayVisitor, array: Intarray)  {.importcpp: "apply".}
+proc apply*(this: var AttributeFunctorArrayVisitor, array: IntArray)  {.importcpp: "apply".}
 
-proc apply*(this: var AttributeFunctorArrayVisitor, array: Ubytearray)  {.importcpp: "apply".}
+proc apply*(this: var AttributeFunctorArrayVisitor, array: UByteArray)  {.importcpp: "apply".}
 
-proc apply*(this: var AttributeFunctorArrayVisitor, array: Ushortarray)  {.importcpp: "apply".}
+proc apply*(this: var AttributeFunctorArrayVisitor, array: UShortArray)  {.importcpp: "apply".}
 
-proc apply*(this: var AttributeFunctorArrayVisitor, array: Uintarray)  {.importcpp: "apply".}
+proc apply*(this: var AttributeFunctorArrayVisitor, array: UIntArray)  {.importcpp: "apply".}
 
-proc apply*(this: var AttributeFunctorArrayVisitor, array: Vec4ubarray)  {.importcpp: "apply".}
+proc apply*(this: var AttributeFunctorArrayVisitor, array: Vec4ubArray)  {.importcpp: "apply".}
 
-proc apply*(this: var AttributeFunctorArrayVisitor, array: Floatarray)  {.importcpp: "apply".}
+proc apply*(this: var AttributeFunctorArrayVisitor, array: FloatArray)  {.importcpp: "apply".}
 
-proc apply*(this: var AttributeFunctorArrayVisitor, array: Vec2array)  {.importcpp: "apply".}
+proc apply*(this: var AttributeFunctorArrayVisitor, array: Vec2Array)  {.importcpp: "apply".}
 
-proc apply*(this: var AttributeFunctorArrayVisitor, array: Vec3array)  {.importcpp: "apply".}
+proc apply*(this: var AttributeFunctorArrayVisitor, array: Vec3Array)  {.importcpp: "apply".}
 
-proc apply*(this: var AttributeFunctorArrayVisitor, array: Vec4array)  {.importcpp: "apply".}
+proc apply*(this: var AttributeFunctorArrayVisitor, array: Vec4Array)  {.importcpp: "apply".}
 
-proc apply*(this: var AttributeFunctorArrayVisitor, array: Doublearray)  {.importcpp: "apply".}
+proc apply*(this: var AttributeFunctorArrayVisitor, array: DoubleArray)  {.importcpp: "apply".}
 
-proc apply*(this: var AttributeFunctorArrayVisitor, array: Vec2darray)  {.importcpp: "apply".}
+proc apply*(this: var AttributeFunctorArrayVisitor, array: Vec2dArray)  {.importcpp: "apply".}
 
-proc apply*(this: var AttributeFunctorArrayVisitor, array: Vec3darray)  {.importcpp: "apply".}
+proc apply*(this: var AttributeFunctorArrayVisitor, array: Vec3dArray)  {.importcpp: "apply".}
 
-proc apply*(this: var AttributeFunctorArrayVisitor, array: Vec4darray)  {.importcpp: "apply".}
+proc apply*(this: var AttributeFunctorArrayVisitor, array: Vec4dArray)  {.importcpp: "apply".}
 
-proc applyArray*(this: var AttributeFunctorArrayVisitor, `type`: Attributetype, array: ptr Array )  {.importcpp: "applyArray".}
+proc applyArray*(this: var AttributeFunctorArrayVisitor, `type`: AttributeType, array: ptr Array )  {.importcpp: "applyArray".}
 
-proc `=`*(this: var AttributeFunctorArrayVisitor, Attributefunctorarrayvisitor): Attributefunctorarrayvisitor  {.importcpp: "# = #".}
+proc `=`*(this: var AttributeFunctorArrayVisitor, a00: AttributeFunctorArrayVisitor): AttributeFunctorArrayVisitor  {.importcpp: "# = #".}
 
-proc apply*(this: var ConstAttributeFunctorArrayVisitor, array: Bytearray)  {.importcpp: "apply".}
+proc apply*(this: var ConstAttributeFunctorArrayVisitor, array: ByteArray)  {.importcpp: "apply".}
 
-proc apply*(this: var ConstAttributeFunctorArrayVisitor, array: Shortarray)  {.importcpp: "apply".}
+proc apply*(this: var ConstAttributeFunctorArrayVisitor, array: ShortArray)  {.importcpp: "apply".}
 
-proc apply*(this: var ConstAttributeFunctorArrayVisitor, array: Intarray)  {.importcpp: "apply".}
+proc apply*(this: var ConstAttributeFunctorArrayVisitor, array: IntArray)  {.importcpp: "apply".}
 
-proc apply*(this: var ConstAttributeFunctorArrayVisitor, array: Ubytearray)  {.importcpp: "apply".}
+proc apply*(this: var ConstAttributeFunctorArrayVisitor, array: UByteArray)  {.importcpp: "apply".}
 
-proc apply*(this: var ConstAttributeFunctorArrayVisitor, array: Ushortarray)  {.importcpp: "apply".}
+proc apply*(this: var ConstAttributeFunctorArrayVisitor, array: UShortArray)  {.importcpp: "apply".}
 
-proc apply*(this: var ConstAttributeFunctorArrayVisitor, array: Uintarray)  {.importcpp: "apply".}
+proc apply*(this: var ConstAttributeFunctorArrayVisitor, array: UIntArray)  {.importcpp: "apply".}
 
-proc apply*(this: var ConstAttributeFunctorArrayVisitor, array: Vec4ubarray)  {.importcpp: "apply".}
+proc apply*(this: var ConstAttributeFunctorArrayVisitor, array: Vec4ubArray)  {.importcpp: "apply".}
 
-proc apply*(this: var ConstAttributeFunctorArrayVisitor, array: Floatarray)  {.importcpp: "apply".}
+proc apply*(this: var ConstAttributeFunctorArrayVisitor, array: FloatArray)  {.importcpp: "apply".}
 
-proc apply*(this: var ConstAttributeFunctorArrayVisitor, array: Vec2array)  {.importcpp: "apply".}
+proc apply*(this: var ConstAttributeFunctorArrayVisitor, array: Vec2Array)  {.importcpp: "apply".}
 
-proc apply*(this: var ConstAttributeFunctorArrayVisitor, array: Vec3array)  {.importcpp: "apply".}
+proc apply*(this: var ConstAttributeFunctorArrayVisitor, array: Vec3Array)  {.importcpp: "apply".}
 
-proc apply*(this: var ConstAttributeFunctorArrayVisitor, array: Vec4array)  {.importcpp: "apply".}
+proc apply*(this: var ConstAttributeFunctorArrayVisitor, array: Vec4Array)  {.importcpp: "apply".}
 
-proc apply*(this: var ConstAttributeFunctorArrayVisitor, array: Doublearray)  {.importcpp: "apply".}
+proc apply*(this: var ConstAttributeFunctorArrayVisitor, array: DoubleArray)  {.importcpp: "apply".}
 
-proc apply*(this: var ConstAttributeFunctorArrayVisitor, array: Vec2darray)  {.importcpp: "apply".}
+proc apply*(this: var ConstAttributeFunctorArrayVisitor, array: Vec2dArray)  {.importcpp: "apply".}
 
-proc apply*(this: var ConstAttributeFunctorArrayVisitor, array: Vec3darray)  {.importcpp: "apply".}
+proc apply*(this: var ConstAttributeFunctorArrayVisitor, array: Vec3dArray)  {.importcpp: "apply".}
 
-proc apply*(this: var ConstAttributeFunctorArrayVisitor, array: Vec4darray)  {.importcpp: "apply".}
+proc apply*(this: var ConstAttributeFunctorArrayVisitor, array: Vec4dArray)  {.importcpp: "apply".}
 
-proc applyArray*(this: var ConstAttributeFunctorArrayVisitor, `type`: Attributetype, array: ptr Array )  {.importcpp: "applyArray".}
+proc applyArray*(this: var ConstAttributeFunctorArrayVisitor, `type`: AttributeType, array: ptr Array )  {.importcpp: "applyArray".}
 
-proc `=`*(this: var ConstAttributeFunctorArrayVisitor, Constattributefunctorarrayvisitor): Constattributefunctorarrayvisitor  {.importcpp: "# = #".}
+proc `=`*(this: var ConstAttributeFunctorArrayVisitor, a00: ConstAttributeFunctorArrayVisitor): ConstAttributeFunctorArrayVisitor  {.importcpp: "# = #".}
 
 {.pop.}  # header: "Drawable"

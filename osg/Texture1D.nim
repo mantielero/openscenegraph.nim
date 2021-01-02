@@ -1,8 +1,9 @@
-import State  # provides: osg::State
-import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
-import Image  # provides: osg::Image
-import CopyOp  # provides: osg::CopyOp
+import osg_types
+  # File: State  was providing: osg::State
+  # File: Object  was providing: osg::Object
+  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
+  # File: Image  was providing: osg::Image
+  # File: CopyOp  was providing: osg::CopyOp
 type
   Texture1D* {.header: "Texture1D", importcpp: "osg::Texture1D", byref.} = object #of class osg::Texture
     ## Encapsulates OpenGL 1D texture functionality. Doesn't support cube
@@ -19,12 +20,12 @@ proc constructTexture1D*(): Texture1D {.constructor,importcpp: "osg::Texture1D::
 
 proc constructTexture1D*(image: ptr Image ): Texture1D {.constructor,importcpp: "osg::Texture1D::Texture1D(@)".}
 
-proc constructTexture1D*(text: Texture1d, copyop: Copyop = SHALLOW_COPY): Texture1D {.constructor,importcpp: "osg::Texture1D::Texture1D(@)".}
+proc constructTexture1D*(text: Texture1D, copyop: CopyOp = SHALLOW_COPY): Texture1D {.constructor,importcpp: "osg::Texture1D::Texture1D(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: Texture1D): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: Texture1D, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: Texture1D, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: Texture1D, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -34,7 +35,7 @@ proc className*(this: Texture1D): cstring  {.importcpp: "className".}
 
 proc getType*(this: Texture1D): Type  {.importcpp: "getType".}
 
-proc compare*(this: Texture1D, rhs: Stateattribute): cint  {.importcpp: "compare".}
+proc compare*(this: Texture1D, rhs: StateAttribute): cint  {.importcpp: "compare".}
     ## Return -1 if *this < *rhs, 0 if *this==*rhs, 1 if *this>*rhs.
 
 proc getTextureTarget*(this: Texture1D): GLenum  {.importcpp: "getTextureTarget".}
@@ -54,13 +55,13 @@ proc isDirty*(this: Texture1D, contextID: cuint): bool  {.importcpp: "isDirty".}
 
 proc getModifiedCount*(this: Texture1D, contextID: cuint): cuint  {.importcpp: "getModifiedCount".}
 
-proc setImage*(this: var Texture1D, cuint, image: ptr Image )  {.importcpp: "setImage".}
+proc setImage*(this: var Texture1D, a00: cuint, image: ptr Image )  {.importcpp: "setImage".}
     ## Sets the texture image, ignoring face.
 
-proc getImage*(this: var Texture1D, cuint): ptr Image   {.importcpp: "getImage".}
+proc getImage*(this: var Texture1D, a00: cuint): ptr Image   {.importcpp: "getImage".}
     ## Gets the texture image, ignoring face.
 
-proc getImage*(this: Texture1D, cuint): ptr Image   {.importcpp: "getImage".}
+proc getImage*(this: Texture1D, a00: cuint): ptr Image   {.importcpp: "getImage".}
     ## Gets the const texture image, ignoring face.
 
 proc getNumImages*(this: Texture1D): cuint  {.importcpp: "getNumImages".}
@@ -77,15 +78,15 @@ proc getTextureHeight*(this: Texture1D): cint  {.importcpp: "getTextureHeight".}
 
 proc getTextureDepth*(this: Texture1D): cint  {.importcpp: "getTextureDepth".}
 
-proc load*(this: SubloadCallback, texture: Texture1d, state: State)  {.importcpp: "load".}
+proc load*(this: SubloadCallback, texture: Texture1D, state: State)  {.importcpp: "load".}
 
-proc subload*(this: SubloadCallback, texture: Texture1d, state: State)  {.importcpp: "subload".}
+proc subload*(this: SubloadCallback, texture: Texture1D, state: State)  {.importcpp: "subload".}
 
-proc setSubloadCallback*(this: var Texture1D, cb: ptr Subloadcallback )  {.importcpp: "setSubloadCallback".}
+proc setSubloadCallback*(this: var Texture1D, cb: ptr SubloadCallback )  {.importcpp: "setSubloadCallback".}
 
-proc getSubloadCallback*(this: var Texture1D): ptr Subloadcallback   {.importcpp: "getSubloadCallback".}
+proc getSubloadCallback*(this: var Texture1D): ptr SubloadCallback   {.importcpp: "getSubloadCallback".}
 
-proc getSubloadCallback*(this: Texture1D): ptr Subloadcallback   {.importcpp: "getSubloadCallback".}
+proc getSubloadCallback*(this: Texture1D): ptr SubloadCallback   {.importcpp: "getSubloadCallback".}
 
 proc setNumMipmapLevels*(this: Texture1D, num: cuint)  {.importcpp: "setNumMipmapLevels".}
     ## Helper function. Sets the number of mipmap levels created for this

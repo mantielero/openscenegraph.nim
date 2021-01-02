@@ -1,4 +1,5 @@
-import Vec3  # provides: osg::Vec3
+import osg_types
+  # File: Vec3  was providing: osg::Vec3
 type
   VertexList* {.header: "ConvexPlanarPolygon", importcpp: "osg::ConvexPlanarPolygon::VertexList".} = cint
 
@@ -9,10 +10,10 @@ proc constructConvexPlanarPolygon*(): ConvexPlanarPolygon {.constructor,importcp
 
 proc add*(this: var ConvexPlanarPolygon, v: Vec3)  {.importcpp: "add".}
 
-proc setVertexList*(this: var ConvexPlanarPolygon, vertexList: Vertexlist)  {.importcpp: "setVertexList".}
+proc setVertexList*(this: var ConvexPlanarPolygon, vertexList: VertexList)  {.importcpp: "setVertexList".}
 
-proc getVertexList*(this: var ConvexPlanarPolygon): Vertexlist  {.importcpp: "getVertexList".}
+proc getVertexList*(this: var ConvexPlanarPolygon): VertexList  {.importcpp: "getVertexList".}
 
-proc getVertexList*(this: ConvexPlanarPolygon): Vertexlist  {.importcpp: "getVertexList".}
+proc getVertexList*(this: ConvexPlanarPolygon): VertexList  {.importcpp: "getVertexList".}
 
 {.pop.}  # header: "ConvexPlanarPolygon"

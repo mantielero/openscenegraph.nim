@@ -1,5 +1,6 @@
-import DeleteHandler  # provides: osg::DeleteHandler
-import Observer  # provides: osg::ObserverSet, osg::Observer
+import osg_types
+  # File: DeleteHandler  was providing: osg::DeleteHandler
+  # File: Observer  was providing: osg::ObserverSet, osg::Observer
 type
   depends_on*[T; M:T ()] {.header: "Referenced", importcpp: "osg::depends_on", byref.} = object
     ## template class to help enforce static initialization order.
@@ -16,11 +17,11 @@ proc constructReferenced*(threadSafeRefUnref: bool): Referenced {.constructor,im
     ## Deprecated, Referenced is now always uses thread safe ref/unref, use
     ## default Referenced() constructor instead
 
-proc constructReferenced*(Referenced): Referenced {.constructor,importcpp: "osg::Referenced::Referenced(@)".}
+proc constructReferenced*(a00: Referenced): Referenced {.constructor,importcpp: "osg::Referenced::Referenced(@)".}
 
-proc `=`*(this: var Referenced, Referenced): Referenced  {.importcpp: "# = #".}
+proc `=`*(this: var Referenced, a00: Referenced): Referenced  {.importcpp: "# = #".}
 
-proc setThreadSafeRefUnref*(this: var Referenced, bool)  {.importcpp: "setThreadSafeRefUnref".}
+proc setThreadSafeRefUnref*(this: var Referenced, a00: bool)  {.importcpp: "setThreadSafeRefUnref".}
     ## Deprecated, Referenced is always theadsafe so there method now has no
     ## effect and does not need to be called.
 
@@ -53,10 +54,10 @@ proc unref_nodelete*(this: Referenced): cint  {.importcpp: "unref_nodelete".}
 proc referenceCount*(this: Referenced): cint  {.importcpp: "referenceCount".}
     ## Return the number of pointers currently referencing this object.
 
-proc getObserverSet*(this: Referenced): ptr Observerset   {.importcpp: "getObserverSet".}
+proc getObserverSet*(this: Referenced): ptr ObserverSet   {.importcpp: "getObserverSet".}
     ## Get the ObserverSet if one is attached, otherwise return NULL.
 
-proc getOrCreateObserverSet*(this: Referenced): ptr Observerset   {.importcpp: "getOrCreateObserverSet".}
+proc getOrCreateObserverSet*(this: Referenced): ptr ObserverSet   {.importcpp: "getOrCreateObserverSet".}
     ## Get the ObserverSet if one is attached, otherwise create an
     ## ObserverSet, attach it, then return this newly created ObserverSet.
 
@@ -67,11 +68,11 @@ proc addObserver*(this: Referenced, observer: ptr Observer )  {.importcpp: "addO
 proc removeObserver*(this: Referenced, observer: ptr Observer )  {.importcpp: "removeObserver".}
     ## Remove Observer that is observing this object.
 
-proc setDeleteHandler*(this: var Referenced, handler: ptr Deletehandler )  {.importcpp: "setDeleteHandler".}
+proc setDeleteHandler*(this: var Referenced, handler: ptr DeleteHandler )  {.importcpp: "setDeleteHandler".}
     ## Set a DeleteHandler to which deletion of all referenced counted
     ## objects will be delegated.
 
-proc getDeleteHandler*(this: var Referenced): ptr Deletehandler   {.importcpp: "getDeleteHandler".}
+proc getDeleteHandler*(this: var Referenced): ptr DeleteHandler   {.importcpp: "getDeleteHandler".}
     ## Get a DeleteHandler.
 
 proc signalObserversAndDelete*(this: Referenced, signalDelete: bool, doDelete: bool)  {.importcpp: "signalObserversAndDelete".}

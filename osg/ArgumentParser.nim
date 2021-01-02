@@ -1,16 +1,17 @@
-import ApplicationUsage  # provides: osg::ApplicationUsage
+import osg_types
+  # File: ApplicationUsage  was providing: osg::ApplicationUsage
 type
-  ParameterType* {.size:sizeof(cuint),header: "ArgumentParser", importcpp: "osg::ArgumentParser::Parameter::ParameterType".} = enum
-    prmtrtypBOOL_PARAMETER = 0,
-    prmtrtypFLOAT_PARAMETER = 1,
-    prmtrtypDOUBLE_PARAMETER = 2,
-    prmtrtypINT_PARAMETER = 3,
-    prmtrtypUNSIGNED_INT_PARAMETER = 4,
-    prmtrtypSTRING_PARAMETER = 5
+  ParameterType* {.size:sizeof(cuint),header: "ArgumentParser", importcpp: "osg::ArgumentParser::Parameter::ParameterType", pure.} = enum
+    BOOL_PARAMETER = 0,
+    FLOAT_PARAMETER = 1,
+    DOUBLE_PARAMETER = 2,
+    INT_PARAMETER = 3,
+    UNSIGNED_INT_PARAMETER = 4,
+    STRING_PARAMETER = 5
 
-  ErrorSeverity* {.size:sizeof(cuint),header: "ArgumentParser", importcpp: "osg::ArgumentParser::ErrorSeverity".} = enum
-    rrrsvrtyBENIGN = 0,
-    rrrsvrtyCRITICAL = 1
+  ErrorSeverity* {.size:sizeof(cuint),header: "ArgumentParser", importcpp: "osg::ArgumentParser::ErrorSeverity", pure.} = enum
+    BENIGN = 0,
+    CRITICAL = 1
 
   Parameter* {.header: "ArgumentParser", importcpp: "osg::ArgumentParser::Parameter", byref.} = object
 
@@ -29,7 +30,7 @@ proc constructParameter*(value: cint): Parameter {.constructor,importcpp: "osg::
 
 proc constructParameter*(value: cuint): Parameter {.constructor,importcpp: "osg::ArgumentParser::Parameter::Parameter(@)".}
 
-proc constructParameter*(value: String): Parameter {.constructor,importcpp: "osg::ArgumentParser::Parameter::Parameter(@)".}
+proc constructParameter*(value: string): Parameter {.constructor,importcpp: "osg::ArgumentParser::Parameter::Parameter(@)".}
 
 proc constructParameter*(param: Parameter): Parameter {.constructor,importcpp: "osg::ArgumentParser::Parameter::Parameter(@)".}
 
@@ -55,11 +56,11 @@ proc isNumber*(this: var ArgumentParser, str: cstring): bool  {.importcpp: "isNu
 proc isBool*(this: var ArgumentParser, str: cstring): bool  {.importcpp: "isBool".}
     ## Return true if specified parameter is a bool.
 
-proc setApplicationUsage*(this: var ArgumentParser, usage: ptr Applicationusage )  {.importcpp: "setApplicationUsage".}
+proc setApplicationUsage*(this: var ArgumentParser, usage: ptr ApplicationUsage )  {.importcpp: "setApplicationUsage".}
 
-proc getApplicationUsage*(this: var ArgumentParser): ptr Applicationusage   {.importcpp: "getApplicationUsage".}
+proc getApplicationUsage*(this: var ArgumentParser): ptr ApplicationUsage   {.importcpp: "getApplicationUsage".}
 
-proc getApplicationUsage*(this: ArgumentParser): ptr Applicationusage   {.importcpp: "getApplicationUsage".}
+proc getApplicationUsage*(this: ArgumentParser): ptr ApplicationUsage   {.importcpp: "getApplicationUsage".}
 
 proc argc*(this: var ArgumentParser): cint  {.importcpp: "argc".}
     ## Return the argument count.
@@ -73,10 +74,10 @@ proc `[]`*(this: var ArgumentParser, pos: cint): cstring  {.importcpp: "# [] #".
 proc `[]`*(this: ArgumentParser, pos: cint): cstring  {.importcpp: "# [] #".}
     ## Return the const char* argument at the specified position.
 
-proc getApplicationName*(this: ArgumentParser): String  {.importcpp: "getApplicationName".}
+proc getApplicationName*(this: ArgumentParser): string  {.importcpp: "getApplicationName".}
     ## Return the application name, as specified by argv[0]
 
-proc find*(this: ArgumentParser, str: String): cint  {.importcpp: "find".}
+proc find*(this: ArgumentParser, str: string): cint  {.importcpp: "find".}
     ## Return the position of an occurrence of a string in the argument list.
     ## Return -1 if no string is found.
 
@@ -97,68 +98,68 @@ proc remove*(this: var ArgumentParser, pos: cint, num: cint)  {.importcpp: "remo
     ## Remove one or more arguments from the argv argument list, and
     ## decrement the argc respectively.
 
-proc match*(this: ArgumentParser, pos: cint, str: String): bool  {.importcpp: "match".}
+proc match*(this: ArgumentParser, pos: cint, str: string): bool  {.importcpp: "match".}
     ## Return true if the specified argument matches the given string.
 
-proc read*(this: var ArgumentParser, str: String): bool  {.importcpp: "read".}
+proc read*(this: var ArgumentParser, str: string): bool  {.importcpp: "read".}
     ## Search for an occurrence of a string in the argument list. If found,
     ## remove that occurrence and return true. Otherwise, return false.
 
-proc read*(this: var ArgumentParser, str: String, value1: Parameter): bool  {.importcpp: "read".}
+proc read*(this: var ArgumentParser, str: string, value1: Parameter): bool  {.importcpp: "read".}
 
-proc read*(this: var ArgumentParser, str: String, value1: Parameter, value2: Parameter): bool  {.importcpp: "read".}
+proc read*(this: var ArgumentParser, str: string, value1: Parameter, value2: Parameter): bool  {.importcpp: "read".}
 
-proc read*(this: var ArgumentParser, str: String, value1: Parameter, value2: Parameter, value3: Parameter): bool  {.importcpp: "read".}
+proc read*(this: var ArgumentParser, str: string, value1: Parameter, value2: Parameter, value3: Parameter): bool  {.importcpp: "read".}
 
-proc read*(this: var ArgumentParser, str: String, value1: Parameter, value2: Parameter, value3: Parameter, value4: Parameter): bool  {.importcpp: "read".}
+proc read*(this: var ArgumentParser, str: string, value1: Parameter, value2: Parameter, value3: Parameter, value4: Parameter): bool  {.importcpp: "read".}
 
-proc read*(this: var ArgumentParser, str: String, value1: Parameter, value2: Parameter, value3: Parameter, value4: Parameter, value5: Parameter): bool  {.importcpp: "read".}
+proc read*(this: var ArgumentParser, str: string, value1: Parameter, value2: Parameter, value3: Parameter, value4: Parameter, value5: Parameter): bool  {.importcpp: "read".}
 
-proc read*(this: var ArgumentParser, str: String, value1: Parameter, value2: Parameter, value3: Parameter, value4: Parameter, value5: Parameter, value6: Parameter): bool  {.importcpp: "read".}
+proc read*(this: var ArgumentParser, str: string, value1: Parameter, value2: Parameter, value3: Parameter, value4: Parameter, value5: Parameter, value6: Parameter): bool  {.importcpp: "read".}
 
-proc read*(this: var ArgumentParser, str: String, value1: Parameter, value2: Parameter, value3: Parameter, value4: Parameter, value5: Parameter, value6: Parameter, value7: Parameter): bool  {.importcpp: "read".}
+proc read*(this: var ArgumentParser, str: string, value1: Parameter, value2: Parameter, value3: Parameter, value4: Parameter, value5: Parameter, value6: Parameter, value7: Parameter): bool  {.importcpp: "read".}
 
-proc read*(this: var ArgumentParser, str: String, value1: Parameter, value2: Parameter, value3: Parameter, value4: Parameter, value5: Parameter, value6: Parameter, value7: Parameter, value8: Parameter): bool  {.importcpp: "read".}
+proc read*(this: var ArgumentParser, str: string, value1: Parameter, value2: Parameter, value3: Parameter, value4: Parameter, value5: Parameter, value6: Parameter, value7: Parameter, value8: Parameter): bool  {.importcpp: "read".}
 
-proc read*(this: var ArgumentParser, pos: cint, str: String): bool  {.importcpp: "read".}
+proc read*(this: var ArgumentParser, pos: cint, str: string): bool  {.importcpp: "read".}
     ## If the argument value at the specified position matches the given
     ## string, and subsequent parameters are also matched, then set the
     ## parameter values, remove the arguments from the list, and return true.
     ## Otherwise, return false.
 
-proc read*(this: var ArgumentParser, pos: cint, str: String, value1: Parameter): bool  {.importcpp: "read".}
+proc read*(this: var ArgumentParser, pos: cint, str: string, value1: Parameter): bool  {.importcpp: "read".}
 
-proc read*(this: var ArgumentParser, pos: cint, str: String, value1: Parameter, value2: Parameter): bool  {.importcpp: "read".}
+proc read*(this: var ArgumentParser, pos: cint, str: string, value1: Parameter, value2: Parameter): bool  {.importcpp: "read".}
 
-proc read*(this: var ArgumentParser, pos: cint, str: String, value1: Parameter, value2: Parameter, value3: Parameter): bool  {.importcpp: "read".}
+proc read*(this: var ArgumentParser, pos: cint, str: string, value1: Parameter, value2: Parameter, value3: Parameter): bool  {.importcpp: "read".}
 
-proc read*(this: var ArgumentParser, pos: cint, str: String, value1: Parameter, value2: Parameter, value3: Parameter, value4: Parameter): bool  {.importcpp: "read".}
+proc read*(this: var ArgumentParser, pos: cint, str: string, value1: Parameter, value2: Parameter, value3: Parameter, value4: Parameter): bool  {.importcpp: "read".}
 
-proc read*(this: var ArgumentParser, pos: cint, str: String, value1: Parameter, value2: Parameter, value3: Parameter, value4: Parameter, value5: Parameter): bool  {.importcpp: "read".}
+proc read*(this: var ArgumentParser, pos: cint, str: string, value1: Parameter, value2: Parameter, value3: Parameter, value4: Parameter, value5: Parameter): bool  {.importcpp: "read".}
 
-proc read*(this: var ArgumentParser, pos: cint, str: String, value1: Parameter, value2: Parameter, value3: Parameter, value4: Parameter, value5: Parameter, value6: Parameter): bool  {.importcpp: "read".}
+proc read*(this: var ArgumentParser, pos: cint, str: string, value1: Parameter, value2: Parameter, value3: Parameter, value4: Parameter, value5: Parameter, value6: Parameter): bool  {.importcpp: "read".}
 
-proc read*(this: var ArgumentParser, pos: cint, str: String, value1: Parameter, value2: Parameter, value3: Parameter, value4: Parameter, value5: Parameter, value6: Parameter, value7: Parameter): bool  {.importcpp: "read".}
+proc read*(this: var ArgumentParser, pos: cint, str: string, value1: Parameter, value2: Parameter, value3: Parameter, value4: Parameter, value5: Parameter, value6: Parameter, value7: Parameter): bool  {.importcpp: "read".}
 
-proc read*(this: var ArgumentParser, pos: cint, str: String, value1: Parameter, value2: Parameter, value3: Parameter, value4: Parameter, value5: Parameter, value6: Parameter, value7: Parameter, value8: Parameter): bool  {.importcpp: "read".}
+proc read*(this: var ArgumentParser, pos: cint, str: string, value1: Parameter, value2: Parameter, value3: Parameter, value4: Parameter, value5: Parameter, value6: Parameter, value7: Parameter, value8: Parameter): bool  {.importcpp: "read".}
 
-proc errors*(this: ArgumentParser, severity: Errorseverity): bool  {.importcpp: "errors".}
+proc errors*(this: ArgumentParser, severity: ErrorSeverity): bool  {.importcpp: "errors".}
     ## Return the error flag, true if an error has occurred when reading
     ## arguments.
 
-proc reportError*(this: var ArgumentParser, message: String, severity: Errorseverity)  {.importcpp: "reportError".}
+proc reportError*(this: var ArgumentParser, message: string, severity: ErrorSeverity)  {.importcpp: "reportError".}
     ## Report an error message by adding to the ErrorMessageMap.
 
-proc reportRemainingOptionsAsUnrecognized*(this: var ArgumentParser, severity: Errorseverity)  {.importcpp: "reportRemainingOptionsAsUnrecognized".}
+proc reportRemainingOptionsAsUnrecognized*(this: var ArgumentParser, severity: ErrorSeverity)  {.importcpp: "reportRemainingOptionsAsUnrecognized".}
     ## For each remaining option, report it as unrecognized.
 
-proc getErrorMessageMap*(this: var ArgumentParser): Errormessagemap  {.importcpp: "getErrorMessageMap".}
+proc getErrorMessageMap*(this: var ArgumentParser): ErrorMessageMap  {.importcpp: "getErrorMessageMap".}
     ## Return the error message, if any has occurred.
 
-proc getErrorMessageMap*(this: ArgumentParser): Errormessagemap  {.importcpp: "getErrorMessageMap".}
+proc getErrorMessageMap*(this: ArgumentParser): ErrorMessageMap  {.importcpp: "getErrorMessageMap".}
     ## Return the error message, if any has occurred.
 
-proc writeErrorMessages*(this: var ArgumentParser, output: Ostream, sevrity: Errorseverity)  {.importcpp: "writeErrorMessages".}
+proc writeErrorMessages*(this: var ArgumentParser, output: ostream, sevrity: ErrorSeverity)  {.importcpp: "writeErrorMessages".}
     ## Write error messages to the given ostream, if at or above the given
     ## severity.
 

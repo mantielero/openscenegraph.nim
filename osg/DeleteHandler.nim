@@ -1,6 +1,7 @@
-import Referenced  # provides: osg::Referenced
+import osg_types
+  # File: Referenced  was providing: osg::Referenced
 type
-  FrameNumberObjectPair* {.header: "DeleteHandler", importcpp: "osg::DeleteHandler::FrameNumberObjectPair".} = Pair[cuint,ptr Referenced ]
+  FrameNumberObjectPair* {.header: "DeleteHandler", importcpp: "osg::DeleteHandler::FrameNumberObjectPair".} = pair[cuint,ptr Referenced ]
   ObjectsToDeleteList* {.header: "DeleteHandler", importcpp: "osg::DeleteHandler::ObjectsToDeleteList".} = cint
 
 
@@ -8,7 +9,7 @@ type
 
 proc constructDeleteHandler*(numberOfFramesToRetainObjects: cint): DeleteHandler {.constructor,importcpp: "osg::DeleteHandler::DeleteHandler(@)".}
 
-proc constructDeleteHandler*(Deletehandler): DeleteHandler {.constructor,importcpp: "osg::DeleteHandler::DeleteHandler(@)".}
+proc constructDeleteHandler*(a00: DeleteHandler): DeleteHandler {.constructor,importcpp: "osg::DeleteHandler::DeleteHandler(@)".}
 
 proc setNumFramesToRetainObjects*(this: var DeleteHandler, numberOfFramesToRetainObjects: cuint)  {.importcpp: "setNumFramesToRetainObjects".}
     ## Set the number of frames to retain objects that have been requested
@@ -44,6 +45,6 @@ proc requestDelete*(this: var DeleteHandler, `object`: ptr Referenced )  {.impor
     ## be delayed until doDelete is called. The default implementation does a
     ## delete straight away.
 
-proc `=`*(this: var DeleteHandler, Deletehandler): Deletehandler  {.importcpp: "# = #".}
+proc `=`*(this: var DeleteHandler, a00: DeleteHandler): DeleteHandler  {.importcpp: "# = #".}
 
 {.pop.}  # header: "DeleteHandler"

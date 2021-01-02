@@ -1,20 +1,21 @@
-import BoundingSphere  # provides: osg::BoundingSphere
-import Object  # provides: osg::Object
-import Drawable  # provides: osg::Drawable
-import BoundingBox  # provides: osg::BoundingBox
-import CopyOp  # provides: osg::CopyOp
-import RenderInfo  # provides: osg::RenderInfo
-import NodeVisitor  # provides: osg::NodeVisitor
+import osg_types
+  # File: BoundingSphere  was providing: osg::BoundingSphere
+  # File: Object  was providing: osg::Object
+  # File: Drawable  was providing: osg::Drawable
+  # File: BoundingBox  was providing: osg::BoundingBox
+  # File: CopyOp  was providing: osg::CopyOp
+  # File: RenderInfo  was providing: osg::RenderInfo
+  # File: NodeVisitor  was providing: osg::NodeVisitor
 {.push header: "Geode".}
 
 proc constructGeode*(): Geode {.constructor,importcpp: "osg::Geode::Geode".}
 
-proc constructGeode*(Geode, copyop: Copyop = SHALLOW_COPY): Geode {.constructor,importcpp: "osg::Geode::Geode(@)".}
+proc constructGeode*(a00: Geode, copyop: CopyOp = SHALLOW_COPY): Geode {.constructor,importcpp: "osg::Geode::Geode(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: Geode): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: Geode, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: Geode, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: Geode, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -22,7 +23,7 @@ proc className*(this: Geode): cstring  {.importcpp: "className".}
 
 proc libraryName*(this: Geode): cstring  {.importcpp: "libraryName".}
 
-proc accept*(this: var Geode, nv: Nodevisitor)  {.importcpp: "accept".}
+proc accept*(this: var Geode, nv: NodeVisitor)  {.importcpp: "accept".}
 
 proc asGeode*(this: var Geode): ptr Geode   {.importcpp: "asGeode".}
 
@@ -69,13 +70,13 @@ proc containsDrawable*(this: Geode, drawable: ptr Drawable ): bool  {.importcpp:
 proc getDrawableIndex*(this: Geode, drawable: ptr Drawable ): cuint  {.importcpp: "getDrawableIndex".}
     ## Get the index number of drawable.
 
-proc compileDrawables*(this: var Geode, renderInfo: Renderinfo)  {.importcpp: "compileDrawables".}
+proc compileDrawables*(this: var Geode, renderInfo: RenderInfo)  {.importcpp: "compileDrawables".}
     ## Compile OpenGL Display List for each drawable.
 
-proc getBoundingBox*(this: Geode): Boundingbox  {.importcpp: "getBoundingBox".}
+proc getBoundingBox*(this: Geode): BoundingBox  {.importcpp: "getBoundingBox".}
     ## Return the Geode's bounding box, which is the union of all the
     ## bounding boxes of the geode's drawables.
 
-proc computeBound*(this: Geode): Boundingsphere  {.importcpp: "computeBound".}
+proc computeBound*(this: Geode): BoundingSphere  {.importcpp: "computeBound".}
 
 {.pop.}  # header: "Geode"

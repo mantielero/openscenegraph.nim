@@ -1,14 +1,15 @@
-import Object  # provides: osg::Object
-import CopyOp  # provides: osg::CopyOp
-import Matrix  # provides: osg::Matrix
-import Vec3d  # provides: osg::Vec3d
-import Quat  # provides: osg::Quat
-import NodeVisitor  # provides: osg::NodeVisitor
+import osg_types
+  # File: Object  was providing: osg::Object
+  # File: CopyOp  was providing: osg::CopyOp
+  # File: Matrix  was providing: osg::Matrix
+  # File: Vec3d  was providing: osg::Vec3d
+  # File: Quat  was providing: osg::Quat
+  # File: NodeVisitor  was providing: osg::NodeVisitor
 type
-  FieldOfViewMode* {.size:sizeof(cuint),header: "CameraView", importcpp: "osg::CameraView::FieldOfViewMode".} = enum
-    fldfvwmdUNCONSTRAINED = 0,
-    fldfvwmdHORIZONTAL = 1,
-    fldfvwmdVERTICAL = 2
+  FieldOfViewMode* {.size:sizeof(cuint),header: "CameraView", importcpp: "osg::CameraView::FieldOfViewMode", pure.} = enum
+    UNCONSTRAINED = 0,
+    HORIZONTAL = 1,
+    VERTICAL = 2
 
 
 
@@ -16,11 +17,11 @@ type
 
 proc constructCameraView*(): CameraView {.constructor,importcpp: "osg::CameraView::CameraView".}
 
-proc constructCameraView*(pat: Cameraview, copyop: Copyop = SHALLOW_COPY): CameraView {.constructor,importcpp: "osg::CameraView::CameraView(@)".}
+proc constructCameraView*(pat: CameraView, copyop: CopyOp = SHALLOW_COPY): CameraView {.constructor,importcpp: "osg::CameraView::CameraView(@)".}
 
 proc cloneType*(this: CameraView): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: CameraView, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: CameraView, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: CameraView, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -28,7 +29,7 @@ proc className*(this: CameraView): cstring  {.importcpp: "className".}
 
 proc libraryName*(this: CameraView): cstring  {.importcpp: "libraryName".}
 
-proc accept*(this: var CameraView, nv: Nodevisitor)  {.importcpp: "accept".}
+proc accept*(this: var CameraView, nv: NodeVisitor)  {.importcpp: "accept".}
 
 proc setPosition*(this: var CameraView, pos: Vec3d)  {.importcpp: "setPosition".}
     ## Set the position of the camera view.
@@ -51,11 +52,11 @@ proc setFieldOfView*(this: var CameraView, fieldOfView: cdouble)  {.importcpp: "
 proc getFieldOfView*(this: CameraView): cdouble  {.importcpp: "getFieldOfView".}
     ## Get the field of view.
 
-proc setFieldOfViewMode*(this: var CameraView, mode: Fieldofviewmode)  {.importcpp: "setFieldOfViewMode".}
+proc setFieldOfViewMode*(this: var CameraView, mode: FieldOfViewMode)  {.importcpp: "setFieldOfViewMode".}
     ## Set the field of view mode - controlling how the field of view of the
     ## camera is constrained by the CameraView settings.
 
-proc getFieldOfViewMode*(this: CameraView): Fieldofviewmode  {.importcpp: "getFieldOfViewMode".}
+proc getFieldOfViewMode*(this: CameraView): FieldOfViewMode  {.importcpp: "getFieldOfViewMode".}
     ## Get the field of view mode.
 
 proc setFocalLength*(this: var CameraView, focalLength: cdouble)  {.importcpp: "setFocalLength".}
@@ -66,8 +67,8 @@ proc setFocalLength*(this: var CameraView, focalLength: cdouble)  {.importcpp: "
 proc getFocalLength*(this: CameraView): cdouble  {.importcpp: "getFocalLength".}
     ## Get the focal length of the camera.
 
-proc computeLocalToWorldMatrix*(this: CameraView, matrix: Matrix, nv: ptr Nodevisitor ): bool  {.importcpp: "computeLocalToWorldMatrix".}
+proc computeLocalToWorldMatrix*(this: CameraView, matrix: Matrix, nv: ptr NodeVisitor ): bool  {.importcpp: "computeLocalToWorldMatrix".}
 
-proc computeWorldToLocalMatrix*(this: CameraView, matrix: Matrix, nv: ptr Nodevisitor ): bool  {.importcpp: "computeWorldToLocalMatrix".}
+proc computeWorldToLocalMatrix*(this: CameraView, matrix: Matrix, nv: ptr NodeVisitor ): bool  {.importcpp: "computeWorldToLocalMatrix".}
 
 {.pop.}  # header: "CameraView"

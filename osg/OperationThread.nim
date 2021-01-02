@@ -1,4 +1,6 @@
-import Object  # provides: osg::Object
+import osg_types
+  # File: ref_ptr  was providing: osg::ref_ptr
+  # File: Object  was providing: osg::Object
 type
   RefBlockCount* {.header: "OperationThread", importcpp: "osg::RefBlockCount", byref.} = object #of osg::Referenced
 
@@ -6,7 +8,7 @@ type
 
   OperationThreads* {.header: "OperationThread", importcpp: "osg::OperationQueue::OperationThreads".} = cint
   Operations* {.header: "OperationThread", importcpp: "osg::OperationQueue::Operations".} = cint
-  OperationsThread* {.header: "OperationThread", importcpp: "osg::OperationsThread".} = Operationthread
+  OperationsThread* {.header: "OperationThread", importcpp: "osg::OperationsThread".} = OperationThread
 
 
 {.push header: "OperationThread".}
@@ -15,7 +17,7 @@ proc constructRefBlock*(): RefBlock {.constructor,importcpp: "osg::RefBlock::Ref
 
 proc constructRefBlockCount*(blockCount: cuint): RefBlockCount {.constructor,importcpp: "osg::RefBlockCount::RefBlockCount(@)".}
 
-proc constructOperation*(name: String, keep: bool): Operation {.constructor,importcpp: "osg::Operation::Operation(@)".}
+proc constructOperation*(name: string, keep: bool): Operation {.constructor,importcpp: "osg::Operation::Operation(@)".}
 
 proc constructOperation*(): Operation {.constructor,importcpp: "osg::Operation::Operation".}
 
@@ -23,10 +25,10 @@ proc constructOperationQueue*(): OperationQueue {.constructor,importcpp: "osg::O
 
 proc constructOperationThread*(): OperationThread {.constructor,importcpp: "osg::OperationThread::OperationThread".}
 
-proc setName*(this: var Operation, name: String)  {.importcpp: "setName".}
+proc setName*(this: var Operation, name: string)  {.importcpp: "setName".}
     ## Set the human readable name of the operation.
 
-proc getName*(this: Operation): String  {.importcpp: "getName".}
+proc getName*(this: Operation): string  {.importcpp: "getName".}
     ## Get the human readable name of the operation.
 
 proc setKeep*(this: var Operation, keep: bool)  {.importcpp: "setKeep".}
@@ -38,10 +40,10 @@ proc getKeep*(this: Operation): bool  {.importcpp: "getKeep".}
 proc release*(this: var Operation)  {.importcpp: "release".}
     ## if this operation is a barrier then release it.
 
-proc `()`*(this: var Operation, ptr Object )  {.importcpp: "# () #".}
+proc `()`*(this: var Operation, a00: ptr Object )  {.importcpp: "# () #".}
     ## Do the actual task of this operation.
 
-proc getNextOperation*(this: var OperationQueue, blockIfEmpty: bool): Ref_ptr[Operation]  {.importcpp: "getNextOperation".}
+proc getNextOperation*(this: var OperationQueue, blockIfEmpty: bool): ref_ptr[Operation]  {.importcpp: "getNextOperation".}
     ## Get the next operation from the operation queue. Return null ref_ptr<>
     ## if no operations are left in queue.
 
@@ -59,7 +61,7 @@ proc add*(this: var OperationQueue, operation: ptr Operation )  {.importcpp: "ad
 proc remove*(this: var OperationQueue, operation: ptr Operation )  {.importcpp: "remove".}
     ## Remove operation from OperationQueue.
 
-proc remove*(this: var OperationQueue, name: String)  {.importcpp: "remove".}
+proc remove*(this: var OperationQueue, name: string)  {.importcpp: "remove".}
     ## Remove named operation from OperationQueue.
 
 proc removeAllOperations*(this: var OperationQueue)  {.importcpp: "removeAllOperations".}
@@ -75,12 +77,12 @@ proc releaseOperationsBlock*(this: var OperationQueue)  {.importcpp: "releaseOpe
     ## Release operations block that is used to block threads that are
     ## waiting on an empty operations queue.
 
-proc getOperationThreads*(this: OperationQueue): Operationthreads  {.importcpp: "getOperationThreads".}
+proc getOperationThreads*(this: OperationQueue): OperationThreads  {.importcpp: "getOperationThreads".}
     ## Get the set of OperationThreads that are sharing this OperationQueue.
 
-proc addOperationThread*(this: var OperationQueue, thread: ptr Operationthread )  {.importcpp: "addOperationThread".}
+proc addOperationThread*(this: var OperationQueue, thread: ptr OperationThread )  {.importcpp: "addOperationThread".}
 
-proc removeOperationThread*(this: var OperationQueue, thread: ptr Operationthread )  {.importcpp: "removeOperationThread".}
+proc removeOperationThread*(this: var OperationQueue, thread: ptr OperationThread )  {.importcpp: "removeOperationThread".}
 
 proc setParent*(this: var OperationThread, parent: ptr Object )  {.importcpp: "setParent".}
 
@@ -88,13 +90,13 @@ proc getParent*(this: var OperationThread): ptr Object   {.importcpp: "getParent
 
 proc getParent*(this: OperationThread): ptr Object   {.importcpp: "getParent".}
 
-proc setOperationQueue*(this: var OperationThread, opq: ptr Operationqueue )  {.importcpp: "setOperationQueue".}
+proc setOperationQueue*(this: var OperationThread, opq: ptr OperationQueue )  {.importcpp: "setOperationQueue".}
     ## Set the OperationQueue.
 
-proc getOperationQueue*(this: var OperationThread): ptr Operationqueue   {.importcpp: "getOperationQueue".}
+proc getOperationQueue*(this: var OperationThread): ptr OperationQueue   {.importcpp: "getOperationQueue".}
     ## Get the OperationQueue.
 
-proc getOperationQueue*(this: OperationThread): ptr Operationqueue   {.importcpp: "getOperationQueue".}
+proc getOperationQueue*(this: OperationThread): ptr OperationQueue   {.importcpp: "getOperationQueue".}
     ## Get the const OperationQueue.
 
 proc add*(this: var OperationThread, operation: ptr Operation )  {.importcpp: "add".}
@@ -104,13 +106,13 @@ proc add*(this: var OperationThread, operation: ptr Operation )  {.importcpp: "a
 proc remove*(this: var OperationThread, operation: ptr Operation )  {.importcpp: "remove".}
     ## Remove operation from OperationQueue.
 
-proc remove*(this: var OperationThread, name: String)  {.importcpp: "remove".}
+proc remove*(this: var OperationThread, name: string)  {.importcpp: "remove".}
     ## Remove named operation from OperationQueue.
 
 proc removeAllOperations*(this: var OperationThread)  {.importcpp: "removeAllOperations".}
     ## Remove all operations from OperationQueue.
 
-proc getCurrentOperation*(this: var OperationThread): Ref_ptr[Operation]  {.importcpp: "getCurrentOperation".}
+proc getCurrentOperation*(this: var OperationThread): ref_ptr[Operation]  {.importcpp: "getCurrentOperation".}
     ## Get the operation currently being run.
 
 proc run*(this: var OperationThread)  {.importcpp: "run".}

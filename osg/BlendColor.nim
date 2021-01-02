@@ -1,8 +1,9 @@
-import State  # provides: osg::State
-import Vec4  # provides: osg::Vec4
-import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
-import CopyOp  # provides: osg::CopyOp
+import osg_types
+  # File: State  was providing: osg::State
+  # File: Vec4  was providing: osg::Vec4
+  # File: Object  was providing: osg::Object
+  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
+  # File: CopyOp  was providing: osg::CopyOp
 type
   BlendColor* {.header: "BlendColor", importcpp: "osg::BlendColor", byref.} = object #of class osg::StateAttribute
     ## Encapsulates OpenGL blend/transparency state.
@@ -15,12 +16,12 @@ proc constructBlendColor*(): BlendColor {.constructor,importcpp: "osg::BlendColo
 
 proc constructBlendColor*(antColor: Vec4): BlendColor {.constructor,importcpp: "osg::BlendColor::BlendColor(@)".}
 
-proc constructBlendColor*(trans: Blendcolor, copyop: Copyop = SHALLOW_COPY): BlendColor {.constructor,importcpp: "osg::BlendColor::BlendColor(@)".}
+proc constructBlendColor*(trans: BlendColor, copyop: CopyOp = SHALLOW_COPY): BlendColor {.constructor,importcpp: "osg::BlendColor::BlendColor(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: BlendColor): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: BlendColor, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: BlendColor, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: BlendColor, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -30,10 +31,10 @@ proc className*(this: BlendColor): cstring  {.importcpp: "className".}
 
 proc getType*(this: BlendColor): Type  {.importcpp: "getType".}
 
-proc compare*(this: BlendColor, sa: Stateattribute): cint  {.importcpp: "compare".}
+proc compare*(this: BlendColor, sa: StateAttribute): cint  {.importcpp: "compare".}
     ## Return -1 if *this < *rhs, 0 if *this==*rhs, 1 if *this>*rhs.
 
-proc getModeUsage*(this: BlendColor, usage: Modeusage): bool  {.importcpp: "getModeUsage".}
+proc getModeUsage*(this: BlendColor, usage: ModeUsage): bool  {.importcpp: "getModeUsage".}
 
 proc setConstantColor*(this: var BlendColor, color: Vec4)  {.importcpp: "setConstantColor".}
 

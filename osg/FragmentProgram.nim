@@ -1,9 +1,10 @@
-import State  # provides: osg::State
-import Vec4  # provides: osg::Vec4
-import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
-import CopyOp  # provides: osg::CopyOp
-import Matrix  # provides: osg::Matrix
+import osg_types
+  # File: State  was providing: osg::State
+  # File: Vec4  was providing: osg::Vec4
+  # File: Object  was providing: osg::Object
+  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
+  # File: CopyOp  was providing: osg::CopyOp
+  # File: Matrix  was providing: osg::Matrix
 type
   FragmentProgram* {.header: "FragmentProgram", importcpp: "osg::FragmentProgram", byref.} = object #of class osg::StateAttribute
     ## FragmentProgram - encapsulates the OpenGL ARB fragment program state.
@@ -17,12 +18,12 @@ type
 
 proc constructFragmentProgram*(): FragmentProgram {.constructor,importcpp: "osg::FragmentProgram::FragmentProgram".}
 
-proc constructFragmentProgram*(vp: Fragmentprogram, copyop: Copyop = SHALLOW_COPY): FragmentProgram {.constructor,importcpp: "osg::FragmentProgram::FragmentProgram(@)".}
+proc constructFragmentProgram*(vp: FragmentProgram, copyop: CopyOp = SHALLOW_COPY): FragmentProgram {.constructor,importcpp: "osg::FragmentProgram::FragmentProgram(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: FragmentProgram): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: FragmentProgram, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: FragmentProgram, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: FragmentProgram, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -32,10 +33,10 @@ proc className*(this: FragmentProgram): cstring  {.importcpp: "className".}
 
 proc getType*(this: FragmentProgram): Type  {.importcpp: "getType".}
 
-proc compare*(this: FragmentProgram, sa: Stateattribute): cint  {.importcpp: "compare".}
+proc compare*(this: FragmentProgram, sa: StateAttribute): cint  {.importcpp: "compare".}
     ## return -1 if *this < *rhs, 0 if *this==*rhs, 1 if *this>*rhs.
 
-proc getModeUsage*(this: FragmentProgram, usage: Modeusage): bool  {.importcpp: "getModeUsage".}
+proc getModeUsage*(this: FragmentProgram, usage: ModeUsage): bool  {.importcpp: "getModeUsage".}
 
 proc getFragmentProgramID*(this: FragmentProgram, contextID: cuint): GLuint  {.importcpp: "getFragmentProgramID".}
     ## Get the handle to the fragment program id for the current context.
@@ -43,34 +44,34 @@ proc getFragmentProgramID*(this: FragmentProgram, contextID: cuint): GLuint  {.i
 proc setFragmentProgram*(this: var FragmentProgram, program: cstring)  {.importcpp: "setFragmentProgram".}
     ## Set the fragment program using a C style string.
 
-proc setFragmentProgram*(this: var FragmentProgram, program: String)  {.importcpp: "setFragmentProgram".}
+proc setFragmentProgram*(this: var FragmentProgram, program: string)  {.importcpp: "setFragmentProgram".}
     ## Set the fragment program using C++ style string.
 
-proc getFragmentProgram*(this: FragmentProgram): String  {.importcpp: "getFragmentProgram".}
+proc getFragmentProgram*(this: FragmentProgram): string  {.importcpp: "getFragmentProgram".}
     ## Get the fragment program.
 
 proc setProgramLocalParameter*(this: var FragmentProgram, index: GLuint, p: Vec4)  {.importcpp: "setProgramLocalParameter".}
     ## Set Program Parameters
 
-proc setLocalParameters*(this: var FragmentProgram, lpl: Localparamlist)  {.importcpp: "setLocalParameters".}
+proc setLocalParameters*(this: var FragmentProgram, lpl: LocalParamList)  {.importcpp: "setLocalParameters".}
     ## Set list of Program Parameters
 
-proc getLocalParameters*(this: var FragmentProgram): Localparamlist  {.importcpp: "getLocalParameters".}
+proc getLocalParameters*(this: var FragmentProgram): LocalParamList  {.importcpp: "getLocalParameters".}
     ## Get list of Program Parameters
 
-proc getLocalParameters*(this: FragmentProgram): Localparamlist  {.importcpp: "getLocalParameters".}
+proc getLocalParameters*(this: FragmentProgram): LocalParamList  {.importcpp: "getLocalParameters".}
     ## Get const list of Program Parameters
 
 proc setMatrix*(this: var FragmentProgram, mode: GLenum, matrix: Matrix)  {.importcpp: "setMatrix".}
     ## Matrix
 
-proc setMatrices*(this: var FragmentProgram, matrices: Matrixlist)  {.importcpp: "setMatrices".}
+proc setMatrices*(this: var FragmentProgram, matrices: MatrixList)  {.importcpp: "setMatrices".}
     ## Set list of Matrices
 
-proc getMatrices*(this: var FragmentProgram): Matrixlist  {.importcpp: "getMatrices".}
+proc getMatrices*(this: var FragmentProgram): MatrixList  {.importcpp: "getMatrices".}
     ## Get list of Matrices
 
-proc getMatrices*(this: FragmentProgram): Matrixlist  {.importcpp: "getMatrices".}
+proc getMatrices*(this: FragmentProgram): MatrixList  {.importcpp: "getMatrices".}
     ## Get list of Matrices
 
 proc dirtyFragmentProgramObject*(this: var FragmentProgram)  {.importcpp: "dirtyFragmentProgramObject".}

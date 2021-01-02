@@ -1,12 +1,13 @@
-import Object  # provides: osg::Object
-import CopyOp  # provides: osg::CopyOp
+import osg_types
+  # File: Object  was providing: osg::Object
+  # File: CopyOp  was providing: osg::CopyOp
 type
-  SampleFormat* {.size:sizeof(cuint),header: "AudioStream", importcpp: "osg::AudioStream::SampleFormat".} = enum
-    smplfrmtSAMPLE_FORMAT_U8 = 0,
-    smplfrmtSAMPLE_FORMAT_S16 = 1,
-    smplfrmtSAMPLE_FORMAT_S24 = 2,
-    smplfrmtSAMPLE_FORMAT_S32 = 3,
-    smplfrmtSAMPLE_FORMAT_F32 = 4
+  SampleFormat* {.size:sizeof(cuint),header: "AudioStream", importcpp: "osg::AudioStream::SampleFormat", pure.} = enum
+    SAMPLE_FORMAT_U8 = 0,
+    SAMPLE_FORMAT_S16 = 1,
+    SAMPLE_FORMAT_S24 = 2,
+    SAMPLE_FORMAT_S32 = 3,
+    SAMPLE_FORMAT_F32 = 4
 
   AudioSink* {.header: "AudioStream", importcpp: "osg::AudioSink", byref.} = object #of osg::Object
     ## Pure virtual AudioSink bass class that is used to connect the audio
@@ -24,7 +25,7 @@ proc constructAudioSink*(): AudioSink {.constructor,importcpp: "osg::AudioSink::
 
 proc constructAudioStream*(): AudioStream {.constructor,importcpp: "osg::AudioStream::AudioStream".}
 
-proc constructAudioStream*(audio: Audiostream, copyop: Copyop = SHALLOW_COPY): AudioStream {.constructor,importcpp: "osg::AudioStream::AudioStream(@)".}
+proc constructAudioStream*(audio: AudioStream, copyop: CopyOp = SHALLOW_COPY): AudioStream {.constructor,importcpp: "osg::AudioStream::AudioStream(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc libraryName*(this: AudioSink): cstring  {.importcpp: "libraryName".}
@@ -43,13 +44,13 @@ proc getDelay*(this: AudioSink): cdouble  {.importcpp: "getDelay".}
 
 proc setDelay*(this: var AudioSink, delay: cdouble)  {.importcpp: "setDelay".}
 
-proc setVolume*(this: var AudioSink, cfloat)  {.importcpp: "setVolume".}
+proc setVolume*(this: var AudioSink, a00: cfloat)  {.importcpp: "setVolume".}
 
 proc getVolume*(this: AudioSink): cfloat  {.importcpp: "getVolume".}
 
 proc cloneType*(this: AudioSink): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: AudioSink, Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: AudioSink, a00: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: AudioStream, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -57,7 +58,7 @@ proc libraryName*(this: AudioStream): cstring  {.importcpp: "libraryName".}
 
 proc className*(this: AudioStream): cstring  {.importcpp: "className".}
 
-proc setAudioSink*(this: var AudioStream, audio_sink: ptr Audiosink )  {.importcpp: "setAudioSink".}
+proc setAudioSink*(this: var AudioStream, audio_sink: ptr AudioSink )  {.importcpp: "setAudioSink".}
 
 proc consumeAudioBuffer*(this: var AudioStream, buffer: void *const, size: cint)  {.importcpp: "consumeAudioBuffer".}
 
@@ -65,6 +66,6 @@ proc audioFrequency*(this: AudioStream): cint  {.importcpp: "audioFrequency".}
 
 proc audioNbChannels*(this: AudioStream): cint  {.importcpp: "audioNbChannels".}
 
-proc audioSampleFormat*(this: AudioStream): Sampleformat  {.importcpp: "audioSampleFormat".}
+proc audioSampleFormat*(this: AudioStream): SampleFormat  {.importcpp: "audioSampleFormat".}
 
 {.pop.}  # header: "AudioStream"

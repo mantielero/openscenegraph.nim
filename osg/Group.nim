@@ -1,19 +1,20 @@
-import State  # provides: osg::State
-import BoundingSphere  # provides: osg::BoundingSphere
-import Object  # provides: osg::Object
-import Node  # provides: osg::Node
-import CopyOp  # provides: osg::CopyOp
-import NodeVisitor  # provides: osg::NodeVisitor
+import osg_types
+  # File: State  was providing: osg::State
+  # File: BoundingSphere  was providing: osg::BoundingSphere
+  # File: Object  was providing: osg::Object
+  # File: Node  was providing: osg::Node
+  # File: CopyOp  was providing: osg::CopyOp
+  # File: NodeVisitor  was providing: osg::NodeVisitor
 {.push header: "Group".}
 
 proc constructGroup*(): Group {.constructor,importcpp: "osg::Group::Group".}
 
-proc constructGroup*(Group, copyop: Copyop = SHALLOW_COPY): Group {.constructor,importcpp: "osg::Group::Group(@)".}
+proc constructGroup*(a00: Group, copyop: CopyOp = SHALLOW_COPY): Group {.constructor,importcpp: "osg::Group::Group(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: Group): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: Group, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: Group, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: Group, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -21,13 +22,13 @@ proc className*(this: Group): cstring  {.importcpp: "className".}
 
 proc libraryName*(this: Group): cstring  {.importcpp: "libraryName".}
 
-proc accept*(this: var Group, nv: Nodevisitor)  {.importcpp: "accept".}
+proc accept*(this: var Group, nv: NodeVisitor)  {.importcpp: "accept".}
 
 proc asGroup*(this: var Group): ptr Group   {.importcpp: "asGroup".}
 
 proc asGroup*(this: Group): ptr Group   {.importcpp: "asGroup".}
 
-proc traverse*(this: var Group, nv: Nodevisitor)  {.importcpp: "traverse".}
+proc traverse*(this: var Group, nv: NodeVisitor)  {.importcpp: "traverse".}
 
 proc addChild*(this: var Group, child: ptr Node ): bool  {.importcpp: "addChild".}
     ## Add Node to Group. If node is not NULL then increment its reference
@@ -99,15 +100,15 @@ proc setThreadSafeRefUnref*(this: var Group, threadSafe: bool)  {.importcpp: "se
 proc resizeGLObjectBuffers*(this: var Group, maxSize: cuint)  {.importcpp: "resizeGLObjectBuffers".}
     ## Resize any per context GLObject buffers to specified size.
 
-proc releaseGLObjects*(this: Group, ptr State  = 0)  {.importcpp: "releaseGLObjects".}
+proc releaseGLObjects*(this: Group, a00: ptr State  = 0)  {.importcpp: "releaseGLObjects".}
     ## If State is non-zero, this function releases any associated OpenGL
     ## objects for the specified graphics context. Otherwise, releases OpenGL
     ## objects for all graphics contexts.
 
-proc computeBound*(this: Group): Boundingsphere  {.importcpp: "computeBound".}
+proc computeBound*(this: Group): BoundingSphere  {.importcpp: "computeBound".}
 
-proc childRemoved*(this: var Group, cuint, cuint)  {.importcpp: "childRemoved".}
+proc childRemoved*(this: var Group, a00: cuint, a01: cuint)  {.importcpp: "childRemoved".}
 
-proc childInserted*(this: var Group, cuint)  {.importcpp: "childInserted".}
+proc childInserted*(this: var Group, a00: cuint)  {.importcpp: "childInserted".}
 
 {.pop.}  # header: "Group"

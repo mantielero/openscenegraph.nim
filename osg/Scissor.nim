@@ -1,7 +1,8 @@
-import State  # provides: osg::State
-import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
-import CopyOp  # provides: osg::CopyOp
+import osg_types
+  # File: State  was providing: osg::State
+  # File: Object  was providing: osg::Object
+  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
+  # File: CopyOp  was providing: osg::CopyOp
 type
   Scissor* {.header: "Scissor", importcpp: "osg::Scissor", byref.} = object #of class osg::StateAttribute
     ## Encapsulate OpenGL glScissor.
@@ -14,12 +15,12 @@ proc constructScissor*(): Scissor {.constructor,importcpp: "osg::Scissor::Scisso
 
 proc constructScissor*(x: cint, y: cint, width: cint, height: cint): Scissor {.constructor,importcpp: "osg::Scissor::Scissor(@)".}
 
-proc constructScissor*(vp: Scissor, copyop: Copyop = SHALLOW_COPY): Scissor {.constructor,importcpp: "osg::Scissor::Scissor(@)".}
+proc constructScissor*(vp: Scissor, copyop: CopyOp = SHALLOW_COPY): Scissor {.constructor,importcpp: "osg::Scissor::Scissor(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: Scissor): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: Scissor, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: Scissor, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: Scissor, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -29,10 +30,10 @@ proc className*(this: Scissor): cstring  {.importcpp: "className".}
 
 proc getType*(this: Scissor): Type  {.importcpp: "getType".}
 
-proc compare*(this: Scissor, sa: Stateattribute): cint  {.importcpp: "compare".}
+proc compare*(this: Scissor, sa: StateAttribute): cint  {.importcpp: "compare".}
     ## Return -1 if *this < *rhs, 0 if *this==*rhs, 1 if *this>*rhs.
 
-proc getModeUsage*(this: Scissor, usage: Modeusage): bool  {.importcpp: "getModeUsage".}
+proc getModeUsage*(this: Scissor, usage: ModeUsage): bool  {.importcpp: "getModeUsage".}
 
 proc setScissor*(this: var Scissor, x: cint, y: cint, width: cint, height: cint)  {.importcpp: "setScissor".}
 

@@ -1,19 +1,20 @@
-import State  # provides: osg::State
-import ref_ptr  # provides: osg::ref_ptr
-import Object  # provides: osg::Object
-import Array  # provides: osg::Array
-import PrimitiveSet  # provides: osg::PrimitiveSet, osg::DrawElements
-import Image  # provides: osg::Image
-import buffered_value  # provides: osg::buffered_value, osg::buffered_object
-import CopyOp  # provides: osg::CopyOp
-import FrameStamp  # provides: osg::FrameStamp
+import osg_types
+  # File: State  was providing: osg::State
+  # File: ref_ptr  was providing: osg::ref_ptr
+  # File: Object  was providing: osg::Object
+  # File: Array  was providing: osg::Array
+  # File: PrimitiveSet  was providing: osg::DrawElements, osg::PrimitiveSet
+  # File: Image  was providing: osg::Image
+  # File: buffered_value  was providing: osg::buffered_value, osg::buffered_object
+  # File: CopyOp  was providing: osg::CopyOp
+  # File: FrameStamp  was providing: osg::FrameStamp
 type
-  Mode* {.size:sizeof(cuint),header: "BufferObject", importcpp: "osg::PixelDataBufferObject::Mode".} = enum
-    mdNONE = 0,
+  Mode* {.size:sizeof(cuint),header: "BufferObject", importcpp: "osg::PixelDataBufferObject::Mode", pure.} = enum
+    NONE = 0,
       ## A normal mode of this data buffer
-    mdREAD = 1,
+    READ = 1,
       ## Buffer is in read mode (
-    mdWRITE = 2
+    WRITE = 2
       ## Buffer is in write mode (
 
   BufferObjectProfile* {.header: "BufferObject", importcpp: "osg::BufferObjectProfile", byref.} = object
@@ -42,8 +43,8 @@ type
   GLBufferObjectList* {.header: "BufferObject", importcpp: "osg::GLBufferObjectList".} = cint
   GLBufferObjectSetMap* {.header: "BufferObject", importcpp: "osg::GLBufferObjectManager::GLBufferObjectSetMap".} = cint
   BufferDataList* {.header: "BufferObject", importcpp: "osg::BufferObject::BufferDataList".} = cint
-  GLBufferObjects* {.header: "BufferObject", importcpp: "osg::BufferObject::GLBufferObjects".} = Buffered_object[Ref_ptr[GLBufferObject]]
-  ModeList* {.header: "BufferObject", importcpp: "osg::PixelDataBufferObject::ModeList".} = Buffered_value[cuint]
+  GLBufferObjects* {.header: "BufferObject", importcpp: "osg::BufferObject::GLBufferObjects".} = buffered_object[ref_ptr[GLBufferObject]]
+  ModeList* {.header: "BufferObject", importcpp: "osg::PixelDataBufferObject::ModeList".} = buffered_value[cuint]
 
 
 {.push header: "BufferObject".}
@@ -52,85 +53,85 @@ proc constructBufferObjectProfile*(): BufferObjectProfile {.constructor,importcp
 
 proc constructBufferObjectProfile*(target: GLenum, usage: GLenum, size: cuint): BufferObjectProfile {.constructor,importcpp: "osg::BufferObjectProfile::BufferObjectProfile(@)".}
 
-proc constructBufferObjectProfile*(bpo: Bufferobjectprofile): BufferObjectProfile {.constructor,importcpp: "osg::BufferObjectProfile::BufferObjectProfile(@)".}
+proc constructBufferObjectProfile*(bpo: BufferObjectProfile): BufferObjectProfile {.constructor,importcpp: "osg::BufferObjectProfile::BufferObjectProfile(@)".}
 
-proc constructGLBufferObject*(contextID: cuint, bufferObject: ptr Bufferobject , glObjectID: cuint = 0): GLBufferObject {.constructor,importcpp: "osg::GLBufferObject::GLBufferObject(@)".}
+proc constructGLBufferObject*(contextID: cuint, bufferObject: ptr BufferObject , glObjectID: cuint = 0): GLBufferObject {.constructor,importcpp: "osg::GLBufferObject::GLBufferObject(@)".}
 
 proc constructBufferEntry*(): BufferEntry {.constructor,importcpp: "osg::GLBufferObject::BufferEntry::BufferEntry".}
 
-proc constructBufferEntry*(rhs: Bufferentry): BufferEntry {.constructor,importcpp: "osg::GLBufferObject::BufferEntry::BufferEntry(@)".}
+proc constructBufferEntry*(rhs: BufferEntry): BufferEntry {.constructor,importcpp: "osg::GLBufferObject::BufferEntry::BufferEntry(@)".}
 
-proc constructGLBufferObjectSet*(parent: ptr Glbufferobjectmanager , profile: Bufferobjectprofile): GLBufferObjectSet {.constructor,importcpp: "osg::GLBufferObjectSet::GLBufferObjectSet(@)".}
+proc constructGLBufferObjectSet*(parent: ptr GLBufferObjectManager , profile: BufferObjectProfile): GLBufferObjectSet {.constructor,importcpp: "osg::GLBufferObjectSet::GLBufferObjectSet(@)".}
 
 proc constructGLBufferObjectManager*(contextID: cuint): GLBufferObjectManager {.constructor,importcpp: "osg::GLBufferObjectManager::GLBufferObjectManager(@)".}
 
 proc constructBufferObject*(): BufferObject {.constructor,importcpp: "osg::BufferObject::BufferObject".}
 
-proc constructBufferObject*(bo: Bufferobject, copyop: Copyop = SHALLOW_COPY): BufferObject {.constructor,importcpp: "osg::BufferObject::BufferObject(@)".}
+proc constructBufferObject*(bo: BufferObject, copyop: CopyOp = SHALLOW_COPY): BufferObject {.constructor,importcpp: "osg::BufferObject::BufferObject(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc constructBufferData*(): BufferData {.constructor,importcpp: "osg::BufferData::BufferData".}
 
-proc constructBufferData*(bd: Bufferdata, copyop: Copyop = SHALLOW_COPY): BufferData {.constructor,importcpp: "osg::BufferData::BufferData(@)".}
+proc constructBufferData*(bd: BufferData, copyop: CopyOp = SHALLOW_COPY): BufferData {.constructor,importcpp: "osg::BufferData::BufferData(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc constructModifiedCallback*(): ModifiedCallback {.constructor,importcpp: "osg::BufferData::ModifiedCallback::ModifiedCallback".}
 
-proc constructModifiedCallback*(org: Modifiedcallback, copyop: Copyop): ModifiedCallback {.constructor,importcpp: "osg::BufferData::ModifiedCallback::ModifiedCallback(@)".}
+proc constructModifiedCallback*(org: ModifiedCallback, copyop: CopyOp): ModifiedCallback {.constructor,importcpp: "osg::BufferData::ModifiedCallback::ModifiedCallback(@)".}
 
 proc constructVertexBufferObject*(): VertexBufferObject {.constructor,importcpp: "osg::VertexBufferObject::VertexBufferObject".}
 
-proc constructVertexBufferObject*(vbo: Vertexbufferobject, copyop: Copyop = SHALLOW_COPY): VertexBufferObject {.constructor,importcpp: "osg::VertexBufferObject::VertexBufferObject(@)".}
+proc constructVertexBufferObject*(vbo: VertexBufferObject, copyop: CopyOp = SHALLOW_COPY): VertexBufferObject {.constructor,importcpp: "osg::VertexBufferObject::VertexBufferObject(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc constructElementBufferObject*(): ElementBufferObject {.constructor,importcpp: "osg::ElementBufferObject::ElementBufferObject".}
 
-proc constructElementBufferObject*(pbo: Elementbufferobject, copyop: Copyop = SHALLOW_COPY): ElementBufferObject {.constructor,importcpp: "osg::ElementBufferObject::ElementBufferObject(@)".}
+proc constructElementBufferObject*(pbo: ElementBufferObject, copyop: CopyOp = SHALLOW_COPY): ElementBufferObject {.constructor,importcpp: "osg::ElementBufferObject::ElementBufferObject(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc constructDrawIndirectBufferObject*(): DrawIndirectBufferObject {.constructor,importcpp: "osg::DrawIndirectBufferObject::DrawIndirectBufferObject".}
 
-proc constructDrawIndirectBufferObject*(vbo: Drawindirectbufferobject, copyop: Copyop = SHALLOW_COPY): DrawIndirectBufferObject {.constructor,importcpp: "osg::DrawIndirectBufferObject::DrawIndirectBufferObject(@)".}
+proc constructDrawIndirectBufferObject*(vbo: DrawIndirectBufferObject, copyop: CopyOp = SHALLOW_COPY): DrawIndirectBufferObject {.constructor,importcpp: "osg::DrawIndirectBufferObject::DrawIndirectBufferObject(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc constructPixelBufferObject*(image: ptr Image  = 0): PixelBufferObject {.constructor,importcpp: "osg::PixelBufferObject::PixelBufferObject(@)".}
 
-proc constructPixelBufferObject*(pbo: Pixelbufferobject, copyop: Copyop = SHALLOW_COPY): PixelBufferObject {.constructor,importcpp: "osg::PixelBufferObject::PixelBufferObject(@)".}
+proc constructPixelBufferObject*(pbo: PixelBufferObject, copyop: CopyOp = SHALLOW_COPY): PixelBufferObject {.constructor,importcpp: "osg::PixelBufferObject::PixelBufferObject(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc constructPixelDataBufferObject*(): PixelDataBufferObject {.constructor,importcpp: "osg::PixelDataBufferObject::PixelDataBufferObject".}
 
-proc constructPixelDataBufferObject*(pbo: Pixeldatabufferobject, copyop: Copyop = SHALLOW_COPY): PixelDataBufferObject {.constructor,importcpp: "osg::PixelDataBufferObject::PixelDataBufferObject(@)".}
+proc constructPixelDataBufferObject*(pbo: PixelDataBufferObject, copyop: CopyOp = SHALLOW_COPY): PixelDataBufferObject {.constructor,importcpp: "osg::PixelDataBufferObject::PixelDataBufferObject(@)".}
 
 proc constructUniformBufferObject*(): UniformBufferObject {.constructor,importcpp: "osg::UniformBufferObject::UniformBufferObject".}
 
-proc constructUniformBufferObject*(ubo: Uniformbufferobject, copyop: Copyop = SHALLOW_COPY): UniformBufferObject {.constructor,importcpp: "osg::UniformBufferObject::UniformBufferObject(@)".}
+proc constructUniformBufferObject*(ubo: UniformBufferObject, copyop: CopyOp = SHALLOW_COPY): UniformBufferObject {.constructor,importcpp: "osg::UniformBufferObject::UniformBufferObject(@)".}
 
 proc constructAtomicCounterBufferObject*(): AtomicCounterBufferObject {.constructor,importcpp: "osg::AtomicCounterBufferObject::AtomicCounterBufferObject".}
 
-proc constructAtomicCounterBufferObject*(ubo: Atomiccounterbufferobject, copyop: Copyop = SHALLOW_COPY): AtomicCounterBufferObject {.constructor,importcpp: "osg::AtomicCounterBufferObject::AtomicCounterBufferObject(@)".}
+proc constructAtomicCounterBufferObject*(ubo: AtomicCounterBufferObject, copyop: CopyOp = SHALLOW_COPY): AtomicCounterBufferObject {.constructor,importcpp: "osg::AtomicCounterBufferObject::AtomicCounterBufferObject(@)".}
 
 proc constructShaderStorageBufferObject*(): ShaderStorageBufferObject {.constructor,importcpp: "osg::ShaderStorageBufferObject::ShaderStorageBufferObject".}
 
-proc constructShaderStorageBufferObject*(ubo: Shaderstoragebufferobject, copyop: Copyop = SHALLOW_COPY): ShaderStorageBufferObject {.constructor,importcpp: "osg::ShaderStorageBufferObject::ShaderStorageBufferObject(@)".}
+proc constructShaderStorageBufferObject*(ubo: ShaderStorageBufferObject, copyop: CopyOp = SHALLOW_COPY): ShaderStorageBufferObject {.constructor,importcpp: "osg::ShaderStorageBufferObject::ShaderStorageBufferObject(@)".}
 
-proc `<`*(this: BufferObjectProfile, rhs: Bufferobjectprofile): bool  {.importcpp: "# < #".}
+proc `<`*(this: BufferObjectProfile, rhs: BufferObjectProfile): bool  {.importcpp: "# < #".}
 
-proc `==`*(this: BufferObjectProfile, rhs: Bufferobjectprofile): bool  {.importcpp: "# == #".}
+proc `==`*(this: BufferObjectProfile, rhs: BufferObjectProfile): bool  {.importcpp: "# == #".}
 
 proc setProfile*(this: var BufferObjectProfile, target: GLenum, usage: GLenum, size: cuint)  {.importcpp: "setProfile".}
 
-proc `=`*(this: var BufferObjectProfile, rhs: Bufferobjectprofile): Bufferobjectprofile  {.importcpp: "# = #".}
+proc `=`*(this: var BufferObjectProfile, rhs: BufferObjectProfile): BufferObjectProfile  {.importcpp: "# = #".}
 
-proc setProfile*(this: var GLBufferObject, profile: Bufferobjectprofile)  {.importcpp: "setProfile".}
+proc setProfile*(this: var GLBufferObject, profile: BufferObjectProfile)  {.importcpp: "setProfile".}
 
-proc getProfile*(this: GLBufferObject): Bufferobjectprofile  {.importcpp: "getProfile".}
+proc getProfile*(this: GLBufferObject): BufferObjectProfile  {.importcpp: "getProfile".}
 
-proc setBufferObject*(this: var GLBufferObject, bufferObject: ptr Bufferobject )  {.importcpp: "setBufferObject".}
+proc setBufferObject*(this: var GLBufferObject, bufferObject: ptr BufferObject )  {.importcpp: "setBufferObject".}
 
-proc getBufferObject*(this: var GLBufferObject): ptr Bufferobject   {.importcpp: "getBufferObject".}
+proc getBufferObject*(this: var GLBufferObject): ptr BufferObject   {.importcpp: "getBufferObject".}
 
-proc `=`*(this: var BufferEntry, rhs: Bufferentry): Bufferentry  {.importcpp: "# = #".}
+proc `=`*(this: var BufferEntry, rhs: BufferEntry): BufferEntry  {.importcpp: "# = #".}
 
 proc getNumClients*(this: BufferEntry): cuint  {.importcpp: "getNumClients".}
 
@@ -159,17 +160,17 @@ proc compileBuffer*(this: var GLBufferObject)  {.importcpp: "compileBuffer".}
 
 proc deleteGLObject*(this: var GLBufferObject)  {.importcpp: "deleteGLObject".}
 
-proc assign*(this: var GLBufferObject, bufferObject: ptr Bufferobject )  {.importcpp: "assign".}
+proc assign*(this: var GLBufferObject, bufferObject: ptr BufferObject )  {.importcpp: "assign".}
 
 proc isPBOSupported*(this: GLBufferObject): bool  {.importcpp: "isPBOSupported".}
 
 proc hasAllBufferDataBeenRead*(this: GLBufferObject): bool  {.importcpp: "hasAllBufferDataBeenRead".}
 
-proc setBufferDataHasBeenRead*(this: var GLBufferObject, bd: ptr Bufferdata )  {.importcpp: "setBufferDataHasBeenRead".}
+proc setBufferDataHasBeenRead*(this: var GLBufferObject, bd: ptr BufferData )  {.importcpp: "setBufferDataHasBeenRead".}
 
 proc computeBufferAlignment*(this: GLBufferObject, pos: cuint, bufferAlignment: cuint): cuint  {.importcpp: "computeBufferAlignment".}
 
-proc getProfile*(this: GLBufferObjectSet): Bufferobjectprofile  {.importcpp: "getProfile".}
+proc getProfile*(this: GLBufferObjectSet): BufferObjectProfile  {.importcpp: "getProfile".}
 
 proc handlePendingOrphandedGLBufferObjects*(this: var GLBufferObjectSet)  {.importcpp: "handlePendingOrphandedGLBufferObjects".}
 
@@ -183,19 +184,19 @@ proc discardAllDeletedGLBufferObjects*(this: var GLBufferObjectSet)  {.importcpp
 
 proc flushDeletedGLBufferObjects*(this: var GLBufferObjectSet, currentTime: cdouble, availableTime: cdouble)  {.importcpp: "flushDeletedGLBufferObjects".}
 
-proc takeFromOrphans*(this: var GLBufferObjectSet, bufferObject: ptr Bufferobject ): Ref_ptr[GLBufferObject]  {.importcpp: "takeFromOrphans".}
+proc takeFromOrphans*(this: var GLBufferObjectSet, bufferObject: ptr BufferObject ): ref_ptr[GLBufferObject]  {.importcpp: "takeFromOrphans".}
 
-proc takeOrGenerate*(this: var GLBufferObjectSet, bufferObject: ptr Bufferobject ): Ref_ptr[GLBufferObject]  {.importcpp: "takeOrGenerate".}
+proc takeOrGenerate*(this: var GLBufferObjectSet, bufferObject: ptr BufferObject ): ref_ptr[GLBufferObject]  {.importcpp: "takeOrGenerate".}
 
-proc moveToBack*(this: var GLBufferObjectSet, to: ptr Glbufferobject )  {.importcpp: "moveToBack".}
+proc moveToBack*(this: var GLBufferObjectSet, to: ptr GLBufferObject )  {.importcpp: "moveToBack".}
 
-proc addToBack*(this: var GLBufferObjectSet, to: ptr Glbufferobject )  {.importcpp: "addToBack".}
+proc addToBack*(this: var GLBufferObjectSet, to: ptr GLBufferObject )  {.importcpp: "addToBack".}
 
-proc orphan*(this: var GLBufferObjectSet, to: ptr Glbufferobject )  {.importcpp: "orphan".}
+proc orphan*(this: var GLBufferObjectSet, to: ptr GLBufferObject )  {.importcpp: "orphan".}
 
-proc remove*(this: var GLBufferObjectSet, to: ptr Glbufferobject )  {.importcpp: "remove".}
+proc remove*(this: var GLBufferObjectSet, to: ptr GLBufferObject )  {.importcpp: "remove".}
 
-proc moveToSet*(this: var GLBufferObjectSet, to: ptr Glbufferobject , set: ptr Glbufferobjectset )  {.importcpp: "moveToSet".}
+proc moveToSet*(this: var GLBufferObjectSet, to: ptr GLBufferObject , set: ptr GLBufferObjectSet )  {.importcpp: "moveToSet".}
 
 proc size*(this: GLBufferObjectSet): cuint  {.importcpp: "size".}
 
@@ -203,7 +204,7 @@ proc makeSpace*(this: var GLBufferObjectSet, size: cuint): bool  {.importcpp: "m
 
 proc checkConsistency*(this: GLBufferObjectSet): bool  {.importcpp: "checkConsistency".}
 
-proc getParent*(this: var GLBufferObjectSet): ptr Glbufferobjectmanager   {.importcpp: "getParent".}
+proc getParent*(this: var GLBufferObjectSet): ptr GLBufferObjectManager   {.importcpp: "getParent".}
 
 proc computeNumGLBufferObjectsInList*(this: GLBufferObjectSet): cuint  {.importcpp: "computeNumGLBufferObjectsInList".}
 
@@ -239,7 +240,7 @@ proc hasSpace*(this: GLBufferObjectManager, size: cuint): bool  {.importcpp: "ha
 
 proc makeSpace*(this: var GLBufferObjectManager, size: cuint): bool  {.importcpp: "makeSpace".}
 
-proc generateGLBufferObject*(this: var GLBufferObjectManager, bufferObject: ptr Bufferobject ): Ref_ptr[GLBufferObject]  {.importcpp: "generateGLBufferObject".}
+proc generateGLBufferObject*(this: var GLBufferObjectManager, bufferObject: ptr BufferObject ): ref_ptr[GLBufferObject]  {.importcpp: "generateGLBufferObject".}
 
 proc handlePendingOrphandedGLBufferObjects*(this: var GLBufferObjectManager)  {.importcpp: "handlePendingOrphandedGLBufferObjects".}
 
@@ -253,15 +254,15 @@ proc discardAllDeletedGLObjects*(this: var GLBufferObjectManager)  {.importcpp: 
 
 proc flushDeletedGLObjects*(this: var GLBufferObjectManager, currentTime: cdouble, availableTime: cdouble)  {.importcpp: "flushDeletedGLObjects".}
 
-proc getGLBufferObjectSet*(this: var GLBufferObjectManager, profile: Bufferobjectprofile): ptr Glbufferobjectset   {.importcpp: "getGLBufferObjectSet".}
+proc getGLBufferObjectSet*(this: var GLBufferObjectManager, profile: BufferObjectProfile): ptr GLBufferObjectSet   {.importcpp: "getGLBufferObjectSet".}
 
-proc newFrame*(this: var GLBufferObjectManager, fs: ptr Framestamp )  {.importcpp: "newFrame".}
+proc newFrame*(this: var GLBufferObjectManager, fs: ptr FrameStamp )  {.importcpp: "newFrame".}
 
 proc resetStats*(this: var GLBufferObjectManager)  {.importcpp: "resetStats".}
 
-proc reportStats*(this: var GLBufferObjectManager, `out`: Ostream)  {.importcpp: "reportStats".}
+proc reportStats*(this: var GLBufferObjectManager, `out`: ostream)  {.importcpp: "reportStats".}
 
-proc recomputeStats*(this: GLBufferObjectManager, `out`: Ostream)  {.importcpp: "recomputeStats".}
+proc recomputeStats*(this: GLBufferObjectManager, `out`: ostream)  {.importcpp: "recomputeStats".}
 
 proc getFrameNumber*(this: var GLBufferObjectManager): cuint  {.importcpp: "getFrameNumber".}
 
@@ -298,9 +299,9 @@ proc setUsage*(this: var BufferObject, usage: GLenum)  {.importcpp: "setUsage".}
 proc getUsage*(this: BufferObject): GLenum  {.importcpp: "getUsage".}
     ## Get the type of usage the buffer object has been set up for.
 
-proc getProfile*(this: var BufferObject): Bufferobjectprofile  {.importcpp: "getProfile".}
+proc getProfile*(this: var BufferObject): BufferObjectProfile  {.importcpp: "getProfile".}
 
-proc getProfile*(this: BufferObject): Bufferobjectprofile  {.importcpp: "getProfile".}
+proc getProfile*(this: BufferObject): BufferObjectProfile  {.importcpp: "getProfile".}
 
 proc setCopyDataAndReleaseGLBufferObject*(this: var BufferObject, copyAndRelease: bool)  {.importcpp: "setCopyDataAndReleaseGLBufferObject".}
     ## Set whether the BufferObject should use a GLBufferObject just for
@@ -321,25 +322,25 @@ proc releaseGLObjects*(this: BufferObject, state: ptr State  = 0)  {.importcpp: 
     ## specified graphics context. Otherwise, releases OpenGL objects for all
     ## graphics contexts.
 
-proc addBufferData*(this: var BufferObject, bd: ptr Bufferdata ): cuint  {.importcpp: "addBufferData".}
+proc addBufferData*(this: var BufferObject, bd: ptr BufferData ): cuint  {.importcpp: "addBufferData".}
 
 proc removeBufferData*(this: var BufferObject, index: cuint)  {.importcpp: "removeBufferData".}
 
-proc removeBufferData*(this: var BufferObject, bd: ptr Bufferdata )  {.importcpp: "removeBufferData".}
+proc removeBufferData*(this: var BufferObject, bd: ptr BufferData )  {.importcpp: "removeBufferData".}
 
-proc setBufferData*(this: var BufferObject, index: cuint, bd: ptr Bufferdata )  {.importcpp: "setBufferData".}
+proc setBufferData*(this: var BufferObject, index: cuint, bd: ptr BufferData )  {.importcpp: "setBufferData".}
 
-proc getBufferData*(this: var BufferObject, index: cuint): ptr Bufferdata   {.importcpp: "getBufferData".}
+proc getBufferData*(this: var BufferObject, index: cuint): ptr BufferData   {.importcpp: "getBufferData".}
 
-proc getBufferData*(this: BufferObject, index: cuint): ptr Bufferdata   {.importcpp: "getBufferData".}
+proc getBufferData*(this: BufferObject, index: cuint): ptr BufferData   {.importcpp: "getBufferData".}
 
 proc getNumBufferData*(this: BufferObject): cuint  {.importcpp: "getNumBufferData".}
 
-proc setGLBufferObject*(this: var BufferObject, contextID: cuint, glbo: ptr Glbufferobject )  {.importcpp: "setGLBufferObject".}
+proc setGLBufferObject*(this: var BufferObject, contextID: cuint, glbo: ptr GLBufferObject )  {.importcpp: "setGLBufferObject".}
 
-proc getGLBufferObject*(this: BufferObject, contextID: cuint): ptr Glbufferobject   {.importcpp: "getGLBufferObject".}
+proc getGLBufferObject*(this: BufferObject, contextID: cuint): ptr GLBufferObject   {.importcpp: "getGLBufferObject".}
 
-proc getOrCreateGLBufferObject*(this: BufferObject, contextID: cuint): ptr Glbufferobject   {.importcpp: "getOrCreateGLBufferObject".}
+proc getOrCreateGLBufferObject*(this: BufferObject, contextID: cuint): ptr GLBufferObject   {.importcpp: "getOrCreateGLBufferObject".}
 
 proc computeRequiredBufferSize*(this: BufferObject): cuint  {.importcpp: "computeRequiredBufferSize".}
 
@@ -360,31 +361,31 @@ proc asArray*(this: var BufferData): ptr Array   {.importcpp: "asArray".}
 
 proc asArray*(this: BufferData): ptr Array   {.importcpp: "asArray".}
 
-proc asPrimitiveSet*(this: var BufferData): ptr Primitiveset   {.importcpp: "asPrimitiveSet".}
+proc asPrimitiveSet*(this: var BufferData): ptr PrimitiveSet   {.importcpp: "asPrimitiveSet".}
 
-proc asPrimitiveSet*(this: BufferData): ptr Primitiveset   {.importcpp: "asPrimitiveSet".}
+proc asPrimitiveSet*(this: BufferData): ptr PrimitiveSet   {.importcpp: "asPrimitiveSet".}
 
 proc asImage*(this: var BufferData): ptr Image   {.importcpp: "asImage".}
 
 proc asImage*(this: BufferData): ptr Image   {.importcpp: "asImage".}
 
-proc setBufferObject*(this: var BufferData, bufferObject: ptr Bufferobject )  {.importcpp: "setBufferObject".}
+proc setBufferObject*(this: var BufferData, bufferObject: ptr BufferObject )  {.importcpp: "setBufferObject".}
 
-proc getBufferObject*(this: var BufferData): ptr Bufferobject   {.importcpp: "getBufferObject".}
+proc getBufferObject*(this: var BufferData): ptr BufferObject   {.importcpp: "getBufferObject".}
 
-proc getBufferObject*(this: BufferData): ptr Bufferobject   {.importcpp: "getBufferObject".}
+proc getBufferObject*(this: BufferData): ptr BufferObject   {.importcpp: "getBufferObject".}
 
 proc setBufferIndex*(this: var BufferData, index: cuint)  {.importcpp: "setBufferIndex".}
 
 proc getBufferIndex*(this: BufferData): cuint  {.importcpp: "getBufferIndex".}
 
-proc getGLBufferObject*(this: BufferData, contextID: cuint): ptr Glbufferobject   {.importcpp: "getGLBufferObject".}
+proc getGLBufferObject*(this: BufferData, contextID: cuint): ptr GLBufferObject   {.importcpp: "getGLBufferObject".}
 
-proc getOrCreateGLBufferObject*(this: BufferData, contextID: cuint): ptr Glbufferobject   {.importcpp: "getOrCreateGLBufferObject".}
+proc getOrCreateGLBufferObject*(this: BufferData, contextID: cuint): ptr GLBufferObject   {.importcpp: "getOrCreateGLBufferObject".}
 
 proc cloneType*(this: ModifiedCallback): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: ModifiedCallback, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: ModifiedCallback, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: ModifiedCallback, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -392,13 +393,13 @@ proc libraryName*(this: ModifiedCallback): cstring  {.importcpp: "libraryName".}
 
 proc className*(this: ModifiedCallback): cstring  {.importcpp: "className".}
 
-proc modified*(this: ModifiedCallback, ptr Bufferdata )  {.importcpp: "modified".}
+proc modified*(this: ModifiedCallback, a00: ptr BufferData )  {.importcpp: "modified".}
 
-proc setModifiedCallback*(this: var BufferData, md: ptr Modifiedcallback )  {.importcpp: "setModifiedCallback".}
+proc setModifiedCallback*(this: var BufferData, md: ptr ModifiedCallback )  {.importcpp: "setModifiedCallback".}
 
-proc getModifiedCallback*(this: var BufferData): ptr Modifiedcallback   {.importcpp: "getModifiedCallback".}
+proc getModifiedCallback*(this: var BufferData): ptr ModifiedCallback   {.importcpp: "getModifiedCallback".}
 
-proc getModifiedCallback*(this: BufferData): ptr Modifiedcallback   {.importcpp: "getModifiedCallback".}
+proc getModifiedCallback*(this: BufferData): ptr ModifiedCallback   {.importcpp: "getModifiedCallback".}
 
 proc dirty*(this: var BufferData)  {.importcpp: "dirty".}
     ## Dirty the primitive, which increments the modified count, to force
@@ -422,13 +423,13 @@ proc releaseGLObjects*(this: BufferData, state: ptr State  = 0)  {.importcpp: "r
 
 proc getNumClients*(this: BufferData): cuint  {.importcpp: "getNumClients".}
 
-proc addClient*(this: var BufferData, ptr Object )  {.importcpp: "addClient".}
+proc addClient*(this: var BufferData, a00: ptr Object )  {.importcpp: "addClient".}
 
-proc removeClient*(this: var BufferData, ptr Object )  {.importcpp: "removeClient".}
+proc removeClient*(this: var BufferData, a00: ptr Object )  {.importcpp: "removeClient".}
 
 proc cloneType*(this: VertexBufferObject): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: VertexBufferObject, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: VertexBufferObject, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: VertexBufferObject, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -448,7 +449,7 @@ proc getArray*(this: VertexBufferObject, i: cuint): ptr Array   {.importcpp: "ge
 
 proc cloneType*(this: ElementBufferObject): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: ElementBufferObject, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: ElementBufferObject, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: ElementBufferObject, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -456,19 +457,19 @@ proc libraryName*(this: ElementBufferObject): cstring  {.importcpp: "libraryName
 
 proc className*(this: ElementBufferObject): cstring  {.importcpp: "className".}
 
-proc addDrawElements*(this: var ElementBufferObject, PrimitiveSet: ptr Drawelements ): cuint  {.importcpp: "addDrawElements".}
+proc addDrawElements*(this: var ElementBufferObject, PrimitiveSet: ptr DrawElements ): cuint  {.importcpp: "addDrawElements".}
 
-proc removeDrawElements*(this: var ElementBufferObject, PrimitiveSet: ptr Drawelements )  {.importcpp: "removeDrawElements".}
+proc removeDrawElements*(this: var ElementBufferObject, PrimitiveSet: ptr DrawElements )  {.importcpp: "removeDrawElements".}
 
-proc setDrawElements*(this: var ElementBufferObject, i: cuint, PrimitiveSet: ptr Drawelements )  {.importcpp: "setDrawElements".}
+proc setDrawElements*(this: var ElementBufferObject, i: cuint, PrimitiveSet: ptr DrawElements )  {.importcpp: "setDrawElements".}
 
-proc getDrawElements*(this: var ElementBufferObject, i: cuint): ptr Drawelements   {.importcpp: "getDrawElements".}
+proc getDrawElements*(this: var ElementBufferObject, i: cuint): ptr DrawElements   {.importcpp: "getDrawElements".}
 
-proc getDrawElements*(this: ElementBufferObject, i: cuint): ptr Drawelements   {.importcpp: "getDrawElements".}
+proc getDrawElements*(this: ElementBufferObject, i: cuint): ptr DrawElements   {.importcpp: "getDrawElements".}
 
 proc cloneType*(this: DrawIndirectBufferObject): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: DrawIndirectBufferObject, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: DrawIndirectBufferObject, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: DrawIndirectBufferObject, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -488,7 +489,7 @@ proc getArray*(this: DrawIndirectBufferObject, i: cuint): ptr Array   {.importcp
 
 proc cloneType*(this: PixelBufferObject): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: PixelBufferObject, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: PixelBufferObject, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: PixelBufferObject, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -506,7 +507,7 @@ proc isPBOSupported*(this: PixelBufferObject, contextID: cuint): bool  {.importc
 
 proc cloneType*(this: PixelDataBufferObject): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: PixelDataBufferObject, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: PixelDataBufferObject, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: PixelDataBufferObject, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -543,7 +544,7 @@ proc getMode*(this: PixelDataBufferObject, contextID: cuint): Mode  {.importcpp:
 
 proc cloneType*(this: UniformBufferObject): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: UniformBufferObject, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: UniformBufferObject, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: UniformBufferObject, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -553,7 +554,7 @@ proc className*(this: UniformBufferObject): cstring  {.importcpp: "className".}
 
 proc cloneType*(this: AtomicCounterBufferObject): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: AtomicCounterBufferObject, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: AtomicCounterBufferObject, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: AtomicCounterBufferObject, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -565,7 +566,7 @@ proc bindBuffer*(this: var GLBufferObject)  {.importcpp: "bindBuffer".}
 
 proc cloneType*(this: ShaderStorageBufferObject): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: ShaderStorageBufferObject, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: ShaderStorageBufferObject, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: ShaderStorageBufferObject, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 

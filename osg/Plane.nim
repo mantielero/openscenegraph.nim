@@ -1,10 +1,11 @@
-import BoundingSphere  # provides: osg::BoundingSphere
-import Vec3f  # provides: osg::Vec3f
-import BoundingBox  # provides: osg::BoundingBox
-import Matrix  # provides: osg::Matrix
-import Vec4d  # provides: osg::Vec4d
-import Vec3d  # provides: osg::Vec3d
-import Vec4f  # provides: osg::Vec4f
+import osg_types
+  # File: BoundingSphere  was providing: osg::BoundingSphere
+  # File: Vec3f  was providing: osg::Vec3f
+  # File: BoundingBox  was providing: osg::BoundingBox
+  # File: Matrix  was providing: osg::Matrix
+  # File: Vec4d  was providing: osg::Vec4d
+  # File: Vec3d  was providing: osg::Vec3d
+  # File: Vec4f  was providing: osg::Vec4f
 const
   num_components* = 3
 
@@ -23,7 +24,7 @@ proc constructPlane*(): Plane {.constructor,importcpp: "osg::Plane::Plane".}
 
 proc constructPlane*(pl: Plane): Plane {.constructor,importcpp: "osg::Plane::Plane(@)".}
 
-proc constructPlane*(a: Value_type, b: Value_type, c: Value_type, d: Value_type): Plane {.constructor,importcpp: "osg::Plane::Plane(@)".}
+proc constructPlane*(a: value_type, b: value_type, c: value_type, d: value_type): Plane {.constructor,importcpp: "osg::Plane::Plane(@)".}
     ## Constructor The plane is described as a*x+b*y+c*z+d = 0.
 
 proc constructPlane*(vec: Vec4f): Plane {.constructor,importcpp: "osg::Plane::Plane(@)".}
@@ -32,7 +33,7 @@ proc constructPlane*(vec: Vec4f): Plane {.constructor,importcpp: "osg::Plane::Pl
 proc constructPlane*(vec: Vec4d): Plane {.constructor,importcpp: "osg::Plane::Plane(@)".}
     ## Constructor The plane can also be described as vec*[x,y,z,1].
 
-proc constructPlane*(norm: Vec3_type, d: Value_type): Plane {.constructor,importcpp: "osg::Plane::Plane(@)".}
+proc constructPlane*(norm: Vec3_type, d: value_type): Plane {.constructor,importcpp: "osg::Plane::Plane(@)".}
     ## Constructor This constructor initializes the internal values directly
     ## without any checking or manipulation.
 
@@ -48,7 +49,7 @@ proc `=`*(this: var Plane, pl: Plane): Plane  {.importcpp: "# = #".}
 
 proc set*(this: var Plane, pl: Plane)  {.importcpp: "set".}
 
-proc set*(this: var Plane, a: Value_type, b: Value_type, c: Value_type, d: Value_type)  {.importcpp: "set".}
+proc set*(this: var Plane, a: value_type, b: value_type, c: value_type, d: value_type)  {.importcpp: "set".}
 
 proc set*(this: var Plane, vec: Vec4f)  {.importcpp: "set".}
 
@@ -85,15 +86,15 @@ proc `<`*(this: Plane, plane: Plane): bool  {.importcpp: "# < #".}
     ## identical element of the internal array is smaller than the
     ## corresponding element of the other plane.
 
-proc `ptr`*(this: var Plane): ptr Value_type   {.importcpp: "ptr".}
+proc `ptr`*(this: var Plane): ptr value_type   {.importcpp: "ptr".}
 
-proc `ptr`*(this: Plane): ptr Value_type   {.importcpp: "ptr".}
+proc `ptr`*(this: Plane): ptr value_type   {.importcpp: "ptr".}
 
 proc asVec4*(this: Plane): Vec4_type  {.importcpp: "asVec4".}
 
-proc `[]`*(this: var Plane, i: cuint): Value_type  {.importcpp: "# [] #".}
+proc `[]`*(this: var Plane, i: cuint): value_type  {.importcpp: "# [] #".}
 
-proc `[]`*(this: Plane, i: cuint): Value_type  {.importcpp: "# [] #".}
+proc `[]`*(this: Plane, i: cuint): value_type  {.importcpp: "# [] #".}
 
 proc getNormal*(this: Plane): Vec3_type  {.importcpp: "getNormal".}
 
@@ -119,12 +120,12 @@ proc intersect*(this: Plane, vertices: cint): cint  {.importcpp: "intersect".}
     ## completely above plane, return 0 if the bs intersects the plane,
     ## return -1 if the bs is completely below the plane.
 
-proc intersect*(this: Plane, bs: Boundingsphere): cint  {.importcpp: "intersect".}
+proc intersect*(this: Plane, bs: BoundingSphere): cint  {.importcpp: "intersect".}
     ## intersection test between plane and bounding sphere. return 1 if the
     ## bs is completely above plane, return 0 if the bs intersects the plane,
     ## return -1 if the bs is completely below the plane.
 
-proc intersect*(this: Plane, bb: Boundingbox): cint  {.importcpp: "intersect".}
+proc intersect*(this: Plane, bb: BoundingBox): cint  {.importcpp: "intersect".}
     ## intersection test between plane and bounding sphere. return 1 if the
     ## bs is completely above plane, return 0 if the bs intersects the plane,
     ## return -1 if the bs is completely below the plane.

@@ -1,7 +1,8 @@
-import State  # provides: osg::State
-import Object  # provides: osg::Object
-import StateAttribute  # provides: osg::StateAttribute, osg::StateAttribute::Type
-import CopyOp  # provides: osg::CopyOp
+import osg_types
+  # File: State  was providing: osg::State
+  # File: Object  was providing: osg::Object
+  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
+  # File: CopyOp  was providing: osg::CopyOp
 type
   ScissorIndexed* {.header: "ScissorIndexed", importcpp: "osg::ScissorIndexed", byref.} = object #of osg::StateAttribute
     ## Encapsulates glScissorIndexed function : the index version of glDepth
@@ -14,12 +15,12 @@ proc constructScissorIndexed*(): ScissorIndexed {.constructor,importcpp: "osg::S
 
 proc constructScissorIndexed*(index: cuint, x: cfloat, y: cfloat, width: cfloat, height: cfloat): ScissorIndexed {.constructor,importcpp: "osg::ScissorIndexed::ScissorIndexed(@)".}
 
-proc constructScissorIndexed*(dp: Scissorindexed, copyop: Copyop = SHALLOW_COPY): ScissorIndexed {.constructor,importcpp: "osg::ScissorIndexed::ScissorIndexed(@)".}
+proc constructScissorIndexed*(dp: ScissorIndexed, copyop: CopyOp = SHALLOW_COPY): ScissorIndexed {.constructor,importcpp: "osg::ScissorIndexed::ScissorIndexed(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: ScissorIndexed): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: ScissorIndexed, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: ScissorIndexed, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: ScissorIndexed, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -29,7 +30,7 @@ proc className*(this: ScissorIndexed): cstring  {.importcpp: "className".}
 
 proc getType*(this: ScissorIndexed): Type  {.importcpp: "getType".}
 
-proc compare*(this: ScissorIndexed, sa: Stateattribute): cint  {.importcpp: "compare".}
+proc compare*(this: ScissorIndexed, sa: StateAttribute): cint  {.importcpp: "compare".}
     ## Return -1 if *this < *rhs, 0 if *this==*rhs, 1 if *this>*rhs.
 
 proc getMember*(this: ScissorIndexed): cuint  {.importcpp: "getMember".}

@@ -1,6 +1,7 @@
-import Object  # provides: osg::Object
-import Referenced  # provides: osg::Referenced
-import CopyOp  # provides: osg::CopyOp
+import osg_types
+  # File: Object  was providing: osg::Object
+  # File: Referenced  was providing: osg::Referenced
+  # File: CopyOp  was providing: osg::CopyOp
 type
   DefaultUserDataContainer* {.header: "UserDataContainer", importcpp: "osg::DefaultUserDataContainer", byref.} = object #of osg::UserDataContainer
     ## Internal structure for storing all user data.
@@ -13,11 +14,11 @@ type
 
 proc constructUserDataContainer*(): UserDataContainer {.constructor,importcpp: "osg::UserDataContainer::UserDataContainer".}
 
-proc constructUserDataContainer*(udc: Userdatacontainer, copyop: Copyop = SHALLOW_COPY): UserDataContainer {.constructor,importcpp: "osg::UserDataContainer::UserDataContainer(@)".}
+proc constructUserDataContainer*(udc: UserDataContainer, copyop: CopyOp = SHALLOW_COPY): UserDataContainer {.constructor,importcpp: "osg::UserDataContainer::UserDataContainer(@)".}
 
 proc constructDefaultUserDataContainer*(): DefaultUserDataContainer {.constructor,importcpp: "osg::DefaultUserDataContainer::DefaultUserDataContainer".}
 
-proc constructDefaultUserDataContainer*(udc: Defaultuserdatacontainer, copyop: Copyop = SHALLOW_COPY): DefaultUserDataContainer {.constructor,importcpp: "osg::DefaultUserDataContainer::DefaultUserDataContainer(@)".}
+proc constructDefaultUserDataContainer*(udc: DefaultUserDataContainer, copyop: CopyOp = SHALLOW_COPY): DefaultUserDataContainer {.constructor,importcpp: "osg::DefaultUserDataContainer::DefaultUserDataContainer(@)".}
 
 proc isSameKindAs*(this: UserDataContainer, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -30,12 +31,12 @@ proc className*(this: UserDataContainer): cstring  {.importcpp: "className".}
     ## return the name of the object's class type. Must be defined by derived
     ## classes.
 
-proc asUserDataContainer*(this: var UserDataContainer): ptr Userdatacontainer   {.importcpp: "asUserDataContainer".}
+proc asUserDataContainer*(this: var UserDataContainer): ptr UserDataContainer   {.importcpp: "asUserDataContainer".}
     ## Convert 'this' into a UserDataContainer pointer if Object is a
     ## UserDataContainer, otherwise return 0. Equivalent to
     ## dynamic_cast<UserDataContainer*>(this).
 
-proc asUserDataContainer*(this: UserDataContainer): ptr Userdatacontainer   {.importcpp: "asUserDataContainer".}
+proc asUserDataContainer*(this: UserDataContainer): ptr UserDataContainer   {.importcpp: "asUserDataContainer".}
     ## convert 'const this' into a const UserDataContainer pointer if Object
     ## is a UserDataContainer, otherwise return 0. Equivalent to
     ## dynamic_cast<const UserDataContainer*>(this).
@@ -73,34 +74,34 @@ proc getNumUserObjects*(this: UserDataContainer): cuint  {.importcpp: "getNumUse
 proc getUserObjectIndex*(this: UserDataContainer, obj: ptr Object , startPos: cuint = 0): cuint  {.importcpp: "getUserObjectIndex".}
     ## Get the index position of specified user data object.
 
-proc getUserObjectIndex*(this: UserDataContainer, name: String, startPos: cuint = 0): cuint  {.importcpp: "getUserObjectIndex".}
+proc getUserObjectIndex*(this: UserDataContainer, name: string, startPos: cuint = 0): cuint  {.importcpp: "getUserObjectIndex".}
     ## Get the index position of first user data object that matches
     ## specified name.
 
-proc getUserObject*(this: var UserDataContainer, name: String, startPos: cuint = 0): ptr Object   {.importcpp: "getUserObject".}
+proc getUserObject*(this: var UserDataContainer, name: string, startPos: cuint = 0): ptr Object   {.importcpp: "getUserObject".}
     ## Get first user data object with specified name.
 
-proc getUserObject*(this: UserDataContainer, name: String, startPos: cuint = 0): ptr Object   {.importcpp: "getUserObject".}
+proc getUserObject*(this: UserDataContainer, name: string, startPos: cuint = 0): ptr Object   {.importcpp: "getUserObject".}
     ## Get first const user data object with specified name.
 
-proc setDescriptions*(this: var UserDataContainer, descriptions: Descriptionlist)  {.importcpp: "setDescriptions".}
+proc setDescriptions*(this: var UserDataContainer, descriptions: DescriptionList)  {.importcpp: "setDescriptions".}
     ## Set the list of string descriptions.
 
-proc getDescriptions*(this: var UserDataContainer): Descriptionlist  {.importcpp: "getDescriptions".}
+proc getDescriptions*(this: var UserDataContainer): DescriptionList  {.importcpp: "getDescriptions".}
     ## Get the description list.
 
-proc getDescriptions*(this: UserDataContainer): Descriptionlist  {.importcpp: "getDescriptions".}
+proc getDescriptions*(this: UserDataContainer): DescriptionList  {.importcpp: "getDescriptions".}
     ## Get the const description list.
 
 proc getNumDescriptions*(this: UserDataContainer): cuint  {.importcpp: "getNumDescriptions".}
     ## Get number of description strings.
 
-proc addDescription*(this: var UserDataContainer, desc: String)  {.importcpp: "addDescription".}
+proc addDescription*(this: var UserDataContainer, desc: string)  {.importcpp: "addDescription".}
     ## Add a description string.
 
 proc cloneType*(this: DefaultUserDataContainer): ptr Object   {.importcpp: "cloneType".}
 
-proc clone*(this: DefaultUserDataContainer, copyop: Copyop): ptr Object   {.importcpp: "clone".}
+proc clone*(this: DefaultUserDataContainer, copyop: CopyOp): ptr Object   {.importcpp: "clone".}
 
 proc isSameKindAs*(this: DefaultUserDataContainer, obj: ptr Object ): bool  {.importcpp: "isSameKindAs".}
 
@@ -143,23 +144,23 @@ proc getNumUserObjects*(this: DefaultUserDataContainer): cuint  {.importcpp: "ge
 proc getUserObjectIndex*(this: DefaultUserDataContainer, obj: ptr Object , startPos: cuint = 0): cuint  {.importcpp: "getUserObjectIndex".}
     ## Get the index position of specified user data object.
 
-proc getUserObjectIndex*(this: DefaultUserDataContainer, name: String, startPos: cuint = 0): cuint  {.importcpp: "getUserObjectIndex".}
+proc getUserObjectIndex*(this: DefaultUserDataContainer, name: string, startPos: cuint = 0): cuint  {.importcpp: "getUserObjectIndex".}
     ## Get the index position of first user data object that matches
     ## specified name.
 
-proc setDescriptions*(this: var DefaultUserDataContainer, descriptions: Descriptionlist)  {.importcpp: "setDescriptions".}
+proc setDescriptions*(this: var DefaultUserDataContainer, descriptions: DescriptionList)  {.importcpp: "setDescriptions".}
     ## Set the list of string descriptions.
 
-proc getDescriptions*(this: var DefaultUserDataContainer): Descriptionlist  {.importcpp: "getDescriptions".}
+proc getDescriptions*(this: var DefaultUserDataContainer): DescriptionList  {.importcpp: "getDescriptions".}
     ## Get the description list.
 
-proc getDescriptions*(this: DefaultUserDataContainer): Descriptionlist  {.importcpp: "getDescriptions".}
+proc getDescriptions*(this: DefaultUserDataContainer): DescriptionList  {.importcpp: "getDescriptions".}
     ## Get the const description list.
 
 proc getNumDescriptions*(this: DefaultUserDataContainer): cuint  {.importcpp: "getNumDescriptions".}
     ## Get number of description strings.
 
-proc addDescription*(this: var DefaultUserDataContainer, desc: String)  {.importcpp: "addDescription".}
+proc addDescription*(this: var DefaultUserDataContainer, desc: string)  {.importcpp: "addDescription".}
     ## Add a description string.
 
 {.pop.}  # header: "UserDataContainer"

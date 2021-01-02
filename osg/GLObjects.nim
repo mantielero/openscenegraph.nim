@@ -1,4 +1,5 @@
-import FrameStamp  # provides: osg::FrameStamp
+import osg_types
+  # File: FrameStamp  was providing: osg::FrameStamp
 type
   GraphicsObject* {.header: "GLObjects", importcpp: "osg::GraphicsObject", byref.} = object #of osg::Referenced
 
@@ -13,20 +14,20 @@ type
 
 proc constructGraphicsObject*(): GraphicsObject {.constructor,importcpp: "osg::GraphicsObject::GraphicsObject".}
 
-proc constructGraphicsObjectManager*(name: String, contextID: cuint): GraphicsObjectManager {.constructor,importcpp: "osg::GraphicsObjectManager::GraphicsObjectManager(@)".}
+proc constructGraphicsObjectManager*(name: string, contextID: cuint): GraphicsObjectManager {.constructor,importcpp: "osg::GraphicsObjectManager::GraphicsObjectManager(@)".}
 
-proc constructGLObjectManager*(name: String, contextID: cuint): GLObjectManager {.constructor,importcpp: "osg::GLObjectManager::GLObjectManager(@)".}
+proc constructGLObjectManager*(name: string, contextID: cuint): GLObjectManager {.constructor,importcpp: "osg::GLObjectManager::GLObjectManager(@)".}
 
 proc getContextID*(this: GraphicsObjectManager): cuint  {.importcpp: "getContextID".}
 
-proc newFrame*(this: var GraphicsObjectManager, ptr Framestamp )  {.importcpp: "newFrame".}
+proc newFrame*(this: var GraphicsObjectManager, a00: ptr FrameStamp )  {.importcpp: "newFrame".}
     ## Signal that a new frame has started.
 
 proc resetStats*(this: var GraphicsObjectManager)  {.importcpp: "resetStats".}
 
-proc reportStats*(this: var GraphicsObjectManager, Ostream)  {.importcpp: "reportStats".}
+proc reportStats*(this: var GraphicsObjectManager, a00: ostream)  {.importcpp: "reportStats".}
 
-proc recomputeStats*(this: GraphicsObjectManager, Ostream)  {.importcpp: "recomputeStats".}
+proc recomputeStats*(this: GraphicsObjectManager, a00: ostream)  {.importcpp: "recomputeStats".}
 
 proc flushDeletedGLObjects*(this: var GraphicsObjectManager, currentTime: cdouble, availableTime: cdouble)  {.importcpp: "flushDeletedGLObjects".}
     ## Flush all deleted OpenGL objects within the specified availableTime.
