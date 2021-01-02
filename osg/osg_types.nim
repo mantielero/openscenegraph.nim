@@ -1,6 +1,11 @@
 import opengl
 
 type
+  MixinVector*[ValueT] {.header: "MixinVector", importcpp: "osg::MixinVector", byref.} = object
+    ## MixinVector is a base class that allows inheritance to be used to
+    ## easily emulate derivation from std::vector but without introducing
+    ## undefined behaviour through violation of virtual destructor rules.
+
   ArrayType* {.size:sizeof(cuint),header: "Array", importcpp: "osg::Array::Type", pure.} = enum
     ## The type of data stored in this array.
 

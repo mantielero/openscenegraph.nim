@@ -1,8 +1,6 @@
+import osg_types
+
 type
-  MixinVector*[ValueT] {.header: "MixinVector", importcpp: "osg::MixinVector", byref.} = object
-    ## MixinVector is a base class that allows inheritance to be used to
-    ## easily emulate derivation from std::vector but without introducing
-    ## undefined behaviour through violation of virtual destructor rules.
 
   Vector_type* {.header: "MixinVector", importcpp: "osg::MixinVector::vector_type".} = cint
   Allocator_type* {.header: "MixinVector", importcpp: "osg::MixinVector::allocator_type".} = cint
