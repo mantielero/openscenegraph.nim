@@ -5,7 +5,7 @@ import osg_types
   # File: Node  was providing: osg::Node, osg::NodePath
   # File: Viewport  was providing: osg::Viewport
   # File: BoundingBox  was providing: osg::BoundingBox
-  # File: Matrix  was providing: osg::RefMatrix, osg::Matrix
+  # File: Matrix  was providing: osg::Matrix, osg::RefMatrix
   # File: CullingSet  was providing: osg::CullingSet
 type
   OccluderList* {.header: "CullStack", importcpp: "osg::CullStack::OccluderList".} = cint

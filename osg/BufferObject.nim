@@ -3,7 +3,7 @@ import osg_types
   # File: ref_ptr  was providing: osg::ref_ptr
   # File: Object  was providing: osg::Object
   # File: Array  was providing: osg::Array
-  # File: PrimitiveSet  was providing: osg::DrawElements, osg::PrimitiveSet
+  # File: PrimitiveSet  was providing: osg::PrimitiveSet, osg::DrawElements
   # File: Image  was providing: osg::Image
   # File: buffered_value  was providing: osg::buffered_value, osg::buffered_object
   # File: CopyOp  was providing: osg::CopyOp

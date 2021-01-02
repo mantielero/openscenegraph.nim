@@ -3,7 +3,7 @@ import osg_types
   # File: Object  was providing: osg::Object
   # File: BufferObject  was providing: osg::VertexBufferObject, osg::ElementBufferObject
   # File: Array  was providing: osg::Array, osg::Array::Binding
-  # File: PrimitiveSet  was providing: osg::PrimitiveFunctor, osg::PrimitiveSet, osg::PrimitiveIndexFunctor
+  # File: PrimitiveSet  was providing: osg::PrimitiveSet, osg::PrimitiveFunctor, osg::PrimitiveIndexFunctor
   # File: CopyOp  was providing: osg::CopyOp
   # File: VertexArrayState  was providing: osg::VertexArrayState
   # File: RenderInfo  was providing: osg::RenderInfo

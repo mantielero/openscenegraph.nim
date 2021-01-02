@@ -1,7 +1,7 @@
 import osg_types
   # File: Object  was providing: osg::Object
   # File: Array  was providing: osg::Vec3Array
-  # File: Shape  was providing: osg::ConstShapeVisitor, osg::ShapeVisitor
+  # File: Shape  was providing: osg::ShapeVisitor, osg::ConstShapeVisitor
   # File: Geometry  was providing: osg::Geometry
   # File: CopyOp  was providing: osg::CopyOp
 type

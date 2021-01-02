@@ -1,7 +1,7 @@
 import osg_types
   # File: Vec3  was providing: osg::Vec3
   # File: Object  was providing: osg::Object
-  # File: Array  was providing: osg::Vec3Array, osg::IndexArray, osg::FloatArray
+  # File: Array  was providing: osg::FloatArray, osg::IndexArray, osg::Vec3Array
   # File: Vec3f  was providing: osg::Vec3f
   # File: Vec2  was providing: osg::Vec2
   # File: Vec2f  was providing: osg::Vec2f

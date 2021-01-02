@@ -4,16 +4,16 @@ import osg_types
   # File: BoundingSphere  was providing: osg::BoundingSphere
   # File: Vec4  was providing: osg::Vec4
   # File: Object  was providing: osg::Object
-  # File: Array  was providing: osg::Vec4dArray, osg::Vec2Array, osg::IntArray, osg::Array, osg::Vec2dArray, osg::UIntArray, osg::Vec3Array, osg::UShortArray, osg::Vec4ubArray, osg::ByteArray, osg::ShortArray, osg::UByteArray, osg::Vec4Array, osg::FloatArray, osg::DoubleArray, osg::Vec3dArray
+  # File: Array  was providing: osg::UShortArray, osg::Array, osg::Vec4dArray, osg::Vec3Array, osg::FloatArray, osg::Vec2Array, osg::Vec3dArray, osg::Vec4ubArray, osg::IntArray, osg::Vec2dArray, osg::Vec4Array, osg::DoubleArray, osg::ByteArray, osg::UByteArray, osg::UIntArray, osg::ShortArray
   # File: Shape  was providing: osg::Shape
   # File: PrimitiveSet  was providing: osg::PrimitiveFunctor, osg::PrimitiveIndexFunctor
-  # File: Node  was providing: osg::MatrixList, osg::Node
+  # File: Node  was providing: osg::Node, osg::MatrixList
   # File: buffered_value  was providing: osg::buffered_value
   # File: Callback  was providing: osg::DrawableEventCallback, osg::DrawableUpdateCallback, osg::DrawableCullCallback
   # File: Vec2  was providing: osg::Vec2
   # File: BoundingBox  was providing: osg::BoundingBox
   # File: CopyOp  was providing: osg::CopyOp
-  # File: VertexArrayState  was providing: osg::VertexArrayStateList, osg::VertexArrayState
+  # File: VertexArrayState  was providing: osg::VertexArrayState, osg::VertexArrayStateList
   # File: RenderInfo  was providing: osg::RenderInfo
   # File: Vec4d  was providing: osg::Vec4d
   # File: Vec3d  was providing: osg::Vec3d

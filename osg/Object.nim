@@ -7,7 +7,7 @@ import osg_types
   # File: Node  was providing: osg::Node
   # File: Image  was providing: osg::Image
   # File: Drawable  was providing: osg::Drawable
-  # File: Callback  was providing: osg::CallbackObject, osg::Callback
+  # File: Callback  was providing: osg::Callback, osg::CallbackObject
   # File: StateSet  was providing: osg::StateSet
   # File: CopyOp  was providing: osg::CopyOp
   # File: UserDataContainer  was providing: osg::UserDataContainer

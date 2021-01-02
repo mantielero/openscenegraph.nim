@@ -4,7 +4,7 @@ import osg_types
   # File: Vec4  was providing: osg::Vec4
   # File: Object  was providing: osg::Object
   # File: Matrixf  was providing: osg::Matrixf
-  # File: Array  was providing: osg::UInt64Array, osg::IntArray, osg::UIntArray, osg::DoubleArray, osg::FloatArray, osg::Int64Array
+  # File: Array  was providing: osg::UInt64Array, osg::FloatArray, osg::IntArray, osg::DoubleArray, osg::Int64Array, osg::UIntArray
   # File: Callback  was providing: osg::UniformCallback
   # File: Vec2  was providing: osg::Vec2
   # File: StateSet  was providing: osg::StateSet

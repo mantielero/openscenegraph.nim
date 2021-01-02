@@ -10,7 +10,7 @@ import osg_types
   # File: Viewport  was providing: osg::Viewport
   # File: Timer  was providing: osg::Timer_t
   # File: StateSet  was providing: osg::StateSet
-  # File: Matrix  was providing: osg::RefMatrix, osg::Matrix
+  # File: Matrix  was providing: osg::Matrix, osg::RefMatrix
   # File: GraphicsCostEstimator  was providing: osg::GraphicsCostEstimator
   # File: VertexArrayState  was providing: osg::VertexArrayState
   # File: GraphicsContext  was providing: osg::GraphicsContext

@@ -8,7 +8,7 @@ import osg_types
   # File: Node  was providing: osg::Node
   # File: Image  was providing: osg::Image
   # File: Drawable  was providing: osg::Drawable
-  # File: Callback  was providing: osg::UniformCallback, osg::StateAttributeCallback, osg::Callback
+  # File: Callback  was providing: osg::Callback, osg::UniformCallback, osg::StateAttributeCallback
   # File: StateSet  was providing: osg::StateSet
   # File: Uniform  was providing: osg::Uniform
   # File: Texture  was providing: osg::Texture

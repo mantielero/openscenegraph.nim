@@ -3,7 +3,7 @@ import osg_types
   # File: ref_ptr  was providing: osg::ref_ptr
   # File: Object  was providing: osg::Object
   # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
-  # File: Shader  was providing: osg::Shader, osg::ShaderDefines
+  # File: Shader  was providing: osg::ShaderDefines, osg::Shader
   # File: CopyOp  was providing: osg::CopyOp
   # File: Uniform  was providing: osg::Uniform
 type
