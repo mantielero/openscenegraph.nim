@@ -1,7 +1,7 @@
 import opengl
 
 type
-  Type* {.size:sizeof(cuint),header: "Array", importcpp: "osg::Array::Type", pure.} = enum
+  ArrayType* {.size:sizeof(cuint),header: "Array", importcpp: "osg::Array::Type", pure.} = enum
     ## The type of data stored in this array.
 
     ArrayType = 0,
@@ -42,7 +42,7 @@ type
     QuatArrayType = 35,
     UInt64ArrayType = 36,
     Int64ArrayType = 37
-      
+
   StateAttributeType* {.size:sizeof(cuint),header: "StateAttribute", importcpp: "osg::StateAttribute::Type", pure.} = enum
     ## Values of StateAttribute::Type used to aid identification of different
     ## StateAttribute subclasses. Each subclass defines its own value in the

@@ -64,7 +64,7 @@ type
 
 {.push header: "Array".}
 
-proc constructArray*(arrayType: Type, dataSize: GLint, dataType: GLenum = 0, binding: Binding): Array {.constructor,importcpp: "osg::Array::Array(@)".}
+proc constructArray*(arrayType: ArrayType, dataSize: GLint, dataType: GLenum = 0, binding: Binding): Array {.constructor,importcpp: "osg::Array::Array(@)".}
 
 proc constructArray*(array: Array, copyop: CopyOp = SHALLOW_COPY): Array {.constructor,importcpp: "osg::Array::Array(@)".}
 
@@ -80,7 +80,7 @@ proc constructTemplateArray*[T, ARRAYTYPE, DataSize, DataType](binding: Binding,
 
 proc constructTemplateArray*[T, ARRAYTYPE, DataSize, DataType](binding: Binding, no: cuint, `ptr`: ptr T): TemplateArray {.constructor,importcpp: "osg::TemplateArray::TemplateArray<T, ARRAYTYPE, DataSize, DataType>(@)".}
 
-proc constructIndexArray*(arrayType: Type, dataSize: GLint, dataType: GLenum = 0): IndexArray {.constructor,importcpp: "osg::IndexArray::IndexArray(@)".}
+proc constructIndexArray*(arrayType: ArrayType, dataSize: GLint, dataType: GLenum = 0): IndexArray {.constructor,importcpp: "osg::IndexArray::IndexArray(@)".}
 
 proc constructIndexArray*(array: Array, copyop: CopyOp = SHALLOW_COPY): IndexArray {.constructor,importcpp: "osg::IndexArray::IndexArray(@)".}
 
@@ -120,7 +120,7 @@ proc compare*(this: Array, lhs: cuint, rhs: cuint): cint  {.importcpp: "compare"
     ## Return -1 if lhs element is less than rhs element, 0 if equal, 1 if
     ## lhs element is greater than rhs element.
 
-proc getType*(this: Array): Type  {.importcpp: "getType".}
+proc getType*(this: Array): ArrayType  {.importcpp: "getType".}
 
 proc getDataSize*(this: Array): GLint  {.importcpp: "getDataSize".}
 
