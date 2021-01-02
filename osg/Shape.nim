@@ -2,10 +2,11 @@ import osg_types
   # File: Vec3  was providing: osg::Vec3
   # File: Object  was providing: osg::Object
   # File: Array  was providing: osg::FloatArray, osg::IndexArray, osg::Vec3Array
+  # File: Geometry  was providing: osg::Geometry
   # File: Vec3f  was providing: osg::Vec3f
   # File: Vec2  was providing: osg::Vec2
   # File: Vec2f  was providing: osg::Vec2f
-  # File: CopyOp  was providing: osg::CopyOp
+  # File: CopyOp  was providing: osg::CopyOp::Options, osg::CopyOp
   # File: Matrix  was providing: osg::Matrix
   # File: Matrixd  was providing: osg::Matrixd
   # File: Quat  was providing: osg::Quat

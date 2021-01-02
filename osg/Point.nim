@@ -2,8 +2,8 @@ import osg_types
   # File: Vec3  was providing: osg::Vec3
   # File: State  was providing: osg::State
   # File: Object  was providing: osg::Object
-  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
-  # File: CopyOp  was providing: osg::CopyOp
+  # File: StateAttribute  was providing: osg::StateAttribute::Type, osg::StateAttribute
+  # File: CopyOp  was providing: osg::CopyOp::Options, osg::CopyOp
 type
   Point* {.header: "Point", importcpp: "osg::Point", byref.} = object #of class osg::StateAttribute
     ## Point - encapsulates the OpenGL point smoothing and size state.

@@ -11,7 +11,7 @@ import osg_types
   # File: Viewport  was providing: osg::Viewport
   # File: ColorMask  was providing: osg::ColorMask
   # File: Vec3f  was providing: osg::Vec3f
-  # File: CopyOp  was providing: osg::CopyOp
+  # File: CopyOp  was providing: osg::CopyOp::Options, osg::CopyOp
   # File: Matrix  was providing: osg::Matrix
   # File: Matrixd  was providing: osg::Matrixd
   # File: GraphicsContext  was providing: osg::GraphicsContext

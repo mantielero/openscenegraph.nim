@@ -1,6 +1,6 @@
 import osg_types
   # File: Vec4us  was providing: osg::Vec4us
-  # File: BoundingSphere  was providing: osg::BoundingSpheref, osg::BoundingSphered
+  # File: BoundingSphere  was providing: osg::BoundingSphered, osg::BoundingSpheref
   # File: Vec3i  was providing: osg::Vec3i
   # File: Vec3s  was providing: osg::Vec3s
   # File: Vec2us  was providing: osg::Vec2us
@@ -10,13 +10,14 @@ import osg_types
   # File: Vec3ui  was providing: osg::Vec3ui
   # File: Matrixf  was providing: osg::Matrixf
   # File: Vec2ub  was providing: osg::Vec2ub
+  # File: TexGen  was providing: osg::TexGen::Coord
   # File: Plane  was providing: osg::Plane
   # File: Vec2ui  was providing: osg::Vec2ui
   # File: Vec3f  was providing: osg::Vec3f
   # File: Vec3us  was providing: osg::Vec3us
-  # File: BoundingBox  was providing: osg::BoundingBoxd, osg::BoundingBoxf
+  # File: BoundingBox  was providing: osg::BoundingBoxf, osg::BoundingBoxd
   # File: Vec2f  was providing: osg::Vec2f
-  # File: CopyOp  was providing: osg::CopyOp
+  # File: CopyOp  was providing: osg::CopyOp::Options, osg::CopyOp
   # File: Matrixd  was providing: osg::Matrixd
   # File: Vec3b  was providing: osg::Vec3b
   # File: Vec4b  was providing: osg::Vec4b

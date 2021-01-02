@@ -2,7 +2,7 @@ import osg_types
   # File: State  was providing: osg::State
   # File: Object  was providing: osg::Object
   # File: Shader  was providing: osg::Shader
-  # File: CopyOp  was providing: osg::CopyOp
+  # File: CopyOp  was providing: osg::CopyOp::Options, osg::CopyOp
   # File: Program  was providing: osg::Program
 type
   ShaderComponents* {.header: "ShaderComposer", importcpp: "osg::ShaderComponents".} = cint

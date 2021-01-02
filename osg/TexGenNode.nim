@@ -1,7 +1,7 @@
 import osg_types
   # File: Object  was providing: osg::Object
   # File: TexGen  was providing: osg::TexGen
-  # File: CopyOp  was providing: osg::CopyOp
+  # File: CopyOp  was providing: osg::CopyOp::Options, osg::CopyOp
   # File: NodeVisitor  was providing: osg::NodeVisitor
 type
   ReferenceFrame* {.size:sizeof(cuint),header: "TexGenNode", importcpp: "osg::TexGenNode::ReferenceFrame", pure.} = enum

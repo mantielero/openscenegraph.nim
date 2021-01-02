@@ -2,9 +2,9 @@ import osg_types
   # File: State  was providing: osg::State
   # File: ref_ptr  was providing: osg::ref_ptr
   # File: Object  was providing: osg::Object
-  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
+  # File: StateAttribute  was providing: osg::StateAttribute::Type, osg::StateAttribute
   # File: Shader  was providing: osg::ShaderDefines, osg::Shader
-  # File: CopyOp  was providing: osg::CopyOp
+  # File: CopyOp  was providing: osg::CopyOp::Options, osg::CopyOp
   # File: Uniform  was providing: osg::Uniform
 type
   ProgramBinary* {.header: "Program", importcpp: "osg::Program::ProgramBinary", byref.} = object #of osg::Object

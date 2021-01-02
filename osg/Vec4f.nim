@@ -1,3 +1,5 @@
+import osg_types
+  # File: Vec3f  was providing: osg::Vec3f
 const
   num_components* = 4
 

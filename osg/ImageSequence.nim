@@ -1,8 +1,8 @@
 import osg_types
   # File: Object  was providing: osg::Object
   # File: Referenced  was providing: osg::Referenced
-  # File: Image  was providing: osg::Image, osg::Image::AllocationMode
-  # File: CopyOp  was providing: osg::CopyOp
+  # File: Image  was providing: osg::Image::AllocationMode, osg::Image
+  # File: CopyOp  was providing: osg::CopyOp::Options, osg::CopyOp
   # File: NodeVisitor  was providing: osg::NodeVisitor
 type
   Mode* {.size:sizeof(cuint),header: "ImageSequence", importcpp: "osg::ImageSequence::Mode", pure.} = enum

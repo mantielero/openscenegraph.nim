@@ -4,6 +4,7 @@ import osg_types
   # File: Drawable  was providing: osg::Drawable
   # File: BoundingBox  was providing: osg::BoundingBox
   # File: Matrix  was providing: osg::Matrix
+  # File: NodeVisitor  was providing: osg::NodeVisitor::TraversalMode
 type
   ComputeBoundsVisitor* {.header: "ComputeBoundsVisitor", importcpp: "osg::ComputeBoundsVisitor", byref.} = object #of osg::NodeVisitor
 

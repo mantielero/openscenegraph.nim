@@ -1,7 +1,7 @@
 import osg_types
   # File: Vec4  was providing: osg::Vec4
   # File: Object  was providing: osg::Object
-  # File: CopyOp  was providing: osg::CopyOp
+  # File: CopyOp  was providing: osg::CopyOp::Options, osg::CopyOp
   # File: NodeVisitor  was providing: osg::NodeVisitor
 {.push header: "ClearNode".}
 

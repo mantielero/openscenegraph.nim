@@ -5,7 +5,7 @@ import osg_types
   # File: Object  was providing: osg::Object
   # File: Geometry  was providing: osg::Geometry
   # File: StateSet  was providing: osg::StateSet
-  # File: CopyOp  was providing: osg::CopyOp
+  # File: CopyOp  was providing: osg::CopyOp::Options, osg::CopyOp
   # File: RenderInfo  was providing: osg::RenderInfo
   # File: NodeVisitor  was providing: osg::NodeVisitor
 type

@@ -1,14 +1,10 @@
 import osg_types
   # File: State  was providing: osg::State
   # File: Object  was providing: osg::Object
-  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
+  # File: StateAttribute  was providing: osg::StateAttribute::Type, osg::StateAttribute
   # File: Image  was providing: osg::Image
-  # File: CopyOp  was providing: osg::CopyOp
+  # File: CopyOp  was providing: osg::CopyOp::Options, osg::CopyOp
 type
-  Texture1D* {.header: "Texture1D", importcpp: "osg::Texture1D", byref.} = object #of class osg::Texture
-    ## Encapsulates OpenGL 1D texture functionality. Doesn't support cube
-    ## maps, so ignore face parameters.
-
   SubloadCallback* {.header: "Texture1D", importcpp: "osg::Texture1D::SubloadCallback", byref.} = object #of class osg::Referenced
 
   ImageModifiedCount* {.header: "Texture1D", importcpp: "osg::Texture1D::ImageModifiedCount".} = buffered_value[unsigned int]

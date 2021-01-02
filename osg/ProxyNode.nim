@@ -4,7 +4,7 @@ import osg_types
   # File: Object  was providing: osg::Object
   # File: Referenced  was providing: osg::Referenced
   # File: Node  was providing: osg::Node
-  # File: CopyOp  was providing: osg::CopyOp
+  # File: CopyOp  was providing: osg::CopyOp::Options, osg::CopyOp
   # File: NodeVisitor  was providing: osg::NodeVisitor
 type
   CenterMode* {.size:sizeof(cuint),header: "ProxyNode", importcpp: "osg::ProxyNode::CenterMode", pure.} = enum

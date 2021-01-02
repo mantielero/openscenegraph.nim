@@ -1,53 +1,4 @@
-import opengl
-
 type
-  MixinVector*[ValueT] {.header: "MixinVector", importcpp: "osg::MixinVector", byref.} = object
-    ## MixinVector is a base class that allows inheritance to be used to
-    ## easily emulate derivation from std::vector but without introducing
-    ## undefined behaviour through violation of virtual destructor rules.
-
-  ArrayType* {.size:sizeof(cuint),header: "Array", importcpp: "osg::Array::Type", pure.} = enum
-    ## The type of data stored in this array.
-
-    ArrayType = 0,
-    ByteArrayType = 1,
-    ShortArrayType = 2,
-    IntArrayType = 3,
-    UByteArrayType = 4,
-    UShortArrayType = 5,
-    UIntArrayType = 6,
-    FloatArrayType = 7,
-    DoubleArrayType = 8,
-    Vec2bArrayType = 9,
-    Vec3bArrayType = 10,
-    Vec4bArrayType = 11,
-    Vec2sArrayType = 12,
-    Vec3sArrayType = 13,
-    Vec4sArrayType = 14,
-    Vec2iArrayType = 15,
-    Vec3iArrayType = 16,
-    Vec4iArrayType = 17,
-    Vec2ubArrayType = 18,
-    Vec3ubArrayType = 19,
-    Vec4ubArrayType = 20,
-    Vec2usArrayType = 21,
-    Vec3usArrayType = 22,
-    Vec4usArrayType = 23,
-    Vec2uiArrayType = 24,
-    Vec3uiArrayType = 25,
-    Vec4uiArrayType = 26,
-    Vec2ArrayType = 27,
-    Vec3ArrayType = 28,
-    Vec4ArrayType = 29,
-    Vec2dArrayType = 30,
-    Vec3dArrayType = 31,
-    Vec4dArrayType = 32,
-    MatrixArrayType = 33,
-    MatrixdArrayType = 34,
-    QuatArrayType = 35,
-    UInt64ArrayType = 36,
-    Int64ArrayType = 37
-
   Type* {.size:sizeof(cuint),header: "StateAttribute", importcpp: "osg::StateAttribute::Type", pure.} = enum
     ## Values of StateAttribute::Type used to aid identification of different
     ## StateAttribute subclasses. Each subclass defines its own value in the
@@ -146,6 +97,23 @@ type
     CAPABILITY = 100
       ## osgNVCg namespace
 
+  Options* {.size:sizeof(cuint),header: "CopyOp", importcpp: "osg::CopyOp::Options", pure.} = enum
+    SHALLOW_COPY = 0,
+    DEEP_COPY_OBJECTS = 1,
+    DEEP_COPY_NODES = 2,
+    DEEP_COPY_DRAWABLES = 4,
+    DEEP_COPY_STATESETS = 8,
+    DEEP_COPY_STATEATTRIBUTES = 16,
+    DEEP_COPY_TEXTURES = 32,
+    DEEP_COPY_IMAGES = 64,
+    DEEP_COPY_ARRAYS = 128,
+    DEEP_COPY_PRIMITIVES = 256,
+    DEEP_COPY_SHAPES = 512,
+    DEEP_COPY_UNIFORMS = 1024,
+    DEEP_COPY_CALLBACKS = 2048,
+    DEEP_COPY_USERDATA = 4096,
+    DEEP_COPY_ALL = 2147483647
+
   AllocationMode* {.size:sizeof(cuint),header: "Image", importcpp: "osg::Image::AllocationMode", pure.} = enum
     NO_DELETE = 0,
     USE_NEW_DELETE = 1,
@@ -159,6 +127,45 @@ type
     BIND_OVERALL = 1,
     BIND_PER_PRIMITIVE_SET = 2,
     BIND_PER_VERTEX = 4
+
+  TraversalMode* {.size:sizeof(cuint),header: "NodeVisitor", importcpp: "osg::NodeVisitor::TraversalMode", pure.} = enum
+    TRAVERSE_NONE = 0,
+    TRAVERSE_PARENTS = 1,
+    TRAVERSE_ALL_CHILDREN = 2,
+    TRAVERSE_ACTIVE_CHILDREN = 3
+
+  Coord* {.size:sizeof(cuint),header: "TexGen", importcpp: "osg::TexGen::Coord", pure.} = enum
+    S = 0,
+    T = 1,
+    R = 2,
+    Q = 3
+
+  Type* {.size:sizeof(cuint),header: "PrimitiveSet", importcpp: "osg::PrimitiveSet::Type", pure.} = enum
+    PrimitiveType = 0,
+    DrawArraysPrimitiveType = 1,
+    DrawArrayLengthsPrimitiveType = 2,
+    DrawElementsUBytePrimitiveType = 3,
+    DrawElementsUShortPrimitiveType = 4,
+    DrawElementsUIntPrimitiveType = 5,
+    MultiDrawArraysPrimitiveType = 6,
+    DrawArraysIndirectPrimitiveType = 7,
+    DrawElementsUByteIndirectPrimitiveType = 8,
+    DrawElementsUShortIndirectPrimitiveType = 9,
+    DrawElementsUIntIndirectPrimitiveType = 10,
+    MultiDrawArraysIndirectPrimitiveType = 11,
+    MultiDrawElementsUByteIndirectPrimitiveType = 12,
+    MultiDrawElementsUShortIndirectPrimitiveType = 13,
+    MultiDrawElementsUIntIndirectPrimitiveType = 14
+
+  Equation* {.size:sizeof(cuint),header: "BlendEquation", importcpp: "osg::BlendEquation::Equation", pure.} = enum
+    LOGIC_OP = 3057,
+    FUNC_ADD = 32774,
+    RGBA_MIN = 32775,
+    RGBA_MAX = 32776,
+    FUNC_SUBTRACT = 32778,
+    FUNC_REVERSE_SUBTRACT = 32779,
+    ALPHA_MIN = 33568,
+    ALPHA_MAX = 33569
 
   State* {.header: "State", importcpp: "osg::State", byref.} = object #of class osg::Referenced
     ## Encapsulates the current applied OpenGL modes, attributes and vertex
@@ -382,6 +389,10 @@ type
   Texture* {.header: "Texture", importcpp: "osg::Texture", byref.} = object #of osg::StateAttribute
     ## Texture pure virtual base class that encapsulates OpenGL texture
     ## functionality common to the various types of OSG textures.
+
+  TexGen* {.header: "TexGen", importcpp: "osg::TexGen", byref.} = object #of class osg::StateAttribute
+    ## TexGen encapsulates the OpenGL glTexGen (texture coordinate
+    ## generation) state.
 
   ref_ptr*[T] {.header: "ref_ptr", importcpp: "osg::ref_ptr", byref.} = object
     ## Smart pointer for handling referenced counted objects.
@@ -637,6 +648,8 @@ type
     ## Need to define a non-member non-friend operator* etc. BTW: Vec2f *
     ## float is okay
 
+  Geometry* {.header: "Geometry", importcpp: "osg::Geometry", byref.} = object #of class osg::Drawable
+
   Shape* {.header: "Shape", importcpp: "osg::Shape", byref.} = object #of class osg::Object
     ## Base class for all shape types. Shapes are used to either for culling
     ## and collision detection or to define the geometric shape of
@@ -650,10 +663,6 @@ type
     ## Describe several hints that can be passed to a Tessellator (like the
     ## one used by ShapeDrawable) as a mean to try to influence the way it
     ## works.
-
-  TexGen* {.header: "TexGen", importcpp: "osg::TexGen", byref.} = object #of class osg::StateAttribute
-    ## TexGen encapsulates the OpenGL glTexGen (texture coordinate
-    ## generation) state.
 
   AutoTransform* {.header: "AutoTransform", importcpp: "osg::AutoTransform", byref.} = object #of class osg::Transform
     ## AutoTransform is a derived form of Transform that automatically scales
@@ -673,8 +682,6 @@ type
     ## that can have "renderable things" attached to it. In OSG, renderable
     ## things are represented by objects from the Drawable class, so a Geode
     ## is a Node whose purpose is grouping Drawables.
-
-  Geometry* {.header: "Geometry", importcpp: "osg::Geometry", byref.} = object #of class osg::Drawable
 
   Group* {.header: "Group", importcpp: "osg::Group", byref.} = object #of class osg::Node
     ## General group node which maintains a list of children. Children are
@@ -696,6 +703,37 @@ type
   ObserverNodePath* {.header: "ObserverNodePath", importcpp: "osg::ObserverNodePath", byref.} = object
     ## ObserverNodePath is an observer class for tracking changes to a
     ## NodePath, that automatically invalidates it when nodes are deleted.
+
+  Texture2DMultisample* {.header: "Texture2DMultisample", importcpp: "osg::Texture2DMultisample", byref.} = object #of class osg::Texture
+    ## Texture2DMultisample state class which encapsulates OpenGL 2D
+    ## multisampled texture functionality. Multisampled texture were
+    ## introduced with OpenGL 3.1 and extension GL_ARB_texture_multisample.
+    ## See http://www.opengl.org/registry/specs/ARB/texture_multisample.txt
+    ## for more info.
+
+  Texture2D* {.header: "Texture2D", importcpp: "osg::Texture2D", byref.} = object #of class osg::Texture
+    ## Encapsulates OpenGL 2D texture functionality. Doesn't support cube
+    ## maps, so ignore face parameters.
+
+  Texture2DArray* {.header: "Texture2DArray", importcpp: "osg::Texture2DArray", byref.} = object #of class osg::Texture
+    ## Texture2DArray state class which encapsulates OpenGL 2D array texture
+    ## functionality. Texture arrays were introduced with Shader Model 4.0
+    ## hardware.
+
+  Texture3D* {.header: "Texture3D", importcpp: "osg::Texture3D", byref.} = object #of class osg::Texture
+    ## Encapsulates OpenGL 3D texture functionality. Doesn't support cube
+    ## maps, so ignore face parameters.
+
+  Texture1D* {.header: "Texture1D", importcpp: "osg::Texture1D", byref.} = object #of class osg::Texture
+    ## Encapsulates OpenGL 1D texture functionality. Doesn't support cube
+    ## maps, so ignore face parameters.
+
+  TextureRectangle* {.header: "TextureRectangle", importcpp: "osg::TextureRectangle", byref.} = object #of class osg::Texture
+    ## Texture state class which encapsulates OpenGL texture functionality.
+
+  TextureCubeMap* {.header: "TextureCubeMap", importcpp: "osg::TextureCubeMap", byref.} = object #of class osg::Texture
+    ## TextureCubeMap state class which encapsulates OpenGL texture cubemap
+    ## functionality.
 
   LightSource* {.header: "LightSource", importcpp: "osg::LightSource", byref.} = object #of class osg::Group
     ## Leaf Node for defining a light in the scene.
@@ -766,6 +804,7 @@ type
   UInt64Array* {.header: "Array", importcpp: "osg::UInt64Array".} = TemplateIndexArray[GLuint64,UInt64ArrayType,1,5135]
   Int64Array* {.header: "Array", importcpp: "osg::Int64Array".} = TemplateIndexArray[GLint64,Int64ArrayType,1,5134]
   ShaderDefines* {.header: "Shader", importcpp: "osg::ShaderDefines".} = cint
+  Value_type* {.header: "Viewport", importcpp: "osg::Viewport::value_type".} = cdouble
   Timer_t* {.header: "Timer", importcpp: "osg::Timer_t".} = culonglong
   Matrix* {.header: "Matrix", importcpp: "osg::Matrix".} = Matrixd
   RefMatrix* {.header: "Matrix", importcpp: "osg::RefMatrix".} = RefMatrixd

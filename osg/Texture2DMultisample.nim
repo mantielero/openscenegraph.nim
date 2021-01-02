@@ -1,19 +1,9 @@
 import osg_types
   # File: State  was providing: osg::State
   # File: Object  was providing: osg::Object
-  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
+  # File: StateAttribute  was providing: osg::StateAttribute::Type, osg::StateAttribute
   # File: Image  was providing: osg::Image
-  # File: CopyOp  was providing: osg::CopyOp
-type
-  Texture2DMultisample* {.header: "Texture2DMultisample", importcpp: "osg::Texture2DMultisample", byref.} = object #of class osg::Texture
-    ## Texture2DMultisample state class which encapsulates OpenGL 2D
-    ## multisampled texture functionality. Multisampled texture were
-    ## introduced with OpenGL 3.1 and extension GL_ARB_texture_multisample.
-    ## See http://www.opengl.org/registry/specs/ARB/texture_multisample.txt
-    ## for more info.
-
-
-
+  # File: CopyOp  was providing: osg::CopyOp::Options, osg::CopyOp
 {.push header: "Texture2DMultisample".}
 
 proc constructTexture2DMultisample*(): Texture2DMultisample {.constructor,importcpp: "osg::Texture2DMultisample::Texture2DMultisample".}

@@ -3,7 +3,7 @@ import osg_types
   # File: Array  was providing: osg::Vec3Array
   # File: Shape  was providing: osg::ShapeVisitor, osg::ConstShapeVisitor
   # File: Geometry  was providing: osg::Geometry
-  # File: CopyOp  was providing: osg::CopyOp
+  # File: CopyOp  was providing: osg::CopyOp::Options, osg::CopyOp
 type
   KdTree* {.header: "KdTree", importcpp: "osg::KdTree", byref.} = object #of osg::Shape
     ## Implementation of a kdtree for Geometry leaves, to enable fast

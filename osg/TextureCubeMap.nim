@@ -1,9 +1,9 @@
 import osg_types
   # File: State  was providing: osg::State
   # File: Object  was providing: osg::Object
-  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
+  # File: StateAttribute  was providing: osg::StateAttribute::Type, osg::StateAttribute
   # File: Image  was providing: osg::Image
-  # File: CopyOp  was providing: osg::CopyOp
+  # File: CopyOp  was providing: osg::CopyOp::Options, osg::CopyOp
 type
   Face* {.size:sizeof(cuint),header: "TextureCubeMap", importcpp: "osg::TextureCubeMap::Face", pure.} = enum
     POSITIVE_X = 0,
@@ -12,10 +12,6 @@ type
     NEGATIVE_Y = 3,
     POSITIVE_Z = 4,
     NEGATIVE_Z = 5
-
-  TextureCubeMap* {.header: "TextureCubeMap", importcpp: "osg::TextureCubeMap", byref.} = object #of class osg::Texture
-    ## TextureCubeMap state class which encapsulates OpenGL texture cubemap
-    ## functionality.
 
   SubloadCallback* {.header: "TextureCubeMap", importcpp: "osg::TextureCubeMap::SubloadCallback", byref.} = object #of class osg::Referenced
 

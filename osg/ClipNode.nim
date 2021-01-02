@@ -4,7 +4,7 @@ import osg_types
   # File: ClipPlane  was providing: osg::ClipPlane
   # File: BoundingBox  was providing: osg::BoundingBox
   # File: StateSet  was providing: osg::StateSet
-  # File: CopyOp  was providing: osg::CopyOp
+  # File: CopyOp  was providing: osg::CopyOp::Options, osg::CopyOp
   # File: NodeVisitor  was providing: osg::NodeVisitor
 type
   ReferenceFrame* {.size:sizeof(cuint),header: "ClipNode", importcpp: "osg::ClipNode::ReferenceFrame", pure.} = enum

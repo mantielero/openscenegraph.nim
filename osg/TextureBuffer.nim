@@ -2,9 +2,9 @@ import osg_types
   # File: State  was providing: osg::State
   # File: Object  was providing: osg::Object
   # File: BufferObject  was providing: osg::BufferData
-  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
+  # File: StateAttribute  was providing: osg::StateAttribute::Type, osg::StateAttribute
   # File: Image  was providing: osg::Image
-  # File: CopyOp  was providing: osg::CopyOp
+  # File: CopyOp  was providing: osg::CopyOp::Options, osg::CopyOp
 type
   TextureBuffer* {.header: "TextureBuffer", importcpp: "osg::TextureBuffer", byref.} = object #of class osg::Texture
     ## Encapsulates OpenGL texture buffer functionality in a Texture

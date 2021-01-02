@@ -4,7 +4,7 @@ import osg_types
   # File: Object  was providing: osg::Object
   # File: Node  was providing: osg::Node
   # File: Drawable  was providing: osg::Drawable
-  # File: Callback  was providing: osg::NodeCallback, osg::DrawableCullCallback
+  # File: Callback  was providing: osg::DrawableCullCallback, osg::NodeCallback
   # File: CopyOp  was providing: osg::CopyOp
   # File: Matrixd  was providing: osg::Matrixd
   # File: NodeVisitor  was providing: osg::NodeVisitor

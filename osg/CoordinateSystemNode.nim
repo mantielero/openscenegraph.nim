@@ -1,6 +1,6 @@
 import osg_types
   # File: Object  was providing: osg::Object
-  # File: CopyOp  was providing: osg::CopyOp
+  # File: CopyOp  was providing: osg::CopyOp::Options, osg::CopyOp
   # File: Matrixd  was providing: osg::Matrixd
   # File: Vec3d  was providing: osg::Vec3d
   # File: NodeVisitor  was providing: osg::NodeVisitor

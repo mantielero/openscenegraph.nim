@@ -3,8 +3,9 @@ import osg_types
   # File: Camera  was providing: osg::Camera
   # File: Object  was providing: osg::Object
   # File: Stats  was providing: osg::Stats
-  # File: CopyOp  was providing: osg::CopyOp
+  # File: CopyOp  was providing: osg::CopyOp::Options, osg::CopyOp
   # File: Matrix  was providing: osg::Matrix
+  # File: Matrixd  was providing: osg::Matrixd
   # File: Light  was providing: osg::Light
   # File: FrameStamp  was providing: osg::FrameStamp
 type

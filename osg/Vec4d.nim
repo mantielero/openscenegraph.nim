@@ -1,3 +1,6 @@
+import osg_types
+  # File: Vec3d  was providing: osg::Vec3d
+  # File: Vec4f  was providing: osg::Vec4f
 const
   num_components* = 4
 

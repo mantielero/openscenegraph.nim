@@ -1,8 +1,8 @@
 import osg_types
   # File: Vec4  was providing: osg::Vec4
   # File: Object  was providing: osg::Object
-  # File: Shape  was providing: osg::TessellationHints, osg::Shape
-  # File: CopyOp  was providing: osg::CopyOp
+  # File: Shape  was providing: osg::Shape, osg::TessellationHints
+  # File: CopyOp  was providing: osg::CopyOp::Options, osg::CopyOp
 type
   ShapeDrawable* {.header: "ShapeDrawable", importcpp: "osg::ShapeDrawable", byref.} = object #of osg::Geometry
     ## Allow the use of Shapes as Drawables, so that they can be rendered

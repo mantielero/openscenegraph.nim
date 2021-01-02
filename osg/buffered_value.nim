@@ -1,3 +1,5 @@
+import osg_types
+  # File: TexGen  was providing: osg::TexGen::Coord
 {.push header: "buffered_value".}
 
 proc constructbuffered_value*[T](): buffered_value {.constructor,importcpp: "osg::buffered_value::buffered_value<T>".}

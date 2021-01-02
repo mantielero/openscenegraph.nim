@@ -6,7 +6,7 @@ import osg_types
   # File: BufferObject  was providing: osg::PixelBufferObject
   # File: StateAttribute  was providing: osg::StateAttribute
   # File: Vec2  was providing: osg::Vec2
-  # File: CopyOp  was providing: osg::CopyOp
+  # File: CopyOp  was providing: osg::CopyOp::Options, osg::CopyOp
   # File: FrameStamp  was providing: osg::FrameStamp
   # File: NodeVisitor  was providing: osg::NodeVisitor
 type

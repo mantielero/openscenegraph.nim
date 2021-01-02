@@ -3,8 +3,8 @@ import osg_types
   # File: State  was providing: osg::State
   # File: Vec4  was providing: osg::Vec4
   # File: Object  was providing: osg::Object
-  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
-  # File: CopyOp  was providing: osg::CopyOp
+  # File: StateAttribute  was providing: osg::StateAttribute::Type, osg::StateAttribute
+  # File: CopyOp  was providing: osg::CopyOp::Options, osg::CopyOp
 type
   CombineParam* {.size:sizeof(cuint),header: "TexEnvCombine", importcpp: "osg::TexEnvCombine::CombineParam", pure.} = enum
     ADD = 260,

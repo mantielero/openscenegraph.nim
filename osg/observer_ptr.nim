@@ -1,3 +1,5 @@
+import osg_types
+  # File: TexGen  was providing: osg::TexGen::Coord
 type
   observer_ptr*[T] {.header: "observer_ptr", importcpp: "osg::observer_ptr", byref.} = object
     ## Smart pointer for observed objects, that automatically set pointers to

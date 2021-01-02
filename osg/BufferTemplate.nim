@@ -1,6 +1,7 @@
 import osg_types
   # File: Object  was providing: osg::Object
-  # File: CopyOp  was providing: osg::CopyOp
+  # File: TexGen  was providing: osg::TexGen::Coord
+  # File: CopyOp  was providing: osg::CopyOp::Options, osg::CopyOp
 type
   BufferTemplate*[T] {.header: "BufferTemplate", importcpp: "osg::BufferTemplate", byref.} = object #of class osg::BufferData
     ## Template buffer class to be used with a struct as template parameter.

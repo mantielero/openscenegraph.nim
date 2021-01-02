@@ -1,9 +1,9 @@
 import osg_types
   # File: State  was providing: osg::State
   # File: Object  was providing: osg::Object
-  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
+  # File: StateAttribute  was providing: osg::StateAttribute::Type, osg::StateAttribute
   # File: Plane  was providing: osg::Plane
-  # File: CopyOp  was providing: osg::CopyOp
+  # File: CopyOp  was providing: osg::CopyOp::Options, osg::CopyOp
   # File: Matrixd  was providing: osg::Matrixd
 type
   Mode* {.size:sizeof(cuint),header: "TexGen", importcpp: "osg::TexGen::Mode", pure.} = enum
@@ -12,12 +12,6 @@ type
     SPHERE_MAP = 9218,
     NORMAL_MAP = 34065,
     REFLECTION_MAP = 34066
-
-  Coord* {.size:sizeof(cuint),header: "TexGen", importcpp: "osg::TexGen::Coord", pure.} = enum
-    S = 0,
-    T = 1,
-    R = 2,
-    Q = 3
 
 
 

@@ -1,8 +1,8 @@
 import osg_types
   # File: State  was providing: osg::State
   # File: Object  was providing: osg::Object
-  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
-  # File: CopyOp  was providing: osg::CopyOp
+  # File: StateAttribute  was providing: osg::StateAttribute::Type, osg::StateAttribute
+  # File: CopyOp  was providing: osg::CopyOp::Options, osg::CopyOp
   # File: Matrix  was providing: osg::Matrix
 type
   ColorMatrix* {.header: "ColorMatrix", importcpp: "osg::ColorMatrix", byref.} = object #of class osg::StateAttribute

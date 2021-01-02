@@ -4,11 +4,12 @@ import osg_types
   # File: Vec4  was providing: osg::Vec4
   # File: Object  was providing: osg::Object
   # File: Matrixf  was providing: osg::Matrixf
-  # File: Array  was providing: osg::UInt64Array, osg::FloatArray, osg::IntArray, osg::DoubleArray, osg::Int64Array, osg::UIntArray
+  # File: TexGen  was providing: osg::TexGen::Coord
+  # File: Array  was providing: osg::DoubleArray, osg::UIntArray, osg::Int64Array, osg::IntArray, osg::UInt64Array, osg::FloatArray
   # File: Callback  was providing: osg::UniformCallback
   # File: Vec2  was providing: osg::Vec2
   # File: StateSet  was providing: osg::StateSet
-  # File: CopyOp  was providing: osg::CopyOp
+  # File: CopyOp  was providing: osg::CopyOp::Options, osg::CopyOp
   # File: Matrixd  was providing: osg::Matrixd
   # File: Vec4d  was providing: osg::Vec4d
   # File: Vec3d  was providing: osg::Vec3d

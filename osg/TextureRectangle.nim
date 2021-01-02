@@ -1,13 +1,10 @@
 import osg_types
   # File: State  was providing: osg::State
   # File: Object  was providing: osg::Object
-  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
+  # File: StateAttribute  was providing: osg::StateAttribute::Type, osg::StateAttribute
   # File: Image  was providing: osg::Image
-  # File: CopyOp  was providing: osg::CopyOp
+  # File: CopyOp  was providing: osg::CopyOp::Options, osg::CopyOp
 type
-  TextureRectangle* {.header: "TextureRectangle", importcpp: "osg::TextureRectangle", byref.} = object #of class osg::Texture
-    ## Texture state class which encapsulates OpenGL texture functionality.
-
   SubloadCallback* {.header: "TextureRectangle", importcpp: "osg::TextureRectangle::SubloadCallback", byref.} = object #of class osg::Referenced
 
   ImageModifiedCount* {.header: "TextureRectangle", importcpp: "osg::TextureRectangle::ImageModifiedCount".} = buffered_value[unsigned int]

@@ -3,7 +3,7 @@ import osg_types
   # File: BoundingSphere  was providing: osg::BoundingSphere
   # File: Object  was providing: osg::Object
   # File: Node  was providing: osg::Node
-  # File: CopyOp  was providing: osg::CopyOp
+  # File: CopyOp  was providing: osg::CopyOp::Options, osg::CopyOp
   # File: NodeVisitor  was providing: osg::NodeVisitor
 {.push header: "Group".}
 

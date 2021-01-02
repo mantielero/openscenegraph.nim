@@ -1,9 +1,16 @@
 import osg_types
+  # File: Texture2DMultisample  was providing: osg::Texture2DMultisample
   # File: State  was providing: osg::State
   # File: GLExtensions  was providing: osg::GLExtensions
+  # File: Texture2D  was providing: osg::Texture2D
+  # File: Texture2DArray  was providing: osg::Texture2DArray
   # File: Object  was providing: osg::Object
-  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
-  # File: CopyOp  was providing: osg::CopyOp
+  # File: Texture3D  was providing: osg::Texture3D
+  # File: StateAttribute  was providing: osg::StateAttribute::Type, osg::StateAttribute
+  # File: CopyOp  was providing: osg::CopyOp::Options, osg::CopyOp
+  # File: Texture1D  was providing: osg::Texture1D
+  # File: TextureRectangle  was providing: osg::TextureRectangle
+  # File: TextureCubeMap  was providing: osg::TextureCubeMap
   # File: Texture  was providing: osg::Texture
 type
   BindTarget* {.size:sizeof(cuint),header: "FrameBufferObject", importcpp: "osg::FrameBufferObject::BindTarget", pure.} = enum

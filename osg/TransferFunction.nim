@@ -2,7 +2,7 @@ import osg_types
   # File: Vec4  was providing: osg::Vec4
   # File: Object  was providing: osg::Object
   # File: Image  was providing: osg::Image
-  # File: CopyOp  was providing: osg::CopyOp
+  # File: CopyOp  was providing: osg::CopyOp::Options, osg::CopyOp
 type
   TransferFunction* {.header: "TransferFunction", importcpp: "osg::TransferFunction", byref.} = object #of osg::Object
     ## TransferFunction is a class that provide a 1D,2D or 3D colour look up

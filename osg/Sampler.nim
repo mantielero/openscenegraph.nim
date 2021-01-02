@@ -1,9 +1,9 @@
 import osg_types
   # File: State  was providing: osg::State
   # File: Object  was providing: osg::Object
-  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
+  # File: StateAttribute  was providing: osg::StateAttribute::Type, osg::StateAttribute
   # File: StateSet  was providing: osg::StateSet
-  # File: CopyOp  was providing: osg::CopyOp
+  # File: CopyOp  was providing: osg::CopyOp::Options, osg::CopyOp
   # File: Vec4d  was providing: osg::Vec4d
 type
   Sampler* {.header: "Sampler", importcpp: "osg::Sampler", byref.} = object #of osg::StateAttribute

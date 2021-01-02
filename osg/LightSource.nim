@@ -2,7 +2,7 @@ import osg_types
   # File: BoundingSphere  was providing: osg::BoundingSphere
   # File: Object  was providing: osg::Object
   # File: StateSet  was providing: osg::StateSet
-  # File: CopyOp  was providing: osg::CopyOp
+  # File: CopyOp  was providing: osg::CopyOp::Options, osg::CopyOp
   # File: Light  was providing: osg::Light
   # File: NodeVisitor  was providing: osg::NodeVisitor
 type

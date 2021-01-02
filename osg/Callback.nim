@@ -4,7 +4,7 @@ import osg_types
   # File: StateAttribute  was providing: osg::StateAttribute
   # File: Node  was providing: osg::Node
   # File: Drawable  was providing: osg::Drawable
-  # File: CopyOp  was providing: osg::CopyOp
+  # File: CopyOp  was providing: osg::CopyOp::Options, osg::CopyOp
   # File: Uniform  was providing: osg::Uniform
   # File: RenderInfo  was providing: osg::RenderInfo
   # File: NodeVisitor  was providing: osg::NodeVisitor

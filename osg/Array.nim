@@ -12,10 +12,11 @@ import osg_types
   # File: Vec3ui  was providing: osg::Vec3ui
   # File: Matrixf  was providing: osg::Matrixf
   # File: Vec2ub  was providing: osg::Vec2ub
+  # File: TexGen  was providing: osg::TexGen::Coord
   # File: Vec2ui  was providing: osg::Vec2ui
   # File: Vec3us  was providing: osg::Vec3us
   # File: Vec2  was providing: osg::Vec2
-  # File: CopyOp  was providing: osg::CopyOp
+  # File: CopyOp  was providing: osg::CopyOp::Options, osg::CopyOp
   # File: Matrixd  was providing: osg::Matrixd
   # File: Vec3b  was providing: osg::Vec3b
   # File: Vec4b  was providing: osg::Vec4b
@@ -30,6 +31,47 @@ import osg_types
   # File: Vec4ub  was providing: osg::Vec4ub
   # File: Vec4i  was providing: osg::Vec4i
 type
+  Type* {.size:sizeof(cuint),header: "Array", importcpp: "osg::Array::Type", pure.} = enum
+    ## The type of data stored in this array.
+
+    ArrayType = 0,
+    ByteArrayType = 1,
+    ShortArrayType = 2,
+    IntArrayType = 3,
+    UByteArrayType = 4,
+    UShortArrayType = 5,
+    UIntArrayType = 6,
+    FloatArrayType = 7,
+    DoubleArrayType = 8,
+    Vec2bArrayType = 9,
+    Vec3bArrayType = 10,
+    Vec4bArrayType = 11,
+    Vec2sArrayType = 12,
+    Vec3sArrayType = 13,
+    Vec4sArrayType = 14,
+    Vec2iArrayType = 15,
+    Vec3iArrayType = 16,
+    Vec4iArrayType = 17,
+    Vec2ubArrayType = 18,
+    Vec3ubArrayType = 19,
+    Vec4ubArrayType = 20,
+    Vec2usArrayType = 21,
+    Vec3usArrayType = 22,
+    Vec4usArrayType = 23,
+    Vec2uiArrayType = 24,
+    Vec3uiArrayType = 25,
+    Vec4uiArrayType = 26,
+    Vec2ArrayType = 27,
+    Vec3ArrayType = 28,
+    Vec4ArrayType = 29,
+    Vec2dArrayType = 30,
+    Vec3dArrayType = 31,
+    Vec4dArrayType = 32,
+    MatrixArrayType = 33,
+    MatrixdArrayType = 34,
+    QuatArrayType = 35,
+    UInt64ArrayType = 36,
+    Int64ArrayType = 37
 
   ArrayVisitor* {.header: "Array", importcpp: "osg::ArrayVisitor", byref.} = object
 

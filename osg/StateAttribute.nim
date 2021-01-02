@@ -4,7 +4,7 @@ import osg_types
   # File: Shader  was providing: osg::ShaderComponent
   # File: Callback  was providing: osg::StateAttributeCallback
   # File: StateSet  was providing: osg::StateSet
-  # File: CopyOp  was providing: osg::CopyOp
+  # File: CopyOp  was providing: osg::CopyOp::Options, osg::CopyOp
   # File: Texture  was providing: osg::Texture
 type
   Values* {.size:sizeof(cuint),header: "StateAttribute", importcpp: "osg::StateAttribute::Values", pure.} = enum

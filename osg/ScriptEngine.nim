@@ -2,7 +2,7 @@ import osg_types
   # File: Object  was providing: osg::Object
   # File: Node  was providing: osg::Node, osg::NodePath
   # File: Callback  was providing: osg::Parameters
-  # File: CopyOp  was providing: osg::CopyOp
+  # File: CopyOp  was providing: osg::CopyOp::Options, osg::CopyOp
   # File: NodeVisitor  was providing: osg::NodeVisitor
 type
   Script* {.header: "ScriptEngine", importcpp: "osg::Script", byref.} = object #of osg::Object

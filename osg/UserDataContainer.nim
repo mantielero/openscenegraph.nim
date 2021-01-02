@@ -1,7 +1,7 @@
 import osg_types
   # File: Object  was providing: osg::Object
   # File: Referenced  was providing: osg::Referenced
-  # File: CopyOp  was providing: osg::CopyOp
+  # File: CopyOp  was providing: osg::CopyOp::Options, osg::CopyOp
 type
   DefaultUserDataContainer* {.header: "UserDataContainer", importcpp: "osg::DefaultUserDataContainer", byref.} = object #of osg::UserDataContainer
     ## Internal structure for storing all user data.

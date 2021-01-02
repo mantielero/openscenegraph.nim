@@ -4,7 +4,7 @@ import osg_types
   # File: Referenced  was providing: osg::Referenced
   # File: Node  was providing: osg::Node
   # File: Group  was providing: osg::NodeList
-  # File: CopyOp  was providing: osg::CopyOp
+  # File: CopyOp  was providing: osg::CopyOp::Options, osg::CopyOp
   # File: NodeVisitor  was providing: osg::NodeVisitor
 type
   PerRangeDataList* {.header: "PagedLOD", importcpp: "osg::PagedLOD::PerRangeDataList".} = cint

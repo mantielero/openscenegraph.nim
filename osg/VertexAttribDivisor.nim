@@ -1,8 +1,8 @@
 import osg_types
   # File: State  was providing: osg::State
   # File: Object  was providing: osg::Object
-  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
-  # File: CopyOp  was providing: osg::CopyOp
+  # File: StateAttribute  was providing: osg::StateAttribute::Type, osg::StateAttribute
+  # File: CopyOp  was providing: osg::CopyOp::Options, osg::CopyOp
 type
   VertexAttribDivisor* {.header: "VertexAttribDivisor", importcpp: "osg::VertexAttribDivisor", byref.} = object #of class osg::StateAttribute
     ## VertexAttribDivisor state class which encapsulates OpenGL

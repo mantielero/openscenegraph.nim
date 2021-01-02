@@ -2,14 +2,10 @@ import osg_types
   # File: State  was providing: osg::State
   # File: ref_ptr  was providing: osg::ref_ptr
   # File: Object  was providing: osg::Object
-  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
+  # File: StateAttribute  was providing: osg::StateAttribute::Type, osg::StateAttribute
   # File: Image  was providing: osg::Image
-  # File: CopyOp  was providing: osg::CopyOp
+  # File: CopyOp  was providing: osg::CopyOp::Options, osg::CopyOp
 type
-  Texture2D* {.header: "Texture2D", importcpp: "osg::Texture2D", byref.} = object #of class osg::Texture
-    ## Encapsulates OpenGL 2D texture functionality. Doesn't support cube
-    ## maps, so ignore face parameters.
-
   SubloadCallback* {.header: "Texture2D", importcpp: "osg::Texture2D::SubloadCallback", byref.} = object #of class osg::Referenced
 
   ImageModifiedCount* {.header: "Texture2D", importcpp: "osg::Texture2D::ImageModifiedCount".} = buffered_value[unsigned int]

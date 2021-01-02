@@ -4,7 +4,7 @@ import osg_types
   # File: Object  was providing: osg::Object
   # File: StateAttribute  was providing: osg::StateAttribute::Type
   # File: Image  was providing: osg::Image
-  # File: CopyOp  was providing: osg::CopyOp
+  # File: CopyOp  was providing: osg::CopyOp::Options, osg::CopyOp
   # File: GraphicsContext  was providing: osg::GraphicsContext
   # File: Vec4d  was providing: osg::Vec4d
   # File: FrameStamp  was providing: osg::FrameStamp

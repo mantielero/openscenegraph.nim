@@ -26,7 +26,7 @@ import osg_types
   # File: Drawable  was providing: osg::Drawable
   # File: ClipNode  was providing: osg::ClipNode
   # File: Group  was providing: osg::Group
-  # File: CopyOp  was providing: osg::CopyOp
+  # File: CopyOp  was providing: osg::CopyOp::Options, osg::CopyOp
   # File: ValueStack  was providing: osg::ValueStack
   # File: PagedLOD  was providing: osg::PagedLOD
   # File: ProxyNode  was providing: osg::ProxyNode
@@ -35,12 +35,6 @@ import osg_types
   # File: FrameStamp  was providing: osg::FrameStamp
   # File: OcclusionQueryNode  was providing: osg::OcclusionQueryNode
 type
-  TraversalMode* {.size:sizeof(cuint),header: "NodeVisitor", importcpp: "osg::NodeVisitor::TraversalMode", pure.} = enum
-    TRAVERSE_NONE = 0,
-    TRAVERSE_PARENTS = 1,
-    TRAVERSE_ALL_CHILDREN = 2,
-    TRAVERSE_ACTIVE_CHILDREN = 3
-
   VisitorType* {.size:sizeof(cuint),header: "NodeVisitor", importcpp: "osg::NodeVisitor::VisitorType", pure.} = enum
     NODE_VISITOR = 0,
     UPDATE_VISITOR = 1,

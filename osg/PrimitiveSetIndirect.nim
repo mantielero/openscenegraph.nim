@@ -1,8 +1,8 @@
 import osg_types
   # File: State  was providing: osg::State
   # File: Object  was providing: osg::Object
-  # File: PrimitiveSet  was providing: osg::PrimitiveFunctor, osg::VectorGLuint, osg::PrimitiveIndexFunctor
-  # File: CopyOp  was providing: osg::CopyOp
+  # File: PrimitiveSet  was providing: osg::PrimitiveIndexFunctor, osg::VectorGLuint, osg::PrimitiveFunctor, osg::PrimitiveSet::Type
+  # File: CopyOp  was providing: osg::CopyOp::Options, osg::CopyOp
 type
   IndirectCommandDrawArrays* {.header: "PrimitiveSetIndirect", importcpp: "osg::IndirectCommandDrawArrays", byref.} = object #of class osg::BufferData
     ## common interface for IndirectCommandDrawArrayss

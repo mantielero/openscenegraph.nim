@@ -1,15 +1,10 @@
 import osg_types
   # File: State  was providing: osg::State
   # File: Object  was providing: osg::Object
-  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
+  # File: StateAttribute  was providing: osg::StateAttribute::Type, osg::StateAttribute
   # File: Image  was providing: osg::Image
-  # File: CopyOp  was providing: osg::CopyOp
+  # File: CopyOp  was providing: osg::CopyOp::Options, osg::CopyOp
 type
-  Texture2DArray* {.header: "Texture2DArray", importcpp: "osg::Texture2DArray", byref.} = object #of class osg::Texture
-    ## Texture2DArray state class which encapsulates OpenGL 2D array texture
-    ## functionality. Texture arrays were introduced with Shader Model 4.0
-    ## hardware.
-
   SubloadCallback* {.header: "Texture2DArray", importcpp: "osg::Texture2DArray::SubloadCallback", byref.} = object #of class osg::Referenced
 
   Images* {.header: "Texture2DArray", importcpp: "osg::Texture2DArray::Images".} = cint

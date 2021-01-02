@@ -2,7 +2,7 @@ import osg_types
   # File: ValueMap  was providing: osg::ValueMap
   # File: Object  was providing: osg::Object
   # File: Referenced  was providing: osg::Referenced
-  # File: CopyOp  was providing: osg::CopyOp
+  # File: CopyOp  was providing: osg::CopyOp::Options, osg::CopyOp
 type
   Values* {.header: "ValueStack", importcpp: "osg::ValueStack::Values".} = cint
   ValueStackMap* {.header: "ValueStack", importcpp: "osg::ValueStack::ValueStackMap".} = cint

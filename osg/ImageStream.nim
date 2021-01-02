@@ -1,7 +1,7 @@
 import osg_types
   # File: Object  was providing: osg::Object
   # File: Image  was providing: osg::Image
-  # File: CopyOp  was providing: osg::CopyOp
+  # File: CopyOp  was providing: osg::CopyOp::Options, osg::CopyOp
   # File: Texture  was providing: osg::Texture
 type
   StreamStatus* {.size:sizeof(cuint),header: "ImageStream", importcpp: "osg::ImageStream::StreamStatus", pure.} = enum

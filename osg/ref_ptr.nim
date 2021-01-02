@@ -1,3 +1,5 @@
+import osg_types
+  # File: TexGen  was providing: osg::TexGen::Coord
 type
   Element_type* {.header: "ref_ptr", importcpp: "osg::ref_ptr::element_type".} = T
 

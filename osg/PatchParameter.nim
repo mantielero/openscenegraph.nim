@@ -2,9 +2,9 @@ import osg_types
   # File: State  was providing: osg::State
   # File: Vec4  was providing: osg::Vec4
   # File: Object  was providing: osg::Object
-  # File: StateAttribute  was providing: osg::StateAttribute, osg::StateAttribute::Type
+  # File: StateAttribute  was providing: osg::StateAttribute::Type, osg::StateAttribute
   # File: Vec2  was providing: osg::Vec2
-  # File: CopyOp  was providing: osg::CopyOp
+  # File: CopyOp  was providing: osg::CopyOp::Options, osg::CopyOp
 type
   PatchParameter* {.header: "PatchParameter", importcpp: "osg::PatchParameter", byref.} = object #of class osg::StateAttribute
     ## Class which encapsulates glPatchParameter(..).

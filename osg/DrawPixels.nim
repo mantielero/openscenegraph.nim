@@ -3,7 +3,7 @@ import osg_types
   # File: Object  was providing: osg::Object
   # File: Image  was providing: osg::Image
   # File: BoundingBox  was providing: osg::BoundingBox
-  # File: CopyOp  was providing: osg::CopyOp
+  # File: CopyOp  was providing: osg::CopyOp::Options, osg::CopyOp
   # File: RenderInfo  was providing: osg::RenderInfo
 type
   DrawPixels* {.header: "DrawPixels", importcpp: "osg::DrawPixels", byref.} = object #of class osg::Drawable

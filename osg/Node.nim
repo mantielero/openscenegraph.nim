@@ -10,7 +10,7 @@ import osg_types
   # File: Callback  was providing: osg::Callback
   # File: Group  was providing: osg::Group
   # File: StateSet  was providing: osg::StateSet
-  # File: CopyOp  was providing: osg::CopyOp
+  # File: CopyOp  was providing: osg::CopyOp::Options, osg::CopyOp
   # File: NodeVisitor  was providing: osg::NodeVisitor
 type
   NodePathList* {.header: "Node", importcpp: "osg::NodePathList".} = cint

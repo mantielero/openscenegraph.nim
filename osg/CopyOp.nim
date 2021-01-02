@@ -8,28 +8,11 @@ import osg_types
   # File: Node  was providing: osg::Node
   # File: Image  was providing: osg::Image
   # File: Drawable  was providing: osg::Drawable
-  # File: Callback  was providing: osg::Callback, osg::UniformCallback, osg::StateAttributeCallback
+  # File: Callback  was providing: osg::UniformCallback, osg::StateAttributeCallback, osg::Callback
   # File: StateSet  was providing: osg::StateSet
   # File: Uniform  was providing: osg::Uniform
   # File: Texture  was providing: osg::Texture
 type
-  Options* {.size:sizeof(cuint),header: "CopyOp", importcpp: "osg::CopyOp::Options", pure.} = enum
-    SHALLOW_COPY = 0,
-    DEEP_COPY_OBJECTS = 1,
-    DEEP_COPY_NODES = 2,
-    DEEP_COPY_DRAWABLES = 4,
-    DEEP_COPY_STATESETS = 8,
-    DEEP_COPY_STATEATTRIBUTES = 16,
-    DEEP_COPY_TEXTURES = 32,
-    DEEP_COPY_IMAGES = 64,
-    DEEP_COPY_ARRAYS = 128,
-    DEEP_COPY_PRIMITIVES = 256,
-    DEEP_COPY_SHAPES = 512,
-    DEEP_COPY_UNIFORMS = 1024,
-    DEEP_COPY_CALLBACKS = 2048,
-    DEEP_COPY_USERDATA = 4096,
-    DEEP_COPY_ALL = 2147483647
-
   CopyFlags* {.header: "CopyOp", importcpp: "osg::CopyOp::CopyFlags".} = cuint
 
 

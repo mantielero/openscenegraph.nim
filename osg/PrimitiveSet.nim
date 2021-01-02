@@ -5,28 +5,11 @@ import osg_types
   # File: Object  was providing: osg::Object
   # File: BufferObject  was providing: osg::ElementBufferObject
   # File: Vec2  was providing: osg::Vec2
-  # File: CopyOp  was providing: osg::CopyOp
+  # File: CopyOp  was providing: osg::CopyOp::Options, osg::CopyOp
   # File: Vec4d  was providing: osg::Vec4d
   # File: Vec3d  was providing: osg::Vec3d
   # File: Vec2d  was providing: osg::Vec2d
 type
-  Type* {.size:sizeof(cuint),header: "PrimitiveSet", importcpp: "osg::PrimitiveSet::Type", pure.} = enum
-    PrimitiveType = 0,
-    DrawArraysPrimitiveType = 1,
-    DrawArrayLengthsPrimitiveType = 2,
-    DrawElementsUBytePrimitiveType = 3,
-    DrawElementsUShortPrimitiveType = 4,
-    DrawElementsUIntPrimitiveType = 5,
-    MultiDrawArraysPrimitiveType = 6,
-    DrawArraysIndirectPrimitiveType = 7,
-    DrawElementsUByteIndirectPrimitiveType = 8,
-    DrawElementsUShortIndirectPrimitiveType = 9,
-    DrawElementsUIntIndirectPrimitiveType = 10,
-    MultiDrawArraysIndirectPrimitiveType = 11,
-    MultiDrawElementsUByteIndirectPrimitiveType = 12,
-    MultiDrawElementsUShortIndirectPrimitiveType = 13,
-    MultiDrawElementsUIntIndirectPrimitiveType = 14
-
   Mode* {.size:sizeof(cuint),header: "PrimitiveSet", importcpp: "osg::PrimitiveSet::Mode", pure.} = enum
     POINTS = 0,
     LINES = 1,

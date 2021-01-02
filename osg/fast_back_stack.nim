@@ -1,3 +1,5 @@
+import osg_types
+  # File: TexGen  was providing: osg::TexGen::Coord
 type
   fast_back_stack*[T] {.header: "fast_back_stack", importcpp: "osg::fast_back_stack", byref.} = object
     ## Simple stack implementation that keeps the back() cached locally for

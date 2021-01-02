@@ -1,7 +1,7 @@
 import osg_types
   # File: Object  was providing: osg::Object
   # File: ConvexPlanarPolygon  was providing: osg::ConvexPlanarPolygon
-  # File: CopyOp  was providing: osg::CopyOp
+  # File: CopyOp  was providing: osg::CopyOp::Options, osg::CopyOp
 type
   HoleList* {.header: "ConvexPlanarOccluder", importcpp: "osg::ConvexPlanarOccluder::HoleList".} = cint
 
