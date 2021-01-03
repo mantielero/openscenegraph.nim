@@ -13,7 +13,6 @@ type
     ABSOLUTE_RF = 1
 
 
-
 {.push header: "LightSource".}
 
 proc constructLightSource*(): LightSource {.constructor,importcpp: "osg::LightSource::LightSource".}
