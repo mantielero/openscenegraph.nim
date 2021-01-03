@@ -1,3 +1,5 @@
+import CopyOp
+import opengl
 import osg_types
   # File: BoundingSphere  was providing: osg::BoundingSphere
   # File: Object  was providing: osg::Object
@@ -16,7 +18,7 @@ type
 
 proc constructLightSource*(): LightSource {.constructor,importcpp: "osg::LightSource::LightSource".}
 
-proc constructLightSource*(ls: LightSource, copyop: CopyOp = SHALLOW_COPY): LightSource {.constructor,importcpp: "osg::LightSource::LightSource(@)".}
+proc constructLightSource*(ls: LightSource, copyop: CopyOp = constructCopyOp(CopyFlags(SHALLOW_COPY))): LightSource {.constructor,importcpp: "osg::LightSource::LightSource(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: LightSource): ptr Object   {.importcpp: "cloneType".}
