@@ -68,6 +68,7 @@ type
   DrawArraysInstancedProc* {.header: "State", importcpp: "osg::State::DrawArraysInstancedProc".} = proc (mode: GLenum, first: GLint, count: GLsizei, primcount: GLsizei)
   DrawElementsInstancedProc* {.header: "State", importcpp: "osg::State::DrawElementsInstancedProc".} = proc (mode: GLenum, count: GLsizei, `type`: GLenum, indices: ptr GLvoid, primcount: GLsizei)
 
+  ApplyModeProxy* {.header: "State", importcpp: "osg::State::ApplyModeProxy".} = object
 
 {.push header: "State".}
 
