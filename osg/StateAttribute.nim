@@ -168,7 +168,7 @@ proc compileGLObjects*(this: StateAttribute, a00: State)  {.importcpp: "compileG
 proc resizeGLObjectBuffers*(this: var StateAttribute, a00: cuint)  {.importcpp: "resizeGLObjectBuffers".}
     ## Resize any per context GLObject buffers to specified size.
 
-proc releaseGLObjects*(this: StateAttribute, a00: ptr State  = 0)  {.importcpp: "releaseGLObjects".}
+proc releaseGLObjects*(this: StateAttribute, a00: ptr State  = nil)  {.importcpp: "releaseGLObjects".}
     ## Release OpenGL objects in specified graphics context if State object
     ## is passed, otherwise release OpenGL objects for all graphics context
     ## if State object pointer NULL.
