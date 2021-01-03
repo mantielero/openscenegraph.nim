@@ -81,6 +81,8 @@ type
   PerContextProgram* {.header: "State", importcpp: "osg::State::PerContextProgram".} = object
   DynamicObjectRenderingCompletedCallback* {.header: "State", importcpp: "osg::State::DynamicObjectRenderingCompletedCallback".} = object
 
+  ostream* {.header:"ostream", importcpp: "ostream::ostream".} = object
+
 {.push header: "State".}
 
 proc constructState*(): State {.constructor,importcpp: "osg::State::State".}
