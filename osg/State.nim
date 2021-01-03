@@ -816,45 +816,46 @@ proc getLastAppliedAttribute*(this: State, attributeMap: AttributeMap, `type`: T
 
 proc loadModelViewMatrix*(this: var State)  {.importcpp: "loadModelViewMatrix".}
 
-proc pushModeList*(this: var State, modeMap: ModeMap, modeList: ModeList)  {.importcpp: "pushModeList".}
+#Repeated
+#proc pushModeList*(this: var State, modeMap: ModeMap, modeList: ModeList)  {.importcpp: "pushModeList".}
 
-proc pushAttributeList*(this: var State, attributeMap: AttributeMap, attributeList: AttributeList)  {.importcpp: "pushAttributeList".}
+#proc pushAttributeList*(this: var State, attributeMap: AttributeMap, attributeList: AttributeList)  {.importcpp: "pushAttributeList".}
 
-proc pushUniformList*(this: var State, uniformMap: UniformMap, uniformList: UniformList)  {.importcpp: "pushUniformList".}
+#proc pushUniformList*(this: var State, uniformMap: UniformMap, uniformList: UniformList)  {.importcpp: "pushUniformList".}
 
-proc pushDefineList*(this: var State, defineMap: DefineMap, defineList: DefineList)  {.importcpp: "pushDefineList".}
+#proc pushDefineList*(this: var State, defineMap: DefineMap, defineList: DefineList)  {.importcpp: "pushDefineList".}
 
-proc popModeList*(this: var State, modeMap: ModeMap, modeList: ModeList)  {.importcpp: "popModeList".}
+#proc popModeList*(this: var State, modeMap: ModeMap, modeList: ModeList)  {.importcpp: "popModeList".}
 
-proc popAttributeList*(this: var State, attributeMap: AttributeMap, attributeList: AttributeList)  {.importcpp: "popAttributeList".}
+#proc popAttributeList*(this: var State, attributeMap: AttributeMap, attributeList: AttributeList)  {.importcpp: "popAttributeList".}
 
-proc popUniformList*(this: var State, uniformMap: UniformMap, uniformList: UniformList)  {.importcpp: "popUniformList".}
+#proc popUniformList*(this: var State, uniformMap: UniformMap, uniformList: UniformList)  {.importcpp: "popUniformList".}
 
 proc popDefineList*(this: var State, defineMap: DefineMap, defineList: DefineList)  {.importcpp: "popDefineList".}
 
-proc applyModeList*(this: var State, modeMap: ModeMap, modeList: ModeList)  {.importcpp: "applyModeList".}
+#proc applyModeList*(this: var State, modeMap: ModeMap, modeList: ModeList)  {.importcpp: "applyModeList".}
 
-proc applyModeListOnTexUnit*(this: var State, unit: cuint, modeMap: ModeMap, modeList: ModeList)  {.importcpp: "applyModeListOnTexUnit".}
+#proc applyModeListOnTexUnit*(this: var State, unit: cuint, modeMap: ModeMap, modeList: ModeList)  {.importcpp: "applyModeListOnTexUnit".}
 
-proc applyAttributeList*(this: var State, attributeMap: AttributeMap, attributeList: AttributeList)  {.importcpp: "applyAttributeList".}
+#proc applyAttributeList*(this: var State, attributeMap: AttributeMap, attributeList: AttributeList)  {.importcpp: "applyAttributeList".}
 
-proc applyAttributeListOnTexUnit*(this: var State, unit: cuint, attributeMap: AttributeMap, attributeList: AttributeList)  {.importcpp: "applyAttributeListOnTexUnit".}
+#proc applyAttributeListOnTexUnit*(this: var State, unit: cuint, attributeMap: AttributeMap, attributeList: AttributeList)  {.importcpp: "applyAttributeListOnTexUnit".}
 
-proc applyUniformList*(this: var State, uniformMap: UniformMap, uniformList: UniformList)  {.importcpp: "applyUniformList".}
+#proc applyUniformList*(this: var State, uniformMap: UniformMap, uniformList: UniformList)  {.importcpp: "applyUniformList".}
 
 proc applyDefineList*(this: var State, defineMap: DefineMap, defineList: DefineList)  {.importcpp: "applyDefineList".}
 
-proc applyModeMap*(this: var State, modeMap: ModeMap)  {.importcpp: "applyModeMap".}
+#proc applyModeMap*(this: var State, modeMap: ModeMap)  {.importcpp: "applyModeMap".}
 
-proc applyModeMapOnTexUnit*(this: var State, unit: cuint, modeMap: ModeMap)  {.importcpp: "applyModeMapOnTexUnit".}
+#proc applyModeMapOnTexUnit*(this: var State, unit: cuint, modeMap: ModeMap)  {.importcpp: "applyModeMapOnTexUnit".}
 
-proc applyAttributeMap*(this: var State, attributeMap: AttributeMap)  {.importcpp: "applyAttributeMap".}
+#proc applyAttributeMap*(this: var State, attributeMap: AttributeMap)  {.importcpp: "applyAttributeMap".}
 
-proc applyAttributeMapOnTexUnit*(this: var State, unit: cuint, attributeMap: AttributeMap)  {.importcpp: "applyAttributeMapOnTexUnit".}
+#proc applyAttributeMapOnTexUnit*(this: var State, unit: cuint, attributeMap: AttributeMap)  {.importcpp: "applyAttributeMapOnTexUnit".}
 
-proc applyUniformMap*(this: var State, uniformMap: UniformMap)  {.importcpp: "applyUniformMap".}
+#proc applyUniformMap*(this: var State, uniformMap: UniformMap)  {.importcpp: "applyUniformMap".}
 
-proc setActiveTextureUnit*(this: var State, unit: cuint): bool  {.importcpp: "setActiveTextureUnit".}
+#proc setActiveTextureUnit*(this: var State, unit: cuint): bool  {.importcpp: "setActiveTextureUnit".}
     ## Set the current texture unit, return true if selected, false if
     ## selection failed such as when multi texturing is not supported. note,
     ## only updates values that change.
