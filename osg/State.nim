@@ -1,3 +1,4 @@
+import StateAttribute
 import osg_types
   # File: AttributeDispatchers  was providing: osg::AttributeDispatchers
   # File: GLExtensions  was providing: osg::VertexAttribAlias, osg::GLExtensions
