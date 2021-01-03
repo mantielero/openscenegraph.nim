@@ -1,5 +1,6 @@
 import opengl
 import CopyOp
+import Material
 import osg_types
   # File: State  was providing: osg::State
   # File: Object  was providing: osg::Object
