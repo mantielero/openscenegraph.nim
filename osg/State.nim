@@ -655,7 +655,7 @@ proc setCheckForGLErrors*(this: var State, check: CheckForGLErrors)  {.importcpp
 proc getCheckForGLErrors*(this: State): CheckForGLErrors  {.importcpp: "getCheckForGLErrors".}
     ## Get whether and how often OpenGL errors should be checked for.
 
-proc checkGLErrors*(this: State, str1: cstring = 0, str2: cstring = 0): bool  {.importcpp: "checkGLErrors".}
+proc checkGLErrors*(this: State, str1: cstring = nil, str2: cstring = nil): bool  {.importcpp: "checkGLErrors".}
 
 proc checkGLErrors*(this: State, mode: GLMode): bool  {.importcpp: "checkGLErrors".}
 
