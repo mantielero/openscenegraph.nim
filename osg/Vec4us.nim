@@ -1,3 +1,5 @@
+import osg_types
+
 const
   num_components* = 4
 
