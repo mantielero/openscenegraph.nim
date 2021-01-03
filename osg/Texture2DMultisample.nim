@@ -12,7 +12,7 @@ proc constructTexture2DMultisample*(): Texture2DMultisample {.constructor,import
 
 proc constructTexture2DMultisample*(numSamples: GLsizei, fixedsamplelocations: GLboolean): Texture2DMultisample {.constructor,importcpp: "osg::Texture2DMultisample::Texture2DMultisample(@)".}
 
-proc constructTexture2DMultisample*(text: Texture2DMultisample, copyop: CopyOp = SHALLOW_COPY): Texture2DMultisample {.constructor,importcpp: "osg::Texture2DMultisample::Texture2DMultisample(@)".}
+proc constructTexture2DMultisample*(text: Texture2DMultisample, copyop: CopyOp = constructCopyOp(CopyFlags(SHALLOW_COPY))): Texture2DMultisample {.constructor,importcpp: "osg::Texture2DMultisample::Texture2DMultisample(@)".}
     ## Copy constructor using CopyOp to manage deep vs shallow copy.
 
 proc cloneType*(this: Texture2DMultisample): ptr Object   {.importcpp: "cloneType".}
