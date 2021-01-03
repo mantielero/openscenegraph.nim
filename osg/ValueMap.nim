@@ -1,3 +1,4 @@
+import CopyOp
 import osg_types
   # File: Object  was providing: osg::Object
   # File: Referenced  was providing: osg::Referenced
@@ -10,7 +11,7 @@ type
 
 proc constructValueMap*(): ValueMap {.constructor,importcpp: "osg::ValueMap::ValueMap".}
 
-proc constructValueMap*(vm: ValueMap, copyop: CopyOp = SHALLOW_COPY): ValueMap {.constructor,importcpp: "osg::ValueMap::ValueMap(@)".}
+proc constructValueMap*(vm: ValueMap, copyop: CopyOp = constructCopyOp(CopyFlags(SHALLOW_COPY))): ValueMap {.constructor,importcpp: "osg::ValueMap::ValueMap(@)".}
 
 proc cloneType*(this: ValueMap): ptr Object   {.importcpp: "cloneType".}
 
