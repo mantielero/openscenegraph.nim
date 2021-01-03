@@ -1,5 +1,6 @@
 import CopyOp
 import opengl
+import StateAttribute
 import osg_types
   # File: BoundingSphere  was providing: osg::BoundingSphere
   # File: Object  was providing: osg::Object
