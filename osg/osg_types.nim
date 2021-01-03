@@ -1,6 +1,8 @@
 import opengl
 
 type
+  pair*[K, V] {.importcpp: "std::pair", header: "<std>".}  = object
+  
   MixinVector*[ValueT] {.header: "MixinVector", importcpp: "osg::MixinVector", byref.} = object
     ## MixinVector is a base class that allows inheritance to be used to
     ## easily emulate derivation from std::vector but without introducing
