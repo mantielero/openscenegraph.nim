@@ -24,6 +24,7 @@ type
   Material* {.header: "Material", importcpp: "osg::Material", byref.} = object #of class osg::StateAttribute
     ## Material - encapsulates OpenGL glMaterial state.
 
+  ModeUsage* {.header: "Material", importcpp: "osg::Material::ModeUsage", byref.} = object #of class osg::StateAttribute
 
 
 {.push header: "Material".}
