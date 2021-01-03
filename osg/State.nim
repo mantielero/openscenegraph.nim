@@ -72,6 +72,14 @@ type
   ApplyTextureModeProxy* {.header: "State", importcpp: "osg::State::ApplyTextureModeProxy".} = object
   SetCurrentVertexArrayStateProxy* {.header: "State", importcpp: "osg::State::SetCurrentVertexArrayStateProxy".} = object
   ModeStack* {.header: "State", importcpp: "osg::State::ModeStack".} = object
+  AttributeStack* {.header: "State", importcpp: "osg::State::AttributeStack".} = object
+  UniformStack* {.header: "State", importcpp: "osg::State::UniformStack".} = object
+  DefineStack* {.header: "State", importcpp: "osg::State::DefineStack".} = object
+  DefineMap* {.header: "State", importcpp: "osg::State::DefineMap".} = object
+  UniformList* {.header: "State", importcpp: "osg::State::UniformList".} = object
+  AttribBindingList* {.header: "State", importcpp: "osg::State::AttribBindingList".} = object  
+  PerContextProgram* {.header: "State", importcpp: "osg::State::PerContextProgram".} = object
+  DynamicObjectRenderingCompletedCallback* {.header: "State", importcpp: "osg::State::DynamicObjectRenderingCompletedCallback".} = object
 
 {.push header: "State".}
 
