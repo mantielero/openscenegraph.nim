@@ -1,4 +1,5 @@
 import opengl
+import CopyOp
 import osg_types
   # File: State  was providing: osg::State
   # File: Object  was providing: osg::Object
@@ -42,7 +43,7 @@ type
 
 proc constructStateAttribute*(): StateAttribute {.constructor,importcpp: "osg::StateAttribute::StateAttribute".}
 
-proc constructStateAttribute*(sa: StateAttribute, copyop: CopyOp = SHALLOW_COPY): StateAttribute {.constructor,importcpp: "osg::StateAttribute::StateAttribute(@)".}
+proc constructStateAttribute*(sa: StateAttribute, copyop: CopyOp = constructCopyOp(CopyFlags(SHALLOW_COPY))): StateAttribute {.constructor,importcpp: "osg::StateAttribute::StateAttribute(@)".}
 
 proc constructReassignToParents*(att: ptr StateAttribute ): ReassignToParents {.constructor,importcpp: "osg::StateAttribute::ReassignToParents::ReassignToParents(@)".}
     ## Constructor caches and then removes attribute for all of it's parents.
