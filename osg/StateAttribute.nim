@@ -37,7 +37,7 @@ type
   TypeMemberPair* {.header: "StateAttribute", importcpp: "osg::StateAttribute::TypeMemberPair".} = pair[Type,cuint]
   ParentList* {.header: "StateAttribute", importcpp: "osg::StateAttribute::ParentList".} = cint
   Callback* {.header: "StateAttribute", importcpp: "osg::StateAttribute::Callback".} = StateAttributeCallback
-
+  ReassignToParents* {.header: "StateAttribute", importcpp: "osg::StateAttribute::ReassignToParents".} = object
 
 {.push header: "StateAttribute".}
 
