@@ -1,3 +1,5 @@
+import opengl
+
 import osg_types
   # File: State  was providing: osg::State
   # File: Object  was providing: osg::Object
