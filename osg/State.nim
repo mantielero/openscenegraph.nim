@@ -71,7 +71,8 @@ type
   ApplyModeProxy* {.header: "State", importcpp: "osg::State::ApplyModeProxy".} = object
   ApplyTextureModeProxy* {.header: "State", importcpp: "osg::State::ApplyTextureModeProxy".} = object
   SetCurrentVertexArrayStateProxy* {.header: "State", importcpp: "osg::State::SetCurrentVertexArrayStateProxy".} = object
-  ApplyModeProxy* {.header: "State", importcpp: "osg::State::ApplyModeProxy".} = object
+  ModeStack* {.header: "State", importcpp: "osg::State::ModeStack".} = object
+
 {.push header: "State".}
 
 proc constructState*(): State {.constructor,importcpp: "osg::State::State".}
