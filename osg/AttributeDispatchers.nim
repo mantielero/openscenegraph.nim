@@ -1,9 +1,12 @@
+import opengl
 import osg_types
   # File: State  was providing: osg::State
   # File: Array  was providing: osg::Array
 type
   AttributeDispatchMapList* {.header: "AttributeDispatchers", importcpp: "osg::AttributeDispatchers::AttributeDispatchMapList".} = cint
   AttributeDispatchList* {.header: "AttributeDispatchers", importcpp: "osg::AttributeDispatchers::AttributeDispatchList".} = cint
+
+  AttributeDispatch* {.header: "AttributeDispatchers", importcpp: "osg::AttributeDispatchers::AttributeDispatch".} = object
 
 
 {.push header: "AttributeDispatchers".}
@@ -12,7 +15,7 @@ proc constructAttributeDispatchers*(): AttributeDispatchers {.constructor,import
 
 proc assign*(this: var AttributeDispatch, a00: ptr GLvoid)  {.importcpp: "assign".}
 
-proc `()`*(this: var AttributeDispatch, a00: cuint)  {.importcpp: "# () #".}
+#proc `()`*(this: var AttributeDispatch, a00: cuint)  {.importcpp: "# () #".}
 
 proc setState*(this: var AttributeDispatchers, state: ptr State )  {.importcpp: "setState".}
 
