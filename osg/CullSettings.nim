@@ -61,7 +61,7 @@ proc constructCullSettings*(arguments: ArgumentParser): CullSettings {.construct
 
 proc constructCullSettings*(cs: CullSettings): CullSettings {.constructor,importcpp: "osg::CullSettings::CullSettings(@)".}
 
-proc `=`*(this: var CullSettings, settings: CullSettings): CullSettings  {.importcpp: "# = #".}
+
 
 proc setDefaults*(this: var CullSettings)  {.importcpp: "setDefaults".}
 

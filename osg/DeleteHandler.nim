@@ -45,6 +45,4 @@ proc requestDelete*(this: var DeleteHandler, `object`: ptr Referenced )  {.impor
     ## be delayed until doDelete is called. The default implementation does a
     ## delete straight away.
 
-#proc `=`*(this: var DeleteHandler, a00: DeleteHandler) {.importcpp: "# = #".}
-
 {.pop.}  # header: "DeleteHandler"

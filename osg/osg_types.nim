@@ -874,4 +874,6 @@ type
   ShadowVolumeOccluderList* {.header: "ShadowVolumeOccluder", importcpp: "osg::ShadowVolumeOccluderList".} = cint
   NodeList* {.header: "Group", importcpp: "osg::NodeList".} = cint
 
+proc `=`*(this: var DeleteHandler, a00: DeleteHandler) {.importcpp: "# = #".}
 
+proc `=`*(this: var CullSettings, settings: CullSettings)  {.importcpp: "# = #".}
