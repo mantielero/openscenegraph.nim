@@ -52,7 +52,8 @@ type
   InheritanceMask* {.header: "CullSettings", importcpp: "osg::CullSettings::InheritanceMask".} = cint
   CullingMode* {.header: "CullSettings", importcpp: "osg::CullSettings::CullingMode".} = cint
 
-  ClampProjectionMatrixCallback {.header: "CullSettings", importcpp: "osg::CullSettings::ClampProjectionMatrixCallback".} = object
+  ClampProjectionMatrixCallback* {.header: "CullSettings", importcpp: "osg::CullSettings::ClampProjectionMatrixCallback".} = object
+
 
 {.push header: "CullSettings".}
 
