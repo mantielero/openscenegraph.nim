@@ -1,3 +1,4 @@
+import opengl
 import StateAttribute
 import osg_types
   # File: AttributeDispatchers  was providing: osg::AttributeDispatchers
