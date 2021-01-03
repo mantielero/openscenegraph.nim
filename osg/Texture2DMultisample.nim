@@ -1,4 +1,5 @@
 import opengl
+import CopyOp
 
 import osg_types
   # File: State  was providing: osg::State
