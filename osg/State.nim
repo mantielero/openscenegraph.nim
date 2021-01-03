@@ -80,7 +80,9 @@ type
   AttribBindingList* {.header: "State", importcpp: "osg::State::AttribBindingList".} = object  
   PerContextProgram* {.header: "State", importcpp: "osg::State::PerContextProgram".} = object
   DynamicObjectRenderingCompletedCallback* {.header: "State", importcpp: "osg::State::DynamicObjectRenderingCompletedCallback".} = object
-
+  ModeList* {.header: "State", importcpp: "osg::State::ModeList".} = object
+  AttributeList* {.header: "State", importcpp: "osg::State::AttributeList".} = object
+  DefineList* {.header: "State", importcpp: "osg::State::DefineList".} = object  
   ostream* {.header:"ostream", importcpp: "ostream::ostream".} = object
 
 {.push header: "State".}
